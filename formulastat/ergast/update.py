@@ -4,6 +4,7 @@ from zipfile import ZipFile
 from django.apps import apps
 from django.db import transaction
 import pandas as pd
+from tqdm import tqdm
 
 class ErgastUpdater():
 
@@ -45,7 +46,7 @@ class ErgastUpdater():
             zip.extractall(extract_path)
 
     def update_from_csv(self):
-        csv_folder = Path("ergast/download/csv")
+        csv_folder = Path("formulastat/ergast/download/csv")
         with transaction.atomic():
             for table in ["circuits", "constructors", "drivers", "seasons", "races", "qualifying", "status", "results", "constructor_results", "constructor_standings", "driver_standings", "lap_times", "pit_stops"]:
                 csv = csv_folder / Path(table + ".csv")
@@ -60,7 +61,7 @@ class ErgastUpdater():
                     data = pd.read_csv(csv)
 
                     missing_fields = set()
-                    for row in data.iterrows():
+                    for row in tqdm(data.iterrows()):
                         row = row[1]
                         if model_name in ["pitstops", "laptimes"]:
                             primary_keys = { "id": "|".join([str(row[field]) for field in self.table_keys[model_name]])}
@@ -81,7 +82,7 @@ class ErgastUpdater():
                                 row[field] = related_model.objects.get(pk=row[field])
                             new_row[field] = row[field]
                         model.objects.update_or_create(defaults=dict(new_row), **primary_keys)
-                if not missing_fields:
+                if missing_fields:
                     print(missing_fields)
 
     
