@@ -1,4 +1,5 @@
 .env
+formulastat/ergast/download
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
