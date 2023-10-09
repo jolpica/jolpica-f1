@@ -4,18 +4,17 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('ergast', '0011_alter_pitstops_id'),
+        ("ergast", "0011_alter_pitstops_id"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='circuits',
-            options={'ordering': ['circuitRef']},
+            name="circuits",
+            options={"ordering": ["circuitRef"]},
         ),
         migrations.AlterModelOptions(
-            name='races',
-            options={'ordering': ['year', 'round']},
+            name="races",
+            options={"ordering": ["year", "round"]},
         ),
     ]

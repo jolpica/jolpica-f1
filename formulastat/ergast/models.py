@@ -1,26 +1,22 @@
-from copyreg import constructor
-from django.db import models
-from django.db.models import Q, F, Count, Min
 from collections import Counter
 from time import perf_counter
+
+from django.db import models
+from django.db.models import Count, F, Min, Q
 
 # Create your models here.
 
 
 class Circuits(models.Model):
     circuitId = models.AutoField("Primary Key", primary_key=True, db_column="circuitId")
-    circuitRef = models.CharField(
-        "Unique circuit identifier", max_length=255, unique=True, db_column="circuitRef"
-    )
+    circuitRef = models.CharField("Unique circuit identifier", max_length=255, unique=True, db_column="circuitRef")
     name = models.CharField("Circuit name", max_length=255)
     location = models.CharField("Location name", max_length=255, blank=True)
     country = models.CharField("Country", max_length=255, blank=True)
     lat = models.FloatField("Latitude", blank=True, null=True)
     lng = models.FloatField("Longitude", blank=True, null=True)
     alt = models.FloatField("Altitude (metres)", blank=True, null=True)
-    url = models.CharField(
-        "Circuit Wikipedia page", max_length=255, unique=True, blank=True, null=True
-    )
+    url = models.CharField("Circuit Wikipedia page", max_length=255, unique=True, blank=True, null=True)
 
     class Meta:
         db_table = "ergast_circuits"
@@ -32,9 +28,7 @@ class Circuits(models.Model):
 
 class Seasons(models.Model):
     year = models.IntegerField("Primary key e.g. 1950", primary_key=True)
-    url = models.CharField(
-        "Season Wikipedia page", max_length=255, unique=True, blank=True, null=True
-    )
+    url = models.CharField("Season Wikipedia page", max_length=255, unique=True, blank=True, null=True)
 
     class Meta:
         db_table = "ergast_seasons"
@@ -54,9 +48,7 @@ class EligibleRaceManager(models.Manager):
                 num_results=Count("results", distinct=True),
                 race_time=Min("results__milliseconds"),
                 num_entries=Count("results", distinct=True),
-                num_lapping_racers=Count(
-                    "results", filter=Q(results__laps__gt=0), distinct=True
-                ),
+                num_lapping_racers=Count("results", filter=Q(results__laps__gt=0), distinct=True),
             )
             .filter(num_results__gt=0)
         )
@@ -86,26 +78,19 @@ class Races(models.Model):
     name = models.CharField("Race name", max_length=255)
     date = models.DateField('Race date e.g. "1950-05-13"')
     time = models.TimeField('Race start time e.g."13:00:00"', blank=True, null=True)
-    url = models.CharField(
-        "Race Wikipedia page", max_length=255, unique=True, blank=True, null=True
-    )
-    fp1_date = models.DateField('FP1 date', blank=True, null=True)
-    fp1_time = models.TimeField('FP1 start time', blank=True, null=True)
-    fp2_date = models.DateField('FP2 date', blank=True, null=True)
-    fp2_time = models.TimeField('FP2 start time', blank=True, null=True)
-    fp3_date = models.DateField('FP3 date', blank=True, null=True)
-    fp3_time = models.TimeField('FP3 start time', blank=True, null=True)
-    quali_date = models.DateField('Qualifying date', blank=True, null=True)
-    quali_time = models.TimeField('Qualifying start time', blank=True, null=True)
-    sprint_date = models.DateField('Sprint date', blank=True, null=True)
-    sprint_time = models.TimeField('Sprint start time', blank=True, null=True)
-    lap_times = models.ManyToManyField(
-        "Drivers", through="LapTimes", related_name="lap_times"
-    )
-    pit_stops = models.ManyToManyField(
-        "Drivers", through="PitStops", related_name="pit_stops"
-    )
-    
+    url = models.CharField("Race Wikipedia page", max_length=255, unique=True, blank=True, null=True)
+    fp1_date = models.DateField("FP1 date", blank=True, null=True)
+    fp1_time = models.TimeField("FP1 start time", blank=True, null=True)
+    fp2_date = models.DateField("FP2 date", blank=True, null=True)
+    fp2_time = models.TimeField("FP2 start time", blank=True, null=True)
+    fp3_date = models.DateField("FP3 date", blank=True, null=True)
+    fp3_time = models.TimeField("FP3 start time", blank=True, null=True)
+    quali_date = models.DateField("Qualifying date", blank=True, null=True)
+    quali_time = models.TimeField("Qualifying start time", blank=True, null=True)
+    sprint_date = models.DateField("Sprint date", blank=True, null=True)
+    sprint_time = models.TimeField("Sprint start time", blank=True, null=True)
+    lap_times = models.ManyToManyField("Drivers", through="LapTimes", related_name="lap_times")
+    pit_stops = models.ManyToManyField("Drivers", through="PitStops", related_name="pit_stops")
 
     objects = models.Manager()
     analysis_objects = EligibleRaceManager()
@@ -119,9 +104,7 @@ class Races(models.Model):
 
 
 class LapTimes(models.Model):
-    id = models.CharField(
-        "Unique id '<raceId>|<driverId>|<lap>'", primary_key=True, max_length=255
-    )
+    id = models.CharField("Unique id '<raceId>|<driverId>|<lap>'", primary_key=True, max_length=255)
     raceId = models.ForeignKey(
         Races,
         verbose_name="Foreign key link to races table",
@@ -136,29 +119,19 @@ class LapTimes(models.Model):
     )
     lap = models.IntegerField("Lap number")
     position = models.IntegerField("Driver race position", blank=True, null=True)
-    time = models.CharField(
-        'Lap time e.g. "1:43.762"', max_length=255, blank=True, null=True
-    )
-    milliseconds = models.IntegerField(
-        "Lap time in milliseconds", blank=True, null=True
-    )
+    time = models.CharField('Lap time e.g. "1:43.762"', max_length=255, blank=True, null=True)
+    milliseconds = models.IntegerField("Lap time in milliseconds", blank=True, null=True)
 
     class Meta:
         db_table = "ergast_lap_times"
-        constraints = [
-            models.UniqueConstraint(
-                fields=["raceId", "driverId", "lap"], name="unique_lap_time"
-            )
-        ]
+        constraints = [models.UniqueConstraint(fields=["raceId", "driverId", "lap"], name="unique_lap_time")]
 
     def __str__(self):
         return f"{self.raceId} - {self.driverId} lap {self.lap}"
 
 
 class PitStops(models.Model):
-    id = models.CharField(
-        "Unique id '<raceId>|<driverId>|<stop>'", primary_key=True, max_length=255
-    )
+    id = models.CharField("Unique id '<raceId>|<driverId>|<stop>'", primary_key=True, max_length=255)
     raceId = models.ForeignKey(
         Races,
         verbose_name="Foreign key link to races table",
@@ -173,32 +146,20 @@ class PitStops(models.Model):
     )
     stop = models.IntegerField("Stop number")
     lap = models.IntegerField("Lap number")
-    time = models.CharField(
-        'Time of stop e.g. "13:52:25"', max_length=255, blank=True, null=True
-    )
-    duration = models.CharField(
-        'Duration of stop e.g. "21.783"', max_length=255, blank=True, null=True
-    )
-    milliseconds = models.IntegerField(
-        "Duration of stop in milliseconds", blank=True, null=True
-    )
+    time = models.CharField('Time of stop e.g. "13:52:25"', max_length=255, blank=True, null=True)
+    duration = models.CharField('Duration of stop e.g. "21.783"', max_length=255, blank=True, null=True)
+    milliseconds = models.IntegerField("Duration of stop in milliseconds", blank=True, null=True)
 
     class Meta:
         db_table = "ergast_pit_stops"
-        constraints = [
-            models.UniqueConstraint(
-                fields=["raceId", "driverId", "stop"], name="unique_pit_stop"
-            )
-        ]
+        constraints = [models.UniqueConstraint(fields=["raceId", "driverId", "stop"], name="unique_pit_stop")]
 
     def __str__(self):
         return f"{self.raceId} - {self.driverId} pit stop {self.stop}"
 
 
 class Constructors(models.Model):
-    constructorId = models.AutoField(
-        "Primary Key", primary_key=True, db_column="constructorId"
-    )
+    constructorId = models.AutoField("Primary Key", primary_key=True, db_column="constructorId")
     constructorRef = models.CharField(
         "Unique constructor identifier",
         db_column="constructorRef",
@@ -206,12 +167,8 @@ class Constructors(models.Model):
         max_length=255,
     )
     name = models.CharField("Constructor name", max_length=255)
-    nationality = models.CharField(
-        "Constructor nationality", max_length=255, blank=True, null=True
-    )
-    url = models.CharField(
-        "Constructor Wikipedia page", max_length=255, blank=True, null=True
-    )
+    nationality = models.CharField("Constructor nationality", max_length=255, blank=True, null=True)
+    url = models.CharField("Constructor Wikipedia page", max_length=255, blank=True, null=True)
 
     def has_podium_before_race(self, race):
         """Returns true if the team has scored a podium this season before this race"""
@@ -255,9 +212,7 @@ class EligibleDriverManager(models.Manager):
                 race_num=models.Count(
                     "results__raceId",
                     distinct=True,
-                    filter=~Q(
-                        results__laps=0, results__positionText__in=["F", "W", "E"]
-                    )
+                    filter=~Q(results__laps=0, results__positionText__in=["F", "W", "E"])
                     & Q(results__raceId__in=Races.analysis_objects.all()),
                 ),
             )
@@ -268,20 +223,14 @@ class EligibleDriverManager(models.Manager):
 
 class Drivers(models.Model):
     driverId = models.AutoField("Primary Key", primary_key=True, db_column="driverId")
-    driverRef = models.CharField(
-        "Unique driver identifier", max_length=255, db_column="driverRef"
-    )
+    driverRef = models.CharField("Unique driver identifier", max_length=255, db_column="driverRef")
     number = models.IntegerField("Permanent driver number", blank=True, null=True)
-    code = models.CharField(
-        'Driver code e.g. "ALO"', max_length=3, blank=True, null=True
-    )
+    code = models.CharField('Driver code e.g. "ALO"', max_length=3, blank=True, null=True)
     forename = models.CharField("Driver forename", max_length=255, blank=True)
     surname = models.CharField("Driver surname", max_length=255, blank=True)
     dob = models.DateField("Driver date of birth", blank=True, null=True)
     nationality = models.CharField("Driver nationality", max_length=255, blank=True)
-    url = models.CharField(
-        "Constructor Wikipedia page", max_length=255, unique=True, blank=True, null=True
-    )
+    url = models.CharField("Constructor Wikipedia page", max_length=255, unique=True, blank=True, null=True)
 
     objects = models.Manager()
     analysis_objects = EligibleDriverManager()
@@ -294,9 +243,7 @@ class Drivers(models.Model):
 
 
 class ConstructorResults(models.Model):
-    constructorResultsId = models.AutoField(
-        "Primary Key", primary_key=True, db_column="constructorResultsId"
-    )
+    constructorResultsId = models.AutoField("Primary Key", primary_key=True, db_column="constructorResultsId")
     raceId = models.ForeignKey(
         Races,
         verbose_name="Foreign key link to races table",
@@ -310,9 +257,7 @@ class ConstructorResults(models.Model):
         on_delete=models.CASCADE,
     )
     points = models.FloatField("Constructor points for season", blank=True, null=True)
-    status = models.CharField(
-        '"D" for disqualified (or null)', max_length=255, blank=True, null=True
-    )
+    status = models.CharField('"D" for disqualified (or null)', max_length=255, blank=True, null=True)
 
     class Meta:
         db_table = "ergast_constructor_results"
@@ -322,9 +267,7 @@ class ConstructorResults(models.Model):
 
 
 class ConstructorStandings(models.Model):
-    constructorStandingsId = models.AutoField(
-        "Primary Key", primary_key=True, db_column="constructorStandingsId"
-    )
+    constructorStandingsId = models.AutoField("Primary Key", primary_key=True, db_column="constructorStandingsId")
     raceId = models.ForeignKey(
         Races,
         verbose_name="Foreign key link to races table",
@@ -338,9 +281,7 @@ class ConstructorStandings(models.Model):
         on_delete=models.CASCADE,
     )
     points = models.FloatField("Constructor points for season", blank=True, null=True)
-    position = models.IntegerField(
-        "Constructor standings position (integer)", blank=True, null=True
-    )
+    position = models.IntegerField("Constructor standings position (integer)", blank=True, null=True)
     positionText = models.CharField(
         "Constructor standings position (string)",
         max_length=255,
@@ -358,9 +299,7 @@ class ConstructorStandings(models.Model):
 
 
 class DriverStandings(models.Model):
-    driverStandingsId = models.AutoField(
-        "Primary Key", primary_key=True, db_column="driverStandingsId"
-    )
+    driverStandingsId = models.AutoField("Primary Key", primary_key=True, db_column="driverStandingsId")
     raceId = models.ForeignKey(
         Races,
         verbose_name="Foreign key link to races table",
@@ -374,9 +313,7 @@ class DriverStandings(models.Model):
         on_delete=models.CASCADE,
     )
     points = models.FloatField("Driver points for season")
-    position = models.IntegerField(
-        "Driver standings position (integer)", blank=True, null=True
-    )
+    position = models.IntegerField("Driver standings position (integer)", blank=True, null=True)
     positionText = models.CharField(
         "Driver standings position (string)",
         max_length=255,
@@ -415,9 +352,7 @@ class Qualifying(models.Model):
     )
     number = models.IntegerField("Driver number")
     position = models.IntegerField("Qualifying position", blank=True, null=True)
-    q1 = models.CharField(
-        'Q1 lap time e.g. "1:21.374"', max_length=255, blank=True, null=True
-    )
+    q1 = models.CharField('Q1 lap time e.g. "1:21.374"', max_length=255, blank=True, null=True)
     q2 = models.CharField("Q2 lap time", max_length=255, blank=True, null=True)
     q3 = models.CharField("Q3 lap time", max_length=255, blank=True, null=True)
 
@@ -453,14 +388,10 @@ class EligibleResultManager(models.Manager):
         # Remove results where the car was shared between drivers
         # (Only look at results prior to 1964 for speed)
         excluded_results = []
-        for race in eligible_races.filter(year__year__lte=1964).values_list(
-            "raceId", flat=True
-        ):
+        for race in eligible_races.filter(year__year__lte=1964).values_list("raceId", flat=True):
             race_results = results.filter(raceId=race)
             drivers_per_car = Counter(race_results.values_list("number", flat=True))
-            shared_cars = [
-                res.resultId for res in race_results if drivers_per_car[res.number] > 1
-            ]
+            shared_cars = [res.resultId for res in race_results if drivers_per_car[res.number] > 1]
             excluded_results.extend(shared_cars)
         results = results.exclude(resultId__in=excluded_results)
         return results
@@ -469,9 +400,7 @@ class EligibleResultManager(models.Manager):
         eligible_races = Races.analysis_objects.order_by("year__year")
         eligible_results = self.get_queryset(eligible_races=eligible_races)
         if only_eligible_drivers:
-            eligible_results = eligible_results.filter(
-                driverId__in=Drivers.analysis_objects.all()
-            )
+            eligible_results = eligible_results.filter(driverId__in=Drivers.analysis_objects.all())
         output = {}
         for race in eligible_races:
             output[race.raceId] = {}
@@ -503,32 +432,20 @@ class Results(models.Model):
     )
     number = models.IntegerField("Driver number", blank=True, null=True)
     grid = models.IntegerField("Starting grid position")
-    position = models.IntegerField(
-        "Official classification, if applicable", blank=True, null=True
-    )
+    position = models.IntegerField("Official classification, if applicable", blank=True, null=True)
     positionText = models.CharField(
         'Driver position string e.g. "1" or "R"',
         max_length=255,
         db_column="positionText",
         blank=True,
     )
-    positionOrder = models.IntegerField(
-        "Driver position for ordering purposes", db_column="positionOrder"
-    )
+    positionOrder = models.IntegerField("Driver position for ordering purposes", db_column="positionOrder")
     points = models.FloatField("Driver points for race")
     laps = models.IntegerField("Number of completed laps")
-    time = models.CharField(
-        "Finishing time or gap", max_length=255, blank=True, null=True
-    )
-    milliseconds = models.IntegerField(
-        "Finishing time in milliseconds", blank=True, null=True
-    )
-    fastestLap = models.IntegerField(
-        "Lap number of fastest lap", db_column="fastestLap", blank=True, null=True
-    )
-    rank = models.IntegerField(
-        "Fastest lap rank, compared to other drivers", blank=True, null=True
-    )
+    time = models.CharField("Finishing time or gap", max_length=255, blank=True, null=True)
+    milliseconds = models.IntegerField("Finishing time in milliseconds", blank=True, null=True)
+    fastestLap = models.IntegerField("Lap number of fastest lap", db_column="fastestLap", blank=True, null=True)
+    rank = models.IntegerField("Fastest lap rank, compared to other drivers", blank=True, null=True)
     fastestLapTime = models.CharField(
         'Fastest lap time e.g. "1:27.453"',
         max_length=255,
@@ -585,9 +502,7 @@ class Results(models.Model):
             else:
                 return 0.0
         except:
-            print(
-                f"Could not get championship points for {self.driverId} {self.raceId}"
-            )
+            print(f"Could not get championship points for {self.driverId} {self.raceId}")
 
     def podium(self):
         """Returns true if driver was on the podium (placed in the top 3)"""

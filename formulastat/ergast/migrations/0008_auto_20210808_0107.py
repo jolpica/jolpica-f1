@@ -4,24 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('ergast', '0007_auto_20210808_0016'),
+        ("ergast", "0007_auto_20210808_0016"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='results',
-            old_name='id',
-            new_name='resultId',
+            model_name="results",
+            old_name="id",
+            new_name="resultId",
         ),
         migrations.RemoveField(
-            model_name='seasons',
-            name='id',
+            model_name="seasons",
+            name="id",
         ),
         migrations.AlterField(
-            model_name='seasons',
-            name='year',
-            field=models.IntegerField(primary_key=True, serialize=False, verbose_name='Primary key e.g. 1950'),
+            model_name="seasons",
+            name="year",
+            field=models.IntegerField(primary_key=True, serialize=False, verbose_name="Primary key e.g. 1950"),
         ),
     ]

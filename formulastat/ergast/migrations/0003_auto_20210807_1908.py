@@ -4,62 +4,61 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('ergast', '0002_auto_20210807_1826'),
+        ("ergast", "0002_auto_20210807_1826"),
     ]
 
     operations = [
         migrations.AlterModelTable(
-            name='circuits',
-            table='ergast_circuits',
+            name="circuits",
+            table="ergast_circuits",
         ),
         migrations.AlterModelTable(
-            name='constructorresults',
-            table='ergast_constructor_results',
+            name="constructorresults",
+            table="ergast_constructor_results",
         ),
         migrations.AlterModelTable(
-            name='constructors',
-            table='ergast_constructors',
+            name="constructors",
+            table="ergast_constructors",
         ),
         migrations.AlterModelTable(
-            name='constructorstandings',
-            table='ergast_constructor_standings',
+            name="constructorstandings",
+            table="ergast_constructor_standings",
         ),
         migrations.AlterModelTable(
-            name='drivers',
-            table='ergast_drivers',
+            name="drivers",
+            table="ergast_drivers",
         ),
         migrations.AlterModelTable(
-            name='driverstandings',
-            table='ergast_driver_standings',
+            name="driverstandings",
+            table="ergast_driver_standings",
         ),
         migrations.AlterModelTable(
-            name='laptimes',
-            table='ergast_lap_times',
+            name="laptimes",
+            table="ergast_lap_times",
         ),
         migrations.AlterModelTable(
-            name='pitstops',
-            table='ergast_pit_stops',
+            name="pitstops",
+            table="ergast_pit_stops",
         ),
         migrations.AlterModelTable(
-            name='qualifying',
-            table='ergast_qualifying',
+            name="qualifying",
+            table="ergast_qualifying",
         ),
         migrations.AlterModelTable(
-            name='races',
-            table='ergast_races',
+            name="races",
+            table="ergast_races",
         ),
         migrations.AlterModelTable(
-            name='results',
-            table='ergast_results',
+            name="results",
+            table="ergast_results",
         ),
         migrations.AlterModelTable(
-            name='seasons',
-            table='ergast_seasons',
+            name="seasons",
+            table="ergast_seasons",
         ),
         migrations.AlterModelTable(
-            name='status',
-            table='ergast_status',
+            name="status",
+            table="ergast_status",
         ),
     ]

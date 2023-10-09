@@ -1,13 +1,14 @@
-import requests
 from pathlib import Path
 from zipfile import ZipFile
+
+import pandas as pd
+import requests
 from django.apps import apps
 from django.db import transaction
-import pandas as pd
 from tqdm import tqdm
 
-class ErgastUpdater():
 
+class ErgastUpdater:
     table_keys = {
         "circuits": ["circuitId"],
         "constructorresults": ["constructorResultsId"],
@@ -21,7 +22,7 @@ class ErgastUpdater():
         "races": ["raceId"],
         "results": ["resultId"],
         "seasons": ["year"],
-        "status": ["statusId"]
+        "status": ["statusId"],
     }
 
     def __init__(self, url="http://ergast.com/downloads/f1db_csv.zip"):
@@ -48,7 +49,21 @@ class ErgastUpdater():
     def update_from_csv(self):
         csv_folder = Path("formulastat/ergast/download/csv")
         with transaction.atomic():
-            for table in ["circuits", "constructors", "drivers", "seasons", "races", "qualifying", "status", "results", "constructor_results", "constructor_standings", "driver_standings", "lap_times", "pit_stops"]:
+            for table in [
+                "circuits",
+                "constructors",
+                "drivers",
+                "seasons",
+                "races",
+                "qualifying",
+                "status",
+                "results",
+                "constructor_results",
+                "constructor_standings",
+                "driver_standings",
+                "lap_times",
+                "pit_stops",
+            ]:
                 csv = csv_folder / Path(table + ".csv")
                 if csv.suffix == ".csv":
                     model_name = csv.stem.replace("_", "").lower()
@@ -64,9 +79,9 @@ class ErgastUpdater():
                     for row in tqdm(data.iterrows()):
                         row = row[1]
                         if model_name in ["pitstops", "laptimes"]:
-                            primary_keys = { "id": "|".join([str(row[field]) for field in self.table_keys[model_name]])}
+                            primary_keys = {"id": "|".join([str(row[field]) for field in self.table_keys[model_name]])}
                         else:
-                            primary_keys = { field: row[field] for field in self.table_keys[model_name] }
+                            primary_keys = {field: row[field] for field in self.table_keys[model_name]}
 
                         new_row = dict()
                         for field in row.keys():
@@ -85,12 +100,12 @@ class ErgastUpdater():
                 if missing_fields:
                     print(missing_fields)
 
-    
-
-
 
 if __name__ == "__main__":
-    import os, django
+    import os
+
+    import django
+
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
     django.setup()
     upd = ErgastUpdater()

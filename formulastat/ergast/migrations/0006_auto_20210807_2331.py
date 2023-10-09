@@ -4,26 +4,25 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('ergast', '0005_auto_20210807_2329'),
+        ("ergast", "0005_auto_20210807_2329"),
     ]
 
     operations = [
         migrations.RemoveConstraint(
-            model_name='laptimes',
-            name='unique_lap_time',
+            model_name="laptimes",
+            name="unique_lap_time",
         ),
         migrations.RemoveConstraint(
-            model_name='pitstops',
-            name='unique_pit_stop',
+            model_name="pitstops",
+            name="unique_pit_stop",
         ),
         migrations.AddConstraint(
-            model_name='laptimes',
-            constraint=models.UniqueConstraint(fields=('raceId', 'driverId', 'lap'), name='unique_lap_time'),
+            model_name="laptimes",
+            constraint=models.UniqueConstraint(fields=("raceId", "driverId", "lap"), name="unique_lap_time"),
         ),
         migrations.AddConstraint(
-            model_name='pitstops',
-            constraint=models.UniqueConstraint(fields=('raceId', 'driverId', 'stop'), name='unique_pit_stop'),
+            model_name="pitstops",
+            constraint=models.UniqueConstraint(fields=("raceId", "driverId", "stop"), name="unique_pit_stop"),
         ),
     ]
