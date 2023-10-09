@@ -1,8 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 from formulastat.ergast.update import ErgastUpdater
 
+
 class Command(BaseCommand):
-    help = 'Updates the database with latest data from ergast'
+    help = "Updates the database with latest data from ergast"
 
     def handle(self, *args, **options):
         updater = ErgastUpdater()

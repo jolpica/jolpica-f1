@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('ergast', '0012_auto_20210814_2034'),
+        ("ergast", "0012_auto_20210814_2034"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='drivers',
-            name='code',
+            model_name="drivers",
+            name="code",
             field=models.CharField(blank=True, max_length=3, null=True, verbose_name='Driver code e.g. "ALO"'),
         ),
     ]
