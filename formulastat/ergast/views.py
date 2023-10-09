@@ -1,25 +1,26 @@
-from rest_framework.views import APIView
+from datetime import date
+
+from django.db.models import Exists, Max, OuterRef
+from rest_framework import exceptions, status
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
-from rest_framework import status, exceptions
-from django.db.models import Max, OuterRef, Exists
-from datetime import date
+from rest_framework.views import APIView
+
 from formulastat.ergast import models, serializers
-
-
 
 # NEXT_ROUND = models.Races.objects.filter(date__gte=DATE).first().round
 # LAST_ROUND = NEXT_ROUND - 1 if NEXT_ROUND > 1 else models.Races.objects.filter(date__lte=DATE).first().round
 
+
 # Create your views here.
 class Test(APIView):
-
     def get(self, request, format=None):
-        return Response({"testing":True})
+        return Response({"testing": True})
+
 
 class RaceView(ListAPIView):
     serializer_class = serializers.RacesSerializer
-    ordering_fields=['year']
+    ordering_fields = ["year"]
 
     def get_kwargs(self):
         kwargs = self.kwargs
@@ -37,7 +38,7 @@ class RaceView(ListAPIView):
         return kwargs
 
     def get_queryset(self):
-        CURRENT_SEASON = models.Races.objects.aggregate(Max('year'))["year__max"]
+        CURRENT_SEASON = models.Races.objects.aggregate(Max("year"))["year__max"]
         kwargs = self.get_kwargs()
         if kwargs.get("year") == "current":
             kwargs["year"] = CURRENT_SEASON
@@ -45,7 +46,7 @@ class RaceView(ListAPIView):
         if kwargs.get("round") == "next":
             if kwargs.get("year") == CURRENT_SEASON:
                 next_race_result = models.Races.objects.filter(
-                    ~Exists(models.Results.objects.filter(raceId=OuterRef('pk')))
+                    ~Exists(models.Results.objects.filter(raceId=OuterRef("pk")))
                 ).first()
                 kwargs["round"] = next_race_result.round
             else:
@@ -55,7 +56,7 @@ class RaceView(ListAPIView):
         elif kwargs.get("round") == "last":
             if kwargs.get("year") == CURRENT_SEASON:
                 next_race_result = models.Races.objects.filter(
-                    Exists(models.Results.objects.filter(raceId=OuterRef('pk')))
+                    Exists(models.Results.objects.filter(raceId=OuterRef("pk")))
                 ).last()
                 kwargs["round"] = next_race_result.round
             else:
@@ -68,9 +69,10 @@ class RaceView(ListAPIView):
 
         return queryset.prefetch_related("circuitId")
 
+
 class CircuitView(ListAPIView):
     serializer_class = serializers.CircuitsSerializer
-    ordering_fields=['year']
+    ordering_fields = ["year"]
 
     def get_queryset(self):
         return models.Circuits.objects.all()
