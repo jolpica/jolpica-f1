@@ -1,3 +1,4 @@
+.vscode/
 .env
 formulastat/ergast/download
 
@@ -10,6 +11,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+.ruff_cache/
 .Python
 build/
 develop-eggs/
