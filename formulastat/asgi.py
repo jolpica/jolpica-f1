@@ -1,5 +1,4 @@
-"""
-ASGI config for formulastat project.
+"""ASGI config for formulastat project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

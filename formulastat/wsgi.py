@@ -1,5 +1,4 @@
-"""
-WSGI config for formulastat project.
+"""WSGI config for formulastat project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
