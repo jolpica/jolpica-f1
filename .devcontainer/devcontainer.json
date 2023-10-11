@@ -22,7 +22,11 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"tamasfe.even-better-toml"
+				"tamasfe.even-better-toml",
+				"ms-toolsai.jupyter-keymap",
+				"matangover.mypy",
+				"ms-python.python",
+				"charliermarsh.ruff"
 			]
 		}
 	},
