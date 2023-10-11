@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "formulastat.ergast",
+    "formulastat.formula_one",
 ]
 
 MIDDLEWARE = [
