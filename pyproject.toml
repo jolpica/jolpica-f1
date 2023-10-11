@@ -51,14 +51,13 @@ line-length = 120
 src = ["src"]
 target-version = "py310"
 
-ignore = ["TRY300", "TRY003", "D100", "D101","D104"]
+ignore = ["TRY300", "TRY003"]
 select = [
     "RUF", # Ruff specific
     "I",   # isort - Import sorting
     "S",   # Bandit - Security Report
     "F",   # Pyflakes - Error Checker
     "E",   # Pycodestyle - Style Checker
-    "D",   # Pydocstyle - Docstring Checker
     "UP",  # Pyupgrade - Update Old Syntax
     "N",   # pep8-naming - Naming Conventions
     "TRY", # Tryceratops - Try Except Checking
