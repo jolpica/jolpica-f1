@@ -1,7 +1,9 @@
-from typing import ClassVar
+from typing import ClassVar, TYPE_CHECKING
 
 from django.db import models
 
+if TYPE_CHECKING:
+    from . import Session
 
 class RacePointScheme(models.IntegerChoices):
     NONE = 0, "No Points Awarded"
@@ -33,6 +35,8 @@ class PartialPointScheme(models.IntegerChoices):
 
 class PointScheme(models.Model):
     id = models.BigAutoField(primary_key=True)
+    sessions: models.QuerySet["Session"]
+
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     driver = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
