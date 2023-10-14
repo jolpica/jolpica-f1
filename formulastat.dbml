@@ -60,7 +60,7 @@ Table team {
 
 Table base_team {
   id integer [primary key]
-  first_entry integer
+  name string
   Note: 'The official Team entry (consistent between rebrands)'
 }
 Ref: base_team.id < team.base_team_id
@@ -164,8 +164,8 @@ Table driver_score {
   final bool
   disqualified bool
 }
-Ref: driver.id - driver_score.driver_id
-Ref: session.id - driver_score.session_id
+Ref: driver.id < driver_score.driver_id
+Ref: session.id < driver_score.session_id
 
 Table team_score {
   id integer [primary key]
@@ -176,8 +176,8 @@ Table team_score {
   final bool
   disqualified bool
 }
-Ref: team.id - team_score.team_id
-Ref: session.id - team_score.session_id
+Ref: team.id < team_score.team_id
+Ref: session.id < team_score.session_id
 
 Table team_driver {
   id integer [primary key]
