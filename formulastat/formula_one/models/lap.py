@@ -1,7 +1,9 @@
-from typing import ClassVar
+from typing import ClassVar, TYPE_CHECKING
 
 from django.db import models
 
+if TYPE_CHECKING:
+    from . import PitStop
 
 class Lap(models.Model):
     """
@@ -15,6 +17,8 @@ class Lap(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="laps")
+    pit_stop: "PitStop | None"
+
     number = models.PositiveSmallIntegerField(unique=True, null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
     average_speed = models.FloatField(null=True, blank=True)

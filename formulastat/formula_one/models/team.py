@@ -1,6 +1,8 @@
-from typing import ClassVar
+from typing import ClassVar, TYPE_CHECKING
 
 from django.db import models
+if TYPE_CHECKING:
+    from . import Race, Season, RaceEntry
 
 
 class BaseTeam(models.Model):
@@ -13,6 +15,8 @@ class BaseTeam(models.Model):
     """
 
     id = models.BigAutoField(primary_key=True)
+    teams: models.QuerySet["Team"]
+
     name = models.CharField(max_length=255, unique=True, null=True, blank=True)
 
     def __str__(self) -> str:
@@ -33,6 +37,12 @@ class Team(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     base_team = models.ForeignKey("BaseTeam", on_delete=models.SET_NULL, null=True, blank=True, related_name="teams")
+    drivers = models.ManyToManyField("Driver", through="TeamDriver", related_name="teams")
+    races: models.QuerySet["Race"]
+    seasons: models.QuerySet["Season"]
+    race_entries: models.QuerySet["RaceEntry"]
+    team_drivers: models.QuerySet["TeamDriver"]
+
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255, null=True, blank=True)
@@ -68,6 +78,7 @@ class TeamDriver(models.Model):
     team = models.ForeignKey("Team", on_delete=models.CASCADE, related_name="team_drivers")
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE, related_name="team_drivers")
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="team_drivers")
+
     role = models.PositiveSmallIntegerField(choices=TeamDriverRole.choices)
 
     class Meta:
