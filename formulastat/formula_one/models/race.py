@@ -24,7 +24,7 @@ class Race(models.Model):
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="races")
     circuit = models.ForeignKey("Circuit", on_delete=models.CASCADE, related_name="races")
     drivers = models.ManyToManyField("Driver", through="RaceEntry", related_name="races")
-    teams =  models.ManyToManyField("Team", through="RaceEntry", related_name="races")
+    teams = models.ManyToManyField("Team", through="RaceEntry", related_name="races")
     race_entries: models.QuerySet["RaceEntry"]
     sessions: models.QuerySet["Session"]
 

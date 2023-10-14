@@ -5,6 +5,7 @@ from django.db import models
 if TYPE_CHECKING:
     from . import Lap, PitStop
 
+
 class SessionType(models.TextChoices):
     RACE = "R"
     QUALIFYING_ONE = "Q1"
@@ -91,7 +92,14 @@ class SessionEntry(models.Model):
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")
     race_entry = models.ForeignKey("RaceEntry", on_delete=models.CASCADE, related_name="session_entries")
-    fastest_lap = models.ForeignKey("Lap", on_delete=models.SET_NULL, null=True, blank=True, related_name="+")
+    fastest_lap = models.ForeignKey(
+        "Lap",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="+",
+        limit_choices_to=models.Q(session_entry_id=models.F("pk")),
+    )
     laps: models.QuerySet["Lap"]
     pit_stops: models.QuerySet["PitStop"]
     penalties: models.QuerySet["Penalty"]
@@ -113,7 +121,7 @@ class SessionEntry(models.Model):
             models.UniqueConstraint(fields=["session", "race_entry"], name="session_entry_unique_session_race_entry"),
             models.UniqueConstraint(fields=["session", "position"], name="session_entry_unique_session_position"),
         ]
-        
+
     def __str__(self) -> str:
         return f"{self.session} - {self.race_entry}"
 

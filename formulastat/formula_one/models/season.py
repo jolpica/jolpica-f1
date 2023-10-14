@@ -5,6 +5,7 @@ from django.db import models
 if TYPE_CHECKING:
     from . import Race, TeamDriver
 
+
 class Season(models.Model):
     """
     Table season {

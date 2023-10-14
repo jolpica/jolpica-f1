@@ -1,9 +1,10 @@
-from typing import ClassVar, TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
 if TYPE_CHECKING:
     from . import PitStop
+
 
 class Lap(models.Model):
     """
