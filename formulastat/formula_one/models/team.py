@@ -1,8 +1,9 @@
-from typing import ClassVar, TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
+
 if TYPE_CHECKING:
-    from . import Race, Season, RaceEntry
+    from . import Race, RaceEntry, Season
 
 
 class BaseTeam(models.Model):
