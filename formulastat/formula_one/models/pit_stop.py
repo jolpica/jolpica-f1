@@ -18,7 +18,14 @@ class PitStop(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="pit_stops")
-    lap = models.OneToOneField("Lap", on_delete=models.CASCADE, null=True, blank=True, related_name="pit_stop")
+    lap = models.OneToOneField(
+        "Lap",
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="pit_stop",
+        limit_choices_to=models.Q(session_entry=models.F("session_entry")),
+    )
 
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     duration = models.DurationField(null=True, blank=True)
