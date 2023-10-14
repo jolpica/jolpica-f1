@@ -26,7 +26,8 @@
 				"ms-toolsai.jupyter-keymap",
 				"matangover.mypy",
 				"ms-python.python",
-				"charliermarsh.ruff"
+				"charliermarsh.ruff",
+				"ms-toolsai.jupyter"
 			]
 		}
 	},

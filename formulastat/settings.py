@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.gis",
     "formulastat.ergast",
     "formulastat.formula_one",
 ]
@@ -85,7 +86,7 @@ WSGI_APPLICATION = "formulastat.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {"default": env.db("DATABASE_URL", default="postgres://localhost/python_one")}
+DATABASES = {"default": env.db("DATABASE_URL", default="postgis://localhost/formulastat")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # Password validation

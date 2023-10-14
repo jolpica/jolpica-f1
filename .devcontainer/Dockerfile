@@ -7,6 +7,11 @@ ENV VIRTUAL_ENV=/home/vscode/.venv
 ENV PATH=$VIRTUAL_ENV/bin:/root/.local/bin:$PATH
 ENV POETRY_VIRTUALENVS_CREATE=false
 
+# Required geo spatial librarie
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        binutils libproj-dev gdal-bin
+
 USER vscode
 RUN pip install pipx && \
     pipx install poetry==${POETRY_VERSION} && \
