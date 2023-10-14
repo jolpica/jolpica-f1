@@ -18,7 +18,8 @@ class PitStop(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="pit_stops")
-    lap = models.ForeignKey("Lap", on_delete=models.SET_NULL, null=True, blank=True, related_name="pit_stops")
+    lap = models.OneToOneField("Lap", on_delete=models.CASCADE, null=True, blank=True, related_name="pit_stop")
+
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     duration = models.DurationField(null=True, blank=True)
     local_timestamp = models.CharField(max_length=16, blank=True, null=True)

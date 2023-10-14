@@ -1,7 +1,9 @@
-from typing import ClassVar
+from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
+if TYPE_CHECKING:
+    from . import Lap, PitStop
 
 class SessionType(models.TextChoices):
     RACE = "R"
@@ -31,13 +33,16 @@ class Session(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="sessions")
-    date = models.DateField(null=True, blank=True)
-    time = models.TimeField(null=True, blank=True)
-    laps = models.PositiveSmallIntegerField(null=True, blank=True)
-    type = models.CharField(max_length=3, choices=SessionType.choices)
     point_scheme = models.ForeignKey(
         "PointScheme", on_delete=models.SET_NULL, related_name="sessions", null=True, blank=True
     )
+    race_entries = models.ManyToManyField("RaceEntry", through="SessionEntry", related_name="sessions")
+    session_entries: models.QuerySet["SessionEntry"]
+
+    date = models.DateField(null=True, blank=True)
+    time = models.TimeField(null=True, blank=True)
+    scheduled_laps = models.PositiveSmallIntegerField(null=True, blank=True)
+    type = models.CharField(max_length=3, choices=SessionType.choices)
     is_double_points = models.BooleanField(default=False)
 
     class Meta:
@@ -86,12 +91,17 @@ class SessionEntry(models.Model):
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")
     race_entry = models.ForeignKey("RaceEntry", on_delete=models.CASCADE, related_name="session_entries")
+    fastest_lap = models.ForeignKey("Lap", on_delete=models.SET_NULL, null=True, blank=True, related_name="+")
+    laps: models.QuerySet["Lap"]
+    pit_stops: models.QuerySet["PitStop"]
+    penalties: models.QuerySet["Penalty"]
+    served_penalities: models.QuerySet["Penalty"]
+
     car_number = models.PositiveSmallIntegerField(null=True, blank=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     is_classified = models.BooleanField(null=True, blank=True)
     status = models.PositiveSmallIntegerField(choices=SessionStatus.choices, null=True, blank=True)
     detail = models.CharField(max_length=255, null=True, blank=True)
-    fastest_lap = models.ForeignKey("Lap", on_delete=models.SET_NULL, null=True, blank=True, related_name="+")
     # Race Specific
     points = models.FloatField(null=True, blank=True)
     grid = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -103,7 +113,7 @@ class SessionEntry(models.Model):
             models.UniqueConstraint(fields=["session", "race_entry"], name="session_entry_unique_session_race_entry"),
             models.UniqueConstraint(fields=["session", "position"], name="session_entry_unique_session_position"),
         ]
-
+        
     def __str__(self) -> str:
         return f"{self.session} - {self.race_entry}"
 
@@ -128,6 +138,7 @@ class Penalty(models.Model):
     served = models.ForeignKey(
         "SessionEntry", on_delete=models.SET_NULL, null=True, blank=True, related_name="served_penalties"
     )
+
     license_points = models.PositiveSmallIntegerField(null=True, blank=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
