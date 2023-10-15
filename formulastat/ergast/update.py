@@ -21,6 +21,7 @@ class ErgastUpdater:
         "qualifying": ["qualifyId"],
         "races": ["raceId"],
         "results": ["resultId"],
+        "sprintresults": ["resultId"],
         "seasons": ["year"],
         "status": ["statusId"],
     }
@@ -58,6 +59,7 @@ class ErgastUpdater:
                 "qualifying",
                 "status",
                 "results",
+                "sprint_results",
                 "constructor_results",
                 "constructor_standings",
                 "driver_standings",
