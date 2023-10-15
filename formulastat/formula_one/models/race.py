@@ -31,6 +31,7 @@ class Race(models.Model):
     round = models.PositiveSmallIntegerField(null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
+    race_number = models.PositiveSmallIntegerField(null=True, blank=True)
     wikipedia = models.URLField(null=True, blank=True)
     is_cancelled = models.BooleanField(default=False)
 

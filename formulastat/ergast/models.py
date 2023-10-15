@@ -527,3 +527,58 @@ class Status(models.Model):
 
     def __str__(self):
         return f"{self.status}"
+
+class SprintResults(models.Model):
+    sprintResultId = models.AutoField("Primary key", primary_key=True, db_column="sprintResultId")
+    raceId = models.ForeignKey(
+        Races,
+        verbose_name="Foreign key link to races table",
+        db_column="raceId",
+        on_delete=models.CASCADE,
+    )
+    driverId = models.ForeignKey(
+        Drivers,
+        verbose_name="Foreign key link to drivers table",
+        db_column="driverId",
+        on_delete=models.CASCADE,
+    )
+    constructorId = models.ForeignKey(
+        Constructors,
+        verbose_name="Foreign key link to constructors table",
+        db_column="constructorId",
+        on_delete=models.CASCADE,
+    )
+    number = models.IntegerField("Driver number", blank=True, null=True)
+    grid = models.IntegerField("Starting grid position")
+    position = models.IntegerField("Official classification, if applicable", blank=True, null=True)
+    positionText = models.CharField(
+        'Driver position string e.g. "1" or "R"',
+        max_length=255,
+        db_column="positionText",
+        blank=True,
+    )
+    positionOrder = models.IntegerField("Driver position for ordering purposes", db_column="positionOrder")
+    points = models.FloatField("Driver points for race")
+    laps = models.IntegerField("Number of completed laps")
+    time = models.CharField("Finishing time or gap", max_length=255, blank=True, null=True)
+    milliseconds = models.IntegerField("Finishing time in milliseconds", blank=True, null=True)
+    fastestLap = models.IntegerField("Lap number of fastest lap", db_column="fastestLap", blank=True, null=True)
+    fastestLapTime = models.CharField(
+        'Fastest lap time e.g. "1:27.453"',
+        max_length=255,
+        db_column="fastestLapTime",
+        blank=True,
+        null=True,
+    )
+    statusId = models.ForeignKey(
+        "Status",
+        verbose_name="Foreign key link to status table",
+        db_column="statusId",
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        db_table = "ergast_sprint_results"
+
+    def __str__(self):
+        return f"{self.raceId} {self.driverId}"

@@ -55,11 +55,20 @@ class PointScheme(models.Model):
     shared_drive = models.PositiveSmallIntegerField(
         choices=SharedDrivePointScheme.choices, default=SharedDrivePointScheme.NONE
     )
+    is_double_points = models.BooleanField(default=False)
 
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(
-                fields=["driver", "team", "fastest_lap", "team_fastest_lap", "partial", "shared_drive"],
+                fields=[
+                    "driver",
+                    "team",
+                    "fastest_lap",
+                    "team_fastest_lap",
+                    "partial",
+                    "shared_drive",
+                    "is_double_points",
+                ],
                 name="point_scheme_unique",
             )
         ]
