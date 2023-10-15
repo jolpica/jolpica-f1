@@ -11,11 +11,17 @@ class SessionType(models.TextChoices):
     QUALIFYING_ONE = "Q1"
     QUALIFYING_TWO = "Q2"
     QUALIFYING_THREE = "Q3"
+    QUALIFYING_AVG = "QA"
+    QUALIFYING_ORDER = "QO"
+    QUALIFYING_BEST = "QB"
     PRACTICE_ONE = "FP1"
     PRACTICE_TWO = "FP2"
     PRACTICE_THREE = "FP3"
+    PREQUALIFYING = "PQ"
     SPRINT_RACE = "SR"
-    SPRINT_QUALIFYING = "SQ"
+    SPRINT_QUALIFYING1 = "SQ1"
+    SPRINT_QUALIFYING2 = "SQ2"
+    SPRINT_QUALIFYING3 = "SQ3"
 
 
 class Session(models.Model):
@@ -38,14 +44,11 @@ class Session(models.Model):
     race_entries = models.ManyToManyField("RaceEntry", through="SessionEntry", related_name="sessions")
     session_entries: models.QuerySet["SessionEntry"]
 
+    type = models.CharField(max_length=3, choices=SessionType.choices)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
     scheduled_laps = models.PositiveSmallIntegerField(null=True, blank=True)
-    type = models.CharField(max_length=3, choices=SessionType.choices)
-    is_double_points = models.BooleanField(default=False)
-
-    class Meta:
-        constraints: ClassVar = [models.UniqueConstraint(fields=["race", "type"], name="session_unique_race_type")]
+    is_cancelled = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return f"{self.race} - {SessionType(self.type).label}"

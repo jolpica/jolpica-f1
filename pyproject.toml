@@ -22,7 +22,7 @@ mypy = {extras = ["dmypy"], version = "^1.5.1"}
 django-stubs = {extras = ["compatible-mypy"], version = "^4.2.4"}
 djangorestframework-stubs = {extras = ["compatible-mypy"], version = "^3.14.3"}
 ruff = "^0.0.292"
-black = "^23.9.1"
+black = {extras = ["jupyter"], version = "^23.9.1"}
 pytest-django = "^4.5.2"
 
 
