@@ -528,8 +528,9 @@ class Status(models.Model):
     def __str__(self):
         return f"{self.status}"
 
+
 class SprintResults(models.Model):
-    sprintResultId = models.AutoField("Primary key", primary_key=True, db_column="sprintResultId")
+    resultId = models.AutoField("Primary key", primary_key=True, db_column="resultId")
     raceId = models.ForeignKey(
         Races,
         verbose_name="Foreign key link to races table",

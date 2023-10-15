@@ -5,8 +5,8 @@ import requests
 from django.contrib.gis.geos import Point
 from tqdm import tqdm
 
-from formulastat.ergast.models import Circuits, Constructors, Drivers, Races, Results, Seasons, Races
-from formulastat.formula_one.models import Circuit, Driver, PointScheme, Season, Team, Race, Session, SessionType
+from formulastat.ergast.models import Circuits, Constructors, Drivers, Races, Results, Seasons
+from formulastat.formula_one.models import Circuit, Driver, PointScheme, Race, Season, Session, SessionType, Team
 
 
 def follow_wiki_redirects(url: str) -> str:
