@@ -27,11 +27,18 @@ class FastestLapPointScheme(models.IntegerChoices):
 
 
 class PartialPointScheme(models.IntegerChoices):
-    NONE = 0, "Always Full Points"
+    NONE = 0, "No Partial Points"
     HALF_30_60 = 1, "Half Points between 30% - 60%"
     HALF_2L_75 = 2, "Half Points between 2 Laps - 75%"
     RED_FLAG_QUARTERS = 3, "Red Flag Finish, 1-4 Quarters (rounded) of points, minimum 2 laps."
     QUARTERS = 4, "1-4 Quarters (rounded) of points, minimum 2 laps"
+
+
+class SharedDrivePointScheme(models.IntegerChoices):
+    NONE = 0, "No Points"
+    SHARED = 1, "Points Shared Equally"
+    SHARED_MULTI = 2, "Shared Points of all drives, unless insufficent distance"
+    SHARED_HIGHEST_FINISH = 3, "Shared Points of highest finish"
 
 
 class PointScheme(models.Model):
@@ -42,14 +49,18 @@ class PointScheme(models.Model):
     name = models.CharField(max_length=255, null=True, blank=True)
     driver = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
     team = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
-    fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices)
-    team_fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices)
-    partial = models.PositiveSmallIntegerField(choices=PartialPointScheme.choices)
+    fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
+    team_fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
+    partial = models.PositiveSmallIntegerField(choices=PartialPointScheme.choices, default=0)
+    shared_drive = models.PositiveSmallIntegerField(
+        choices=SharedDrivePointScheme.choices, default=SharedDrivePointScheme.NONE
+    )
 
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(
-                fields=["driver", "team", "fastest_lap", "team_fastest_lap", "partial"], name="point_scheme_unique"
+                fields=["driver", "team", "fastest_lap", "team_fastest_lap", "partial", "shared_drive"],
+                name="point_scheme_unique",
             )
         ]
 

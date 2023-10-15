@@ -53,7 +53,7 @@ class Team(models.Model):
         return f"{self.name}"
 
 
-class TeamDriverRole(models.TextChoices):
+class TeamDriverRole(models.IntegerChoices):
     PERMANENT = 1
     RESERVE = 2
     JUNIOR = 3
