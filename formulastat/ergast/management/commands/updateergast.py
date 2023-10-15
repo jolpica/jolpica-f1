@@ -19,6 +19,6 @@ class Command(BaseCommand):
             updater.update_from_csv()
         except Exception as ex:
             print(ex)
-            raise CommandError(f"Failed to update models")
+            raise CommandError(f"Failed to update models") from ex
 
         self.stdout.write(self.style.SUCCESS("Successfully updated ergast"))
