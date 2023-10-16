@@ -106,7 +106,6 @@ class SessionEntry(models.Model):
     penalties: models.QuerySet["Penalty"]
     served_penalities: models.QuerySet["Penalty"]
 
-    car_number = models.PositiveSmallIntegerField(null=True, blank=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     is_classified = models.BooleanField(null=True, blank=True)
     status = models.PositiveSmallIntegerField(choices=SessionStatus.choices, null=True, blank=True)
