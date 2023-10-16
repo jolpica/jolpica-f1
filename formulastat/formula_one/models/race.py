@@ -60,8 +60,10 @@ class RaceEntry(models.Model):
     sessions: models.QuerySet["Session"]
     session_entries: models.QuerySet["SessionEntry"]
 
+    car_number = models.PositiveSmallIntegerField(null=True, blank=True)
+
     class Meta:
-        constraints: ClassVar = [models.UniqueConstraint(fields=["race", "driver", "team"], name="race_entry_unique")]
+        constraints: ClassVar = [models.UniqueConstraint(fields=["race", "driver", "team", "car_number"], name="race_entry_unique")]
 
     def __str__(self) -> str:
         return f"{self.driver}, {self.team} - {self.race}"
