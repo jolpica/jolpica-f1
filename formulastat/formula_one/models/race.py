@@ -39,7 +39,7 @@ class Race(models.Model):
         constraints: ClassVar = [models.UniqueConstraint(fields=["season", "round"], name="race_unique_season_round")]
 
     def __str__(self) -> str:
-        return f"{self.name}"
+        return f"{self.season.year} {self.name}"
 
 
 class RaceEntry(models.Model):
@@ -63,7 +63,9 @@ class RaceEntry(models.Model):
     car_number = models.PositiveSmallIntegerField(null=True, blank=True)
 
     class Meta:
-        constraints: ClassVar = [models.UniqueConstraint(fields=["race", "driver", "team", "car_number"], name="race_entry_unique")]
+        constraints: ClassVar = [
+            models.UniqueConstraint(fields=["race", "driver", "team", "car_number"], name="race_entry_unique")
+        ]
 
     def __str__(self) -> str:
         return f"{self.driver}, {self.team} - {self.race}"
