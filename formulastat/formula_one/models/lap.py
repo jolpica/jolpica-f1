@@ -20,7 +20,8 @@ class Lap(models.Model):
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="laps")
     pit_stop: "PitStop | None"
 
-    number = models.PositiveSmallIntegerField(unique=True, null=True, blank=True)
+    number = models.PositiveSmallIntegerField(null=True, blank=True)
+    position = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
     average_speed = models.FloatField(null=True, blank=True)
 

@@ -58,10 +58,11 @@ class SessionStatus(models.IntegerChoices):
     FINISHED = 0, "Finished"
     LAPPED = 1, "Car Finished Lap(s) behind Leader"
     DISQUALIFIED = 2, "Disqualified"
-    ACIDENT = 3, "Acident, Collision or Driver Error on track"
-    MECHANICAL = 4, "Mechanical Issue, Retired on track"
+    ACCIDENT = 3, "Accident, Collision or Driver Error on track"
+    MECHANICAL = 4, "Mechanical Issue"
     RETIRED = 5, "Car Retired in Pits"
     DID_NOT_QUALIFY = 6
+    WITHDREW = 7
 
 
 class SessionEntry(models.Model):
@@ -99,7 +100,6 @@ class SessionEntry(models.Model):
         null=True,
         blank=True,
         related_name="+",
-        limit_choices_to=models.Q(session_entry_id=models.F("pk")),
     )
     laps: models.QuerySet["Lap"]
     pit_stops: models.QuerySet["PitStop"]
@@ -119,7 +119,6 @@ class SessionEntry(models.Model):
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["session", "race_entry"], name="session_entry_unique_session_race_entry"),
-            models.UniqueConstraint(fields=["session", "position"], name="session_entry_unique_session_position"),
         ]
 
     def __str__(self) -> str:
