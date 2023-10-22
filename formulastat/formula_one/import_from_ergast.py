@@ -18,6 +18,7 @@ from formulastat.ergast.models import (
     Results,
     Seasons,
     SprintResults,
+    Status,
 )
 from formulastat.formula_one.models import (
     Circuit,
@@ -30,6 +31,7 @@ from formulastat.formula_one.models import (
     Season,
     Session,
     SessionEntry,
+    SessionStatus,
     SessionType,
     Team,
 )
@@ -602,3 +604,28 @@ def run_import():
                 lap.save()
                 sprint_entry.fastest_lap = lap
             sprint_entry.save()
+
+def map_status(status_id):
+    if status_id == Status.objects.get(status="Finished").pk:
+        return SessionStatus.FINISHED.value
+    if status_id == Status.objects.get(status="Disqualified").pk:
+        return SessionStatus.DISQUALIFIED.value
+    if status_id == Status.objects.get(status="Retired").pk:
+        return SessionStatus.RETIRED.value
+    if status_id in Status.objects.filter(status__in=["Accident","Collision","Spun off", "Collision damage", "Damage", "Debris"]):
+        return SessionStatus.ACCIDENT.value
+    if status_id in Status.objects.filter(status__contains="Lap").values_list("pk", flat=True):
+        return SessionStatus.LAPPED.value
+Status.objects.exclude(
+    status__contains="Lap"
+    ).exclude(
+        status__in=["Finished","Disqualified","Retired","Accident","Collision","Spun off", "Collision damage", "Damage", "Debris"]
+    ).exclude(
+        status__in=["Engine","Gearbox","Transmission","Clutch","Hydraulics","Electrical","Radiator","Suspension","Brakes","Differential","Overheating","Mechanical","Tyre","Driver Seat","Driveshaft","Fuel pressure","Front wing","Water pressure","Refuelling","Wheel","Throttle","Steering","Technical","Electronics","Broken wing", "Exhaust", "Heat shield fire","Oil leak","Wheel rim","Water leak","Fuel pump","Track rod","Oil pressure", "Engine fire", "Engine misfire", "Wheel nut","Pneumatics","Handling","Handling","Rear wing","Fire","Wheel bearing","Physical","Fuel system","Oil line","Fuel rig","Launch control","Fuel","Power loss","Vibrations","Ignition","Drivetrain", "Chassis", "Battery","Stalled","Halfshaft","Crankshaft","Alternator", "Oil pump", "Fuel leak", "Injection", "Distributor", "Turbo", "CV joint", "Water pump", "Spark plugs","Fuel pipe", "Oil pipe","Axle","Water pipe","Magneto","Supercharger", "Power Unit","ERS","Brake duct", "Seat", "Undertray", "Cooling system"]
+    ).exclude(
+        status__in=[]
+    ).exclude(
+        status__in=["Withdrew","Not classified","Injured", "107% Rule", "Safety", "Did not qualify", "Injury", "Safety concerns", "Not restarted", "Underweight", "Excluded", "Did not prequalify", "Driver unwell", "Fatal accident", "Eye injury", "Illness", "Out of fuel", "Puncture","Tyre puncture",]
+    )
+
+Status.objects.get(status="Not classified").results_set.order_by("-raceId").all()
