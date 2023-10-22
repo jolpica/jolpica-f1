@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import requests
 from django.contrib.gis.geos import Point
 from django.core.management import call_command
+from django.db.models import F, Q
 from tqdm import tqdm
 
 from formulastat.ergast.models import (
@@ -37,6 +38,207 @@ from formulastat.formula_one.models import (
 )
 
 
+def str_to_delta(timestamp: str | None) -> timedelta | None:
+    if timestamp is None or timestamp == "nan":
+        return None
+    t = datetime.strptime(timestamp, "%M:%S.%f")
+    return timedelta(minutes=t.minute, seconds=t.second, microseconds=t.microsecond)
+
+def follow_wiki_redirects(url: str) -> str:
+    """Get URL that wikipedia will redirect to"""
+    return url
+    title = url.lstrip("http://")
+    title = title.lstrip("https://")
+    title = title.lstrip("en.wikipedia.org/wiki/")
+    if "#" in title:
+        title, end = title.rsplit("#")
+        end = "#" + end
+    else:
+        end = ""
+    query = requests.get(
+        r"https://en.wikipedia.org/w/api.php"
+        + r"?action=query"
+        + r"&redirects&format=json"
+        + r"&titles={}".format(title)
+    )
+    data = query.json()
+
+    if data.get("query", {}).get("redirects"):
+        title = data["query"]["redirects"][-1]["to"]
+    new_url = f"https://en.wikipedia.org/wiki/{title}{end}"
+    return new_url
+
+def get_point_scheme(year: int, ref: str) -> PointScheme:
+    if year <= 1953:
+        return 2
+    elif year <= 1954:
+        return 3
+    elif year <= 1955:
+        return 4
+    elif year <= 1957:
+        return 5
+    elif year <= 1959 and ref == "indianapolis":
+        return 7
+    elif year <= 1959:
+        return 6
+    elif year <= 1960 and ref == "indianapolis":
+        return 9
+    elif year <= 1960:
+        return 8
+    elif year <= 1961:
+        return 10
+    elif year <= 1974:
+        return 11
+    elif year <= 1979:
+        return 12
+    elif year <= 1990:
+        return 13
+    elif year <= 2002:
+        return 14
+    elif year <= 2009:
+        return 15
+    elif year == 14 and ref == "yas_marina":
+        return 17
+    elif year <= 2018:
+        return 16
+    elif year <= 2021:
+        return 18
+    elif year <= 2022:
+        return 20
+    elif year <= 2023:
+        return 22
+    raise NotImplementedError()
+
+status_mapping = {
+    "FINISHED": Status.objects.filter(status__in=["Finished"]).values_list("pk", flat=True),
+    "LAPPED": Status.objects.filter(Q(status__in=["Not classified"]) | Q(status__contains="Lap")).values_list(
+        "pk", flat=True
+    ),
+    "ACCIDENT": Status.objects.filter(status__in=["Accident", "Collision", "Spun off", "Collision damage"]).values_list(
+        "pk", flat=True
+    ),
+    "RETIRED": Status.objects.filter(
+        status__in=[
+            "Damage",
+            "Retired",
+            "Debris",
+            "Driver unwell",
+            "Fatal accident",
+            "Eye injury",
+            "Illness",
+            "Out of fuel",
+            "Puncture",
+            "Tyre puncture",
+            "Injury",
+            "Safety concerns",
+            "Safety",
+            "Injured",
+            "Engine",
+            "Gearbox",
+            "Transmission",
+            "Clutch",
+            "Hydraulics",
+            "Electrical",
+            "Radiator",
+            "Suspension",
+            "Brakes",
+            "Differential",
+            "Overheating",
+            "Mechanical",
+            "Tyre",
+            "Driver Seat",
+            "Driveshaft",
+            "Fuel pressure",
+            "Front wing",
+            "Water pressure",
+            "Refuelling",
+            "Wheel",
+            "Throttle",
+            "Steering",
+            "Technical",
+            "Electronics",
+            "Broken wing",
+            "Exhaust",
+            "Heat shield fire",
+            "Oil leak",
+            "Wheel rim",
+            "Water leak",
+            "Fuel pump",
+            "Track rod",
+            "Oil pressure",
+            "Engine fire",
+            "Engine misfire",
+            "Wheel nut",
+            "Pneumatics",
+            "Handling",
+            "Handling",
+            "Rear wing",
+            "Fire",
+            "Wheel bearing",
+            "Physical",
+            "Fuel system",
+            "Oil line",
+            "Fuel rig",
+            "Launch control",
+            "Fuel",
+            "Power loss",
+            "Vibrations",
+            "Ignition",
+            "Drivetrain",
+            "Chassis",
+            "Battery",
+            "Stalled",
+            "Halfshaft",
+            "Crankshaft",
+            "Alternator",
+            "Oil pump",
+            "Fuel leak",
+            "Injection",
+            "Distributor",
+            "Turbo",
+            "CV joint",
+            "Water pump",
+            "Spark plugs",
+            "Fuel pipe",
+            "Oil pipe",
+            "Axle",
+            "Water pipe",
+            "Magneto",
+            "Supercharger",
+            "Power Unit",
+            "ERS",
+            "Brake duct",
+            "Seat",
+            "Undertray",
+            "Cooling system",
+            "Safety belt",
+        ]
+    ).values_list("pk", flat=True),
+    "DISQUALIFIED": Status.objects.filter(status__in=["Disqualified", "Underweight", "Excluded"]).values_list(
+        "pk", flat=True
+    ),
+    "WITHDREW": Status.objects.filter(status__in=["Withdrew", "Not restarted"]).values_list("pk", flat=True),
+    "DID_NOT_QUALIFY": Status.objects.filter(status__in=["107% Rule", "Did not qualify"]).values_list("pk", flat=True),
+    "DID_NOT_PREQUALIFY": Status.objects.filter(status__in=["Did not prequalify"]).values_list("pk", flat=True),
+}
+
+
+def map_status(status_id, qualifying=False) -> None | SessionStatus:
+    chosen_key = None
+    for key, status_ids in status_mapping.items():
+        if status_id in status_ids:
+            chosen_key = key
+            break
+    if chosen_key is None:
+        raise NotImplementedError()
+
+    if qualifying is False or (chosen_key in ["DID_NOT_QUALIFY", "DID_NOT_PREQUALIFY"]):
+        return SessionStatus[chosen_key]
+    else:
+        return None
+
+
+
 def run_import():
     assert PitStops.objects.filter(lap__isnull=True).count() == 0
     # fixtures
@@ -64,76 +266,6 @@ def run_import():
         quali.number = res.number
         quali.save()
 
-    def str_to_delta(timestamp: str | None) -> timedelta | None:
-        if timestamp is None or timestamp == "nan":
-            return None
-        t = datetime.strptime(timestamp, "%M:%S.%f")
-        return timedelta(minutes=t.minute, seconds=t.second, microseconds=t.microsecond)
-
-    def follow_wiki_redirects(url: str) -> str:
-        """Get URL that wikipedia will redirect to"""
-        return url
-        title = url.lstrip("http://")
-        title = title.lstrip("https://")
-        title = title.lstrip("en.wikipedia.org/wiki/")
-        if "#" in title:
-            title, end = title.rsplit("#")
-            end = "#" + end
-        else:
-            end = ""
-        query = requests.get(
-            r"https://en.wikipedia.org/w/api.php"
-            + r"?action=query"
-            + r"&redirects&format=json"
-            + r"&titles={}".format(title)
-        )
-        data = query.json()
-
-        if data.get("query", {}).get("redirects"):
-            title = data["query"]["redirects"][-1]["to"]
-        new_url = f"https://en.wikipedia.org/wiki/{title}{end}"
-        return new_url
-
-    def get_point_scheme(year: int, ref: str) -> PointScheme:
-        if year <= 1953:
-            return 2
-        elif year <= 1954:
-            return 3
-        elif year <= 1955:
-            return 4
-        elif year <= 1957:
-            return 5
-        elif year <= 1959 and ref == "indianapolis":
-            return 7
-        elif year <= 1959:
-            return 6
-        elif year <= 1960 and ref == "indianapolis":
-            return 9
-        elif year <= 1960:
-            return 8
-        elif year <= 1961:
-            return 10
-        elif year <= 1974:
-            return 11
-        elif year <= 1979:
-            return 12
-        elif year <= 1990:
-            return 13
-        elif year <= 2002:
-            return 14
-        elif year <= 2009:
-            return 15
-        elif year == 14 and ref == "yas_marina":
-            return 17
-        elif year <= 2018:
-            return 16
-        elif year <= 2021:
-            return 18
-        elif year <= 2022:
-            return 20
-        elif year <= 2023:
-            return 22
-        raise NotImplementedError()
 
     # Circuits
     circuit_map = {}
@@ -490,7 +622,7 @@ def run_import():
             fastest_lap=None,
             position=item.positionOrder,
             is_classified=item.position is not None,
-            status=None,
+            status=map_status(item.statusId_id),
             detail=item.statusId.status,
             points=item.points,
             grid=item.grid,
@@ -560,9 +692,10 @@ def run_import():
                     race_entry=race_entry,
                     fastest_lap=None,
                     position=quali.position,
-                    status=None,
-                    detail=item.statusId.status,
+                    status=map_status(item.statusId_id, qualifying=True),
                 )
+                if quali_entry.status:
+                    quali_entry.detail=item.statusId.status
                 quali_entry.save()
                 entry_count += 1
                 lap = Lap(
@@ -586,7 +719,7 @@ def run_import():
                 fastest_lap=None,
                 position=sprint.positionOrder,
                 is_classified=sprint.position is not None,
-                status=None,
+                status=map_status(sprint.statusId_id),
                 detail=sprint.statusId.status,
                 points=sprint.points,
                 grid=sprint.grid,
@@ -604,28 +737,3 @@ def run_import():
                 lap.save()
                 sprint_entry.fastest_lap = lap
             sprint_entry.save()
-
-def map_status(status_id):
-    if status_id == Status.objects.get(status="Finished").pk:
-        return SessionStatus.FINISHED.value
-    if status_id == Status.objects.get(status="Disqualified").pk:
-        return SessionStatus.DISQUALIFIED.value
-    if status_id == Status.objects.get(status="Retired").pk:
-        return SessionStatus.RETIRED.value
-    if status_id in Status.objects.filter(status__in=["Accident","Collision","Spun off", "Collision damage", "Damage", "Debris"]):
-        return SessionStatus.ACCIDENT.value
-    if status_id in Status.objects.filter(status__contains="Lap").values_list("pk", flat=True):
-        return SessionStatus.LAPPED.value
-Status.objects.exclude(
-    status__contains="Lap"
-    ).exclude(
-        status__in=["Finished","Disqualified","Retired","Accident","Collision","Spun off", "Collision damage", "Damage", "Debris"]
-    ).exclude(
-        status__in=["Engine","Gearbox","Transmission","Clutch","Hydraulics","Electrical","Radiator","Suspension","Brakes","Differential","Overheating","Mechanical","Tyre","Driver Seat","Driveshaft","Fuel pressure","Front wing","Water pressure","Refuelling","Wheel","Throttle","Steering","Technical","Electronics","Broken wing", "Exhaust", "Heat shield fire","Oil leak","Wheel rim","Water leak","Fuel pump","Track rod","Oil pressure", "Engine fire", "Engine misfire", "Wheel nut","Pneumatics","Handling","Handling","Rear wing","Fire","Wheel bearing","Physical","Fuel system","Oil line","Fuel rig","Launch control","Fuel","Power loss","Vibrations","Ignition","Drivetrain", "Chassis", "Battery","Stalled","Halfshaft","Crankshaft","Alternator", "Oil pump", "Fuel leak", "Injection", "Distributor", "Turbo", "CV joint", "Water pump", "Spark plugs","Fuel pipe", "Oil pipe","Axle","Water pipe","Magneto","Supercharger", "Power Unit","ERS","Brake duct", "Seat", "Undertray", "Cooling system"]
-    ).exclude(
-        status__in=[]
-    ).exclude(
-        status__in=["Withdrew","Not classified","Injured", "107% Rule", "Safety", "Did not qualify", "Injury", "Safety concerns", "Not restarted", "Underweight", "Excluded", "Did not prequalify", "Driver unwell", "Fatal accident", "Eye injury", "Illness", "Out of fuel", "Puncture","Tyre puncture",]
-    )
-
-Status.objects.get(status="Not classified").results_set.order_by("-raceId").all()

@@ -57,12 +57,12 @@ class Session(models.Model):
 class SessionStatus(models.IntegerChoices):
     FINISHED = 0, "Finished"
     LAPPED = 1, "Car Finished Lap(s) behind Leader"
-    DISQUALIFIED = 2, "Disqualified"
-    ACCIDENT = 3, "Accident, Collision or Driver Error on track"
-    MECHANICAL = 4, "Mechanical Issue"
-    RETIRED = 5, "Car Retired in Pits"
+    ACCIDENT = 2, "Accident, Collision or Driver Error on Track"
+    RETIRED = 3, "Mechanial, Safety or Other Retirement"
+    DISQUALIFIED = 4, "Disqualified"
+    WITHDREW = 5, "Withdrawn or Did Not Start"
     DID_NOT_QUALIFY = 6
-    WITHDREW = 7
+    DID_NOT_PREQUALIFY = 7
 
 
 class SessionEntry(models.Model):
