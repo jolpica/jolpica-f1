@@ -86,7 +86,7 @@ WSGI_APPLICATION = "formulastat.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {"default": env.db("DATABASE_URL", default="postgis://localhost/formulastat")}
+DATABASES = {"default": env.db("DATABASE_URL", default="postgis://postgres:postgres@localhost/formulastat")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
 # Password validation
