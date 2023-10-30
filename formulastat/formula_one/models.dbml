@@ -1,0 +1,323 @@
+Table Circuit {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  name char 
+  city char [null]
+  country char [null]
+  location None [null]
+  altitude float [null]
+  wikipedia url [null]
+  Note: '''
+    Table circuit {
+        id integer [primary key]
+        reference string
+        name string
+        location string
+        country string
+        latitude string
+        longitude string
+        altitude string
+        wikipedia string
+    }
+    '''
+}
+
+
+Table Driver {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  forename char 
+  surname char 
+  abbreviation char [null]
+  nationality char [null]
+  permanent_car_number positive_small_integer [null]
+  date_of_birth date [null]
+  wikipedia url [null]
+  Note: '''
+    Table driver {
+        id integer [primary key]
+        reference string [unique]
+        forename string
+        surname string
+        abbreviation string
+        nationality string
+        permanent_car_number integer
+        date_of_birth date
+        wikipedia string
+    }
+    '''
+}
+
+
+Table Lap {
+  id big_auto [pk, unique]
+  session_entry foreign_key 
+  number positive_small_integer [null]
+  position positive_small_integer [null]
+  time duration [null]
+  average_speed float [null]
+  Note: '''
+    Table lap {
+      id integer [primary key]
+      driver_session_id integer
+      time duration
+      average_speed decimal
+    }
+    '''
+}
+ref: Lap.session_entry > SessionEntry.id
+
+
+Table PitStop {
+  id big_auto [pk, unique]
+  session_entry foreign_key 
+  lap one_to_one [null, unique]
+  number positive_small_integer [null]
+  duration duration [null]
+  local_timestamp char [null]
+  Note: '''
+    Table pit_stop {
+      id integer [primary key]
+      driver_session_id integer
+      lap_number integer
+      number integer
+      duration duration
+      local_timestamp string
+
+    }
+    '''
+}
+ref: PitStop.session_entry > SessionEntry.id
+ref: PitStop.lap - Lap.id
+
+
+Table PointScheme {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  name char [null]
+  driver positive_small_integer 
+  team positive_small_integer 
+  fastest_lap positive_small_integer 
+  team_fastest_lap positive_small_integer 
+  partial positive_small_integer 
+  shared_drive positive_small_integer 
+  is_double_points boolean 
+  Note: '''PointScheme(id, reference, name, driver, team, fastest_lap, team_fastest_lap, partial, shared_drive, is_double_points)'''
+}
+
+
+Table Race {
+  id big_auto [pk, unique]
+  season foreign_key 
+  circuit foreign_key 
+  round positive_small_integer [null]
+  name char [null]
+  date date [null]
+  race_number positive_small_integer [null]
+  wikipedia url [null]
+  is_cancelled boolean 
+  Note: '''
+    Table race {
+        id integer [primary key]
+        season_id integer
+        circuit_id integer
+        round integer
+        name varchar
+        date date
+        wikipedia string
+        cancelled bool
+    }
+    '''
+}
+ref: Race.season > Season.id
+ref: Race.circuit > Circuit.id
+
+
+Table RaceEntry {
+  id big_auto [pk, unique]
+  race foreign_key 
+  driver foreign_key 
+  team foreign_key 
+  car_number positive_small_integer [null]
+  Note: '''
+    Table race_entry {
+        id integer [primary key]
+        driver_id integer
+        race_id integer
+        team_id integer
+        Note: 'Driver data per race'
+    }
+    '''
+}
+ref: RaceEntry.race > Race.id
+ref: RaceEntry.driver > Driver.id
+ref: RaceEntry.team > Team.id
+
+
+Table Season {
+  id big_auto [pk, unique]
+  year small_integer [unique]
+  wikipedia url [null]
+  Note: '''
+    Table season {
+        id integer [primary key]
+        year integer
+        wikipedia string
+    }
+    '''
+}
+
+
+Table Session {
+  id big_auto [pk, unique]
+  race foreign_key 
+  point_scheme foreign_key 
+  type char 
+  date date [null]
+  time time [null]
+  scheduled_laps positive_small_integer [null]
+  is_cancelled boolean 
+  Note: '''
+    Table session {
+        id integer [primary key]
+        race_id integer
+        date date
+        time time
+        session_category session_category
+        point_system point_system
+        laps integer
+        Note: 'The sessions of a race e.g. race, quali'
+    }
+    '''
+}
+ref: Session.race > Race.id
+ref: Session.point_scheme > PointScheme.id
+
+
+Table SessionEntry {
+  id big_auto [pk, unique]
+  session foreign_key 
+  race_entry foreign_key 
+  fastest_lap foreign_key [null]
+  position positive_small_integer [null]
+  is_classified boolean [null]
+  status positive_small_integer [null]
+  detail char [null]
+  points float [null]
+  grid positive_small_integer [null]
+  time duration [null]
+  laps_completed positive_small_integer [null]
+  Note: '''
+    Table driver_session {
+        id integer [primary key]
+        session_id integer
+        race_entry_id integer
+        car_number string
+        // both
+        position integer
+        classified bool
+        fastest_lap integer
+        points decimal
+        // race
+        grid integer
+        time duration
+        laps integer
+        status integer
+        detail string
+    }
+    enum status {
+        Finished
+        retired
+        disqualified
+    }
+    '''
+}
+ref: SessionEntry.session > Session.id
+ref: SessionEntry.race_entry > RaceEntry.id
+ref: SessionEntry.fastest_lap > Lap.id
+
+
+Table Penalty {
+  id big_auto [pk, unique]
+  earned foreign_key [null]
+  served foreign_key [null]
+  license_points positive_small_integer [null]
+  position positive_small_integer [null]
+  time duration [null]
+  is_time_served_in_pit boolean [null]
+  Note: '''
+    Table penalty {
+        id integer [primary key]
+        earned integer
+        served integer
+        license_points integer
+        position integer
+        time duration
+        time_served_in_pit bool
+    }
+    '''
+}
+ref: Penalty.earned > SessionEntry.id
+ref: Penalty.served > SessionEntry.id
+
+
+Table BaseTeam {
+  id big_auto [pk, unique]
+  name char [null, unique]
+  Note: '''
+    Table base_team {
+        id integer [primary key]
+        first_entry integer
+        Note: 'The official Team entry (consistent between rebrands)'
+    }
+    '''
+}
+
+
+Table Team {
+  id big_auto [pk, unique]
+  base_team foreign_key [null]
+  reference char [null, unique]
+  name char 
+  nationality char [null]
+  wikipedia url [null]
+  Note: '''
+    Table team {
+    id integer [primary key]
+    reference string
+    name string
+    nationality string
+    wikipedia string
+    base_team_id integer
+    }
+    '''
+}
+ref: Team.base_team > BaseTeam.id
+
+
+Table TeamDriver {
+  id big_auto [pk, unique]
+  team foreign_key 
+  driver foreign_key 
+  season foreign_key 
+  role positive_small_integer 
+  Note: '''
+    Table team_driver {
+        id integer [primary key]
+        team_id integer
+        driver_id integer
+        season_id integer
+        role team_driver_role
+    }
+    enum team_driver_role {
+        permanent
+        reserve
+        junior // https://f1.fandom.com/wiki/List_of_drivers_who_participated_only_free_practice_during_Grand_Prix_weekend
+    }
+    '''
+}
+ref: TeamDriver.team > Team.id
+ref: TeamDriver.driver > Driver.id
+ref: TeamDriver.season > Season.id
+
+
