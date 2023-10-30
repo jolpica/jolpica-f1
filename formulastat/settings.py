@@ -22,7 +22,7 @@ if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(BASE_DIR / ".env"))
 
-DEPLOYMENT_ENV: Literal["LOCAL","SANDBOX","PROD"] = env.str("DEPLOYMENT_ENV", default="LOCAL")
+DEPLOYMENT_ENV: Literal["LOCAL", "SANDBOX", "PROD"] = env.str("DEPLOYMENT_ENV", default="LOCAL")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/

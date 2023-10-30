@@ -136,8 +136,7 @@ ref: Race.circuit > Circuit.id
 Table RaceEntry {
   id big_auto [pk, unique]
   race foreign_key 
-  driver foreign_key 
-  team foreign_key 
+  team_driver foreign_key 
   car_number positive_small_integer [null]
   Note: '''
     Table race_entry {
@@ -150,8 +149,7 @@ Table RaceEntry {
     '''
 }
 ref: RaceEntry.race > Race.id
-ref: RaceEntry.driver > Driver.id
-ref: RaceEntry.team > Team.id
+ref: RaceEntry.team_driver > TeamDriver.id
 
 
 Table Season {
@@ -300,7 +298,7 @@ Table TeamDriver {
   team foreign_key 
   driver foreign_key 
   season foreign_key 
-  role positive_small_integer 
+  role positive_small_integer [null]
   Note: '''
     Table team_driver {
         id integer [primary key]

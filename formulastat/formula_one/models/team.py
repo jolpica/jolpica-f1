@@ -80,7 +80,7 @@ class TeamDriver(models.Model):
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE, related_name="team_drivers")
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="team_drivers")
 
-    role = models.PositiveSmallIntegerField(choices=TeamDriverRole.choices)
+    role = models.PositiveSmallIntegerField(choices=TeamDriverRole.choices, null=True, blank=True)
 
     class Meta:
         constraints: ClassVar = [
