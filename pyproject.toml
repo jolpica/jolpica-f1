@@ -24,6 +24,7 @@ djangorestframework-stubs = {extras = ["compatible-mypy"], version = "^3.14.3"}
 ruff = "^0.0.292"
 black = {extras = ["jupyter"], version = "^23.9.1"}
 pytest-django = "^4.5.2"
+django-dbml = "^0.6.0"
 
 
 [tool.poetry.group.local.dependencies]
