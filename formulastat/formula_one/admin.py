@@ -27,6 +27,8 @@ class ListAdminMixin:
             ]
         if model.__name__ == "Lap":
             self.list_filter = ["session_entry__session__type"]
+        elif model.__name__ == "SessionEntry":
+            self.list_filter = ["session__type"]
         super().__init__(model, admin_site)
 
     def _get_search_fields(self, model_name: str) -> list[str]:

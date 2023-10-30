@@ -31,4 +31,4 @@ class Lap(models.Model):
         ]
 
     def __str__(self) -> str:
-        return f"{self.number} - {self.session_entry}"
+        return f"{self.session_entry.session.type}: {self.number}"
