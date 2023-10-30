@@ -1,4 +1,5 @@
 # type: ignore
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 import requests
@@ -35,6 +36,7 @@ from formulastat.formula_one.models import (
     SessionStatus,
     SessionType,
     Team,
+    TeamDriver,
 )
 
 
@@ -43,6 +45,7 @@ def str_to_delta(timestamp: str | None) -> timedelta | None:
         return None
     t = datetime.strptime(timestamp, "%M:%S.%f")
     return timedelta(minutes=t.minute, seconds=t.second, microseconds=t.microsecond)
+
 
 def follow_wiki_redirects(url: str) -> str:
     """Get URL that wikipedia will redirect to"""
@@ -67,6 +70,7 @@ def follow_wiki_redirects(url: str) -> str:
         title = data["query"]["redirects"][-1]["to"]
     new_url = f"https://en.wikipedia.org/wiki/{title}{end}"
     return new_url
+
 
 def get_point_scheme(year: int, ref: str) -> PointScheme:
     if year <= 1953:
@@ -108,6 +112,7 @@ def get_point_scheme(year: int, ref: str) -> PointScheme:
     elif year <= 2023:
         return 22
     raise NotImplementedError()
+
 
 status_mapping = {
     "FINISHED": Status.objects.filter(status__in=["Finished"]).values_list("pk", flat=True),
@@ -238,7 +243,6 @@ def map_status(status_id, qualifying=False) -> None | SessionStatus:
         return None
 
 
-
 def run_import():
     assert PitStops.objects.filter(lap__isnull=True).count() == 0
     # fixtures
@@ -265,7 +269,6 @@ def run_import():
         quali = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2], number=r[3])
         quali.number = res.number
         quali.save()
-
 
     # Circuits
     circuit_map = {}
@@ -601,16 +604,29 @@ def run_import():
     count = 1
     entry_count = 1
     lap_count = 1
+
+    team_driver_map = defaultdict(lambda: defaultdict(defaultdict))
     for item in tqdm(Results.objects.all().order_by("raceId", "positionOrder")):
+        season_id = season_map[item.raceId.year_id]
+        driver_id = driver_map[item.driverId_id]
+        team_id = team_map[item.constructorId_id]
         if item.pk in completed:
             continue
         completed.add(item.pk)
         results_map[item.pk] = count
+        team_driver = team_driver_map[season_id][team_id].get(driver_id)
+        if team_driver is None:
+            team_driver = TeamDriver(
+                season_id=season_id,
+                team_id=team_id,
+                driver_id=driver_id,
+            )
+            team_driver_map[season_id][team_id][driver_id] = team_driver
+            team_driver.save()
         race_entry = RaceEntry(
             pk=count,
             race_id=race_map[item.raceId_id],
-            driver_id=driver_map[item.driverId_id],
-            team_id=team_map[item.constructorId_id],
+            team_driver=team_driver,
             car_number=item.number,
         )
         race_entry.save()
@@ -695,7 +711,7 @@ def run_import():
                     status=map_status(item.statusId_id, qualifying=True),
                 )
                 if quali_entry.status:
-                    quali_entry.detail=item.statusId.status
+                    quali_entry.detail = item.statusId.status
                 quali_entry.save()
                 entry_count += 1
                 lap = Lap(

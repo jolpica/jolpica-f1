@@ -23,8 +23,7 @@ class Race(models.Model):
     id = models.BigAutoField(primary_key=True)
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="races")
     circuit = models.ForeignKey("Circuit", on_delete=models.CASCADE, related_name="races")
-    drivers = models.ManyToManyField("Driver", through="RaceEntry", related_name="races")
-    teams = models.ManyToManyField("Team", through="RaceEntry", related_name="races")
+    team_drivers = models.ManyToManyField("TeamDriver", through="RaceEntry", related_name="races")
     race_entries: models.QuerySet["RaceEntry"]
     sessions: models.QuerySet["Session"]
 
@@ -55,8 +54,7 @@ class RaceEntry(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="race_entries")
-    driver = models.ForeignKey("Driver", on_delete=models.CASCADE, related_name="race_entries")
-    team = models.ForeignKey("Team", on_delete=models.CASCADE, related_name="race_entries")
+    team_driver = models.ForeignKey("TeamDriver", on_delete=models.CASCADE, related_name="race_entries")
     sessions: models.QuerySet["Session"]
     session_entries: models.QuerySet["SessionEntry"]
 
@@ -64,8 +62,8 @@ class RaceEntry(models.Model):
 
     class Meta:
         constraints: ClassVar = [
-            models.UniqueConstraint(fields=["race", "driver", "team", "car_number"], name="race_entry_unique")
+            models.UniqueConstraint(fields=["race", "team_driver", "car_number"], name="race_entry_unique")
         ]
 
     def __str__(self) -> str:
-        return f"{self.driver}, {self.team} - {self.race}"
+        return f"{self.team_driver} - {self.race}"
