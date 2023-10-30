@@ -8,8 +8,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
 from pathlib import Path
+from typing import Literal
 
 import environ  # type: ignore
 
@@ -22,6 +22,7 @@ if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
     env.read_env(str(BASE_DIR / ".env"))
 
+DEPLOYMENT_ENV: Literal["LOCAL","SANDBOX","PROD"] = env.str("DEPLOYMENT_ENV", default="LOCAL")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     "formulastat.ergast",
     "formulastat.formula_one",
 ]
+if DEPLOYMENT_ENV != "PROD":
+    INSTALLED_APPS += ["django_dbml"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
