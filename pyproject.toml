@@ -1,15 +1,15 @@
 [tool.poetry]
+authors = ["Your Name <you@example.com>"]
+description = ""
 name = "formulastat"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
 Django = "^4.2.5"
-djangorestframework = "^3.14.0"
 django-environ = "^0.11.2"
+djangorestframework = "^3.14.0"
 psycopg = "^3.1.12"
+python = ">=3.9,<3.13"
 requests = "^2.31.0"
 
 [tool.poetry.group.import.dependencies]
@@ -18,26 +18,25 @@ tqdm = "^4.66.1"
 
 
 [tool.poetry.group.dev.dependencies]
-mypy = {extras = ["dmypy"], version = "^1.5.1"}
-django-stubs = {extras = ["compatible-mypy"], version = "^4.2.4"}
-djangorestframework-stubs = {extras = ["compatible-mypy"], version = "^3.14.3"}
-ruff = "^0.0.292"
-black = {extras = ["jupyter"], version = "^23.9.1"}
-pytest-django = "^4.5.2"
 django-dbml = "^0.6.0"
+django-stubs = { extras = ["compatible-mypy"], version = "^4.2.4" }
+djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.14.3" }
+mypy = { extras = ["dmypy"], version = "^1.5.1" }
+pytest-django = "^4.5.2"
+ruff = "^0.1.3"
 
 
 [tool.poetry.group.local.dependencies]
 ipykernel = "^6.25.2"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
 
 
 [tool.mypy]
-plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
 exclude = ["^tests", "^formulastat/ergast"]
+plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
 
 [tool.django-stubs]
 django_settings_module = "formulastat.settings"
@@ -52,6 +51,7 @@ line-length = 120
 src = ["src"]
 target-version = "py310"
 
+extend-exclude = ["**/migrations", "formulastat/ergast/*"]
 ignore = ["TRY300", "TRY003"]
 select = [
     "RUF", # Ruff specific
@@ -63,13 +63,12 @@ select = [
     "N",   # pep8-naming - Naming Conventions
     "TRY", # Tryceratops - Try Except Checking
 ]
-extend-exclude = ["**/migrations", "formulastat/ergast/*"]
 
 pydocstyle.convention = "google"
 
 [tool.ruff.per-file-ignores]
-"tests/*.py" = ["D", "S", "E501"]
 "*/__init__.py" = ["F401"]
+"tests/*.py" = ["D", "S", "E501"]
 
 
 [tool.pytest.ini_options]
