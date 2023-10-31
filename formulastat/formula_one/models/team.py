@@ -38,7 +38,7 @@ class Team(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     base_team = models.ForeignKey("BaseTeam", on_delete=models.SET_NULL, null=True, blank=True, related_name="teams")
-    drivers = models.ManyToManyField("Driver", through="TeamDriver", related_name="teams")
+    drivers = models.ManyToManyField("formula_one.Driver", through="formula_one.TeamDriver", related_name="teams")
     races: models.QuerySet["Race"]
     seasons: models.QuerySet["Season"]
     race_entries: models.QuerySet["RaceEntry"]
