@@ -19,8 +19,18 @@ from rest_framework import routers
 
 from . import views
 
+criteria = [
+    r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_]+)/)",
+    r"(constructors/(?P<team_ref>[a-zA-Z0-9_]+)/)",
+    r"(drivers/(?P<driver_ref>[a-zA-Z0-9_]+)/)",
+    r"(grid/(?P<grid_position>[a-zA-Z0-9_]+)/)",
+    r"(results/(?P<race_position>[a-zA-Z0-9_]+)/)",
+    r"(status/(?P<status_id>[a-zA-Z0-9_]+)/)",
+]
+regex_criteria = f"({'|'.join(criteria)})*"
+
 router = routers.DefaultRouter()
-router.register(r"seasons", views.SeasonViewSet)
+router.register(f"{regex_criteria}/?seasons", views.SeasonViewSet, basename="season")
 
 urlpatterns = [
     path("", include(router.urls)),
