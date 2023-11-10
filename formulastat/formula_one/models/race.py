@@ -23,7 +23,9 @@ class Race(models.Model):
     id = models.BigAutoField(primary_key=True)
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="races")
     circuit = models.ForeignKey("Circuit", on_delete=models.CASCADE, related_name="races")
-    team_drivers = models.ManyToManyField("formula_one.TeamDriver", through="formula_one.RaceEntry", related_name="races")
+    team_drivers = models.ManyToManyField(
+        "formula_one.TeamDriver", through="formula_one.RaceEntry", related_name="races"
+    )
     race_entries: models.QuerySet["RaceEntry"]
     sessions: models.QuerySet["Session"]
 
