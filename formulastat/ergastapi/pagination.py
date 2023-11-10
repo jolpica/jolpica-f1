@@ -8,17 +8,25 @@ from rest_framework.views import APIView
 class ErgastAPIPagination(pagination.LimitOffsetPagination):
     def paginate_queryset(self, queryset: QuerySet, request: Request, view: APIView | None = ...) -> list | None:
         self.model: str = queryset.model.__name__
+        self.kwargs = view.kwargs
         return super().paginate_queryset(queryset, request, view)
+
+    def get_criteria_dict(self):
+        name_map = {
+            "circuit_ref": "circuitId",
+            "team_ref": "constructorId",
+            "driver_ref": "driverId",
+            "grid_position": "grid",
+            "race_position": "position",
+            "status_id": "status",
+        }
+        return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
 
     def get_paginated_response(self, data):
         data_name = self.model.capitalize() + "s"
         table_name = self.model.capitalize() + "Table"
 
         url = self.request.build_absolute_uri(self.request.path)
-        # url = replace_query_param(url, self.limit_query_param, self.limit)
-
-        # offset = self.offset + self.limit
-        # url = replace_query_param(url, self.offset_query_param, offset)
         return Response(
             {
                 "MRData": {
@@ -29,6 +37,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
                     "offset": str(self.offset),
                     "total": str(self.count),
                     table_name: {
+                        **self.get_criteria_dict(),
                         data_name: data,
                     },
                 }
