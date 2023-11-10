@@ -62,7 +62,7 @@ class ListAdminMixin:
 
 
 class FormulaOneModelAdmin(ListAdminMixin, geo_admin.GISModelAdmin):
-    gis_widget_kwargs = {"attrs": {"default_lon": 10, "default_lat": 55, "default_zoom": 3.75}}  # noqa: RUF012
+    gis_widget_kwargs = {"attrs": {"default_lon": 10, "default_lat": 55, "default_zoom": 3.75}}
 
 
 models = apps.get_app_config("formula_one").get_models()
