@@ -4,7 +4,7 @@ from rest_framework import permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from formulastat.formula_one.models import Season
+from formulastat.formula_one.models import Season, SessionType
 
 from . import pagination, serializers
 
@@ -15,7 +15,7 @@ class SeasonViewSet(viewsets.ModelViewSet):
     pagination_class = pagination.ErgastAPIPagination
 
     def get_queryset(self) -> QuerySet:
-        queryset = Season.objects.all().order_by("year")
+        queryset = Season.objects.all()
         filters = Q()
         if self.kwargs.get("circuit_ref"):
             filters = filters & Q(races__circuit__reference=self.kwargs["circuit_ref"])
@@ -23,7 +23,13 @@ class SeasonViewSet(viewsets.ModelViewSet):
             filters = filters & Q(team_drivers__team__reference=self.kwargs["team_ref"])
         if self.kwargs.get("driver_ref"):
             filters = filters & Q(team_drivers__driver__reference=self.kwargs["driver_ref"])
-        return queryset.filter(filters).distinct()
+        if self.kwargs.get("grid_position"):
+            filters = (
+                filters
+                & Q(team_drivers__race_entries__session_entries__grid=self.kwargs["grid_position"])
+                & Q(team_drivers__race_entries__session_entries__session__type=SessionType.RACE)
+            )
+        return queryset.filter(filters).order_by("year").distinct()
 
     @action(methods=["get"], detail=False)
     def drivers(self, request, circuit_ref=None, constructor_ref=None, driver_ref=None):
