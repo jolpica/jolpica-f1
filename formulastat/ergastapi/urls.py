@@ -14,10 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers
 
 from . import views
+
+router = routers.DefaultRouter()
+router.register("seasons", views.SeasonViewSet, basename="season")
 
 criteria = [
     r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_]+)/)",
@@ -25,14 +28,11 @@ criteria = [
     r"(drivers/(?P<driver_ref>[a-zA-Z0-9_]+)/)",
     r"(grid/(?P<grid_position>[a-zA-Z0-9_]+)/)",
     r"(results/(?P<race_position>[a-zA-Z0-9_]+)/)",
-    r"(status/(?P<status_id>[a-zA-Z0-9_]+)/)",
+    r"(status/(?P<ergast_status_id>[a-zA-Z0-9_]+)/)",
 ]
 regex_criteria = f"({'|'.join(criteria)})*"
 
-router = routers.DefaultRouter()
-router.register(f"{regex_criteria}/?seasons", views.SeasonViewSet, basename="season")
-
 urlpatterns = [
-    path("", include(router.urls)),
+    re_path(f"{regex_criteria}/?", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
