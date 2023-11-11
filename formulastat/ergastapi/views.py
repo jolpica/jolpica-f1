@@ -48,13 +48,3 @@ class SeasonViewSet(viewsets.ModelViewSet):
     def get_queryset(self) -> QuerySet:
         filters = self.get_criteria_filters(**self.kwargs)
         return Season.objects.filter(filters).order_by("year").distinct()
-
-    @action(methods=["get"], detail=False)
-    def drivers(self, request, circuit_ref=None, constructor_ref=None, driver_ref=None):
-        return Response(
-            {
-                "circuit": circuit_ref,
-                "constructor": constructor_ref,
-                "driver": driver_ref,
-            }
-        )
