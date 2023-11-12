@@ -26,7 +26,7 @@ class Circuit(models.Model):
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)
-    city = models.CharField(max_length=255, null=True, blank=True)
+    locality = models.CharField(max_length=255, null=True, blank=True)
     country = models.CharField(max_length=255, null=True, blank=True)
     location = models.PointField(geography=True, null=True, blank=True)
     altitude = models.FloatField(null=True, blank=True)
