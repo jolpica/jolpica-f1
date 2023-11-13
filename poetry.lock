@@ -336,6 +336,17 @@ docs = ["furo (>=2021.8.17b43,<2021.9.dev0)", "sphinx (>=3.5.0)", "sphinx-notfou
 testing = ["coverage[toml] (>=5.0a4)", "pytest (>=4.6.11)"]
 
 [[package]]
+name = "django-fixture-magic"
+version = "0.1.5"
+description = "A few extra management tools to handle fixtures."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-fixture-magic-0.1.5.tar.gz", hash = "sha256:d82a4d4f6ade078e942927b5157f0536d0cd0232adfeb943dced0858128dd734"},
+    {file = "django_fixture_magic-0.1.5-py2-none-any.whl", hash = "sha256:c50f3de4a46a5844e2c1e2a9ff88b29db0830da8383e43d5ef6a66f1c4bfd8af"},
+]
+
+[[package]]
 name = "django-stubs"
 version = "4.2.6"
 description = "Mypy stubs for Django"
@@ -1450,4 +1461,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.13"
-content-hash = "ab0d4ed9dae6b83247896f2bdf21bccbd2d89a0c02554458db72a7afe3e6a1ac"
+content-hash = "e46d47717bdcba9388328dc947fa192c3cf2246e54122e44a52aafe0e963459a"
