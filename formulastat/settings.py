@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     "formulastat.ergastapi",
 ]
 if DEPLOYMENT_ENV != "PROD":
-    INSTALLED_APPS += ["django_dbml"]
+    INSTALLED_APPS += ["django_dbml", "fixture_magic"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
