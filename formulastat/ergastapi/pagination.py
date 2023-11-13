@@ -18,7 +18,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "driver_ref": "driverId",
             "grid_position": "grid",
             "race_position": "position",
-            "status_id": "status",
+            "ergast_status_id": "status",
         }
         return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
 
