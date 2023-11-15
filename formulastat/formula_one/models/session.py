@@ -1,5 +1,4 @@
 from typing import TYPE_CHECKING, ClassVar
-from datetime import timedelta
 
 from django.db import models
 
@@ -117,11 +116,8 @@ class SessionEntry(models.Model):
     points = models.FloatField(null=True, blank=True)
     grid = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
+    fastest_lap_rank = models.PositiveSmallIntegerField(null=True, blank=True)
     laps_completed = models.PositiveSmallIntegerField(null=True, blank=True)
-
-    @property
-    def fastest_lap_rank(self):
-        return SessionEntry.objects.filter(session=self.session,fastest_lap__time__lt=self.fastest_lap.time).count() + 1
 
     class Meta:
         constraints: ClassVar = [

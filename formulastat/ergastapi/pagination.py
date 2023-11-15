@@ -19,6 +19,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "grid_position": "grid",
             "race_position": "position",
             "ergast_status_id": "status",
+            "fastest_lap_rank": "fastest",
         }
         return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
 

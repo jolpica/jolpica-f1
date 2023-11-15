@@ -29,6 +29,7 @@ criteria = [
     r"(drivers/(?P<driver_ref>[a-zA-Z0-9_]+)/)",
     r"(grid/(?P<grid_position>[a-zA-Z0-9_]+)/)",
     r"(results/(?P<race_position>[a-zA-Z0-9_]+)/)",
+    r"(fastest/(?P<fastest_lap_rank>[a-zA-Z0-9_]+)/)",
     r"(status/(?P<ergast_status_id>[a-zA-Z0-9_]+)/)",
 ]
 regex_criteria = f"({'|'.join(criteria)})*"
