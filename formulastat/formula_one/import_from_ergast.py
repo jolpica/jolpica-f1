@@ -282,7 +282,7 @@ def run_import():
             pk=count,
             reference=circ.circuitRef,
             name=circ.name,
-            city=circ.location,
+            locality=circ.location,
             country=circ.country,
             location=Point(circ.lng, circ.lat, srid=4326),
             altitude=circ.alt,
@@ -644,6 +644,7 @@ def run_import():
             grid=item.grid,
             time=timedelta(milliseconds=item.milliseconds) if item.milliseconds else None,
             laps_completed=item.laps,
+            fastest_lap_rank=item.rank,
         )
         laps = LapTimes.objects.filter(raceId=item.raceId, driverId=item.driverId)
         pitstops = PitStops.objects.filter(raceId=item.raceId, driverId=item.driverId)
