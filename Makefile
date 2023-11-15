@@ -21,5 +21,5 @@ test-fixture:
 	python manage.py merge_fixtures tests/fixtures/2000s_pitstops.json tests/fixtures/2000s_sessions.json tests/fixtures/ergast_status.json > tests/fixtures/2000s_data.json
 	sed -ri 's/^\s+//g' tests/fixtures/2000s_data.json
 	sed -i ':a;N;$!ba;s/\n//g' tests/fixtures/2000s_data.json
-	gzip tests/fixtures/2000s_data.json
+	gzip -f tests/fixtures/2000s_data.json
 	rm tests/fixtures/2000s_pitstops.json tests/fixtures/2000s_sessions.json tests/fixtures/ergast_status.json
