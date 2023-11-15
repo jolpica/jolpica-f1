@@ -5,12 +5,11 @@ from datetime import datetime, timedelta
 import requests
 from django.contrib.gis.geos import Point
 from django.core.management import call_command
-from django.db.models import F, Q
+from django.db.models import Q
 from tqdm import tqdm
 
 from formulastat.ergast.models import (
     Circuits,
-    ConstructorResults,
     Constructors,
     Drivers,
     LapTimes,
@@ -62,7 +61,7 @@ def follow_wiki_redirects(url: str) -> str:
         r"https://en.wikipedia.org/w/api.php"
         + r"?action=query"
         + r"&redirects&format=json"
-        + r"&titles={}".format(title)
+        + fr"&titles={title}"
     )
     data = query.json()
 

@@ -2,7 +2,6 @@ import json
 from pathlib import Path
 
 import pytest
-from formulastat.formula_one.models import Circuit, Season
 from rest_framework.test import APIClient
 
 
