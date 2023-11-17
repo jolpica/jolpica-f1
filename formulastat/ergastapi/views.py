@@ -1,5 +1,4 @@
-
-from django.db.models import Count, Q
+from django.db.models import Count, OuterRef, Q, Subquery
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets
 
@@ -86,33 +85,25 @@ class CircuitViewSet(ErgastModelViewSet):
 
 class StatusViewSet(ErgastModelViewSet):
     serializer_class = serializers.StatusSerializer
-    lookup_field = "circuit_ref"
+    lookup_field = "ergast_status_id"
 
-    query_session_entries = "races__race_entries__session_entries__"
-    query_team = "races__race_entries__team_driver__team__"
-    query_driver = "races__race_entries__team_driver__driver__"
-    query_circuit = ""
+    query_session_entries = ""
+    query_team = "race_entry__team_driver__team__"
+    query_driver = "race_entry__team_driver__driver__"
+    query_circuit = "race_entry__race__circuit__"
     order_by = "pk"
-
-    def get_criteria_filters(
-        self,
-        circuit_ref=None,
-        team_ref=None,
-        driver_ref=None,
-        grid_position=None,
-        race_position=None,
-        fastest_lap_rank=None,
-        ergast_status_id=None,
-        **kwargs,
-    ) -> Q:
-        return Q()
 
     def get_queryset(self) -> QuerySet:
         model = self.serializer_class.Meta.model
         filters = self.get_criteria_filters(**self.kwargs)
+        status_id_subquery = Status.objects.filter(status=OuterRef("detail"))
         return (
-            model.objects.annotate(count=Count("results"))
-            .filter(filters & Q(count__gt=0))
-            .order_by(self.order_by)
+            model.objects.filter(Q(session__type=SessionType.RACE) & filters)
+            .values("detail")
+            .annotate(
+                count=Count("detail"),
+                statusId=Subquery(status_id_subquery.values("pk")[:1]),
+            )
+            .order_by("statusId")
             .distinct()
         )
