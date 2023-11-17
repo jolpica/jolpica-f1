@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from formulastat.ergast.models import Status
-from formulastat.formula_one.models import Circuit, Season
+from formulastat.formula_one.models import Circuit, Season, SessionEntry
 
 
 class SeasonSerializer(serializers.HyperlinkedModelSerializer):
@@ -34,9 +33,9 @@ class CircuitSerializer(serializers.HyperlinkedModelSerializer):
 
 class StatusSerializer(serializers.HyperlinkedModelSerializer):
     statusId = serializers.CharField()  # noqa: N815
-    status = serializers.CharField()
+    status = serializers.CharField(source="detail")
     count = serializers.CharField()
 
     class Meta:
-        model = Status
+        model = SessionEntry
         fields = ["statusId", "count", "status"]

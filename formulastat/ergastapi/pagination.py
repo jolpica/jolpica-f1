@@ -24,6 +24,8 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
         return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
 
     def get_paginated_response(self, data):
+        if self.model == "SessionEntry":
+            self.model = "Status"
         data_name = self.model.capitalize().rstrip("s") + "s"
         table_name = self.model.capitalize() + "Table"
 

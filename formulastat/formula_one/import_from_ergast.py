@@ -58,10 +58,7 @@ def follow_wiki_redirects(url: str) -> str:
     else:
         end = ""
     query = requests.get(
-        r"https://en.wikipedia.org/w/api.php"
-        + r"?action=query"
-        + r"&redirects&format=json"
-        + fr"&titles={title}"
+        r"https://en.wikipedia.org/w/api.php" + r"?action=query" + r"&redirects&format=json" + rf"&titles={title}"
     )
     data = query.json()
 
