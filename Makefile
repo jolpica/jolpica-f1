@@ -1,6 +1,6 @@
 format:
 	ruff format .
-	ruff check --fix .
+	ruff check --fix-only .
 
 lint:
 	ruff check .
