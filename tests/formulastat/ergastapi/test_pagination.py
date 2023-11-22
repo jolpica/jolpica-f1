@@ -1,5 +1,5 @@
 import pytest
-from formulastat.formula_one.models import Circuit, Season
+from formulastat.formula_one.models import Circuit, Driver, Race, Season, SessionEntry, SessionType, Team
 from rest_framework.test import APIClient
 
 
@@ -9,6 +9,10 @@ from rest_framework.test import APIClient
     [
         ("seasons/", Season, "SeasonTable", "Seasons"),
         ("circuits/", Circuit, "CircuitTable", "Circuits"),
+        ("status/", None, "StatusTable", "Status"),
+        ("races/", Race, "RaceTable", "Races"),
+        ("constructors/", Team, "ConstructorTable", "Constructors"),
+        ("drivers/", Driver, "DriverTable", "Drivers"),
     ],
 )
 @pytest.mark.django_db
@@ -18,7 +22,10 @@ def test_metadata(client: APIClient, endpoint: str, model, table_name, data_name
     response = client.get(f"/ergast/{endpoint}", follow=True)
     assert response.status_code == 200
     data: dict = response.json()
-    total_rows = model.objects.all().count()
+    if model is not None:
+        total_rows = model.objects.all().count()
+    elif endpoint == "status/":
+        total_rows = SessionEntry.objects.filter(session__type=SessionType.RACE).values("detail").distinct().count()
     table: dict = data["MRData"].pop(table_name)
 
     assert response.json() == {
