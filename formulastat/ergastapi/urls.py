@@ -22,7 +22,10 @@ from . import views
 router = routers.DefaultRouter()
 router.register("seasons", views.SeasonViewSet, basename="season")
 router.register("circuits", views.CircuitViewSet, basename="circuit")
+router.register("races", views.RaceViewSet, basename="race")
 router.register("status", views.StatusViewSet, basename="status")
+router.register("constructors", views.ConstructorViewSet, basename="constructor")
+router.register("drivers", views.DriverViewSet, basename="driver")
 
 criteria = [
     r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_]+)/)",

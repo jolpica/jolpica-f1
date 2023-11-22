@@ -17,7 +17,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
     query_driver = ""
     query_circuit = ""
 
-    order_by = ""
+    order_by = []
 
     def get_criteria_filters(
         self,
@@ -48,13 +48,15 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             if fastest_lap_rank:
                 filters = filters & Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
         if ergast_status_id:
-            filters = filters & Q(**{f"{self.query_session_entries}detail": Status.objects.get(pk=ergast_status_id)})
+            filters = filters & Q(
+                **{f"{self.query_session_entries}detail": Status.objects.filter(pk=ergast_status_id).first()}
+            )
         return filters
 
     def get_queryset(self) -> QuerySet:
         model = self.serializer_class.Meta.model
         filters = self.get_criteria_filters(**self.kwargs)
-        return model.objects.filter(filters).order_by(self.order_by).distinct()
+        return model.objects.filter(filters).order_by(*self.order_by).distinct()
 
     def retrieve(self, request, **kwargs):
         # lookup_field should be the first listed criteria when using retrieve
@@ -69,7 +71,7 @@ class SeasonViewSet(ErgastModelViewSet):
     query_team = "team_drivers__team__"
     query_driver = "team_drivers__driver__"
     query_circuit = "team_drivers__race_entries__race__circuit__"
-    order_by = "year"
+    order_by = ["year"]
 
 
 class CircuitViewSet(ErgastModelViewSet):
@@ -80,7 +82,19 @@ class CircuitViewSet(ErgastModelViewSet):
     query_team = "races__race_entries__team_driver__team__"
     query_driver = "races__race_entries__team_driver__driver__"
     query_circuit = ""
-    order_by = "reference"
+    order_by = ["reference"]
+
+
+# season relation
+class RaceViewSet(ErgastModelViewSet):
+    serializer_class = serializers.RaceSerializer
+    lookup_field = None
+
+    query_session_entries = "race_entries__session_entries__"
+    query_team = "race_entries__team_driver__team__"
+    query_driver = "race_entries__team_driver__driver__"
+    query_circuit = "circuit__"
+    order_by = ["season__year", "round"]
 
 
 class StatusViewSet(ErgastModelViewSet):
@@ -91,7 +105,7 @@ class StatusViewSet(ErgastModelViewSet):
     query_team = "race_entry__team_driver__team__"
     query_driver = "race_entry__team_driver__driver__"
     query_circuit = "race_entry__race__circuit__"
-    order_by = "pk"
+    order_by = ["pk"]
 
     def get_queryset(self) -> QuerySet:
         model = self.serializer_class.Meta.model
@@ -107,3 +121,25 @@ class StatusViewSet(ErgastModelViewSet):
             .order_by("statusId")
             .distinct()
         )
+
+
+class ConstructorViewSet(ErgastModelViewSet):
+    serializer_class = serializers.ConstructorSerializer
+    lookup_field = "reference"
+
+    query_session_entries = "team_drivers__race_entries__session_entries__"
+    query_team = ""
+    query_driver = "team_drivers__driver__"
+    query_circuit = "team_drivers__race_entries__race__circuit__"
+    order_by = ["reference"]
+
+
+class DriverViewSet(ErgastModelViewSet):
+    serializer_class = serializers.DriverSerializer
+    lookup_field = "reference"
+
+    query_session_entries = "team_drivers__race_entries__session_entries__"
+    query_team = "team_drivers__team__"
+    query_driver = ""
+    query_circuit = "team_drivers__race_entries__race__circuit__"
+    order_by = ["reference"]
