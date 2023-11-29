@@ -224,8 +224,10 @@ status_mapping = {
 }
 
 
-def map_status(status_id, qualifying=False) -> None | SessionStatus:
+def map_status(status_id, qualifying=False, pos_text: str = "") -> None | SessionStatus:
     chosen_key = None
+    if pos_text == "W":
+        return SessionStatus.WITHDREW
     for key, status_ids in status_mapping.items():
         if status_id in status_ids:
             chosen_key = key
@@ -634,7 +636,7 @@ def run_import():
             fastest_lap=None,
             position=item.positionOrder,
             is_classified=item.position is not None,
-            status=map_status(item.statusId_id),
+            status=map_status(item.statusId_id, pos_text=item.positionText),
             detail=item.statusId.status,
             points=item.points,
             grid=item.grid,
