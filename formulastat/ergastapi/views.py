@@ -88,7 +88,7 @@ class CircuitViewSet(ErgastModelViewSet):
 # season relation
 class RaceViewSet(ErgastModelViewSet):
     serializer_class = serializers.RaceSerializer
-    lookup_field = None
+    lookup_field = "pk"
 
     query_session_entries = "race_entries__session_entries__"
     query_team = "race_entries__team_driver__team__"
@@ -143,3 +143,24 @@ class DriverViewSet(ErgastModelViewSet):
     query_driver = ""
     query_circuit = "team_drivers__race_entries__race__circuit__"
     order_by = ["reference"]
+
+
+class ResultViewSet(ErgastModelViewSet):
+    serializer_class = serializers.RaceResultsSerializer
+    lookup_field = None
+
+    query_session_entries = ""
+    query_team = "race_entry__team_driver__team__"
+    query_driver = "race_entry__team_driver__driver__"
+    query_circuit = "race_entry__race__circuit__"
+    order_by = ["pk"]
+
+    # query_session_entries = "race_entries__session_entries__"
+    # query_team = "race_entries__team_driver__team__"
+    # query_driver = "race_entries__team_driver__driver__"
+    # query_circuit = "circuit__"
+    # order_by = ["season__year", "round"]
+    def get_queryset(self) -> QuerySet:
+        model = self.serializer_class.Meta.model
+        filters = self.get_criteria_filters(**self.kwargs) & Q(session__type=SessionType.RACE)
+        return model.objects.filter(filters).order_by(*self.order_by).select_related("race_entry__race").distinct()

@@ -26,6 +26,7 @@ router.register("races", views.RaceViewSet, basename="race")
 router.register("status", views.StatusViewSet, basename="status")
 router.register("constructors", views.ConstructorViewSet, basename="constructor")
 router.register("drivers", views.DriverViewSet, basename="driver")
+router.register("results", views.ResultViewSet, basename="result")
 
 criteria = [
     r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_]+)/)",
