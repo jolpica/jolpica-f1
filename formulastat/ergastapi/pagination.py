@@ -26,7 +26,10 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
     def get_paginated_response(self, data):
         match self.model:
             case "SessionEntry":
-                self.model = "Status"
+                if data[0].get("statusId"):
+                    self.model = "Status"
+                else:
+                    self.model = "Race"
             case "Team":
                 self.model = "Constructor"
         data_name = self.model.capitalize().rstrip("s") + "s"
