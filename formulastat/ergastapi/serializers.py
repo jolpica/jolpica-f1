@@ -105,16 +105,12 @@ class DriverSerializer(ErgastModelSerializer):
         fields = ["driverId", "permanentNumber", "code", "url", "givenName", "familyName", "dateOfBirth", "nationality"]
 
 
-# class RaceResultsSerializer(RaceSerializer):
-class ListRaceResultsSerializer(serializers.ListSerializer):
-    child = RaceSerializer()
-
+class ListResultsSerializer(serializers.ListSerializer):
     def to_representation(self, data: QuerySet[SessionEntry]) -> Any:
         is_single = False
         if isinstance(data, SessionEntry):
             data = SessionEntry.objects.filter(pk=data.pk).select_related("race_entry__race").distinct()
             is_single = True
-        # data = data.select_related().distinct()
 
         race_results = {}
         for session_entry in data:
@@ -122,12 +118,12 @@ class ListRaceResultsSerializer(serializers.ListSerializer):
 
             if race_id not in race_results.keys():
                 race_results[race_id] = RaceSerializer().to_representation(session_entry.race_entry.race)
-                race_results[race_id]["Results"] = []
+                race_results[race_id][self.child.results_list_name] = []
 
         race_to_winner_time = {}
         winner_times = Race.objects.filter(
             pk__in=race_results.keys(),
-            sessions__type=SessionType.RACE,
+            sessions__type=self.child.results_session_type,
             sessions__session_entries__position=1,
         )
         for race_id, time in winner_times.values_list("pk", "sessions__session_entries__time"):
@@ -139,18 +135,32 @@ class ListRaceResultsSerializer(serializers.ListSerializer):
                 "number": str(session_entry.race_entry.car_number),
                 "position": str(session_entry.position),
                 "positionText": str(session_entry.position),
-                "points": str(int(session_entry.points)),
+                "points": None,
                 "Driver": DriverSerializer().to_representation(session_entry.race_entry.team_driver.driver),
                 "Constructor": ConstructorSerializer().to_representation(session_entry.race_entry.team_driver.team),
                 "grid": str(session_entry.grid),
                 "laps": str(session_entry.laps_completed),
                 "status": session_entry.detail,
             }
-            if not session_entry.is_classified:
-                if session_entry.status == SessionStatus.WITHDREW:
-                    result["positionText"] = "W"
+            if session_entry.points is not None:
+                if session_entry.points % 1 == 0: 
+                    result["points"] = str(int(session_entry.points)) 
                 else:
-                    result["positionText"] = "R"
+                    result["points"] = str(session_entry.points)
+            else:
+                del result["points"]
+            if not session_entry.is_classified:
+                match session_entry.status:
+                    case SessionStatus.WITHDREW:
+                        result["positionText"] = "W"
+                    case SessionStatus.DISQUALIFIED:
+                        result["positionText"] = "D"
+                    case SessionStatus.WITHDREW:
+                        result["positionText"] = "W"
+                    case SessionStatus.DID_NOT_QUALIFY | SessionStatus.DID_NOT_PREQUALIFY:
+                        result["positionText"] = "F"
+                    case _:
+                        result["positionText"] = "R"
             if session_entry.time:
                 result["Time"] = {
                     "millis": str(int(session_entry.time.total_seconds() * 1000)),
@@ -167,8 +177,9 @@ class ListRaceResultsSerializer(serializers.ListSerializer):
                         "units": "kph",
                         "speed": str(session_entry.fastest_lap.average_speed).ljust(7, "0"),
                     }
+                result["FastestLap"] = {key: value for key, value in result["FastestLap"].items() if value != "None"}
 
-            race_results[race_id]["Results"].append(result)
+            race_results[race_id][self.child.results_list_name].append(result)
 
         results = list(race_results.values())
         if is_single:
@@ -179,7 +190,7 @@ class ListRaceResultsSerializer(serializers.ListSerializer):
     def calculate_finish_display_from_millis(finish_time: timedelta, winner_time: timedelta) -> str:
         if finish_time == winner_time:
             # time = str(finish_time).strip(":0")
-            time = str(finish_time)[:-3]
+            time = str(finish_time)[:-3].lstrip("0:")
         else:
             time_diff = (finish_time - winner_time).total_seconds()
             hours, mins, secs, millis = (
@@ -196,52 +207,28 @@ class ListRaceResultsSerializer(serializers.ListSerializer):
             time += f"{int(secs):02}.{int(millis):03}"
             if time[0] == "0":
                 time = time[1:]
-            time = f"+{time}".rstrip("0")
+            time = f"+{time}"#.rstrip("0")
 
         return time
 
-    # Results = serializers.SerializerMethodField(method_name="get_results")
-
-    # def get_results(self, race: Race) -> dict:
-    #     session_entries = SessionEntry.objects.filter(
-    #         session__type=SessionType.RACE, race_entry__race=race, race_entry__team_driver__driver__reference="alonso"
-    #     )
-    #     race_winner_time = (
-    #         SessionEntry.objects.filter(session__type=SessionType.RACE, race_entry__race=race, position=1)
-    #         # .order_by("position")
-    #         .first()
-    #         .time
-    #     )
-    #     results = []
-    #     for session_entry in session_entries:
-    #         result = {
-    #             "number": str(session_entry.race_entry.car_number),
-    #             "position": str(session_entry.position),
-    #             "positionText": str(session_entry.position),
-    #             "points": str(int(session_entry.points)),
-    #             "Driver": DriverSerializer().to_representation(session_entry.race_entry.team_driver.driver),
-    #             "Constructor": ConstructorSerializer().to_representation(session_entry.race_entry.team_driver.team),
-    #             "grid": str(session_entry.grid),
-    #             "laps": str(session_entry.laps_completed),
-    #             "status": session_entry.detail,
-    #         }
-    #         if not session_entry.is_classified:
-    #             result["positionText"] = "R"
-    #         if session_entry.time:
-    #             result["Time"] = {
-    #                 "millis": str(int(session_entry.time.total_seconds() * 1000)),
-    #                 "time": self.calculate_finish_display_from_millis(session_entry.time, race_winner_time),
-    #             }
-    #         results.append(result)
-    #     return results
-
-    class Meta:
-        # model = Race
-        model = SessionEntry
-        # fields = [*RaceSerializer.Meta.fields, "Results"]
-
-
-class RaceResultsSerializer(ListRaceResultsSerializer):
     class Meta:
         model = SessionEntry
-        list_serializer_class = ListRaceResultsSerializer
+
+
+class RaceResultsSerializer(ErgastModelSerializer):
+    results_list_name = "Results"
+    results_session_type = SessionType.RACE
+
+    class Meta:
+        model = SessionEntry
+        list_serializer_class = ListResultsSerializer
+
+
+class SprintResultsSerializer(RaceResultsSerializer):
+    results_list_name = "SprintResults"
+    results_session_type = SessionType.SPRINT_RACE
+
+
+class QualifyingResultsSerializer(RaceResultsSerializer):
+    results_list_name = "QualifyingResults"
+    results_session_type = SessionType.SPRINT_RACE
