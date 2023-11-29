@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 class ErgastAPIPagination(pagination.LimitOffsetPagination):
     def paginate_queryset(self, queryset: QuerySet, request: Request, view: APIView | None = ...) -> list | None:
         self.model: str = queryset.model.__name__
+        self.viewset: str = view.__class__.__name__
         self.kwargs = view.kwargs
         return super().paginate_queryset(queryset, request, view)
 
@@ -24,14 +25,13 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
         return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
 
     def get_paginated_response(self, data):
-        match self.model:
-            case "SessionEntry":
-                if data[0].get("statusId"):
-                    self.model = "Status"
-                else:
-                    self.model = "Race"
-            case "Team":
+        match self.viewset:
+            case "StatusViewSet":
+                self.model = "Status"
+            case "ConstructorViewSet":
                 self.model = "Constructor"
+            case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet":
+                self.model = "Race"
         data_name = self.model.capitalize().rstrip("s") + "s"
         table_name = self.model.capitalize() + "Table"
 

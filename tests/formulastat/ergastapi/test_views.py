@@ -29,11 +29,18 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
 
     # Special case for results data, allow text time to be off by 1 millisecond
     # This is because in ergast the millis time and text based time is inconsistent
-    if "results.json" in endpoint:
+    if "results.json" in endpoint or "sprint.json" in endpoint:
+        if "sprint.json" in endpoint:
+            result_prefix = "Sprint"
+        else:
+            result_prefix = ""
         for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
-            for j, result_data in enumerate(race_data["Results"]):
+            for j, result_data in enumerate(race_data[f"{result_prefix}Results"]):
+                expected_data = expected["MRData"]["RaceTable"]["Races"][i][f"{result_prefix}Results"][j]
+                if expected_data.get("positionText") == "N":
+                    expected_data["positionText"] = "R"
+                    
                 if result_data.get("Time"):
-                    expected_time = expected["MRData"]["RaceTable"]["Races"][i]["Results"][j]
                     if ":" in result_data["Time"]["time"]:
                         time, time_decimal = result_data["Time"]["time"].rsplit(":", maxsplit=1)
                         time += ":"
@@ -44,15 +51,15 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
                         time_decimal = result_data["Time"]["time"][1:]
                     time_decimal = float(time_decimal)
 
-                    # time_decimal = time_decimal.rjust(3,"0")
                     time_range = (
-                        result_data["Time"]["time"],
-                        f"{time}{(time_decimal):0<6}",
-                        f"{time}{round((time_decimal) + 0.001,3)}")
+                        result_data["Time"]["time"].rstrip("0"),
+                        f"{time}{round((time_decimal) + 0.001,3)}",
+                    )
                     #    f"{time}{round((time_decimal) - 0.001, 3)}")
 
-                    assert expected_time["Time"]["time"] in time_range
+                    # rstrip as ergast is inconsistent with trailing 0s
+                    assert expected_data["Time"]["time"].rstrip("0") in time_range
                     del result_data["Time"]["time"]
-                    del expected_time["Time"]["time"]
+                    del expected_data["Time"]["time"]
 
     assert result == expected

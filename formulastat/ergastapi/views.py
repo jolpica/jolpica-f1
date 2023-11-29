@@ -153,14 +153,25 @@ class ResultViewSet(ErgastModelViewSet):
     query_team = "race_entry__team_driver__team__"
     query_driver = "race_entry__team_driver__driver__"
     query_circuit = "race_entry__race__circuit__"
-    order_by = ["pk"]
+    order_by = ["race_entry__race", "position"]
 
-    # query_session_entries = "race_entries__session_entries__"
-    # query_team = "race_entries__team_driver__team__"
-    # query_driver = "race_entries__team_driver__driver__"
-    # query_circuit = "circuit__"
-    # order_by = ["season__year", "round"]
+    result_session_type = SessionType.RACE
+
     def get_queryset(self) -> QuerySet:
         model = self.serializer_class.Meta.model
-        filters = self.get_criteria_filters(**self.kwargs) & Q(session__type=SessionType.RACE)
+        filters = self.get_criteria_filters(**self.kwargs) & Q(session__type=self.result_session_type)
+        return model.objects.filter(filters).order_by(*self.order_by).select_related("race_entry__race").distinct()
+
+
+class SprintViewSet(ResultViewSet):
+    serializer_class = serializers.SprintResultsSerializer
+
+    result_session_type = SessionType.SPRINT_RACE
+
+class QualifyingViewSet(ResultViewSet):
+    serializer_class = serializers.QualifyingResultsSerializer
+
+    def get_queryset(self) -> QuerySet:
+        model = self.serializer_class.Meta.model
+        filters = self.get_criteria_filters(**self.kwargs) & Q(session__type__startswith="Q")
         return model.objects.filter(filters).order_by(*self.order_by).select_related("race_entry__race").distinct()

@@ -7,6 +7,13 @@ Fun Facts
 - Brazil 1962 had no second place
 - Drivers scored 1/7 of a point in 1954 British Grand Prix
 
+# Differences to Ergast API
+
+- No support for XML
+- /results
+    - positionText no longer has "N" as a possible value, "R" is used instead. 
+    - The Time.time key will always 3 digits after decimal points (using trailing zeros). 
+    - Time.time is generated from Time.millis so they will now always be consistent.
 
 
 # Develipment
