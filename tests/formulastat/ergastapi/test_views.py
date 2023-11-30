@@ -39,7 +39,7 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
                 expected_data = expected["MRData"]["RaceTable"]["Races"][i][f"{result_prefix}Results"][j]
                 if expected_data.get("positionText") == "N":
                     expected_data["positionText"] = "R"
-                    
+
                 if result_data.get("Time"):
                     if ":" in result_data["Time"]["time"]:
                         time, time_decimal = result_data["Time"]["time"].rsplit(":", maxsplit=1)

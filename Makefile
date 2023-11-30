@@ -25,3 +25,10 @@ test-fixture:
 	sed -i ':a;N;$!ba;s/\n//g' tests/fixtures/2000s_data.json
 	gzip -f tests/fixtures/2000s_data.json
 	rm tests/fixtures/2000s_pitstops.json tests/fixtures/2000s_sessions.json tests/fixtures/ergast_status.json
+	
+import-and-update:
+	python manage.py migrate formula_one 0001
+	python manage.py migrate
+	python manage.py shell -c "from formulastat.formula_one.import_from_ergast import run_import; run_import()"
+	make test-fixture 
+	pytest --create-db
