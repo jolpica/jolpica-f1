@@ -1,4 +1,4 @@
-from django.db.models import Count, OuterRef, Q, Subquery
+from django.db.models import Count, Min, OuterRef, Q, Subquery
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets
 
@@ -157,10 +157,11 @@ class ResultViewSet(ErgastModelViewSet):
 
     result_session_type = SessionType.RACE
 
+    def get_criteria_filters(self, *args, **kwargs) -> Q:
+        return super().get_criteria_filters(*args, **kwargs) & Q(session__type=self.result_session_type)
+
     def get_queryset(self) -> QuerySet:
-        model = self.serializer_class.Meta.model
-        filters = self.get_criteria_filters(**self.kwargs) & Q(session__type=self.result_session_type)
-        return model.objects.filter(filters).order_by(*self.order_by).select_related("race_entry__race").distinct()
+        return super().get_queryset().select_related("race_entry__race")
 
 
 class SprintViewSet(ResultViewSet):
@@ -168,10 +169,31 @@ class SprintViewSet(ResultViewSet):
 
     result_session_type = SessionType.SPRINT_RACE
 
-class QualifyingViewSet(ResultViewSet):
+
+class QualifyingViewSet(ErgastModelViewSet):
     serializer_class = serializers.QualifyingResultsSerializer
+    lookup_field = None
+
+    query_session_entries = "session_entries__"
+    query_team = "team_driver__team__"
+    query_driver = "team_driver__driver__"
+    query_circuit = "race__circuit__"
+    order_by = ["race"]
+
+    def get_criteria_filters(self, *args, **kwargs) -> Q:
+        return super().get_criteria_filters(*args, **kwargs) & Q(session_entries__position__isnull=False)
 
     def get_queryset(self) -> QuerySet:
-        model = self.serializer_class.Meta.model
-        filters = self.get_criteria_filters(**self.kwargs) & Q(session__type__startswith="Q")
-        return model.objects.filter(filters).order_by(*self.order_by).select_related("race_entry__race").distinct()
+        qs = (
+            super()
+            .get_queryset()
+            .annotate(
+                driver_sess_count=Count("session_entries", filter=Q(session_entries__session__type__startswith="Q")),
+                max_position=Min("session_entries__position", filter=Q(session_entries__session__type__startswith="Q")),
+            )
+            .filter(driver_sess_count__gt=0)
+            .order_by(*self.order_by, "max_position")
+            .prefetch_related("session_entries")
+        )
+        print(qs.values())
+        return qs
