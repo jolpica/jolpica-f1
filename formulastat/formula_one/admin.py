@@ -28,7 +28,7 @@ class ListAdminMixin:
         if model.__name__ == "Lap":
             self.list_filter = ["session_entry__session__type"]
         elif model.__name__ == "SessionEntry":
-            self.list_filter = ["session__type"]
+            self.list_filter = ["session__type", "session__race__season", "session__race__round"]
         elif model.__name__ == "TeamDriver":
             self.list_filter = ["season"]
         super().__init__(model, admin_site)

@@ -8,6 +8,7 @@ from formulastat.formula_one.models import (
     Circuit,
     Driver,
     Race,
+    RaceEntry,
     Season,
     SessionEntry,
     SessionType,
@@ -108,6 +109,7 @@ class DriverSerializer(ErgastModelSerializer):
 class ListResultsSerializer(serializers.ListSerializer):
     def to_representation(self, data: QuerySet[SessionEntry]) -> Any:
         is_single = False
+        is_qualifying = self.child.results_list_name == "QualifyingResults"
         if isinstance(data, SessionEntry):
             data = SessionEntry.objects.filter(pk=data.pk).select_related("race_entry__race").distinct()
             is_single = True
@@ -143,13 +145,15 @@ class ListResultsSerializer(serializers.ListSerializer):
                 "status": session_entry.detail,
             }
             if session_entry.points is not None:
-                if session_entry.points % 1 == 0: 
-                    result["points"] = str(int(session_entry.points)) 
+                if session_entry.points % 1 == 0:
+                    result["points"] = str(int(session_entry.points))
                 else:
                     result["points"] = str(session_entry.points)
             else:
                 del result["points"]
-            if not session_entry.is_classified:
+            if is_qualifying:
+                del result["positionText"], result["grid"], result["laps"], result["status"]
+            elif not session_entry.is_classified:
                 match session_entry.status:
                     case SessionStatus.WITHDREW:
                         result["positionText"] = "W"
@@ -166,7 +170,7 @@ class ListResultsSerializer(serializers.ListSerializer):
                     "millis": str(int(session_entry.time.total_seconds() * 1000)),
                     "time": self.calculate_finish_display_from_millis(session_entry.time, race_to_winner_time[race_id]),
                 }
-            if session_entry.fastest_lap:
+            if not is_qualifying and session_entry.fastest_lap:
                 result["FastestLap"] = {
                     "rank": str(session_entry.fastest_lap_rank),
                     "lap": str(session_entry.fastest_lap.number),
@@ -207,7 +211,7 @@ class ListResultsSerializer(serializers.ListSerializer):
             time += f"{int(secs):02}.{int(millis):03}"
             if time[0] == "0":
                 time = time[1:]
-            time = f"+{time}"#.rstrip("0")
+            time = f"+{time}"  # .rstrip("0")
 
         return time
 
@@ -229,6 +233,66 @@ class SprintResultsSerializer(RaceResultsSerializer):
     results_session_type = SessionType.SPRINT_RACE
 
 
-class QualifyingResultsSerializer(RaceResultsSerializer):
+class ListQualifyingSerializer(serializers.ListSerializer):
+    def to_representation(self, race_entries: QuerySet[RaceEntry]) -> Any:
+        is_single = False
+        if isinstance(race_entries, RaceEntry):
+            race_entries = RaceEntry.objects.filter(pk=race_entries.pk).select_related("race_entry__race").distinct()
+            is_single = True
+        print(race_entries)
+        driver_session_entries: QuerySet[SessionEntry] = SessionEntry.objects.filter(
+            race_entry__in=race_entries, session__type__startswith="Q"
+        ).order_by("session__date")
+
+        race_results = {}
+        race_entry_set = {}
+        for race_entry in race_entries:
+            race_entry_set[race_entry] = []
+
+            race_results[race_entry.race.pk] = RaceSerializer().to_representation(race_entry.race)
+            race_results[race_entry.race.pk][self.child.results_list_name] = []
+
+        for session_entry in driver_session_entries:
+            race_entry_set[session_entry.race_entry].append(session_entry)
+
+        for race_entry, driver_session_entries in race_entry_set.items():
+            race_id = race_entry.race_id
+            result = {
+                "number": str(race_entry.car_number),
+                "position": str(driver_session_entries[-1].position) if driver_session_entries else None,
+                "Driver": DriverSerializer().to_representation(race_entry.team_driver.driver),
+                "Constructor": ConstructorSerializer().to_representation(race_entry.team_driver.team),
+            }
+            for session_entry in driver_session_entries:
+                if session_entry.fastest_lap.time:
+                    quali_time = str(session_entry.fastest_lap.time).lstrip(":0")[:-3]
+                else:
+                    quali_time = ""
+                if session_entry.session.type in ("Q1", "Q2", "Q3"):
+                    result[session_entry.session.type] = quali_time
+                else:
+                    if not result.get("Q1"):
+                        result["Q1"] = quali_time
+                    else:
+                        result["Q2"] = quali_time
+
+            race_results[race_id][self.child.results_list_name].append(result)
+
+        for race_id, results_dict in race_results.items():
+            results = results_dict[self.child.results_list_name]
+
+        results = list(race_results.values())
+        if is_single:
+            return results[0]
+        return results
+
+    class Meta:
+        model = RaceEntry
+
+
+class QualifyingResultsSerializer(ErgastModelSerializer):
     results_list_name = "QualifyingResults"
-    results_session_type = SessionType.SPRINT_RACE
+
+    class Meta:
+        model = RaceEntry
+        list_serializer_class = ListQualifyingSerializer
