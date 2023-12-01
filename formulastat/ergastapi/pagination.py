@@ -14,6 +14,8 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
 
     def get_criteria_dict(self):
         name_map = {
+            "season_year": "season",
+            "race_round": "round",
             "circuit_ref": "circuitId",
             "team_ref": "constructorId",
             "driver_ref": "driverId",
