@@ -51,7 +51,7 @@ class CircuitSerializer(ErgastModelSerializer):
         fields = ["circuitId", "url", "circuitName", "Location"]
 
 
-class RaceSerializer(ErgastModelSerializer):
+class BaseRaceSerializer(ErgastModelSerializer):
     season = serializers.CharField()
     round = serializers.CharField()
     url = serializers.CharField(source="wikipedia")
@@ -70,6 +70,36 @@ class RaceSerializer(ErgastModelSerializer):
     class Meta:
         model = Race
         fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
+
+class RaceSerializer(BaseRaceSerializer):
+    FirstPractice = serializers.SerializerMethodField(method_name="get_first_practice")
+    SecondPractice = serializers.SerializerMethodField(method_name="get_second_practice")
+    ThirdPractice = serializers.SerializerMethodField(method_name="get_third_practice")
+    Qualifying = serializers.SerializerMethodField(method_name="get_qualifying")
+    
+    def get_session_date_time(self, race: Race, session_type: SessionType) -> dict:
+        session = race.sessions.filter(type=session_type).first()
+        return {
+            "date": session.date,
+            "time": f"{session.time}Z",
+        }
+
+    def get_first_practice(self, race: Race):
+        return self.get_session_date_time(race, SessionType.PRACTICE_ONE)
+
+    def get_second_practice(self, race: Race):
+        return self.get_session_date_time(race, SessionType.PRACTICE_TWO)
+
+    def get_third_practice(self, race: Race):
+        return self.get_session_date_time(race, SessionType.PRACTICE_THREE)
+
+    def get_qualifying(self, race: Race):
+        return self.get_session_date_time(race, SessionType.QUALIFYING_ONE)
+    
+    class Meta:
+        model = Race
+        fields = [*BaseRaceSerializer.Meta.fields, "FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"]
+    
 
 
 class StatusSerializer(ErgastModelSerializer):
@@ -119,7 +149,7 @@ class ListResultsSerializer(serializers.ListSerializer):
             race_id = session_entry.race_entry.race_id
 
             if race_id not in race_results.keys():
-                race_results[race_id] = RaceSerializer().to_representation(session_entry.race_entry.race)
+                race_results[race_id] = BaseRaceSerializer().to_representation(session_entry.race_entry.race)
                 race_results[race_id][self.child.results_list_name] = []
 
         race_to_winner_time = {}
@@ -249,7 +279,7 @@ class ListQualifyingSerializer(serializers.ListSerializer):
         for race_entry in race_entries:
             race_entry_set[race_entry] = []
 
-            race_results[race_entry.race.pk] = RaceSerializer().to_representation(race_entry.race)
+            race_results[race_entry.race.pk] = BaseRaceSerializer().to_representation(race_entry.race)
             race_results[race_entry.race.pk][self.child.results_list_name] = []
 
         for session_entry in driver_session_entries:
