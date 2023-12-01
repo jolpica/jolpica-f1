@@ -39,7 +39,8 @@ criteria = [
     r"(fastest/(?P<fastest_lap_rank>[a-zA-Z0-9_]+)/)",
     r"(status/(?P<ergast_status_id>[a-zA-Z0-9_]+)/)",
 ]
-regex_criteria = f"({'|'.join(criteria)})*"
+season_round_criteria = r"((?P<season_year>[0-9]{4})/((?P<race_round>[0-9]{1,2})/)?)?"
+regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*"
 
 urlpatterns = [
     re_path(f"{regex_criteria}/?", include(router.urls)),
