@@ -76,13 +76,19 @@ class RaceSerializer(BaseRaceSerializer):
     SecondPractice = serializers.SerializerMethodField(method_name="get_second_practice")
     ThirdPractice = serializers.SerializerMethodField(method_name="get_third_practice")
     Qualifying = serializers.SerializerMethodField(method_name="get_qualifying")
+    Sprint = serializers.SerializerMethodField(method_name="get_sprint")
     
     def get_session_date_time(self, race: Race, session_type: SessionType) -> dict:
         session = race.sessions.filter(type=session_type).first()
-        return {
-            "date": session.date,
-            "time": f"{session.time}Z",
-        }
+        if session is None or (session.time is None and session.date is None):
+            return None
+        time = {}
+        if session.date:
+            time["date"]= session.date
+        if session.time:
+            time["time"]= f"{session.time}Z"
+        
+        return time
 
     def get_first_practice(self, race: Race):
         return self.get_session_date_time(race, SessionType.PRACTICE_ONE)
@@ -95,10 +101,13 @@ class RaceSerializer(BaseRaceSerializer):
 
     def get_qualifying(self, race: Race):
         return self.get_session_date_time(race, SessionType.QUALIFYING_ONE)
+
+    def get_sprint(self, race: Race):
+        return self.get_session_date_time(race, SessionType.SPRINT_RACE)
     
     class Meta:
         model = Race
-        fields = [*BaseRaceSerializer.Meta.fields, "FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"]
+        fields = [*BaseRaceSerializer.Meta.fields, "FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying", "Sprint"]
     
 
 

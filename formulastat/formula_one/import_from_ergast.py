@@ -540,7 +540,8 @@ def run_import():
                 time=item.fp1_time,
             ).save()
             session_count += 1
-        if item.fp2_date and item.year_id < 2023:
+        # If fp2 date make fp2 session, unless year is 2023, then a sprint quali should be created
+        if item.fp2_date and not (item.year_id == 2023 and item.sprint_date):
             Session(
                 pk=session_count,
                 race=new_item,
@@ -699,7 +700,7 @@ def run_import():
             for i, session in enumerate(quali_sessions):
                 time = quali.q1 if i == 0 else (quali.q2 if i == 1 else quali.q3)
                 time = str_to_delta(time)
-                if time is None:
+                if time is None and (i != 0 or quali.position is None):
                     continue
                 quali_entry = SessionEntry(
                     pk=entry_count,
