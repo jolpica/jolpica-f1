@@ -220,3 +220,30 @@ class QualifyingViewSet(ErgastModelViewSet):
             .prefetch_related("session_entries")
         )
         return qs
+
+class PitStopViewSet(ErgastModelViewSet):
+    serializer_class = serializers.PitStopSerializer
+    lookup_field = None
+
+    query_session_entries = "session_entry__"
+    query_team = "session_entry__race_entry__team_driver__team__"
+    query_driver = "session_entry__race_entry__team_driver__driver__"
+    query_circuit = "session_entry__race_entry__race__circuit__"
+    query_season = "session_entry__race_entry__race__season__"
+    query_race = "session_entry__race_entry__race__"
+    order_by = ["local_timestamp"]
+
+class LapViewSet(ErgastModelViewSet):
+    serializer_class = serializers.LapSerializer
+    lookup_field = None
+
+    query_session_entries = "session_entry__"
+    query_team = "session_entry__race_entry__team_driver__team__"
+    query_driver = "session_entry__race_entry__team_driver__driver__"
+    query_circuit = "session_entry__race_entry__race__circuit__"
+    query_season = "session_entry__race_entry__race__season__"
+    query_race = "session_entry__race_entry__race__"
+    order_by = ["number", "position"]
+
+    def get_criteria_filters(self, *args, **kwargs) -> Q:
+        return super().get_criteria_filters(*args, **kwargs) & Q(session_entry__session__type=SessionType.RACE)

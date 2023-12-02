@@ -32,7 +32,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
                 self.model = "Status"
             case "ConstructorViewSet":
                 self.model = "Constructor"
-            case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet":
+            case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet" | "PitStopViewSet" | "LapViewSet":
                 self.model = "Race"
         data_name = self.model.capitalize().rstrip("s") + "s"
         table_name = self.model.capitalize() + "Table"
