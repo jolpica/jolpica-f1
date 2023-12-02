@@ -29,6 +29,8 @@ router.register("drivers", views.DriverViewSet, basename="driver")
 router.register("results", views.ResultViewSet, basename="result")
 router.register("sprint", views.SprintViewSet, basename="sprint")
 router.register("qualifying", views.QualifyingViewSet, basename="sprint")
+router.register("pitstops", views.PitStopViewSet, basename="pitstop")
+router.register("laps", views.LapViewSet, basename="lap")
 
 criteria = [
     r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_]+)/)",

@@ -10,6 +10,7 @@ Fun Facts
 # Differences to Ergast API
 
 - No support for XML
+- If multiple of the same criteria are specified, the last specified will be used (not a 400 response)
 - /results
     - positionText no longer has "N" as a possible value, "R" is used instead. 
     - The Time.time key will always 3 digits after decimal points (using trailing zeros). 
