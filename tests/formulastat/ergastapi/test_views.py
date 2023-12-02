@@ -4,6 +4,22 @@ from pathlib import Path
 import pytest
 from rest_framework.test import APIClient
 
+def get_acceptable_time_range(time_str: str) -> tuple[ str, str ]:
+    if ":" in time_str:
+        time, time_decimal = time_str.rsplit(":", maxsplit=1)
+        time += ":"
+        if float(time_decimal) < 10:
+            time += "0"
+    else:
+        time = "+"
+        time_decimal = time_str[1:]
+    time_decimal = float(time_decimal)
+
+    time_range = (
+        time_str.rstrip("0"),
+        f"{time}{round((time_decimal) + 0.001,3)}",
+    )
+    return time_range
 
 @pytest.mark.parametrize(
     ["endpoint", "endpoint_fixture"],
@@ -39,27 +55,25 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
                 expected_data = expected["MRData"]["RaceTable"]["Races"][i][f"{result_prefix}Results"][j]
                 if expected_data.get("positionText") == "N":
                     expected_data["positionText"] = "R"
-
                 if result_data.get("Time"):
-                    if ":" in result_data["Time"]["time"]:
-                        time, time_decimal = result_data["Time"]["time"].rsplit(":", maxsplit=1)
-                        time += ":"
-                        if float(time_decimal) < 10:
-                            time += "0"
-                    else:
-                        time = "+"
-                        time_decimal = result_data["Time"]["time"][1:]
-                    time_decimal = float(time_decimal)
-
-                    time_range = (
-                        result_data["Time"]["time"].rstrip("0"),
-                        f"{time}{round((time_decimal) + 0.001,3)}",
-                    )
-                    #    f"{time}{round((time_decimal) - 0.001, 3)}")
-
+                    time_range = get_acceptable_time_range(result_data["Time"]["time"])
                     # rstrip as ergast is inconsistent with trailing 0s
                     assert expected_data["Time"]["time"].rstrip("0") in time_range
                     del result_data["Time"]["time"]
                     del expected_data["Time"]["time"]
+    if "laps.json" in endpoint:
+        for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
+            for j, laps_data in enumerate(race_data["Laps"]):
+                for k, timing_data in enumerate(laps_data["Timings"]):
+                    expected_data = expected["MRData"]["RaceTable"]["Races"][i]["Laps"][j]["Timings"][k]
+                    if timing_data.get("time"):
+                        time_range = get_acceptable_time_range(timing_data["time"])
+                        # rstrip as ergast is inconsistent with trailing 0s
+                        assert expected_data["time"].rstrip("0") in time_range
+                        del timing_data["time"]
+                        del expected_data["time"]
+        
+                    
+    
 
     assert result == expected
