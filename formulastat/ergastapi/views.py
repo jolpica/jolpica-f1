@@ -1,9 +1,9 @@
-from django.db.models import Count, Min, OuterRef, Q, Subquery
+from django.db.models import Count, Min, OuterRef, Prefetch, Q, Subquery
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets
 
 from formulastat.ergast.models import Status
-from formulastat.formula_one.models import SessionType
+from formulastat.formula_one.models import Session, SessionType
 
 from . import pagination, serializers
 
@@ -56,8 +56,9 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             if fastest_lap_rank:
                 filters = filters & Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
         if ergast_status_id:
+            status_id_subquery = Status.objects.filter(pk=ergast_status_id)
             filters = filters & Q(
-                **{f"{self.query_session_entries}detail": Status.objects.filter(pk=ergast_status_id).first()}
+                **{f"{self.query_session_entries}detail": Subquery(status_id_subquery.values("status")[:1])}
             )
         return filters
 
@@ -95,6 +96,9 @@ class CircuitViewSet(ErgastModelViewSet):
     query_season = "races__season__"
     query_race = "races__"
     order_by = ["reference"]
+    
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset()
 
 
 # season relation
@@ -109,6 +113,9 @@ class RaceViewSet(ErgastModelViewSet):
     query_season = "season__"
     query_race = ""
     order_by = ["season__year", "round"]
+    
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().select_related("season", "circuit").prefetch_related("sessions")
 
 
 class StatusViewSet(ErgastModelViewSet):
@@ -183,7 +190,15 @@ class ResultViewSet(ErgastModelViewSet):
         return super().get_criteria_filters(*args, **kwargs) & Q(session__type=self.result_session_type)
 
     def get_queryset(self) -> QuerySet:
-        return super().get_queryset().select_related("race_entry__race")
+        return (
+            super()
+            .get_queryset()
+            .select_related(
+                "fastest_lap", "race_entry__race__season", "race_entry__race__circuit", "race_entry__team_driver__driver", "race_entry__team_driver__team"
+            )
+        ) .prefetch_related(
+                "race_entry__race__sessions"
+        )
 
 
 class SprintViewSet(ResultViewSet):
@@ -217,9 +232,11 @@ class QualifyingViewSet(ErgastModelViewSet):
             )
             .filter(driver_sess_count__gt=0)
             .order_by(*self.order_by, "max_position")
-            .prefetch_related("session_entries")
+            .select_related("race__circuit", "race__season", "team_driver__team", "team_driver__driver")
+            .prefetch_related(Prefetch("race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))
         )
         return qs
+
 
 class PitStopViewSet(ErgastModelViewSet):
     serializer_class = serializers.PitStopSerializer
@@ -232,6 +249,26 @@ class PitStopViewSet(ErgastModelViewSet):
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
     order_by = ["local_timestamp"]
+
+    def get_criteria_filters(self, *args, **kwargs) -> Q:
+        return super().get_criteria_filters(*args, **kwargs) & Q(session_entry__session__type=SessionType.RACE)
+
+    def get_queryset(self) -> QuerySet:
+        return (
+            super()
+            .get_queryset()
+            .select_related(
+                "lap",
+                "session_entry__race_entry__race__circuit",
+                "session_entry__race_entry__race__season",
+                "session_entry__race_entry__team_driver__driver",
+            )
+        ).prefetch_related(
+            Prefetch(
+                "session_entry__race_entry__race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
+            )
+        )
+
 
 class LapViewSet(ErgastModelViewSet):
     serializer_class = serializers.LapSerializer
@@ -247,3 +284,18 @@ class LapViewSet(ErgastModelViewSet):
 
     def get_criteria_filters(self, *args, **kwargs) -> Q:
         return super().get_criteria_filters(*args, **kwargs) & Q(session_entry__session__type=SessionType.RACE)
+
+    def get_queryset(self) -> QuerySet:
+        return (
+            super()
+            .get_queryset()
+            .select_related(
+                "session_entry__race_entry__race__circuit",
+                "session_entry__race_entry__race__season",
+                "session_entry__race_entry__team_driver__driver",
+            )
+        ).prefetch_related(
+            Prefetch(
+                "session_entry__race_entry__race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
+            )
+        )

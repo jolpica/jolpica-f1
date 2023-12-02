@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 from rest_framework.test import APIClient
 
-def get_acceptable_time_range(time_str: str) -> tuple[ str, str ]:
+
+def get_acceptable_time_range(time_str: str) -> tuple[str, str]:
     if ":" in time_str:
         time, time_decimal = time_str.rsplit(":", maxsplit=1)
         time += ":"
@@ -21,12 +22,13 @@ def get_acceptable_time_range(time_str: str) -> tuple[ str, str ]:
     )
     return time_range
 
+
 @pytest.mark.parametrize(
     ["endpoint", "endpoint_fixture"],
     list((path.name.replace("@", "/"), path) for path in Path("tests/fixtures/ergast_responses").glob("**/*.json*")),
 )
 @pytest.mark.django_db
-def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
+def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_assert_max_num_queries):
     # endpoint = endpoint_fixture.name.replace("@", "/")
     with open(endpoint_fixture, mode="rb") as f:
         expected = json.load(f)
@@ -38,7 +40,8 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
         "http://testserver/ergast/",
     )
 
-    response = client.get(f"/ergast/{endpoint}")
+    with django_assert_max_num_queries(8) as captured:
+        response = client.get(f"/ergast/{endpoint}")
     assert response.status_code == 200
 
     result = response.json()
@@ -72,8 +75,5 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint):
                         assert expected_data["time"].rstrip("0") in time_range
                         del timing_data["time"]
                         del expected_data["time"]
-        
-                    
-    
 
     assert result == expected
