@@ -3,8 +3,11 @@ FROM mcr.microsoft.com/devcontainers/python:1-3.10-bullseye
 ENV POETRY_VERSION=1.6.1
 ENV PYTHONUNBUFFERED 1
 
+RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git && \
+    python ./aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py --location /home/vscode/.ebcli-virtual-env
+
 ENV VIRTUAL_ENV=/home/vscode/.venv
-ENV PATH=$VIRTUAL_ENV/bin:/root/.local/bin:$PATH
+ENV PATH=$VIRTUAL_ENV/bin:/root/.local/bin:/home/vscode/.ebcli-virtual-env/.ebcli-virtual-env/executables:$PATH
 ENV POETRY_VIRTUALENVS_CREATE=false
 
 # Required geo spatial librarie
