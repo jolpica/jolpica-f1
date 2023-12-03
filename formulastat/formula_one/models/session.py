@@ -62,7 +62,7 @@ class SessionStatus(models.IntegerChoices):
     ACCIDENT = 10, "Accident, Collision or Driver Error on Track"
     RETIRED = 11, "Mechanial, Safety or Other Retirement"
     DISQUALIFIED = 20, "Disqualified"
-    WITHDREW = 30, "Withdrawn or Did Not Start"
+    DID_NOT_START = 30, "Withdrawn or Did Not Start"
     DID_NOT_QUALIFY = 40
     DID_NOT_PREQUALIFY = 41
 

@@ -229,11 +229,11 @@ class ListResultsSerializer(serializers.ListSerializer):
                 del result["positionText"], result["grid"], result["laps"], result["status"]
             elif not session_entry.is_classified:
                 match session_entry.status:
-                    case SessionStatus.WITHDREW:
+                    case SessionStatus.DID_NOT_START:
                         result["positionText"] = "W"
                     case SessionStatus.DISQUALIFIED:
                         result["positionText"] = "D"
-                    case SessionStatus.WITHDREW:
+                    case SessionStatus.DID_NOT_START:
                         result["positionText"] = "W"
                     case SessionStatus.DID_NOT_QUALIFY | SessionStatus.DID_NOT_PREQUALIFY:
                         result["positionText"] = "F"

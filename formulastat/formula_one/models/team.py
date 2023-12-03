@@ -54,9 +54,9 @@ class Team(models.Model):
 
 
 class TeamDriverRole(models.IntegerChoices):
-    PERMANENT = 1
-    RESERVE = 2
-    JUNIOR = 3
+    PERMANENT = 0
+    RESERVE = 1
+    JUNIOR = 2
 
 
 class TeamDriver(models.Model):
