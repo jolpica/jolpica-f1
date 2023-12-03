@@ -36,7 +36,8 @@ SECRET_KEY = env(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS: list[str] = []
+live = env("LIVE", default="localhost")
+ALLOWED_HOSTS: list[str] = [live]
 
 
 # Application definition
