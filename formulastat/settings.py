@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import socket
 from pathlib import Path
 from typing import Literal
 
@@ -37,7 +38,8 @@ SECRET_KEY = env(
 DEBUG = True
 
 live = env("LIVE", default="localhost")
-ALLOWED_HOSTS: list[str] = [live]
+ALLOWED_HOSTS: list[str] = [live, socket.gethostbyname(socket.gethostname())]
+print(ALLOWED_HOSTS)
 
 
 # Application definition
