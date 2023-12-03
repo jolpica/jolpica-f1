@@ -165,3 +165,8 @@ cython_debug/
 #.idea/
 
 .DS_STORE
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
