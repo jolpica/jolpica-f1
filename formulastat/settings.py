@@ -38,7 +38,7 @@ SECRET_KEY = env(
 DEBUG = True
 
 live = env("LIVE", default="localhost")
-ALLOWED_HOSTS: list[str] = [live, socket.gethostbyname(socket.gethostname())]
+ALLOWED_HOSTS: list[str] = ["*", live, socket.gethostbyname(socket.gethostname())]
 print(ALLOWED_HOSTS)
 
 
