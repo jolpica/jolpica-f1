@@ -218,7 +218,7 @@ status_mapping = {
     "DISQUALIFIED": Status.objects.filter(status__in=["Disqualified", "Underweight", "Excluded"]).values_list(
         "pk", flat=True
     ),
-    "WITHDREW": Status.objects.filter(status__in=["Withdrew", "Not restarted"]).values_list("pk", flat=True),
+    "DID_NOT_START": Status.objects.filter(status__in=["Withdrew", "Not restarted"]).values_list("pk", flat=True),
     "DID_NOT_QUALIFY": Status.objects.filter(status__in=["107% Rule", "Did not qualify"]).values_list("pk", flat=True),
     "DID_NOT_PREQUALIFY": Status.objects.filter(status__in=["Did not prequalify"]).values_list("pk", flat=True),
 }
@@ -227,7 +227,7 @@ status_mapping = {
 def map_status(status_id, qualifying=False, pos_text: str = "") -> None | SessionStatus:
     chosen_key = None
     if pos_text == "W":
-        return SessionStatus.WITHDREW
+        return SessionStatus.DID_NOT_START
     for key, status_ids in status_mapping.items():
         if status_id in status_ids:
             chosen_key = key
