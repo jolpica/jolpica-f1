@@ -34,6 +34,8 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
                 self.model = "Constructor"
             case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet" | "PitStopViewSet" | "LapViewSet":
                 self.model = "Race"
+            case "DriverStandingViewSet":
+                data = {**self.get_criteria_dict(), "DriverStandings": data}
         data_name = self.model.capitalize().rstrip("s") + "s"
         table_name = self.model.capitalize() + "Table"
 

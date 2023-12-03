@@ -1,6 +1,8 @@
-from django.db.models import Count, Min, OuterRef, Prefetch, Q, Subquery
+from django.contrib.postgres.aggregates import ArrayAgg
+from django.db.models import Count, F, Min, OuterRef, Prefetch, Q, Subquery, Sum, Window, functions
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets
+from rest_framework.exceptions import APIException
 
 from formulastat.ergast.models import Status
 from formulastat.formula_one.models import Session, SessionType
@@ -96,7 +98,7 @@ class CircuitViewSet(ErgastModelViewSet):
     query_season = "races__season__"
     query_race = "races__"
     order_by = ["reference"]
-    
+
     def get_queryset(self) -> QuerySet:
         return super().get_queryset()
 
@@ -113,7 +115,7 @@ class RaceViewSet(ErgastModelViewSet):
     query_season = "season__"
     query_race = ""
     order_by = ["season__year", "round"]
-    
+
     def get_queryset(self) -> QuerySet:
         return super().get_queryset().select_related("season", "circuit").prefetch_related("sessions")
 
@@ -194,11 +196,13 @@ class ResultViewSet(ErgastModelViewSet):
             super()
             .get_queryset()
             .select_related(
-                "fastest_lap", "race_entry__race__season", "race_entry__race__circuit", "race_entry__team_driver__driver", "race_entry__team_driver__team"
+                "fastest_lap",
+                "race_entry__race__season",
+                "race_entry__race__circuit",
+                "race_entry__team_driver__driver",
+                "race_entry__team_driver__team",
             )
-        ) .prefetch_related(
-                "race_entry__race__sessions"
-        )
+        ).prefetch_related("race_entry__race__sessions")
 
 
 class SprintViewSet(ResultViewSet):
@@ -297,5 +301,36 @@ class LapViewSet(ErgastModelViewSet):
         ).prefetch_related(
             Prefetch(
                 "session_entry__race_entry__race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
+            )
+        )
+
+
+class DriverStandingViewSet(ErgastModelViewSet):
+    serializer_class = serializers.DriverStandingSerializer
+    lookup_field = None
+
+    query_session_entries = ""
+    query_team = "race_entry__team_driver__team__"
+    query_driver = "race_entry__team_driver__driver__"
+    query_circuit = "race_entry__race__circuit__"
+    query_season = "race_entry__race__season__"
+    query_race = "race_entry__race__"
+    order_by = ["position"]
+
+    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:
+        if kwargs:
+            raise APIException("Bad Request: The qualifiers specified are not supported.")
+        return super().get_criteria_filters(season_year, format=format) & Q(race_entry__race__round__lte=race_round)
+
+    def get_queryset(self) -> QuerySet:
+        return (
+            super()
+            .get_queryset()
+            .values(Driver=F("race_entry__team_driver__driver"))
+            .annotate(
+                points=Sum("points"),
+                wins=Count("position", filter=Q(position=1, session__type=SessionType.RACE)),
+                position=Window(functions.RowNumber(), order_by="-points"),
+                constructors=ArrayAgg("race_entry__team_driver__team__pk", distinct=True),
             )
         )

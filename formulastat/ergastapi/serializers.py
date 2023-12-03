@@ -459,3 +459,18 @@ class LapSerializer(ErgastModelSerializer):
     class Meta:
         model = Lap
         list_serializer_class = ListLapSerializer
+
+
+class DriverStandingSerializer(ErgastModelSerializer):
+    position = serializers.CharField()
+    points = serializers.CharField()
+    wins = serializers.CharField()
+    constructors = serializers.SerializerMethodField(method_name="get_constructors")
+
+    def get_constructors(self, instance):
+        teams = Team.objects.filter(pk__in=instance["constructors"])
+        return ConstructorSerializer(many=True).to_representation(teams)
+
+    class Meta:
+        model = SessionEntry
+        fields = ["position", "points", "wins", "constructors"]
