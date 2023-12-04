@@ -78,6 +78,7 @@ class ErgastUpdater:
                     data = pd.read_csv(csv)
 
                     missing_fields = set()
+                    new_models = []
                     for row in tqdm(data.iterrows()):
                         row = row[1]
                         if model_name in ["pitstops", "laptimes"]:
@@ -96,9 +97,19 @@ class ErgastUpdater:
                                 row[field] = None
                             if model_field.get_internal_type() == "ForeignKey":
                                 related_model = apps.get_model("ergast", model_field.related_model()._meta.model_name)
-                                row[field] = related_model.objects.get(pk=row[field])
-                            new_row[field] = row[field]
-                        model.objects.update_or_create(defaults=dict(new_row), **primary_keys)
+                                # row[field] = related_model.objects.get(pk=row[field])
+                                new_row[field + "_id"] = int(row[field])
+                            else:
+                                new_row[field] = row[field]
+                        # model.objects.update_or_create(defaults=dict(new_row), **primary_keys)
+                        new_models.append(model(**{**dict(new_row), **primary_keys}))
+
+                    print("creating in db...")
+                    model.objects.bulk_create(
+                        new_models,
+                        batch_size=1000,
+                        # update_conflicts=True
+                    )
                 if missing_fields:
                     print(missing_fields)
 
