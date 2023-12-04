@@ -285,6 +285,7 @@ class RaceResultsSerializer(ErgastModelSerializer):
 
     class Meta:
         model = SessionEntry
+        fields = []
         list_serializer_class = ListResultsSerializer
 
 
@@ -353,6 +354,7 @@ class QualifyingResultsSerializer(ErgastModelSerializer):
 
     class Meta:
         model = RaceEntry
+        fields = []
         list_serializer_class = ListQualifyingSerializer
 
 
@@ -401,6 +403,7 @@ class PitStopSerializer(ErgastModelSerializer):
 
     class Meta:
         model = PitStop
+        fields = []
         list_serializer_class = ListPitStopSerializer
 
 
@@ -458,6 +461,7 @@ class LapSerializer(ErgastModelSerializer):
 
     class Meta:
         model = Lap
+        fields = []
         list_serializer_class = ListLapSerializer
 
 

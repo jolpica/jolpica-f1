@@ -11,7 +11,7 @@ from . import pagination, serializers
 
 
 class ErgastModelViewSet(viewsets.ModelViewSet):
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
     pagination_class = pagination.ErgastAPIPagination
 
     query_session_entries = ""
