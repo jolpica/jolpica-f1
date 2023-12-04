@@ -12,7 +12,7 @@ WORKDIR /app
 ENV POETRY_VIRTUALENVS_CREATE=false
 RUN pip install poetry && \
     poetry install --only=main --no-root && \
-    python manage collectstatic
+    python manage.py collectstatic
 
 EXPOSE 5000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:5000"]
