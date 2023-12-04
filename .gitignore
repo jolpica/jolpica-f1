@@ -1,6 +1,7 @@
 .vscode/
 .env
 formulastat/ergast/download
+staticfiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
