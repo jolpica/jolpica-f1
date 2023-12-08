@@ -11,6 +11,8 @@ djangorestframework = "^3.14.0"
 psycopg = "^3.1.12"
 python = ">=3.9,<3.13"
 requests = "^2.31.0"
+uvicorn = "^0.24.0.post1"
+gunicorn = "^21.2.0"
 
 [tool.poetry.group.import.dependencies]
 pandas = "^2.1.1"
