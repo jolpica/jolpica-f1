@@ -17,11 +17,13 @@ def get_linux_ec2_private_ip() -> None | str:
 
     try:
         token = get_ec2_token()
-        headers = {"X-aws-ec2-metadata-token": f"{token}"}
+    except Exception:
+        return None
+
+    headers = {"X-aws-ec2-metadata-token": f"{token}"}
+
+    try:
         response = requests.get("http://169.254.169.254/latest/meta-data/local-ipv4", headers=headers, timeout=60)
         return response.text
     except Exception:
         return None
-    finally:
-        if response:
-            response.close()
