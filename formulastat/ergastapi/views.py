@@ -1,7 +1,7 @@
 from django.contrib.postgres.aggregates import ArrayAgg
 from django.db.models import Count, F, Min, OuterRef, Prefetch, Q, Subquery, Sum, Window, functions
 from django.db.models.query import QuerySet
-from rest_framework import permissions, viewsets
+from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import APIException
 
 from formulastat.ergast.models import Status

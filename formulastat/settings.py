@@ -13,6 +13,8 @@ from typing import Literal
 
 import environ  # type: ignore
 
+from .deployment_utils import get_linux_ec2_private_ip
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,16 +30,18 @@ DEPLOYMENT_ENV: Literal["LOCAL", "SANDBOX", "PROD"] = env.str("DEPLOYMENT_ENV", 
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env(
-    "DJANGO_SECRET_KEY",
-    default="applesauce",
-)
+if DEPLOYMENT_ENV == "PROD":
+    SECRET_KEY = env("DJANGO_SECRET_KEY")
+else:
+    SECRET_KEY = env("DJANGO_SECRET_KEY", default="jolpica")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if DEPLOYMENT_ENV == "PROD" else True
 
-live = env("LIVE", default="localhost")
-ALLOWED_HOSTS: list[str] = ["*", live]
+live = env("LIVE", cast=str, default="localhost,127.0.0.1").split(",")
+ALLOWED_HOSTS: list[str] = ["api.jolpi.ca", *live]
+if private_ip := get_linux_ec2_private_ip():
+    ALLOWED_HOSTS.append(private_ip)
 
 
 # Application definition
