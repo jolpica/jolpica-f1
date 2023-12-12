@@ -40,7 +40,7 @@ DEBUG = False if DEPLOYMENT_ENV == "PROD" else True
 
 live = env("LIVE", cast=str, default="localhost,127.0.0.1").split(",")
 ALLOWED_HOSTS: list[str] = ["api.jolpi.ca", *live]
-if private_ip := get_linux_ec2_private_ip():
+if DEPLOYMENT_ENV == "PROD" and (private_ip := get_linux_ec2_private_ip()):
     ALLOWED_HOSTS.append(private_ip)
 
 
