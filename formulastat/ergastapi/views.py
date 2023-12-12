@@ -8,6 +8,7 @@ from formulastat.ergast.models import Status
 from formulastat.formula_one.models import Session, SessionType
 
 from . import pagination, serializers
+from .status_mapping import ERGAST_STATUS_MAPPING
 
 
 class ErgastModelViewSet(viewsets.ModelViewSet):
@@ -58,9 +59,8 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             if fastest_lap_rank:
                 filters = filters & Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
         if ergast_status_id:
-            status_id_subquery = Status.objects.filter(pk=ergast_status_id)
             filters = filters & Q(
-                **{f"{self.query_session_entries}detail": Subquery(status_id_subquery.values("status")[:1])}
+                **{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]}
             )
         return filters
 
