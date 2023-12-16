@@ -77,3 +77,19 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
                         del expected_data["time"]
 
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    "endpoint",
+    [
+        "laps.json",
+        "2023/laps.json",
+        "pitstops.json",
+        "2023/pitstops.json",
+    ],
+)
+@pytest.mark.django_db
+def test_missing_required_parameters(client: APIClient, endpoint):
+    response = client.get(f"/ergast/{endpoint}")
+    assert response.status_code == 400
+    assert response.json()["detail"].startswith("Bad Request: Missing one of the required parameters")

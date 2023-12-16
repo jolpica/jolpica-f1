@@ -2,7 +2,7 @@ from django.contrib.postgres.aggregates import ArrayAgg
 from django.db.models import Count, F, Min, OuterRef, Prefetch, Q, Subquery, Sum, Window, functions
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets  # noqa: F401
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException, ValidationError
 
 from formulastat.ergast.models import Status
 from formulastat.formula_one.models import Session, SessionType
@@ -22,6 +22,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
     query_season = ""
     query_race = ""
 
+    required_params = []
     order_by = []
 
     def get_criteria_filters(
@@ -64,7 +65,15 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             )
         return filters
 
+    def validate_parameters(self):
+        for param in self.required_params:
+            if param not in self.kwargs.keys():
+                raise ValidationError(
+                    {"detail": f"Bad Request: Missing one of the required parameters {self.required_params}"}, code=400
+                )
+
     def get_queryset(self) -> QuerySet:
+        self.validate_parameters()
         model = self.serializer_class.Meta.model
         filters = self.get_criteria_filters(**self.kwargs)
         return model.objects.filter(filters).order_by(*self.order_by).distinct()
@@ -252,6 +261,8 @@ class PitStopViewSet(ErgastModelViewSet):
     query_circuit = "session_entry__race_entry__race__circuit__"
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
+    
+    required_params = ["season_year", "race_round"]
     order_by = ["local_timestamp"]
 
     def get_criteria_filters(self, *args, **kwargs) -> Q:
@@ -284,6 +295,8 @@ class LapViewSet(ErgastModelViewSet):
     query_circuit = "session_entry__race_entry__race__circuit__"
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
+
+    required_params = ["season_year", "race_round"]
     order_by = ["number", "position"]
 
     def get_criteria_filters(self, *args, **kwargs) -> Q:
