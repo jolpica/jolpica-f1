@@ -19,7 +19,12 @@ from rest_framework import routers
 
 from . import views
 
-router = routers.DefaultRouter()
+
+class ErgastRouter(routers.DefaultRouter):
+    include_root_view = False
+
+
+router = ErgastRouter()
 router.register("seasons", views.SeasonViewSet, basename="season")
 router.register("circuits", views.CircuitViewSet, basename="circuit")
 router.register("races", views.RaceViewSet, basename="race")
@@ -33,6 +38,7 @@ router.register("pitstops", views.PitStopViewSet, basename="pitstop")
 router.register("laps", views.LapViewSet, basename="lap")
 # router.register("driverstandings", views.DriverStandingViewSet, basename="driverstanding")
 
+
 criteria = [
     r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_]+)/)",
     r"(constructors/(?P<team_ref>[a-zA-Z0-9_]+)/)",
@@ -42,10 +48,30 @@ criteria = [
     r"(fastest/(?P<fastest_lap_rank>[a-zA-Z0-9_]+)/)",
     r"(status/(?P<ergast_status_id>[a-zA-Z0-9_]+)/)",
 ]
-season_round_criteria = r"((?P<season_year>[0-9]{4})/((?P<race_round>[0-9]{1,2})/)?)?"
+season_criteria = r"(?P<season_year>[0-9]{4})"
+round_criteria = r"(?P<race_round>[0-9]{1,2})"
+season_round_criteria = f"({season_criteria}/({round_criteria}/)?)?"
 regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*"
 
+
+class RaceRouter(routers.DefaultRouter):
+    """
+    Router which will be used when no endpoint is specified.
+    Its API root view will just link to the f1 endpoint
+    """
+
+    def get_api_root_view(self, api_urls=None):
+        api_root_dict = dict()
+        list_name = self.routes[0].name
+        prefix, viewset, basename = self.registry[0]
+        api_root_dict["f1"] = list_name.format(basename=basename)
+        return self.APIRootView.as_view(api_root_dict=api_root_dict)
+
+
+race_router = RaceRouter()
+race_router.register(f"f1(/{season_criteria}(/{round_criteria})?)?", views.RaceViewSet, basename="race")
+
 urlpatterns = [
-    re_path(f"{regex_criteria}/?", include(router.urls)),
-    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    re_path(f"f1/{regex_criteria}/?", include(router.urls)),
+    path("", include(race_router.urls)),
 ]

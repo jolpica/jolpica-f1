@@ -23,5 +23,6 @@ from formulastat import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("ergast/", include("formulastat.ergastapi.urls")),
+    path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", views.healthcheck),
 ]

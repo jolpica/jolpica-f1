@@ -261,7 +261,7 @@ class PitStopViewSet(ErgastModelViewSet):
     query_circuit = "session_entry__race_entry__race__circuit__"
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
-    
+
     required_params = ["season_year", "race_round"]
     order_by = ["local_timestamp"]
 
