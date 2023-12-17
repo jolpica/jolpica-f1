@@ -37,11 +37,11 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
     expected["MRData"]["xmlns"] = ""
     expected["MRData"]["url"] = expected["MRData"]["url"].replace(
         "http://ergast.com/api/f1/",
-        "http://testserver/ergast/",
+        "http://testserver/ergast/f1/",
     )
 
     with django_assert_max_num_queries(8) as captured:
-        response = client.get(f"/ergast/{endpoint}")
+        response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 200
 
     result = response.json()
@@ -90,6 +90,6 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
 )
 @pytest.mark.django_db
 def test_missing_required_parameters(client: APIClient, endpoint):
-    response = client.get(f"/ergast/{endpoint}")
+    response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 400
     assert response.json()["detail"].startswith("Bad Request: Missing one of the required parameters")

@@ -19,7 +19,7 @@ from rest_framework.test import APIClient
 def test_metadata(client: APIClient, endpoint: str, model, table_name, data_name, use_json):
     if use_json:
         endpoint.replace("/", ".json")
-    response = client.get(f"/ergast/{endpoint}", follow=True)
+    response = client.get(f"/ergast/f1/{endpoint}", follow=True)
     assert response.status_code == 200
     data: dict = response.json()
     if model is not None:
@@ -32,7 +32,7 @@ def test_metadata(client: APIClient, endpoint: str, model, table_name, data_name
         "MRData": {
             "xmlns": "",
             "series": "f1",
-            "url": f"http://testserver/ergast/{endpoint}",
+            "url": f"http://testserver/ergast/f1/{endpoint}",
             "limit": "30",
             "offset": "0",
             "total": f"{total_rows}",
