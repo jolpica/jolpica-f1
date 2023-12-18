@@ -25,7 +25,6 @@ class Driver(models.Model):
     teams: models.QuerySet["Team"]
     races: models.QuerySet["Race"]
     seasons: models.QuerySet["Season"]
-    race_entries: models.QuerySet["RaceEntry"]
     team_drivers: models.QuerySet["TeamDriver"]
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)

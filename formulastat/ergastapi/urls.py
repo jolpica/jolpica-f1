@@ -36,7 +36,7 @@ router.register("sprint", views.SprintViewSet, basename="sprint")
 router.register("qualifying", views.QualifyingViewSet, basename="sprint")
 router.register("pitstops", views.PitStopViewSet, basename="pitstop")
 router.register("laps", views.LapViewSet, basename="lap")
-# router.register("driverstandings", views.DriverStandingViewSet, basename="driverstanding")
+router.register("driverstandings", views.DriverStandingViewSet, basename="driverstanding")
 
 
 criteria = [

@@ -15,6 +15,8 @@ Fun Facts
     - positionText no longer has "N" as a possible value, "R" is used instead. 
     - The Time.time key will always 3 digits after decimal points (using trailing zeros). 
     - Time.time is generated from Time.millis so they will now always be consistent.
+- Standings position is based on total points scored instead of championship points rules (only effects seasons before 1991)
+- Standings requires a year to be specified
 
 
 # Develipment
