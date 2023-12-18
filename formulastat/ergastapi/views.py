@@ -5,7 +5,7 @@ from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import APIException, ValidationError
 
 from formulastat.ergast.models import Status
-from formulastat.formula_one.models import Session, SessionType
+from formulastat.formula_one.models import Session, SessionType, Team, TeamDriver, RaceEntry, Driver
 
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
@@ -322,28 +322,67 @@ class DriverStandingViewSet(ErgastModelViewSet):
     serializer_class = serializers.DriverStandingSerializer
     lookup_field = None
 
-    query_session_entries = ""
-    query_team = "race_entry__team_driver__team__"
-    query_driver = "race_entry__team_driver__driver__"
-    query_circuit = "race_entry__race__circuit__"
-    query_season = "race_entry__race__season__"
-    query_race = "race_entry__race__"
-    order_by = ["position"]
+    query_session_entries = "team_drivers__race_entries__session_entries__"
+    query_team = "team_drivers__team__"
+    query_driver = ""
+    query_circuit = "team_drivers__race_entries__race__circuit__"
+    query_season = "team_drivers__season__"
+    query_race = "team_drivers__race_entries__race__"
+
+    required_params = ["season_year"]
+    order_by = []
 
     def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:
-        if kwargs:
-            raise APIException("Bad Request: The qualifiers specified are not supported.")
-        return super().get_criteria_filters(season_year, format=format) & Q(race_entry__race__round__lte=race_round)
+        filters = Q()
+        if season_year:
+            filters = filters & Q(team_drivers__season__year=season_year)
+        if race_round:
+            filters = filters & Q(team_drivers__race_entries__race__round__lte=race_round)
+        
+        return filters
 
     def get_queryset(self) -> QuerySet:
+        self.validate_parameters()
+        season_year = self.kwargs["season_year"]
+        race_round = self.kwargs["race_round"]
         return (
-            super()
-            .get_queryset()
-            .values(Driver=F("race_entry__team_driver__driver"))
+            Driver.objects.filter(
+                self.get_criteria_filters(**self.kwargs)
+            )
+            .distinct()
             .annotate(
-                points=Sum("points"),
-                wins=Count("position", filter=Q(position=1, session__type=SessionType.RACE)),
-                position=Window(functions.RowNumber(), order_by="-points"),
-                constructors=ArrayAgg("race_entry__team_driver__team__pk", distinct=True),
+                sum_points=Sum("team_drivers__race_entries__session_entries__points"),
+                wins=Count(
+                    "team_drivers__race_entries__session_entries__position",
+                    filter=Q(
+                        team_drivers__race_entries__session_entries__position=1,
+                        team_drivers__race_entries__session_entries__session__type=SessionType.RACE,
+                    ),
+                ),
+                position=Window(functions.RowNumber(), order_by="-sum_points"),
+            )
+            .order_by("position")
+            .prefetch_related(
+                Prefetch(
+                    "teams",
+                    Team.objects.filter(
+                        team_drivers__season__year=season_year,
+                        team_drivers__race_entries__race__round__lte=race_round,
+                    ).distinct(),
+                    to_attr="season_teams",
+                ),
+                Prefetch(
+                    "team_drivers",
+                    TeamDriver.objects.filter(
+                        race_entries__race__season__year=season_year, race_entries__race__round__lte=race_round
+                    ).distinct(),
+                ),
+                Prefetch(
+                    "team_drivers__race_entries",
+                    RaceEntry.objects.filter(race__season__year=season_year, race__round__lte=race_round).annotate(
+                        round=F("race__round"),
+                        race_points=Sum("session_entries__points"),
+                    ),
+                ),
             )
         )
