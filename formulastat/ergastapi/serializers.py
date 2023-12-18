@@ -466,15 +466,23 @@ class LapSerializer(ErgastModelSerializer):
 
 
 class DriverStandingSerializer(ErgastModelSerializer):
-    position = serializers.CharField()
-    points = serializers.CharField()
-    wins = serializers.CharField()
-    constructors = serializers.SerializerMethodField(method_name="get_constructors")
-
-    def get_constructors(self, instance):
-        teams = Team.objects.filter(pk__in=instance["constructors"])
-        return ConstructorSerializer(many=True).to_representation(teams)
+    def to_representation(self, instance: Any) -> Any:
+        points = 0
+        for team_driver in instance.team_drivers.all():
+            for race_entry in team_driver.race_entries.all():
+                points += race_entry.race_points
+                
+        if points % 1 == 0:
+            points = int(points)
+        return {
+            "position": f"{instance.position}",
+            "positionText": f"{instance.position}",
+            "points": f"{points}",
+            "wins": f"{instance.wins}",
+            "Driver": DriverSerializer().to_representation(instance),
+            "Constructors": ConstructorSerializer(many=True).to_representation(instance.season_teams),
+        }
 
     class Meta:
-        model = SessionEntry
-        fields = ["position", "points", "wins", "constructors"]
+        model = Driver
+        fields = "__all__"
