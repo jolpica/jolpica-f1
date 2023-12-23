@@ -31,6 +31,8 @@ django-fixture-magic = "^0.1.5" # Generation of fixture file
 
 [tool.poetry.group.local.dependencies]
 ipykernel = "^6.25.2"
+notebook = "^7.0.6"
+jupyter = "^1.0.0"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"

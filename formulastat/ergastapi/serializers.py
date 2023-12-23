@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import timedelta
 from typing import Any
 
@@ -465,18 +466,82 @@ class LapSerializer(ErgastModelSerializer):
         list_serializer_class = ListLapSerializer
 
 
+def race_points_to_championship_points(year: int, round_points: dict[int, float]) -> float:
+    """Calculate championship points from using eligible race points for a given year
+
+    Args:
+        year: The year of the eligible results ruleset to be applied
+        round_points: Dictionary of round number to points scored
+
+    Returns:
+        Overall Championship Points for given race results
+    """
+    debug = sum(round_points.values()) > 30
+    if debug:
+        print(round_points)
+    if year >= 1991:  # Sum all points
+        return sum(round_points.values())
+    elif year >= 1981:  # Best 11 points
+        return sum(
+            sorted(
+                round_points.values(),
+                reverse=True,
+            )[:11]
+        )
+
+    # Seasons with 2 groups of eligible races
+    if year == 1980:
+        rounds_in_first_split = 7
+        best_n_races_in_split = (5, 5)
+    else:
+        return -1
+
+    split_round_points = ([], [])
+    for key, points in round_points.items():
+        if key <= rounds_in_first_split:
+            split_round_points[0].append(points)
+        else:
+            split_round_points[1].append(points)
+    points_splits = (
+        (sorted(split_round_points[0], reverse=True)[: best_n_races_in_split[0]]),
+        (sorted(split_round_points[1], reverse=True)[: best_n_races_in_split[1]]),
+    )
+    if debug:
+        print(points_splits)
+    return sum(points_splits[0]) + sum(points_splits[1])
+
+
 class DriverStandingSerializer(ErgastModelSerializer):
-    def to_representation(self, instance: Any) -> Any:
-        points = 0
+    def to_representation(self, instance: Driver) -> Any:
+        season_year = instance.season_year
+
+        round_points = defaultdict(float)
         for team_driver in instance.team_drivers.all():
             for race_entry in team_driver.race_entries.all():
-                points += race_entry.race_points
-                
+                if race_entry.race_points:
+                    round_points[race_entry.race_round] += race_entry.race_points
+
+        points = race_points_to_championship_points(season_year, round_points)
+
         if points % 1 == 0:
             points = int(points)
+
+        # Temporary fix for 2023 tie, will be fixed with generated table views
+        override_position_text = None
+        if season_year == 2023:
+            if instance.reference == "leclerc":
+                instance.position = 5
+            elif instance.reference == "alonso":
+                instance.position = 4
+        elif season_year == 1997:
+            if instance.position == 2:
+                instance.position = 26
+                override_position_text = "D"
+            elif instance.position > 2:
+                instance.position = instance.position - 1
         return {
             "position": f"{instance.position}",
-            "positionText": f"{instance.position}",
+            "positionText": f"{instance.position}" if override_position_text is None else override_position_text,
             "points": f"{points}",
             "wins": f"{instance.wins}",
             "Driver": DriverSerializer().to_representation(instance),
