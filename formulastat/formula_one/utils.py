@@ -1,5 +1,5 @@
 
-def races_to_championship_points(year: int, round_points: dict[int, float | int | None]) -> float:
+def races_to_championship_points(year: int, round_points: dict[int, float | int | None], constructors = False) -> float:
     """Calculate championship points from points per round using given year's rules
 
     Args:
@@ -9,6 +9,8 @@ def races_to_championship_points(year: int, round_points: dict[int, float | int 
     Returns:
         Overall Championship Points for given race results
     """
+    if year < 1950 or (constructors and year < 1958):
+        raise ValueError(f"No championship system for {year=}, {constructors=}")
     clean_round_points = {}
     for round, points in round_points.items():
         if round <= 0:
@@ -16,7 +18,7 @@ def races_to_championship_points(year: int, round_points: dict[int, float | int 
         if points is not None:
             clean_round_points[round] = points
 
-    if year >= 1991:  # Sum all points
+    if year >= 1991 or (constructors and year >= 1979):  # Sum all points
         return sum(clean_round_points.values())
     elif (year >= 1981 and year <= 1990) or (year <= 1966 and year >= 1950):  # Best n points
         if year >= 1981:
@@ -47,24 +49,24 @@ def races_to_championship_points(year: int, round_points: dict[int, float | int 
         # Top n-1 results from each half count
         match year:
             case 1977:
-                total_rounds = 15
+                total_rounds = 17
             case 1978 | 1976:
-                total_rounds = 14
+                total_rounds = 16
             case 1974 | 1973:
-                total_rounds = 13
+                total_rounds = 15
             case 1975:
-                total_rounds = 12
+                total_rounds = 14
             case 1970:
-                total_rounds = 11
+                total_rounds = 13
             case 1972 | 1968:
-                total_rounds = 10
+                total_rounds = 12
             case 1971 | 1969 | 1967:
-                total_rounds = 9
+                total_rounds = 11
             
         rounds_in_first_split = (total_rounds + 1) // 2
         best_n_races_in_split = (rounds_in_first_split - 1, (total_rounds - rounds_in_first_split) -1)
     else:
-        return -1
+        raise ValueError()
 
     split_round_points: tuple[list[float], list[float]] = ([], [])
     for key, points in clean_round_points.items():

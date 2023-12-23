@@ -6,7 +6,6 @@ from ..utils import races_to_championship_points
 @pytest.mark.parametrize(
     ["year", "race_points", "expected"],
     (
-        (1949, {}, -1),
         # 1991+ All races are included
         (2023, {}, 0),
         (2023, {5: None}, 0),
@@ -26,13 +25,13 @@ from ..utils import races_to_championship_points
         # 1979 Best 4 from first 7 and last 8
         (1979, {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 5, 7: 1, 8: 1}, 9),
         # 1967 - 1978, best n-1 of each half of season
-        # 1978, 1976 14 rounds
+        # 1978, 1976 16 rounds
         (1978, {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 5, 7: 1, 8: 1}, 11),
         (1976, {1: 1, 2: 1, 3: 1, 6: 5, 7: 1, 8: 1, 11: 5}, 15),
-        (1976, {i + 1: 1 for i in range(14)}, 12),
-        # 1977 15 rounds
-        (1977, {i + 1: 1 for i in range(8)}, 7),  
-        (1977, {i + 1: 1 for i in range(15)}, 13),
+        (1976, {i + 1: 1 for i in range(16)}, 14),
+        # 1977 17 rounds
+        (1977, {i + 1: 1 for i in range(10)}, 9),  
+        (1977, {i + 1: 1 for i in range(17)}, 15),
         # 1966 Best 5
         (1966, {1: 0, 2: 3,	3:9,4: 9, 5: 9, 6: 9, 7:0,	8:0,9:6}, 42),
         # 1958 Best 6
@@ -42,18 +41,33 @@ from ..utils import races_to_championship_points
 def test_races_to_championship_points(year, race_points, expected):
     assert races_to_championship_points(year, race_points) == expected
 
-
 @pytest.mark.parametrize(
-    ["year", "race_points"],
+    ["year", "race_points", "expected"],
     (
-        (2023, {0: 5}),
-        (1950, {-5: 1.0}),
+        (1978, {i + 1: 1 for i in range(16)}, 14),
+        (1979, {i + 1: 1 for i in range(15)}, 15),
+        (1980, {i + 1: 1 for i in range(15)}, 15),
+        (1985, {i + 1: 1 for i in range(15)}, 15),
     ),
 )
-def test_races_to_championship_points_error(year, race_points):
+def test_races_to_championship_points_constructors(year, race_points, expected):
+    assert races_to_championship_points(year, race_points, True) == expected
+
+@pytest.mark.parametrize(
+    ["year", "race_points", "is_constructors"],
+    (
+        (2023, {0: 5}, False),
+        (1950, {-5: 1.0}, False),
+        (1949, {1: 1}, False),
+        (1957, {1: 1}, True),
+    ),
+)
+def test_races_to_championship_points_error(year, race_points, is_constructors):
     with pytest.raises(ValueError):
-        races_to_championship_points(year, race_points)
+        races_to_championship_points(year, race_points, is_constructors)
 
 def test_races_to_championship_points_all_years():
     for year in range(1950, 2030):
         assert races_to_championship_points(year, {1: 4, 6: 6}) == 10
+    for year in range(1958, 2030):
+        assert races_to_championship_points(year, {1: 4, 6: 6}, True) == 10
