@@ -7,6 +7,7 @@ from django.core.management import call_command
 def add_test_data(apps, schema_editor):
     call_command("loaddata", "tests/fixtures/users.json")
     call_command("loaddata", "tests/fixtures/2000s_data.json.gz")
+    call_command("loaddata", "tests/fixtures/standings.json")
 
 
 class Migration(migrations.Migration):
