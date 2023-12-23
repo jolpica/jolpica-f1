@@ -1,11 +1,10 @@
-from django.contrib.postgres.aggregates import ArrayAgg
-from django.db.models import Count, F, Min, OuterRef, Prefetch, Q, Subquery, Sum, Window, functions
+from django.db.models import Count, F, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets  # noqa: F401
-from rest_framework.exceptions import APIException, ValidationError
+from rest_framework.exceptions import ValidationError
 
 from formulastat.ergast.models import Status
-from formulastat.formula_one.models import Session, SessionType, Team, TeamDriver, RaceEntry, Driver
+from formulastat.formula_one.models import Driver, RaceEntry, Session, SessionType, Team, TeamDriver
 
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
@@ -338,20 +337,20 @@ class DriverStandingViewSet(ErgastModelViewSet):
             filters = filters & Q(team_drivers__season__year=season_year)
         if race_round:
             filters = filters & Q(team_drivers__race_entries__race__round__lte=race_round)
-        
+
         return filters
 
     def get_queryset(self) -> QuerySet:
         self.validate_parameters()
         season_year = self.kwargs["season_year"]
+
         race_round = self.kwargs["race_round"]
         return (
-            Driver.objects.filter(
-                self.get_criteria_filters(**self.kwargs)
-            )
+            Driver.objects.filter(self.get_criteria_filters(**self.kwargs))
             .distinct()
             .annotate(
                 sum_points=Sum("team_drivers__race_entries__session_entries__points"),
+                highest_finish=Min("team_drivers__race_entries__session_entries__position"),
                 wins=Count(
                     "team_drivers__race_entries__session_entries__position",
                     filter=Q(
@@ -359,16 +358,20 @@ class DriverStandingViewSet(ErgastModelViewSet):
                         team_drivers__race_entries__session_entries__session__type=SessionType.RACE,
                     ),
                 ),
-                position=Window(functions.RowNumber(), order_by="-sum_points"),
+                position=Window(functions.RowNumber(), order_by=["-sum_points", "highest_finish"]),
+                season_year=Value(int(season_year)),
             )
             .order_by("position")
             .prefetch_related(
                 Prefetch(
                     "teams",
                     Team.objects.filter(
-                        team_drivers__season__year=season_year,
+                        team_drivers__race_entries__race__season__year=season_year,
                         team_drivers__race_entries__race__round__lte=race_round,
-                    ).distinct(),
+                    )
+                    .annotate(first_team_entry=Min("team_drivers__race_entries__race__round"))
+                    .order_by("first_team_entry")
+                    .distinct(),
                     to_attr="season_teams",
                 ),
                 Prefetch(
@@ -380,7 +383,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
                 Prefetch(
                     "team_drivers__race_entries",
                     RaceEntry.objects.filter(race__season__year=season_year, race__round__lte=race_round).annotate(
-                        round=F("race__round"),
+                        race_round=F("race__round"),
                         race_points=Sum("session_entries__points"),
                     ),
                 ),

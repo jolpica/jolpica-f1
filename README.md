@@ -18,8 +18,10 @@ Fun Facts
 - Standings position is based on total points scored instead of championship points rules (only effects seasons before 1991)
 - Standings requires a year to be specified
 
+## TODO
+- Remove session entries for drivers who did not (pre) qualify
 
-# Develipment
+# Development
 
 ## Running Tests
 The first time the tests are run it will take upto 2 minutes to populate the database with test data, pytest is configured to reuse this database on future runs, so tests should run much faster on future runs.<br>
