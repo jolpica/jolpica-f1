@@ -69,7 +69,7 @@ pydocstyle.convention = "google"
 
 [tool.ruff.per-file-ignores]
 "*/__init__.py" = ["F401"]
-"tests/*.py" = ["D", "S", "E501"]
+"**/tests/*.py" = ["D", "S", "E501"]
 
 
 [tool.pytest.ini_options]

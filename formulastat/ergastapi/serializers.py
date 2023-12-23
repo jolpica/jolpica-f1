@@ -18,6 +18,7 @@ from formulastat.formula_one.models import (
     Team,
 )
 from formulastat.formula_one.models.session import SessionStatus
+from formulastat.formula_one.utils import races_to_championship_points
 
 
 class ErgastModelSerializer(serializers.ModelSerializer):
@@ -466,50 +467,6 @@ class LapSerializer(ErgastModelSerializer):
         list_serializer_class = ListLapSerializer
 
 
-def race_points_to_championship_points(year: int, round_points: dict[int, float]) -> float:
-    """Calculate championship points from using eligible race points for a given year
-
-    Args:
-        year: The year of the eligible results ruleset to be applied
-        round_points: Dictionary of round number to points scored
-
-    Returns:
-        Overall Championship Points for given race results
-    """
-    debug = sum(round_points.values()) > 30
-    if debug:
-        print(round_points)
-    if year >= 1991:  # Sum all points
-        return sum(round_points.values())
-    elif year >= 1981:  # Best 11 points
-        return sum(
-            sorted(
-                round_points.values(),
-                reverse=True,
-            )[:11]
-        )
-
-    # Seasons with 2 groups of eligible races
-    if year == 1980:
-        rounds_in_first_split = 7
-        best_n_races_in_split = (5, 5)
-    else:
-        return -1
-
-    split_round_points = ([], [])
-    for key, points in round_points.items():
-        if key <= rounds_in_first_split:
-            split_round_points[0].append(points)
-        else:
-            split_round_points[1].append(points)
-    points_splits = (
-        (sorted(split_round_points[0], reverse=True)[: best_n_races_in_split[0]]),
-        (sorted(split_round_points[1], reverse=True)[: best_n_races_in_split[1]]),
-    )
-    if debug:
-        print(points_splits)
-    return sum(points_splits[0]) + sum(points_splits[1])
-
 
 class DriverStandingSerializer(ErgastModelSerializer):
     def to_representation(self, instance: Driver) -> Any:
@@ -521,7 +478,7 @@ class DriverStandingSerializer(ErgastModelSerializer):
                 if race_entry.race_points:
                     round_points[race_entry.race_round] += race_entry.race_points
 
-        points = race_points_to_championship_points(season_year, round_points)
+        points = races_to_championship_points(season_year, round_points)
 
         if points % 1 == 0:
             points = int(points)
