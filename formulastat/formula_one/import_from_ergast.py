@@ -22,6 +22,7 @@ from formulastat.ergast.models import (
     Status,
 )
 from formulastat.formula_one.models import (
+    ChampionshipScheme,
     Circuit,
     Driver,
     Lap,
@@ -108,6 +109,30 @@ def get_point_scheme(year: int, ref: str) -> PointScheme:
     elif year <= 2023:
         return 22
     raise NotImplementedError()
+
+
+def year_to_championship_scheme(year: int) -> ChampionshipScheme:
+    if year >= 1950 and year <= 1953:
+        ref = "s1950"
+    elif year >= 1954 and year <= 1957:
+        ref = "s1954"
+    elif year in (1958, 1960, 1963, 1964, 1965):
+        ref = "s1958"
+    elif year in (1959, 1961, 1962, 1966):
+        ref = "s1959"
+    elif year >= 1967 and year <= 1978:
+        ref = "s1967"
+    elif year == 1979:
+        ref = "s1979"
+    elif year == 1980:
+        ref = "s1980"
+    elif year >= 1981 and year <= 1990:
+        ref = "s1981"
+    elif year >= 1991:
+        ref = "s1991"
+    else:
+        raise ValueError(f"Invalid year: {year}")
+    return ChampionshipScheme.objects.get(reference=ref)
 
 
 status_mapping = {
@@ -245,6 +270,7 @@ def run_import():
     assert PitStops.objects.filter(lap__isnull=True).count() == 0
     # fixtures
     call_command("loaddata", "formulastat/formula_one/fixtures/point_schemes.json")
+    call_command("loaddata", "formulastat/formula_one/fixtures/championship_schemes.json")
 
     # Data Fixes
     # wrong constructor in quali
@@ -753,3 +779,9 @@ def run_import():
                 lap.save()
                 sprint_entry.fastest_lap = lap
             sprint_entry.save()
+
+    # Add championship point schemes
+    seasons = Season.objects.all()
+    for season in seasons:
+        season.championship_scheme = year_to_championship_scheme(season.year)
+    Season.objects.bulk_update(seasons, ["championship_scheme"])

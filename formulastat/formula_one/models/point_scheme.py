@@ -47,9 +47,9 @@ class PointScheme(models.Model):
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
-    driver = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
-    team = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
-    fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
+    driver_points = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
+    driver_fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
+    team_points = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
     team_fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
     partial = models.PositiveSmallIntegerField(choices=PartialPointScheme.choices, default=0)
     shared_drive = models.PositiveSmallIntegerField(
@@ -61,9 +61,9 @@ class PointScheme(models.Model):
         constraints: ClassVar = [
             models.UniqueConstraint(
                 fields=[
-                    "driver",
-                    "team",
-                    "fastest_lap",
+                    "driver_points",
+                    "driver_fastest_lap",
+                    "team_points",
                     "team_fastest_lap",
                     "partial",
                     "shared_drive",
