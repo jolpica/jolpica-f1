@@ -467,7 +467,6 @@ class LapSerializer(ErgastModelSerializer):
         list_serializer_class = ListLapSerializer
 
 
-
 class DriverStandingSerializer(ErgastModelSerializer):
     def to_representation(self, instance: Driver) -> Any:
         season_year = instance.season_year

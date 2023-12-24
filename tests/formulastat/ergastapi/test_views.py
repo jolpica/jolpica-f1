@@ -75,15 +75,15 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
                         assert expected_data["time"].rstrip("0") in time_range
                         del timing_data["time"]
                         del expected_data["time"]
-    
+
     if "driverstandings.json" in endpoint:
         result["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"] = sorted(
             result["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"],
-            key=lambda d: d["Driver"]["driverId"]
+            key=lambda d: d["Driver"]["driverId"],
         )
         expected["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"] = sorted(
             expected["MRData"]["StandingsTable"]["StandingsLists"][0]["DriverStandings"],
-            key=lambda d: d["Driver"]["driverId"]
+            key=lambda d: d["Driver"]["driverId"],
         )
 
     assert result == expected
