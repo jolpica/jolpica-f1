@@ -24,12 +24,14 @@ from ..utils import races_to_championship_points
         (1980, {i + 7: 1 for i in range(7)}, 6),
         # 1979 Best 4 from first 7 and last 8
         (1979, {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 5, 7: 1, 8: 1}, 9),
+        (1979, {i + 1: 1 for i in range(8)}, 5),
         # 1967 - 1978, best n-1 of each half of season
         # 1978, 1976 16 rounds
         (1978, {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 5, 7: 1, 8: 1}, 11),
         (1976, {1: 1, 2: 1, 3: 1, 6: 5, 7: 1, 8: 1, 11: 5}, 15),
         (1976, {i + 1: 1 for i in range(16)}, 14),
         # 1977 17 rounds
+        (1977, {i + 1: 1 for i in range(9)}, 8),  
         (1977, {i + 1: 1 for i in range(10)}, 9),  
         (1977, {i + 1: 1 for i in range(17)}, 15),
         # 1966 Best 5
