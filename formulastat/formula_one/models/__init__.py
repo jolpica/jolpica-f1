@@ -1,4 +1,4 @@
-# from .championship import
+from .championship import BestResultsPerSplitScheme, ChampionshipScheme, SeasonSplitScheme
 from .circuit import Circuit
 from .driver import Driver
 from .lap import Lap
