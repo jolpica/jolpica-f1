@@ -495,6 +495,11 @@ class DriverStandingSerializer(ErgastModelSerializer):
                 override_position_text = "D"
             elif instance.position > 2:
                 instance.position = instance.position - 1
+        elif season_year == 1980:
+            if instance.position == 12:
+                instance.position = 11
+            elif instance.position == 11:
+                instance.position = 12
         return {
             "position": f"{instance.position}",
             "positionText": f"{instance.position}" if override_position_text is None else override_position_text,
