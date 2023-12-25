@@ -18,7 +18,7 @@ from formulastat.formula_one.models import (
     Team,
 )
 from formulastat.formula_one.models.session import SessionStatus
-from formulastat.formula_one.utils import races_to_championship_points
+from formulastat.formula_one.utils import calculate_championship_points
 
 
 class ErgastModelSerializer(serializers.ModelSerializer):
@@ -472,12 +472,18 @@ class DriverStandingSerializer(ErgastModelSerializer):
         season_year = instance.season_year
 
         round_points = defaultdict(float)
+        wins = 0
         for team_driver in instance.team_drivers.all():
             for race_entry in team_driver.race_entries.all():
                 if race_entry.race_points:
                     round_points[race_entry.race_round] += race_entry.race_points
+                if race_entry.race_position == 1:
+                    wins += 1
 
-        points = races_to_championship_points(season_year, round_points)
+        # points = races_to_championship_points(season_year, round_points)
+        points = calculate_championship_points(
+            round_points, instance.championship_split, instance.championship_best_results, instance.season_rounds
+        )
 
         if points % 1 == 0:
             points = int(points)
@@ -504,7 +510,7 @@ class DriverStandingSerializer(ErgastModelSerializer):
             "position": f"{instance.position}",
             "positionText": f"{instance.position}" if override_position_text is None else override_position_text,
             "points": f"{points}",
-            "wins": f"{instance.wins}",
+            "wins": f"{wins}",
             "Driver": DriverSerializer().to_representation(instance),
             "Constructors": ConstructorSerializer(many=True).to_representation(instance.season_teams),
         }

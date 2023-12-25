@@ -40,7 +40,7 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
         "http://testserver/ergast/f1/",
     )
 
-    with django_assert_max_num_queries(99) as captured:
+    with django_assert_max_num_queries(10) as captured:
         response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 200
 

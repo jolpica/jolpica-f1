@@ -1,10 +1,10 @@
-from django.db.models import Count, F, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
+from django.db.models import Count, F, Max, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
 from formulastat.ergast.models import Status
-from formulastat.formula_one.models import Driver, RaceEntry, Session, SessionType, Team, TeamDriver
+from formulastat.formula_one.models import Driver, RaceEntry, Season, Session, SessionType, Team, TeamDriver
 
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
@@ -345,6 +345,15 @@ class DriverStandingViewSet(ErgastModelViewSet):
         season_year = self.kwargs["season_year"]
 
         race_round = self.kwargs["race_round"]
+        season = (
+            Season.objects.filter(year=season_year)
+            .annotate(
+                championship_split=F("championship_scheme__driver_season_split"),
+                championship_best_results=F("championship_scheme__driver_best_results"),
+                season_rounds=Max("races__round"),
+            )
+            .first()
+        )
         return (
             Driver.objects.filter(self.get_criteria_filters(**self.kwargs))
             .distinct()
@@ -360,6 +369,9 @@ class DriverStandingViewSet(ErgastModelViewSet):
                 ),
                 position=Window(functions.RowNumber(), order_by=["-sum_points", "highest_finish"]),
                 season_year=Value(int(season_year)),
+                championship_split=Value(season.championship_split),
+                championship_best_results=Value(season.championship_best_results),
+                season_rounds=Value(season.season_rounds),
             )
             .order_by("position")
             .prefetch_related(
@@ -378,13 +390,18 @@ class DriverStandingViewSet(ErgastModelViewSet):
                     "team_drivers",
                     TeamDriver.objects.filter(
                         race_entries__race__season__year=season_year, race_entries__race__round__lte=race_round
-                    ).distinct(),
+                    )
+                    .distinct()
+                    .select_related("season__championship_scheme"),
                 ),
                 Prefetch(
                     "team_drivers__race_entries",
                     RaceEntry.objects.filter(race__season__year=season_year, race__round__lte=race_round).annotate(
                         race_round=F("race__round"),
                         race_points=Sum("session_entries__points"),
+                        race_position=Min(
+                            "session_entries__position", filter=Q(session_entries__session__type=SessionType.RACE)
+                        ),
                     ),
                 ),
             )

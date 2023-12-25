@@ -1,28 +1,4 @@
-from .models import BestResultsPerSplitScheme, ChampionshipScheme, SeasonSplitScheme
-
-
-def year_to_championship_scheme(year: int) -> ChampionshipScheme:
-    if year >= 1950 and year <= 1953:
-        ref = "s1950"
-    elif year >= 1954 and year <= 1957:
-        ref = "s1954"
-    elif year in (1958, 1960, 1963, 1964, 1965):
-        ref = "s1958"
-    elif year in (1959, 1961, 1962, 1966):
-        ref = "s1959"
-    elif year >= 1967 and year <= 1978:
-        ref = "s1967"
-    elif year == 1979:
-        ref = "s1979"
-    elif year == 1980:
-        ref = "s1980"
-    elif year >= 1981 and year <= 1990:
-        ref = "s1981"
-    elif year >= 1991:
-        ref = "s1991"
-    else:
-        raise ValueError(f"Invalid year: {year}")
-    return ChampionshipScheme.objects.get(reference=ref)
+from .models import BestResultsPerSplitScheme, SeasonSplitScheme
 
 
 def calculate_championship_points(
@@ -78,41 +54,3 @@ def calculate_championship_points(
     for split in splits:
         total_points += sum(split)
     return total_points
-
-
-def races_to_championship_points(year: int, round_points: dict[int, float | int | None], constructors=False) -> float | None:
-    """Calculate championship points from points per round using given year's rules
-
-    Args:
-        year: The year of the eligible results ruleset to be applied
-        round_points: Dictionary of round number to points scored
-
-    Returns:
-        Overall Championship Points for given race results
-    """
-    match year:
-        case 1977:
-            total_rounds = 17
-        case 1978 | 1976:
-            total_rounds = 16
-        case 1979 | 1974 | 1973:
-            total_rounds = 15
-        case 1980 | 1975:
-            total_rounds = 14
-        case 1970:
-            total_rounds = 13
-        case 1972 | 1968:
-            total_rounds = 12
-        case 1971 | 1969 | 1967:
-            total_rounds = 11
-        case _:
-            total_rounds = 99 
-    scheme = year_to_championship_scheme(year)
-    if not constructors:
-        return calculate_championship_points(
-            round_points, scheme.driver_season_split, scheme.driver_best_results, total_rounds
-        )
-    else:
-        return calculate_championship_points(
-            round_points, scheme.team_season_split, scheme.team_best_results, total_rounds
-        )
