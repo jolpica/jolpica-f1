@@ -7,13 +7,7 @@ if TYPE_CHECKING:
 
 
 class BaseTeam(models.Model):
-    """
-    Table base_team {
-        id integer [primary key]
-        first_entry integer
-        Note: 'The official Team entry (consistent between rebrands)'
-    }
-    """
+    """Underlying Team ignoring rebrands"""
 
     id = models.BigAutoField(primary_key=True)
     teams: models.QuerySet["Team"]
@@ -25,16 +19,7 @@ class BaseTeam(models.Model):
 
 
 class Team(models.Model):
-    """
-    Table team {
-    id integer [primary key]
-    reference string
-    name string
-    nationality string
-    wikipedia string
-    base_team_id integer
-    }
-    """
+    """Information about a Constructor / Team"""
 
     id = models.BigAutoField(primary_key=True)
     base_team = models.ForeignKey("BaseTeam", on_delete=models.SET_NULL, null=True, blank=True, related_name="teams")
@@ -54,26 +39,15 @@ class Team(models.Model):
 
 
 class TeamDriverRole(models.IntegerChoices):
+    """Role of a driver employed by a team"""
+
     PERMANENT = 0
     RESERVE = 1
     JUNIOR = 2
 
 
 class TeamDriver(models.Model):
-    """
-    Table team_driver {
-        id integer [primary key]
-        team_id integer
-        driver_id integer
-        season_id integer
-        role team_driver_role
-    }
-    enum team_driver_role {
-        permanent
-        reserve
-        junior // https://f1.fandom.com/wiki/List_of_drivers_who_participated_only_free_practice_during_Grand_Prix_weekend
-    }
-    """
+    """Membership of a Driver to a Team for a given season"""
 
     id = models.BigAutoField(primary_key=True)
     team = models.ForeignKey("Team", on_delete=models.CASCADE, related_name="team_drivers")

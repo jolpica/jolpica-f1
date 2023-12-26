@@ -391,8 +391,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
                     "team_drivers",
                     TeamDriver.objects.filter(
                         race_entries__race__season__year=season_year, race_entries__race__round__lte=race_round
-                    )
-                    .distinct() ,
+                    ).distinct(),
                 ),
                 Prefetch(
                     "team_drivers__race_entries",
@@ -406,6 +405,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
                 ),
             )
         )
+
 
 class ConstructorStandingViewSet(ErgastModelViewSet):
     serializer_class = serializers.ConstructorStandingSerializer
@@ -470,8 +470,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
                     "team_drivers",
                     TeamDriver.objects.filter(
                         race_entries__race__season__year=season_year, race_entries__race__round__lte=race_round
-                    )
-                    .distinct() ,
+                    ).distinct(),
                 ),
                 Prefetch(
                     "team_drivers__race_entries",

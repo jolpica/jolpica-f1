@@ -78,13 +78,16 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
 
     if "driverstandings.json" in endpoint or "constructorstandings.json" in endpoint:
         if "driverstandings.json" in endpoint:
-            list_name = "DriverStandings" 
+            list_name = "DriverStandings"
+
             def key(d):
                 return d["Driver"]["driverId"]
         else:
             list_name = "ConstructorStandings"
+
             def key(d):
                 return d["Constructor"]["constructorId"]
+
         result["MRData"]["StandingsTable"]["StandingsLists"][0][list_name] = sorted(
             result["MRData"]["StandingsTable"]["StandingsLists"][0][list_name],
             key=key,

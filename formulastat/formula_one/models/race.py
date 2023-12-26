@@ -7,18 +7,7 @@ if TYPE_CHECKING:
 
 
 class Race(models.Model):
-    """
-    Table race {
-        id integer [primary key]
-        season_id integer
-        circuit_id integer
-        round integer
-        name varchar
-        date date
-        wikipedia string
-        cancelled bool
-    }
-    """
+    """Race event information relevent to all sessions"""
 
     id = models.BigAutoField(primary_key=True)
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="races")
@@ -44,15 +33,7 @@ class Race(models.Model):
 
 
 class RaceEntry(models.Model):
-    """
-    Table race_entry {
-        id integer [primary key]
-        driver_id integer
-        race_id integer
-        team_id integer
-        Note: 'Driver data per race'
-    }
-    """
+    """All data relating to a driver racing for a specific team for a race"""
 
     id = models.BigAutoField(primary_key=True)
     race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="race_entries")

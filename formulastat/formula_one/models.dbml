@@ -1,8 +1,20 @@
+Table ChampionshipScheme {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  name char [null]
+  driver_season_split positive_small_integer 
+  driver_best_results small_integer 
+  team_season_split positive_small_integer 
+  team_best_results small_integer 
+  Note: '''ChampionshipScheme(id, reference, name, driver_season_split, driver_best_results, team_season_split, team_best_results)'''
+}
+
+
 Table Circuit {
   id big_auto [pk, unique]
   reference char [null, unique]
   name char 
-  city char [null]
+  locality char [null]
   country char [null]
   location None [null]
   altitude float [null]
@@ -95,14 +107,14 @@ Table PointScheme {
   id big_auto [pk, unique]
   reference char [null, unique]
   name char [null]
-  driver positive_small_integer 
-  team positive_small_integer 
-  fastest_lap positive_small_integer 
+  driver_points positive_small_integer 
+  driver_fastest_lap positive_small_integer 
+  team_points positive_small_integer 
   team_fastest_lap positive_small_integer 
   partial positive_small_integer 
   shared_drive positive_small_integer 
   is_double_points boolean 
-  Note: '''PointScheme(id, reference, name, driver, team, fastest_lap, team_fastest_lap, partial, shared_drive, is_double_points)'''
+  Note: '''PointScheme(id, reference, name, driver_points, driver_fastest_lap, team_points, team_fastest_lap, partial, shared_drive, is_double_points)'''
 }
 
 
@@ -154,6 +166,7 @@ ref: RaceEntry.team_driver > TeamDriver.id
 
 Table Season {
   id big_auto [pk, unique]
+  championship_scheme foreign_key [null]
   year small_integer [unique]
   wikipedia url [null]
   Note: '''
@@ -164,6 +177,7 @@ Table Season {
     }
     '''
 }
+ref: Season.championship_scheme > ChampionshipScheme.id
 
 
 Table Session {
@@ -204,6 +218,7 @@ Table SessionEntry {
   points float [null]
   grid positive_small_integer [null]
   time duration [null]
+  fastest_lap_rank positive_small_integer [null]
   laps_completed positive_small_integer [null]
   Note: '''
     Table driver_session {

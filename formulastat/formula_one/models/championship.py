@@ -6,14 +6,16 @@ if TYPE_CHECKING:
     from . import Season
 
 
-class SeasonSplitScheme(models.IntegerChoices):
+class ChampionshipSplitType(models.IntegerChoices):
+    """How a championship season is divided. Such that best results are picked independently from each."""
+
     NONE = 0, "Season is not split"
     HALF_LARGER_FRONT = 2, "Split in halves (remainder in first half)"
     HALF_LARGER_BACK = 3, "Split in halves (remainder in second half)"
 
 
-class BestResultsPerSplitScheme(models.IntegerChoices):
-    """Number of results per split to include, with special cases of ALL and ALL_BUT_ONE"""
+class ChampionshipBestResultsType(models.IntegerChoices):
+    """Integer number of results per split to include, with special cases of ALL and ALL_BUT_ONE"""
 
     ALL_BUT_ONE = -2, "One less than total races per split"
     ALL = -1, "All results are counted"
@@ -27,15 +29,17 @@ class BestResultsPerSplitScheme(models.IntegerChoices):
 
 
 class ChampionshipScheme(models.Model):
+    """Drivers and Team Championship score calculation rules"""
+
     id = models.BigAutoField(primary_key=True)
     seasons: models.QuerySet["Season"]
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
-    driver_season_split = models.PositiveSmallIntegerField(choices=SeasonSplitScheme.choices)
-    driver_best_results = models.SmallIntegerField(choices=BestResultsPerSplitScheme.choices)
-    team_season_split = models.PositiveSmallIntegerField(choices=SeasonSplitScheme.choices)
-    team_best_results = models.SmallIntegerField(choices=BestResultsPerSplitScheme.choices)
+    driver_season_split = models.PositiveSmallIntegerField(choices=ChampionshipSplitType.choices)
+    driver_best_results = models.SmallIntegerField(choices=ChampionshipBestResultsType.choices)
+    team_season_split = models.PositiveSmallIntegerField(choices=ChampionshipSplitType.choices)
+    team_best_results = models.SmallIntegerField(choices=ChampionshipBestResultsType.choices)
 
     class Meta:
         constraints: ClassVar = [

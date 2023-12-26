@@ -7,6 +7,8 @@ if TYPE_CHECKING:
 
 
 class RacePointScheme(models.IntegerChoices):
+    """How many points should be awarded for a finishing position"""
+
     NONE = 0, "No Points Awarded"
     RACE_1950 = 1, "1950 - Top 5 get upto 8 points"
     RACE_1960 = 2, "1960 - Top 6 get upto 8 points"
@@ -19,6 +21,8 @@ class RacePointScheme(models.IntegerChoices):
 
 
 class FastestLapPointScheme(models.IntegerChoices):
+    """How many points should be awarded for a fastest lap"""
+
     NONE = 0, "No Fastest Lap Point"
     ANY = 1, "Point for Fastest Lap"
     SHARED = 2, "Point divided between all who got fastest lap"
@@ -27,6 +31,8 @@ class FastestLapPointScheme(models.IntegerChoices):
 
 
 class PartialPointScheme(models.IntegerChoices):
+    """When, and how should partial points be awarded"""
+
     NONE = 0, "No Partial Points"
     HALF_30_60 = 1, "Half Points between 30% - 60%"
     HALF_2L_75 = 2, "Half Points between 2 Laps - 75%"
@@ -35,6 +41,8 @@ class PartialPointScheme(models.IntegerChoices):
 
 
 class SharedDrivePointScheme(models.IntegerChoices):
+    """How many points should be awarded if two drivers share a car"""
+
     NONE = 0, "No Points"
     SHARED = 1, "Points Shared Equally"
     SHARED_MULTI = 2, "Shared Points of all drives, unless insufficent distance"
@@ -42,6 +50,8 @@ class SharedDrivePointScheme(models.IntegerChoices):
 
 
 class PointScheme(models.Model):
+    """Session point calculation rules"""
+
     id = models.BigAutoField(primary_key=True)
     sessions: models.QuerySet["Session"]
 
