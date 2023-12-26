@@ -7,19 +7,7 @@ if TYPE_CHECKING:
 
 
 class Circuit(models.Model):
-    """
-    Table circuit {
-        id integer [primary key]
-        reference string
-        name string
-        location string
-        country string
-        latitude string
-        longitude string
-        altitude string
-        wikipedia string
-    }
-    """
+    """Race venue information"""
 
     id = models.BigAutoField(primary_key=True)
     races: models.QuerySet["Race"]

@@ -7,6 +7,8 @@ if TYPE_CHECKING:
 
 
 class SessionType(models.TextChoices):
+    """The type of session"""
+
     RACE = "R"
     QUALIFYING_ONE = "Q1"
     QUALIFYING_TWO = "Q2"
@@ -25,18 +27,7 @@ class SessionType(models.TextChoices):
 
 
 class Session(models.Model):
-    """
-    Table session {
-        id integer [primary key]
-        race_id integer
-        date date
-        time time
-        session_category session_category
-        point_system point_system
-        laps integer
-        Note: 'The sessions of a race e.g. race, quali'
-    }
-    """
+    """Information about a scheduled session where cars are on track"""
 
     id = models.BigAutoField(primary_key=True)
     race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="sessions")
@@ -57,6 +48,8 @@ class Session(models.Model):
 
 
 class SessionStatus(models.IntegerChoices):
+    """Finishing status of an entry for a session"""
+
     FINISHED = 0, "Finished"
     LAPPED = 1, "Car Finished Lap(s) behind Leader"
     ACCIDENT = 10, "Accident, Collision or Driver Error on Track"
@@ -68,30 +61,7 @@ class SessionStatus(models.IntegerChoices):
 
 
 class SessionEntry(models.Model):
-    """
-    Table driver_session {
-        id integer [primary key]
-        session_id integer
-        race_entry_id integer
-        car_number string
-        // both
-        position integer
-        classified bool
-        fastest_lap integer
-        points decimal
-        // race
-        grid integer
-        time duration
-        laps integer
-        status integer
-        detail string
-    }
-    enum status {
-        Finished
-        retired
-        disqualified
-    }
-    """
+    """All information for a race entry for the session"""
 
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")
@@ -129,17 +99,7 @@ class SessionEntry(models.Model):
 
 
 class Penalty(models.Model):
-    """
-    Table penalty {
-        id integer [primary key]
-        earned integer
-        served integer
-        license_points integer
-        position integer
-        time duration
-        time_served_in_pit bool
-    }
-    """
+    """Penalty given/served in an entry's session"""
 
     id = models.BigAutoField(primary_key=True)
     earned = models.ForeignKey(

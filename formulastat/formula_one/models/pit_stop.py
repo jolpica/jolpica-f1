@@ -4,17 +4,7 @@ from django.db import models
 
 
 class PitStop(models.Model):
-    """
-    Table pit_stop {
-      id integer [primary key]
-      driver_session_id integer
-      lap_number integer
-      number integer
-      duration duration
-      local_timestamp string
-
-    }
-    """
+    """Pit Stop information for a session"""
 
     id = models.BigAutoField(primary_key=True)
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="pit_stops")

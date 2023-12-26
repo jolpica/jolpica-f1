@@ -7,14 +7,7 @@ if TYPE_CHECKING:
 
 
 class Lap(models.Model):
-    """
-    Table lap {
-      id integer [primary key]
-      driver_session_id integer
-      time duration
-      average_speed decimal
-    }
-    """
+    """Information on a driven Lap of Race, Qualifying, or any other session for a driver"""
 
     id = models.BigAutoField(primary_key=True)
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="laps")

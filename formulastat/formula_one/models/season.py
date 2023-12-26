@@ -7,13 +7,7 @@ if TYPE_CHECKING:
 
 
 class Season(models.Model):
-    """
-    Table season {
-        id integer [primary key]
-        year integer
-        wikipedia string
-    }
-    """
+    """Formula 1 Championship season"""
 
     id = models.BigAutoField(primary_key=True)
     teams = models.ManyToManyField("formula_one.Team", through="formula_one.TeamDriver", related_name="seasons")
