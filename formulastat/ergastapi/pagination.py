@@ -39,6 +39,10 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             table_name = "StandingsTable"
             data_name = "StandingsLists"
             data = [{**self.get_criteria_dict(), "DriverStandings": data}]
+        elif self.viewset == "ConstructorStandingViewSet":
+            table_name = "StandingsTable"
+            data_name = "StandingsLists"
+            data = [{**self.get_criteria_dict(), "ConstructorStandings": data}]
         else:
             table_name = self.model.capitalize() + "Table"
             data_name = self.model.capitalize().rstrip("s") + "s"

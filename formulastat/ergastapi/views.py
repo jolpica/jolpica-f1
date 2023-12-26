@@ -344,7 +344,8 @@ class DriverStandingViewSet(ErgastModelViewSet):
         self.validate_parameters()
         season_year = self.kwargs["season_year"]
 
-        race_round = self.kwargs["race_round"]
+        if (race_round := self.kwargs.get("race_round")) is None:
+            race_round = 99
         season = (
             Season.objects.filter(year=season_year)
             .annotate(
@@ -391,8 +392,86 @@ class DriverStandingViewSet(ErgastModelViewSet):
                     TeamDriver.objects.filter(
                         race_entries__race__season__year=season_year, race_entries__race__round__lte=race_round
                     )
-                    .distinct()
-                    .select_related("season__championship_scheme"),
+                    .distinct() ,
+                ),
+                Prefetch(
+                    "team_drivers__race_entries",
+                    RaceEntry.objects.filter(race__season__year=season_year, race__round__lte=race_round).annotate(
+                        race_round=F("race__round"),
+                        race_points=Sum("session_entries__points"),
+                        race_position=Min(
+                            "session_entries__position", filter=Q(session_entries__session__type=SessionType.RACE)
+                        ),
+                    ),
+                ),
+            )
+        )
+
+class ConstructorStandingViewSet(ErgastModelViewSet):
+    serializer_class = serializers.ConstructorStandingSerializer
+    lookup_field = None
+
+    query_session_entries = "team_drivers__race_entries__session_entries__"
+    query_team = ""
+    query_driver = "team_drivers__driver__"
+    query_circuit = "team_drivers__race_entries__race__circuit__"
+    query_season = "team_drivers__season__"
+    query_race = "team_drivers__race_entries__race__"
+
+    required_params = ["season_year"]
+    order_by = []
+
+    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:
+        filters = Q()
+        if season_year:
+            filters = filters & Q(team_drivers__season__year=season_year)
+        if race_round:
+            filters = filters & Q(team_drivers__race_entries__race__round__lte=race_round)
+
+        return filters
+
+    def get_queryset(self) -> QuerySet:
+        self.validate_parameters()
+        season_year = self.kwargs["season_year"]
+
+        if (race_round := self.kwargs.get("race_round")) is None:
+            race_round = 99
+        season = (
+            Season.objects.filter(year=season_year)
+            .annotate(
+                championship_split=F("championship_scheme__team_season_split"),
+                championship_best_results=F("championship_scheme__team_best_results"),
+                season_rounds=Max("races__round"),
+            )
+            .first()
+        )
+        return (
+            Team.objects.filter(self.get_criteria_filters(**self.kwargs))
+            .distinct()
+            .annotate(
+                sum_points=Sum("team_drivers__race_entries__session_entries__points"),
+                highest_finish=Min("team_drivers__race_entries__session_entries__position"),
+                wins=Count(
+                    "team_drivers__race_entries__session_entries__position",
+                    filter=Q(
+                        team_drivers__race_entries__session_entries__position=1,
+                        team_drivers__race_entries__session_entries__session__type=SessionType.RACE,
+                    ),
+                ),
+                position=Window(functions.RowNumber(), order_by=["-sum_points", "highest_finish"]),
+                season_year=Value(int(season_year)),
+                championship_split=Value(season.championship_split),
+                championship_best_results=Value(season.championship_best_results),
+                season_rounds=Value(season.season_rounds),
+            )
+            .order_by("position")
+            .prefetch_related(
+                Prefetch(
+                    "team_drivers",
+                    TeamDriver.objects.filter(
+                        race_entries__race__season__year=season_year, race_entries__race__round__lte=race_round
+                    )
+                    .distinct() ,
                 ),
                 Prefetch(
                     "team_drivers__race_entries",
