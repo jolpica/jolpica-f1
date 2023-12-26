@@ -480,7 +480,6 @@ class DriverStandingSerializer(ErgastModelSerializer):
                 if race_entry.race_position == 1:
                     wins += 1
 
-        # points = races_to_championship_points(season_year, round_points)
         points = calculate_championship_points(
             round_points, instance.championship_split, instance.championship_best_results, instance.season_rounds
         )
@@ -517,4 +516,38 @@ class DriverStandingSerializer(ErgastModelSerializer):
 
     class Meta:
         model = Driver
+        fields = "__all__"
+
+
+class ConstructorStandingSerializer(ErgastModelSerializer):
+    def to_representation(self, instance: Team) -> Any:
+        season_year = instance.season_year
+
+        round_points = defaultdict(float)
+        wins = 0
+        for team_driver in instance.team_drivers.all():
+            for race_entry in team_driver.race_entries.all():
+                if race_entry.race_points:
+                    round_points[race_entry.race_round] += race_entry.race_points
+                if race_entry.race_position == 1:
+                    wins += 1
+
+        points = calculate_championship_points(
+            round_points, instance.championship_split, instance.championship_best_results, instance.season_rounds
+        )
+
+        if points % 1 == 0:
+            points = int(points)
+
+        override_position_text = None
+        return {
+            "position": f"{instance.position}",
+            "positionText": f"{instance.position}" if override_position_text is None else override_position_text,
+            "points": f"{points}",
+            "wins": f"{wins}",
+            "Constructor": ConstructorSerializer().to_representation(instance),
+        }
+
+    class Meta:
+        model = Team
         fields = "__all__"

@@ -101,10 +101,12 @@ endpoints = {
     ],
     "driverstandings": [
         "2023/22/driverstandings.json",
-        "1997/17/driverstandings.json?limit=20",
-        "1997/17/driverstandings.json?offset=25",
         "1985/14/driverstandings.json?limit=17",
         "1980/14/driverstandings.json?limit=21",
+    ],
+    "constructorstandings": [
+        "2023/22/constructorstandings.json",
+        "2023/13/constructorstandings.json",
     ],
 }
 
