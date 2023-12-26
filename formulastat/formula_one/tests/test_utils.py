@@ -1,6 +1,6 @@
 import pytest
 
-from ..models import BestResultsPerSplitScheme, SeasonSplitScheme
+from ..models import ChampionshipBestResultsType, ChampionshipSplitType
 from ..utils import calculate_championship_points
 
 
@@ -98,7 +98,7 @@ def test_calculate_championship_points_error(race_points, split, results, total_
 
 
 def test_calculate_championship_points_all_variations():
-    for split in SeasonSplitScheme:
-        for best_results in BestResultsPerSplitScheme:
+    for split in ChampionshipSplitType:
+        for best_results in ChampionshipBestResultsType:
             for total_rounds in [1, 17]:
                 assert calculate_championship_points({1: 4, 9: 6}, split, best_results, total_rounds) in (None, 10, 0)

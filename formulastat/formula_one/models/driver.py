@@ -7,19 +7,9 @@ if TYPE_CHECKING:
 
 
 class Driver(models.Model):
-    """
-    Table driver {
-        id integer [primary key]
-        reference string [unique]
-        forename string
-        surname string
-        abbreviation string
-        nationality string
-        permanent_car_number integer
-        date_of_birth date
-        wikipedia string
-    }
-    """
+    """Session Participant / Racing Driver Information
+
+    May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions."""
 
     id = models.BigAutoField(primary_key=True)
     teams: models.QuerySet["Team"]
