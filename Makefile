@@ -10,9 +10,9 @@ run: format
 	python manage.py runserver
 	
 dbml:
-	python manage.py dbml formula_one > formulastat/formula_one/models.dbml
+	python manage.py dbml formula_one > jolpica/formula_one/models.dbml
 # Remove duplicate through tables
-	perl -i -0pe "s/Table (formula_one[a-zA-Z_]+).+(\n|.)+ref:.* > \1.*\n\n\n//g" formulastat/formula_one/models.dbml
+	perl -i -0pe "s/Table (formula_one[a-zA-Z_]+).+(\n|.)+ref:.* > \1.*\n\n\n//g" jolpica/formula_one/models.dbml
 	
 test-fixture:
 	python manage.py dump_object formula_one.sessionentry --query '{"session__race__season__year__gte":2000}' > tests/fixtures/2000s_session_entries.json
@@ -34,6 +34,6 @@ standings-fixture:
 import-and-update:
 	python manage.py migrate formula_one 0001
 	python manage.py migrate
-	python manage.py shell -c "from formulastat.formula_one.import_from_ergast import run_import; run_import()"
+	python manage.py shell -c "from jolpica.formula_one.import_from_ergast import run_import; run_import()"
 	make test-fixture 
 	pytest --create-db

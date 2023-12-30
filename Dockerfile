@@ -16,7 +16,7 @@ RUN pip install poetry && \
 
 ENV DEPLOYMENT_ENV=PROD
 EXPOSE 5000
-CMD [ "python", "-m", "gunicorn", "formulastat.asgi:application", \
+CMD [ "python", "-m", "gunicorn", "jolpica.asgi:application", \
     "--bind=0.0.0.0:5000", \
     "--access-logfile=-", \
     "-k", "uvicorn.workers.UvicornWorker" \

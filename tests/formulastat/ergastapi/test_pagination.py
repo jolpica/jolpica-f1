@@ -1,5 +1,5 @@
 import pytest
-from formulastat.formula_one.models import Circuit, Driver, Race, Season, SessionEntry, SessionType, Team
+from jolpica.formula_one.models import Circuit, Driver, Race, Season, SessionEntry, SessionType, Team
 from rest_framework.test import APIClient
 
 

@@ -37,8 +37,8 @@ class ErgastUpdater:
         print("Update complete")
 
     def get_files(self):
-        zip_path = Path("formulastat/ergast/download/ergast.zip")
-        extract_path = Path("formulastat/ergast/download/csv")
+        zip_path = Path("jolpica/ergast/download/ergast.zip")
+        extract_path = Path("jolpica/ergast/download/csv")
         extract_path.mkdir(parents=True, exist_ok=True)
         r = requests.get(self.url)
         with open(zip_path, "wb") as f:
@@ -48,7 +48,7 @@ class ErgastUpdater:
             zip.extractall(extract_path)
 
     def update_from_csv(self):
-        csv_folder = Path("formulastat/ergast/download/csv")
+        csv_folder = Path("jolpica/ergast/download/csv")
         with transaction.atomic():
             for table in [
                 "circuits",

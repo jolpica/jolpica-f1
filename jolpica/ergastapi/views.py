@@ -3,8 +3,8 @@ from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
-from formulastat.ergast.models import Status
-from formulastat.formula_one.models import Driver, RaceEntry, Season, Session, SessionType, Team, TeamDriver
+from jolpica.ergast.models import Status
+from jolpica.formula_one.models import Driver, RaceEntry, Season, Session, SessionType, Team, TeamDriver
 
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
