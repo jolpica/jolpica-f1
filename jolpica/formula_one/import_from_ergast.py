@@ -8,7 +8,7 @@ from django.core.management import call_command
 from django.db.models import Q
 from tqdm import tqdm
 
-from formulastat.ergast.models import (
+from jolpica.ergast.models import (
     Circuits,
     Constructors,
     Drivers,
@@ -21,7 +21,7 @@ from formulastat.ergast.models import (
     SprintResults,
     Status,
 )
-from formulastat.formula_one.models import (
+from jolpica.formula_one.models import (
     ChampionshipScheme,
     Circuit,
     Driver,
@@ -197,8 +197,8 @@ def map_status(status_id, qualifying=False, pos_text: str = "") -> None | Sessio
 def run_import():
     assert PitStops.objects.filter(lap__isnull=True).count() == 0
     # fixtures
-    call_command("loaddata", "formulastat/formula_one/fixtures/point_schemes.json")
-    call_command("loaddata", "formulastat/formula_one/fixtures/championship_schemes.json")
+    call_command("loaddata", "jolpica/formula_one/fixtures/point_schemes.json")
+    call_command("loaddata", "jolpica/formula_one/fixtures/championship_schemes.json")
 
     # Data Fixes
     # wrong constructor in quali

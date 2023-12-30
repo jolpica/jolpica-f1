@@ -1,7 +1,7 @@
 from django.urls import path
 from django.urls.conf import include
 
-from formulastat.ergast.views import CircuitView, RaceView
+from jolpica.ergast.views import CircuitView, RaceView
 
 app_name = "ergast"
 

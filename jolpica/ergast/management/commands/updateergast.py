@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from formulastat.ergast.update import ErgastUpdater
+from jolpica.ergast.update import ErgastUpdater
 
 
 class Command(BaseCommand):

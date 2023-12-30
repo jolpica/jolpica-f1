@@ -24,7 +24,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_DB: formulastat
+      POSTGRES_DB: jolpica
       POSTGRES_PASSWORD: postgres
     # ports:
     #   - 5432:9999

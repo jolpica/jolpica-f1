@@ -1,4 +1,4 @@
-"""URL configuration for formulastat project.
+"""URL configuration for jolpica project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -18,11 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from formulastat import views
+from jolpica import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("ergast/", include("formulastat.ergastapi.urls")),
+    path("ergast/", include("jolpica.ergastapi.urls")),
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", views.healthcheck),
 ]

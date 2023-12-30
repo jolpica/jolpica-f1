@@ -1,7 +1,7 @@
 [tool.poetry]
 authors = ["Your Name <you@example.com>"]
 description = ""
-name = "formulastat"
+name = "jolpica"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
@@ -40,11 +40,11 @@ requires = ["poetry-core>=1.0.0"]
 
 
 [tool.mypy]
-exclude = ["^tests", "^formulastat/ergast"]
+exclude = ["^tests", "^jolpica/ergast"]
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
 
 [tool.django-stubs]
-django_settings_module = "formulastat.settings"
+django_settings_module = "jolpica.settings"
 
 
 [tool.ruff]
@@ -52,7 +52,7 @@ line-length = 120
 src = ["src"]
 target-version = "py310"
 
-extend-exclude = ["**/migrations", "formulastat/ergast/*"]
+extend-exclude = ["**/migrations", "jolpica/ergast/*"]
 ignore = ["TRY300", "TRY003", "RUF012"]
 select = [
     "RUF", # Ruff specific
