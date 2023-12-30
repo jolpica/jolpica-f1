@@ -37,3 +37,7 @@ import-and-update:
 	python manage.py shell -c "from jolpica.formula_one.import_from_ergast import run_import; run_import()"
 	make test-fixture 
 	pytest --create-db
+	
+deploy:
+	DJANGO_DEBUG=False python manage.py collectstatic
+	eb deploy
