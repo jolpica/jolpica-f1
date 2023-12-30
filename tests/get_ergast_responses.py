@@ -101,7 +101,6 @@ endpoints = {
     ],
     "driverstandings": [
         "2023/22/driverstandings.json",
-        "1985/14/driverstandings.json?limit=17",
         "1980/14/driverstandings.json?limit=21",
     ],
     "constructorstandings": [
