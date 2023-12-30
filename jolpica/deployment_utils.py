@@ -6,7 +6,7 @@ def get_ec2_token() -> str:
     headers = {
         "X-aws-ec2-metadata-token-ttl-seconds": "21600",
     }
-    response = requests.put("http://169.254.169.254/latest/api/token", headers=headers, timeout=60)
+    response = requests.put("http://169.254.169.254/latest/api/token", headers=headers, timeout=2)
     return response.text
 
 
@@ -23,7 +23,7 @@ def get_linux_ec2_private_ip() -> None | str:
     headers = {"X-aws-ec2-metadata-token": f"{token}"}
 
     try:
-        response = requests.get("http://169.254.169.254/latest/meta-data/local-ipv4", headers=headers, timeout=60)
+        response = requests.get("http://169.254.169.254/latest/meta-data/local-ipv4", headers=headers, timeout=2)
         return response.text
     except Exception:
         return None
