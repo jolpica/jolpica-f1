@@ -134,29 +134,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images) using django-storages
 # https://docs.djangoproject.com/en/4.2/howto/static-files
 # https://django-storages.readthedocs.io/en/latest/
-CLOUDFRONT_DOMAIN = env("CLOUDFRONT_DOMAIN", default="jolpi.ca")
+CLOUDFRONT_DOMAIN = env("CLOUDFRONT_DOMAIN", default="http://jolpi.ca")
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
 if not DEBUG:
-    # AWS Cloudfront static files
     STATIC_URL = f"{CLOUDFRONT_DOMAIN}/static/"
-    STORAGES = {
-        "staticfiles": {
-            "BACKEND": "storages.backends.s3.S3Storage",
-            "OPTIONS": {
-                # Credentials needed to run collectstatic command
-                "access_key": env("AWS_STATIC_ACCESS_KEY_ID", default="unset"),
-                "secret_key": env("AWS_STATIC_SECRET_ACCESS_KEY", default="unset"),
-                "bucket_name": env("AWS_STATIC_S3_BUCKET", default="unset"),
-                "location": "static",
-                "region_name": env("AWS_S3_REGION_NAME", default="eu-west-1"),
-                "signature_version": "s3v4",
-                "querystring_expire": 604800,
-                "custom_domain": CLOUDFRONT_DOMAIN,
+    if DEPLOYMENT_ENV != "PROD":
+        # Configuration to upload AWS S3 Cloudfront static files during deployment
+        STORAGES = {
+            "staticfiles": {
+                "BACKEND": "storages.backends.s3.S3Storage",
+                "OPTIONS": {
+                    "access_key": env("AWS_STATIC_ACCESS_KEY_ID", default="unset"),
+                    "secret_key": env("AWS_STATIC_SECRET_ACCESS_KEY", default="unset"),
+                    "bucket_name": env("AWS_STATIC_S3_BUCKET", default="unset"),
+                    "location": "static",
+                    "region_name": env("AWS_S3_REGION_NAME", default="eu-west-1"),
+                    "signature_version": "s3v4",
+                    "querystring_expire": 604800,
+                    "custom_domain": CLOUDFRONT_DOMAIN,
+                },
             },
-        },
-    }
+        }
 else:
     # Locally served static files
     STATIC_URL = "static/"
