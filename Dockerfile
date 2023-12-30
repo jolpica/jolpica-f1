@@ -11,8 +11,7 @@ WORKDIR /app
 
 ENV POETRY_VIRTUALENVS_CREATE=false
 RUN pip install poetry && \
-    poetry install --only=main --no-root && \
-    python manage.py collectstatic --no-input
+    poetry install --only=main --no-root
 
 ENV DEPLOYMENT_ENV=PROD
 EXPOSE 5000
