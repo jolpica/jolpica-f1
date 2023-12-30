@@ -501,9 +501,9 @@ class DriverStandingSerializer(ErgastModelSerializer):
             elif instance.position > 2:
                 instance.position = instance.position - 1
         elif season_year == 1980:
-            if instance.position == 12:
+            if instance.reference == "watson":
                 instance.position = 11
-            elif instance.position == 11:
+            elif instance.reference == "daly":
                 instance.position = 12
         return {
             "position": f"{instance.position}",
