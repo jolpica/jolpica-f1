@@ -6,7 +6,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from formulastat.ergast import models, serializers
+from jolpica.ergast import models, serializers
 
 # NEXT_ROUND = models.Races.objects.filter(date__gte=DATE).first().round
 # LAST_ROUND = NEXT_ROUND - 1 if NEXT_ROUND > 1 else models.Races.objects.filter(date__lte=DATE).first().round

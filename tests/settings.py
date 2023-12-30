@@ -1,3 +1,3 @@
-from formulastat.settings import *
+from jolpica.settings import *
 
 INSTALLED_APPS += ["tests"]

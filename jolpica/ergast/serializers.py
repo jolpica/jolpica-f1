@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from formulastat.ergast import models
+from jolpica.ergast import models
 
 
 class CircuitsSerializer(serializers.ModelSerializer):
