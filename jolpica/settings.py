@@ -36,7 +36,7 @@ else:
     SECRET_KEY = env("DJANGO_SECRET_KEY", default="jolpica")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if DEPLOYMENT_ENV == "PROD" else True
+DEBUG = False if DEPLOYMENT_ENV == "PROD" else env("DJANGO_DEBUG", default=True)
 
 live = env("LIVE", cast=str, default="localhost,127.0.0.1").split(",")
 ALLOWED_HOSTS: list[str] = ["api.jolpi.ca", *live]
@@ -99,6 +99,7 @@ WSGI_APPLICATION = "jolpica.wsgi.application"
 DATABASES = {"default": env.db("DATABASE_SECRET_URL", default="postgis://postgres:postgres@localhost/jolpica")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -130,11 +131,36 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# Static files (CSS, JavaScript, Images) using django-storages
+# https://docs.djangoproject.com/en/4.2/howto/static-files
+# https://django-storages.readthedocs.io/en/latest/
+CLOUDFRONT_DOMAIN = env("CLOUDFRONT_DOMAIN", default="jolpi.ca")
 
-STATIC_URL = "static/"
-STATIC_ROOT = "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+if not DEBUG:
+    # AWS Cloudfront static files
+    STATIC_URL = f"{CLOUDFRONT_DOMAIN}/static/"
+    STORAGES = {
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {
+                # Credentials needed to run collectstatic command
+                "access_key": env("AWS_STATIC_ACCESS_KEY_ID", default="unset"),
+                "secret_key": env("AWS_STATIC_SECRET_ACCESS_KEY", default="unset"),
+                "bucket_name": env("AWS_STATIC_S3_BUCKET", default="unset"),
+                "location": "static",
+                "region_name": env("AWS_S3_REGION_NAME", default="eu-west-1"),
+                "signature_version": "s3v4",
+                "querystring_expire": 604800,
+                "custom_domain": CLOUDFRONT_DOMAIN,
+            },
+        },
+    }
+else:
+    # Locally served static files
+    STATIC_URL = "static/"
+    STATIC_ROOT = "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
