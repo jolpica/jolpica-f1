@@ -118,9 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# HTTPS Settings
-if DEPLOYMENT_ENV == "PROD":
-    SECURE_SSL_REDIRECT = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
