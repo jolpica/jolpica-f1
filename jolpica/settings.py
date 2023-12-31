@@ -134,7 +134,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images) using django-storages
 # https://docs.djangoproject.com/en/4.2/howto/static-files
 # https://django-storages.readthedocs.io/en/latest/
-CLOUDFRONT_DOMAIN = env("CLOUDFRONT_DOMAIN", default="http://jolpi.ca")
+CLOUDFRONT_DOMAIN = env("CLOUDFRONT_DOMAIN", default="https://jolpi.ca")
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
