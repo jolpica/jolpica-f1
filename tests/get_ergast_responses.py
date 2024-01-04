@@ -110,17 +110,16 @@ endpoints = {
     "driverstandings": [
         "2023/22/driverstandings.json",
         "1980/14/driverstandings.json?limit=21",
-        "2023/driverstandings/1.json",
+        "2023/22/driverstandings/1.json",
     ],
     "constructorstandings": [
         "2023/22/constructorstandings.json",
         "2023/13/constructorstandings.json",
-        "2023/constructorstandings/1.json",
+        "2023/22/constructorstandings/1.json",
     ],
 }
 
 
-# response = requests.get("http://ergast.com/api/f1/1985/15/driverstandings.json")
 for endpoint_type, test_urls in tqdm(endpoints.items()):
     folder = Path("tests/fixtures/ergast_responses") / endpoint_type
     folder.mkdir(exist_ok=True)

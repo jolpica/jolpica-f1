@@ -365,7 +365,7 @@ class LapViewSet(ErgastModelViewSet):
 
 class DriverStandingViewSet(ErgastModelViewSet):
     serializer_class = serializers.DriverStandingSerializer
-    lookup_field = None
+    lookup_field = "driver_standings_position"
 
     query_session_entries = "team_drivers__race_entries__session_entries__"
     query_team = "team_drivers__team__"
@@ -390,8 +390,11 @@ class DriverStandingViewSet(ErgastModelViewSet):
         self.validate_parameters()
         season_year = self.kwargs["season_year"]
 
-        if (race_round := self.kwargs.get("race_round")) is None:
-            race_round = 99
+        if position := self.kwargs.get("driver_standings_position", None):
+            position_filter = Q(position=position)
+        else:
+            position_filter = Q()
+
         season = (
             Season.objects.filter(year=season_year)
             .annotate(
@@ -401,6 +404,10 @@ class DriverStandingViewSet(ErgastModelViewSet):
             )
             .first()
         )
+        if (race_round := self.kwargs.get("race_round")) is None:
+            race_round = season.season_rounds
+            self.kwargs["race_round"] = str(race_round)
+
         return (
             Driver.objects.filter(self.get_criteria_filters(**self.kwargs))
             .distinct()
@@ -420,6 +427,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
                 championship_best_results=Value(season.championship_best_results),
                 season_rounds=Value(season.season_rounds),
             )
+            .filter(position_filter)
             .order_by("position")
             .prefetch_related(
                 Prefetch(
@@ -455,7 +463,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
 
 class ConstructorStandingViewSet(ErgastModelViewSet):
     serializer_class = serializers.ConstructorStandingSerializer
-    lookup_field = None
+    lookup_field = "constructor_standings_position"
 
     query_session_entries = "team_drivers__race_entries__session_entries__"
     query_team = ""
@@ -480,8 +488,11 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
         self.validate_parameters()
         season_year = self.kwargs["season_year"]
 
-        if (race_round := self.kwargs.get("race_round")) is None:
-            race_round = 99
+        if position := self.kwargs.get("constructor_standings_position", None):
+            position_filter = Q(position=position)
+        else:
+            position_filter = Q()
+
         season = (
             Season.objects.filter(year=season_year)
             .annotate(
@@ -491,6 +502,10 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
             )
             .first()
         )
+        if (race_round := self.kwargs.get("race_round")) is None:
+            race_round = season.season_rounds
+            self.kwargs["race_round"] = str(race_round)
+
         return (
             Team.objects.filter(self.get_criteria_filters(**self.kwargs))
             .distinct()
@@ -510,6 +525,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
                 championship_best_results=Value(season.championship_best_results),
                 season_rounds=Value(season.season_rounds),
             )
+            .filter(position_filter)
             .order_by("position")
             .prefetch_related(
                 Prefetch(
