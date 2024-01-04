@@ -27,7 +27,9 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
         }
         if self.viewset == "PitStopViewSet":
             name_map["number"] = "stop"
-        return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
+        elif self.viewset == "LapViewSet":
+            name_map["number"] = None
+        return {name_map[key]: val for key, val in self.kwargs.items() if key != "format" and name_map[key] is not None}
 
     def get_paginated_response(self, data):
         match self.viewset:

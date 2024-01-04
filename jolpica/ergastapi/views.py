@@ -312,7 +312,7 @@ class PitStopViewSet(ErgastModelViewSet):
 
 class LapViewSet(ErgastModelViewSet):
     serializer_class = serializers.LapSerializer
-    lookup_field = None
+    lookup_field = "number"
 
     query_session_entries = "session_entry__"
     query_team = "session_entry__race_entry__team_driver__team__"
