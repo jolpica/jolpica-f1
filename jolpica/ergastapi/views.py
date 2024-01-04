@@ -1,7 +1,7 @@
 from django.db.models import Count, F, Max, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets  # noqa: F401
-from rest_framework.exceptions import NotFound, ValidationError
+from rest_framework.exceptions import ValidationError
 
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Driver, RaceEntry, Season, Session, SessionType, Team, TeamDriver
@@ -22,6 +22,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
     query_season = None
     query_race = None
     query_lap = None
+    query_pitstop = None
 
     required_params = []
     order_by = []
@@ -35,9 +36,11 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         driver_ref=None,
         grid_position=None,
         race_position=None,
+        sprint_race_position=None,
         fastest_lap_rank=None,
         ergast_status_id=None,
         lap_number=None,
+        pitstop_number=None,
         **kwargs,
     ) -> Q:
         if fastest_lap_rank == "0":
@@ -55,8 +58,14 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             filters = filters & Q(**{f"{self.query_driver}reference": driver_ref})
         if lap_number:
             filters = filters & Q(**{f"{self.query_lap}number": lap_number})
-        if grid_position or race_position or fastest_lap_rank:
-            filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.RACE})
+        if pitstop_number:
+            filters = filters & Q(**{f"{self.query_pitstop}number": pitstop_number})
+        if grid_position or race_position or fastest_lap_rank or sprint_race_position:
+            if sprint_race_position:
+                filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.SPRINT_RACE})
+                race_position = sprint_race_position
+            else:
+                filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.RACE})
             if grid_position:
                 filters = filters & Q(**{f"{self.query_session_entries}grid": grid_position})
             if race_position:
@@ -67,8 +76,6 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             filters = filters & Q(
                 **{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]}
             )
-        if self.lookup_field is not None and self.lookup_field in kwargs:
-            filters = filters & Q(**{self.lookup_field: kwargs[self.lookup_field]})
         return filters
 
     def validate_parameters(self):
@@ -84,11 +91,13 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             or (self.query_team is None and self.kwargs.get("team_ref"))
             or (self.query_driver is None and self.kwargs.get("driver_ref"))
             or (self.query_lap is None and self.kwargs.get("lap_number"))
+            or (self.query_pitstop is None and self.kwargs.get("pitstop_number"))
             or (
                 self.query_session_entries is None
                 and (
                     self.kwargs.get("grid_position")
                     or self.kwargs.get("race_position")
+                    or self.kwargs.get("sprint_race_position")
                     or self.kwargs.get("fastest_lap_rank")
                     or self.kwargs.get("ergast_status_id")
                 )
@@ -112,6 +121,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
 
 class SeasonViewSet(ErgastModelViewSet):
     serializer_class = serializers.SeasonSerializer
+    lookup_field = None
 
     query_session_entries = "team_drivers__race_entries__session_entries__"
     query_team = "team_drivers__team__"
@@ -138,7 +148,6 @@ class CircuitViewSet(ErgastModelViewSet):
         return super().get_queryset()
 
 
-# season relation
 class RaceViewSet(ErgastModelViewSet):
     serializer_class = serializers.RaceSerializer
     lookup_field = None
@@ -185,7 +194,7 @@ class StatusViewSet(ErgastModelViewSet):
 
 class ConstructorViewSet(ErgastModelViewSet):
     serializer_class = serializers.ConstructorSerializer
-    lookup_field = "reference"
+    lookup_field = "team_ref"
 
     query_session_entries = "team_drivers__race_entries__session_entries__"
     query_team = ""
@@ -198,7 +207,7 @@ class ConstructorViewSet(ErgastModelViewSet):
 
 class DriverViewSet(ErgastModelViewSet):
     serializer_class = serializers.DriverSerializer
-    lookup_field = "reference"
+    lookup_field = "driver_ref"
 
     query_session_entries = "team_drivers__race_entries__session_entries__"
     query_team = "team_drivers__team__"
@@ -211,7 +220,7 @@ class DriverViewSet(ErgastModelViewSet):
 
 class ResultViewSet(ErgastModelViewSet):
     serializer_class = serializers.RaceResultsSerializer
-    lookup_field = None
+    lookup_field = "race_position"
 
     query_session_entries = ""
     query_team = "race_entry__team_driver__team__"
@@ -242,13 +251,14 @@ class ResultViewSet(ErgastModelViewSet):
 
 class SprintViewSet(ResultViewSet):
     serializer_class = serializers.SprintResultsSerializer
+    lookup_field = "sprint_race_position"
 
     result_session_type = SessionType.SPRINT_RACE
 
 
 class QualifyingViewSet(ErgastModelViewSet):
     serializer_class = serializers.QualifyingResultsSerializer
-    lookup_field = None
+    lookup_field = "grid_position"
 
     query_session_entries = "session_entries__"
     query_team = "team_driver__team__"
@@ -258,10 +268,16 @@ class QualifyingViewSet(ErgastModelViewSet):
     query_race = "race__"
     order_by = ["race"]
 
-    def get_criteria_filters(self, *args, **kwargs) -> Q:
-        return super().get_criteria_filters(*args, **kwargs) & Q(session_entries__position__isnull=False)
+    def get_criteria_filters(self, *args, grid_position=None, **kwargs) -> Q:
+        # Grid position is handled in get_queryset
+        filters = Q(session_entries__position__isnull=False)
+        return super().get_criteria_filters(*args, **kwargs) & filters
 
     def get_queryset(self) -> QuerySet:
+        if grid_position := self.kwargs.get("grid_position", None):
+            grid_filters = Q(session_entries__session__type=SessionType.RACE) & Q(session_entries__grid=grid_position)
+        else:
+            grid_filters = Q()
         qs = (
             super()
             .get_queryset()
@@ -269,7 +285,7 @@ class QualifyingViewSet(ErgastModelViewSet):
                 driver_sess_count=Count("session_entries", filter=Q(session_entries__session__type__startswith="Q")),
                 max_position=Min("session_entries__position", filter=Q(session_entries__session__type__startswith="Q")),
             )
-            .filter(driver_sess_count__gt=0)
+            .filter(grid_filters, driver_sess_count__gt=0)
             .order_by(*self.order_by, "max_position")
             .select_related("race__circuit", "race__season", "team_driver__team", "team_driver__driver")
             .prefetch_related(Prefetch("race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))
@@ -279,7 +295,7 @@ class QualifyingViewSet(ErgastModelViewSet):
 
 class PitStopViewSet(ErgastModelViewSet):
     serializer_class = serializers.PitStopSerializer
-    lookup_field = "number"
+    lookup_field = "pitstop_number"
 
     query_session_entries = "session_entry__"
     query_team = "session_entry__race_entry__team_driver__team__"
@@ -288,6 +304,7 @@ class PitStopViewSet(ErgastModelViewSet):
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
     query_lap = "lap__"
+    query_pitstop = ""
 
     required_params = ["season_year", "race_round"]
     order_by = ["local_timestamp"]
@@ -314,7 +331,7 @@ class PitStopViewSet(ErgastModelViewSet):
 
 class LapViewSet(ErgastModelViewSet):
     serializer_class = serializers.LapSerializer
-    lookup_field = "number"
+    lookup_field = "lap_number"
 
     query_session_entries = "session_entry__"
     query_team = "session_entry__race_entry__team_driver__team__"
@@ -322,6 +339,7 @@ class LapViewSet(ErgastModelViewSet):
     query_circuit = "session_entry__race_entry__race__circuit__"
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
+    query_lap = ""
 
     required_params = ["season_year", "race_round"]
     order_by = ["number", "position"]
