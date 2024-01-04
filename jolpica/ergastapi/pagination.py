@@ -23,6 +23,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "race_position": "position",
             "ergast_status_id": "status",
             "fastest_lap_rank": "fastest",
+            "lap_number": "lap",
         }
         if self.viewset == "PitStopViewSet":
             name_map["number"] = "stop"
