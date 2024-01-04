@@ -21,10 +21,23 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "driver_ref": "driverId",
             "grid_position": "grid",
             "race_position": "position",
+            "sprint_race_position": None,
             "ergast_status_id": "status",
             "fastest_lap_rank": "fastest",
+            "lap_number": "lap",
+            "pitstop_number": "stop",
+            "driver_standings_position": "driverStandings",
+            "constructor_standings_position": "constructorStandings",
         }
-        return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
+        criteria_dict = {
+            name_map[key]: val for key, val in self.kwargs.items() if key != "format" and name_map[key] is not None
+        }
+        last_path_section = self.request.get_full_path().lower().rstrip(".json").rsplit("/", maxsplit=1)[1]
+        if self.viewset == "QualifyingViewSet" and last_path_section != "qualifying":
+            criteria_dict.pop("grid", None)
+        if self.viewset == "LapViewSet" and last_path_section != "laps":
+            criteria_dict.pop("lap", None)
+        return criteria_dict
 
     def get_paginated_response(self, data):
         match self.viewset:
@@ -35,14 +48,16 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet" | "PitStopViewSet" | "LapViewSet":
                 self.model = "Race"
 
-        if self.viewset == "DriverStandingViewSet":
+        if self.viewset in {"DriverStandingViewSet","ConstructorStandingViewSet"}:
             table_name = "StandingsTable"
             data_name = "StandingsLists"
-            data = [{**self.get_criteria_dict(), "DriverStandings": data}]
-        elif self.viewset == "ConstructorStandingViewSet":
-            table_name = "StandingsTable"
-            data_name = "StandingsLists"
-            data = [{**self.get_criteria_dict(), "ConstructorStandings": data}]
+            if self.viewset == "DriverStandingViewSet":
+                criteria_key, data_key = "driverStandings", "DriverStandings"
+            else:
+                criteria_key, data_key = "constructorStandings", "ConstructorStandings"
+            criteria = self.get_criteria_dict()
+            criteria.pop(criteria_key, None)
+            data = [{**criteria, data_key: data}]
         else:
             table_name = self.model.capitalize() + "Table"
             data_name = self.model.capitalize().rstrip("s") + "s"
