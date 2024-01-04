@@ -13,6 +13,7 @@ from .status_mapping import ERGAST_STATUS_MAPPING
 class ErgastModelViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     pagination_class = pagination.ErgastAPIPagination
+    lookup_field = None
 
     query_session_entries = ""
     query_team = ""
@@ -62,6 +63,8 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             filters = filters & Q(
                 **{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]}
             )
+        if self.lookup_field is not None and self.lookup_field in kwargs:
+            filters = filters & Q(**{self.lookup_field: kwargs[self.lookup_field]})
         return filters
 
     def validate_parameters(self):
@@ -252,7 +255,7 @@ class QualifyingViewSet(ErgastModelViewSet):
 
 class PitStopViewSet(ErgastModelViewSet):
     serializer_class = serializers.PitStopSerializer
-    lookup_field = None
+    lookup_field = "number"
 
     query_session_entries = "session_entry__"
     query_team = "session_entry__race_entry__team_driver__team__"
