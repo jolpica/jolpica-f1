@@ -48,6 +48,7 @@ criteria = [
     r"(results/(?P<race_position>[a-zA-Z0-9_]+)/)",
     r"(fastest/(?P<fastest_lap_rank>[a-zA-Z0-9_]+)/)",
     r"(status/(?P<ergast_status_id>[a-zA-Z0-9_]+)/)",
+    r"(laps/(?P<lap_number>[a-zA-Z0-9_]+)/)",
 ]
 season_criteria = r"(?P<season_year>[0-9]{4})"
 round_criteria = r"(?P<race_round>[0-9]{1,2})"
