@@ -1,7 +1,7 @@
 from django.db.models import Count, F, Max, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
 from django.db.models.query import QuerySet
 from rest_framework import permissions, viewsets  # noqa: F401
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import NotFound, ValidationError
 
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Driver, RaceEntry, Season, Session, SessionType, Team, TeamDriver
@@ -15,12 +15,13 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
     pagination_class = pagination.ErgastAPIPagination
     lookup_field = None
 
-    query_session_entries = ""
-    query_team = ""
-    query_driver = ""
-    query_circuit = ""
-    query_season = ""
-    query_race = ""
+    query_session_entries = None
+    query_team = None
+    query_driver = None
+    query_circuit = None
+    query_season = None
+    query_race = None
+    query_lap = None
 
     required_params = []
     order_by = []
@@ -36,6 +37,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         race_position=None,
         fastest_lap_rank=None,
         ergast_status_id=None,
+        lap_number=None,
         **kwargs,
     ) -> Q:
         if fastest_lap_rank == "0":
@@ -51,6 +53,8 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             filters = filters & Q(**{f"{self.query_team}reference": team_ref})
         if driver_ref:
             filters = filters & Q(**{f"{self.query_driver}reference": driver_ref})
+        if lap_number:
+            filters = filters & Q(**{f"{self.query_lap}number": lap_number})
         if grid_position or race_position or fastest_lap_rank:
             filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.RACE})
             if grid_position:
@@ -73,6 +77,24 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
                 raise ValidationError(
                     {"detail": f"Bad Request: Missing one of the required parameters {self.required_params}"}, code=400
                 )
+        if (
+            (self.query_season is None and self.kwargs.get("season_year"))
+            or (self.query_race is None and self.kwargs.get("race_round"))
+            or (self.query_circuit is None and self.kwargs.get("circuit_ref"))
+            or (self.query_team is None and self.kwargs.get("team_ref"))
+            or (self.query_driver is None and self.kwargs.get("driver_ref"))
+            or (self.query_lap is None and self.kwargs.get("lap_number"))
+            or (
+                self.query_session_entries is None
+                and (
+                    self.kwargs.get("grid_position")
+                    or self.kwargs.get("race_position")
+                    or self.kwargs.get("fastest_lap_rank")
+                    or self.kwargs.get("ergast_status_id")
+                )
+            )
+        ):
+            raise NotFound({"detail": "Not Found: Unsupported Filter for endpoint."})
 
     def get_queryset(self) -> QuerySet:
         self.validate_parameters()
@@ -263,6 +285,7 @@ class PitStopViewSet(ErgastModelViewSet):
     query_circuit = "session_entry__race_entry__race__circuit__"
     query_season = "session_entry__race_entry__race__season__"
     query_race = "session_entry__race_entry__race__"
+    query_lap = "lap__"
 
     required_params = ["season_year", "race_round"]
     order_by = ["local_timestamp"]
