@@ -24,6 +24,8 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "ergast_status_id": "status",
             "fastest_lap_rank": "fastest",
         }
+        if self.viewset == "PitStopViewSet":
+            name_map["number"] = "stop"
         return {name_map[key]: val for key, val in self.kwargs.items() if key != "format"}
 
     def get_paginated_response(self, data):
