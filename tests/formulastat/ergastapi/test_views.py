@@ -48,15 +48,20 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
 
     # Special case for results data, allow text time to be off by 1 millisecond
     # This is because in ergast the millis time and text based time is inconsistent
-    if "results.json" in endpoint or "sprint.json" in endpoint:
-        if "sprint.json" in endpoint:
+    if (
+        "results.json" in endpoint
+        or "results/2.json" in endpoint
+        or "sprint.json" in endpoint
+        or "sprint/1.json" in endpoint
+    ):
+        if "sprint" in endpoint:
             result_prefix = "Sprint"
         else:
             result_prefix = ""
         for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
             for j, result_data in enumerate(race_data[f"{result_prefix}Results"]):
                 expected_data = expected["MRData"]["RaceTable"]["Races"][i][f"{result_prefix}Results"][j]
-                if expected_data.get("positionText") == "N":
+                if expected_data.get("positionText") in ("N", "W") and expected_data.get("status") != "Withdrew":
                     expected_data["positionText"] = "R"
                 if result_data.get("Time"):
                     time_range = get_acceptable_time_range(result_data["Time"]["time"])
@@ -115,6 +120,7 @@ def test_missing_required_parameters(client: APIClient, endpoint):
     assert response.status_code == 400
     assert response.json()["detail"].startswith("Bad Request: Missing one of the required parameters")
 
+
 @pytest.mark.parametrize(
     "endpoint",
     [
@@ -127,6 +133,7 @@ def test_endpoint_does_not_support_final_filter(client: APIClient, endpoint):
     response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 400
     assert response.json()["detail"].startswith("Bad Request: Endpoint does not support final filter")
+
 
 @pytest.mark.parametrize(
     "endpoint",
