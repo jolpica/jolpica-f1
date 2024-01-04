@@ -107,6 +107,8 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
         "2023/laps.json",
         "pitstops.json",
         "2023/pitstops.json",
+        "2023/races/1.json",
+        "seasons/2010.json",
     ],
 )
 @pytest.mark.django_db

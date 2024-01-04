@@ -25,11 +25,13 @@ endpoints = {
         "2019/20/constructors.json",
         "2019/99/constructors.json",
         "2019/constructors.json",
+        "constructors/red_bull.json",
     ],
     "drivers": [
         "2018/1/drivers.json",
         "2018/99/drivers.json",
         "2018/drivers.json",
+        "drivers/alonso.json",
     ],
     "laps": [
         "2013/18/laps.json?offset=45",
@@ -49,6 +51,7 @@ endpoints = {
         "constructors/red_bull/qualifying.json",
         "drivers/alonso/qualifying.json",
         "drivers/alonso/qualifying.json?offset=220",
+        "2015/qualifying/1.json",
     ],
     "races": [
         "2021/7/races.json",
@@ -62,6 +65,7 @@ endpoints = {
         "constructors/red_bull/results.json",
         "constructors/red_bull/results.json?offset=15",
         "drivers/alonso/results.json",
+        "2017/results/2.json",
     ],
     "seasons": [
         "2023/5/seasons.json",
@@ -83,9 +87,10 @@ endpoints = {
         "grid/999/constructors/notexist/seasons.json",
     ],
     "sprint": [
-        "2016/3/sprint.json",
-        "2016/99/sprint.json",
-        "2016/sprint.json",
+        "2023/3/sprint.json",
+        "2023/99/sprint.json",
+        "2023/sprint.json",
+        "2023/sprint/1.json",
         "constructors/red_bull/sprint.json",
         "drivers/alonso/sprint.json",
     ],
@@ -93,6 +98,7 @@ endpoints = {
         "2020/17/status.json",
         "2020/99/status.json",
         "2020/status.json",
+        "2020/status/131.json",
         "constructors/red_bull/circuits/monaco/status.json",
         "constructors/red_bull/grid/1/status.json",
         "constructors/red_bull/results/11/status.json",
@@ -105,10 +111,12 @@ endpoints = {
     "driverstandings": [
         "2023/22/driverstandings.json",
         "1980/14/driverstandings.json?limit=21",
+        "2023/driverstandings/1.json",
     ],
     "constructorstandings": [
         "2023/22/constructorstandings.json",
         "2023/13/constructorstandings.json",
+        "2023/constructorstandings/1.json",
     ],
 }
 
