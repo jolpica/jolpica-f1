@@ -21,15 +21,21 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "driver_ref": "driverId",
             "grid_position": "grid",
             "race_position": "position",
+            "sprint_race_position": None,
             "ergast_status_id": "status",
             "fastest_lap_rank": "fastest",
             "lap_number": "lap",
+            "pitstop_number": "stop",
         }
-        if self.viewset == "PitStopViewSet":
-            name_map["number"] = "stop"
-        elif self.viewset == "LapViewSet":
-            name_map["number"] = None
-        return {name_map[key]: val for key, val in self.kwargs.items() if key != "format" and name_map[key] is not None}
+        criteria_dict = {
+            name_map[key]: val for key, val in self.kwargs.items() if key != "format" and name_map[key] is not None
+        }
+        last_path_section = self.request.get_full_path().lower().rstrip(".json").rsplit("/", maxsplit=1)[1]
+        if self.viewset == "QualifyingViewSet" and last_path_section != "qualifying":
+            criteria_dict.pop("grid", None)
+        if self.viewset == "LapViewSet" and last_path_section != "laps":
+            criteria_dict.pop("lap", None)
+        return criteria_dict
 
     def get_paginated_response(self, data):
         match self.viewset:

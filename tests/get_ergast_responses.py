@@ -62,7 +62,6 @@ endpoints = {
         "2017/99/results.json",
         "2017/9/results.json",
         "2017/results.json",
-        "constructors/red_bull/results.json",
         "constructors/red_bull/results.json?offset=15",
         "drivers/alonso/results.json",
         "2017/results/2.json",
