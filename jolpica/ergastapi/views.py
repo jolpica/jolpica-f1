@@ -104,7 +104,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
 
     def retrieve(self, request, **kwargs):
         if self.lookup_field is None:
-            raise NotFound({"detail": "Bad Request: Endpoint does not support final filter."})
+            raise ValidationError({"detail": "Bad Request: Endpoint does not support final filter."})
         # lookup_field should be the first listed criteria when using retrieve
         self.kwargs = {self.lookup_field: kwargs[self.lookup_field], **self.kwargs}
         return self.list(request)
@@ -141,7 +141,7 @@ class CircuitViewSet(ErgastModelViewSet):
 # season relation
 class RaceViewSet(ErgastModelViewSet):
     serializer_class = serializers.RaceSerializer
-    lookup_field = "pk"
+    lookup_field = None
 
     query_session_entries = "race_entries__session_entries__"
     query_team = "race_entries__team_driver__team__"
