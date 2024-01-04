@@ -26,6 +26,8 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "fastest_lap_rank": "fastest",
             "lap_number": "lap",
             "pitstop_number": "stop",
+            "driver_standings_position": "driverStandings",
+            "constructor_standings_position": "constructorStandings",
         }
         criteria_dict = {
             name_map[key]: val for key, val in self.kwargs.items() if key != "format" and name_map[key] is not None
@@ -46,14 +48,16 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet" | "PitStopViewSet" | "LapViewSet":
                 self.model = "Race"
 
-        if self.viewset == "DriverStandingViewSet":
+        if self.viewset in {"DriverStandingViewSet","ConstructorStandingViewSet"}:
             table_name = "StandingsTable"
             data_name = "StandingsLists"
-            data = [{**self.get_criteria_dict(), "DriverStandings": data}]
-        elif self.viewset == "ConstructorStandingViewSet":
-            table_name = "StandingsTable"
-            data_name = "StandingsLists"
-            data = [{**self.get_criteria_dict(), "ConstructorStandings": data}]
+            if self.viewset == "DriverStandingViewSet":
+                criteria_key, data_key = "driverStandings", "DriverStandings"
+            else:
+                criteria_key, data_key = "constructorStandings", "ConstructorStandings"
+            criteria = self.get_criteria_dict()
+            criteria.pop(criteria_key, None)
+            data = [{**criteria, data_key: data}]
         else:
             table_name = self.model.capitalize() + "Table"
             data_name = self.model.capitalize().rstrip("s") + "s"
