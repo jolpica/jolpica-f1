@@ -75,7 +75,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         for param in self.required_params:
             if param not in self.kwargs.keys():
                 raise ValidationError(
-                    {"detail": f"Bad Request: Missing one of the required parameters {self.required_params}"}, code=400
+                    {"detail": f"Bad Request: Missing one of the required parameters {self.required_params}."}, code=400
                 )
         if (
             (self.query_season is None and self.kwargs.get("season_year"))
@@ -94,7 +94,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
                 )
             )
         ):
-            raise NotFound({"detail": "Not Found: Unsupported Filter for endpoint."})
+            raise ValidationError({"detail": "Bad Request: Unsupported filter for endpoint."})
 
     def get_queryset(self) -> QuerySet:
         self.validate_parameters()
@@ -103,6 +103,8 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         return model.objects.filter(filters).order_by(*self.order_by).distinct()
 
     def retrieve(self, request, **kwargs):
+        if self.lookup_field is None:
+            raise NotFound({"detail": "Bad Request: Endpoint does not support final filter."})
         # lookup_field should be the first listed criteria when using retrieve
         self.kwargs = {self.lookup_field: kwargs[self.lookup_field], **self.kwargs}
         return self.list(request)
