@@ -64,7 +64,7 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
                     assert expected_data["Time"]["time"].rstrip("0") in time_range
                     del result_data["Time"]["time"]
                     del expected_data["Time"]["time"]
-    if "laps.json" in endpoint:
+    if "laps.json" in endpoint or "laps/1.json" in endpoint:
         for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
             for j, laps_data in enumerate(race_data["Laps"]):
                 for k, timing_data in enumerate(laps_data["Timings"]):
