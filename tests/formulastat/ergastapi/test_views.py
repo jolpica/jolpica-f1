@@ -107,8 +107,6 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
         "2023/laps.json",
         "pitstops.json",
         "2023/pitstops.json",
-        "2023/races/1.json",
-        "seasons/2010.json",
     ],
 )
 @pytest.mark.django_db
@@ -116,3 +114,29 @@ def test_missing_required_parameters(client: APIClient, endpoint):
     response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 400
     assert response.json()["detail"].startswith("Bad Request: Missing one of the required parameters")
+
+@pytest.mark.parametrize(
+    "endpoint",
+    [
+        "2023/races/1.json",
+        "seasons/2010.json",
+    ],
+)
+@pytest.mark.django_db
+def test_endpoint_does_not_support_final_filter(client: APIClient, endpoint):
+    response = client.get(f"/ergast/f1/{endpoint}")
+    assert response.status_code == 400
+    assert response.json()["detail"].startswith("Bad Request: Endpoint does not support final filter")
+
+@pytest.mark.parametrize(
+    "endpoint",
+    [
+        "2023/11/laps/1/races.json",
+        "2023/11/laps/1/drivers.json",
+    ],
+)
+@pytest.mark.django_db
+def test_unsupported_filter_for_endpoint(client: APIClient, endpoint):
+    response = client.get(f"/ergast/f1/{endpoint}")
+    assert response.status_code == 400
+    assert response.json()["detail"].startswith("Bad Request: Unsupported filter for endpoint")
