@@ -34,10 +34,13 @@ endpoints = {
     "laps": [
         "2013/18/laps.json?offset=45",
         "2013/1/laps.json",
+        "2013/10/laps/1.json",
     ],
     "pitstops": [
         "2014/5/pitstops.json",
         "2014/5/pitstops.json?offset=30",
+        "2014/10/pitstops/2.json",
+        "2014/10/laps/7/pitstops.json",
     ],
     "qualifying": [
         "2015/13/qualifying.json",
