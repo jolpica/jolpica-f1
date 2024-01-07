@@ -48,7 +48,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             case "ResultViewSet" | "SprintViewSet" | "QualifyingViewSet" | "PitStopViewSet" | "LapViewSet":
                 self.model = "Race"
 
-        if self.viewset in {"DriverStandingViewSet","ConstructorStandingViewSet"}:
+        if self.viewset in {"DriverStandingViewSet", "ConstructorStandingViewSet"}:
             table_name = "StandingsTable"
             data_name = "StandingsLists"
             if self.viewset == "DriverStandingViewSet":
