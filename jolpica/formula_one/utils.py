@@ -1,4 +1,4 @@
-from .models import ChampionshipBestResultsType, ChampionshipSplitType
+from .models import ResultsChampionshipScheme, SplitChampionshipScheme
 
 
 def calculate_championship_points(
@@ -17,11 +17,11 @@ def calculate_championship_points(
             clean_round_points[round] = float(points)
 
     splits: list[list[float]] = []
-    if split_type == ChampionshipSplitType.NONE:
+    if split_type == SplitChampionshipScheme.NONE:
         splits.append(list(clean_round_points.values()))
-    elif split_type in (ChampionshipSplitType.HALF_LARGER_BACK, ChampionshipSplitType.HALF_LARGER_FRONT):
+    elif split_type in (SplitChampionshipScheme.HALF_LARGER_BACK, SplitChampionshipScheme.HALF_LARGER_FRONT):
         splits = [[], []]
-        if split_type == ChampionshipSplitType.HALF_LARGER_FRONT:
+        if split_type == SplitChampionshipScheme.HALF_LARGER_FRONT:
             rounds_in_first_split = (total_rounds + 1) // 2
         else:
             rounds_in_first_split = total_rounds // 2
@@ -32,13 +32,13 @@ def calculate_championship_points(
     else:
         raise ValueError("Invalid season split type")
 
-    if best_results_type == ChampionshipBestResultsType.NONE:
+    if best_results_type == ResultsChampionshipScheme.NONE:
         return None
 
     # Sort points from most to least (unless the point scheme uses all results)
-    if best_results_type != ChampionshipBestResultsType.ALL:
-        if best_results_type == ChampionshipBestResultsType.ALL_BUT_ONE:
-            if split_type == ChampionshipSplitType.NONE:
+    if best_results_type != ResultsChampionshipScheme.ALL:
+        if best_results_type == ResultsChampionshipScheme.ALL_BUT_ONE:
+            if split_type == SplitChampionshipScheme.NONE:
                 take_until_indexes = [total_rounds - 1]
             else:
                 take_until_indexes = [rounds_in_first_split - 1, (total_rounds - rounds_in_first_split) - 1]
