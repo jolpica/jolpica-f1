@@ -6,7 +6,7 @@ if TYPE_CHECKING:
     from . import Session
 
 
-class RacePointScheme(models.IntegerChoices):
+class PositionPointScheme(models.IntegerChoices):
     """How many points should be awarded for a finishing position"""
 
     NONE = 0, "No Points Awarded"
@@ -49,7 +49,7 @@ class SharedDrivePointScheme(models.IntegerChoices):
     SHARED_HIGHEST_FINISH = 3, "Shared Points of highest finish"
 
 
-class PointScheme(models.Model):
+class PointSystem(models.Model):
     """Session point calculation rules"""
 
     id = models.BigAutoField(primary_key=True)
@@ -57,9 +57,9 @@ class PointScheme(models.Model):
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
-    driver_points = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
+    driver_position_points = models.PositiveSmallIntegerField(choices=PositionPointScheme.choices)
     driver_fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
-    team_points = models.PositiveSmallIntegerField(choices=RacePointScheme.choices)
+    team_position_points = models.PositiveSmallIntegerField(choices=PositionPointScheme.choices)
     team_fastest_lap = models.PositiveSmallIntegerField(choices=FastestLapPointScheme.choices, default=0)
     partial = models.PositiveSmallIntegerField(choices=PartialPointScheme.choices, default=0)
     shared_drive = models.PositiveSmallIntegerField(
@@ -71,15 +71,15 @@ class PointScheme(models.Model):
         constraints: ClassVar = [
             models.UniqueConstraint(
                 fields=[
-                    "driver_points",
+                    "driver_position_points",
                     "driver_fastest_lap",
-                    "team_points",
+                    "team_position_points",
                     "team_fastest_lap",
                     "partial",
                     "shared_drive",
                     "is_double_points",
                 ],
-                name="point_scheme_unique",
+                name="point_system_unique",
             )
         ]
 
