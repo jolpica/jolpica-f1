@@ -521,8 +521,6 @@ class DriverStandingSerializer(ErgastModelSerializer):
 
 class ConstructorStandingSerializer(ErgastModelSerializer):
     def to_representation(self, instance: Team) -> Any:
-        season_year = instance.season_year
-
         round_points = defaultdict(float)
         wins = 0
         for team_driver in instance.team_drivers.all():
