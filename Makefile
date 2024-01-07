@@ -36,6 +36,7 @@ import-and-update:
 	python manage.py migrate
 	python manage.py shell -c "from jolpica.formula_one.import_from_ergast import run_import; run_import()"
 	make test-fixture 
+	make standings-fixture
 	pytest --create-db
 	
 deploy:

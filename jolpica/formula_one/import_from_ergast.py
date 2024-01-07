@@ -22,7 +22,7 @@ from jolpica.ergast.models import (
     Status,
 )
 from jolpica.formula_one.models import (
-    ChampionshipScheme,
+    ChampionshipSystem,
     Circuit,
     Driver,
     Lap,
@@ -111,7 +111,7 @@ def get_point_scheme(year: int, ref: str) -> PointSystem:
     raise NotImplementedError()
 
 
-def year_to_championship_scheme(year: int) -> ChampionshipScheme:
+def year_to_championship_system(year: int) -> ChampionshipSystem:
     if year >= 1950 and year <= 1953:
         ref = "s1950"
     elif year >= 1954 and year <= 1957:
@@ -132,7 +132,7 @@ def year_to_championship_scheme(year: int) -> ChampionshipScheme:
         ref = "s1991"
     else:
         raise ValueError(f"Invalid year: {year}")
-    return ChampionshipScheme.objects.get(reference=ref)
+    return ChampionshipSystem.objects.get(reference=ref)
 
 
 # fmt: off
@@ -198,7 +198,7 @@ def run_import():
     assert PitStops.objects.filter(lap__isnull=True).count() == 0
     # fixtures
     call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
-    call_command("loaddata", "jolpica/formula_one/fixtures/championship_schemes.json")
+    call_command("loaddata", "jolpica/formula_one/fixtures/championship_systems.json")
 
     # Data Fixes
     # wrong constructor in quali
@@ -711,5 +711,5 @@ def run_import():
     # Add championship point schemes
     seasons = Season.objects.all()
     for season in seasons:
-        season.championship_scheme = year_to_championship_scheme(season.year)
-    Season.objects.bulk_update(seasons, ["championship_scheme"])
+        season.championship_system = year_to_championship_system(season.year)
+    Season.objects.bulk_update(seasons, ["championship_system"])
