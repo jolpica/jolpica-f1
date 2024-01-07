@@ -280,7 +280,7 @@
     }
 },
 {
-    "model": "formula_one.championshipscheme",
+    "model": "formula_one.championshipsystem",
     "pk": 9,
     "fields": {
         "reference": "s1991",
@@ -586,7 +586,7 @@
     }
 },
 {
-    "model": "formula_one.championshipscheme",
+    "model": "formula_one.championshipsystem",
     "pk": 8,
     "fields": {
         "reference": "s1981",
@@ -668,7 +668,7 @@
     }
 },
 {
-    "model": "formula_one.championshipscheme",
+    "model": "formula_one.championshipsystem",
     "pk": 7,
     "fields": {
         "reference": "s1980",
@@ -974,7 +974,7 @@
     }
 },
 {
-    "model": "formula_one.championshipscheme",
+    "model": "formula_one.championshipsystem",
     "pk": 6,
     "fields": {
         "reference": "s1979",
@@ -2470,7 +2470,7 @@
     }
 },
 {
-    "model": "formula_one.championshipscheme",
+    "model": "formula_one.championshipsystem",
     "pk": 5,
     "fields": {
         "reference": "s1967",
@@ -5996,7 +5996,7 @@
     }
 },
 {
-    "model": "formula_one.championshipscheme",
+    "model": "formula_one.championshipsystem",
     "pk": 3,
     "fields": {
         "reference": "s1958",
@@ -6256,7 +6256,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 179,
+    "pk": 180,
     "fields": {
         "base_team": null,
         "reference": "jordan",
@@ -6522,7 +6522,7 @@
     "model": "formula_one.season",
     "pk": 48,
     "fields": {
-        "championship_scheme": 9,
+        "championship_system": 9,
         "year": 1997,
         "wikipedia": "http://en.wikipedia.org/wiki/1997_Formula_One_season"
     }
@@ -6904,7 +6904,7 @@
     "model": "formula_one.season",
     "pk": 36,
     "fields": {
-        "championship_scheme": 8,
+        "championship_system": 8,
         "year": 1985,
         "wikipedia": "http://en.wikipedia.org/wiki/1985_Formula_One_season"
     }
@@ -7132,7 +7132,7 @@
     "model": "formula_one.season",
     "pk": 31,
     "fields": {
-        "championship_scheme": 7,
+        "championship_system": 7,
         "year": 1980,
         "wikipedia": "http://en.wikipedia.org/wiki/1980_Formula_One_season"
     }
@@ -7287,7 +7287,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 1,
+    "pk": 5,
     "fields": {
         "base_team": null,
         "reference": "alfa",
@@ -7579,7 +7579,7 @@
     "model": "formula_one.season",
     "pk": 30,
     "fields": {
-        "championship_scheme": 6,
+        "championship_system": 6,
         "year": 1979,
         "wikipedia": "http://en.wikipedia.org/wiki/1979_Formula_One_season"
     }
@@ -8151,7 +8151,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 141,
+    "pk": 143,
     "fields": {
         "base_team": null,
         "reference": "fittipaldi",
@@ -8296,7 +8296,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 143,
+    "pk": 141,
     "fields": {
         "base_team": null,
         "reference": "shadow-ford",
@@ -8512,7 +8512,7 @@
     "model": "formula_one.season",
     "pk": 26,
     "fields": {
-        "championship_scheme": 5,
+        "championship_system": 5,
         "year": 1975,
         "wikipedia": "http://en.wikipedia.org/wiki/1975_Formula_One_season"
     }
@@ -8715,6 +8715,20 @@
 },
 {
     "model": "formula_one.driver",
+    "pk": 453,
+    "fields": {
+        "reference": "moser",
+        "forename": "Silvio",
+        "surname": "Moser",
+        "abbreviation": null,
+        "nationality": "Swiss",
+        "permanent_car_number": null,
+        "date_of_birth": "1941-04-24",
+        "wikipedia": "http://en.wikipedia.org/wiki/Silvio_Moser"
+    }
+},
+{
+    "model": "formula_one.driver",
     "pk": 468,
     "fields": {
         "reference": "elford",
@@ -8739,20 +8753,6 @@
         "permanent_car_number": null,
         "date_of_birth": "1940-04-04",
         "wikipedia": "http://en.wikipedia.org/wiki/Richard_Attwood"
-    }
-},
-{
-    "model": "formula_one.driver",
-    "pk": 453,
-    "fields": {
-        "reference": "moser",
-        "forename": "Silvio",
-        "surname": "Moser",
-        "abbreviation": null,
-        "nationality": "Swiss",
-        "permanent_car_number": null,
-        "date_of_birth": "1941-04-24",
-        "wikipedia": "http://en.wikipedia.org/wiki/Silvio_Moser"
     }
 },
 {
@@ -9050,7 +9050,7 @@
     "model": "formula_one.season",
     "pk": 20,
     "fields": {
-        "championship_scheme": 5,
+        "championship_system": 5,
         "year": 1969,
         "wikipedia": "http://en.wikipedia.org/wiki/1969_Formula_One_season"
     }
@@ -9766,7 +9766,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 62,
+    "pk": 61,
     "fields": {
         "base_team": null,
         "reference": "vhristensen",
@@ -9861,7 +9861,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 27,
+    "pk": 32,
     "fields": {
         "base_team": null,
         "reference": "kuzma",
@@ -9900,7 +9900,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 10,
+    "pk": 9,
     "fields": {
         "base_team": null,
         "reference": "kurtis_kraft",
@@ -9978,7 +9978,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 32,
+    "pk": 30,
     "fields": {
         "base_team": null,
         "reference": "trevis",
@@ -10092,7 +10092,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 9,
+    "pk": 11,
     "fields": {
         "base_team": null,
         "reference": "watson",
@@ -10144,7 +10144,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 71,
+    "pk": 72,
     "fields": {
         "base_team": null,
         "reference": "cooper-castellotti",
@@ -10169,7 +10169,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 72,
+    "pk": 71,
     "fields": {
         "base_team": null,
         "reference": "scarab",
@@ -10194,7 +10194,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 65,
+    "pk": 66,
     "fields": {
         "base_team": null,
         "reference": "jbw",
@@ -10442,7 +10442,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 2,
+    "pk": 3,
     "fields": {
         "base_team": null,
         "reference": "maserati",
@@ -10623,20 +10623,6 @@
 },
 {
     "model": "formula_one.driver",
-    "pk": 29,
-    "fields": {
-        "reference": "trintignant",
-        "forename": "Maurice",
-        "surname": "Trintignant",
-        "abbreviation": null,
-        "nationality": "French",
-        "permanent_car_number": null,
-        "date_of_birth": "1917-10-30",
-        "wikipedia": "http://en.wikipedia.org/wiki/Maurice_Trintignant"
-    }
-},
-{
-    "model": "formula_one.driver",
     "pk": 82,
     "fields": {
         "reference": "moss",
@@ -10647,6 +10633,20 @@
         "permanent_car_number": null,
         "date_of_birth": "1929-09-17",
         "wikipedia": "http://en.wikipedia.org/wiki/Stirling_Moss"
+    }
+},
+{
+    "model": "formula_one.driver",
+    "pk": 29,
+    "fields": {
+        "reference": "trintignant",
+        "forename": "Maurice",
+        "surname": "Trintignant",
+        "abbreviation": null,
+        "nationality": "French",
+        "permanent_car_number": null,
+        "date_of_birth": "1917-10-30",
+        "wikipedia": "http://en.wikipedia.org/wiki/Maurice_Trintignant"
     }
 },
 {
@@ -10665,7 +10665,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 8,
+    "pk": 7,
     "fields": {
         "base_team": null,
         "reference": "ferrari",
@@ -10716,7 +10716,7 @@
     "model": "formula_one.season",
     "pk": 11,
     "fields": {
-        "championship_scheme": 3,
+        "championship_system": 3,
         "year": 1960,
         "wikipedia": "http://en.wikipedia.org/wiki/1960_Formula_One_season"
     }
@@ -11039,7 +11039,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2881,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 720,
         "season": 48,
         "role": null
@@ -11059,7 +11059,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2879,
     "fields": {
-        "team": 179,
+        "team": 180,
         "driver": 748,
         "season": 48,
         "role": null
@@ -11079,7 +11079,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2877,
     "fields": {
-        "team": 179,
+        "team": 180,
         "driver": 744,
         "season": 48,
         "role": null
@@ -11219,7 +11219,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2863,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 703,
         "season": 48,
         "role": null
@@ -11236,14 +11236,14 @@
     }
 },
 {
-    "model": "formula_one.pointscheme",
+    "model": "formula_one.pointsystem",
     "pk": 14,
     "fields": {
         "reference": "r1991",
         "name": "1991 - 2002 Race Points",
-        "driver_points": 5,
+        "driver_position_points": 5,
         "driver_fastest_lap": 0,
-        "team_points": 5,
+        "team_position_points": 5,
         "team_fastest_lap": 0,
         "partial": 2,
         "shared_drive": 0,
@@ -11594,7 +11594,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2415,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 615,
         "season": 36,
         "role": null
@@ -11678,7 +11678,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2408,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 581,
         "season": 36,
         "role": null
@@ -11718,7 +11718,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2404,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 597,
         "season": 36,
         "role": null
@@ -11838,7 +11838,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2392,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 599,
         "season": 36,
         "role": null
@@ -11858,7 +11858,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2390,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 630,
         "season": 36,
         "role": null
@@ -11936,7 +11936,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2224,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 622,
         "season": 31,
         "role": null
@@ -12004,7 +12004,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2220,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 525,
         "season": 31,
         "role": null
@@ -12404,7 +12404,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2194,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 586,
         "season": 31,
         "role": null
@@ -12414,7 +12414,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2193,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 485,
         "season": 31,
         "role": null
@@ -12434,7 +12434,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2191,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 511,
         "season": 31,
         "role": null
@@ -12444,7 +12444,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2190,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 508,
         "season": 31,
         "role": null
@@ -12474,7 +12474,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2187,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 591,
         "season": 31,
         "role": null
@@ -12494,7 +12494,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2185,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 598,
         "season": 31,
         "role": null
@@ -12521,14 +12521,14 @@
     }
 },
 {
-    "model": "formula_one.pointscheme",
+    "model": "formula_one.pointsystem",
     "pk": 13,
     "fields": {
         "reference": "r1980",
         "name": "1980 - 1990 Race Points",
-        "driver_points": 3,
+        "driver_position_points": 3,
         "driver_fastest_lap": 0,
-        "team_points": 3,
+        "team_position_points": 3,
         "team_fastest_lap": 0,
         "partial": 2,
         "shared_drive": 0,
@@ -12577,7 +12577,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2181,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 575,
         "season": 30,
         "role": null
@@ -12641,7 +12641,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2176,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 525,
         "season": 30,
         "role": null
@@ -12809,7 +12809,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2169,
     "fields": {
-        "team": 1,
+        "team": 5,
         "driver": 591,
         "season": 30,
         "role": null
@@ -12959,7 +12959,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2161,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 511,
         "season": 30,
         "role": null
@@ -13039,7 +13039,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2153,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 586,
         "season": 30,
         "role": null
@@ -13099,7 +13099,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2147,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 485,
         "season": 30,
         "role": null
@@ -13227,7 +13227,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1942,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 509,
         "season": 26,
         "role": null
@@ -13775,7 +13775,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1904,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 500,
         "season": 26,
         "role": null
@@ -13795,7 +13795,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1902,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 507,
         "season": 26,
         "role": null
@@ -13885,7 +13885,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1893,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 530,
         "season": 26,
         "role": null
@@ -13945,7 +13945,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1887,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 499,
         "season": 26,
         "role": null
@@ -13965,7 +13965,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1885,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 482,
         "season": 26,
         "role": null
@@ -14002,14 +14002,14 @@
     }
 },
 {
-    "model": "formula_one.pointscheme",
+    "model": "formula_one.pointsystem",
     "pk": 12,
     "fields": {
         "reference": "r1975",
         "name": "1975 - 1979 Race Points",
-        "driver_points": 3,
+        "driver_position_points": 3,
         "driver_fastest_lap": 0,
-        "team_points": 3,
+        "team_position_points": 3,
         "team_fastest_lap": 0,
         "partial": 1,
         "shared_drive": 0,
@@ -14194,7 +14194,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1601,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 413,
         "season": 20,
         "role": null
@@ -14274,6 +14274,16 @@
 },
 {
     "model": "formula_one.teamdriver",
+    "pk": 1597,
+    "fields": {
+        "team": 97,
+        "driver": 453,
+        "season": 20,
+        "role": null
+    }
+},
+{
+    "model": "formula_one.teamdriver",
     "pk": 1596,
     "fields": {
         "team": 60,
@@ -14288,16 +14298,6 @@
     "fields": {
         "team": 94,
         "driver": 426,
-        "season": 20,
-        "role": null
-    }
-},
-{
-    "model": "formula_one.teamdriver",
-    "pk": 1597,
-    "fields": {
-        "team": 97,
-        "driver": 453,
         "season": 20,
         "role": null
     }
@@ -14394,7 +14394,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1588,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 404,
         "season": 20,
         "role": null
@@ -14521,14 +14521,14 @@
     }
 },
 {
-    "model": "formula_one.pointscheme",
+    "model": "formula_one.pointsystem",
     "pk": 11,
     "fields": {
         "reference": "r1962",
         "name": "1962 - 1974 Race Points",
-        "driver_points": 3,
+        "driver_position_points": 3,
         "driver_fastest_lap": 0,
-        "team_points": 3,
+        "team_position_points": 3,
         "team_fastest_lap": 0,
         "partial": 0,
         "shared_drive": 0,
@@ -14573,7 +14573,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1089,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 355,
         "season": 11,
         "role": null
@@ -14583,7 +14583,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1088,
     "fields": {
-        "team": 71,
+        "team": 72,
         "driver": 305,
         "season": 11,
         "role": null
@@ -14637,7 +14637,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1084,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 214,
         "season": 11,
         "role": null
@@ -14737,7 +14737,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1074,
     "fields": {
-        "team": 71,
+        "team": 72,
         "driver": 282,
         "season": 11,
         "role": null
@@ -14859,7 +14859,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1066,
     "fields": {
-        "team": 72,
+        "team": 71,
         "driver": 339,
         "season": 11,
         "role": null
@@ -14879,7 +14879,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1064,
     "fields": {
-        "team": 71,
+        "team": 72,
         "driver": 335,
         "season": 11,
         "role": null
@@ -14923,7 +14923,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1061,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 348,
         "season": 11,
         "role": null
@@ -15021,7 +15021,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1054,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 287,
         "season": 11,
         "role": null
@@ -15041,7 +15041,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1052,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 66,
         "season": 11,
         "role": null
@@ -15051,7 +15051,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1051,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 291,
         "season": 11,
         "role": null
@@ -15071,7 +15071,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1049,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 92,
         "season": 11,
         "role": null
@@ -15091,7 +15091,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1047,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 230,
         "season": 11,
         "role": null
@@ -15101,7 +15101,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1046,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 288,
         "season": 11,
         "role": null
@@ -15121,7 +15121,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1044,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 38,
         "season": 11,
         "role": null
@@ -15131,7 +15131,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1043,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 177,
         "season": 11,
         "role": null
@@ -15151,7 +15151,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1041,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 49,
         "season": 11,
         "role": null
@@ -15171,7 +15171,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1039,
     "fields": {
-        "team": 62,
+        "team": 61,
         "driver": 345,
         "season": 11,
         "role": null
@@ -15181,7 +15181,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1038,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 228,
         "season": 11,
         "role": null
@@ -15201,7 +15201,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1036,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 95,
         "season": 11,
         "role": null
@@ -15211,7 +15211,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1035,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 50,
         "season": 11,
         "role": null
@@ -15221,7 +15221,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1034,
     "fields": {
-        "team": 27,
+        "team": 32,
         "driver": 208,
         "season": 11,
         "role": null
@@ -15231,7 +15231,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1033,
     "fields": {
-        "team": 27,
+        "team": 32,
         "driver": 46,
         "season": 11,
         "role": null
@@ -15251,7 +15251,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1031,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 245,
         "season": 11,
         "role": null
@@ -15261,7 +15261,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1030,
     "fields": {
-        "team": 32,
+        "team": 30,
         "driver": 344,
         "season": 11,
         "role": null
@@ -15281,7 +15281,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1028,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 343,
         "season": 11,
         "role": null
@@ -15291,7 +15291,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1027,
     "fields": {
-        "team": 32,
+        "team": 30,
         "driver": 128,
         "season": 11,
         "role": null
@@ -15331,7 +15331,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1023,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 97,
         "season": 11,
         "role": null
@@ -15341,21 +15341,21 @@
     "model": "formula_one.teamdriver",
     "pk": 1022,
     "fields": {
-        "team": 9,
+        "team": 11,
         "driver": 58,
         "season": 11,
         "role": null
     }
 },
 {
-    "model": "formula_one.pointscheme",
+    "model": "formula_one.pointsystem",
     "pk": 9,
     "fields": {
         "reference": "r1960indi",
         "name": "1960 Indianapolis Points",
-        "driver_points": 2,
+        "driver_position_points": 2,
         "driver_fastest_lap": 0,
-        "team_points": 0,
+        "team_position_points": 0,
         "team_fastest_lap": 0,
         "partial": 0,
         "shared_drive": 0,
@@ -15390,7 +15390,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1020,
     "fields": {
-        "team": 72,
+        "team": 71,
         "driver": 342,
         "season": 11,
         "role": null
@@ -15400,7 +15400,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1019,
     "fields": {
-        "team": 71,
+        "team": 72,
         "driver": 242,
         "season": 11,
         "role": null
@@ -15410,7 +15410,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1018,
     "fields": {
-        "team": 72,
+        "team": 71,
         "driver": 341,
         "season": 11,
         "role": null
@@ -15430,7 +15430,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1016,
     "fields": {
-        "team": 65,
+        "team": 66,
         "driver": 271,
         "season": 11,
         "role": null
@@ -15500,7 +15500,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1009,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 339,
         "season": 11,
         "role": null
@@ -15544,7 +15544,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1006,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 242,
         "season": 11,
         "role": null
@@ -15554,7 +15554,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1005,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 338,
         "season": 11,
         "role": null
@@ -15564,7 +15564,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1004,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 337,
         "season": 11,
         "role": null
@@ -15614,7 +15614,7 @@
     "model": "formula_one.teamdriver",
     "pk": 999,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 336,
         "season": 11,
         "role": null
@@ -15624,7 +15624,7 @@
     "model": "formula_one.teamdriver",
     "pk": 998,
     "fields": {
-        "team": 2,
+        "team": 3,
         "driver": 335,
         "season": 11,
         "role": null
@@ -15654,7 +15654,7 @@
     "model": "formula_one.teamdriver",
     "pk": 995,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 27,
         "season": 11,
         "role": null
@@ -15674,7 +15674,7 @@
     "model": "formula_one.teamdriver",
     "pk": 993,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 293,
         "season": 11,
         "role": null
@@ -15704,7 +15704,7 @@
     "model": "formula_one.teamdriver",
     "pk": 990,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 259,
         "season": 11,
         "role": null
@@ -15725,7 +15725,7 @@
     "pk": 988,
     "fields": {
         "team": 59,
-        "driver": 29,
+        "driver": 82,
         "season": 11,
         "role": null
     }
@@ -15735,7 +15735,7 @@
     "pk": 987,
     "fields": {
         "team": 59,
-        "driver": 82,
+        "driver": 29,
         "season": 11,
         "role": null
     }
@@ -15744,7 +15744,7 @@
     "model": "formula_one.teamdriver",
     "pk": 986,
     "fields": {
-        "team": 8,
+        "team": 7,
         "driver": 276,
         "season": 11,
         "role": null
@@ -15761,14 +15761,14 @@
     }
 },
 {
-    "model": "formula_one.pointscheme",
+    "model": "formula_one.pointsystem",
     "pk": 8,
     "fields": {
         "reference": "r1960",
         "name": "1960 Race Points",
-        "driver_points": 2,
+        "driver_position_points": 2,
         "driver_fastest_lap": 0,
-        "team_points": 2,
+        "team_position_points": 2,
         "team_fastest_lap": 0,
         "partial": 0,
         "shared_drive": 0,
@@ -29847,6 +29847,42 @@
 },
 {
     "model": "formula_one.raceentry",
+    "pk": 7614,
+    "fields": {
+        "race": 317,
+        "team_driver": 2152,
+        "car_number": 22
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7613,
+    "fields": {
+        "race": 317,
+        "team_driver": 2154,
+        "car_number": 31
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7612,
+    "fields": {
+        "race": 317,
+        "team_driver": 2162,
+        "car_number": 3
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7611,
+    "fields": {
+        "race": 317,
+        "team_driver": 2149,
+        "car_number": 30
+    }
+},
+{
+    "model": "formula_one.raceentry",
     "pk": 7610,
     "fields": {
         "race": 317,
@@ -29915,42 +29951,6 @@
         "race": 317,
         "team_driver": 2153,
         "car_number": 12
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7614,
-    "fields": {
-        "race": 317,
-        "team_driver": 2152,
-        "car_number": 22
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7613,
-    "fields": {
-        "race": 317,
-        "team_driver": 2154,
-        "car_number": 31
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7612,
-    "fields": {
-        "race": 317,
-        "team_driver": 2162,
-        "car_number": 3
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7611,
-    "fields": {
-        "race": 317,
-        "team_driver": 2149,
-        "car_number": 30
     }
 },
 {
@@ -30215,42 +30215,6 @@
 },
 {
     "model": "formula_one.raceentry",
-    "pk": 7554,
-    "fields": {
-        "race": 315,
-        "team_driver": 2162,
-        "car_number": 3
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7553,
-    "fields": {
-        "race": 315,
-        "team_driver": 2143,
-        "car_number": 2
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7552,
-    "fields": {
-        "race": 315,
-        "team_driver": 2145,
-        "car_number": 25
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 7551,
-    "fields": {
-        "race": 315,
-        "team_driver": 2142,
-        "car_number": 26
-    }
-},
-{
-    "model": "formula_one.raceentry",
     "pk": 7576,
     "fields": {
         "race": 315,
@@ -30445,6 +30409,42 @@
         "race": 315,
         "team_driver": 2153,
         "car_number": 12
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7554,
+    "fields": {
+        "race": 315,
+        "team_driver": 2162,
+        "car_number": 3
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7553,
+    "fields": {
+        "race": 315,
+        "team_driver": 2143,
+        "car_number": 2
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7552,
+    "fields": {
+        "race": 315,
+        "team_driver": 2145,
+        "car_number": 25
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 7551,
+    "fields": {
+        "race": 315,
+        "team_driver": 2142,
+        "car_number": 26
     }
 },
 {
@@ -35423,6 +35423,60 @@
 },
 {
     "model": "formula_one.raceentry",
+    "pk": 3991,
+    "fields": {
+        "race": 176,
+        "team_driver": 1582,
+        "car_number": 15
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 3990,
+    "fields": {
+        "race": 176,
+        "team_driver": 1589,
+        "car_number": 5
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 3989,
+    "fields": {
+        "race": 176,
+        "team_driver": 1586,
+        "car_number": 14
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 3988,
+    "fields": {
+        "race": 176,
+        "team_driver": 1597,
+        "car_number": 17
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 3987,
+    "fields": {
+        "race": 176,
+        "team_driver": 1587,
+        "car_number": 10
+    }
+},
+{
+    "model": "formula_one.raceentry",
+    "pk": 3986,
+    "fields": {
+        "race": 176,
+        "team_driver": 1588,
+        "car_number": 11
+    }
+},
+{
+    "model": "formula_one.raceentry",
     "pk": 3985,
     "fields": {
         "race": 176,
@@ -35509,60 +35563,6 @@
         "race": 176,
         "team_driver": 1577,
         "car_number": 1
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 3991,
-    "fields": {
-        "race": 176,
-        "team_driver": 1582,
-        "car_number": 15
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 3990,
-    "fields": {
-        "race": 176,
-        "team_driver": 1589,
-        "car_number": 5
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 3989,
-    "fields": {
-        "race": 176,
-        "team_driver": 1586,
-        "car_number": 14
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 3988,
-    "fields": {
-        "race": 176,
-        "team_driver": 1597,
-        "car_number": 17
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 3987,
-    "fields": {
-        "race": 176,
-        "team_driver": 1587,
-        "car_number": 10
-    }
-},
-{
-    "model": "formula_one.raceentry",
-    "pk": 3986,
-    "fields": {
-        "race": 176,
-        "team_driver": 1588,
-        "car_number": 11
     }
 },
 {
@@ -37859,7 +37859,7 @@
     "pk": 2025,
     "fields": {
         "race": 85,
-        "team_driver": 987,
+        "team_driver": 988,
         "car_number": 36
     }
 },
@@ -64635,6 +64635,78 @@
 },
 {
     "model": "formula_one.sessionentry",
+    "pk": 7614,
+    "fields": {
+        "session": 949,
+        "race_entry": 7614,
+        "fastest_lap": null,
+        "position": 12,
+        "is_classified": false,
+        "status": 10,
+        "detail": "Accident",
+        "points": 0.0,
+        "grid": 24,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 69
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7613,
+    "fields": {
+        "session": 949,
+        "race_entry": 7613,
+        "fastest_lap": null,
+        "position": 11,
+        "is_classified": false,
+        "status": 10,
+        "detail": "Accident",
+        "points": 0.0,
+        "grid": 23,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 71
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7612,
+    "fields": {
+        "session": 949,
+        "race_entry": 7612,
+        "fastest_lap": null,
+        "position": 10,
+        "is_classified": false,
+        "status": 20,
+        "detail": "Disqualified",
+        "points": 0.0,
+        "grid": 17,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 72
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7611,
+    "fields": {
+        "session": 949,
+        "race_entry": 7611,
+        "fastest_lap": null,
+        "position": 9,
+        "is_classified": true,
+        "status": 1,
+        "detail": "+2 Laps",
+        "points": 0.0,
+        "grid": 13,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 78
+    }
+},
+{
+    "model": "formula_one.sessionentry",
     "pk": 7610,
     "fields": {
         "session": 949,
@@ -64775,78 +64847,6 @@
         "time": "01:50:25.400000",
         "fastest_lap_rank": null,
         "laps_completed": 80
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7614,
-    "fields": {
-        "session": 949,
-        "race_entry": 7614,
-        "fastest_lap": null,
-        "position": 12,
-        "is_classified": false,
-        "status": 10,
-        "detail": "Accident",
-        "points": 0.0,
-        "grid": 24,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 69
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7613,
-    "fields": {
-        "session": 949,
-        "race_entry": 7613,
-        "fastest_lap": null,
-        "position": 11,
-        "is_classified": false,
-        "status": 10,
-        "detail": "Accident",
-        "points": 0.0,
-        "grid": 23,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 71
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7612,
-    "fields": {
-        "session": 949,
-        "race_entry": 7612,
-        "fastest_lap": null,
-        "position": 10,
-        "is_classified": false,
-        "status": 20,
-        "detail": "Disqualified",
-        "points": 0.0,
-        "grid": 17,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 72
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7611,
-    "fields": {
-        "session": 949,
-        "race_entry": 7611,
-        "fastest_lap": null,
-        "position": 9,
-        "is_classified": true,
-        "status": 1,
-        "detail": "+2 Laps",
-        "points": 0.0,
-        "grid": 13,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 78
     }
 },
 {
@@ -65319,78 +65319,6 @@
 },
 {
     "model": "formula_one.sessionentry",
-    "pk": 7554,
-    "fields": {
-        "session": 943,
-        "race_entry": 7554,
-        "fastest_lap": null,
-        "position": 4,
-        "is_classified": true,
-        "status": 0,
-        "detail": "Finished",
-        "points": 3.0,
-        "grid": 8,
-        "time": "01:41:35.520000",
-        "fastest_lap_rank": null,
-        "laps_completed": 40
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7553,
-    "fields": {
-        "session": 943,
-        "race_entry": 7553,
-        "fastest_lap": null,
-        "position": 3,
-        "is_classified": true,
-        "status": 0,
-        "detail": "Finished",
-        "points": 4.0,
-        "grid": 3,
-        "time": "01:40:53.780000",
-        "fastest_lap_rank": null,
-        "laps_completed": 40
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7552,
-    "fields": {
-        "session": 943,
-        "race_entry": 7552,
-        "fastest_lap": null,
-        "position": 2,
-        "is_classified": true,
-        "status": 0,
-        "detail": "Finished",
-        "points": 6.0,
-        "grid": 2,
-        "time": "01:40:14.920000",
-        "fastest_lap_rank": null,
-        "laps_completed": 40
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 7551,
-    "fields": {
-        "session": 943,
-        "race_entry": 7551,
-        "fastest_lap": null,
-        "position": 1,
-        "is_classified": true,
-        "status": 0,
-        "detail": "Finished",
-        "points": 9.0,
-        "grid": 1,
-        "time": "01:40:09.640000",
-        "fastest_lap_rank": null,
-        "laps_completed": 40
-    }
-},
-{
-    "model": "formula_one.sessionentry",
     "pk": 7576,
     "fields": {
         "session": 943,
@@ -65783,6 +65711,78 @@
         "time": null,
         "fastest_lap_rank": null,
         "laps_completed": 39
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7554,
+    "fields": {
+        "session": 943,
+        "race_entry": 7554,
+        "fastest_lap": null,
+        "position": 4,
+        "is_classified": true,
+        "status": 0,
+        "detail": "Finished",
+        "points": 3.0,
+        "grid": 8,
+        "time": "01:41:35.520000",
+        "fastest_lap_rank": null,
+        "laps_completed": 40
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7553,
+    "fields": {
+        "session": 943,
+        "race_entry": 7553,
+        "fastest_lap": null,
+        "position": 3,
+        "is_classified": true,
+        "status": 0,
+        "detail": "Finished",
+        "points": 4.0,
+        "grid": 3,
+        "time": "01:40:53.780000",
+        "fastest_lap_rank": null,
+        "laps_completed": 40
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7552,
+    "fields": {
+        "session": 943,
+        "race_entry": 7552,
+        "fastest_lap": null,
+        "position": 2,
+        "is_classified": true,
+        "status": 0,
+        "detail": "Finished",
+        "points": 6.0,
+        "grid": 2,
+        "time": "01:40:14.920000",
+        "fastest_lap_rank": null,
+        "laps_completed": 40
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 7551,
+    "fields": {
+        "session": 943,
+        "race_entry": 7551,
+        "fastest_lap": null,
+        "position": 1,
+        "is_classified": true,
+        "status": 0,
+        "detail": "Finished",
+        "points": 9.0,
+        "grid": 1,
+        "time": "01:40:09.640000",
+        "fastest_lap_rank": null,
+        "laps_completed": 40
     }
 },
 {
@@ -75111,6 +75111,114 @@
 },
 {
     "model": "formula_one.sessionentry",
+    "pk": 3991,
+    "fields": {
+        "session": 526,
+        "race_entry": 3991,
+        "fastest_lap": null,
+        "position": 16,
+        "is_classified": false,
+        "status": 10,
+        "detail": "Accident",
+        "points": 0.0,
+        "grid": 13,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 0
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 3990,
+    "fields": {
+        "session": 526,
+        "race_entry": 3990,
+        "fastest_lap": null,
+        "position": 15,
+        "is_classified": false,
+        "status": 10,
+        "detail": "Accident",
+        "points": 0.0,
+        "grid": 8,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 9
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 3989,
+    "fields": {
+        "session": 526,
+        "race_entry": 3989,
+        "fastest_lap": null,
+        "position": 14,
+        "is_classified": false,
+        "status": 11,
+        "detail": "Gearbox",
+        "points": 0.0,
+        "grid": 6,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 9
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 3988,
+    "fields": {
+        "session": 526,
+        "race_entry": 3988,
+        "fastest_lap": null,
+        "position": 13,
+        "is_classified": false,
+        "status": 11,
+        "detail": "Halfshaft",
+        "points": 0.0,
+        "grid": 15,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 15
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 3987,
+    "fields": {
+        "session": 526,
+        "race_entry": 3987,
+        "fastest_lap": null,
+        "position": 12,
+        "is_classified": false,
+        "status": 11,
+        "detail": "Engine",
+        "points": 0.0,
+        "grid": 14,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 15
+    }
+},
+{
+    "model": "formula_one.sessionentry",
+    "pk": 3986,
+    "fields": {
+        "session": 526,
+        "race_entry": 3986,
+        "fastest_lap": null,
+        "position": 11,
+        "is_classified": false,
+        "status": 11,
+        "detail": "Differential",
+        "points": 0.0,
+        "grid": 2,
+        "time": null,
+        "fastest_lap_rank": null,
+        "laps_completed": 16
+    }
+},
+{
+    "model": "formula_one.sessionentry",
     "pk": 3985,
     "fields": {
         "session": 526,
@@ -75287,114 +75395,6 @@
         "time": "01:56:59.400000",
         "fastest_lap_rank": null,
         "laps_completed": 80
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 3991,
-    "fields": {
-        "session": 526,
-        "race_entry": 3991,
-        "fastest_lap": null,
-        "position": 16,
-        "is_classified": false,
-        "status": 10,
-        "detail": "Accident",
-        "points": 0.0,
-        "grid": 13,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 0
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 3990,
-    "fields": {
-        "session": 526,
-        "race_entry": 3990,
-        "fastest_lap": null,
-        "position": 15,
-        "is_classified": false,
-        "status": 10,
-        "detail": "Accident",
-        "points": 0.0,
-        "grid": 8,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 9
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 3989,
-    "fields": {
-        "session": 526,
-        "race_entry": 3989,
-        "fastest_lap": null,
-        "position": 14,
-        "is_classified": false,
-        "status": 11,
-        "detail": "Gearbox",
-        "points": 0.0,
-        "grid": 6,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 9
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 3988,
-    "fields": {
-        "session": 526,
-        "race_entry": 3988,
-        "fastest_lap": null,
-        "position": 13,
-        "is_classified": false,
-        "status": 11,
-        "detail": "Halfshaft",
-        "points": 0.0,
-        "grid": 15,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 15
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 3987,
-    "fields": {
-        "session": 526,
-        "race_entry": 3987,
-        "fastest_lap": null,
-        "position": 12,
-        "is_classified": false,
-        "status": 11,
-        "detail": "Engine",
-        "points": 0.0,
-        "grid": 14,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 15
-    }
-},
-{
-    "model": "formula_one.sessionentry",
-    "pk": 3986,
-    "fields": {
-        "session": 526,
-        "race_entry": 3986,
-        "fastest_lap": null,
-        "position": 11,
-        "is_classified": false,
-        "status": 11,
-        "detail": "Differential",
-        "points": 0.0,
-        "grid": 2,
-        "time": null,
-        "fastest_lap_rank": null,
-        "laps_completed": 16
     }
 },
 {

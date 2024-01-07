@@ -398,8 +398,8 @@ class DriverStandingViewSet(ErgastModelViewSet):
         season = (
             Season.objects.filter(year=season_year)
             .annotate(
-                championship_split=F("championship_scheme__driver_season_split"),
-                championship_best_results=F("championship_scheme__driver_best_results"),
+                championship_split=F("championship_system__driver_season_split"),
+                championship_best_results=F("championship_system__driver_best_results"),
                 season_rounds=Max("races__round"),
             )
             .first()
@@ -496,8 +496,8 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
         season = (
             Season.objects.filter(year=season_year)
             .annotate(
-                championship_split=F("championship_scheme__team_season_split"),
-                championship_best_results=F("championship_scheme__team_best_results"),
+                championship_split=F("championship_system__team_season_split"),
+                championship_best_results=F("championship_system__team_best_results"),
                 season_rounds=Max("races__round"),
             )
             .first()
