@@ -27,7 +27,7 @@ from jolpica.formula_one.models import (
     Driver,
     Lap,
     PitStop,
-    PointScheme,
+    PointSystem,
     Race,
     RaceEntry,
     Season,
@@ -69,7 +69,7 @@ def follow_wiki_redirects(url: str) -> str:
     return new_url
 
 
-def get_point_scheme(year: int, ref: str) -> PointScheme:
+def get_point_scheme(year: int, ref: str) -> PointSystem:
     if year <= 1953:
         return 2
     elif year <= 1954:
@@ -197,7 +197,7 @@ def map_status(status_id, qualifying=False, pos_text: str = "") -> None | Sessio
 def run_import():
     assert PitStops.objects.filter(lap__isnull=True).count() == 0
     # fixtures
-    call_command("loaddata", "jolpica/formula_one/fixtures/point_schemes.json")
+    call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
     call_command("loaddata", "jolpica/formula_one/fixtures/championship_schemes.json")
 
     # Data Fixes

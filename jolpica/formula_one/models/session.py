@@ -31,7 +31,7 @@ class Session(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="sessions")
-    point_scheme = models.ForeignKey("PointScheme", on_delete=models.PROTECT, related_name="sessions")
+    point_scheme = models.ForeignKey("PointSystem", on_delete=models.PROTECT, related_name="sessions")
     race_entries = models.ManyToManyField(
         "formula_one.RaceEntry", through="formula_one.SessionEntry", related_name="sessions"
     )
