@@ -1,6 +1,7 @@
 from .circuit import Circuit
 from .driver import Driver
 from .lap import Lap
+from .managed_views import DriverStanding
 from .pit_stop import PitStop
 from .point_scheme import (
     ChampionshipSystem,
@@ -17,6 +18,7 @@ from .session import Penalty, Session, SessionEntry, SessionStatus, SessionType
 from .team import BaseTeam, Team, TeamDriver, TeamDriverRole
 
 __all__ = [
+    "DriverStanding",
     "Circuit",
     "Driver",
     "Lap",
