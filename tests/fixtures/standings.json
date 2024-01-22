@@ -15992,7 +15992,7 @@
     "pk": 1808,
     "fields": {
         "race": 614,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-10-26",
         "time": null,
@@ -16203,7 +16203,7 @@
     "pk": 1806,
     "fields": {
         "race": 613,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-10-12",
         "time": null,
@@ -16414,7 +16414,7 @@
     "pk": 1804,
     "fields": {
         "race": 612,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-09-28",
         "time": null,
@@ -16625,7 +16625,7 @@
     "pk": 1802,
     "fields": {
         "race": 611,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-09-21",
         "time": null,
@@ -16836,7 +16836,7 @@
     "pk": 1800,
     "fields": {
         "race": 610,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-09-07",
         "time": null,
@@ -17047,7 +17047,7 @@
     "pk": 1798,
     "fields": {
         "race": 609,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-08-24",
         "time": null,
@@ -17258,7 +17258,7 @@
     "pk": 1796,
     "fields": {
         "race": 608,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-08-10",
         "time": null,
@@ -17469,7 +17469,7 @@
     "pk": 1794,
     "fields": {
         "race": 607,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-07-27",
         "time": null,
@@ -17680,7 +17680,7 @@
     "pk": 1792,
     "fields": {
         "race": 606,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-07-13",
         "time": null,
@@ -17891,7 +17891,7 @@
     "pk": 1790,
     "fields": {
         "race": 605,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-06-29",
         "time": null,
@@ -18102,7 +18102,7 @@
     "pk": 1788,
     "fields": {
         "race": 604,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-06-15",
         "time": null,
@@ -18313,7 +18313,7 @@
     "pk": 1786,
     "fields": {
         "race": 603,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-05-25",
         "time": null,
@@ -18524,7 +18524,7 @@
     "pk": 1784,
     "fields": {
         "race": 602,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-05-11",
         "time": null,
@@ -18735,7 +18735,7 @@
     "pk": 1782,
     "fields": {
         "race": 601,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-04-27",
         "time": null,
@@ -18946,7 +18946,7 @@
     "pk": 1780,
     "fields": {
         "race": 600,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-04-13",
         "time": null,
@@ -19157,7 +19157,7 @@
     "pk": 1778,
     "fields": {
         "race": 599,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-03-30",
         "time": null,
@@ -19386,7 +19386,7 @@
     "pk": 1776,
     "fields": {
         "race": 598,
-        "point_scheme": 14,
+        "point_system": 14,
         "type": "R",
         "date": "1997-03-09",
         "time": null,
@@ -19624,7 +19624,7 @@
     "pk": 1258,
     "fields": {
         "race": 420,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-11-03",
         "time": null,
@@ -19826,7 +19826,7 @@
     "pk": 1255,
     "fields": {
         "race": 419,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-10-19",
         "time": null,
@@ -20073,7 +20073,7 @@
     "pk": 1252,
     "fields": {
         "race": 418,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-10-06",
         "time": null,
@@ -20302,7 +20302,7 @@
     "pk": 1249,
     "fields": {
         "race": 417,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-09-15",
         "time": null,
@@ -20549,7 +20549,7 @@
     "pk": 1246,
     "fields": {
         "race": 416,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-09-08",
         "time": null,
@@ -20796,7 +20796,7 @@
     "pk": 1243,
     "fields": {
         "race": 415,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-08-25",
         "time": null,
@@ -21052,7 +21052,7 @@
     "pk": 1240,
     "fields": {
         "race": 414,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-08-18",
         "time": null,
@@ -21308,7 +21308,7 @@
     "pk": 1237,
     "fields": {
         "race": 413,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-08-04",
         "time": null,
@@ -21555,7 +21555,7 @@
     "pk": 1234,
     "fields": {
         "race": 412,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-07-21",
         "time": null,
@@ -21802,7 +21802,7 @@
     "pk": 1231,
     "fields": {
         "race": 411,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-07-07",
         "time": null,
@@ -22040,7 +22040,7 @@
     "pk": 1228,
     "fields": {
         "race": 410,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-06-23",
         "time": null,
@@ -22278,7 +22278,7 @@
     "pk": 1225,
     "fields": {
         "race": 409,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-06-16",
         "time": null,
@@ -22516,7 +22516,7 @@
     "pk": 1222,
     "fields": {
         "race": 408,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-05-19",
         "time": null,
@@ -22763,7 +22763,7 @@
     "pk": 1219,
     "fields": {
         "race": 407,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-05-05",
         "time": null,
@@ -23010,7 +23010,7 @@
     "pk": 1216,
     "fields": {
         "race": 406,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-04-21",
         "time": null,
@@ -23248,7 +23248,7 @@
     "pk": 1213,
     "fields": {
         "race": 405,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1985-04-07",
         "time": null,
@@ -23504,7 +23504,7 @@
     "pk": 1024,
     "fields": {
         "race": 342,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-10-05",
         "time": null,
@@ -23769,7 +23769,7 @@
     "pk": 1021,
     "fields": {
         "race": 341,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-09-28",
         "time": null,
@@ -24034,7 +24034,7 @@
     "pk": 1018,
     "fields": {
         "race": 340,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-09-14",
         "time": null,
@@ -24308,7 +24308,7 @@
     "pk": 1015,
     "fields": {
         "race": 339,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-08-31",
         "time": null,
@@ -24555,7 +24555,7 @@
     "pk": 1012,
     "fields": {
         "race": 338,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-08-17",
         "time": null,
@@ -24802,7 +24802,7 @@
     "pk": 1009,
     "fields": {
         "race": 337,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-08-10",
         "time": null,
@@ -25058,7 +25058,7 @@
     "pk": 1006,
     "fields": {
         "race": 336,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-07-13",
         "time": null,
@@ -25314,7 +25314,7 @@
     "pk": 1003,
     "fields": {
         "race": 335,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-06-29",
         "time": null,
@@ -25570,7 +25570,7 @@
     "pk": 1000,
     "fields": {
         "race": 334,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-05-18",
         "time": null,
@@ -25826,7 +25826,7 @@
     "pk": 997,
     "fields": {
         "race": 333,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-05-04",
         "time": null,
@@ -26082,7 +26082,7 @@
     "pk": 994,
     "fields": {
         "race": 332,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-03-30",
         "time": null,
@@ -26347,7 +26347,7 @@
     "pk": 991,
     "fields": {
         "race": 331,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-03-01",
         "time": null,
@@ -26612,7 +26612,7 @@
     "pk": 988,
     "fields": {
         "race": 330,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-01-27",
         "time": null,
@@ -26877,7 +26877,7 @@
     "pk": 985,
     "fields": {
         "race": 329,
-        "point_scheme": 13,
+        "point_system": 13,
         "type": "R",
         "date": "1980-01-13",
         "time": null,
@@ -27160,7 +27160,7 @@
     "pk": 982,
     "fields": {
         "race": 328,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-10-07",
         "time": null,
@@ -27443,7 +27443,7 @@
     "pk": 979,
     "fields": {
         "race": 327,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-09-30",
         "time": null,
@@ -27708,7 +27708,7 @@
     "pk": 976,
     "fields": {
         "race": 326,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-09-09",
         "time": null,
@@ -27955,7 +27955,7 @@
     "pk": 973,
     "fields": {
         "race": 325,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-08-26",
         "time": null,
@@ -28202,7 +28202,7 @@
     "pk": 970,
     "fields": {
         "race": 324,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-08-12",
         "time": null,
@@ -28449,7 +28449,7 @@
     "pk": 967,
     "fields": {
         "race": 323,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-07-29",
         "time": null,
@@ -28696,7 +28696,7 @@
     "pk": 964,
     "fields": {
         "race": 322,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-07-14",
         "time": null,
@@ -28952,7 +28952,7 @@
     "pk": 961,
     "fields": {
         "race": 321,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-07-01",
         "time": null,
@@ -29190,7 +29190,7 @@
     "pk": 958,
     "fields": {
         "race": 320,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-05-27",
         "time": null,
@@ -29455,7 +29455,7 @@
     "pk": 955,
     "fields": {
         "race": 319,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-05-13",
         "time": null,
@@ -29711,7 +29711,7 @@
     "pk": 952,
     "fields": {
         "race": 318,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-04-29",
         "time": null,
@@ -29958,7 +29958,7 @@
     "pk": 949,
     "fields": {
         "race": 317,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-04-08",
         "time": null,
@@ -30205,7 +30205,7 @@
     "pk": 946,
     "fields": {
         "race": 316,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-03-03",
         "time": null,
@@ -30452,7 +30452,7 @@
     "pk": 943,
     "fields": {
         "race": 315,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-02-04",
         "time": null,
@@ -30699,7 +30699,7 @@
     "pk": 940,
     "fields": {
         "race": 314,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1979-01-21",
         "time": null,
@@ -30928,7 +30928,7 @@
     "pk": 790,
     "fields": {
         "race": 264,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-10-05",
         "time": null,
@@ -31193,7 +31193,7 @@
     "pk": 787,
     "fields": {
         "race": 263,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-09-07",
         "time": null,
@@ -31476,7 +31476,7 @@
     "pk": 784,
     "fields": {
         "race": 262,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-08-17",
         "time": null,
@@ -31723,7 +31723,7 @@
     "pk": 781,
     "fields": {
         "race": 261,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-08-03",
         "time": null,
@@ -31988,7 +31988,7 @@
     "pk": 778,
     "fields": {
         "race": 260,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-07-19",
         "time": null,
@@ -32235,7 +32235,7 @@
     "pk": 775,
     "fields": {
         "race": 259,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-07-06",
         "time": null,
@@ -32473,7 +32473,7 @@
     "pk": 772,
     "fields": {
         "race": 258,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-06-22",
         "time": null,
@@ -32720,7 +32720,7 @@
     "pk": 769,
     "fields": {
         "race": 257,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-06-08",
         "time": null,
@@ -32949,7 +32949,7 @@
     "pk": 766,
     "fields": {
         "race": 256,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-05-25",
         "time": null,
@@ -33196,7 +33196,7 @@
     "pk": 763,
     "fields": {
         "race": 255,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-05-11",
         "time": null,
@@ -33443,7 +33443,7 @@
     "pk": 760,
     "fields": {
         "race": 254,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-04-27",
         "time": null,
@@ -33708,7 +33708,7 @@
     "pk": 757,
     "fields": {
         "race": 253,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-03-01",
         "time": null,
@@ -33928,7 +33928,7 @@
     "pk": 754,
     "fields": {
         "race": 252,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-01-26",
         "time": null,
@@ -34148,7 +34148,7 @@
     "pk": 751,
     "fields": {
         "race": 251,
-        "point_scheme": 12,
+        "point_system": 12,
         "type": "R",
         "date": "1975-01-12",
         "time": null,
@@ -34314,7 +34314,7 @@
     "pk": 550,
     "fields": {
         "race": 184,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-10-19",
         "time": null,
@@ -34489,7 +34489,7 @@
     "pk": 547,
     "fields": {
         "race": 183,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-10-05",
         "time": null,
@@ -34682,7 +34682,7 @@
     "pk": 544,
     "fields": {
         "race": 182,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-09-20",
         "time": null,
@@ -34830,7 +34830,7 @@
     "pk": 541,
     "fields": {
         "race": 181,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-09-07",
         "time": null,
@@ -34969,7 +34969,7 @@
     "pk": 538,
     "fields": {
         "race": 180,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-08-03",
         "time": null,
@@ -35135,7 +35135,7 @@
     "pk": 535,
     "fields": {
         "race": 179,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-07-19",
         "time": null,
@@ -35265,7 +35265,7 @@
     "pk": 532,
     "fields": {
         "race": 178,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-07-06",
         "time": null,
@@ -35413,7 +35413,7 @@
     "pk": 529,
     "fields": {
         "race": 177,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-06-21",
         "time": null,
@@ -35570,7 +35570,7 @@
     "pk": 526,
     "fields": {
         "race": 176,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-05-18",
         "time": null,
@@ -35709,7 +35709,7 @@
     "pk": 523,
     "fields": {
         "race": 175,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-05-04",
         "time": null,
@@ -35884,7 +35884,7 @@
     "pk": 520,
     "fields": {
         "race": 174,
-        "point_scheme": 11,
+        "point_system": 11,
         "type": "R",
         "date": "1969-03-01",
         "time": null,
@@ -36104,7 +36104,7 @@
     "pk": 280,
     "fields": {
         "race": 94,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-11-20",
         "time": null,
@@ -36270,7 +36270,7 @@
     "pk": 277,
     "fields": {
         "race": 93,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-09-04",
         "time": null,
@@ -36418,7 +36418,7 @@
     "pk": 274,
     "fields": {
         "race": 92,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-08-14",
         "time": null,
@@ -36656,7 +36656,7 @@
     "pk": 271,
     "fields": {
         "race": 91,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-07-16",
         "time": null,
@@ -36876,7 +36876,7 @@
     "pk": 268,
     "fields": {
         "race": 90,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-07-03",
         "time": null,
@@ -37060,7 +37060,7 @@
     "pk": 265,
     "fields": {
         "race": 89,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-06-19",
         "time": null,
@@ -37262,7 +37262,7 @@
     "pk": 262,
     "fields": {
         "race": 88,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-06-06",
         "time": null,
@@ -37572,7 +37572,7 @@
     "pk": 259,
     "fields": {
         "race": 87,
-        "point_scheme": 9,
+        "point_system": 9,
         "type": "R",
         "date": "1960-05-30",
         "time": null,
@@ -37801,7 +37801,7 @@
     "pk": 256,
     "fields": {
         "race": 86,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-05-29",
         "time": null,
@@ -38021,7 +38021,7 @@
     "pk": 253,
     "fields": {
         "race": 85,
-        "point_scheme": 8,
+        "point_system": 8,
         "type": "R",
         "date": "1960-02-07",
         "time": null,
