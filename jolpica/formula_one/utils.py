@@ -5,7 +5,6 @@ from django.db.models import F
 from .models import (
     DriverStanding,
     ResultsChampionshipScheme,
-    Season,
     SessionEntry,
     SessionType,
     SplitChampionshipScheme,
@@ -84,7 +83,7 @@ def generate_season_driver_standings(season, championship_system=None):
     if championship_system is None:
         championship_system = season.championship_system
     session_entries = list(
-        SessionEntry.objects.filter(session__race__season=season, session__point_scheme_id__gt=1)
+        SessionEntry.objects.filter(session__race__season=season, session__point_system_id__gt=1)
         .annotate(
             race_id=F("session__race__pk"),
             round=F("session__race__round"),

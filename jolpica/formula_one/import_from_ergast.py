@@ -69,7 +69,7 @@ def follow_wiki_redirects(url: str) -> str:
     return new_url
 
 
-def get_point_scheme(year: int, ref: str) -> PointSystem:
+def get_point_system(year: int, ref: str) -> PointSystem:
     if year <= 1953:
         return 2
     elif year <= 1954:
@@ -338,7 +338,7 @@ def run_import():
         race = Session(
             pk=session_count,
             race=new_item,
-            point_scheme_id=get_point_scheme(item.year_id, item.circuitId.circuitRef),
+            point_system_id=get_point_system(item.year_id, item.circuitId.circuitRef),
             type=SessionType.RACE,
             date=item.date,
             time=item.time,
@@ -355,7 +355,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=quali_types[0],
                 date=new_item.date - timedelta(first_quali),
             ).save()
@@ -363,7 +363,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=quali_types[1],
                 date=new_item.date - timedelta(1),
             ).save()
@@ -372,7 +372,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.QUALIFYING_BEST,
                 date=new_item.date - timedelta(1),
             ).save()
@@ -381,7 +381,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.QUALIFYING_ORDER,
                 date=new_item.date - timedelta(1),
             ).save()
@@ -389,7 +389,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.QUALIFYING_BEST,
                 date=new_item.date - timedelta(1),
             ).save()
@@ -399,7 +399,7 @@ def run_import():
                 Session(
                     pk=session_count,
                     race=new_item,
-                    point_scheme_id=1,
+                    point_system_id=1,
                     type=SessionType.QUALIFYING_AVG,
                     date=new_item.date - timedelta(1),
                 ).save()
@@ -407,7 +407,7 @@ def run_import():
                 Session(
                     pk=session_count,
                     race=new_item,
-                    point_scheme_id=1,
+                    point_system_id=1,
                     type=SessionType.QUALIFYING_AVG,
                     date=new_item.date - timedelta(0),
                 ).save()
@@ -416,7 +416,7 @@ def run_import():
                 Session(
                     pk=session_count,
                     race=new_item,
-                    point_scheme_id=1,
+                    point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
                 ).save()
@@ -426,7 +426,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.QUALIFYING_ONE,
                 date=date,
                 time=item.quali_time,
@@ -435,7 +435,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.QUALIFYING_TWO,
                 date=date,
                 time=item.quali_time,
@@ -444,7 +444,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.QUALIFYING_THREE,
                 date=date,
                 time=item.quali_time,
@@ -459,7 +459,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.PRACTICE_ONE,
                 date=fp1_date,
                 time=item.fp1_time,
@@ -468,7 +468,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.PRACTICE_TWO,
                 date=fp2_date,
                 time=item.fp2_time,
@@ -477,7 +477,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.PRACTICE_THREE,
                 date=fp3_date,
                 time=item.fp3_time,
@@ -488,7 +488,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.PRACTICE_ONE,
                 date=item.fp1_date,
                 time=item.fp1_time,
@@ -499,7 +499,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.PRACTICE_TWO,
                 date=item.fp2_date,
                 time=item.fp2_time,
@@ -509,7 +509,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=1,
+                point_system_id=1,
                 type=SessionType.PRACTICE_THREE,
                 date=item.fp3_date,
                 time=item.fp3_time,
@@ -521,7 +521,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=point_id,
+                point_system_id=point_id,
                 type=SessionType.SPRINT_RACE,
                 date=item.sprint_date,
                 time=item.sprint_time,
@@ -532,7 +532,7 @@ def run_import():
                 Session(
                     pk=session_count,
                     race=new_item,
-                    point_scheme_id=1,
+                    point_system_id=1,
                     type=ty,
                     date=item.fp2_date,
                     time=item.fp2_time,
@@ -541,7 +541,7 @@ def run_import():
             Session(
                 pk=session_count,
                 race=new_item,
-                point_scheme_id=23,
+                point_system_id=23,
                 type=SessionType.SPRINT_RACE,
                 date=item.sprint_date,
                 time=item.sprint_time,
