@@ -15,8 +15,9 @@ def create_driver_standings(apps, schema_editor):
         race_entry__team_driver__driver__reference="fangio",
         points=1.5,
     ).first()
-    entry.is_eligible_for_points = False
-    entry.save()
+    if entry:
+        entry.is_eligible_for_points = False
+        entry.save()
 
     driver_standings = []
     for season in Season.objects.all().select_related("championship_system"):
