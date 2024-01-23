@@ -233,7 +233,10 @@ class ResultViewSet(ErgastModelViewSet):
     result_session_type = SessionType.RACE
 
     def get_criteria_filters(self, *args, **kwargs) -> Q:
-        return super().get_criteria_filters(*args, **kwargs) & Q(session__type=self.result_session_type)
+        filters = Q(session__type=self.result_session_type)
+        if kwargs.get(self.lookup_field):
+            filters = filters & Q(is_classified=True)
+        return super().get_criteria_filters(*args, **kwargs) & filters
 
     def get_queryset(self) -> QuerySet:
         return (

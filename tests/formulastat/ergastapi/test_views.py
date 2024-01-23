@@ -51,8 +51,10 @@ def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_as
     if (
         "results.json" in endpoint
         or "results/2.json" in endpoint
+        or "results/15.json" in endpoint
         or "sprint.json" in endpoint
         or "sprint/1.json" in endpoint
+        or "sprint/17.json" in endpoint
     ):
         if "sprint" in endpoint:
             result_prefix = "Sprint"
