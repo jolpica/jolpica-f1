@@ -85,6 +85,7 @@ class SessionEntry(models.Model):
     detail = models.CharField(max_length=255, null=True, blank=True)
     # Race Specific
     points = models.FloatField(null=True, blank=True)
+    is_eligible_for_points = models.BooleanField(default=True)
     grid = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
     fastest_lap_rank = models.PositiveSmallIntegerField(null=True, blank=True)

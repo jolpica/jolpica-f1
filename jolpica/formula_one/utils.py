@@ -79,11 +79,13 @@ def highest_finish_from_encoded_finishing_position(encoded: str) -> int:
     return 1 + (len(encoded) - len(encoded.lstrip("0"))) // 2
 
 
-def generate_season_driver_standings(season, championship_system=None):
+def generate_season_driver_standings(season, championship_system=None, season_rounds=None):
     if championship_system is None:
         championship_system = season.championship_system
+    if season_rounds is None:
+        season_rounds = season.races.filter(is_cancelled=False).count()
     session_entries = list(
-        SessionEntry.objects.filter(session__race__season=season, session__point_system_id__gt=1)
+        SessionEntry.objects.filter(session__race__season_id=season.pk, session__point_system_id__gt=1)
         .annotate(
             race_id=F("session__race__pk"),
             round=F("session__race__round"),
@@ -99,37 +101,55 @@ def generate_season_driver_standings(season, championship_system=None):
         entries_dict[entry.round][entry.session_id][entry.driver_id].append(entry)
 
     driver_round_points = defaultdict(lambda: defaultdict(float))
-    driver_sort_key = defaultdict(lambda: [0.0, "00"])
+    driver_sort_key = defaultdict(lambda: [0.0, "00", "00"])
 
     driver_standings = []
     current_standings = []
     for round, entries_type_dict in entries_dict.items():
         race_id = None
         for session_id, driver_entries in entries_type_dict.items():
+            session_type = None
             driver_standings.extend(current_standings)
             current_standings = []
             for driver_id, entries in driver_entries.items():
+                position = None
                 for entry in entries:
                     race_id = entry.race_id
-                    driver_round_points[driver_id][round] += entry.points
-                    if entry.session_type == SessionType.RACE:
+                    session_type = entry.session_type
+                    if entry.is_eligible_for_points:
+                        driver_round_points[driver_id][round] += entry.points
+                    if position is None or position > entry.position:
+                        position = entry.position
+                if session_type == SessionType.RACE:
+                    if entry.is_classified:
                         driver_sort_key[driver_id][1] = add_to_encoded_finishing_positions(
-                            driver_sort_key[driver_id][1], entry.position
+                            driver_sort_key[driver_id][1], position
                         )
+                    else:
+                        driver_sort_key[driver_id][2] = add_to_encoded_finishing_positions(
+                            driver_sort_key[driver_id][2], position
+                        )
+
                 driver_sort_key[driver_id][0] = calculate_championship_points(
                     driver_round_points[driver_id],
                     split_type=championship_system.driver_season_split,
                     best_results_type=championship_system.driver_best_results,
-                    total_rounds=22,
+                    total_rounds=season_rounds,
                 )
+
             # session
             drivers_by_finishes = sorted(driver_sort_key.items(), key=lambda d: driver_sort_key[d[0]], reverse=True)
             position = 1
-            last_key = (-1, "")
-            for driver_id, (points, finish_string) in drivers_by_finishes:
-                sort_key = (points, finish_string)
+            draw_count = -1
+            last_key = (-1, "", "")
+            for driver_id, sort_key in drivers_by_finishes:
+                sort_key = tuple(sort_key)
+                points, finish_string, _ = sort_key
                 if sort_key < last_key:
-                    position += 1
+                    position += 1 + draw_count
+                    draw_count = 0
+                else:
+                    draw_count += 1
                 last_key = sort_key
                 current_standings.append(
                     DriverStanding(
