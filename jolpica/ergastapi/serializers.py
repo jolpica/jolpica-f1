@@ -165,12 +165,12 @@ class DriverSerializer(ErgastModelSerializer):
 
 def format_timedelta(time: timedelta) -> str:
     total_seconds = time.total_seconds()
-    hours, mins, secs, millis = (
+    hours, mins, secs = (
         total_seconds // (60 * 60),
         (total_seconds % (60 * 60)) // 60,
         total_seconds % (60) // 1,
-        (total_seconds % 1) * 1000 // 1,
     )
+    millis = time.microseconds // 1000
     display_time = ""
     if hours:
         display_time += f"{int(hours):02}:"
