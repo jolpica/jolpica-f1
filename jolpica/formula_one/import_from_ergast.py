@@ -21,6 +21,7 @@ from jolpica.ergast.models import (
     SprintResults,
     Status,
 )
+from jolpica.formula_one.data_correction import run_data_correction
 from jolpica.formula_one.models import (
     ChampionshipSystem,
     Circuit,
@@ -38,7 +39,6 @@ from jolpica.formula_one.models import (
     Team,
     TeamDriver,
 )
-from jolpica.formula_one.data_correction import run_data_correction
 
 
 def str_to_delta(timestamp: str | None) -> timedelta | None:
@@ -109,7 +109,7 @@ def get_point_system(year: int, ref: str) -> PointSystem:
         return 20
     elif year <= 2024:
         return 22
-    raise NotImplementedError()
+    raise NotImplementedError(f"{year} point system not implemented")
 
 
 def year_to_championship_system(year: int) -> ChampionshipSystem:
@@ -227,7 +227,7 @@ def run_import():
     circuit_map = {}
     completed = set()
     count = 1
-    for circ in tqdm(Circuits.objects.all().order_by("races").distinct()):
+    for circ in tqdm(Circuits.objects.all().order_by("races").distinct(), desc="Circuits"):
         if circ.pk in completed:
             continue
         circuit_map[circ.pk] = count
@@ -249,7 +249,7 @@ def run_import():
     season_map = {}
     completed = set()
     count = 1
-    for item in tqdm(Seasons.objects.all().order_by("year")):
+    for item in tqdm(Seasons.objects.all().order_by("year"), desc="Seasons"):
         if item.pk in completed:
             continue
         season_map[item.pk] = count
@@ -257,6 +257,7 @@ def run_import():
             pk=count,
             year=item.year,
             wikipedia=follow_wiki_redirects(item.url),
+            championship_system=year_to_championship_system(item.year),
         )
         new_item.save()
         count = count + 1
@@ -270,7 +271,7 @@ def run_import():
     for id in Results.objects.all().order_by("raceId", "-position").values_list("constructorId", flat=True):
         item_ids[id] = None
 
-    for item_id in tqdm(item_ids.keys()):
+    for item_id in tqdm(item_ids.keys(), desc="Teams"):
         if item_id in completed:
             continue
         item = Constructors.objects.get(pk=item_id)
@@ -295,7 +296,7 @@ def run_import():
     for id in Results.objects.all().order_by("raceId", "positionOrder").values_list("driverId", flat=True):
         item_ids[id] = None
 
-    for item_id in tqdm(item_ids.keys()):
+    for item_id in tqdm(item_ids.keys(), desc="Drivers"):
         if item_id in completed:
             continue
         item = Drivers.objects.get(pk=item_id)
@@ -320,7 +321,7 @@ def run_import():
     completed = set()
     count = 1
     session_count = 1
-    for item in tqdm(Races.objects.all()):
+    for item in tqdm(Races.objects.all(), desc="Race & Sessions"):
         if item.pk in completed:
             continue
         race_map[item.pk] = count
@@ -560,7 +561,7 @@ def run_import():
     lap_count = 1
 
     team_driver_map = defaultdict(lambda: defaultdict(defaultdict))
-    for item in tqdm(Results.objects.all().order_by("raceId", "positionOrder")):
+    for item in tqdm(Results.objects.all().order_by("raceId", "positionOrder"), desc="Results"):
         season_id = season_map[item.raceId.year_id]
         driver_id = driver_map[item.driverId_id]
         team_id = team_map[item.constructorId_id]
@@ -709,10 +710,4 @@ def run_import():
                 sprint_entry.fastest_lap = lap
             sprint_entry.save()
 
-    # Add championship point schemes
-    seasons = Season.objects.all()
-    for season in seasons:
-        season.championship_system = year_to_championship_system(season.year)
-    Season.objects.bulk_update(seasons, ["championship_system"])
-    
     run_data_correction()
