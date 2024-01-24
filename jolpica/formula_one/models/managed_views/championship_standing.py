@@ -10,10 +10,10 @@ class DriverStanding(models.Model):
     driver = models.ForeignKey("formula_one.Driver", on_delete=models.CASCADE, related_name="driver_standings")
     year = models.SmallIntegerField()
     round = models.PositiveSmallIntegerField()
-    position = models.SmallIntegerField()
+    position = models.SmallIntegerField(null=True)
     points = models.FloatField()
     win_count = models.SmallIntegerField()
-    highest_finish = models.SmallIntegerField()
+    highest_finish = models.SmallIntegerField(null=True)
     finish_string = models.CharField(max_length=255)
 
     is_disqualified = models.BooleanField(default=False)

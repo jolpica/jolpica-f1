@@ -75,7 +75,9 @@ def add_to_encoded_finishing_positions(encoded: str, position, amount=1):
     return encoded[:start] + f"{int(encoded[start:end]) + 1:0>2}" + encoded[end:]
 
 
-def highest_finish_from_encoded_finishing_position(encoded: str) -> int:
+def highest_finish_from_encoded_finishing_position(encoded: str) -> int | None:
+    if encoded.strip("0") == "":
+        return None
     return 1 + (len(encoded) - len(encoded.lstrip("0"))) // 2
 
 
@@ -101,7 +103,7 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
         entries_dict[entry.round][entry.session_id][entry.driver_id].append(entry)
 
     driver_round_points = defaultdict(lambda: defaultdict(float))
-    driver_sort_key = defaultdict(lambda: [0.0, "00", "00"])
+    driver_sort_key = defaultdict(lambda: [0.0, "", ""])
 
     driver_standings = []
     current_standings = []
@@ -113,15 +115,21 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
             current_standings = []
             for driver_id, entries in driver_entries.items():
                 position = None
+                is_classified = None
                 for entry in entries:
                     race_id = entry.race_id
                     session_type = entry.session_type
                     if entry.is_eligible_for_points:
                         driver_round_points[driver_id][round] += entry.points
-                    if position is None or position > entry.position:
+                    if (
+                        position is None
+                        or entry.position < position
+                        and (not is_classified or entry.is_classified is True)
+                    ):
                         position = entry.position
+                        is_classified = entry.is_classified
                 if session_type == SessionType.RACE:
-                    if entry.is_classified:
+                    if is_classified:
                         driver_sort_key[driver_id][1] = add_to_encoded_finishing_positions(
                             driver_sort_key[driver_id][1], position
                         )
@@ -157,9 +165,9 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
                         driver_id=driver_id,
                         year=season.year,
                         round=round,
-                        position=position,
+                        position=position if finish_string else None,
                         points=points,
-                        win_count=int(finish_string[:2]),
+                        win_count=int(finish_string[:2]) if finish_string else 0,
                         highest_finish=highest_finish_from_encoded_finishing_position(finish_string),
                         finish_string=finish_string,
                     )
@@ -172,3 +180,13 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
         standing.season_id = season.pk
     driver_standings.extend(current_standings)
     return driver_standings
+
+def create_driver_standings(apps, schema_editor):
+    Season = apps.get_model("formula_one", "Season")
+    DriverStanding = apps.get_model("formula_one", "DriverStanding")
+
+    driver_standings = []
+    for season in Season.objects.all().select_related("championship_system"):
+        driver_standings.extend(generate_season_driver_standings(season))
+    DriverStanding.objects.bulk_create(driver_standings)
+
