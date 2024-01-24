@@ -38,6 +38,7 @@ from jolpica.formula_one.models import (
     Team,
     TeamDriver,
 )
+from jolpica.formula_one.data_correction import run_data_correction
 
 
 def str_to_delta(timestamp: str | None) -> timedelta | None:
@@ -49,7 +50,7 @@ def str_to_delta(timestamp: str | None) -> timedelta | None:
 
 def follow_wiki_redirects(url: str) -> str:
     """Get URL that wikipedia will redirect to"""
-    return url
+    # return url
     title = url.lstrip("http://")
     title = title.lstrip("https://")
     title = title.lstrip("en.wikipedia.org/wiki/")
@@ -713,3 +714,5 @@ def run_import():
     for season in seasons:
         season.championship_system = year_to_championship_system(season.year)
     Season.objects.bulk_update(seasons, ["championship_system"])
+    
+    run_data_correction()
