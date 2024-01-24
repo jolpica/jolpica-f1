@@ -1,6 +1,7 @@
 # type: ignore
 from collections import defaultdict
 from datetime import datetime, timedelta
+from time import perf_counter
 
 import requests
 from django.contrib.gis.geos import Point
@@ -219,9 +220,9 @@ def run_import():
     )
     for r in old_qresults.difference(old_results):
         res = Results.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2])
-        quali = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2], number=r[3])
-        quali.number = res.number
-        quali.save()
+        sprint = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2], number=r[3])
+        sprint.number = res.number
+        sprint.save()
 
     # Circuits
     circuit_map = {}
@@ -321,6 +322,8 @@ def run_import():
     completed = set()
     count = 1
     session_count = 1
+    races_to_add = []
+    sessions_to_add = []
     for item in tqdm(Races.objects.all(), desc="Race & Sessions"):
         if item.pk in completed:
             continue
@@ -336,7 +339,7 @@ def run_import():
             wikipedia=follow_wiki_redirects(item.url),
             is_cancelled=False,
         )
-        new_item.save()
+        races_to_add.append(new_item)
         race = Session(
             pk=session_count,
             race=new_item,
@@ -346,7 +349,7 @@ def run_import():
             time=item.time,
             scheduled_laps=None,
         )
-        race.save()
+        sessions_to_add.append(race)
         session_count += 1
         if (item.year_id >= 1950 and item.year_id <= 1995) or item.year_id == 2003:
             if item.year_id == 2003:
@@ -354,103 +357,125 @@ def run_import():
             else:
                 quali_types = SessionType.QUALIFYING_BEST, SessionType.QUALIFYING_BEST
             first_quali = 3 if new_item.circuit.reference == "monaco" else 2
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=quali_types[0],
-                date=new_item.date - timedelta(first_quali),
-            ).save()
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=quali_types[0],
+                    date=new_item.date - timedelta(first_quali),
+                )
+            )
             session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=quali_types[1],
-                date=new_item.date - timedelta(1),
-            ).save()
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=quali_types[1],
+                    date=new_item.date - timedelta(1),
+                )
+            )
             session_count += 1
         elif item.year_id >= 1996 and item.year_id <= 2002:
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.QUALIFYING_BEST,
-                date=new_item.date - timedelta(1),
-            ).save()
-            session_count += 1
-        elif item.year_id == 2004:
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.QUALIFYING_ORDER,
-                date=new_item.date - timedelta(1),
-            ).save()
-            session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.QUALIFYING_BEST,
-                date=new_item.date - timedelta(1),
-            ).save()
-            session_count += 1
-        elif item.year_id == 2005:
-            if item.round <= 6:
-                Session(
-                    pk=session_count,
-                    race=new_item,
-                    point_system_id=1,
-                    type=SessionType.QUALIFYING_AVG,
-                    date=new_item.date - timedelta(1),
-                ).save()
-                session_count += 1
-                Session(
-                    pk=session_count,
-                    race=new_item,
-                    point_system_id=1,
-                    type=SessionType.QUALIFYING_AVG,
-                    date=new_item.date - timedelta(0),
-                ).save()
-                session_count += 1
-            else:
+            sessions_to_add.append(
                 Session(
                     pk=session_count,
                     race=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
-                ).save()
+                )
+            )
+            session_count += 1
+        elif item.year_id == 2004:
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.QUALIFYING_ORDER,
+                    date=new_item.date - timedelta(1),
+                )
+            )
+            session_count += 1
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.QUALIFYING_BEST,
+                    date=new_item.date - timedelta(1),
+                )
+            )
+            session_count += 1
+        elif item.year_id == 2005:
+            if item.round <= 6:
+                sessions_to_add.append(
+                    Session(
+                        pk=session_count,
+                        race=new_item,
+                        point_system_id=1,
+                        type=SessionType.QUALIFYING_AVG,
+                        date=new_item.date - timedelta(1),
+                    )
+                )
+                session_count += 1
+                sessions_to_add.append(
+                    Session(
+                        pk=session_count,
+                        race=new_item,
+                        point_system_id=1,
+                        type=SessionType.QUALIFYING_AVG,
+                        date=new_item.date - timedelta(0),
+                    )
+                )
+                session_count += 1
+            else:
+                sessions_to_add.append(
+                    Session(
+                        pk=session_count,
+                        race=new_item,
+                        point_system_id=1,
+                        type=SessionType.QUALIFYING_BEST,
+                        date=new_item.date - timedelta(1),
+                    )
+                )
                 session_count += 1
         elif item.year_id >= 2006:
             date = item.quali_date if item.quali_date else new_item.date - timedelta(1)
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.QUALIFYING_ONE,
-                date=date,
-                time=item.quali_time,
-            ).save()
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.QUALIFYING_ONE,
+                    date=date,
+                    time=item.quali_time,
+                )
+            )
             session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.QUALIFYING_TWO,
-                date=date,
-                time=item.quali_time,
-            ).save()
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.QUALIFYING_TWO,
+                    date=date,
+                    time=item.quali_time,
+                )
+            )
             session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.QUALIFYING_THREE,
-                date=date,
-                time=item.quali_time,
-            ).save()
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.QUALIFYING_THREE,
+                    date=date,
+                    time=item.quali_time,
+                )
+            )
             session_count += 1
         # free practice
         if item.year_id >= 2006 and item.year_id < 2021:
@@ -458,99 +483,119 @@ def run_import():
             fp1_date = item.fp1_date if item.fp1_date else item.date - timedelta(days_before)
             fp2_date = item.fp2_date if item.fp2_date else item.date - timedelta(days_before)
             fp3_date = item.fp3_date if item.fp3_date else item.date - timedelta(1)
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.PRACTICE_ONE,
-                date=fp1_date,
-                time=item.fp1_time,
-            ).save()
-            session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.PRACTICE_TWO,
-                date=fp2_date,
-                time=item.fp2_time,
-            ).save()
-            session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.PRACTICE_THREE,
-                date=fp3_date,
-                time=item.fp3_time,
-            ).save()
-            session_count += 1
-
-        if item.fp1_date:
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.PRACTICE_ONE,
-                date=item.fp1_date,
-                time=item.fp1_time,
-            ).save()
-            session_count += 1
-        # If fp2 date make fp2 session, unless year is 2023, then a sprint quali should be created
-        if item.fp2_date and not (item.year_id == 2023 and item.sprint_date):
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.PRACTICE_TWO,
-                date=item.fp2_date,
-                time=item.fp2_time,
-            ).save()
-            session_count += 1
-        if item.fp3_date:
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=1,
-                type=SessionType.PRACTICE_THREE,
-                date=item.fp3_date,
-                time=item.fp3_time,
-            ).save()
-            session_count += 1
-        # sprints
-        if item.year_id <= 2022 and item.sprint_date:
-            point_id = 19 if item.year_id == 2021 else 21
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=point_id,
-                type=SessionType.SPRINT_RACE,
-                date=item.sprint_date,
-                time=item.sprint_time,
-            ).save()
-            session_count += 1
-        elif item.sprint_date:
-            for ty in [SessionType.SPRINT_QUALIFYING1, SessionType.SPRINT_QUALIFYING2, SessionType.SPRINT_QUALIFYING3]:
+            sessions_to_add.append(
                 Session(
                     pk=session_count,
                     race=new_item,
                     point_system_id=1,
-                    type=ty,
+                    type=SessionType.PRACTICE_ONE,
+                    date=fp1_date,
+                    time=item.fp1_time,
+                )
+            )
+            session_count += 1
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.PRACTICE_TWO,
+                    date=fp2_date,
+                    time=item.fp2_time,
+                )
+            )
+            session_count += 1
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.PRACTICE_THREE,
+                    date=fp3_date,
+                    time=item.fp3_time,
+                )
+            )
+            session_count += 1
+
+        if item.fp1_date:
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.PRACTICE_ONE,
+                    date=item.fp1_date,
+                    time=item.fp1_time,
+                )
+            )
+            session_count += 1
+        # If fp2 date make fp2 session, unless year is 2023, then a sprint quali should be created
+        if item.fp2_date and not (item.year_id == 2023 and item.sprint_date):
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.PRACTICE_TWO,
                     date=item.fp2_date,
                     time=item.fp2_time,
-                ).save()
+                )
+            )
+            session_count += 1
+        if item.fp3_date:
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=1,
+                    type=SessionType.PRACTICE_THREE,
+                    date=item.fp3_date,
+                    time=item.fp3_time,
+                )
+            )
+            session_count += 1
+        # sprints
+        if item.year_id <= 2022 and item.sprint_date:
+            point_id = 19 if item.year_id == 2021 else 21
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=point_id,
+                    type=SessionType.SPRINT_RACE,
+                    date=item.sprint_date,
+                    time=item.sprint_time,
+                )
+            )
+            session_count += 1
+        elif item.sprint_date:
+            for ty in [SessionType.SPRINT_QUALIFYING1, SessionType.SPRINT_QUALIFYING2, SessionType.SPRINT_QUALIFYING3]:
+                sessions_to_add.append(
+                    Session(
+                        pk=session_count,
+                        race=new_item,
+                        point_system_id=1,
+                        type=ty,
+                        date=item.fp2_date,
+                        time=item.fp2_time,
+                    )
+                )
                 session_count += 1
-            Session(
-                pk=session_count,
-                race=new_item,
-                point_system_id=23,
-                type=SessionType.SPRINT_RACE,
-                date=item.sprint_date,
-                time=item.sprint_time,
-            ).save()
+            sessions_to_add.append(
+                Session(
+                    pk=session_count,
+                    race=new_item,
+                    point_system_id=23,
+                    type=SessionType.SPRINT_RACE,
+                    date=item.sprint_date,
+                    time=item.sprint_time,
+                )
+            )
             session_count += 1
         count = count + 1
         completed.add(item.pk)
+    Race.objects.bulk_create(races_to_add, batch_size=1000)
+    Session.objects.bulk_create(sessions_to_add, batch_size=1000)
 
     # Race Entries
 
@@ -561,7 +606,12 @@ def run_import():
     lap_count = 1
 
     team_driver_map = defaultdict(lambda: defaultdict(defaultdict))
-    for item in tqdm(Results.objects.all().order_by("raceId", "positionOrder"), desc="Results"):
+    race_entry_map = {}
+    results_list = Results.objects.all().order_by("raceId", "positionOrder")
+
+    team_drivers_to_add = []
+    race_entries_to_add = []
+    for item in tqdm(results_list, desc="Race Entries"):
         season_id = season_map[item.raceId.year_id]
         driver_id = driver_map[item.driverId_id]
         team_id = team_map[item.constructorId_id]
@@ -577,15 +627,32 @@ def run_import():
                 driver_id=driver_id,
             )
             team_driver_map[season_id][team_id][driver_id] = team_driver
-            team_driver.save()
+            team_drivers_to_add.append(team_driver)
         race_entry = RaceEntry(
             pk=count,
             race_id=race_map[item.raceId_id],
             team_driver=team_driver,
             car_number=item.number,
         )
-        race_entry.save()
+        race_entry_map[item.pk] = race_entry
+        race_entries_to_add.append(race_entry)
         count = count + 1
+    TeamDriver.objects.bulk_create(team_drivers_to_add, batch_size=1000)
+    RaceEntry.objects.bulk_create(race_entries_to_add, batch_size=1000)
+
+    laps_to_add = []
+    pitstops_to_add = []
+    to_update_fastest_lap = []
+    # Prepare the DB queries into maps so only a single db call is needed
+    quali_filtered = defaultdict(lambda: None)
+    for quali in tqdm(Qualifying.objects.all(), desc="Filtering quali"):
+        quali_filtered[(quali.raceId, quali.driverId, quali.constructorId)] = quali
+    sprint_filtered = defaultdict(lambda: None)
+    for sprint in tqdm(SprintResults.objects.all(), desc="Filtering sprints"):
+        sprint_filtered[(sprint.raceId, sprint.driverId, sprint.constructorId)] = sprint
+
+    for item in tqdm(results_list, desc="Session Entries"):
+        race_entry = race_entry_map[item.pk]
         sess_entry = SessionEntry(
             pk=entry_count,
             session=Session.objects.get(race=race_entry.race, type=SessionType.RACE),
@@ -606,8 +673,7 @@ def run_import():
         pit_dict = {}
         for pit in pitstops:
             pit_dict[pit.lap] = {"stop": pit.stop, "time": pit.time, "milliseconds": pit.milliseconds}
-        new_laps = []
-        new_pits = []
+        fastest_lap_obj = None
         for lap in laps:
             new_lap = Lap(
                 session_entry=sess_entry,
@@ -615,9 +681,11 @@ def run_import():
                 position=lap.position,
                 time=timedelta(milliseconds=lap.milliseconds),
             )
-            new_laps.append(new_lap)
+            laps_to_add.append(new_lap)
+            if lap.lap == item.fastestLap:
+                fastest_lap_obj = new_lap
             if lap.lap in pit_dict:
-                new_pits.append(
+                pitstops_to_add.append(
                     PitStop(
                         session_entry=sess_entry,
                         lap=new_lap,
@@ -629,26 +697,25 @@ def run_import():
                     )
                 )
         sess_entry.save()
-        Lap.objects.bulk_create(new_laps)
-        PitStop.objects.bulk_create(new_pits)
 
         if item.fastestLap:
-            lap, _ = Lap.objects.get_or_create(
-                session_entry=sess_entry,
-                number=item.fastestLap,
-            )
+            if fastest_lap_obj:
+                lap = fastest_lap_obj
+            else:
+                lap = Lap(
+                    session_entry=sess_entry,
+                    number=item.fastestLap,
+                )
+                laps_to_add.append(lap)
             if lap_time := str_to_delta(item.fastestLapTime):
                 lap.time = lap_time
             lap.average_speed = item.fastestLapSpeed
-            lap.save()
             sess_entry.fastest_lap = lap
             lap_count += 1
+            to_update_fastest_lap.append(sess_entry)
         entry_count += 1
-        sess_entry.save()
 
-        quali = Qualifying.objects.filter(
-            raceId=item.raceId, driverId=item.driverId, constructorId=item.constructorId
-        ).first()
+        quali = quali_filtered[(item.raceId, item.driverId, item.constructorId)]
         if quali:
             quali_sessions = (
                 Session.objects.filter(race=race_entry.race, type__startswith="Q").exclude(type="QO").order_by("pk")
@@ -676,13 +743,11 @@ def run_import():
                     time=time,
                     average_speed=None,
                 )
-                lap.save()
+                laps_to_add.append(lap)
                 quali_entry.fastest_lap = lap
                 lap_count += 1
-                quali_entry.save()
-        sprint = SprintResults.objects.filter(
-            raceId=item.raceId, driverId=item.driverId, constructorId=item.constructorId
-        ).first()
+                to_update_fastest_lap.append(quali_entry)
+        sprint = sprint_filtered[(item.raceId, item.driverId, item.constructorId)]
         if sprint:
             sprint_entry = SessionEntry(
                 pk=entry_count,
@@ -706,8 +771,17 @@ def run_import():
                 time=str_to_delta(sprint.fastestLapTime),
             )
             if lap.number or lap.time:
-                lap.save()
+                laps_to_add.append(lap)
                 sprint_entry.fastest_lap = lap
-            sprint_entry.save()
+                to_update_fastest_lap.append(sprint_entry)
+
+    start = perf_counter()
+    print("Creating objects...", end="\t")
+    Lap.objects.bulk_create(laps_to_add, batch_size=5000)
+    print("Laps Created.", end="\t")
+    PitStop.objects.bulk_create(pitstops_to_add, batch_size=5000)
+    print("PitStops created.", end="\t")
+    SessionEntry.objects.bulk_update(to_update_fastest_lap, fields=["fastest_lap"], batch_size=5000)
+    print(f"SessionEntries created.\tTook {perf_counter() - start}")
 
     run_data_correction()
