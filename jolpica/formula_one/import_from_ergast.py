@@ -50,7 +50,7 @@ def str_to_delta(timestamp: str | None) -> timedelta | None:
 
 def follow_wiki_redirects(url: str) -> str:
     """Get URL that wikipedia will redirect to"""
-    # return url
+    return url
     title = url.lstrip("http://")
     title = title.lstrip("https://")
     title = title.lstrip("en.wikipedia.org/wiki/")
@@ -107,7 +107,7 @@ def get_point_system(year: int, ref: str) -> PointSystem:
         return 18
     elif year <= 2022:
         return 20
-    elif year <= 2023:
+    elif year <= 2024:
         return 22
     raise NotImplementedError()
 
