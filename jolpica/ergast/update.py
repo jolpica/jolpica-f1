@@ -78,6 +78,7 @@ class ErgastUpdater:
                     data = pd.read_csv(csv)
 
                     missing_fields = set()
+                    update_fields = set()
                     new_models = []
                     for row in tqdm(data.iterrows()):
                         row = row[1]
@@ -88,6 +89,7 @@ class ErgastUpdater:
 
                         new_row = dict()
                         for field in row.keys():
+                            update_fields.add(field)
                             try:
                                 model_field = model._meta.get_field(field)
                             except:
@@ -104,11 +106,16 @@ class ErgastUpdater:
                         # model.objects.update_or_create(defaults=dict(new_row), **primary_keys)
                         new_models.append(model(**{**dict(new_row), **primary_keys}))
 
+                    unique_fields = self.table_keys[model_name]
+                    for key in unique_fields:
+                        update_fields.remove(key)
                     print("creating in db...")
                     model.objects.bulk_create(
                         new_models,
                         batch_size=1000,
-                        # update_conflicts=True
+                        update_conflicts=True,
+                        unique_fields=unique_fields,
+                        update_fields=update_fields,
                     )
                 if missing_fields:
                     print(missing_fields)
