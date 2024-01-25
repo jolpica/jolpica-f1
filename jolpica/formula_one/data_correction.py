@@ -34,5 +34,4 @@ def run_data_correction():
     if entry:
         entry.is_eligible_for_points = False
         updated.append(entry)
-    SessionEntry.objects.bulk_update(updated, fields=["position","is_eligible_for_points"])
-    
+    SessionEntry.objects.bulk_update(updated, fields=["position", "is_eligible_for_points"])

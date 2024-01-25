@@ -181,6 +181,7 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
     driver_standings.extend(current_standings)
     return driver_standings
 
+
 def create_driver_standings(apps, schema_editor):
     Season = apps.get_model("formula_one", "Season")
     DriverStanding = apps.get_model("formula_one", "DriverStanding")
@@ -189,4 +190,3 @@ def create_driver_standings(apps, schema_editor):
     for season in Season.objects.all().select_related("championship_system"):
         driver_standings.extend(generate_season_driver_standings(season))
     DriverStanding.objects.bulk_create(driver_standings)
-
