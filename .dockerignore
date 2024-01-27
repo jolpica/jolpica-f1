@@ -1,4 +1,7 @@
-# Elastic Beanstalk Files
+.devcontainer/*
 .elasticbeanstalk/*
 .git
 .gitignore
+tests/*
+notebook.ipynb
+README.md
