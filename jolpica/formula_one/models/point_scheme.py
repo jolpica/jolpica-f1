@@ -137,3 +137,25 @@ class ChampionshipSystem(models.Model):
 
     def __str__(self) -> str:
         return f"{self.name}"
+
+
+class ChampionshipAdjustmentType(models.IntegerChoices):
+    """Type of Championship Adjustment. Disqualification / Exclusion"""
+
+    DISQUALIFIED = 1  # Keep points and results, but lose championship standing
+    EXCLUDED = 2  # Lose all points
+
+
+class ChampionshipAdjustment(models.Model):
+    """Adjustments such as Disqualifications and Exclusions from Driver/Team Championships"""
+
+    id = models.BigAutoField(primary_key=True)
+
+    season = models.ForeignKey("formula_one.Season", on_delete=models.CASCADE, related_name="championship_adjustments")
+    driver = models.ForeignKey(
+        "formula_one.Driver", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
+    )
+    team = models.ForeignKey(
+        "formula_one.Team", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
+    )
+    adjustment = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices)
