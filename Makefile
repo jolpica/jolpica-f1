@@ -1,6 +1,6 @@
 format:
-	ruff format .
-	ruff check --fix-only .
+	ruff format . jolpica/ergast
+	ruff check --fix-only . jolpica/ergast
 
 lint:
 	ruff check .
