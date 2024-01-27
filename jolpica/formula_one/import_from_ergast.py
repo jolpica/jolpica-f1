@@ -60,7 +60,8 @@ def follow_wiki_redirects(url: str) -> str:
     else:
         end = ""
     query = requests.get(
-        r"https://en.wikipedia.org/w/api.php" + r"?action=query" + r"&redirects&format=json" + rf"&titles={title}"
+        r"https://en.wikipedia.org/w/api.php" + r"?action=query" + r"&redirects&format=json" + rf"&titles={title}",
+        timeout=10,
     )
     data = query.json()
 
@@ -139,12 +140,14 @@ def year_to_championship_system(year: int) -> ChampionshipSystem:
 # fmt: off
 status_mapping = {
     "FINISHED": (Status.objects.filter(status__in=["Finished"]).values_list("pk", flat=True)),
-    "LAPPED": (Status.objects.filter(Q(status__in=["Not classified"]) | Q(status__contains="Lap")).values_list(
-        "pk", flat=True
-    )),
-    "ACCIDENT": (Status.objects.filter(status__in=["Accident", "Collision", "Spun off", "Collision damage"]).values_list(
-        "pk", flat=True
-    )),
+    "LAPPED": (Status.objects.filter(
+        Q(status__in=["Not classified"]) | Q(status__contains="Lap")
+        ).values_list( "pk", flat=True)
+    ),
+    "ACCIDENT": (Status.objects.filter(
+        status__in=["Accident", "Collision", "Spun off", "Collision damage"],
+        ).values_list( "pk", flat=True)
+    ),
     "RETIRED": (Status.objects.filter(
         status__in=[
             "Damage", "Retired", "Debris", "Driver unwell", "Fatal accident",
@@ -172,7 +175,9 @@ status_mapping = {
         "pk", flat=True
     )),
     "DID_NOT_START": (Status.objects.filter(status__in=["Withdrew", "Not restarted"]).values_list("pk", flat=True)),
-    "DID_NOT_QUALIFY": (Status.objects.filter(status__in=["107% Rule", "Did not qualify"]).values_list("pk", flat=True)),
+    "DID_NOT_QUALIFY": (
+        Status.objects.filter(status__in=["107% Rule", "Did not qualify"]).values_list("pk", flat=True)
+    ),
     "DID_NOT_PREQUALIFY": (Status.objects.filter(status__in=["Did not prequalify"]).values_list("pk", flat=True)),
 }
 # fmt: on
@@ -706,7 +711,8 @@ def import_teamdrivers_and_raceentries(
 
 
 def run_import():
-    assert PitStops.objects.filter(lap__isnull=True).count() == 0
+    if PitStops.objects.filter(lap__isnull=True).count() == 0:
+        raise ValueError("pitstop without a lap")
     # fixtures
     call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
     call_command("loaddata", "jolpica/formula_one/fixtures/championship_systems.json")
