@@ -6,10 +6,10 @@ from rest_framework.views import APIView
 
 
 class ErgastAPIPagination(pagination.LimitOffsetPagination):
-    def paginate_queryset(self, queryset: QuerySet, request: Request, view: APIView | None = ...) -> list | None:
+    def paginate_queryset(self, queryset: QuerySet, request: Request, view: APIView | None = None) -> list | None:
         self.model: str = queryset.model.__name__
         self.viewset: str = view.__class__.__name__
-        self.kwargs = view.kwargs
+        self.kwargs = view.kwargs if isinstance(view, APIView) else {}
         return super().paginate_queryset(queryset, request, view)
 
     def get_criteria_dict(self):

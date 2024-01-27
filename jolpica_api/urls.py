@@ -18,11 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from jolpica import views
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("ergast/", include("jolpica.ergastapi.urls")),
+    path("ergast/", include("jolpica_api.ergastapi.urls")),
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", views.healthcheck),
 ]

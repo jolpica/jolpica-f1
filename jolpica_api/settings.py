@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "jolpica.ergast",
     "jolpica.formula_one",
-    "jolpica.ergastapi",
+    "jolpica_api.ergastapi",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
     INSTALLED_APPS += ["django_dbml", "fixture_magic"]
@@ -72,7 +72,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "jolpica.urls"
+ROOT_URLCONF = "jolpica_api.urls"
 
 TEMPLATES = [
     {
@@ -90,7 +90,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "jolpica.wsgi.application"
+WSGI_APPLICATION = "jolpica_api.wsgi.application"
 
 
 # Database
@@ -136,7 +136,7 @@ USE_TZ = True
 # https://django-storages.readthedocs.io/en/latest/
 CLOUDFRONT_DOMAIN = env("CLOUDFRONT_DOMAIN", default="https://jolpi.ca")
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [BASE_DIR / "jolpica_api/static"]
 
 if not DEBUG:
     STATIC_URL = f"{CLOUDFRONT_DOMAIN}/static/"
