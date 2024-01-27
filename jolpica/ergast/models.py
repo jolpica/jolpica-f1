@@ -1,3 +1,4 @@
+from __future__ import annotations
 from django.db import models
 
 
@@ -60,8 +61,10 @@ class Races(models.Model):
     quali_time = models.TimeField("Qualifying start time", blank=True, null=True)
     sprint_date = models.DateField("Sprint date", blank=True, null=True)
     sprint_time = models.TimeField("Sprint start time", blank=True, null=True)
-    lap_times = models.ManyToManyField("Drivers", through="LapTimes", related_name="lap_times")
-    pit_stops = models.ManyToManyField("Drivers", through="PitStops", related_name="pit_stops")
+    laptimes_set: models.QuerySet[LapTimes]
+    pitstops_set: models.QuerySet[PitStops]
+    lap_times = models.ManyToManyField("Drivers", through="LapTimes", related_name="lap_times") #type: ignore
+    pit_stops = models.ManyToManyField("Drivers", through="PitStops", related_name="pit_stops") #type: ignore
 
     class Meta:
         db_table = "ergast_races"
