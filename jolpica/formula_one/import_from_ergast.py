@@ -759,6 +759,7 @@ def run_import():
     for quali in tqdm(Qualifying.objects.all(), desc="Filtering quali"):
         quali_filtered[(quali.raceId_id, quali.driverId_id, quali.constructorId_id)] = quali
     sprint_filtered = defaultdict(lambda: None)
+
     for sprint in tqdm(
         SprintResults.objects.all().annotate(ann_status_detail=F("statusId__status")), desc="Filtering sprints"
     ):
@@ -769,34 +770,45 @@ def run_import():
         Results.objects.all()
         .order_by("raceId", "positionOrder")
         .annotate(ann_year=F("raceId__year_id"), ann_status_detail=F("statusId__status"))
+        .prefetch_related(
+            Prefetch(
+                "raceId",
+                Races.objects.all().prefetch_related("laptimes_set", "pitstops_set"),
+                to_attr="fetched_race",
+            ),
+        )
     )
     lap_count = 1
     entry_count = 1
 
-    for item in tqdm(results_list, desc="Session Entries"):
-        race_entry_id = race_entry_map[item.pk]
+    for result in tqdm(results_list, desc="Session Entries"):
+        race_entry_id = race_entry_map[result.pk]
         sess_entry = SessionEntry(
             pk=entry_count,
-            session=Session.objects.get(race__race_entries=race_entry_id, type=SessionType.RACE),
+            session_id=race_entry_to_race_session_map[race_entry_id],
             race_entry_id=race_entry_id,
             fastest_lap=None,
-            position=item.positionOrder,
-            is_classified=item.position is not None,
-            status=map_status(item.statusId_id, pos_text=item.positionText),
-            detail=item.ann_status_detail,
-            points=item.points,
-            grid=item.grid,
-            time=timedelta(milliseconds=item.milliseconds) if item.milliseconds else None,
-            laps_completed=item.laps,
-            fastest_lap_rank=item.rank,
+            position=result.positionOrder,
+            is_classified=result.position is not None,
+            status=map_status(result.statusId_id, pos_text=result.positionText),
+            detail=result.ann_status_detail,
+            points=result.points,
+            grid=result.grid,
+            time=timedelta(milliseconds=result.milliseconds) if result.milliseconds else None,
+            laps_completed=result.laps,
+            fastest_lap_rank=result.rank,
         )
-        laps = LapTimes.objects.filter(raceId_id=item.raceId_id, driverId_id=item.driverId_id)
-        pitstops = PitStops.objects.filter(raceId_id=item.raceId_id, driverId_id=item.driverId_id)
+        laps = result.fetched_race.laptimes_set.all()
+        pitstops = result.fetched_race.pitstops_set.all()
         pit_dict = {}
         for pit in pitstops:
+            if pit.driverId != result.driverId:
+                continue
             pit_dict[pit.lap] = {"stop": pit.stop, "time": pit.time, "milliseconds": pit.milliseconds}
         fastest_lap_obj = None
         for lap in laps:
+            if lap.driverId != result.driverId:
+                continue
             new_lap = Lap(
                 session_entry=sess_entry,
                 number=lap.lap,
@@ -804,7 +816,7 @@ def run_import():
                 time=timedelta(milliseconds=lap.milliseconds),
             )
             laps_to_add.append(new_lap)
-            if lap.lap == item.fastestLap:
+            if lap.lap == result.fastestLap:
                 fastest_lap_obj = new_lap
             if lap.lap in pit_dict:
                 pitstops_to_add.append(
@@ -820,24 +832,24 @@ def run_import():
                 )
         sess_entry.save()
 
-        if item.fastestLap:
+        if result.fastestLap:
             if fastest_lap_obj:
                 lap = fastest_lap_obj
             else:
                 lap = Lap(
                     session_entry=sess_entry,
-                    number=item.fastestLap,
+                    number=result.fastestLap,
                 )
                 laps_to_add.append(lap)
-            if lap_time := str_to_delta(item.fastestLapTime):
+            if lap_time := str_to_delta(result.fastestLapTime):
                 lap.time = lap_time
-            lap.average_speed = item.fastestLapSpeed
+            lap.average_speed = result.fastestLapSpeed
             sess_entry.fastest_lap = lap
             lap_count += 1
             to_update_fastest_lap.append(sess_entry)
         entry_count += 1
 
-        quali = quali_filtered[(item.raceId_id, item.driverId_id, item.constructorId_id)]
+        quali = quali_filtered[(result.raceId_id, result.driverId_id, result.constructorId_id)]
         if quali:
             quali_sessions = (
                 Session.objects.filter(race__race_entries=race_entry_id, type__startswith="Q").exclude(type="QO").order_by("pk")
@@ -853,10 +865,10 @@ def run_import():
                     race_entry_id=race_entry_id,
                     fastest_lap=None,
                     position=quali.position,
-                    status=map_status(item.statusId_id, qualifying=True),
+                    status=map_status(result.statusId_id, qualifying=True),
                 )
                 if quali_entry.status:
-                    quali_entry.detail = item.ann_status_detail
+                    quali_entry.detail = result.ann_status_detail
                 quali_entry.save()
                 entry_count += 1
                 lap = Lap(
@@ -869,7 +881,7 @@ def run_import():
                 quali_entry.fastest_lap = lap
                 lap_count += 1
                 to_update_fastest_lap.append(quali_entry)
-        sprint = sprint_filtered[(item.raceId_id, item.driverId_id, item.constructorId_id)]
+        sprint = sprint_filtered[(result.raceId_id, result.driverId_id, result.constructorId_id)]
         if sprint:
             sprint_entry = SessionEntry(
                 pk=entry_count,
@@ -896,6 +908,19 @@ def run_import():
                 laps_to_add.append(lap)
                 sprint_entry.fastest_lap = lap
                 to_update_fastest_lap.append(sprint_entry)
+        if len(laps_to_add) > 39800:
+            start = perf_counter()
+            print("Creating objects...", end="\t")
+            Lap.objects.bulk_create(laps_to_add, batch_size=20000)
+            print("Laps Created.", end="\t")
+            PitStop.objects.bulk_create(pitstops_to_add, batch_size=10000)
+            print("PitStops created.", end="\t")
+            SessionEntry.objects.bulk_update(to_update_fastest_lap, fields=["fastest_lap"], batch_size=5000)
+            print(f"SessionEntries created.\tTook {perf_counter() - start}")
+            laps_to_add = []
+            pitstops_to_add = []
+            to_update_fastest_lap = []
+            
 
     start = perf_counter()
     print("Creating objects...", end="\t")
