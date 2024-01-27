@@ -1,5 +1,5 @@
-from .championship_standing import DriverStanding
+from .championship_standing import DriverChampionship
 
 __all__ = [
-    "DriverStanding",
+    "DriverChampionship",
 ]
