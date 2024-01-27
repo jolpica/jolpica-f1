@@ -13,7 +13,6 @@ from jolpica.ergast.models import (
     Circuits,
     Constructors,
     Drivers,
-    LapTimes,
     PitStops,
     Qualifying,
     Races,
@@ -649,7 +648,9 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
     return race_map, race_to_race_session_map
 
 
-def import_teamdrivers_and_raceentries(season_map, driver_map, team_map, race_map, race_to_race_session_map) -> tuple[dict,dict]:
+def import_teamdrivers_and_raceentries(
+    season_map, driver_map, team_map, race_map, race_to_race_session_map
+) -> tuple[dict, dict]:
     completed = set()
     count = 1
     team_driver_count = 1
@@ -749,7 +750,9 @@ def run_import():
 
     # Race Entries
 
-    race_entry_map, race_entry_to_race_session_map = import_teamdrivers_and_raceentries(season_map, driver_map, team_map, race_map, race_to_race_session_map)
+    race_entry_map, race_entry_to_race_session_map = import_teamdrivers_and_raceentries(
+        season_map, driver_map, team_map, race_map, race_to_race_session_map
+    )
 
     laps_to_add = []
     pitstops_to_add = []
@@ -764,8 +767,6 @@ def run_import():
         SprintResults.objects.all().annotate(ann_status_detail=F("statusId__status")), desc="Filtering sprints"
     ):
         sprint_filtered[(sprint.raceId_id, sprint.driverId_id, sprint.constructorId_id)] = sprint
-
-
 
     results_list = (
         Results.objects.all()
@@ -855,7 +856,9 @@ def run_import():
         quali = quali_filtered[(result.raceId_id, result.driverId_id, result.constructorId_id)]
         if quali:
             quali_sessions = (
-                Session.objects.filter(race__race_entries=race_entry_id, type__startswith="Q").exclude(type="QO").order_by("pk")
+                Session.objects.filter(race__race_entries=race_entry_id, type__startswith="Q")
+                .exclude(type="QO")
+                .order_by("pk")
             ).distinct("pk")
             for i, session in enumerate(quali_sessions):
                 time = quali.q1 if i == 0 else (quali.q2 if i == 1 else quali.q3)
@@ -932,8 +935,6 @@ def run_import():
             pitstops_to_add = []
             new_session_entries = []
             fastest_laps = []
-                
-                
 
     start = perf_counter()
     print("Creating objects...", end="\t")
