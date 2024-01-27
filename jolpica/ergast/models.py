@@ -1,6 +1,4 @@
-
 from django.db import models
-from django.db.models import Q
 
 
 class Circuits(models.Model):
@@ -139,25 +137,6 @@ class Constructors(models.Model):
     name = models.CharField("Constructor name", max_length=255)
     nationality = models.CharField("Constructor nationality", max_length=255, blank=True, null=True)
     url = models.CharField("Constructor Wikipedia page", max_length=255, blank=True, null=True)
-
-    def has_podium_before_race(self, race):
-        """Returns true if the team has scored a podium this season before this race"""
-        results = Results.objects.filter(
-            raceId__year=race.year,
-            raceId__round__lt=race.round,
-            constructorId=self,
-            position__lte=3,
-        )
-        return len(results) > 0
-
-    def last_year_points(self, season):
-        try:
-            standing = ConstructorStandings.objects.filter(
-                raceId__year__year=season.year - 1, constructorId=self
-            ).order_by("-raceId__round")[0]
-            return standing.points
-        except:
-            return 0
 
     class Meta:
         db_table = "ergast_constructors"
@@ -298,19 +277,6 @@ class Qualifying(models.Model):
     q2 = models.CharField("Q2 lap time", max_length=255, blank=True, null=True)
     q3 = models.CharField("Q3 lap time", max_length=255, blank=True, null=True)
 
-    def grid_position(self):
-        result = self.raceId.results_set.get(driverId=self.driverId)
-        return result.grid
-
-    def beat_teammate(self):
-        """Return true if driver placed higher in qualifying position than their teammate"""
-        teammates = self.raceId.qualifying_set.filter(constructorId=self.constructorId)
-        teammates = teammates.order_by("position")
-        if teammates[0].pk == self.pk:
-            return True
-        else:
-            return False
-
     class Meta:
         db_table = "ergast_qualifying"
 
@@ -374,47 +340,6 @@ class Results(models.Model):
         db_column="statusId",
         on_delete=models.CASCADE,
     )
-
-    def get_teammate(self):
-        """
-        Return Teammate object,
-        If multiple teammates, or no teammates return None
-        """
-        try:
-            teammate = Drivers.objects.get(
-                ~Q(driverId=self.driverId.driverId),
-                results__raceId=self.raceId,
-                results__constructorId=self.constructorId,
-            )
-        except Drivers.MultipleObjectsReturned:
-            print(f"Multiple teammates found for {self.driverId} {self.raceId}")
-            teammate = None
-        except Drivers.DoesNotExist:
-            print(f"No teammates found for {self.driverId} {self.raceId}")
-            teammate = None
-        return teammate
-
-    def championship_points(self):
-        """Driver's current championship points"""
-        try:
-            standings = DriverStandings.objects.filter(
-                raceId__year=self.raceId.year,
-                raceId__round__lte=self.raceId.round,
-                driverId=self.driverId,
-            ).order_by("-raceId__round")
-            if len(standings) > 0:
-                return standings[0].points
-            else:
-                return 0.0
-        except:
-            print(f"Could not get championship points for {self.driverId} {self.raceId}")
-
-    def podium(self):
-        """Returns true if driver was on the podium (placed in the top 3)"""
-        if self.position:
-            return self.position <= 3
-        else:
-            return False
 
     class Meta:
         db_table = "ergast_results"
