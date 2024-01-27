@@ -3,8 +3,9 @@ from collections import defaultdict
 from django.db.models import F
 
 from .models import (
+    ChampionshipAdjustmentType,
     ChampionshipSystem,
-    DriverStanding,
+    DriverChampionship,
     ResultsChampionshipScheme,
     Season,
     SessionEntry,
@@ -93,6 +94,10 @@ def generate_season_driver_standings(
             raise ValueError("No ChampionshipSystem")
     if season_rounds is None:
         season_rounds = season.races.filter(is_cancelled=False).count()
+    adjustments = {
+        adjustment.driver_id: adjustment.adjustment
+        for adjustment in season.championship_adjustments.filter(driver__isnull=False)
+    }
     session_entries = list(
         SessionEntry.objects.filter(session__race__season_id=season.pk, session__point_system_id__gt=1)
         .annotate(
@@ -113,7 +118,7 @@ def generate_season_driver_standings(
     driver_sort_key: dict = defaultdict(lambda: [0.0, "", ""])
 
     driver_standings = []
-    current_standings: list[DriverStanding] = []
+    current_standings: list[DriverChampionship] = []
     for round, entries_type_dict in entries_dict.items():
         race_id = None
         for session_id, driver_entries in entries_type_dict.items():
@@ -127,7 +132,7 @@ def generate_season_driver_standings(
                     race_id = entry.race_id
                     session_type = entry.session_type
                     if entry.is_eligible_for_points and entry.points:
-                        driver_round_points[driver_id][round] += entry.points  # type: ignore
+                        driver_round_points[driver_id][round] += entry.points
                     if (
                         position is None
                         or entry.position < position
@@ -159,19 +164,24 @@ def generate_season_driver_standings(
             for driver_id, sort_key in drivers_by_finishes:
                 sort_key = tuple(sort_key)
                 points, finish_string, _ = sort_key
-                if sort_key < last_key:
+                classified = True if finish_string else False
+                if driver_id in adjustments.keys():
+                    classified = False
+                    if adjustments[driver_id] == ChampionshipAdjustmentType.EXCLUDED:
+                        points = 0
+                elif sort_key < last_key:
                     position += 1 + draw_count
                     draw_count = 0
                 else:
                     draw_count += 1
                 last_key = sort_key
                 current_standings.append(
-                    DriverStanding(
+                    DriverChampionship(
                         session_id=session_id,
                         driver_id=driver_id,
                         year=season.year,
                         round=round,
-                        position=position if finish_string else None,
+                        position=position if classified else None,
                         points=points,
                         win_count=int(finish_string[:2]) if finish_string else 0,
                         highest_finish=highest_finish_from_encoded_finishing_position(finish_string),

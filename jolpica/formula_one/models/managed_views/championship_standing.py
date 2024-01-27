@@ -3,7 +3,7 @@ from typing import ClassVar
 from django.db import models
 
 
-class DriverStanding(models.Model):
+class DriverChampionship(models.Model):
     id = models.BigAutoField(primary_key=True)
 
     session = models.ForeignKey("formula_one.Session", on_delete=models.CASCADE, related_name="driver_standings")

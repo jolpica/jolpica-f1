@@ -1,9 +1,11 @@
 from .circuit import Circuit
 from .driver import Driver
 from .lap import Lap
-from .managed_views import DriverStanding
+from .managed_views import DriverChampionship
 from .pit_stop import PitStop
 from .point_scheme import (
+    ChampionshipAdjustment,
+    ChampionshipAdjustmentType,
     ChampionshipSystem,
     FastestLapPointScheme,
     PartialPointScheme,
@@ -18,27 +20,29 @@ from .session import Penalty, Session, SessionEntry, SessionStatus, SessionType
 from .team import BaseTeam, Team, TeamDriver, TeamDriverRole
 
 __all__ = [
-    "DriverStanding",
+    "BaseTeam",
+    "ChampionshipAdjustment",
+    "ChampionshipAdjustmentType",
+    "ChampionshipSystem",
     "Circuit",
     "Driver",
-    "Lap",
-    "PitStop",
-    "ResultsChampionshipScheme",
-    "ChampionshipSystem",
-    "SplitChampionshipScheme",
+    "DriverChampionship",
     "FastestLapPointScheme",
+    "Lap",
     "PartialPointScheme",
+    "Penalty",
+    "PitStop",
     "PointSystem",
     "PositionPointScheme",
     "Race",
     "RaceEntry",
+    "ResultsChampionshipScheme",
     "Season",
-    "Penalty",
     "Session",
     "SessionEntry",
     "SessionStatus",
     "SessionType",
-    "BaseTeam",
+    "SplitChampionshipScheme",
     "Team",
     "TeamDriver",
     "TeamDriverRole",

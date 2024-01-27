@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from django.db import models
 
 if TYPE_CHECKING:
-    from . import Race, Season, Team, TeamDriver
+    from . import ChampionshipAdjustment, Race, Season, Team, TeamDriver
 
 
 class Driver(models.Model):
@@ -12,10 +14,11 @@ class Driver(models.Model):
     May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions."""
 
     id = models.BigAutoField(primary_key=True)
-    teams: models.QuerySet["Team"]
-    races: models.QuerySet["Race"]
-    seasons: models.QuerySet["Season"]
-    team_drivers: models.QuerySet["TeamDriver"]
+    teams: models.QuerySet[Team]
+    races: models.QuerySet[Race]
+    seasons: models.QuerySet[Season]
+    team_drivers: models.QuerySet[TeamDriver]
+    championship_adjustments: models.QuerySet[ChampionshipAdjustment]
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     forename = models.CharField(max_length=255)

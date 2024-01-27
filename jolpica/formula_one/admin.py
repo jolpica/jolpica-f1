@@ -33,7 +33,7 @@ class ListAdminMixin:
             self.list_filter = ["type", "race__season", "race__round"]
         elif model.__name__ == "TeamDriver":
             self.list_filter = ["season"]
-        elif model.__name__ == "DriverStanding":
+        elif model.__name__ == "DriverChampionship":
             self.list_filter = ["round", "season"]
         super().__init__(model, admin_site)
 
