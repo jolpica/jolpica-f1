@@ -12,13 +12,13 @@ class Command(BaseCommand):
             updater.get_files()
         except Exception as ex:
             print(ex)
-            raise CommandError(f"Failed to download files")
+            raise CommandError("Failed to download files")
 
         try:
-            self.stdout.write(f"Updating models from downloaded files")
+            self.stdout.write("Updating models from downloaded files")
             updater.update_from_csv()
         except Exception as ex:
             print(ex)
-            raise CommandError(f"Failed to update models") from ex
+            raise CommandError("Failed to update models") from ex
 
         self.stdout.write(self.style.SUCCESS("Successfully updated ergast"))
