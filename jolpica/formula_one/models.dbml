@@ -1,15 +1,3 @@
-Table ChampionshipScheme {
-  id big_auto [pk, unique]
-  reference char [null, unique]
-  name char [null]
-  driver_season_split positive_small_integer 
-  driver_best_results small_integer 
-  team_season_split positive_small_integer 
-  team_best_results small_integer 
-  Note: '''ChampionshipScheme(id, reference, name, driver_season_split, driver_best_results, team_season_split, team_best_results)'''
-}
-
-
 Table Circuit {
   id big_auto [pk, unique]
   reference char [null, unique]
@@ -19,19 +7,7 @@ Table Circuit {
   location None [null]
   altitude float [null]
   wikipedia url [null]
-  Note: '''
-    Table circuit {
-        id integer [primary key]
-        reference string
-        name string
-        location string
-        country string
-        latitude string
-        longitude string
-        altitude string
-        wikipedia string
-    }
-    '''
+  Note: '''Race venue information'''
 }
 
 
@@ -45,19 +21,9 @@ Table Driver {
   permanent_car_number positive_small_integer [null]
   date_of_birth date [null]
   wikipedia url [null]
-  Note: '''
-    Table driver {
-        id integer [primary key]
-        reference string [unique]
-        forename string
-        surname string
-        abbreviation string
-        nationality string
-        permanent_car_number integer
-        date_of_birth date
-        wikipedia string
-    }
-    '''
+  Note: '''Session Participant / Racing Driver Information
+
+    May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions.'''
 }
 
 
@@ -68,16 +34,31 @@ Table Lap {
   position positive_small_integer [null]
   time duration [null]
   average_speed float [null]
-  Note: '''
-    Table lap {
-      id integer [primary key]
-      driver_session_id integer
-      time duration
-      average_speed decimal
-    }
-    '''
+  Note: '''Information on a driven Lap of Race, Qualifying, or any other session for a driver'''
 }
 ref: Lap.session_entry > SessionEntry.id
+
+
+Table DriverStanding {
+  id big_auto [pk, unique]
+  session foreign_key 
+  driver foreign_key 
+  year small_integer 
+  round positive_small_integer 
+  position small_integer [null]
+  points float 
+  win_count small_integer 
+  highest_finish small_integer [null]
+  finish_string char 
+  is_disqualified boolean 
+  season foreign_key [null]
+  race foreign_key [null]
+  Note: '''DriverStanding(id, session, driver, year, round, position, points, win_count, highest_finish, finish_string, is_disqualified, season, race)'''
+}
+ref: DriverStanding.session > Session.id
+ref: DriverStanding.driver > Driver.id
+ref: DriverStanding.season > Season.id
+ref: DriverStanding.race > Race.id
 
 
 Table PitStop {
@@ -87,34 +68,36 @@ Table PitStop {
   number positive_small_integer [null]
   duration duration [null]
   local_timestamp char [null]
-  Note: '''
-    Table pit_stop {
-      id integer [primary key]
-      driver_session_id integer
-      lap_number integer
-      number integer
-      duration duration
-      local_timestamp string
-
-    }
-    '''
+  Note: '''Pit Stop information for a session'''
 }
 ref: PitStop.session_entry > SessionEntry.id
 ref: PitStop.lap - Lap.id
 
 
-Table PointScheme {
+Table PointSystem {
   id big_auto [pk, unique]
   reference char [null, unique]
   name char [null]
-  driver_points positive_small_integer 
+  driver_position_points positive_small_integer 
   driver_fastest_lap positive_small_integer 
-  team_points positive_small_integer 
+  team_position_points positive_small_integer 
   team_fastest_lap positive_small_integer 
   partial positive_small_integer 
   shared_drive positive_small_integer 
   is_double_points boolean 
-  Note: '''PointScheme(id, reference, name, driver_points, driver_fastest_lap, team_points, team_fastest_lap, partial, shared_drive, is_double_points)'''
+  Note: '''Session point calculation rules'''
+}
+
+
+Table ChampionshipSystem {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  name char [null]
+  driver_season_split positive_small_integer 
+  driver_best_results small_integer 
+  team_season_split positive_small_integer 
+  team_best_results small_integer 
+  Note: '''Drivers and Team Championship score calculation rules'''
 }
 
 
@@ -128,18 +111,7 @@ Table Race {
   race_number positive_small_integer [null]
   wikipedia url [null]
   is_cancelled boolean 
-  Note: '''
-    Table race {
-        id integer [primary key]
-        season_id integer
-        circuit_id integer
-        round integer
-        name varchar
-        date date
-        wikipedia string
-        cancelled bool
-    }
-    '''
+  Note: '''Race event information relevent to all sessions'''
 }
 ref: Race.season > Season.id
 ref: Race.circuit > Circuit.id
@@ -150,15 +122,7 @@ Table RaceEntry {
   race foreign_key 
   team_driver foreign_key 
   car_number positive_small_integer [null]
-  Note: '''
-    Table race_entry {
-        id integer [primary key]
-        driver_id integer
-        race_id integer
-        team_id integer
-        Note: 'Driver data per race'
-    }
-    '''
+  Note: '''All data relating to a driver racing for a specific team for a race'''
 }
 ref: RaceEntry.race > Race.id
 ref: RaceEntry.team_driver > TeamDriver.id
@@ -166,44 +130,27 @@ ref: RaceEntry.team_driver > TeamDriver.id
 
 Table Season {
   id big_auto [pk, unique]
-  championship_scheme foreign_key [null]
+  championship_system foreign_key [null]
   year small_integer [unique]
   wikipedia url [null]
-  Note: '''
-    Table season {
-        id integer [primary key]
-        year integer
-        wikipedia string
-    }
-    '''
+  Note: '''Formula 1 Championship season'''
 }
-ref: Season.championship_scheme > ChampionshipScheme.id
+ref: Season.championship_system > ChampionshipSystem.id
 
 
 Table Session {
   id big_auto [pk, unique]
   race foreign_key 
-  point_scheme foreign_key 
+  point_system foreign_key 
   type char 
   date date [null]
   time time [null]
   scheduled_laps positive_small_integer [null]
   is_cancelled boolean 
-  Note: '''
-    Table session {
-        id integer [primary key]
-        race_id integer
-        date date
-        time time
-        session_category session_category
-        point_system point_system
-        laps integer
-        Note: 'The sessions of a race e.g. race, quali'
-    }
-    '''
+  Note: '''Information about a scheduled session where cars are on track'''
 }
 ref: Session.race > Race.id
-ref: Session.point_scheme > PointScheme.id
+ref: Session.point_system > PointSystem.id
 
 
 Table SessionEntry {
@@ -216,34 +163,12 @@ Table SessionEntry {
   status positive_small_integer [null]
   detail char [null]
   points float [null]
+  is_eligible_for_points boolean 
   grid positive_small_integer [null]
   time duration [null]
   fastest_lap_rank positive_small_integer [null]
   laps_completed positive_small_integer [null]
-  Note: '''
-    Table driver_session {
-        id integer [primary key]
-        session_id integer
-        race_entry_id integer
-        car_number string
-        // both
-        position integer
-        classified bool
-        fastest_lap integer
-        points decimal
-        // race
-        grid integer
-        time duration
-        laps integer
-        status integer
-        detail string
-    }
-    enum status {
-        Finished
-        retired
-        disqualified
-    }
-    '''
+  Note: '''All information for a race entry for the session'''
 }
 ref: SessionEntry.session > Session.id
 ref: SessionEntry.race_entry > RaceEntry.id
@@ -258,17 +183,7 @@ Table Penalty {
   position positive_small_integer [null]
   time duration [null]
   is_time_served_in_pit boolean [null]
-  Note: '''
-    Table penalty {
-        id integer [primary key]
-        earned integer
-        served integer
-        license_points integer
-        position integer
-        time duration
-        time_served_in_pit bool
-    }
-    '''
+  Note: '''Penalty given/served in an entry's session'''
 }
 ref: Penalty.earned > SessionEntry.id
 ref: Penalty.served > SessionEntry.id
@@ -277,13 +192,7 @@ ref: Penalty.served > SessionEntry.id
 Table BaseTeam {
   id big_auto [pk, unique]
   name char [null, unique]
-  Note: '''
-    Table base_team {
-        id integer [primary key]
-        first_entry integer
-        Note: 'The official Team entry (consistent between rebrands)'
-    }
-    '''
+  Note: '''Underlying Team ignoring rebrands'''
 }
 
 
@@ -294,16 +203,7 @@ Table Team {
   name char 
   nationality char [null]
   wikipedia url [null]
-  Note: '''
-    Table team {
-    id integer [primary key]
-    reference string
-    name string
-    nationality string
-    wikipedia string
-    base_team_id integer
-    }
-    '''
+  Note: '''Information about a Constructor / Team'''
 }
 ref: Team.base_team > BaseTeam.id
 
@@ -314,20 +214,7 @@ Table TeamDriver {
   driver foreign_key 
   season foreign_key 
   role positive_small_integer [null]
-  Note: '''
-    Table team_driver {
-        id integer [primary key]
-        team_id integer
-        driver_id integer
-        season_id integer
-        role team_driver_role
-    }
-    enum team_driver_role {
-        permanent
-        reserve
-        junior // https://f1.fandom.com/wiki/List_of_drivers_who_participated_only_free_practice_during_Grand_Prix_weekend
-    }
-    '''
+  Note: '''Membership of a Driver to a Team for a given season'''
 }
 ref: TeamDriver.team > Team.id
 ref: TeamDriver.driver > Driver.id
