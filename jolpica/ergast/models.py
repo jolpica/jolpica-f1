@@ -1,10 +1,6 @@
-from collections import Counter
-from time import perf_counter
 
 from django.db import models
-from django.db.models import Count, F, Min, Q
-
-# Create your models here.
+from django.db.models import Q
 
 
 class Circuits(models.Model):
@@ -35,29 +31,6 @@ class Seasons(models.Model):
 
     def __str__(self):
         return f"{self.year} Season"
-
-
-class EligibleRaceManager(models.Manager):
-    def get_queryset(self):
-        MIN_RACE_TIME_MS = 1800000
-        PERCENT_OVER_ONE_LAP = 0.5
-        races = (
-            super()
-            .get_queryset()
-            .annotate(
-                num_results=Count("results", distinct=True),
-                race_time=Min("results__milliseconds"),
-                num_entries=Count("results", distinct=True),
-                num_lapping_racers=Count("results", filter=Q(results__laps__gt=0), distinct=True),
-            )
-            .filter(num_results__gt=0)
-        )
-
-        return races.filter(
-            Q(race_time__gte=MIN_RACE_TIME_MS)
-            & Q(num_lapping_racers__gte=PERCENT_OVER_ONE_LAP * F("num_entries"))
-            & ~(Q(name="Indianapolis 500") & Q(year__year__lte=1960))
-        )
 
 
 class Races(models.Model):
@@ -91,9 +64,6 @@ class Races(models.Model):
     sprint_time = models.TimeField("Sprint start time", blank=True, null=True)
     lap_times = models.ManyToManyField("Drivers", through="LapTimes", related_name="lap_times")
     pit_stops = models.ManyToManyField("Drivers", through="PitStops", related_name="pit_stops")
-
-    objects = models.Manager()
-    analysis_objects = EligibleRaceManager()
 
     class Meta:
         db_table = "ergast_races"
@@ -196,31 +166,6 @@ class Constructors(models.Model):
         return f"{self.name}"
 
 
-class EligibleDriverManager(models.Manager):
-    def get_queryset(self):
-        MIN_SEASONS = 2
-        MIN_RACES = 30
-        drivers = (
-            super()
-            .get_queryset()
-            .annotate(
-                season_num=models.Count(
-                    "results__raceId__year",
-                    distinct=True,
-                    filter=Q(results__raceId__in=Races.analysis_objects.all()),
-                ),
-                race_num=models.Count(
-                    "results__raceId",
-                    distinct=True,
-                    filter=~Q(results__laps=0, results__positionText__in=["F", "W", "E"])
-                    & Q(results__raceId__in=Races.analysis_objects.all()),
-                ),
-            )
-        )
-        drivers = drivers.filter(season_num__gte=MIN_SEASONS, race_num__gte=MIN_RACES)
-        return drivers
-
-
 class Drivers(models.Model):
     driverId = models.AutoField("Primary Key", primary_key=True, db_column="driverId")
     driverRef = models.CharField("Unique driver identifier", max_length=255, db_column="driverRef")
@@ -231,9 +176,6 @@ class Drivers(models.Model):
     dob = models.DateField("Driver date of birth", blank=True, null=True)
     nationality = models.CharField("Driver nationality", max_length=255, blank=True)
     url = models.CharField("Constructor Wikipedia page", max_length=255, unique=True, blank=True, null=True)
-
-    objects = models.Manager()
-    analysis_objects = EligibleDriverManager()
 
     class Meta:
         db_table = "ergast_drivers"
@@ -376,40 +318,6 @@ class Qualifying(models.Model):
         return f"{self.raceId} - {self.driverId} Qualifying"
 
 
-class EligibleResultManager(models.Manager):
-    def get_queryset(self, eligible_races=None):
-        # return super().get_queryset()
-        if not eligible_races:
-            eligible_races = Races.analysis_objects.all()
-        # Only get results from eligible races
-        results = super().get_queryset().filter(raceId__in=eligible_races)
-        # Remove results where drivers withdrew or didn't qualify
-        results = results.exclude(statusId__status__in=["Withdrew", "Did not qualify"])
-        # Remove results where the car was shared between drivers
-        # (Only look at results prior to 1964 for speed)
-        excluded_results = []
-        for race in eligible_races.filter(year__year__lte=1964).values_list("raceId", flat=True):
-            race_results = results.filter(raceId=race)
-            drivers_per_car = Counter(race_results.values_list("number", flat=True))
-            shared_cars = [res.resultId for res in race_results if drivers_per_car[res.number] > 1]
-            excluded_results.extend(shared_cars)
-        results = results.exclude(resultId__in=excluded_results)
-        return results
-
-    def by_race_constructor(self, only_eligible_drivers=False):
-        eligible_races = Races.analysis_objects.order_by("year__year")
-        eligible_results = self.get_queryset(eligible_races=eligible_races)
-        if only_eligible_drivers:
-            eligible_results = eligible_results.filter(driverId__in=Drivers.analysis_objects.all())
-        output = {}
-        for race in eligible_races:
-            output[race.raceId] = {}
-            results = eligible_results.filter(raceId=race)
-            for team in set(results.values_list("constructorId", flat=True)):
-                output[race.raceId][team] = results.filter(constructorId=team)
-        return output
-
-
 class Results(models.Model):
     resultId = models.AutoField("Primary key", primary_key=True, db_column="resultId")
     raceId = models.ForeignKey(
@@ -466,9 +374,6 @@ class Results(models.Model):
         db_column="statusId",
         on_delete=models.CASCADE,
     )
-
-    objects = models.Manager()
-    analysis_objects = EligibleResultManager()
 
     def get_teammate(self):
         """
