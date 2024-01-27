@@ -1,3 +1,3 @@
-from jolpica_api.settings import *
+from jolpica_api.settings import *  # noqa: F403
 
-INSTALLED_APPS += ["tests"]
+INSTALLED_APPS += ["tests"]  # noqa: F405

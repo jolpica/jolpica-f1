@@ -3,8 +3,10 @@ from collections import defaultdict
 from django.db.models import F
 
 from .models import (
+    ChampionshipSystem,
     DriverStanding,
     ResultsChampionshipScheme,
+    Season,
     SessionEntry,
     SessionType,
     SplitChampionshipScheme,
@@ -12,7 +14,7 @@ from .models import (
 
 
 def calculate_championship_points(
-    round_points: dict[int, float | int | None],
+    round_points: dict[int, float],
     split_type: int,
     best_results_type: int,
     total_rounds: int,
@@ -66,13 +68,13 @@ def calculate_championship_points(
     return total_points
 
 
-def add_to_encoded_finishing_positions(encoded: str, position, amount=1):
+def add_to_encoded_finishing_positions(encoded: str, position: int, amount: int = 1) -> str:
     if not isinstance(position, int):
-        raise ValueError(position)
+        raise TypeError(position)
     start, end = (position - 1) * 2, (position) * 2
     if len(encoded) < end:
         encoded = encoded.ljust(end, "0")
-    return encoded[:start] + f"{int(encoded[start:end]) + 1:0>2}" + encoded[end:]
+    return encoded[:start] + f"{int(encoded[start:end]) + amount:0>2}" + encoded[end:]
 
 
 def highest_finish_from_encoded_finishing_position(encoded: str) -> int | None:
@@ -81,9 +83,14 @@ def highest_finish_from_encoded_finishing_position(encoded: str) -> int | None:
     return 1 + (len(encoded) - len(encoded.lstrip("0"))) // 2
 
 
-def generate_season_driver_standings(season, championship_system=None, season_rounds=None):
+def generate_season_driver_standings(
+    season: Season, championship_system: ChampionshipSystem | None = None, season_rounds: int | None = None
+):
     if championship_system is None:
-        championship_system = season.championship_system
+        if season.championship_system:
+            championship_system = season.championship_system
+        else:
+            raise ValueError("No ChampionshipSystem")
     if season_rounds is None:
         season_rounds = season.races.filter(is_cancelled=False).count()
     session_entries = list(
@@ -96,17 +103,17 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
         )
         .order_by("round", "session__date", "session__time")
     )
-    entries_dict: dict[int, dict[str, dict[str, list[SessionEntry]]]] = defaultdict(
+    entries_dict: dict[int, dict[int, dict[int, list[SessionEntry]]]] = defaultdict(
         lambda: defaultdict(lambda: defaultdict(list))
     )
     for entry in session_entries:
         entries_dict[entry.round][entry.session_id][entry.driver_id].append(entry)
 
-    driver_round_points = defaultdict(lambda: defaultdict(float))
-    driver_sort_key = defaultdict(lambda: [0.0, "", ""])
+    driver_round_points: dict[int, dict[int, float]] = defaultdict(lambda: defaultdict(float))
+    driver_sort_key: dict = defaultdict(lambda: [0.0, "", ""])
 
     driver_standings = []
-    current_standings = []
+    current_standings: list[DriverStanding] = []
     for round, entries_type_dict in entries_dict.items():
         race_id = None
         for session_id, driver_entries in entries_type_dict.items():
@@ -116,11 +123,11 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
             for driver_id, entries in driver_entries.items():
                 position = None
                 is_classified = None
-                for entry in entries:
+                for entry in entries:  # type: ignore
                     race_id = entry.race_id
                     session_type = entry.session_type
-                    if entry.is_eligible_for_points:
-                        driver_round_points[driver_id][round] += entry.points
+                    if entry.is_eligible_for_points and entry.points:
+                        driver_round_points[driver_id][round] += entry.points  # type: ignore
                     if (
                         position is None
                         or entry.position < position
@@ -128,7 +135,7 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
                     ):
                         position = entry.position
                         is_classified = entry.is_classified
-                if session_type == SessionType.RACE:
+                if session_type == SessionType.RACE and position is not None:
                     if is_classified:
                         driver_sort_key[driver_id][1] = add_to_encoded_finishing_positions(
                             driver_sort_key[driver_id][1], position
@@ -137,7 +144,6 @@ def generate_season_driver_standings(season, championship_system=None, season_ro
                         driver_sort_key[driver_id][2] = add_to_encoded_finishing_positions(
                             driver_sort_key[driver_id][2], position
                         )
-
                 driver_sort_key[driver_id][0] = calculate_championship_points(
                     driver_round_points[driver_id],
                     split_type=championship_system.driver_season_split,
