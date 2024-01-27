@@ -1,10 +1,9 @@
 from django.db.models import Count, F, Max, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
 from django.db.models.query import QuerySet
-from rest_framework import permissions, viewsets  # noqa: F401
-from rest_framework.exceptions import ValidationError
-
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Driver, RaceEntry, Season, Session, SessionType, Team, TeamDriver
+from rest_framework import permissions, viewsets  # noqa: F401
+from rest_framework.exceptions import ValidationError
 
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
@@ -13,7 +12,7 @@ from .status_mapping import ERGAST_STATUS_MAPPING
 class ErgastModelViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     pagination_class = pagination.ErgastAPIPagination
-    lookup_field = None
+    lookup_field = ""
 
     query_session_entries = None
     query_team = None

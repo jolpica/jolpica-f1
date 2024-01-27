@@ -1,7 +1,9 @@
 [tool.poetry]
-authors = ["Jolpica <you@example.com>"]
+authors = ["jolpica <no-reply@jolpi.ca>"]
 description = ""
+exclude = ["**/tests"]
 name = "jolpica"
+packages = [{ include = "jolpica" }]
 version = "0.1.0"
 
 [tool.poetry.dependencies]
@@ -49,7 +51,7 @@ exclude = ["^tests", "^jolpica/ergast"]
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
 
 [tool.django-stubs]
-django_settings_module = "jolpica.settings"
+django_settings_module = "jolpica_api.settings"
 
 
 [tool.ruff]

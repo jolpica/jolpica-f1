@@ -42,7 +42,6 @@ import-from-ergast:
 	python manage.py migrate formula_one 0001
 	python manage.py migrate
 	python manage.py shell -c "from jolpica.formula_one.import_from_ergast import run_import; run_import()"
-	make test-fixtures
 	
 deploy:
 	DJANGO_DEBUG=False python manage.py collectstatic

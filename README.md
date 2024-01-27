@@ -1,11 +1,7 @@
-# formula-stat
+# jolpica-f1
 
 geo libraries for postgis and geodjango are required to be installed
-`https://docs.djangoproject.com/en/4.2/ref/contrib/gis/install/geolibs/#geosbuild`
-
-Fun Facts
-- Brazil 1962 had no second place
-- Drivers scored 1/7 of a point in 1954 British Grand Prix
+``
 
 # Differences to Ergast API
 
@@ -21,7 +17,31 @@ Fun Facts
 ## TODO
 - Remove session entries for drivers who did not (pre) qualify
 
+Fun Facts
+- Brazil 1962 had no second place
+- Drivers scored 1/7 of a point in 1954 British Grand Prix
+
 # Development
+## Initial Setup
+### Prerequisite
+Use of the devcontainer is recommended. If not using, look at `.devcontainer/Dockerfile` for required installs.<br>
+Current requirements are:
+- Poetry for python 
+- [Geo Libraries for postgis and geodjango](https://docs.djangoproject.com/en/4.2/ref/contrib/gis/install/geolibs/#geosbuild)
+- A postgres database which can be accessed via the `DATABASE_SECRET_URL` environment variable.
+
+### Data Import
+- If not using the devcontainer, Install python dependencies `poetry install`, and activate the venv `poetry shell`
+- Download csv data from ergast and import into postgres database
+  ```
+  make load-ergast-data
+  ```
+- Convert data to new schema, then run & create the test database
+  ```
+  make import-from-ergast
+  pytest --create-db
+  ```
+This will fill the database with the latest data from ergast, and create the initial test database so all future tests will run quicker.
 
 ## Running Tests
 The first time the tests are run it will take upto 2 minutes to populate the database with test data, pytest is configured to reuse this database on future runs, so tests should run much faster on future runs.<br>
