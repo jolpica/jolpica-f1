@@ -43,8 +43,8 @@ class CircuitSerializer(ErgastModelSerializer):
 
     def get_location(self, circuit: Circuit) -> dict:
         return {
-            "lat": str(circuit.location.y),
-            "long": str(circuit.location.x),
+            "lat": str(circuit.location.y) if circuit.location else None,
+            "long": str(circuit.location.x) if circuit.location else None,
             "locality": circuit.locality,
             "country": circuit.country,
         }
@@ -63,7 +63,7 @@ class BaseRaceSerializer(ErgastModelSerializer):
     date = serializers.CharField()
     time = serializers.SerializerMethodField(method_name="get_time")
 
-    def get_time(self, race: Race) -> dict:
+    def get_time(self, race: Race) -> str | None:
         time = None
         for session in race.sessions.all():
             if session.type == SessionType.RACE:
@@ -85,7 +85,7 @@ class RaceSerializer(BaseRaceSerializer):
     Qualifying = serializers.SerializerMethodField(method_name="get_qualifying")
     Sprint = serializers.SerializerMethodField(method_name="get_sprint")
 
-    def get_session_date_time(self, race: Race, session_type: SessionType) -> dict:
+    def get_session_date_time(self, race: Race, session_type: SessionType) -> dict | None:
         session = None
         for sess in race.sessions.all():
             if sess.type == session_type:
@@ -95,7 +95,7 @@ class RaceSerializer(BaseRaceSerializer):
             return None
         time = {}
         if session.date:
-            time["date"] = session.date
+            time["date"] = str(session.date)
         if session.time:
             time["time"] = f"{session.time}Z"
 

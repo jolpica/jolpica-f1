@@ -12,19 +12,19 @@ from .status_mapping import ERGAST_STATUS_MAPPING
 class ErgastModelViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     pagination_class = pagination.ErgastAPIPagination
-    lookup_field = ""
+    lookup_field: str | None = None  # type: ignore
 
-    query_session_entries = None
-    query_team = None
-    query_driver = None
-    query_circuit = None
-    query_season = None
-    query_race = None
-    query_lap = None
-    query_pitstop = None
+    query_session_entries = ""
+    query_team = ""
+    query_driver = ""
+    query_circuit = ""
+    query_season = ""
+    query_race = ""
+    query_lap = ""
+    query_pitstop = ""
 
-    required_params = []
-    order_by = []
+    required_params: list[str] = []
+    order_by: list[str] = []
 
     def get_criteria_filters(
         self,
@@ -106,7 +106,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self) -> QuerySet:
         self.validate_parameters()
-        model = self.serializer_class.Meta.model
+        model = self.serializer_class.Meta.model  # type: ignore
         filters = self.get_criteria_filters(**self.kwargs)
         return model.objects.filter(filters).order_by(*self.order_by).distinct()
 
@@ -379,7 +379,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
     required_params = ["season_year"]
     order_by = []
 
-    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:
+    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:  # type: ignore
         filters = Q()
         if season_year:
             filters = filters & Q(team_drivers__season__year=season_year)
@@ -406,6 +406,8 @@ class DriverStandingViewSet(ErgastModelViewSet):
             )
             .first()
         )
+        if season is None:
+            raise ValidationError("Season not found")
         if (race_round := self.kwargs.get("race_round")) is None:
             race_round = season.season_rounds
             self.kwargs["race_round"] = str(race_round)
@@ -477,7 +479,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
     required_params = ["season_year"]
     order_by = []
 
-    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:
+    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:  # type: ignore
         filters = Q()
         if season_year:
             filters = filters & Q(team_drivers__season__year=season_year)
@@ -504,6 +506,8 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
             )
             .first()
         )
+        if season is None:
+            raise ValidationError("Season not found")
         if (race_round := self.kwargs.get("race_round")) is None:
             race_round = season.season_rounds
             self.kwargs["race_round"] = str(race_round)
