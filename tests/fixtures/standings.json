@@ -4137,20 +4137,6 @@
     "model": "formula_one.driver",
     "pk": 11,
     "fields": {
-        "reference": "shawe_taylor",
-        "forename": "Brian",
-        "surname": "Shawe Taylor",
-        "abbreviation": null,
-        "nationality": "British",
-        "permanent_car_number": null,
-        "date_of_birth": "1915-01-28",
-        "wikipedia": "http://en.wikipedia.org/wiki/Brian_Shawe_Taylor"
-    }
-},
-{
-    "model": "formula_one.driver",
-    "pk": 10,
-    "fields": {
         "reference": "fry",
         "forename": "Joe",
         "surname": "Fry",
@@ -4159,6 +4145,20 @@
         "permanent_car_number": null,
         "date_of_birth": "1915-10-26",
         "wikipedia": "http://en.wikipedia.org/wiki/Joe_Fry"
+    }
+},
+{
+    "model": "formula_one.driver",
+    "pk": 10,
+    "fields": {
+        "reference": "shawe_taylor",
+        "forename": "Brian",
+        "surname": "Shawe Taylor",
+        "abbreviation": null,
+        "nationality": "British",
+        "permanent_car_number": null,
+        "date_of_birth": "1915-01-28",
+        "wikipedia": "http://en.wikipedia.org/wiki/Brian_Shawe_Taylor"
     }
 },
 {
@@ -4513,7 +4513,7 @@
 },
 {
     "model": "formula_one.driver",
-    "pk": 22,
+    "pk": 21,
     "fields": {
         "reference": "peter_walker",
         "forename": "Peter",
@@ -7764,7 +7764,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 137,
+    "pk": 138,
     "fields": {
         "base_team": null,
         "reference": "lyncar",
@@ -7830,7 +7830,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 138,
+    "pk": 137,
     "fields": {
         "base_team": null,
         "reference": "maki",
@@ -8229,7 +8229,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 143,
+    "pk": 141,
     "fields": {
         "base_team": null,
         "reference": "williams",
@@ -8296,7 +8296,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 141,
+    "pk": 143,
     "fields": {
         "base_team": null,
         "reference": "shadow-ford",
@@ -9752,7 +9752,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 63,
+    "pk": 61,
     "fields": {
         "base_team": null,
         "reference": "vhristensen",
@@ -9953,7 +9953,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 32,
+    "pk": 27,
     "fields": {
         "base_team": null,
         "reference": "trevis",
@@ -10067,7 +10067,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 10,
+    "pk": 9,
     "fields": {
         "base_team": null,
         "reference": "watson",
@@ -10092,7 +10092,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 12,
+    "pk": 10,
     "fields": {
         "base_team": null,
         "reference": "kurtis_kraft",
@@ -10194,7 +10194,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 66,
+    "pk": 65,
     "fields": {
         "base_team": null,
         "reference": "jbw",
@@ -10442,7 +10442,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 4,
+    "pk": 2,
     "fields": {
         "base_team": null,
         "reference": "maserati",
@@ -10623,20 +10623,6 @@
 },
 {
     "model": "formula_one.driver",
-    "pk": 29,
-    "fields": {
-        "reference": "trintignant",
-        "forename": "Maurice",
-        "surname": "Trintignant",
-        "abbreviation": null,
-        "nationality": "French",
-        "permanent_car_number": null,
-        "date_of_birth": "1917-10-30",
-        "wikipedia": "http://en.wikipedia.org/wiki/Maurice_Trintignant"
-    }
-},
-{
-    "model": "formula_one.driver",
     "pk": 82,
     "fields": {
         "reference": "moss",
@@ -10647,6 +10633,20 @@
         "permanent_car_number": null,
         "date_of_birth": "1929-09-17",
         "wikipedia": "http://en.wikipedia.org/wiki/Stirling_Moss"
+    }
+},
+{
+    "model": "formula_one.driver",
+    "pk": 29,
+    "fields": {
+        "reference": "trintignant",
+        "forename": "Maurice",
+        "surname": "Trintignant",
+        "abbreviation": null,
+        "nationality": "French",
+        "permanent_car_number": null,
+        "date_of_birth": "1917-10-30",
+        "wikipedia": "http://en.wikipedia.org/wiki/Maurice_Trintignant"
     }
 },
 {
@@ -10665,7 +10665,7 @@
 },
 {
     "model": "formula_one.team",
-    "pk": 8,
+    "pk": 6,
     "fields": {
         "base_team": null,
         "reference": "ferrari",
@@ -11039,7 +11039,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2881,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 720,
         "season": 48,
         "role": null
@@ -11049,7 +11049,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2880,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 742,
         "season": 48,
         "role": null
@@ -11159,7 +11159,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2869,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 725,
         "season": 48,
         "role": null
@@ -11219,7 +11219,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2863,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 703,
         "season": 48,
         "role": null
@@ -11594,7 +11594,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2415,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 615,
         "season": 36,
         "role": null
@@ -11648,7 +11648,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2411,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 619,
         "season": 36,
         "role": null
@@ -11668,7 +11668,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2409,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 598,
         "season": 36,
         "role": null
@@ -11838,7 +11838,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2392,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 599,
         "season": 36,
         "role": null
@@ -11858,7 +11858,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2390,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 630,
         "season": 36,
         "role": null
@@ -11892,7 +11892,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2227,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 602,
         "season": 31,
         "role": null
@@ -11916,7 +11916,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2226,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 623,
         "season": 31,
         "role": null
@@ -12076,7 +12076,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2217,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 618,
         "season": 31,
         "role": null
@@ -12086,7 +12086,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2216,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 580,
         "season": 31,
         "role": null
@@ -12344,7 +12344,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2200,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 505,
         "season": 31,
         "role": null
@@ -12404,7 +12404,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2194,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 586,
         "season": 31,
         "role": null
@@ -12434,7 +12434,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2191,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 511,
         "season": 31,
         "role": null
@@ -12514,7 +12514,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2183,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 549,
         "season": 31,
         "role": null
@@ -12959,7 +12959,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2161,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 511,
         "season": 30,
         "role": null
@@ -13039,7 +13039,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2153,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 586,
         "season": 30,
         "role": null
@@ -13059,7 +13059,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2151,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 482,
         "season": 30,
         "role": null
@@ -13069,7 +13069,7 @@
     "model": "formula_one.teamdriver",
     "pk": 2150,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 549,
         "season": 30,
         "role": null
@@ -13173,7 +13173,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1946,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 536,
         "season": 26,
         "role": null
@@ -13217,7 +13217,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1943,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 560,
         "season": 26,
         "role": null
@@ -13261,7 +13261,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1940,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 559,
         "season": 26,
         "role": null
@@ -13305,7 +13305,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1937,
     "fields": {
-        "team": 138,
+        "team": 137,
         "driver": 557,
         "season": 26,
         "role": null
@@ -13315,7 +13315,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1936,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 539,
         "season": 26,
         "role": null
@@ -13389,7 +13389,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1930,
     "fields": {
-        "team": 137,
+        "team": 138,
         "driver": 537,
         "season": 26,
         "role": null
@@ -13433,7 +13433,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1927,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 510,
         "season": 26,
         "role": null
@@ -13467,7 +13467,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1925,
     "fields": {
-        "team": 138,
+        "team": 137,
         "driver": 552,
         "season": 26,
         "role": null
@@ -13521,7 +13521,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1921,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 526,
         "season": 26,
         "role": null
@@ -13531,7 +13531,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1920,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 551,
         "season": 26,
         "role": null
@@ -13653,7 +13653,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1912,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 547,
         "season": 26,
         "role": null
@@ -13775,7 +13775,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1904,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 500,
         "season": 26,
         "role": null
@@ -13805,7 +13805,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1901,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 540,
         "season": 26,
         "role": null
@@ -13845,7 +13845,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1897,
     "fields": {
-        "team": 143,
+        "team": 141,
         "driver": 509,
         "season": 26,
         "role": null
@@ -13885,7 +13885,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1893,
     "fields": {
-        "team": 141,
+        "team": 143,
         "driver": 530,
         "season": 26,
         "role": null
@@ -13945,7 +13945,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1887,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 499,
         "season": 26,
         "role": null
@@ -13965,7 +13965,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1885,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 482,
         "season": 26,
         "role": null
@@ -14194,7 +14194,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1601,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 413,
         "season": 20,
         "role": null
@@ -14394,7 +14394,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1588,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 404,
         "season": 20,
         "role": null
@@ -14573,7 +14573,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1089,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 355,
         "season": 11,
         "role": null
@@ -14637,7 +14637,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1084,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 214,
         "season": 11,
         "role": null
@@ -14923,7 +14923,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1061,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 348,
         "season": 11,
         "role": null
@@ -15031,7 +15031,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1052,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 66,
         "season": 11,
         "role": null
@@ -15041,7 +15041,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1051,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 291,
         "season": 11,
         "role": null
@@ -15061,7 +15061,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1049,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 92,
         "season": 11,
         "role": null
@@ -15081,7 +15081,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1047,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 230,
         "season": 11,
         "role": null
@@ -15091,7 +15091,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1046,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 288,
         "season": 11,
         "role": null
@@ -15111,7 +15111,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1044,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 38,
         "season": 11,
         "role": null
@@ -15121,7 +15121,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1043,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 177,
         "season": 11,
         "role": null
@@ -15141,7 +15141,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1041,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 49,
         "season": 11,
         "role": null
@@ -15161,7 +15161,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1039,
     "fields": {
-        "team": 63,
+        "team": 61,
         "driver": 345,
         "season": 11,
         "role": null
@@ -15171,7 +15171,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1038,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 228,
         "season": 11,
         "role": null
@@ -15191,7 +15191,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1036,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 95,
         "season": 11,
         "role": null
@@ -15201,7 +15201,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1035,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 50,
         "season": 11,
         "role": null
@@ -15241,7 +15241,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1031,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 245,
         "season": 11,
         "role": null
@@ -15251,7 +15251,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1030,
     "fields": {
-        "team": 32,
+        "team": 27,
         "driver": 344,
         "season": 11,
         "role": null
@@ -15271,7 +15271,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1028,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 343,
         "season": 11,
         "role": null
@@ -15281,7 +15281,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1027,
     "fields": {
-        "team": 32,
+        "team": 27,
         "driver": 128,
         "season": 11,
         "role": null
@@ -15321,7 +15321,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1023,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 97,
         "season": 11,
         "role": null
@@ -15331,7 +15331,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1022,
     "fields": {
-        "team": 10,
+        "team": 9,
         "driver": 58,
         "season": 11,
         "role": null
@@ -15341,7 +15341,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1054,
     "fields": {
-        "team": 12,
+        "team": 10,
         "driver": 287,
         "season": 11,
         "role": null
@@ -15430,7 +15430,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1016,
     "fields": {
-        "team": 66,
+        "team": 65,
         "driver": 271,
         "season": 11,
         "role": null
@@ -15500,7 +15500,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1009,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 339,
         "season": 11,
         "role": null
@@ -15544,7 +15544,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1006,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 242,
         "season": 11,
         "role": null
@@ -15554,7 +15554,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1005,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 338,
         "season": 11,
         "role": null
@@ -15564,7 +15564,7 @@
     "model": "formula_one.teamdriver",
     "pk": 1004,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 337,
         "season": 11,
         "role": null
@@ -15614,7 +15614,7 @@
     "model": "formula_one.teamdriver",
     "pk": 999,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 336,
         "season": 11,
         "role": null
@@ -15624,7 +15624,7 @@
     "model": "formula_one.teamdriver",
     "pk": 998,
     "fields": {
-        "team": 4,
+        "team": 2,
         "driver": 335,
         "season": 11,
         "role": null
@@ -15654,7 +15654,7 @@
     "model": "formula_one.teamdriver",
     "pk": 995,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 27,
         "season": 11,
         "role": null
@@ -15674,7 +15674,7 @@
     "model": "formula_one.teamdriver",
     "pk": 993,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 293,
         "season": 11,
         "role": null
@@ -15704,7 +15704,7 @@
     "model": "formula_one.teamdriver",
     "pk": 990,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 259,
         "season": 11,
         "role": null
@@ -15725,7 +15725,7 @@
     "pk": 988,
     "fields": {
         "team": 59,
-        "driver": 29,
+        "driver": 82,
         "season": 11,
         "role": null
     }
@@ -15735,7 +15735,7 @@
     "pk": 987,
     "fields": {
         "team": 59,
-        "driver": 82,
+        "driver": 29,
         "season": 11,
         "role": null
     }
@@ -15744,7 +15744,7 @@
     "model": "formula_one.teamdriver",
     "pk": 986,
     "fields": {
-        "team": 8,
+        "team": 6,
         "driver": 276,
         "season": 11,
         "role": null
@@ -37859,7 +37859,7 @@
     "pk": 2025,
     "fields": {
         "race": 85,
-        "team_driver": 987,
+        "team_driver": 988,
         "car_number": 36
     }
 },
