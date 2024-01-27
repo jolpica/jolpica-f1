@@ -6,7 +6,7 @@ from time import perf_counter
 import requests
 from django.contrib.gis.geos import Point
 from django.core.management import call_command
-from django.db.models import F, Q
+from django.db.models import F, Prefetch, Q
 from tqdm import tqdm
 
 from jolpica.ergast.models import (
@@ -139,14 +139,14 @@ def year_to_championship_system(year: int) -> ChampionshipSystem:
 
 # fmt: off
 status_mapping = {
-    "FINISHED": set(Status.objects.filter(status__in=["Finished"]).values_list("pk", flat=True)),
-    "LAPPED": set(Status.objects.filter(Q(status__in=["Not classified"]) | Q(status__contains="Lap")).values_list(
+    "FINISHED": (Status.objects.filter(status__in=["Finished"]).values_list("pk", flat=True)),
+    "LAPPED": (Status.objects.filter(Q(status__in=["Not classified"]) | Q(status__contains="Lap")).values_list(
         "pk", flat=True
     )),
-    "ACCIDENT": set(Status.objects.filter(status__in=["Accident", "Collision", "Spun off", "Collision damage"]).values_list(
+    "ACCIDENT": (Status.objects.filter(status__in=["Accident", "Collision", "Spun off", "Collision damage"]).values_list(
         "pk", flat=True
     )),
-    "RETIRED": set(Status.objects.filter(
+    "RETIRED": (Status.objects.filter(
         status__in=[
             "Damage", "Retired", "Debris", "Driver unwell", "Fatal accident",
             "Eye injury", "Illness", "Out of fuel", "Puncture", "Tyre puncture",
@@ -169,12 +169,12 @@ status_mapping = {
             "Undertray", "Cooling system", "Safety belt",
         ]
     ).values_list("pk", flat=True)),
-    "DISQUALIFIED": set(Status.objects.filter(status__in=["Disqualified", "Underweight", "Excluded"]).values_list(
+    "DISQUALIFIED": (Status.objects.filter(status__in=["Disqualified", "Underweight", "Excluded"]).values_list(
         "pk", flat=True
     )),
-    "DID_NOT_START": set(Status.objects.filter(status__in=["Withdrew", "Not restarted"]).values_list("pk", flat=True)),
-    "DID_NOT_QUALIFY": set(Status.objects.filter(status__in=["107% Rule", "Did not qualify"]).values_list("pk", flat=True)),
-    "DID_NOT_PREQUALIFY": set(Status.objects.filter(status__in=["Did not prequalify"]).values_list("pk", flat=True)),
+    "DID_NOT_START": (Status.objects.filter(status__in=["Withdrew", "Not restarted"]).values_list("pk", flat=True)),
+    "DID_NOT_QUALIFY": (Status.objects.filter(status__in=["107% Rule", "Did not qualify"]).values_list("pk", flat=True)),
+    "DID_NOT_PREQUALIFY": (Status.objects.filter(status__in=["Did not prequalify"]).values_list("pk", flat=True)),
 }
 # fmt: on
 
@@ -196,35 +196,13 @@ def map_status(status_id, qualifying=False, pos_text: str = "") -> None | Sessio
         return None
 
 
-def run_import():
-    assert PitStops.objects.filter(lap__isnull=True).count() == 0
-    # fixtures
-    call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
-    call_command("loaddata", "jolpica/formula_one/fixtures/championship_systems.json")
+def import_circuits() -> dict:
+    """Import data from Ergast Circuits to Jolpica Circuit
 
-    # Data Fixes
-    # wrong constructor in quali
-    old_results = set(Results.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id").distinct())
-    old_qresults = set(Qualifying.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id").distinct())
-    for r in old_qresults:
-        if r not in old_results:
-            q = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=206)
-            q.constructorId_id = 209
-            q.save()
-    # wrong car number in quali
-    old_results = set(
-        Results.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id", "number").distinct()
-    )
-    old_qresults = set(
-        Qualifying.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id", "number").distinct()
-    )
-    for r in old_qresults.difference(old_results):
-        res = Results.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2])
-        sprint = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2], number=r[3])
-        sprint.number = res.number
-        sprint.save()
-
-    # Circuits
+    Returns:
+        Mapping of Ergast Circuit PK to Jolpica Circuit PK
+    """
+    new_circuits = []
     circuit_map = {}
     completed = set()
     count = 1
@@ -232,131 +210,180 @@ def run_import():
         if circ.pk in completed:
             continue
         circuit_map[circ.pk] = count
-        new_circit = Circuit(
-            pk=count,
-            reference=circ.circuitRef,
-            name=circ.name,
-            locality=circ.location,
-            country=circ.country,
-            location=Point(circ.lng, circ.lat, srid=4326),
-            altitude=circ.alt,
-            wikipedia=follow_wiki_redirects(circ.url),
+        new_circuits.append(
+            Circuit(
+                pk=count,
+                reference=circ.circuitRef,
+                name=circ.name,
+                locality=circ.location,
+                country=circ.country,
+                location=Point(circ.lng, circ.lat, srid=4326),
+                altitude=circ.alt,
+                wikipedia=follow_wiki_redirects(circ.url),
+            )
         )
-        new_circit.save()
         count = count + 1
         completed.add(circ.pk)
+    Circuit.objects.bulk_create(
+        new_circuits,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["reference"],
+        update_fields=["name", "locality", "country", "location", "altitude", "wikipedia"],
+    )
+    return circuit_map
 
-    # Seasons
+
+def import_seasons() -> dict:
+    new_seasons = []
     season_map = {}
     completed = set()
     count = 1
-    for item in tqdm(Seasons.objects.all().order_by("year"), desc="Seasons"):
-        if item.pk in completed:
+    for er_season in tqdm(Seasons.objects.all().order_by("year"), desc="Seasons"):
+        if er_season.pk in completed:
             continue
-        season_map[item.pk] = count
-        new_item = Season(
-            pk=count,
-            year=item.year,
-            wikipedia=follow_wiki_redirects(item.url),
-            championship_system=year_to_championship_system(item.year),
+        season_map[er_season.pk] = count
+        new_seasons.append(
+            Season(
+                pk=count,
+                year=er_season.year,
+                wikipedia=follow_wiki_redirects(er_season.url),
+                championship_system=year_to_championship_system(er_season.year),
+            )
         )
-        new_item.save()
         count = count + 1
-        completed.add(item.pk)
+        completed.add(er_season.pk)
+    Season.objects.bulk_create(
+        new_seasons,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["year"],
+        update_fields=["wikipedia", "championship_system"],
+    )
+    return season_map
 
-    # Teams
+
+def import_teams():
+    new_teams = []
     team_map = {}
     completed = set()
     count = 1
-    item_ids = {}
-    for id in Results.objects.all().order_by("raceId", "-position").values_list("constructorId", flat=True):
-        item_ids[id] = None
 
-    for item_id in tqdm(item_ids.keys(), desc="Teams"):
-        if item_id in completed:
+    constructors = Constructors.objects.order_by("results__raceId", "-results__position").distinct()
+    for item in tqdm(constructors, desc="Teams"):
+        if item.pk in completed:
             continue
-        item = Constructors.objects.get(pk=item_id)
         team_map[item.pk] = count
-        new_item = Team(
-            pk=count,
-            base_team=None,
-            reference=item.constructorRef,
-            name=item.name,
-            nationality=item.nationality,
-            wikipedia=item.url,
+        new_teams.append(
+            Team(
+                pk=count,
+                base_team=None,
+                reference=item.constructorRef,
+                name=item.name,
+                nationality=item.nationality,
+                wikipedia=item.url,
+            )
         )
-        new_item.save()
         count = count + 1
         completed.add(item.pk)
+    Team.objects.bulk_create(
+        new_teams,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["reference"],
+        update_fields=["base_team", "name", "nationality", "wikipedia"],
+    )
+    return team_map
 
-    # Drivers
+
+def import_drivers():
     drivers_to_add = []
     driver_map = {}
     completed = set()
     count = 1
-    item_ids = {}
-    for id in Results.objects.all().order_by("raceId", "positionOrder").values_list("driverId_id", flat=True):
-        item_ids[id] = None
 
-    for item_id in tqdm(item_ids.keys(), desc="Drivers"):
-        if item_id in completed:
+    drivers = Drivers.objects.order_by("results__raceId", "results__positionOrder").distinct()
+    for er_driver in tqdm(drivers, desc="Drivers"):
+        if er_driver.pk in completed:
             continue
-        item = Drivers.objects.get(pk=item_id)
-        driver_map[item.pk] = count
+        driver_map[er_driver.pk] = count
         new_item = Driver(
             pk=count,
-            reference=item.driverRef,
-            forename=item.forename,
-            surname=item.surname,
-            abbreviation=item.code,
-            nationality=item.nationality,
-            permanent_car_number=item.number,
-            date_of_birth=item.dob,
-            wikipedia=item.url,
+            reference=er_driver.driverRef,
+            forename=er_driver.forename,
+            surname=er_driver.surname,
+            abbreviation=er_driver.code,
+            nationality=er_driver.nationality,
+            permanent_car_number=er_driver.number,
+            date_of_birth=er_driver.dob,
+            wikipedia=er_driver.url,
         )
         drivers_to_add.append(new_item)
         count = count + 1
-        completed.add(item.pk)
-    Driver.objects.bulk_create(drivers_to_add, batch_size=1000)
+        completed.add(er_driver.pk)
+    Driver.objects.bulk_create(
+        drivers_to_add,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["reference"],
+        update_fields=[
+            "forename",
+            "surname",
+            "abbreviation",
+            "nationality",
+            "permanent_car_number",
+            "date_of_birth",
+            "wikipedia",
+        ],
+    )
+    return driver_map
 
-    # Races and Sessions
+
+def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
     race_map = {}
+    race_to_race_session_map = {}
     completed = set()
     count = 1
     session_count = 1
     races_to_add = []
     sessions_to_add = []
-    for item in tqdm(Races.objects.all().annotate(ann_circuit_ref=F("circuitId__circuitRef")), desc="Race & Sessions"):
-        if item.pk in completed:
+    second_session_bests_to_add = []
+    for er_race in tqdm(
+        Races.objects.all().annotate(ann_circuit_ref=F("circuitId__circuitRef")), desc="Race & Sessions"
+    ):
+        if er_race.pk in completed:
             continue
-        race_map[item.pk] = count
+        race_map[er_race.pk] = count
         new_item = Race(
             pk=count,
-            season_id=season_map[item.year_id],
-            circuit_id=circuit_map[item.circuitId_id],
-            round=item.round,
-            name=item.name,
-            date=item.date,
+            season_id=season_map[er_race.year_id],
+            circuit_id=circuit_map[er_race.circuitId_id],
+            round=er_race.round,
+            name=er_race.name,
+            date=er_race.date,
             race_number=count,
-            wikipedia=follow_wiki_redirects(item.url),
+            wikipedia=follow_wiki_redirects(er_race.url),
             is_cancelled=False,
         )
         races_to_add.append(new_item)
         race = Session(
             pk=session_count,
             race=new_item,
-            point_system_id=get_point_system(item.year_id, item.ann_circuit_ref),
+            point_system_id=get_point_system(er_race.year_id, er_race.ann_circuit_ref),
             type=SessionType.RACE,
-            date=item.date,
-            time=item.time,
+            date=er_race.date,
+            time=er_race.time,
             scheduled_laps=None,
         )
+        race_to_race_session_map[new_item.pk] = race.pk
         sessions_to_add.append(race)
         session_count += 1
-        if (item.year_id >= 1950 and item.year_id <= 1995) or item.year_id == 2003:
-            if item.year_id == 2003:
+        if (er_race.year_id >= 1950 and er_race.year_id <= 1995) or er_race.year_id == 2003:
+            if er_race.year_id == 2003:
+                double_bests = False
                 quali_types = SessionType.QUALIFYING_ORDER, SessionType.QUALIFYING_BEST
             else:
+                double_bests = True
                 quali_types = SessionType.QUALIFYING_BEST, SessionType.QUALIFYING_BEST
             first_quali = 3 if new_item.circuit.reference == "monaco" else 2
             sessions_to_add.append(
@@ -369,17 +396,19 @@ def run_import():
                 )
             )
             session_count += 1
-            sessions_to_add.append(
-                Session(
-                    pk=session_count,
-                    race=new_item,
-                    point_system_id=1,
-                    type=quali_types[1],
-                    date=new_item.date - timedelta(1),
-                )
+            second_q_sess = Session(
+                pk=session_count,
+                race=new_item,
+                point_system_id=1,
+                type=quali_types[1],
+                date=new_item.date - timedelta(1),
             )
+            if double_bests:
+                second_session_bests_to_add.append(second_q_sess)
+            else:
+                sessions_to_add.append(second_q_sess)
             session_count += 1
-        elif item.year_id >= 1996 and item.year_id <= 2002:
+        elif er_race.year_id >= 1996 and er_race.year_id <= 2002:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
@@ -390,7 +419,7 @@ def run_import():
                 )
             )
             session_count += 1
-        elif item.year_id == 2004:
+        elif er_race.year_id == 2004:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
@@ -411,8 +440,8 @@ def run_import():
                 )
             )
             session_count += 1
-        elif item.year_id == 2005:
-            if item.round <= 6:
+        elif er_race.year_id == 2005:
+            if er_race.round <= 6:
                 sessions_to_add.append(
                     Session(
                         pk=session_count,
@@ -444,8 +473,8 @@ def run_import():
                     )
                 )
                 session_count += 1
-        elif item.year_id >= 2006:
-            date = item.quali_date if item.quali_date else new_item.date - timedelta(1)
+        elif er_race.year_id >= 2006:
+            date = er_race.quali_date if er_race.quali_date else new_item.date - timedelta(1)
             sessions_to_add.append(
                 Session(
                     pk=session_count,
@@ -453,7 +482,7 @@ def run_import():
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ONE,
                     date=date,
-                    time=item.quali_time,
+                    time=er_race.quali_time,
                 )
             )
             session_count += 1
@@ -464,7 +493,7 @@ def run_import():
                     point_system_id=1,
                     type=SessionType.QUALIFYING_TWO,
                     date=date,
-                    time=item.quali_time,
+                    time=er_race.quali_time,
                 )
             )
             session_count += 1
@@ -475,16 +504,16 @@ def run_import():
                     point_system_id=1,
                     type=SessionType.QUALIFYING_THREE,
                     date=date,
-                    time=item.quali_time,
+                    time=er_race.quali_time,
                 )
             )
             session_count += 1
         # free practice
-        if item.year_id >= 2006 and item.year_id < 2021:
+        if er_race.year_id >= 2006 and er_race.year_id < 2021:
             days_before = 3 if new_item.circuit.reference == "monaco" else 2
-            fp1_date = item.fp1_date if item.fp1_date else item.date - timedelta(days_before)
-            fp2_date = item.fp2_date if item.fp2_date else item.date - timedelta(days_before)
-            fp3_date = item.fp3_date if item.fp3_date else item.date - timedelta(1)
+            fp1_date = er_race.fp1_date if er_race.fp1_date else er_race.date - timedelta(days_before)
+            fp2_date = er_race.fp2_date if er_race.fp2_date else er_race.date - timedelta(days_before)
+            fp3_date = er_race.fp3_date if er_race.fp3_date else er_race.date - timedelta(1)
             sessions_to_add.append(
                 Session(
                     pk=session_count,
@@ -492,7 +521,7 @@ def run_import():
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=fp1_date,
-                    time=item.fp1_time,
+                    time=er_race.fp1_time,
                 )
             )
             session_count += 1
@@ -503,7 +532,7 @@ def run_import():
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=fp2_date,
-                    time=item.fp2_time,
+                    time=er_race.fp2_time,
                 )
             )
             session_count += 1
@@ -514,63 +543,63 @@ def run_import():
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=fp3_date,
-                    time=item.fp3_time,
+                    time=er_race.fp3_time,
                 )
             )
             session_count += 1
 
-        if item.fp1_date:
+        if er_race.fp1_date:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
                     race=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
-                    date=item.fp1_date,
-                    time=item.fp1_time,
+                    date=er_race.fp1_date,
+                    time=er_race.fp1_time,
                 )
             )
             session_count += 1
         # If fp2 date make fp2 session, unless year is 2023, then a sprint quali should be created
-        if item.fp2_date and not (item.year_id == 2023 and item.sprint_date):
+        if er_race.fp2_date and not (er_race.year_id == 2023 and er_race.sprint_date):
             sessions_to_add.append(
                 Session(
                     pk=session_count,
                     race=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
-                    date=item.fp2_date,
-                    time=item.fp2_time,
+                    date=er_race.fp2_date,
+                    time=er_race.fp2_time,
                 )
             )
             session_count += 1
-        if item.fp3_date:
+        if er_race.fp3_date:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
                     race=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
-                    date=item.fp3_date,
-                    time=item.fp3_time,
+                    date=er_race.fp3_date,
+                    time=er_race.fp3_time,
                 )
             )
             session_count += 1
         # sprints
-        if item.year_id <= 2022 and item.sprint_date:
-            point_id = 19 if item.year_id == 2021 else 21
+        if er_race.year_id <= 2022 and er_race.sprint_date:
+            point_id = 19 if er_race.year_id == 2021 else 21
             sessions_to_add.append(
                 Session(
                     pk=session_count,
                     race=new_item,
                     point_system_id=point_id,
                     type=SessionType.SPRINT_RACE,
-                    date=item.sprint_date,
-                    time=item.sprint_time,
+                    date=er_race.sprint_date,
+                    time=er_race.sprint_time,
                 )
             )
             session_count += 1
-        elif item.sprint_date:
+        elif er_race.sprint_date:
             for ty in [SessionType.SPRINT_QUALIFYING1, SessionType.SPRINT_QUALIFYING2, SessionType.SPRINT_QUALIFYING3]:
                 sessions_to_add.append(
                     Session(
@@ -578,8 +607,8 @@ def run_import():
                         race=new_item,
                         point_system_id=1,
                         type=ty,
-                        date=item.fp2_date,
-                        time=item.fp2_time,
+                        date=er_race.fp2_date,
+                        time=er_race.fp2_time,
                     )
                 )
                 session_count += 1
@@ -589,26 +618,45 @@ def run_import():
                     race=new_item,
                     point_system_id=23,
                     type=SessionType.SPRINT_RACE,
-                    date=item.sprint_date,
-                    time=item.sprint_time,
+                    date=er_race.sprint_date,
+                    time=er_race.sprint_time,
                 )
             )
             session_count += 1
         count = count + 1
-        completed.add(item.pk)
-    Race.objects.bulk_create(races_to_add, batch_size=1000)
-    Session.objects.bulk_create(sessions_to_add, batch_size=1000)
+        completed.add(er_race.pk)
+    Race.objects.bulk_create(
+        races_to_add,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["season_id", "round"],
+        update_fields=["circuit_id", "name", "date", "race_number", "wikipedia", "is_cancelled"],
+    )
+    Session.objects.bulk_create(
+        sessions_to_add,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["pk"],
+        update_fields=["race", "type", "point_system_id", "date", "time"],
+    )
+    Session.objects.bulk_create(
+        second_session_bests_to_add,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["pk"],
+        update_fields=["race", "type", "point_system_id", "date", "time"],
+    )
+    return race_map, race_to_race_session_map
 
-    # Race Entries
 
-    results_map = {}
+def import_teamdrivers_and_raceentries(season_map, driver_map, team_map, race_map, race_to_race_session_map) -> tuple[dict,dict]:
     completed = set()
     count = 1
-    entry_count = 1
-    lap_count = 1
+    team_driver_count = 1
 
-    team_driver_map = defaultdict(lambda: defaultdict(defaultdict))
+    team_driver_map = {}
     race_entry_map = {}
+    race_entry_to_race_session_map = {}
     results_list = (
         Results.objects.all()
         .order_by("raceId", "positionOrder")
@@ -624,27 +672,84 @@ def run_import():
         if item.pk in completed:
             continue
         completed.add(item.pk)
-        results_map[item.pk] = count
-        team_driver = team_driver_map[season_id][team_id].get(driver_id)
+        team_driver = team_driver_map.get((season_id, team_id, driver_id))
         if team_driver is None:
             team_driver = TeamDriver(
+                pk=team_driver_count,
                 season_id=season_id,
                 team_id=team_id,
                 driver_id=driver_id,
             )
-            team_driver_map[season_id][team_id][driver_id] = team_driver
+            team_driver_count += 1
+            team_driver_map[(season_id, team_id, driver_id)] = team_driver
             team_drivers_to_add.append(team_driver)
-        race_entry_id = RaceEntry(
+        race_entry = RaceEntry(
             pk=count,
             race_id=race_map[item.raceId_id],
             team_driver=team_driver,
             car_number=item.number,
         )
-        race_entry_map[item.pk] = race_entry_id.pk
-        race_entries_to_add.append(race_entry_id)
+        race_entry_map[item.pk] = race_entry.pk
+        race_entry_to_race_session_map[race_entry.pk] = race_to_race_session_map[race_entry.race_id]
+        race_entries_to_add.append(race_entry)
         count = count + 1
-    TeamDriver.objects.bulk_create(team_drivers_to_add, batch_size=1000)
-    RaceEntry.objects.bulk_create(race_entries_to_add, batch_size=1000)
+    TeamDriver.objects.bulk_create(
+        team_drivers_to_add,
+        batch_size=1000,
+        update_conflicts=True,
+        unique_fields=["id"],
+        update_fields=["season_id", "team_id", "driver_id"],
+    )
+    RaceEntry.objects.bulk_create(race_entries_to_add, batch_size=1000, ignore_conflicts=True)
+    return race_entry_map, race_entry_to_race_session_map
+
+
+def run_import():
+    assert PitStops.objects.filter(lap__isnull=True).count() == 0
+    # fixtures
+    call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
+    call_command("loaddata", "jolpica/formula_one/fixtures/championship_systems.json")
+
+    # Data Fixes
+    # wrong constructor in quali
+    old_results = set(Results.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id").distinct())
+    old_qresults = set(Qualifying.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id").distinct())
+    for r in old_qresults:
+        if r not in old_results:
+            q = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=206)
+            q.constructorId_id = 209
+            q.save()
+    # wrong car number in quali
+    old_results = set(
+        Results.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id", "number").distinct()
+    )
+    old_qresults = set(
+        Qualifying.objects.all().values_list("raceId_id", "driverId_id", "constructorId_id", "number").distinct()
+    )
+    for r in old_qresults.difference(old_results):
+        res = Results.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2])
+        sprint = Qualifying.objects.get(raceId_id=r[0], driverId_id=r[1], constructorId_id=r[2], number=r[3])
+        sprint.number = res.number
+        sprint.save()
+
+    # Circuits
+    circuit_map = import_circuits()
+
+    # Seasons
+    season_map = import_seasons()
+
+    # Teams
+    team_map = import_teams()
+
+    # Drivers
+    driver_map = import_drivers()
+
+    # Races and Sessions
+    race_map, race_to_race_session_map = import_races_and_sessions(season_map, circuit_map)
+
+    # Race Entries
+
+    race_entry_map, race_entry_to_race_session_map = import_teamdrivers_and_raceentries(season_map, driver_map, team_map, race_map, race_to_race_session_map)
 
     laps_to_add = []
     pitstops_to_add = []
@@ -658,6 +763,15 @@ def run_import():
         SprintResults.objects.all().annotate(ann_status_detail=F("statusId__status")), desc="Filtering sprints"
     ):
         sprint_filtered[(sprint.raceId_id, sprint.driverId_id, sprint.constructorId_id)] = sprint
+
+
+    results_list = (
+        Results.objects.all()
+        .order_by("raceId", "positionOrder")
+        .annotate(ann_year=F("raceId__year_id"), ann_status_detail=F("statusId__status"))
+    )
+    lap_count = 1
+    entry_count = 1
 
     for item in tqdm(results_list, desc="Session Entries"):
         race_entry_id = race_entry_map[item.pk]
@@ -726,8 +840,8 @@ def run_import():
         quali = quali_filtered[(item.raceId_id, item.driverId_id, item.constructorId_id)]
         if quali:
             quali_sessions = (
-                Session.objects.filter(race=race_entry_id.race, type__startswith="Q").exclude(type="QO").order_by("pk")
-            )
+                Session.objects.filter(race__race_entries=race_entry_id, type__startswith="Q").exclude(type="QO").order_by("pk")
+            ).distinct("pk")
             for i, session in enumerate(quali_sessions):
                 time = quali.q1 if i == 0 else (quali.q2 if i == 1 else quali.q3)
                 time = str_to_delta(time)
@@ -736,7 +850,7 @@ def run_import():
                 quali_entry = SessionEntry(
                     pk=entry_count,
                     session=session,
-                    race_entry=race_entry_id,
+                    race_entry_id=race_entry_id,
                     fastest_lap=None,
                     position=quali.position,
                     status=map_status(item.statusId_id, qualifying=True),
@@ -759,8 +873,8 @@ def run_import():
         if sprint:
             sprint_entry = SessionEntry(
                 pk=entry_count,
-                session=Session.objects.get(race=race_entry_id.race, type=SessionType.SPRINT_RACE),
-                race_entry=race_entry_id,
+                session=Session.objects.get(race__race_entries=race_entry_id, type=SessionType.SPRINT_RACE),
+                race_entry_id=race_entry_id,
                 fastest_lap=None,
                 position=sprint.positionOrder,
                 is_classified=sprint.position is not None,
