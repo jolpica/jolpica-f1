@@ -210,7 +210,7 @@ def import_circuits() -> dict:
     circuit_map = {}
     completed = set()
     count = 1
-    for circ in tqdm(Circuits.objects.all().order_by("rounds").distinct(), desc="Circuits"):
+    for circ in tqdm(Circuits.objects.all().order_by("races").distinct(), desc="Circuits"):
         if circ.pk in completed:
             continue
         circuit_map[circ.pk] = count
@@ -355,6 +355,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
     for er_race in tqdm(
         Races.objects.all().annotate(ann_circuit_ref=F("circuitId__circuitRef")), desc="Race & Sessions"
     ):
+        starting_session_count = session_count
         if er_race.pk in completed:
             continue
         round_map[er_race.pk] = count
@@ -373,6 +374,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
         race = Session(
             pk=session_count,
             round=new_item,
+            number=session_count - starting_session_count + 1,
             point_system_id=get_point_system(er_race.year_id, er_race.ann_circuit_ref),
             type=SessionType.RACE,
             date=er_race.date,
@@ -394,6 +396,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=quali_types[0],
                     date=new_item.date - timedelta(first_quali),
@@ -403,6 +406,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             second_q_sess = Session(
                 pk=session_count,
                 round=new_item,
+                number=session_count - starting_session_count + 1,
                 point_system_id=1,
                 type=quali_types[1],
                 date=new_item.date - timedelta(1),
@@ -417,6 +421,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
@@ -428,6 +433,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ORDER,
                     date=new_item.date - timedelta(1),
@@ -438,6 +444,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
@@ -450,6 +457,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                     Session(
                         pk=session_count,
                         round=new_item,
+                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_AVG,
                         date=new_item.date - timedelta(1),
@@ -460,6 +468,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                     Session(
                         pk=session_count,
                         round=new_item,
+                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_AVG,
                         date=new_item.date - timedelta(0),
@@ -471,6 +480,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                     Session(
                         pk=session_count,
                         round=new_item,
+                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_BEST,
                         date=new_item.date - timedelta(1),
@@ -483,6 +493,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ONE,
                     date=date,
@@ -494,6 +505,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_TWO,
                     date=date,
@@ -505,6 +517,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_THREE,
                     date=date,
@@ -522,6 +535,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=fp1_date,
@@ -533,6 +547,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=fp2_date,
@@ -544,6 +559,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=fp3_date,
@@ -557,6 +573,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=er_race.fp1_date,
@@ -570,6 +587,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=er_race.fp2_date,
@@ -582,6 +600,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=er_race.fp3_date,
@@ -596,6 +615,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=point_id,
                     type=SessionType.SPRINT_RACE,
                     date=er_race.sprint_date,
@@ -609,6 +629,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                     Session(
                         pk=session_count,
                         round=new_item,
+                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=ty,
                         date=er_race.fp2_date,
@@ -620,6 +641,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 Session(
                     pk=session_count,
                     round=new_item,
+                    number=session_count - starting_session_count + 1,
                     point_system_id=23,
                     type=SessionType.SPRINT_RACE,
                     date=er_race.sprint_date,
