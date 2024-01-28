@@ -104,7 +104,7 @@ def generate_season_driver_standings(
             race_id=F("session__race__pk"),
             round=F("session__race__round"),
             session_type=F("session__type"),
-            driver_id=F("race_entry__team_driver__driver__pk"),
+            driver_id=F("round_entry__team_driver__driver__pk"),
         )
         .order_by("round", "session__date", "session__time")
     )

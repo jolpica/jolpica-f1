@@ -30,7 +30,7 @@ from jolpica.formula_one.models import (
     PitStop,
     PointSystem,
     Race,
-    RaceEntry,
+    RoundEntry,
     Season,
     Session,
     SessionEntry,
@@ -661,8 +661,8 @@ def import_teamdrivers_and_raceentries(
     team_driver_count = 1
 
     team_driver_map = {}
-    race_entry_map = {}
-    race_entry_to_race_session_map = {}
+    round_entry_map = {}
+    round_entry_to_race_session_map = {}
     results_list = (
         Results.objects.all()
         .order_by("raceId", "positionOrder")
@@ -670,7 +670,7 @@ def import_teamdrivers_and_raceentries(
     )
 
     team_drivers_to_add = []
-    race_entries_to_add = []
+    round_entries_to_add = []
     for item in tqdm(results_list, desc="Race Entries"):
         season_id = season_map[item.ann_year]
         driver_id = driver_map[item.driverId_id]
@@ -689,15 +689,15 @@ def import_teamdrivers_and_raceentries(
             team_driver_count += 1
             team_driver_map[(season_id, team_id, driver_id)] = team_driver
             team_drivers_to_add.append(team_driver)
-        race_entry = RaceEntry(
+        round_entry = RoundEntry(
             pk=count,
             race_id=race_map[item.raceId_id],
             team_driver=team_driver,
             car_number=item.number,
         )
-        race_entry_map[item.pk] = race_entry.pk
-        race_entry_to_race_session_map[race_entry.pk] = race_to_race_session_map[race_entry.race_id]
-        race_entries_to_add.append(race_entry)
+        round_entry_map[item.pk] = round_entry.pk
+        round_entry_to_race_session_map[round_entry.pk] = race_to_race_session_map[round_entry.race_id]
+        round_entries_to_add.append(round_entry)
         count = count + 1
     TeamDriver.objects.bulk_create(
         team_drivers_to_add,
@@ -706,8 +706,8 @@ def import_teamdrivers_and_raceentries(
         unique_fields=["id"],
         update_fields=["season_id", "team_id", "driver_id"],
     )
-    RaceEntry.objects.bulk_create(race_entries_to_add, batch_size=1000, ignore_conflicts=True)
-    return race_entry_map, race_entry_to_race_session_map
+    RoundEntry.objects.bulk_create(round_entries_to_add, batch_size=1000, ignore_conflicts=True)
+    return round_entry_map, round_entry_to_race_session_map
 
 
 def run_import():
@@ -756,7 +756,7 @@ def run_import():
 
     # Race Entries
 
-    race_entry_map, race_entry_to_race_session_map = import_teamdrivers_and_raceentries(
+    round_entry_map, round_entry_to_race_session_map = import_teamdrivers_and_raceentries(
         season_map, driver_map, team_map, race_map, race_to_race_session_map
     )
 
@@ -790,11 +790,11 @@ def run_import():
     entry_count = 1
     fastest_laps = []
     for result in tqdm(results_list, desc="Session Entries"):
-        race_entry_id = race_entry_map[result.pk]
+        round_entry_id = round_entry_map[result.pk]
         sess_entry = SessionEntry(
             pk=entry_count,
-            session_id=race_entry_to_race_session_map[race_entry_id],
-            race_entry_id=race_entry_id,
+            session_id=round_entry_to_race_session_map[round_entry_id],
+            round_entry_id=round_entry_id,
             fastest_lap=None,
             position=result.positionOrder,
             is_classified=result.position is not None,
@@ -862,7 +862,7 @@ def run_import():
         quali = quali_filtered[(result.raceId_id, result.driverId_id, result.constructorId_id)]
         if quali:
             quali_sessions = (
-                Session.objects.filter(race__race_entries=race_entry_id, type__startswith="Q")
+                Session.objects.filter(race__round_entries=round_entry_id, type__startswith="Q")
                 .exclude(type="QO")
                 .order_by("pk")
             ).distinct("pk")
@@ -874,7 +874,7 @@ def run_import():
                 quali_entry = SessionEntry(
                     pk=entry_count,
                     session=session,
-                    race_entry_id=race_entry_id,
+                    round_entry_id=round_entry_id,
                     fastest_lap=None,
                     position=quali.position,
                     status=map_status(result.statusId_id, qualifying=True),
@@ -897,8 +897,8 @@ def run_import():
         if sprint:
             sprint_entry = SessionEntry(
                 pk=entry_count,
-                session=Session.objects.get(race__race_entries=race_entry_id, type=SessionType.SPRINT_RACE),
-                race_entry_id=race_entry_id,
+                session=Session.objects.get(race__round_entries=round_entry_id, type=SessionType.SPRINT_RACE),
+                round_entry_id=round_entry_id,
                 fastest_lap=None,
                 position=sprint.positionOrder,
                 is_classified=sprint.position is not None,
