@@ -21,8 +21,8 @@ class DriverChampionship(models.Model):
     season = models.ForeignKey(
         "formula_one.Season", null=True, blank=True, on_delete=models.SET_NULL, related_name="driver_standings"
     )
-    race = models.ForeignKey(
-        "formula_one.Race", null=True, blank=True, on_delete=models.SET_NULL, related_name="driver_standings"
+    round = models.ForeignKey(
+        "formula_one.Round", null=True, blank=True, on_delete=models.SET_NULL, related_name="driver_standings"
     )
 
     class Meta:

@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from django.db import models
 
 if TYPE_CHECKING:
-    from . import ChampionshipAdjustment, Race, TeamDriver
+    from . import ChampionshipAdjustment, Round, TeamDriver
 
 
 class Season(models.Model):
@@ -17,7 +17,7 @@ class Season(models.Model):
     championship_system = models.ForeignKey(
         "formula_one.ChampionshipSystem", on_delete=models.SET_NULL, related_name="seasons", null=True, blank=True
     )
-    races: models.QuerySet[Race]
+    rounds: models.QuerySet[Round]
     team_drivers: models.QuerySet[TeamDriver]
     championship_adjustments: models.QuerySet[ChampionshipAdjustment]
 

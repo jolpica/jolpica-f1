@@ -30,7 +30,7 @@ class Session(models.Model):
     """Information about a scheduled session where cars are on track"""
 
     id = models.BigAutoField(primary_key=True)
-    race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="sessions")
+    round = models.ForeignKey("formula_one.Round", on_delete=models.CASCADE, related_name="sessions")
     # rename
     point_system = models.ForeignKey("PointSystem", on_delete=models.PROTECT, related_name="sessions")
     round_entries = models.ManyToManyField(
@@ -45,7 +45,7 @@ class Session(models.Model):
     is_cancelled = models.BooleanField(default=False)
 
     def __str__(self) -> str:
-        return f"{self.race} - {SessionType(self.type).label}"
+        return f"{self.round} - {SessionType(self.type).label}"
 
 
 class SessionStatus(models.IntegerChoices):
@@ -62,7 +62,7 @@ class SessionStatus(models.IntegerChoices):
 
 
 class SessionEntry(models.Model):
-    """All information for a race entry for the session"""
+    """All information for a round entry for the session"""
 
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")

@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from django.db import models
 
 if TYPE_CHECKING:
-    from . import ChampionshipAdjustment, Race, Season, Team, TeamDriver
+    from . import ChampionshipAdjustment, Round, Season, Team, TeamDriver
 
 
 class Driver(models.Model):
@@ -15,7 +15,6 @@ class Driver(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     teams: models.QuerySet[Team]
-    races: models.QuerySet[Race]
     seasons: models.QuerySet[Season]
     team_drivers: models.QuerySet[TeamDriver]
     championship_adjustments: models.QuerySet[ChampionshipAdjustment]
