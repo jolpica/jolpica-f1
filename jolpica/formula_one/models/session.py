@@ -31,7 +31,7 @@ class Session(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     round = models.ForeignKey("formula_one.Round", on_delete=models.CASCADE, related_name="sessions")
-    # rename
+    number = models.PositiveSmallIntegerField(null=True, blank=True)
     point_system = models.ForeignKey("PointSystem", on_delete=models.PROTECT, related_name="sessions")
     round_entries = models.ManyToManyField(
         "formula_one.RoundEntry", through="formula_one.SessionEntry", related_name="sessions"
@@ -43,6 +43,11 @@ class Session(models.Model):
     time = models.TimeField(null=True, blank=True)
     scheduled_laps = models.PositiveSmallIntegerField(null=True, blank=True)
     is_cancelled = models.BooleanField(default=False)
+
+    class Meta:
+        constraints: ClassVar = [
+            models.UniqueConstraint(fields=["round", "number"], name="session_unique_number_round"),
+        ]
 
     def __str__(self) -> str:
         return f"{self.round} - {SessionType(self.type).label}"
