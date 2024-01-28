@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING
 from django.contrib.gis.db import models
 
 if TYPE_CHECKING:
-    from . import Race
+    from . import Round
 
 
 class Circuit(models.Model):
-    """Race venue information"""
+    """Round venue information"""
 
     id = models.BigAutoField(primary_key=True)
-    races: models.QuerySet["Race"]
+    rounds: models.QuerySet["Round"]
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)

@@ -6,8 +6,8 @@ def run_data_correction():
     # 2011 round 7 - missed karthikeyan's penlty
     to_update = SessionEntry.objects.filter(
         session__type=SessionType.RACE,
-        session__race__number=7,
-        session__race__season__year=2011,
+        session__round__number=7,
+        session__round__season__year=2011,
         round_entry__team_driver__driver__reference__in=[
             "ambrosio",
             "glock",
@@ -26,8 +26,8 @@ def run_data_correction():
         updated.append(entry)
     # 1956 round 2 - only eligible for points from 1 finish
     entry = SessionEntry.objects.filter(
-        session__race__number=2,
-        session__race__season__year=1956,
+        session__round__number=2,
+        session__round__season__year=1956,
         round_entry__team_driver__driver__reference="fangio",
         points=1.5,
     ).first()

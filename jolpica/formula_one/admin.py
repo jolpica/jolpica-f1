@@ -13,7 +13,7 @@ class ListAdminMixin:
                 for field in model._meta.fields
                 if field.name
                 in {
-                    "race",
+                    "round",
                     "session_entry",
                     "round_entry",
                     "driver",
@@ -28,9 +28,9 @@ class ListAdminMixin:
         if model.__name__ == "Lap":
             self.list_filter = ["session_entry__session__type"]
         elif model.__name__ == "SessionEntry":
-            self.list_filter = ["session__type", "session__race__season", "session__race__number"]
+            self.list_filter = ["session__type", "session__round__season", "session__round__number"]
         elif model.__name__ == "Session":
-            self.list_filter = ["type", "race__season", "race__number"]
+            self.list_filter = ["type", "round__season", "round__number"]
         elif model.__name__ == "TeamDriver":
             self.list_filter = ["season"]
         elif model.__name__ == "DriverChampionship":
@@ -43,7 +43,7 @@ class ListAdminMixin:
                 return ["name", "reference", "country", "city"]
             case "Season":
                 return ["year"]
-            case "Race":
+            case "Round":
                 return ["season__year", "name", "circuit__country"]
             case "Driver":
                 return ["forename", "surname", "abbreviation"]
@@ -57,11 +57,11 @@ class ListAdminMixin:
                     "session_entry__round_entry__driver__surname",
                 ]
             case "Session":
-                return ["race__season__year", "race__name", "type"]
+                return ["round__season__year", "round__name", "type"]
             case "RoundEntry":
-                return ["race__name", "car_number"]
+                return ["round__name", "car_number"]
             case "SessionEntry":
-                return ["session__race__season__year", "session__race__name", "round_entry__driver__forename"]
+                return ["session__round__season__year", "session__round__name", "round_entry__driver__forename"]
         return []
 
 
