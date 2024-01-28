@@ -5,13 +5,13 @@ from django.db.models import F
 from .models import (
     ChampionshipAdjustmentType,
     ChampionshipSystem,
-    DriverChampionship,
     ResultsChampionshipScheme,
     Season,
     SessionEntry,
     SessionType,
     SplitChampionshipScheme,
 )
+from .models.managed_views import DriverChampionship
 
 
 def calculate_championship_points(
