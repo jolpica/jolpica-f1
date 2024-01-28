@@ -6,13 +6,19 @@ from rest_framework.test import APIClient
 
 
 @pytest.mark.parametrize(
-    ["endpoint", "endpoint_fixture"],
-    list((path.name.replace("@", "/"), path) for path in Path("tests/fixtures/ergast_responses").glob("**/*.json*")),
+    ["endpoint", "path"],
+    list(
+        (
+            path.name.replace("@", "/").replace("^", "?"),
+            path,
+        )
+        for path in Path("tests/fixtures/ergast_responses").glob("**/*.json*")
+    ),
 )
 @pytest.mark.django_db
-def test_viewsets(client: APIClient, endpoint_fixture: Path, endpoint, django_assert_max_num_queries):
+def test_viewsets(client: APIClient, endpoint, path: Path, django_assert_max_num_queries):
     # endpoint = endpoint_fixture.name.replace("@", "/")
-    with open(endpoint_fixture, mode="rb") as f:
+    with open(path, mode="rb") as f:
         expected = json.load(f)
 
     # We intentially do not match the xmlns or url
