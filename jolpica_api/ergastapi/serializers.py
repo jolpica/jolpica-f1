@@ -56,7 +56,7 @@ class CircuitSerializer(ErgastModelSerializer):
 
 class BaseRaceSerializer(ErgastModelSerializer):
     season = serializers.CharField()
-    round = serializers.CharField()
+    round = serializers.CharField(source="number")
     url = serializers.CharField(source="wikipedia")
     raceName = serializers.CharField(source="name")  # noqa: N815
     Circuit = CircuitSerializer(source="circuit")
