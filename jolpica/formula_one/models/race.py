@@ -18,7 +18,7 @@ class Race(models.Model):
     round_entries: models.QuerySet["RoundEntry"]
     sessions: models.QuerySet["Session"]
 
-    round = models.PositiveSmallIntegerField(null=True, blank=True)
+    number = models.PositiveSmallIntegerField(null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
     race_number = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -26,7 +26,7 @@ class Race(models.Model):
     is_cancelled = models.BooleanField(default=False)
 
     class Meta:
-        constraints: ClassVar = [models.UniqueConstraint(fields=["season", "round"], name="race_unique_season_round")]
+        constraints: ClassVar = [models.UniqueConstraint(fields=["season", "number"], name="race_unique_season_number")]
 
     def __str__(self) -> str:
         return f"{self.season.year} {self.name}"

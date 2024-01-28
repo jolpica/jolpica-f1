@@ -102,24 +102,24 @@ def generate_season_driver_standings(
         SessionEntry.objects.filter(session__race__season_id=season.pk, session__point_system_id__gt=1)
         .annotate(
             race_id=F("session__race__pk"),
-            round=F("session__race__round"),
+            round_num=F("session__race__number"),
             session_type=F("session__type"),
             driver_id=F("round_entry__team_driver__driver__pk"),
         )
-        .order_by("round", "session__date", "session__time")
+        .order_by("round_num", "session__date", "session__time")
     )
     entries_dict: dict[int, dict[int, dict[int, list[SessionEntry]]]] = defaultdict(
         lambda: defaultdict(lambda: defaultdict(list))
     )
     for entry in session_entries:
-        entries_dict[entry.round][entry.session_id][entry.driver_id].append(entry)
+        entries_dict[entry.round_num][entry.session_id][entry.driver_id].append(entry)
 
     driver_round_points: dict[int, dict[int, float]] = defaultdict(lambda: defaultdict(float))
     driver_sort_key: dict = defaultdict(lambda: [0.0, "", ""])
 
     driver_standings = []
     current_standings: list[DriverChampionship] = []
-    for round, entries_type_dict in entries_dict.items():
+    for round_num, entries_type_dict in entries_dict.items():
         race_id = None
         for session_id, driver_entries in entries_type_dict.items():
             session_type = None
@@ -132,7 +132,7 @@ def generate_season_driver_standings(
                     race_id = entry.race_id
                     session_type = entry.session_type
                     if entry.is_eligible_for_points and entry.points:
-                        driver_round_points[driver_id][round] += entry.points
+                        driver_round_points[driver_id][round_num] += entry.points
                     if (
                         position is None
                         or entry.position < position
@@ -180,7 +180,7 @@ def generate_season_driver_standings(
                         session_id=session_id,
                         driver_id=driver_id,
                         year=season.year,
-                        round=round,
+                        round=round_num,
                         position=position if classified else None,
                         points=points,
                         win_count=int(finish_string[:2]) if finish_string else 0,

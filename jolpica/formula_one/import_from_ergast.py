@@ -362,7 +362,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             pk=count,
             season_id=season_map[er_race.year_id],
             circuit_id=circuit_map[er_race.circuitId_id],
-            round=er_race.round,
+            number=er_race.round,
             name=er_race.name,
             date=er_race.date,
             race_number=count,
@@ -633,7 +633,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
         races_to_add,
         batch_size=1000,
         update_conflicts=True,
-        unique_fields=["season_id", "round"],
+        unique_fields=["season_id", "number"],
         update_fields=["circuit_id", "name", "date", "race_number", "wikipedia", "is_cancelled"],
     )
     Session.objects.bulk_create(
@@ -711,7 +711,7 @@ def import_teamdrivers_and_raceentries(
 
 
 def run_import():
-    if PitStops.objects.filter(lap__isnull=True).count() == 0:
+    if PitStops.objects.filter(lap__isnull=True).count() != 0:
         raise ValueError("pitstop without a lap")
     # fixtures
     call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
