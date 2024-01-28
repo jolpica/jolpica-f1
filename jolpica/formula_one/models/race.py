@@ -13,9 +13,9 @@ class Race(models.Model):
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="races")
     circuit = models.ForeignKey("Circuit", on_delete=models.CASCADE, related_name="races")
     team_drivers = models.ManyToManyField(
-        "formula_one.TeamDriver", through="formula_one.RaceEntry", related_name="races"
+        "formula_one.TeamDriver", through="formula_one.RoundEntry", related_name="races"
     )
-    race_entries: models.QuerySet["RaceEntry"]
+    round_entries: models.QuerySet["RoundEntry"]
     sessions: models.QuerySet["Session"]
 
     round = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -32,12 +32,12 @@ class Race(models.Model):
         return f"{self.season.year} {self.name}"
 
 
-class RaceEntry(models.Model):
+class RoundEntry(models.Model):
     """All data relating to a driver racing for a specific team for a race"""
 
     id = models.BigAutoField(primary_key=True)
-    race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="race_entries")
-    team_driver = models.ForeignKey("TeamDriver", on_delete=models.CASCADE, related_name="race_entries")
+    race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="round_entries")
+    team_driver = models.ForeignKey("TeamDriver", on_delete=models.CASCADE, related_name="round_entries")
     sessions: models.QuerySet["Session"]
     session_entries: models.QuerySet["SessionEntry"]
 
@@ -45,7 +45,7 @@ class RaceEntry(models.Model):
 
     class Meta:
         constraints: ClassVar = [
-            models.UniqueConstraint(fields=["race", "team_driver", "car_number"], name="race_entry_unique")
+            models.UniqueConstraint(fields=["race", "team_driver", "car_number"], name="round_entry_unique")
         ]
 
     def __str__(self) -> str:

@@ -33,8 +33,8 @@ class Session(models.Model):
     race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="sessions")
     # rename
     point_system = models.ForeignKey("PointSystem", on_delete=models.PROTECT, related_name="sessions")
-    race_entries = models.ManyToManyField(
-        "formula_one.RaceEntry", through="formula_one.SessionEntry", related_name="sessions"
+    round_entries = models.ManyToManyField(
+        "formula_one.RoundEntry", through="formula_one.SessionEntry", related_name="sessions"
     )
     session_entries: models.QuerySet["SessionEntry"]
 
@@ -66,7 +66,7 @@ class SessionEntry(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")
-    race_entry = models.ForeignKey("RaceEntry", on_delete=models.CASCADE, related_name="session_entries")
+    round_entry = models.ForeignKey("RoundEntry", on_delete=models.CASCADE, related_name="session_entries")
     fastest_lap = models.ForeignKey(
         "Lap",
         on_delete=models.SET_NULL,
@@ -93,11 +93,11 @@ class SessionEntry(models.Model):
 
     class Meta:
         constraints: ClassVar = [
-            models.UniqueConstraint(fields=["session", "race_entry"], name="session_entry_unique_session_race_entry"),
+            models.UniqueConstraint(fields=["session", "round_entry"], name="session_entry_unique_session_round_entry"),
         ]
 
     def __str__(self) -> str:
-        return f"{self.session} - {self.race_entry}"
+        return f"{self.session} - {self.round_entry}"
 
 
 class Penalty(models.Model):

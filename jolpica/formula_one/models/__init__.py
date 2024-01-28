@@ -14,7 +14,7 @@ from .point_scheme import (
     ResultsChampionshipScheme,
     SplitChampionshipScheme,
 )
-from .race import Race, RaceEntry
+from .race import Race, RoundEntry
 from .season import Season
 from .session import Penalty, Session, SessionEntry, SessionStatus, SessionType
 from .team import BaseTeam, Team, TeamDriver, TeamDriverRole
@@ -35,7 +35,7 @@ __all__ = [
     "PointSystem",
     "PositionPointScheme",
     "Race",
-    "RaceEntry",
+    "RoundEntry",
     "ResultsChampionshipScheme",
     "Season",
     "Session",

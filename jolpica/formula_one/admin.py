@@ -15,7 +15,7 @@ class ListAdminMixin:
                 in {
                     "race",
                     "session_entry",
-                    "race_entry",
+                    "round_entry",
                     "driver",
                     "team",
                     "lap",
@@ -53,15 +53,15 @@ class ListAdminMixin:
                 return [
                     "session_entry__session__type",
                     "number",
-                    "session_entry__race_entry__driver__forename",
-                    "session_entry__race_entry__driver__surname",
+                    "session_entry__round_entry__driver__forename",
+                    "session_entry__round_entry__driver__surname",
                 ]
             case "Session":
                 return ["race__season__year", "race__name", "type"]
-            case "RaceEntry":
+            case "RoundEntry":
                 return ["race__name", "car_number"]
             case "SessionEntry":
-                return ["session__race__season__year", "session__race__name", "race_entry__driver__forename"]
+                return ["session__race__season__year", "session__race__name", "round_entry__driver__forename"]
         return []
 
 

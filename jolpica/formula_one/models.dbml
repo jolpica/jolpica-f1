@@ -156,7 +156,7 @@ ref: Session.point_system > PointSystem.id
 Table SessionEntry {
   id big_auto [pk, unique]
   session foreign_key 
-  race_entry foreign_key 
+  round_entry foreign_key 
   fastest_lap foreign_key [null]
   position positive_small_integer [null]
   is_classified boolean [null]
@@ -171,7 +171,7 @@ Table SessionEntry {
   Note: '''All information for a race entry for the session'''
 }
 ref: SessionEntry.session > Session.id
-ref: SessionEntry.race_entry > RaceEntry.id
+ref: SessionEntry.round_entry > RaceEntry.id
 ref: SessionEntry.fastest_lap > Lap.id
 
 
