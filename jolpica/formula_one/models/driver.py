@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from django.db import models
 
 if TYPE_CHECKING:
-    from . import ChampionshipAdjustment, Round, Season, Team, TeamDriver
+    from . import ChampionshipAdjustment, Season, Team, TeamDriver
 
 
 class Driver(models.Model):

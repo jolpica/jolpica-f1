@@ -34,7 +34,7 @@ class ListAdminMixin:
         elif model.__name__ == "TeamDriver":
             self.list_filter = ["season"]
         elif model.__name__ == "DriverChampionship":
-            self.list_filter = ["round", "season"]
+            self.list_filter = ["round_number", "season"]
         super().__init__(model, admin_site)
 
     def _get_search_fields(self, model_name: str) -> list[str]:
