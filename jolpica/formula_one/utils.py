@@ -140,7 +140,7 @@ def generate_season_driver_standings(
                     ):
                         position = entry.position
                         is_classified = entry.is_classified
-                if session_type == SessionType.round and position is not None:
+                if session_type == SessionType.RACE and position is not None:
                     if is_classified:
                         driver_sort_key[driver_id][1] = add_to_encoded_finishing_positions(
                             driver_sort_key[driver_id][1], position
@@ -164,9 +164,10 @@ def generate_season_driver_standings(
             for driver_id, sort_key in drivers_by_finishes:
                 sort_key = tuple(sort_key)
                 points, finish_string, _ = sort_key
-                classified = True if finish_string else False
+                is_eligible = True if finish_string else False  # Eligible for a championship position
+                is_classified = True  # Classified in championship (or is disqualified)
                 if driver_id in adjustments.keys():
-                    classified = False
+                    is_classified = False
                     if adjustments[driver_id] == ChampionshipAdjustmentType.EXCLUDED:
                         points = 0
                 elif sort_key < last_key:
@@ -180,12 +181,14 @@ def generate_season_driver_standings(
                         session_id=session_id,
                         driver_id=driver_id,
                         year=season.year,
-                        round=round_num,
-                        position=position if classified else None,
+                        round_number=round_num,
+                        position=position if is_eligible and is_classified else None,
                         points=points,
                         win_count=int(finish_string[:2]) if finish_string else 0,
                         highest_finish=highest_finish_from_encoded_finishing_position(finish_string),
                         finish_string=finish_string,
+                        is_eligible=is_eligible,
+                        adjustment_type=adjustments.get(driver_id, ChampionshipAdjustmentType.NONE),
                     )
                 )
         # round

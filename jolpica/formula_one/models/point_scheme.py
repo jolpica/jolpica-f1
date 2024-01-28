@@ -142,6 +142,7 @@ class ChampionshipSystem(models.Model):
 class ChampionshipAdjustmentType(models.IntegerChoices):
     """Type of Championship Adjustment. Disqualification / Exclusion"""
 
+    NONE = 0
     DISQUALIFIED = 1  # Keep points and results, but lose championship standing
     EXCLUDED = 2  # Lose all points
 
