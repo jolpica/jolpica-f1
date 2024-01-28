@@ -126,7 +126,7 @@ for endpoint_type, test_urls in tqdm(endpoints.items()):
     folder = Path("tests/fixtures/ergast_responses") / endpoint_type
     folder.mkdir(exist_ok=True)
     for url in tqdm(test_urls, leave=False):
-        file_path = folder / url.replace("/", "@")
+        file_path = folder / url.replace("/", "@").replace("?", "^")
         if file_path.exists():
             continue
         sleep(1)
