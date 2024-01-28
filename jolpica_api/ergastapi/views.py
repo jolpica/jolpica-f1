@@ -19,7 +19,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
     query_driver = None
     query_circuit = None
     query_season = None
-    query_race = None
+    query_round = None
     query_lap = None
     query_pitstop = None
 
@@ -48,7 +48,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         if season_year:
             filters = filters & Q(**{f"{self.query_season}year": season_year})
         if race_round:
-            filters = filters & Q(**{f"{self.query_race}number": race_round})
+            filters = filters & Q(**{f"{self.query_round}number": race_round})
         if circuit_ref:
             filters = filters & Q(**{f"{self.query_circuit}reference": circuit_ref})
         if team_ref:
@@ -85,7 +85,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
                 )
         if (
             (self.query_season is None and self.kwargs.get("season_year"))
-            or (self.query_race is None and self.kwargs.get("race_round"))
+            or (self.query_round is None and self.kwargs.get("race_round"))
             or (self.query_circuit is None and self.kwargs.get("circuit_ref"))
             or (self.query_team is None and self.kwargs.get("team_ref"))
             or (self.query_driver is None and self.kwargs.get("driver_ref"))
@@ -125,9 +125,9 @@ class SeasonViewSet(ErgastModelViewSet):
     query_session_entries = "team_drivers__round_entries__session_entries__"
     query_team = "team_drivers__team__"
     query_driver = "team_drivers__driver__"
-    query_circuit = "team_drivers__round_entries__race__circuit__"
+    query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = ""
-    query_race = "team_drivers__round_entries__race__"
+    query_round = "team_drivers__round_entries__round__"
     order_by = ["year"]
 
 
@@ -135,12 +135,12 @@ class CircuitViewSet(ErgastModelViewSet):
     serializer_class = serializers.CircuitSerializer
     lookup_field = "circuit_ref"
 
-    query_session_entries = "races__round_entries__session_entries__"
-    query_team = "races__round_entries__team_driver__team__"
-    query_driver = "races__round_entries__team_driver__driver__"
+    query_session_entries = "rounds__round_entries__session_entries__"
+    query_team = "rounds__round_entries__team_driver__team__"
+    query_driver = "rounds__round_entries__team_driver__driver__"
     query_circuit = ""
-    query_season = "races__season__"
-    query_race = "races__"
+    query_season = "rounds__season__"
+    query_round = "rounds__"
     order_by = ["reference"]
 
     def get_queryset(self) -> QuerySet:
@@ -156,7 +156,7 @@ class RaceViewSet(ErgastModelViewSet):
     query_driver = "round_entries__team_driver__driver__"
     query_circuit = "circuit__"
     query_season = "season__"
-    query_race = ""
+    query_round = ""
     order_by = ["season__year", "number"]
 
     def get_queryset(self) -> QuerySet:
@@ -170,9 +170,9 @@ class StatusViewSet(ErgastModelViewSet):
     query_session_entries = ""
     query_team = "round_entry__team_driver__team__"
     query_driver = "round_entry__team_driver__driver__"
-    query_circuit = "round_entry__race__circuit__"
-    query_season = "round_entry__race__season__"
-    query_race = "round_entry__race__"
+    query_circuit = "round_entry__round__circuit__"
+    query_season = "round_entry__round__season__"
+    query_round = "round_entry__round__"
     order_by = ["pk"]
 
     def get_queryset(self) -> QuerySet:
@@ -198,9 +198,9 @@ class ConstructorViewSet(ErgastModelViewSet):
     query_session_entries = "team_drivers__round_entries__session_entries__"
     query_team = ""
     query_driver = "team_drivers__driver__"
-    query_circuit = "team_drivers__round_entries__race__circuit__"
+    query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = "team_drivers__season__"
-    query_race = "team_drivers__round_entries__race__"
+    query_round = "team_drivers__round_entries__round__"
     order_by = ["reference"]
 
 
@@ -211,9 +211,9 @@ class DriverViewSet(ErgastModelViewSet):
     query_session_entries = "team_drivers__round_entries__session_entries__"
     query_team = "team_drivers__team__"
     query_driver = ""
-    query_circuit = "team_drivers__round_entries__race__circuit__"
+    query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = "team_drivers__season__"
-    query_race = "team_drivers__round_entries__race__"
+    query_round = "team_drivers__round_entries__round__"
     order_by = ["surname"]
 
 
@@ -224,10 +224,10 @@ class ResultViewSet(ErgastModelViewSet):
     query_session_entries = ""
     query_team = "round_entry__team_driver__team__"
     query_driver = "round_entry__team_driver__driver__"
-    query_circuit = "round_entry__race__circuit__"
-    query_season = "round_entry__race__season__"
-    query_race = "round_entry__race__"
-    order_by = ["round_entry__race", "position"]
+    query_circuit = "round_entry__round__circuit__"
+    query_season = "round_entry__round__season__"
+    query_round = "round_entry__round__"
+    order_by = ["round_entry__round", "position"]
 
     result_session_type = SessionType.RACE
 
@@ -243,12 +243,12 @@ class ResultViewSet(ErgastModelViewSet):
             .get_queryset()
             .select_related(
                 "fastest_lap",
-                "round_entry__race__season",
-                "round_entry__race__circuit",
+                "round_entry__round__season",
+                "round_entry__round__circuit",
                 "round_entry__team_driver__driver",
                 "round_entry__team_driver__team",
             )
-        ).prefetch_related("round_entry__race__sessions")
+        ).prefetch_related("round_entry__round__sessions")
 
 
 class SprintViewSet(ResultViewSet):
@@ -265,10 +265,10 @@ class QualifyingViewSet(ErgastModelViewSet):
     query_session_entries = "session_entries__"
     query_team = "team_driver__team__"
     query_driver = "team_driver__driver__"
-    query_circuit = "race__circuit__"
-    query_season = "race__season__"
-    query_race = "race__"
-    order_by = ["race"]
+    query_circuit = "round__circuit__"
+    query_season = "round__season__"
+    query_round = "round__"
+    order_by = ["round"]
 
     def get_criteria_filters(self, *args, grid_position=None, **kwargs) -> Q:
         # Grid position is handled in get_queryset
@@ -289,8 +289,8 @@ class QualifyingViewSet(ErgastModelViewSet):
             )
             .filter(grid_filters, driver_sess_count__gt=0)
             .order_by(*self.order_by, "max_position")
-            .select_related("race__circuit", "race__season", "team_driver__team", "team_driver__driver")
-            .prefetch_related(Prefetch("race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))
+            .select_related("round__circuit", "round__season", "team_driver__team", "team_driver__driver")
+            .prefetch_related(Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))
         )
         return qs
 
@@ -302,9 +302,9 @@ class PitStopViewSet(ErgastModelViewSet):
     query_session_entries = "session_entry__"
     query_team = "session_entry__round_entry__team_driver__team__"
     query_driver = "session_entry__round_entry__team_driver__driver__"
-    query_circuit = "session_entry__round_entry__race__circuit__"
-    query_season = "session_entry__round_entry__race__season__"
-    query_race = "session_entry__round_entry__race__"
+    query_circuit = "session_entry__round_entry__round__circuit__"
+    query_season = "session_entry__round_entry__round__season__"
+    query_round = "session_entry__round_entry__round__"
     query_lap = "lap__"
     query_pitstop = ""
 
@@ -320,13 +320,13 @@ class PitStopViewSet(ErgastModelViewSet):
             .get_queryset()
             .select_related(
                 "lap",
-                "session_entry__round_entry__race__circuit",
-                "session_entry__round_entry__race__season",
+                "session_entry__round_entry__round__circuit",
+                "session_entry__round_entry__round__season",
                 "session_entry__round_entry__team_driver__driver",
             )
         ).prefetch_related(
             Prefetch(
-                "session_entry__round_entry__race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
+                "session_entry__round_entry__round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
             )
         )
 
@@ -338,9 +338,9 @@ class LapViewSet(ErgastModelViewSet):
     query_session_entries = "session_entry__"
     query_team = "session_entry__round_entry__team_driver__team__"
     query_driver = "session_entry__round_entry__team_driver__driver__"
-    query_circuit = "session_entry__round_entry__race__circuit__"
-    query_season = "session_entry__round_entry__race__season__"
-    query_race = "session_entry__round_entry__race__"
+    query_circuit = "session_entry__round_entry__round__circuit__"
+    query_season = "session_entry__round_entry__round__season__"
+    query_round = "session_entry__round_entry__round__"
     query_lap = ""
 
     required_params = ["season_year", "race_round"]
@@ -354,13 +354,13 @@ class LapViewSet(ErgastModelViewSet):
             super()
             .get_queryset()
             .select_related(
-                "session_entry__round_entry__race__circuit",
-                "session_entry__round_entry__race__season",
+                "session_entry__round_entry__round__circuit",
+                "session_entry__round_entry__round__season",
                 "session_entry__round_entry__team_driver__driver",
             )
         ).prefetch_related(
             Prefetch(
-                "session_entry__round_entry__race__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
+                "session_entry__round_entry__round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)
             )
         )
 
@@ -372,9 +372,9 @@ class DriverStandingViewSet(ErgastModelViewSet):
     query_session_entries = "team_drivers__round_entries__session_entries__"
     query_team = "team_drivers__team__"
     query_driver = ""
-    query_circuit = "team_drivers__round_entries__race__circuit__"
+    query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = "team_drivers__season__"
-    query_race = "team_drivers__round_entries__race__"
+    query_round = "team_drivers__round_entries__round__"
 
     required_params = ["season_year"]
     order_by = []
@@ -384,7 +384,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
         if season_year:
             filters = filters & Q(team_drivers__season__year=season_year)
         if race_round:
-            filters = filters & Q(team_drivers__round_entries__race__number__lte=race_round)
+            filters = filters & Q(team_drivers__round_entries__round__number__lte=race_round)
 
         return filters
 
@@ -402,7 +402,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
             .annotate(
                 championship_split=F("championship_system__driver_season_split"),
                 championship_best_results=F("championship_system__driver_best_results"),
-                season_rounds=Max("races__number"),
+                season_rounds=Max("rounds__number"),
             )
             .first()
         )
@@ -437,10 +437,10 @@ class DriverStandingViewSet(ErgastModelViewSet):
                 Prefetch(
                     "teams",
                     Team.objects.filter(
-                        team_drivers__round_entries__race__season__year=season_year,
-                        team_drivers__round_entries__race__number__lte=race_round,
+                        team_drivers__round_entries__round__season__year=season_year,
+                        team_drivers__round_entries__round__number__lte=race_round,
                     )
-                    .annotate(first_team_entry=Min("team_drivers__round_entries__race__number"))
+                    .annotate(first_team_entry=Min("team_drivers__round_entries__round__number"))
                     .order_by("first_team_entry")
                     .distinct(),
                     to_attr="season_teams",
@@ -448,13 +448,13 @@ class DriverStandingViewSet(ErgastModelViewSet):
                 Prefetch(
                     "team_drivers",
                     TeamDriver.objects.filter(
-                        round_entries__race__season__year=season_year, round_entries__race__number__lte=race_round
+                        round_entries__round__season__year=season_year, round_entries__round__number__lte=race_round
                     ).distinct(),
                 ),
                 Prefetch(
                     "team_drivers__round_entries",
-                    RoundEntry.objects.filter(race__season__year=season_year, race__number__lte=race_round).annotate(
-                        race_round=F("race__number"),
+                    RoundEntry.objects.filter(round__season__year=season_year, round__number__lte=race_round).annotate(
+                        race_round=F("round__number"),
                         race_points=Sum("session_entries__points"),
                         race_position=Min(
                             "session_entries__position", filter=Q(session_entries__session__type=SessionType.RACE)
@@ -472,9 +472,9 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
     query_session_entries = "team_drivers__round_entries__session_entries__"
     query_team = ""
     query_driver = "team_drivers__driver__"
-    query_circuit = "team_drivers__round_entries__race__circuit__"
+    query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = "team_drivers__season__"
-    query_race = "team_drivers__round_entries__race__"
+    query_round = "team_drivers__round_entries__round__"
 
     required_params = ["season_year"]
     order_by = []
@@ -484,7 +484,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
         if season_year:
             filters = filters & Q(team_drivers__season__year=season_year)
         if race_round:
-            filters = filters & Q(team_drivers__round_entries__race__number__lte=race_round)
+            filters = filters & Q(team_drivers__round_entries__round__number__lte=race_round)
 
         return filters
 
@@ -502,7 +502,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
             .annotate(
                 championship_split=F("championship_system__team_season_split"),
                 championship_best_results=F("championship_system__team_best_results"),
-                season_rounds=Max("races__number"),
+                season_rounds=Max("rounds__number"),
             )
             .first()
         )
@@ -537,13 +537,13 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
                 Prefetch(
                     "team_drivers",
                     TeamDriver.objects.filter(
-                        round_entries__race__season__year=season_year, round_entries__race__number__lte=race_round
+                        round_entries__round__season__year=season_year, round_entries__round__number__lte=race_round
                     ).distinct(),
                 ),
                 Prefetch(
                     "team_drivers__round_entries",
-                    RoundEntry.objects.filter(race__season__year=season_year, race__number__lte=race_round).annotate(
-                        race_round=F("race__number"),
+                    RoundEntry.objects.filter(round__season__year=season_year, round__number__lte=race_round).annotate(
+                        race_round=F("round__number"),
                         race_points=Sum("session_entries__points"),
                         race_position=Min(
                             "session_entries__position", filter=Q(session_entries__session__type=SessionType.RACE)

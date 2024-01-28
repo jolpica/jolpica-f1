@@ -1,5 +1,5 @@
 import pytest
-from jolpica.formula_one.models import Circuit, Driver, Race, Season, SessionEntry, SessionType, Team
+from jolpica.formula_one.models import Circuit, Driver, Round, Season, SessionEntry, SessionType, Team
 from rest_framework.test import APIClient
 
 
@@ -10,7 +10,7 @@ from rest_framework.test import APIClient
         ("seasons/", Season, "SeasonTable", "Seasons"),
         ("circuits/", Circuit, "CircuitTable", "Circuits"),
         ("status/", None, "StatusTable", "Status"),
-        ("races/", Race, "RaceTable", "Races"),
+        ("races/", Round, "RaceTable", "Races"),
         ("constructors/", Team, "ConstructorTable", "Constructors"),
         ("drivers/", Driver, "DriverTable", "Drivers"),
     ],

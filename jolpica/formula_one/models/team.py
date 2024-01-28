@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, ClassVar
 from django.db import models
 
 if TYPE_CHECKING:
-    from . import ChampionshipAdjustment, Race, RoundEntry, Season
+    from . import ChampionshipAdjustment, Round, RoundEntry, Season
 
 
 class BaseTeam(models.Model):
@@ -26,7 +26,6 @@ class Team(models.Model):
     id = models.BigAutoField(primary_key=True)
     base_team = models.ForeignKey("BaseTeam", on_delete=models.SET_NULL, null=True, blank=True, related_name="teams")
     drivers = models.ManyToManyField("formula_one.Driver", through="formula_one.TeamDriver", related_name="teams")
-    races: models.QuerySet[Race]
     seasons: models.QuerySet[Season]
     round_entries: models.QuerySet[RoundEntry]
     team_drivers: models.QuerySet[TeamDriver]
@@ -56,6 +55,7 @@ class TeamDriver(models.Model):
     team = models.ForeignKey("Team", on_delete=models.CASCADE, related_name="team_drivers")
     driver = models.ForeignKey("Driver", on_delete=models.CASCADE, related_name="team_drivers")
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="team_drivers")
+    rounds: models.QuerySet[Round]
 
     role = models.PositiveSmallIntegerField(choices=TeamDriverRole.choices, null=True, blank=True)
 

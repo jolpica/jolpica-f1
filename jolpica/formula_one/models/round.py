@@ -6,14 +6,14 @@ if TYPE_CHECKING:
     from . import Session, SessionEntry
 
 
-class Race(models.Model):
+class Round(models.Model):
     """Race event information relevent to all sessions"""
 
     id = models.BigAutoField(primary_key=True)
-    season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="races")
-    circuit = models.ForeignKey("Circuit", on_delete=models.CASCADE, related_name="races")
+    season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="rounds")
+    circuit = models.ForeignKey("Circuit", on_delete=models.CASCADE, related_name="rounds")
     team_drivers = models.ManyToManyField(
-        "formula_one.TeamDriver", through="formula_one.RoundEntry", related_name="races"
+        "formula_one.TeamDriver", through="formula_one.RoundEntry", related_name="rounds"
     )
     round_entries: models.QuerySet["RoundEntry"]
     sessions: models.QuerySet["Session"]
@@ -26,7 +26,9 @@ class Race(models.Model):
     is_cancelled = models.BooleanField(default=False)
 
     class Meta:
-        constraints: ClassVar = [models.UniqueConstraint(fields=["season", "number"], name="race_unique_season_number")]
+        constraints: ClassVar = [
+            models.UniqueConstraint(fields=["season", "number"], name="round_unique_season_number")
+        ]
 
     def __str__(self) -> str:
         return f"{self.season.year} {self.name}"
@@ -36,7 +38,7 @@ class RoundEntry(models.Model):
     """All data relating to a driver racing for a specific team for a race"""
 
     id = models.BigAutoField(primary_key=True)
-    race = models.ForeignKey("Race", on_delete=models.CASCADE, related_name="round_entries")
+    round = models.ForeignKey("Round", on_delete=models.CASCADE, related_name="round_entries")
     team_driver = models.ForeignKey("TeamDriver", on_delete=models.CASCADE, related_name="round_entries")
     sessions: models.QuerySet["Session"]
     session_entries: models.QuerySet["SessionEntry"]
@@ -45,8 +47,8 @@ class RoundEntry(models.Model):
 
     class Meta:
         constraints: ClassVar = [
-            models.UniqueConstraint(fields=["race", "team_driver", "car_number"], name="round_entry_unique")
+            models.UniqueConstraint(fields=["round", "team_driver", "car_number"], name="round_entry_unique")
         ]
 
     def __str__(self) -> str:
-        return f"{self.team_driver} - {self.race}"
+        return f"{self.team_driver} - {self.round}"

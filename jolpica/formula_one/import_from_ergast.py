@@ -29,7 +29,7 @@ from jolpica.formula_one.models import (
     Lap,
     PitStop,
     PointSystem,
-    Race,
+    Round,
     RoundEntry,
     Season,
     Session,
@@ -210,7 +210,7 @@ def import_circuits() -> dict:
     circuit_map = {}
     completed = set()
     count = 1
-    for circ in tqdm(Circuits.objects.all().order_by("races").distinct(), desc="Circuits"):
+    for circ in tqdm(Circuits.objects.all().order_by("rounds").distinct(), desc="Circuits"):
         if circ.pk in completed:
             continue
         circuit_map[circ.pk] = count
@@ -343,13 +343,13 @@ def import_drivers():
     return driver_map
 
 
-def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
-    race_map = {}
-    race_to_race_session_map = {}
+def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
+    round_map = {}
+    round_to_race_session_map = {}
     completed = set()
     count = 1
     session_count = 1
-    races_to_add = []
+    round_to_add = []
     sessions_to_add = []
     second_session_bests_to_add = []
     for er_race in tqdm(
@@ -357,8 +357,8 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
     ):
         if er_race.pk in completed:
             continue
-        race_map[er_race.pk] = count
-        new_item = Race(
+        round_map[er_race.pk] = count
+        new_item = Round(
             pk=count,
             season_id=season_map[er_race.year_id],
             circuit_id=circuit_map[er_race.circuitId_id],
@@ -369,17 +369,17 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             wikipedia=follow_wiki_redirects(er_race.url),
             is_cancelled=False,
         )
-        races_to_add.append(new_item)
+        round_to_add.append(new_item)
         race = Session(
             pk=session_count,
-            race=new_item,
+            round=new_item,
             point_system_id=get_point_system(er_race.year_id, er_race.ann_circuit_ref),
             type=SessionType.RACE,
             date=er_race.date,
             time=er_race.time,
             scheduled_laps=None,
         )
-        race_to_race_session_map[new_item.pk] = race.pk
+        round_to_race_session_map[new_item.pk] = race.pk
         sessions_to_add.append(race)
         session_count += 1
         if (er_race.year_id >= 1950 and er_race.year_id <= 1995) or er_race.year_id == 2003:
@@ -393,7 +393,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=quali_types[0],
                     date=new_item.date - timedelta(first_quali),
@@ -402,7 +402,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             session_count += 1
             second_q_sess = Session(
                 pk=session_count,
-                race=new_item,
+                round=new_item,
                 point_system_id=1,
                 type=quali_types[1],
                 date=new_item.date - timedelta(1),
@@ -416,7 +416,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
@@ -427,7 +427,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ORDER,
                     date=new_item.date - timedelta(1),
@@ -437,7 +437,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
@@ -449,7 +449,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 sessions_to_add.append(
                     Session(
                         pk=session_count,
-                        race=new_item,
+                        round=new_item,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_AVG,
                         date=new_item.date - timedelta(1),
@@ -459,7 +459,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 sessions_to_add.append(
                     Session(
                         pk=session_count,
-                        race=new_item,
+                        round=new_item,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_AVG,
                         date=new_item.date - timedelta(0),
@@ -470,7 +470,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 sessions_to_add.append(
                     Session(
                         pk=session_count,
-                        race=new_item,
+                        round=new_item,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_BEST,
                         date=new_item.date - timedelta(1),
@@ -482,7 +482,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ONE,
                     date=date,
@@ -493,7 +493,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_TWO,
                     date=date,
@@ -504,7 +504,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_THREE,
                     date=date,
@@ -521,7 +521,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=fp1_date,
@@ -532,7 +532,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=fp2_date,
@@ -543,7 +543,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=fp3_date,
@@ -556,7 +556,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=er_race.fp1_date,
@@ -569,7 +569,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=er_race.fp2_date,
@@ -581,7 +581,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=er_race.fp3_date,
@@ -595,7 +595,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=point_id,
                     type=SessionType.SPRINT_RACE,
                     date=er_race.sprint_date,
@@ -608,7 +608,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 sessions_to_add.append(
                     Session(
                         pk=session_count,
-                        race=new_item,
+                        round=new_item,
                         point_system_id=1,
                         type=ty,
                         date=er_race.fp2_date,
@@ -619,7 +619,7 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             sessions_to_add.append(
                 Session(
                     pk=session_count,
-                    race=new_item,
+                    round=new_item,
                     point_system_id=23,
                     type=SessionType.SPRINT_RACE,
                     date=er_race.sprint_date,
@@ -629,8 +629,8 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             session_count += 1
         count = count + 1
         completed.add(er_race.pk)
-    Race.objects.bulk_create(
-        races_to_add,
+    Round.objects.bulk_create(
+        round_to_add,
         batch_size=1000,
         update_conflicts=True,
         unique_fields=["season_id", "number"],
@@ -641,20 +641,20 @@ def import_races_and_sessions(season_map: dict, circuit_map: dict) -> dict:
         batch_size=1000,
         update_conflicts=True,
         unique_fields=["pk"],
-        update_fields=["race", "type", "point_system_id", "date", "time"],
+        update_fields=["round", "type", "point_system_id", "date", "time"],
     )
     Session.objects.bulk_create(
         second_session_bests_to_add,
         batch_size=1000,
         update_conflicts=True,
         unique_fields=["pk"],
-        update_fields=["race", "type", "point_system_id", "date", "time"],
+        update_fields=["round", "type", "point_system_id", "date", "time"],
     )
-    return race_map, race_to_race_session_map
+    return round_map, round_to_race_session_map
 
 
 def import_teamdrivers_and_raceentries(
-    season_map, driver_map, team_map, race_map, race_to_race_session_map
+    season_map, driver_map, team_map, round_map, round_to_race_session_map
 ) -> tuple[dict, dict]:
     completed = set()
     count = 1
@@ -671,7 +671,7 @@ def import_teamdrivers_and_raceentries(
 
     team_drivers_to_add = []
     round_entries_to_add = []
-    for item in tqdm(results_list, desc="Race Entries"):
+    for item in tqdm(results_list, desc="round Entries"):
         season_id = season_map[item.ann_year]
         driver_id = driver_map[item.driverId_id]
         team_id = team_map[item.constructorId_id]
@@ -691,12 +691,12 @@ def import_teamdrivers_and_raceentries(
             team_drivers_to_add.append(team_driver)
         round_entry = RoundEntry(
             pk=count,
-            race_id=race_map[item.raceId_id],
+            round_id=round_map[item.raceId_id],
             team_driver=team_driver,
             car_number=item.number,
         )
         round_entry_map[item.pk] = round_entry.pk
-        round_entry_to_race_session_map[round_entry.pk] = race_to_race_session_map[round_entry.race_id]
+        round_entry_to_race_session_map[round_entry.pk] = round_to_race_session_map[round_entry.round_id]
         round_entries_to_add.append(round_entry)
         count = count + 1
     TeamDriver.objects.bulk_create(
@@ -752,12 +752,12 @@ def run_import():
     driver_map = import_drivers()
 
     # Races and Sessions
-    race_map, race_to_race_session_map = import_races_and_sessions(season_map, circuit_map)
+    round_map, round_to_race_session_map = import_rounds_and_sessions(season_map, circuit_map)
 
     # Race Entries
 
     round_entry_map, round_entry_to_race_session_map = import_teamdrivers_and_raceentries(
-        season_map, driver_map, team_map, race_map, race_to_race_session_map
+        season_map, driver_map, team_map, round_map, round_to_race_session_map
     )
 
     laps_to_add = []
@@ -862,7 +862,7 @@ def run_import():
         quali = quali_filtered[(result.raceId_id, result.driverId_id, result.constructorId_id)]
         if quali:
             quali_sessions = (
-                Session.objects.filter(race__round_entries=round_entry_id, type__startswith="Q")
+                Session.objects.filter(round__round_entries=round_entry_id, type__startswith="Q")
                 .exclude(type="QO")
                 .order_by("pk")
             ).distinct("pk")
@@ -897,7 +897,7 @@ def run_import():
         if sprint:
             sprint_entry = SessionEntry(
                 pk=entry_count,
-                session=Session.objects.get(race__round_entries=round_entry_id, type=SessionType.SPRINT_RACE),
+                session=Session.objects.get(round__round_entries=round_entry_id, type=SessionType.SPRINT_RACE),
                 round_entry_id=round_entry_id,
                 fastest_lap=None,
                 position=sprint.positionOrder,
