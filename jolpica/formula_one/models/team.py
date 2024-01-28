@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, ClassVar
 from django.db import models
 
 if TYPE_CHECKING:
-    from . import ChampionshipAdjustment, Race, RaceEntry, Season
+    from . import ChampionshipAdjustment, Race, RoundEntry, Season
 
 
 class BaseTeam(models.Model):
@@ -28,7 +28,7 @@ class Team(models.Model):
     drivers = models.ManyToManyField("formula_one.Driver", through="formula_one.TeamDriver", related_name="teams")
     races: models.QuerySet[Race]
     seasons: models.QuerySet[Season]
-    race_entries: models.QuerySet[RaceEntry]
+    round_entries: models.QuerySet[RoundEntry]
     team_drivers: models.QuerySet[TeamDriver]
     championship_adjustments: models.QuerySet[ChampionshipAdjustment]
 

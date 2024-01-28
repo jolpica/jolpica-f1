@@ -8,13 +8,13 @@ def run_data_correction():
         session__type=SessionType.RACE,
         session__race__round=7,
         session__race__season__year=2011,
-        race_entry__team_driver__driver__reference__in=[
+        round_entry__team_driver__driver__reference__in=[
             "ambrosio",
             "glock",
             "trulli",
             "karthikeyan",
         ],
-    ).select_related("race_entry__team_driver__driver")
+    ).select_related("round_entry__team_driver__driver")
     correct = {
         "ambrosio": 14,
         "glock": 15,
@@ -22,13 +22,13 @@ def run_data_correction():
         "karthikeyan": 17,
     }
     for entry in to_update:
-        entry.position = correct[entry.race_entry.team_driver.driver.reference]
+        entry.position = correct[entry.round_entry.team_driver.driver.reference]
         updated.append(entry)
     # 1956 round 2 - only eligible for points from 1 finish
     entry = SessionEntry.objects.filter(
         session__race__round=2,
         session__race__season__year=1956,
-        race_entry__team_driver__driver__reference="fangio",
+        round_entry__team_driver__driver__reference="fangio",
         points=1.5,
     ).first()
     if entry:

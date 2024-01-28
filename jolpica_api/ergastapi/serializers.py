@@ -9,7 +9,7 @@ from jolpica.formula_one.models import (
     Lap,
     PitStop,
     Race,
-    RaceEntry,
+    RoundEntry,
     Season,
     SessionEntry,
     SessionType,
@@ -186,15 +186,15 @@ class ListResultsSerializer(serializers.ListSerializer):
         is_single = False
         is_qualifying = self.child.results_list_name == "QualifyingResults"
         if isinstance(data, SessionEntry):
-            data = SessionEntry.objects.filter(pk=data.pk).select_related("race_entry__race").distinct()
+            data = SessionEntry.objects.filter(pk=data.pk).select_related("round_entry__race").distinct()
             is_single = True
 
         race_results = {}
         for session_entry in data:
-            race_id = session_entry.race_entry.race_id
+            race_id = session_entry.round_entry.race_id
 
             if race_id not in race_results.keys():
-                race_results[race_id] = BaseRaceSerializer().to_representation(session_entry.race_entry.race)
+                race_results[race_id] = BaseRaceSerializer().to_representation(session_entry.round_entry.race)
                 race_results[race_id][self.child.results_list_name] = []
 
         race_to_winner_time = {}
@@ -207,14 +207,14 @@ class ListResultsSerializer(serializers.ListSerializer):
             race_to_winner_time[race_id] = time
 
         for session_entry in data:
-            race_id = session_entry.race_entry.race_id
+            race_id = session_entry.round_entry.race_id
             result = {
-                "number": str(session_entry.race_entry.car_number),
+                "number": str(session_entry.round_entry.car_number),
                 "position": str(session_entry.position),
                 "positionText": str(session_entry.position),
                 "points": None,
-                "Driver": DriverSerializer().to_representation(session_entry.race_entry.team_driver.driver),
-                "Constructor": ConstructorSerializer().to_representation(session_entry.race_entry.team_driver.team),
+                "Driver": DriverSerializer().to_representation(session_entry.round_entry.team_driver.driver),
+                "Constructor": ConstructorSerializer().to_representation(session_entry.round_entry.team_driver.team),
                 "grid": str(session_entry.grid),
                 "laps": str(session_entry.laps_completed),
                 "status": session_entry.detail,
@@ -296,35 +296,37 @@ class SprintResultsSerializer(RaceResultsSerializer):
 
 
 class ListQualifyingSerializer(serializers.ListSerializer):
-    def to_representation(self, race_entries: QuerySet[RaceEntry]) -> Any:
+    def to_representation(self, round_entries: QuerySet[RoundEntry]) -> Any:
         is_single = False
-        if isinstance(race_entries, RaceEntry):
-            race_entries = RaceEntry.objects.filter(pk=race_entries.pk).select_related("race_entry__race").distinct()
+        if isinstance(round_entries, RoundEntry):
+            round_entries = (
+                RoundEntry.objects.filter(pk=round_entries.pk).select_related("round_entry__race").distinct()
+            )
             is_single = True
         driver_session_entries: QuerySet[SessionEntry] = (
-            SessionEntry.objects.filter(race_entry__in=race_entries, session__type__startswith="Q")
+            SessionEntry.objects.filter(round_entry__in=round_entries, session__type__startswith="Q")
             .order_by("session__date")
             .select_related("session", "fastest_lap")
         )
 
         race_results = {}
-        race_entry_set = {}
-        for race_entry in race_entries:
-            race_entry_set[race_entry.pk] = (race_entry, [])
+        round_entry_set = {}
+        for round_entry in round_entries:
+            round_entry_set[round_entry.pk] = (round_entry, [])
 
-            race_results[race_entry.race.pk] = BaseRaceSerializer().to_representation(race_entry.race)
-            race_results[race_entry.race.pk][self.child.results_list_name] = []
+            race_results[round_entry.race.pk] = BaseRaceSerializer().to_representation(round_entry.race)
+            race_results[round_entry.race.pk][self.child.results_list_name] = []
 
         for session_entry in driver_session_entries:
-            race_entry_set[session_entry.race_entry_id][1].append(session_entry)
+            round_entry_set[session_entry.round_entry_id][1].append(session_entry)
 
-        for race_entry, driver_session_entries in race_entry_set.values():
-            race_id = race_entry.race_id
+        for round_entry, driver_session_entries in round_entry_set.values():
+            race_id = round_entry.race_id
             result = {
-                "number": str(race_entry.car_number),
+                "number": str(round_entry.car_number),
                 "position": str(driver_session_entries[-1].position) if driver_session_entries else None,
-                "Driver": DriverSerializer().to_representation(race_entry.team_driver.driver),
-                "Constructor": ConstructorSerializer().to_representation(race_entry.team_driver.team),
+                "Driver": DriverSerializer().to_representation(round_entry.team_driver.driver),
+                "Constructor": ConstructorSerializer().to_representation(round_entry.team_driver.team),
             }
             for session_entry in driver_session_entries:
                 if session_entry.fastest_lap.time:
@@ -347,14 +349,14 @@ class ListQualifyingSerializer(serializers.ListSerializer):
         return results
 
     class Meta:
-        model = RaceEntry
+        model = RoundEntry
 
 
 class QualifyingResultsSerializer(ErgastModelSerializer):
     results_list_name = "QualifyingResults"
 
     class Meta:
-        model = RaceEntry
+        model = RoundEntry
         fields = []
         list_serializer_class = ListQualifyingSerializer
 
@@ -364,7 +366,7 @@ class ListPitStopSerializer(serializers.ListSerializer):
         is_single = False
         if isinstance(pit_stops, PitStop):
             pit_stops = (
-                PitStop.objects.filter(pk=pit_stops.pk).select_related("session_entry__race_entry__race").distinct()
+                PitStop.objects.filter(pk=pit_stops.pk).select_related("session_entry__round_entry__race").distinct()
             )
             is_single = True
 
@@ -373,15 +375,15 @@ class ListPitStopSerializer(serializers.ListSerializer):
         for pit_stop in pit_stops:
             pit_stop_set[pit_stop] = []
 
-            race_results[pit_stop.session_entry.race_entry.race.pk] = BaseRaceSerializer().to_representation(
-                pit_stop.session_entry.race_entry.race
+            race_results[pit_stop.session_entry.round_entry.race.pk] = BaseRaceSerializer().to_representation(
+                pit_stop.session_entry.round_entry.race
             )
-            race_results[pit_stop.session_entry.race_entry.race.pk][self.child.results_list_name] = []
+            race_results[pit_stop.session_entry.round_entry.race.pk][self.child.results_list_name] = []
 
         for pit_stop in pit_stops:
-            race_id = pit_stop.session_entry.race_entry.race_id
+            race_id = pit_stop.session_entry.round_entry.race_id
             result = {
-                "driverId": pit_stop.session_entry.race_entry.team_driver.driver.reference,
+                "driverId": pit_stop.session_entry.round_entry.team_driver.driver.reference,
                 "lap": str(pit_stop.lap.number),
                 "stop": str(pit_stop.number),
                 "time": pit_stop.local_timestamp,
@@ -412,7 +414,7 @@ class ListLapSerializer(serializers.ListSerializer):
     def to_representation(self, laps: QuerySet[Lap]) -> Any:
         is_single = False
         if isinstance(laps, Lap):
-            laps = Lap.objects.filter(pk=laps.pk).select_related("session_entry__race_entry__race").distinct()
+            laps = Lap.objects.filter(pk=laps.pk).select_related("session_entry__round_entry__race").distinct()
             is_single = True
 
         race_results = {}
@@ -420,15 +422,15 @@ class ListLapSerializer(serializers.ListSerializer):
         for lap in laps:
             lap_set[lap] = []
 
-            race_results[lap.session_entry.race_entry.race.pk] = BaseRaceSerializer().to_representation(
-                lap.session_entry.race_entry.race
+            race_results[lap.session_entry.round_entry.race.pk] = BaseRaceSerializer().to_representation(
+                lap.session_entry.round_entry.race
             )
-            race_results[lap.session_entry.race_entry.race.pk][self.child.results_list_name] = []
+            race_results[lap.session_entry.round_entry.race.pk][self.child.results_list_name] = []
 
         lap_groupings = {}
         last_lap_number = -1
         for lap in laps:
-            race_id = lap.session_entry.race_entry.race_id
+            race_id = lap.session_entry.round_entry.race_id
 
             if lap.number not in lap_groupings.keys():
                 lap_groupings[lap.number] = {
@@ -442,7 +444,7 @@ class ListLapSerializer(serializers.ListSerializer):
 
             lap_groupings[lap.number]["Timings"].append(
                 {
-                    "driverId": lap.session_entry.race_entry.team_driver.driver.reference,
+                    "driverId": lap.session_entry.round_entry.team_driver.driver.reference,
                     "position": str(lap.position),
                     "time": format_timedelta(lap.time),
                 }
@@ -473,10 +475,10 @@ class DriverStandingSerializer(ErgastModelSerializer):
         round_points = defaultdict(float)
         wins = 0
         for team_driver in instance.team_drivers.all():
-            for race_entry in team_driver.race_entries.all():
-                if race_entry.race_points:
-                    round_points[race_entry.race_round] += race_entry.race_points
-                if race_entry.race_position == 1:
+            for round_entry in team_driver.round_entries.all():
+                if round_entry.race_points:
+                    round_points[round_entry.race_round] += round_entry.race_points
+                if round_entry.race_position == 1:
                     wins += 1
 
         points = calculate_championship_points(
@@ -523,10 +525,10 @@ class ConstructorStandingSerializer(ErgastModelSerializer):
         round_points = defaultdict(float)
         wins = 0
         for team_driver in instance.team_drivers.all():
-            for race_entry in team_driver.race_entries.all():
-                if race_entry.race_points:
-                    round_points[race_entry.race_round] += race_entry.race_points
-                if race_entry.race_position == 1:
+            for round_entry in team_driver.round_entries.all():
+                if round_entry.race_points:
+                    round_points[round_entry.race_round] += round_entry.race_points
+                if round_entry.race_position == 1:
                     wins += 1
 
         points = calculate_championship_points(
