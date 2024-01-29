@@ -4,6 +4,7 @@ from typing import Any
 
 from django.db.models import QuerySet
 from jolpica.formula_one.models import (
+    ChampionshipAdjustmentType,
     Circuit,
     Driver,
     Lap,
@@ -15,6 +16,7 @@ from jolpica.formula_one.models import (
     SessionType,
     Team,
 )
+from jolpica.formula_one.models.managed_views import DriverChampionship
 from jolpica.formula_one.models.session import SessionStatus
 from jolpica.formula_one.utils import calculate_championship_points
 from rest_framework import serializers
@@ -471,55 +473,33 @@ class LapSerializer(ErgastModelSerializer):
 
 
 class DriverStandingSerializer(ErgastModelSerializer):
-    def to_representation(self, instance: Driver) -> Any:
-        season_year = instance.season_year
+    position = serializers.CharField()
+    positionText = serializers.SerializerMethodField(method_name="get_position_text")  # noqa: N815
+    points = serializers.SerializerMethodField(method_name="get_points")
+    wins = serializers.CharField(source="win_count")
+    Driver = DriverSerializer(source="driver")
+    Constructors = serializers.SerializerMethodField(method_name="get_constructors")
 
-        round_points = defaultdict(float)
-        wins = 0
-        for team_driver in instance.team_drivers.all():
-            for round_entry in team_driver.round_entries.all():
-                if round_entry.race_points:
-                    round_points[round_entry.race_round] += round_entry.race_points
-                if round_entry.race_position == 1:
-                    wins += 1
+    def get_points(self, driver_championsihp: DriverChampionship) -> str:
+        if driver_championsihp.points % 1 == 0:
+            return str(int(driver_championsihp.points))
+        return str(driver_championsihp.points)
 
-        points = calculate_championship_points(
-            round_points, instance.championship_split, instance.championship_best_results, instance.season_rounds
-        )
+    def get_position_text(self, driver_championsihp: DriverChampionship) -> str:
+        if driver_championsihp.adjustment_type == ChampionshipAdjustmentType.DISQUALIFIED:
+            return "D"
+        elif driver_championsihp.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
+            return "E"
+        else:
+            return str(driver_championsihp.position)
 
-        if points % 1 == 0:
-            points = int(points)
-
-        # Temporary fix for 2023 tie, will be fixed with generated table views
-        override_position_text = None
-        if season_year == 2023:
-            if instance.reference == "leclerc":
-                instance.position = 5
-            elif instance.reference == "alonso":
-                instance.position = 4
-        elif season_year == 1997:
-            if instance.position == 2:
-                instance.position = 26
-                override_position_text = "D"
-            elif instance.position > 2:
-                instance.position = instance.position - 1
-        elif season_year == 1980:
-            if instance.reference == "watson":
-                instance.position = 11
-            elif instance.reference == "daly":
-                instance.position = 12
-        return {
-            "position": f"{instance.position}",
-            "positionText": f"{instance.position}" if override_position_text is None else override_position_text,
-            "points": f"{points}",
-            "wins": f"{wins}",
-            "Driver": DriverSerializer().to_representation(instance),
-            "Constructors": ConstructorSerializer(many=True).to_representation(instance.season_teams),
-        }
+    def get_constructors(self, driver_championsihp: DriverChampionship) -> list:
+        teams = driver_championsihp.driver.fetched_teams  # Filtered in prefetch
+        return ConstructorSerializer(many=True).to_representation(teams)
 
     class Meta:
-        model = Driver
-        fields = "__all__"
+        model = DriverChampionship
+        fields = ["position", "positionText", "points", "wins", "Driver", "Constructors"]
 
 
 class ConstructorStandingSerializer(ErgastModelSerializer):
