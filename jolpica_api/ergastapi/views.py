@@ -1,7 +1,7 @@
 from django.db.models import Count, F, Max, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
 from django.db.models.query import QuerySet
 from jolpica.ergast.models import Status
-from jolpica.formula_one.models import Driver, RoundEntry, Season, Session, SessionType, Team, TeamDriver
+from jolpica.formula_one.models import RoundEntry, Season, Session, SessionType, Team, TeamDriver
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
