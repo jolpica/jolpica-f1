@@ -34,7 +34,8 @@
 	},
 	"remoteEnv": {
 		"PATH": "${containerEnv:VIRTUAL_ENV}/bin:${containerEnv:PATH}",
-	}
+	},
+	"postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip install --user -r requirements.txt",
 	// Configure tool-specific properties.
