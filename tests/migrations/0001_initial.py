@@ -2,6 +2,8 @@
 
 from django.db import migrations
 from django.core.management import call_command
+from jolpica.formula_one.utils import generate_season_driver_standings
+
 
 
 def add_test_data(apps, schema_editor):
@@ -10,7 +12,19 @@ def add_test_data(apps, schema_editor):
     call_command("loaddata", "tests/fixtures/legacy_data.json.gz")
 
 
+def create_driver_standings(apps, schema_editor):
+    Season = apps.get_model("formula_one", "Season")
+    DriverChampionship = apps.get_model("formula_one", "DriverChampionship")
+
+    driver_standings = []
+    for season in Season.objects.all().select_related("championship_system"):
+        driver_standings.extend(generate_season_driver_standings(season))
+    DriverChampionship.objects.bulk_create(driver_standings)
+
 class Migration(migrations.Migration):
     dependencies = []
 
-    operations = [migrations.RunPython(add_test_data)]
+    operations = [
+        migrations.RunPython(add_test_data),
+        migrations.RunPython(create_driver_standings),
+    ]
