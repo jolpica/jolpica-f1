@@ -8,7 +8,9 @@ from ..point_scheme import ChampionshipAdjustmentType
 class DriverChampionship(models.Model):
     id = models.BigAutoField(primary_key=True)
 
+    session_id: int
     session = models.ForeignKey("formula_one.Session", on_delete=models.CASCADE, related_name="driver_championships")
+    driver_id: int
     driver = models.ForeignKey("formula_one.Driver", on_delete=models.CASCADE, related_name="driver_championships")
     year = models.SmallIntegerField()
     round_number = models.PositiveSmallIntegerField()
