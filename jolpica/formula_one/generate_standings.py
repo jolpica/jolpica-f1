@@ -116,8 +116,16 @@ def standings_from_championship_data(data_map: dict[int, ChampionshipData]) -> l
 
 
 def generate_season_driver_standings(
-    season: Season, championship_system: ChampionshipSystem | None = None, season_rounds: int | None = None
+    season: Season,
+    championship_system: ChampionshipSystem | None = None,
+    season_rounds: int | None = None,
+    team_championship=False,
 ):
+    if team_championship:
+        data_type = "team"
+    else:
+        data_type = "driver"
+
     if championship_system is None:
         if season.championship_system:
             championship_system = season.championship_system
@@ -132,7 +140,7 @@ def generate_season_driver_standings(
             round_id=F("session__round__pk"),
             round_num=F("session__round__number"),
             session_type=F("session__type"),
-            driver_id=F("round_entry__team_driver__driver__pk"),
+            data_id=F(f"round_entry__team_driver__{data_type}__pk"),
         )
         .order_by("round_num", "session__date", "session__time")
     )
@@ -140,34 +148,34 @@ def generate_season_driver_standings(
         lambda: defaultdict(lambda: defaultdict(list))
     )
     for entry in session_entries:
-        entries_dict[(entry.round_id, entry.round_num)][(entry.session_id, entry.session_type)][entry.driver_id].append(
+        entries_dict[(entry.round_id, entry.round_num)][(entry.session_id, entry.session_type)][entry.data_id].append(
             entry
         )
 
-    driver_data_map: dict[int, ChampionshipData] = defaultdict(
+    data_map: dict[int, ChampionshipData] = defaultdict(
         lambda: ChampionshipData(championship_system=championship_system, season_rounds=season_rounds)
     )
-    for adjustment in season.championship_adjustments.filter(driver__isnull=False):
-        if adjustment.driver_id is not None:
-            driver_data_map[adjustment.driver_id].adjustment_type = adjustment.adjustment
+    for adjustment in season.championship_adjustments.filter(**{f"{data_type}__isnull": False}):
+        data_id = getattr(adjustment, f"{data_type}_id")
+        data_map[data_id].adjustment_type = adjustment.adjustment
 
-    driver_standings = []
+    all_standings = []
     current_standings: list[DriverChampionship] = []
     for (round_id, round_num), entries_type_dict in entries_dict.items():
-        for (session_id, session_type), driver_entries in entries_type_dict.items():
-            for driver_id, entries in driver_entries.items():
+        for (session_id, session_type), data_entries in entries_type_dict.items():
+            for data_id, entries in data_entries.items():
                 session_points, best_position, is_classified = get_points_position_classification(entries)
-                driver_data_map[driver_id].add_points_to_round(round_num, session_points)
+                data_map[data_id].add_points_to_round(round_num, session_points)
 
                 if session_type == SessionType.RACE and best_position is not None:
                     if is_classified:
-                        driver_data_map[driver_id].add_finish_position(best_position)
+                        data_map[data_id].add_finish_position(best_position)
                     else:
-                        driver_data_map[driver_id].add_retirement_position(best_position)
+                        data_map[data_id].add_retirement_position(best_position)
 
             # session
-            driver_standings.extend(current_standings)
-            current_standings = standings_from_championship_data(driver_data_map)
+            all_standings.extend(current_standings)
+            current_standings = standings_from_championship_data(data_map)
 
             for standing in current_standings:
                 standing.session_id = session_id
@@ -179,5 +187,5 @@ def generate_season_driver_standings(
     # season
     for standing in current_standings:
         standing.season_id = season.pk
-    driver_standings.extend(current_standings)
-    return driver_standings
+    all_standings.extend(current_standings)
+    return all_standings
