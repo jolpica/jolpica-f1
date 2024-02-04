@@ -1,5 +1,3 @@
-
-
 from .models import (
     ResultsChampionshipScheme,
     SplitChampionshipScheme,
@@ -11,7 +9,7 @@ def calculate_championship_points(
     split_type: int,
     best_results_type: int,
     total_rounds: int,
-) -> float | None:
+) -> float:
     if total_rounds <= 0:
         raise ValueError("Total rounds must be greater than 0")
     clean_round_points: dict[int, float] = {}
@@ -38,7 +36,7 @@ def calculate_championship_points(
         raise ValueError("Invalid season split type")
 
     if best_results_type == ResultsChampionshipScheme.NONE:
-        return None
+        return 0
 
     # Sort points from most to least (unless the point scheme uses all results)
     if best_results_type != ResultsChampionshipScheme.ALL:
@@ -74,5 +72,3 @@ def highest_finish_from_encoded_finishing_position(encoded: str) -> int | None:
     if encoded.strip("0") == "":
         return None
     return 1 + (len(encoded) - len(encoded.lstrip("0"))) // 2
-
-

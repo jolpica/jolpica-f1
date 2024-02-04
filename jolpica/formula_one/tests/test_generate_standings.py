@@ -2,8 +2,8 @@ import pytest
 from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
-from ..models import ChampionshipAdjustmentType, Season
 from ..generate_standings import generate_season_driver_standings
+from ..models import ChampionshipAdjustmentType, Season, SessionType
 
 
 @pytest.fixture(scope="module")
@@ -24,13 +24,16 @@ def driver_standings_1997(django_db_setup, django_db_blocker, championship_adjus
 def driver_standings_2023(django_db_setup, django_db_blocker, championship_adjustments):
     with django_db_blocker.unblock():
         standings = generate_season_driver_standings(Season.objects.get(year=2023))
-        prefetch_related_objects(standings, "driver")
+        prefetch_related_objects(standings, "driver", "session")
     return standings
 
 
-def check_expected_in_standings(standings, round, reference, expected):
+def check_expected_in_standings(standings, round, reference, expected, session_type=SessionType.RACE):
+    if isinstance(round, str) and round.startswith("s"):
+        session_type = SessionType.SPRINT_RACE
+        round = int(round[1:])
     standings = filter(
-        lambda x: x.round_number == round and x.driver.reference == reference,
+        lambda x: x.round_number == round and x.session.type == session_type and x.driver.reference == reference,
         standings,
     )
     standing = next(standings, False)
@@ -52,6 +55,8 @@ def check_expected_in_standings(standings, round, reference, expected):
         (22, "perez", {"position": 2, "points": 285}),
         (22, "ricciardo", {"position": 17, "points": 6}),
         (22, "de_vries", {"position": 22, "points": 0, "is_eligible": True}),
+        (17, "hamilton", {"position": 3, "points": 194}),
+        ("s17", "hamilton", {"position": 3, "points": 194}),
         (2, "max_verstappen", {"position": 1, "points": 44}),
         (2, "perez", {"position": 2, "points": 43}),
         (2, "ricciardo", None),
