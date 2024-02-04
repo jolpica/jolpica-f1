@@ -1,12 +1,39 @@
-from jolpica.formula_one.models import ChampionshipAdjustmentType, ChampionshipSystem, Season, SessionEntry, SessionType
-from jolpica.formula_one.models.managed_views import DriverChampionship
-from jolpica.formula_one.utils import add_to_encoded_finishing_positions, calculate_championship_points, highest_finish_from_encoded_finishing_position
-
+from collections import defaultdict
+from dataclasses import dataclass
 
 from django.db.models import F
 
+from jolpica.formula_one.models import ChampionshipAdjustmentType, ChampionshipSystem, Season, SessionEntry, SessionType
+from jolpica.formula_one.models.managed_views import DriverChampionship
+from jolpica.formula_one.utils import (
+    add_to_encoded_finishing_positions,
+    calculate_championship_points,
+    highest_finish_from_encoded_finishing_position,
+)
 
-from collections import defaultdict
+
+def get_points_position_classification(entries) -> tuple[float, int | None, bool | None]:
+    points = 0
+    best_position = None
+    is_classified = None
+    for entry in entries:  # type: ignore
+        if entry.is_eligible_for_points and entry.points:
+            points += entry.points
+        if (
+            best_position is None
+            or entry.position < best_position
+            and (not is_classified or entry.is_classified is True)
+        ):
+            best_position = entry.position
+            is_classified = entry.is_classified
+    return (points, best_position, is_classified)
+
+
+@dataclass(order=True)
+class ChampionshipSortKey:
+    points: float = 0
+    finish_string: str = ""
+    retirement_string: str = ""
 
 
 def generate_season_driver_standings(
@@ -42,7 +69,7 @@ def generate_season_driver_standings(
         )
 
     driver_round_points: dict[int, dict[int, float]] = defaultdict(lambda: defaultdict(float))
-    driver_sort_key: dict = defaultdict(lambda: [0.0, "", ""])
+    driver_sort_key: dict[int, ChampionshipSortKey] = defaultdict(lambda: ChampionshipSortKey())
 
     driver_standings = []
     current_standings: list[DriverChampionship] = []
@@ -51,29 +78,19 @@ def generate_season_driver_standings(
             driver_standings.extend(current_standings)
             current_standings = []
             for driver_id, entries in driver_entries.items():
-                best_position = None
-                is_classified = None
-                # get_points_position_classification(entries)
-                for entry in entries:  # type: ignore
-                    if entry.is_eligible_for_points and entry.points:
-                        driver_round_points[driver_id][round_num] += entry.points
-                    if (
-                        best_position is None
-                        or entry.position < best_position
-                        and (not is_classified or entry.is_classified is True)
-                    ):
-                        best_position = entry.position
-                        is_classified = entry.is_classified
+                session_points, best_position, is_classified = get_points_position_classification(entries)
+                driver_round_points[driver_id][round_num] += session_points
+
                 if session_type == SessionType.RACE and best_position is not None:
                     if is_classified:
-                        driver_sort_key[driver_id][1] = add_to_encoded_finishing_positions(
-                            driver_sort_key[driver_id][1], best_position
+                        driver_sort_key[driver_id].finish_string = add_to_encoded_finishing_positions(
+                            driver_sort_key[driver_id].finish_string, best_position
                         )
                     else:
-                        driver_sort_key[driver_id][2] = add_to_encoded_finishing_positions(
-                            driver_sort_key[driver_id][2], best_position
+                        driver_sort_key[driver_id].retirement_string = add_to_encoded_finishing_positions(
+                            driver_sort_key[driver_id].retirement_string, best_position
                         )
-                driver_sort_key[driver_id][0] = calculate_championship_points(
+                driver_sort_key[driver_id].points = calculate_championship_points(
                     driver_round_points[driver_id],
                     split_type=championship_system.driver_season_split,
                     best_results_type=championship_system.driver_best_results,
@@ -84,10 +101,10 @@ def generate_season_driver_standings(
             drivers_by_finishes = sorted(driver_sort_key.items(), key=lambda d: driver_sort_key[d[0]], reverse=True)
             best_position = 1
             draw_count = -1
-            last_key = (-1, "", "")
+            last_key = ChampionshipSortKey(-1, "", "")
             for driver_id, sort_key in drivers_by_finishes:
-                sort_key = tuple(sort_key)
-                points, finish_string, _ = sort_key
+                # sort_key = tuple(sort_key)
+                points, finish_string = sort_key.points, sort_key.finish_string
                 is_eligible = True if finish_string else False  # Eligible for a championship position
                 is_classified = True  # Classified in championship (or is disqualified)
                 if driver_id in adjustments.keys():
