@@ -51,9 +51,12 @@ def get_points_position_classification(entries) -> tuple[float, int | None, bool
 
 
 @dataclass(order=True)
-class ChampionshipSortKey:
+class ChampionshipData:
+    """Championship Data for a Team/Driver, is orderable by championship position."""
+
     championship_system: ChampionshipSystem = field(compare=False)
     season_rounds: int = field(compare=False)
+    points_per_round: dict[int, float] = field(default_factory=lambda: defaultdict(float), compare=False, init=False)
 
     points: float = 0
     finish_string: str = ""
@@ -76,9 +79,13 @@ class ChampionshipSortKey:
     def is_eligible(self) -> bool:
         return bool(self.finish_string.strip("0"))
 
-    def update_points(self, points_per_round: dict[int, float]):
+    def add_points_to_round(self, round: int, points: float):
+        self.points_per_round[round] += points
+        self._update_points()
+
+    def _update_points(self):
         self.points = calculate_championship_points(
-            points_per_round,
+            self.points_per_round,
             split_type=self.championship_system.driver_season_split,
             best_results_type=self.championship_system.driver_best_results,
             total_rounds=self.season_rounds,
@@ -117,9 +124,8 @@ def generate_season_driver_standings(
             entry
         )
 
-    driver_round_points: dict[int, dict[int, float]] = defaultdict(lambda: defaultdict(float))
-    driver_sort_key: dict[int, ChampionshipSortKey] = defaultdict(
-        lambda: ChampionshipSortKey(championship_system=championship_system, season_rounds=season_rounds)
+    driver_data: dict[int, ChampionshipData] = defaultdict(
+        lambda: ChampionshipData(championship_system=championship_system, season_rounds=season_rounds)
     )
 
     driver_standings = []
@@ -129,26 +135,21 @@ def generate_season_driver_standings(
             driver_standings.extend(current_standings)
             current_standings = []
 
-            # driver_round_points, driver_sort_key = update_points_for_session(
-            #     driver_round_points, driver_sort_key, driver_entries
-            # )
             for driver_id, entries in driver_entries.items():
                 session_points, best_position, is_classified = get_points_position_classification(entries)
-                driver_round_points[driver_id][round_num] += session_points
+                driver_data[driver_id].add_points_to_round(round_num, session_points)
 
                 if session_type == SessionType.RACE and best_position is not None:
                     if is_classified:
-                        driver_sort_key[driver_id].add_finish_position(best_position)
+                        driver_data[driver_id].add_finish_position(best_position)
                     else:
-                        driver_sort_key[driver_id].add_retirement_position(best_position)
-
-                driver_sort_key[driver_id].update_points(driver_round_points[driver_id])
+                        driver_data[driver_id].add_retirement_position(best_position)
 
             # session
-            drivers_by_finishes = sorted(driver_sort_key.items(), key=(lambda d: d[1]), reverse=True)
+            drivers_by_finishes = sorted(driver_data.items(), key=(lambda d: d[1]), reverse=True)
             best_position = 1
             draw_count = -1
-            last_key = None
+            last_data = None
             for driver_id, sort_key in drivers_by_finishes:
                 points = sort_key.points
                 is_eligible = sort_key.is_eligible()  # Eligible for a championship position
@@ -157,12 +158,12 @@ def generate_season_driver_standings(
                     is_classified = False
                     if adjustments[driver_id] == ChampionshipAdjustmentType.EXCLUDED:
                         points = 0
-                elif last_key is None or sort_key < last_key:
+                elif last_data is None or sort_key < last_data:
                     best_position += 1 + draw_count
                     draw_count = 0
                 else:
                     draw_count += 1
-                last_key = sort_key
+                last_data = sort_key
                 current_standings.append(
                     DriverChampionship(
                         session_id=session_id,
