@@ -66,9 +66,3 @@ def add_to_encoded_finishing_positions(encoded: str, position: int, amount: int 
     if len(encoded) < end:
         encoded = encoded.ljust(end, "0")
     return encoded[:start] + f"{int(encoded[start:end]) + amount:0>2}" + encoded[end:]
-
-
-def highest_finish_from_encoded_finishing_position(encoded: str) -> int | None:
-    if encoded.strip("0") == "":
-        return None
-    return 1 + (len(encoded) - len(encoded.lstrip("0"))) // 2
