@@ -3,7 +3,7 @@ from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
 from ..models import ChampionshipAdjustmentType, Season
-from ..utils import generate_season_driver_standings
+from ..generate_standings import generate_season_driver_standings
 
 
 @pytest.fixture(scope="module")

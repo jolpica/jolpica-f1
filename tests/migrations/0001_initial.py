@@ -2,7 +2,7 @@
 
 from django.db import migrations
 from django.core.management import call_command
-from jolpica.formula_one.utils import generate_season_driver_standings
+from jolpica.formula_one.generate_standings import generate_season_driver_standings
 
 
 
