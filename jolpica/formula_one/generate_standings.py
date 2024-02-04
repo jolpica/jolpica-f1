@@ -28,34 +28,13 @@ def get_points_position_classification(entries) -> tuple[float, int | None, bool
     return (points, best_position, is_classified)
 
 
-# def update_points_for_session(
-#     driver_round_points: dict, driver_sort_key: dict, driver_entries: dict
-# ) -> tuple[dict, dict]:
-#     for driver_id, entries in driver_entries.items():
-#         session_points, best_position, is_classified = get_points_position_classification(entries)
-#         driver_round_points[driver_id][round_num] += session_points
-
-#         if session_type == SessionType.RACE and best_position is not None:
-#             if is_classified:
-#                 driver_sort_key[driver_id].add_finish_position(best_position)
-#             else:
-#                 driver_sort_key[driver_id].add_retirement_position(best_position)
-
-#         driver_sort_key[driver_id].points = calculate_championship_points(
-#             driver_round_points[driver_id],
-#             split_type=championship_system.driver_season_split,
-#             best_results_type=championship_system.driver_best_results,
-#             total_rounds=season_rounds,
-#         )
-#     return driver_round_points, driver_sort_key
-
-
 @dataclass(order=True)
 class ChampionshipData:
     """Championship Data for a Team/Driver, is orderable by championship position."""
 
     championship_system: ChampionshipSystem = field(compare=False)
     season_rounds: int = field(compare=False)
+    adjustment_type: int = field(default=ChampionshipAdjustmentType.NONE, compare=False)
     points_per_round: dict[int, float] = field(default_factory=lambda: defaultdict(float), compare=False, init=False)
 
     points: float = 0
@@ -77,19 +56,63 @@ class ChampionshipData:
         return int(self.finish_string[:2]) if len(self.finish_string) >= 2 else 0
 
     def is_eligible(self) -> bool:
+        """Eligibility for a championship position"""
         return bool(self.finish_string.strip("0"))
+
+    def is_classified(self) -> bool:
+        """Classification for championship position (or is disqualified)"""
+        if self.adjustment_type == ChampionshipAdjustmentType.NONE:
+            return True
+        return False
 
     def add_points_to_round(self, round: int, points: float):
         self.points_per_round[round] += points
         self._update_points()
 
     def _update_points(self):
+        if self.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
+            return 0
         self.points = calculate_championship_points(
             self.points_per_round,
             split_type=self.championship_system.driver_season_split,
             best_results_type=self.championship_system.driver_best_results,
             total_rounds=self.season_rounds,
         )
+
+    def create_standing(self, position: None | int, data_id: int) -> DriverChampionship:
+        is_eligible = self.is_eligible()  # Eligible for a championship position
+        is_classified = self.is_classified()  # Classified in championship (or is disqualified)
+
+        return DriverChampionship(
+            driver_id=data_id,
+            position=position if is_eligible and is_classified else None,
+            points=self.points,
+            win_count=self.get_number_wins(),
+            highest_finish=self.get_highest_finish(),
+            finish_string=self.finish_string,
+            is_eligible=is_eligible,
+            adjustment_type=self.adjustment_type,
+        )
+
+
+def standings_from_championship_data(data_map: dict[int, ChampionshipData]) -> list[DriverChampionship]:
+    standings = []
+    drivers_by_finishes = sorted(data_map.items(), key=(lambda d: d[1]), reverse=True)
+    position = 1
+    draw_count = -1
+    last_data = None
+    for driver_id, driver_data in drivers_by_finishes:
+        if not driver_data.is_classified():
+            pass
+        elif last_data is None or driver_data < last_data:
+            position += 1 + draw_count
+            draw_count = 0
+        else:
+            draw_count += 1
+        last_data = driver_data
+        standing = driver_data.create_standing(position, driver_id)
+        standings.append(standing)
+    return standings
 
 
 def generate_season_driver_standings(
@@ -102,10 +125,7 @@ def generate_season_driver_standings(
             raise ValueError("No ChampionshipSystem")
     if season_rounds is None:
         season_rounds = season.rounds.filter(is_cancelled=False).count()
-    adjustments = {
-        adjustment.driver_id: adjustment.adjustment
-        for adjustment in season.championship_adjustments.filter(driver__isnull=False)
-    }
+
     session_entries = list(
         SessionEntry.objects.filter(session__round__season_id=season.pk, session__point_system_id__gt=1)
         .annotate(
@@ -124,61 +144,35 @@ def generate_season_driver_standings(
             entry
         )
 
-    driver_data: dict[int, ChampionshipData] = defaultdict(
+    driver_data_map: dict[int, ChampionshipData] = defaultdict(
         lambda: ChampionshipData(championship_system=championship_system, season_rounds=season_rounds)
     )
+    for adjustment in season.championship_adjustments.filter(driver__isnull=False):
+        if adjustment.driver_id is not None:
+            driver_data_map[adjustment.driver_id].adjustment_type = adjustment.adjustment
 
     driver_standings = []
     current_standings: list[DriverChampionship] = []
     for (round_id, round_num), entries_type_dict in entries_dict.items():
         for (session_id, session_type), driver_entries in entries_type_dict.items():
-            driver_standings.extend(current_standings)
-            current_standings = []
-
             for driver_id, entries in driver_entries.items():
                 session_points, best_position, is_classified = get_points_position_classification(entries)
-                driver_data[driver_id].add_points_to_round(round_num, session_points)
+                driver_data_map[driver_id].add_points_to_round(round_num, session_points)
 
                 if session_type == SessionType.RACE and best_position is not None:
                     if is_classified:
-                        driver_data[driver_id].add_finish_position(best_position)
+                        driver_data_map[driver_id].add_finish_position(best_position)
                     else:
-                        driver_data[driver_id].add_retirement_position(best_position)
+                        driver_data_map[driver_id].add_retirement_position(best_position)
 
             # session
-            drivers_by_finishes = sorted(driver_data.items(), key=(lambda d: d[1]), reverse=True)
-            best_position = 1
-            draw_count = -1
-            last_data = None
-            for driver_id, sort_key in drivers_by_finishes:
-                points = sort_key.points
-                is_eligible = sort_key.is_eligible()  # Eligible for a championship position
-                is_classified = True  # Classified in championship (or is disqualified)
-                if driver_id in adjustments.keys():
-                    is_classified = False
-                    if adjustments[driver_id] == ChampionshipAdjustmentType.EXCLUDED:
-                        points = 0
-                elif last_data is None or sort_key < last_data:
-                    best_position += 1 + draw_count
-                    draw_count = 0
-                else:
-                    draw_count += 1
-                last_data = sort_key
-                current_standings.append(
-                    DriverChampionship(
-                        session_id=session_id,
-                        driver_id=driver_id,
-                        year=season.year,
-                        round_number=round_num,
-                        position=best_position if is_eligible and is_classified else None,
-                        points=points,
-                        win_count=sort_key.get_number_wins(),
-                        highest_finish=sort_key.get_highest_finish(),
-                        finish_string=sort_key.finish_string,
-                        is_eligible=is_eligible,
-                        adjustment_type=adjustments.get(driver_id, ChampionshipAdjustmentType.NONE),
-                    )
-                )
+            driver_standings.extend(current_standings)
+            current_standings = standings_from_championship_data(driver_data_map)
+
+            for standing in current_standings:
+                standing.session_id = session_id
+                standing.year = season.year
+                standing.round_number = round_num
         # round
         for standing in current_standings:
             standing.round_id = round_id
