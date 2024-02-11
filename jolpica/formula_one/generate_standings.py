@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 from collections import defaultdict
-from dataclasses import dataclass, field
 
 from django.db.models import F
 
@@ -28,18 +29,55 @@ def get_points_position_classification(entries) -> tuple[float, int | None, bool
     return (points, best_position, is_classified)
 
 
-@dataclass(order=True)
 class ChampionshipData:
     """Championship Data for a Team/Driver, is orderable by championship position."""
 
-    championship_system: ChampionshipSystem = field(compare=False)
-    season_rounds: int = field(compare=False)
-    adjustment_type: int = field(default=ChampionshipAdjustmentType.NONE, compare=False)
-    points_per_round: dict[int, float] = field(default_factory=lambda: defaultdict(float), compare=False, init=False)
+    championship_system: ChampionshipSystem
+    season_rounds: int
+    adjustment_type: int
+    points_per_round: dict[int, float]
 
-    points: float = 0
-    finish_string: str = ""
-    retirement_string: str = ""
+    finish_string: str
+    retirement_string: str
+
+    @property
+    def points(self) -> float:
+        if self.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
+            return 0
+        else:
+            return calculate_championship_points(
+                self.points_per_round,
+                split_type=self.championship_system.driver_season_split,
+                best_results_type=self.championship_system.driver_best_results,
+                total_rounds=self.season_rounds,
+            )
+
+    def __init__(
+        self,
+        championship_system: ChampionshipSystem,
+        season_rounds: int,
+        adjustment_type=ChampionshipAdjustmentType.NONE,
+    ):
+        self.championship_system = championship_system
+        self.season_rounds = season_rounds
+        self.adjustment_type = adjustment_type
+        self.points_per_round = {i + 1: 0 for i in range(season_rounds)}
+
+        self.finish_string = ""
+        self.retirement_string = ""
+
+    def _get_order_tuple(self):
+        return (self.points, self.finish_string, self.retirement_string)
+
+    def __eq__(self, other):
+        if not isinstance(other, ChampionshipData):
+            return False
+        return self._get_order_tuple() == other._get_order_tuple()
+
+    def __lt__(self, other: ChampionshipData):
+        if not isinstance(other, ChampionshipData):
+            return False
+        return self._get_order_tuple() < other._get_order_tuple()
 
     def add_finish_position(self, position: int):
         self.finish_string = add_to_encoded_finishing_positions(self.finish_string, position)
@@ -67,17 +105,6 @@ class ChampionshipData:
 
     def add_points_to_round(self, round: int, points: float):
         self.points_per_round[round] += points
-        self._update_points()
-
-    def _update_points(self):
-        if self.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
-            return 0
-        self.points = calculate_championship_points(
-            self.points_per_round,
-            split_type=self.championship_system.driver_season_split,
-            best_results_type=self.championship_system.driver_best_results,
-            total_rounds=self.season_rounds,
-        )
 
     def create_standing(self, position: None | int, data_id: int) -> DriverChampionship:
         is_eligible = self.is_eligible()  # Eligible for a championship position
@@ -96,6 +123,14 @@ class ChampionshipData:
 
 
 def standings_from_championship_data(data_map: dict[int, ChampionshipData]) -> list[DriverChampionship]:
+    """Generate a list of Driver Championship, from a dictionary of driver id to championship data.
+
+    Args:
+        data_map (dict[int, ChampionshipData]): Dictionary of driver_id to championship data
+
+    Returns:
+        list[DriverChampionship]: List of DriverChampionship objects with relevant position data.
+    """
     standings = []
     drivers_by_finishes = sorted(data_map.items(), key=(lambda d: d[1]), reverse=True)
     position = 1
