@@ -22,7 +22,7 @@ django-dbml = "^0.6.0"                                                          
 django-fixture-magic = "^0.1.5"                                                   # Generation of fixture file
 django-stubs = { extras = ["compatible-mypy"], version = "^4.2.6" }
 djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.14.3" }
-mypy = { extras = ["dmypy"], version = "^1.5.1" }
+mypy = { extras = ["dmypy"], version = "^1.7.0" }
 pytest-django = "^4.5.2"
 ruff = "^0.1.3"
 

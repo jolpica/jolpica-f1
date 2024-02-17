@@ -16,7 +16,7 @@ def championship_adjustments(django_db_setup, django_db_blocker):
 def driver_standings_1997(django_db_setup, django_db_blocker, championship_adjustments):
     with django_db_blocker.unblock():
         standings = generate_season_driver_standings(Season.objects.get(year=1997))
-        prefetch_related_objects(standings, "driver")
+        prefetch_related_objects(standings, "driver", "session")
     return standings
 
 
@@ -63,7 +63,6 @@ def check_expected_in_standings(standings, round, reference, expected, session_t
         (1, "leclerc", {"position": None, "points": 0, "is_eligible": False}),
     ],
 )
-@pytest.mark.django_db
 def test_2023_driver_standings(driver_standings_2023, round, reference, expected):
     check_expected_in_standings(driver_standings_2023, round, reference, expected)
 
@@ -92,6 +91,5 @@ def test_2023_driver_standings(driver_standings_2023, round, reference, expected
         (1, "coulthard", {"position": 1, "points": 10}),
     ],
 )
-@pytest.mark.django_db
 def test_1997_driver_standings(driver_standings_1997, round, reference, expected):
     check_expected_in_standings(driver_standings_1997, round, reference, expected)
