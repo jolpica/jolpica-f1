@@ -41,33 +41,70 @@ class EntryData:
         raise ValueError("Missing required fields in entry")
 
 
-class PositionData:
-    finish_map: Counter[int]
-    unclassified_map: Counter[int]
+class Stats:
+    # points: float
+    finish_counts: Counter[int]
+    unclassified_counts: Counter[int]
 
-    def __init__(self, finish_map: dict, retirement_map: dict) -> None:
-        self.finish_map = Counter(finish_map)
-        self.unclassified_map = Counter(retirement_map)
+    def __init__(self, finish_map: dict | list, retirement_map: dict | list) -> None:
+        self.finish_counts = Counter(finish_map)
+        self.unclassified_counts = Counter(retirement_map)
 
     @staticmethod
     def from_position(position, is_classified=False):
         if position is None or is_classified is None:
-            return PositionData({}, {})
+            return Stats({}, {})
         elif is_classified:
-            return PositionData(Counter([position]), {})
+            return Stats(Counter([position]), {})
         else:
-            return PositionData({}, Counter([position]))
+            return Stats({}, Counter([position]))
 
-    def __add__(self, other):
-        if not isinstance(other, PositionData):
+    # @staticmethod
+    # def from_entry():
+    #     if position is None or is_classified is None:
+    #         return Stats({}, {})
+    #     elif is_classified:
+    #         return Stats(Counter([position]), {})
+    #     else:
+    #         return Stats({}, Counter([position]))
+
+    def __eq__(self, other):
+        if not isinstance(other, Stats):
+            raise NotImplementedError()
+        return self.finish_counts == other.finish_counts and self.unclassified_counts == other.unclassified_counts
+
+    def __gt__(self, other):
+        if not isinstance(other, Stats):
             raise NotImplementedError()
 
-        finishes = Counter(self.finish_map)
-        finishes.update(other.finish_map)
-        unclassifieds = Counter(self.unclassified_map)
-        unclassifieds.update(other.unclassified_map)
+        if self.finish_counts != other.finish_counts:
+            for finish in sorted([*self.finish_counts, *other.finish_counts]):
+                val1, val2 = self.finish_counts.get(finish, 0), other.finish_counts.get(finish, 0)
+                if val1 == val2:
+                    continue
+                else:
+                    return val1 > val2
 
-        return PositionData(finishes, unclassifieds)
+        if self.unclassified_counts != other.unclassified_counts:
+            for finish in sorted([*self.unclassified_counts, *other.unclassified_counts]):
+                val1, val2 = self.unclassified_counts.get(finish, 0), other.unclassified_counts.get(finish, 0)
+                if val1 == val2:
+                    continue
+                else:
+                    return val1 > val2
+
+        return False
+
+    def __add__(self, other):
+        if not isinstance(other, Stats):
+            raise NotImplementedError()
+
+        finishes = Counter(self.finish_counts)
+        finishes.update(other.finish_counts)
+        unclassifieds = Counter(self.unclassified_counts)
+        unclassifieds.update(other.unclassified_counts)
+
+        return Stats(finishes, unclassifieds)
 
 
 @dataclass(order=True)
@@ -128,22 +165,41 @@ class SessionData:
 
     def position_by_group(
         self, grouping_type: Literal["DRIVER", "TEAM"], aggregate: Literal["SUM", "BEST"]
-    ) -> dict[int, PositionData]:
+    ) -> dict[int, Stats]:
         data_map = self.group_data_by(grouping_type)
 
         position_map = {}
         for key, entries in data_map.items():
-            position_datas = map(lambda x: PositionData.from_position(x.position, x.is_classified), entries)
+            position_datas = map(lambda x: Stats.from_position(x.position, x.is_classified), entries)
             if aggregate == "SUM":
-                position_map[key] = sum(position_datas, start=PositionData({}, {}))
+                position_map[key] = sum(position_datas, start=Stats({}, {}))
             elif aggregate == "BEST":
                 position_map[key] = max(position_datas)
 
         return position_map
 
+    def stats_by_group(
+        self, grouping_type: Literal["DRIVER", "TEAM"], aggregate: Literal["SUM", "BEST"]
+    ) -> dict[int, Stats]:
+        data_map = self.group_data_by(grouping_type)
 
+        stat_map = {}
+        for key, entries in data_map.items():
+            stats = map(lambda x: Stats.from_entry(x), entries)
+            if aggregate == "SUM":
+                stat_map[key] = sum(stats, start=Stats({}, {}))
+            elif aggregate == "BEST":
+                stat_map[key] = max(stats)
+
+        return stat_map
+
+
+@dataclass()
 class SeasonData:
-    session_datas: list
+    session_datas: list[SessionData]
+
+    def generate_standings(self):
+        ordered_sessions = sorted(self.session_datas, key=lambda x: (x.round_number, x.session_number))
 
 
 def generate_standings(data: list):
