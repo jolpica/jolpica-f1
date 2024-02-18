@@ -2,12 +2,12 @@ from collections import Counter
 
 import pytest
 
-from ..standings import EntryData, PositionData, SeasonData, SessionData
+from ..standings import EntryData, SeasonData, SessionData, Stats
 
 
 @pytest.fixture(scope="module")
 def entry_datas():
-    return [
+    output = [
         EntryData(
             round_number=1,
             session_number=5,
@@ -29,6 +29,7 @@ def entry_datas():
             is_classified=None,
         )
     ]
+    return output[::-1]
 
 
 @pytest.fixture(scope="module")
@@ -37,6 +38,52 @@ def session_data(entry_datas: list[EntryData]):
         round_number=1,
         session_number=5,
         entry_datas=entry_datas,
+    )
+
+
+@pytest.fixture(scope="module")
+def entry_datas2():
+    output = [
+        EntryData(
+            round_number=2,
+            session_number=2,
+            driver_id=i,
+            team_id=j,
+            points=6 - pos,
+            position=pos + 1,
+            is_classified=True,
+        )
+        for pos, (i, j) in enumerate([(1, 101), (2, 101), (3, 102), (4, 102), (5, 103), (6, 103)])
+    ]
+    output2 = [
+        EntryData(
+            round_number=2,
+            session_number=2,
+            driver_id=i,
+            team_id=j,
+            points=0,
+            position=pos + 1,
+            is_classified=False,
+        )
+        for pos, (i, j) in enumerate([(7, 104), (8, 104)])
+    ]
+
+    return output2 + output
+
+
+@pytest.fixture(scope="module")
+def session_data2(entry_datas2: list[EntryData]):
+    return SessionData(
+        round_number=2,
+        session_number=2,
+        entry_datas=entry_datas2,
+    )
+
+
+@pytest.fixture(scope="module")
+def season_data(session_data: SessionData, session_data2: SessionData):
+    return SeasonData(
+        session_datas=[session_data2, session_data],
     )
 
 
@@ -64,7 +111,7 @@ def test_entry_data_by_group_team(session_data: SessionData):
 
 def test_entry_data_by_group_invalid(session_data: SessionData):
     with pytest.raises(ValueError):
-        session_data.group_data_by("akdlf")
+        session_data.group_data_by("akdlf")  # type: ignore
 
 
 def test_points_by_group_driver_sum(session_data: SessionData):
@@ -93,13 +140,13 @@ def test_points_by_group_team_best(session_data: SessionData):
 
 def test_points_by_group_invalid(session_data: SessionData):
     with pytest.raises(ValueError):
-        session_data.points_by_group("invalid", "SUM")
+        session_data.points_by_group("invalid", "SUM")  # type: ignore
     with pytest.raises(ValueError):
-        session_data.points_by_group("DRIVER", "invalid")
+        session_data.points_by_group("DRIVER", "invalid")  # type: ignore
     with pytest.raises(ValueError):
-        session_data.points_by_group("invalid", "invalid")
+        session_data.points_by_group("invalid", "invalid")  # type: ignore
     with pytest.raises(ValueError):
-        session_data.points_by_group("SUM", "DRIVER")
+        session_data.points_by_group("SUM", "DRIVER")  # type: ignore
 
 
 def test_position_by_group_driver_sum(session_data: SessionData):
@@ -107,8 +154,8 @@ def test_position_by_group_driver_sum(session_data: SessionData):
 
     clean_output = {}
     for key, position_data in output.items():
-        assert position_data.unclassified_map == {}
-        clean_output[key] = position_data.finish_map
+        assert position_data.unclassified_counts == {}
+        clean_output[key] = position_data.finish_counts
 
     assert clean_output == {
         1: (Counter([1, 2, 3])),
@@ -116,3 +163,69 @@ def test_position_by_group_driver_sum(session_data: SessionData):
         3: (Counter([5, 6])),
         4: ({}),
     }
+
+
+def test_position_by_group_team_sum(session_data: SessionData):
+    output = session_data.position_by_group("TEAM", "SUM")
+
+    clean_output = {}
+    for key, position_data in output.items():
+        assert position_data.unclassified_counts == {}
+        clean_output[key] = position_data.finish_counts
+
+    assert clean_output == {
+        101: (Counter([1, 2, 6])),
+        102: (Counter([3, 4])),
+        103: (Counter([5])),
+        104: ({}),
+    }
+
+
+def test_position_by_group_driver_best(session_data: SessionData):
+    output = session_data.position_by_group("DRIVER", "BEST")
+
+    clean_output = {}
+    for key, position_data in output.items():
+        assert position_data.unclassified_counts == {}
+        clean_output[key] = position_data.finish_counts
+
+    assert clean_output == {
+        1: (Counter([1])),
+        2: (Counter([4])),
+        3: (Counter([5])),
+        4: ({}),
+    }
+
+
+def test_position_by_group_team_best(session_data: SessionData):
+    output = session_data.position_by_group("TEAM", "BEST")
+
+    clean_output = {}
+    for key, position_data in output.items():
+        assert position_data.unclassified_counts == {}
+        clean_output[key] = position_data.finish_counts
+
+    assert clean_output == {
+        101: (Counter([1])),
+        102: (Counter([3])),
+        103: (Counter([5])),
+        104: ({}),
+    }
+
+
+@pytest.mark.parametrize(
+    ["args1", "args2", "expected"],
+    [
+        (([1, 1, 1], [1]), ([], [1]), ({1: 3}, {1: 2})),
+        (([1, 1, 1], []), ([], [1]), ({1: 3}, {1: 1})),
+        (({1: 0}, []), ([], []), ({1: 0}, {})),
+        (({1: -1}, {1: -1}), ({1: 1}, []), ({1: 0}, {1: -1})),
+    ],
+)
+def test_position_count_add(args1, args2, expected):
+    pc1 = Stats(*args1)
+    pc2 = Stats(*args2)
+
+    added = pc1 + pc2
+    assert dict(added.finish_counts) == expected[0]
+    assert dict(added.unclassified_counts) == expected[1]
