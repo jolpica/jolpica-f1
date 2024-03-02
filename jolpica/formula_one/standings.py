@@ -42,31 +42,38 @@ class EntryData:
 
 
 class Stats:
-    # points: float
+    points: float
     finish_counts: Counter[int]
     unclassified_counts: Counter[int]
 
-    def __init__(self, finish_map: dict | list, retirement_map: dict | list) -> None:
-        self.finish_counts = Counter(finish_map)
-        self.unclassified_counts = Counter(retirement_map)
+    def __init__(
+        self,
+        points: float | None = None,
+        finish_counts: dict | list | None = None,
+        unclassified_counts: dict | list | None = None,
+    ) -> None:
+        self.points = 0 if points is None else points
+        self.finish_counts = Counter(finish_counts)
+        self.unclassified_counts = Counter(unclassified_counts)
 
     @staticmethod
     def from_position(position, is_classified=False):
         if position is None or is_classified is None:
-            return Stats({}, {})
+            return Stats(0, {}, {})
         elif is_classified:
-            return Stats(Counter([position]), {})
+            return Stats(0, Counter([position]), {})
         else:
-            return Stats({}, Counter([position]))
+            return Stats(0, {}, Counter([position]))
 
-    # @staticmethod
-    # def from_entry():
-    #     if position is None or is_classified is None:
-    #         return Stats({}, {})
-    #     elif is_classified:
-    #         return Stats(Counter([position]), {})
-    #     else:
-    #         return Stats({}, Counter([position]))
+    @staticmethod
+    def from_entry(entry: SessionEntry):
+        finishes, unclassifies = [], []
+        if entry.position is not None:
+            if entry.is_classified is True:
+                finishes.append(entry.position)
+            elif entry.is_classified is False:
+                unclassifies.append(entry.position)
+        return Stats(entry.points, finishes, unclassifies)
 
     def __eq__(self, other):
         if not isinstance(other, Stats):
@@ -104,7 +111,7 @@ class Stats:
         unclassifieds = Counter(self.unclassified_counts)
         unclassifieds.update(other.unclassified_counts)
 
-        return Stats(finishes, unclassifieds)
+        return Stats(self.points + other.points, finishes, unclassifieds)
 
 
 @dataclass(order=True)
@@ -172,7 +179,7 @@ class SessionData:
         for key, entries in data_map.items():
             position_datas = map(lambda x: Stats.from_position(x.position, x.is_classified), entries)
             if aggregate == "SUM":
-                position_map[key] = sum(position_datas, start=Stats({}, {}))
+                position_map[key] = sum(position_datas, start=Stats(0, {}, {}))
             elif aggregate == "BEST":
                 position_map[key] = max(position_datas)
 
@@ -187,7 +194,7 @@ class SessionData:
         for key, entries in data_map.items():
             stats = map(lambda x: Stats.from_entry(x), entries)
             if aggregate == "SUM":
-                stat_map[key] = sum(stats, start=Stats({}, {}))
+                stat_map[key] = sum(stats, start=Stats(0, {}, {}))
             elif aggregate == "BEST":
                 stat_map[key] = max(stats)
 
