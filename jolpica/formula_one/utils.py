@@ -9,7 +9,7 @@ def calculate_championship_points(
     split_type: int,
     best_results_type: int,
     total_rounds: int,
-) -> float:
+) -> float | None:
     if total_rounds <= 0:
         raise ValueError("Total rounds must be greater than 0")
     clean_round_points: dict[int, float] = {}
@@ -36,7 +36,7 @@ def calculate_championship_points(
         raise ValueError("Invalid season split type")
 
     if best_results_type == ResultsChampionshipScheme.NONE:
-        return 0
+        return None
 
     # Sort points from most to least (unless the point scheme uses all results)
     if best_results_type != ResultsChampionshipScheme.ALL:

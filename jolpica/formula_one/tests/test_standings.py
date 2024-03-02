@@ -223,8 +223,8 @@ def test_position_by_group_team_best(session_data: SessionData):
     ],
 )
 def test_position_count_add(args1, args2, expected):
-    pc1 = Stats(*args1)
-    pc2 = Stats(*args2)
+    pc1 = Stats(0, *args1)
+    pc2 = Stats(0, *args2)
 
     added = pc1 + pc2
     assert dict(added.finish_counts) == expected[0]
