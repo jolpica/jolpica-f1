@@ -78,11 +78,20 @@ class Stats:
     def __eq__(self, other):
         if not isinstance(other, Stats):
             raise NotImplementedError()
-        return self.finish_counts == other.finish_counts and self.unclassified_counts == other.unclassified_counts
+        return (
+            self.points == other.points
+            and self.finish_counts == other.finish_counts
+            and self.unclassified_counts == other.unclassified_counts
+        )
 
     def __gt__(self, other):
         if not isinstance(other, Stats):
             raise NotImplementedError()
+
+        if self.points > other.points:
+            return True
+        elif self.points < other.points:
+            return False
 
         if self.finish_counts != other.finish_counts:
             for finish in sorted([*self.finish_counts, *other.finish_counts]):
@@ -142,13 +151,13 @@ class SessionData:
                 data[key] = [entry_data]
         return data
 
-    def points_by_group(
+    def stats_by_group(
         self, grouping_type: Literal["DRIVER", "TEAM"], aggregate: Literal["SUM", "BEST"]
-    ) -> dict[int, float]:
-        """Get a mapping of points by driver or team for the session.
+    ) -> dict[int, Stats]:
+        """Get a mapping of stats (points/position) by driver or team for the session.
 
         Args:
-            grouping_type: What to get points by: DRIVER or TEAM
+            grouping_type: What to get stats by: DRIVER or TEAM
             aggregate: How to aggregate multiple points values in a group: SUM or BEST
 
         Raises:
@@ -159,37 +168,6 @@ class SessionData:
         """
         data_map = self.group_data_by(grouping_type)
 
-        point_map = {}
-        for key, entries in data_map.items():
-            if aggregate == "SUM":
-                point_map[key] = sum(entry.points for entry in entries if entry.points)
-            elif aggregate == "BEST":
-                points_list = list(entry.points for entry in entries if entry.points)
-                point_map[key] = max(points_list) if points_list else 0
-            else:
-                raise ValueError("Invalid aggregate")
-        return point_map
-
-    def position_by_group(
-        self, grouping_type: Literal["DRIVER", "TEAM"], aggregate: Literal["SUM", "BEST"]
-    ) -> dict[int, Stats]:
-        data_map = self.group_data_by(grouping_type)
-
-        position_map = {}
-        for key, entries in data_map.items():
-            position_datas = map(lambda x: Stats.from_position(x.position, x.is_classified), entries)
-            if aggregate == "SUM":
-                position_map[key] = sum(position_datas, start=Stats(0, {}, {}))
-            elif aggregate == "BEST":
-                position_map[key] = max(position_datas)
-
-        return position_map
-
-    def stats_by_group(
-        self, grouping_type: Literal["DRIVER", "TEAM"], aggregate: Literal["SUM", "BEST"]
-    ) -> dict[int, Stats]:
-        data_map = self.group_data_by(grouping_type)
-
         stat_map = {}
         for key, entries in data_map.items():
             stats = map(lambda x: Stats.from_entry(x), entries)
@@ -197,6 +175,8 @@ class SessionData:
                 stat_map[key] = sum(stats, start=Stats(0, {}, {}))
             elif aggregate == "BEST":
                 stat_map[key] = max(stats)
+            else:
+                raise ValueError("Invalid aggregate")
 
         return stat_map
 

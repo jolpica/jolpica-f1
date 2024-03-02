@@ -115,42 +115,46 @@ def test_entry_data_by_group_invalid(session_data: SessionData):
 
 
 def test_points_by_group_driver_sum(session_data: SessionData):
-    output = session_data.points_by_group("DRIVER", "SUM")
+    output = session_data.stats_by_group("DRIVER", "SUM")
+    clean_output = {key: stat.points for key, stat in output.items()}
 
-    assert output == {1: 3, 2: 2, 3: 6, 4: 0}
+    assert clean_output == {1: 3, 2: 2, 3: 6, 4: 0}
 
 
 def test_points_by_group_team_sum(session_data: SessionData):
-    output = session_data.points_by_group("TEAM", "SUM")
+    output = session_data.stats_by_group("TEAM", "SUM")
+    clean_output = {key: stat.points for key, stat in output.items()}
 
-    assert output == {101: 5, 102: 3, 103: 3, 104: 0}
+    assert clean_output == {101: 5, 102: 3, 103: 3, 104: 0}
 
 
 def test_points_by_group_driver_best(session_data: SessionData):
-    output = session_data.points_by_group("DRIVER", "BEST")
+    output = session_data.stats_by_group("DRIVER", "BEST")
+    clean_output = {key: stat.points for key, stat in output.items()}
 
-    assert output == {1: 1, 2: 2, 3: 3, 4: 0}
+    assert clean_output == {1: 1, 2: 2, 3: 3, 4: 0}
 
 
 def test_points_by_group_team_best(session_data: SessionData):
-    output = session_data.points_by_group("TEAM", "BEST")
+    output = session_data.stats_by_group("TEAM", "BEST")
+    clean_output = {key: stat.points for key, stat in output.items()}
 
-    assert output == {101: 3, 102: 2, 103: 3, 104: 0}
+    assert clean_output == {101: 3, 102: 2, 103: 3, 104: 0}
 
 
 def test_points_by_group_invalid(session_data: SessionData):
     with pytest.raises(ValueError):
-        session_data.points_by_group("invalid", "SUM")  # type: ignore
+        session_data.stats_by_group("invalid", "SUM")  # type: ignore
     with pytest.raises(ValueError):
-        session_data.points_by_group("DRIVER", "invalid")  # type: ignore
+        session_data.stats_by_group("DRIVER", "invalid")  # type: ignore
     with pytest.raises(ValueError):
-        session_data.points_by_group("invalid", "invalid")  # type: ignore
+        session_data.stats_by_group("invalid", "invalid")  # type: ignore
     with pytest.raises(ValueError):
-        session_data.points_by_group("SUM", "DRIVER")  # type: ignore
+        session_data.stats_by_group("SUM", "DRIVER")  # type: ignore
 
 
 def test_position_by_group_driver_sum(session_data: SessionData):
-    output = session_data.position_by_group("DRIVER", "SUM")
+    output = session_data.stats_by_group("DRIVER", "SUM")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -166,7 +170,7 @@ def test_position_by_group_driver_sum(session_data: SessionData):
 
 
 def test_position_by_group_team_sum(session_data: SessionData):
-    output = session_data.position_by_group("TEAM", "SUM")
+    output = session_data.stats_by_group("TEAM", "SUM")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -182,7 +186,7 @@ def test_position_by_group_team_sum(session_data: SessionData):
 
 
 def test_position_by_group_driver_best(session_data: SessionData):
-    output = session_data.position_by_group("DRIVER", "BEST")
+    output = session_data.stats_by_group("DRIVER", "BEST")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -198,7 +202,9 @@ def test_position_by_group_driver_best(session_data: SessionData):
 
 
 def test_position_by_group_team_best(session_data: SessionData):
-    output = session_data.position_by_group("TEAM", "BEST")
+    for entry in session_data.entry_datas:
+        entry.points = 0
+    output = session_data.stats_by_group("TEAM", "BEST")
 
     clean_output = {}
     for key, position_data in output.items():
