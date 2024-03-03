@@ -4,7 +4,8 @@ from collections import Counter
 from dataclasses import dataclass, field
 from typing import Literal
 
-from .models import SessionEntry
+from .models import ChampionshipAdjustmentType, SessionEntry
+from .models.managed_views import DriverChampionship
 
 
 @dataclass()
@@ -129,6 +130,7 @@ class SessionData:
     session_number: int
 
     entry_datas: list[EntryData] = field(compare=False)
+    session_id: int
 
     def group_data_by(self, grouping_type: Literal["DRIVER", "TEAM"]) -> dict[int, list[EntryData]]:
         """Group all entry data by driver_id or team_id.
@@ -183,10 +185,68 @@ class SessionData:
 
 @dataclass()
 class SeasonData:
+    season_year: int
     session_datas: list[SessionData]
+    driver_adjustments: dict[int, ChampionshipAdjustmentType] = field(default_factory=dict)
+
+    def is_stat_eligible_for_standings(self, stat: Stats) -> bool:
+        """Return True if the stat has met the baseline for inclusion in standings"""
+        return bool(stat.finish_counts)
+
+    def is_stat_disqualified_from_standings(self, adjustment: ChampionshipAdjustmentType) -> bool:
+        """Return True if this driver/team should be exclused from standings"""
+        return adjustment != ChampionshipAdjustmentType.NONE
+
+    def stats_to_driver_standings(self, stats: dict[int, Stats]) -> list[DriverChampionship]:
+        order = sorted(stats.items(), key=lambda t: t[1])
+        standings = []
+
+        position = 1
+        draw_count = -1
+        last_stat = None
+        for group_id, stat in order:
+            adjustment = self.driver_adjustments.get(group_id, ChampionshipAdjustmentType.NONE)
+            if ChampionshipAdjustmentType.EXCLUDED == adjustment:
+                pass
+            elif last_stat is None or stat < last_stat:
+                position += 1 + draw_count
+                draw_count = 0
+            elif stat == last_stat:
+                draw_count += 1
+            else:
+                raise NotImplementedError()
+
+            is_eligible = self.is_stat_eligible_for_standings(stat)
+            is_disqualified = self.is_stat_disqualified_from_standings(adjustment)
+
+            standing = DriverChampionship(
+                driver_id=group_id,
+                position=position if is_eligible and not is_disqualified else None,
+                points=stat.points,
+                win_count=stat.finish_counts[1],
+                highest_finish=min(stat.finish_counts.keys()) if stat.finish_counts else None,
+                finish_string="",
+                is_eligible=is_eligible,
+                adjustment_type=adjustment,
+            )
+            standings.append(standing)
+        return standings
 
     def generate_standings(self):
         ordered_sessions = sorted(self.session_datas, key=lambda x: (x.round_number, x.session_number))
+
+        stats_by_driver = {}
+        season_standings = []
+        for session in ordered_sessions:
+            new_stats = session.stats_by_group("DRIVER", "BEST")
+            for driver in {*stats_by_driver, *new_stats}:
+                stats_by_driver[driver] = stats_by_driver.get(driver, Stats()) + new_stats.get(driver, Stats())
+
+            standings = self.stats_to_driver_standings(stats_by_driver)
+            for standing in standings:
+                standing.session_id = session.session_id
+            season_standings.extend(standings)
+        return season_standings
 
 
 def generate_standings(data: list):
