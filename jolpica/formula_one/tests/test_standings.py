@@ -1,8 +1,13 @@
 from collections import Counter
 
 import pytest
+from django.core.management import call_command
+from django.db.models import prefetch_related_objects
 
-from ..standings import EntryData, SeasonData, SessionData, Stats
+from ..generate_standings import generate_season_driver_standings
+from ..models import ChampionshipAdjustmentType, Season, SessionType
+from ..models.managed_views import DriverChampionship
+from ..standings import ChampionshipAdjustmentType, EntryData, SeasonData, SessionData, Stats
 
 
 @pytest.fixture(scope="module")
@@ -38,6 +43,8 @@ def session_data(entry_datas: list[EntryData]):
         round_number=1,
         session_number=5,
         entry_datas=entry_datas,
+        session_id=0,
+        round_id=0,
     )
 
 
@@ -77,13 +84,17 @@ def session_data2(entry_datas2: list[EntryData]):
         round_number=2,
         session_number=2,
         entry_datas=entry_datas2,
+        session_id=0,
+        round_id=0,
     )
 
 
 @pytest.fixture(scope="module")
 def season_data(session_data: SessionData, session_data2: SessionData):
     return SeasonData(
+        season_year=2099,
         session_datas=[session_data2, session_data],
+        season_id=0,
     )
 
 
@@ -235,3 +246,62 @@ def test_position_count_add(args1, args2, expected):
     added = pc1 + pc2
     assert dict(added.finish_counts) == expected[0]
     assert dict(added.unclassified_counts) == expected[1]
+
+
+@pytest.fixture(scope="module")
+def driver_standings_2023(django_db_setup, django_db_blocker):
+    with django_db_blocker.unblock():
+        season = Season.objects.get(year=2023)
+        season_data = SeasonData.from_season(season)
+        standings = season_data.generate_standings()
+        prefetch_related_objects(standings, "driver", "session")
+    return standings
+
+
+@pytest.fixture(scope="module")
+def championship_adjustments(django_db_setup, django_db_blocker):
+    with django_db_blocker.unblock():
+        call_command("loaddata", "jolpica/formula_one/fixtures/championship_adjustments.json")
+
+
+@pytest.fixture(scope="module")
+def old_driver_standings_2023(django_db_setup, django_db_blocker, championship_adjustments):
+    with django_db_blocker.unblock():
+        standings = generate_season_driver_standings(Season.objects.get(year=2023))
+        prefetch_related_objects(standings, "driver", "session")
+    return standings
+
+
+def test_season_data_stats_to_driver_standings(driver_standings_2023, old_driver_standings_2023):
+    def clean_thing(standing):
+        return {
+            key: val for key, val in vars(standing).items() if not (key.startswith("_") or key in {"finish_string"})
+        }
+
+    driver_standings_2023 = sorted(
+        driver_standings_2023, key=lambda x: (x.year, x.round_number, x.session_id, x.driver_id)
+    )
+    old_driver_standings_2023 = sorted(
+        old_driver_standings_2023, key=lambda x: (x.year, x.round_number, x.session_id, x.driver_id)
+    )
+    driver_standings_2023 = filter(lambda x: x.round_number == 3, driver_standings_2023)
+    old_driver_standings_2023 = filter(lambda x: x.round_number == 3, old_driver_standings_2023)
+
+    assert list(map(clean_thing, driver_standings_2023)) == list(map(clean_thing, old_driver_standings_2023))
+
+    # stats_by_driver = season_data.session_datas[0].stats_by_group("DRIVER", "SUM")
+    # first = season_data.stats_to_driver_standings(stats_by_driver)[0]
+    # print(vars(first))
+    # assert (first) == (
+    #     DriverChampionship(
+    #         driver_id=1,
+    #         year=2099,
+    #         position=1,
+    #         points=6,
+    #         win_count=1,
+    #         highest_finish=1,
+    #         finish_string="",
+    #         is_eligible=True,
+    #         adjustment_type=ChampionshipAdjustmentType.NONE,
+    #     )
+    # )
