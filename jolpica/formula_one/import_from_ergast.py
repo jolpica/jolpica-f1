@@ -1,6 +1,6 @@
 # type: ignore
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime, time, timedelta
 from time import perf_counter
 
 import requests
@@ -355,7 +355,7 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
     for er_race in tqdm(
         Races.objects.all().annotate(ann_circuit_ref=F("circuitId__circuitRef")), desc="Race & Sessions"
     ):
-        starting_session_count = session_count
+        sessions_in_round: list[Session] = []
         if er_race.pk in completed:
             continue
         round_map[er_race.pk] = count
@@ -371,18 +371,17 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             is_cancelled=False,
         )
         round_to_add.append(new_item)
-        race = Session(
+        race_session = Session(
             pk=session_count,
             round=new_item,
-            number=session_count - starting_session_count + 1,
             point_system_id=get_point_system(er_race.year_id, er_race.ann_circuit_ref),
             type=SessionType.RACE,
             date=er_race.date,
             time=er_race.time,
             scheduled_laps=None,
         )
-        round_to_race_session_map[new_item.pk] = race.pk
-        sessions_to_add.append(race)
+        round_to_race_session_map[new_item.pk] = race_session.pk
+        sessions_in_round.append(race_session)
         session_count += 1
         if (er_race.year_id >= 1950 and er_race.year_id <= 1995) or er_race.year_id == 2003:
             if er_race.year_id == 2003:
@@ -392,11 +391,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 double_bests = True
                 quali_types = SessionType.QUALIFYING_BEST, SessionType.QUALIFYING_BEST
             first_quali = 3 if new_item.circuit.reference == "monaco" else 2
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=quali_types[0],
                     date=new_item.date - timedelta(first_quali),
@@ -406,7 +404,6 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             second_q_sess = Session(
                 pk=session_count,
                 round=new_item,
-                number=session_count - starting_session_count + 1,
                 point_system_id=1,
                 type=quali_types[1],
                 date=new_item.date - timedelta(1),
@@ -414,14 +411,13 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             if double_bests:
                 second_session_bests_to_add.append(second_q_sess)
             else:
-                sessions_to_add.append(second_q_sess)
+                sessions_in_round.append(second_q_sess)
             session_count += 1
         elif er_race.year_id >= 1996 and er_race.year_id <= 2002:
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
@@ -429,22 +425,20 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             )
             session_count += 1
         elif er_race.year_id == 2004:
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ORDER,
                     date=new_item.date - timedelta(1),
                 )
             )
             session_count += 1
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_BEST,
                     date=new_item.date - timedelta(1),
@@ -453,22 +447,20 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             session_count += 1
         elif er_race.year_id == 2005:
             if er_race.round <= 6:
-                sessions_to_add.append(
+                sessions_in_round.append(
                     Session(
                         pk=session_count,
                         round=new_item,
-                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_AVG,
                         date=new_item.date - timedelta(1),
                     )
                 )
                 session_count += 1
-                sessions_to_add.append(
+                sessions_in_round.append(
                     Session(
                         pk=session_count,
                         round=new_item,
-                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_AVG,
                         date=new_item.date - timedelta(0),
@@ -476,11 +468,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
                 session_count += 1
             else:
-                sessions_to_add.append(
+                sessions_in_round.append(
                     Session(
                         pk=session_count,
                         round=new_item,
-                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=SessionType.QUALIFYING_BEST,
                         date=new_item.date - timedelta(1),
@@ -489,11 +480,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 session_count += 1
         elif er_race.year_id >= 2006:
             date = er_race.quali_date if er_race.quali_date else new_item.date - timedelta(1)
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_ONE,
                     date=date,
@@ -501,11 +491,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
             )
             session_count += 1
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_TWO,
                     date=date,
@@ -513,11 +502,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
             )
             session_count += 1
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.QUALIFYING_THREE,
                     date=date,
@@ -531,11 +519,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             fp1_date = er_race.fp1_date if er_race.fp1_date else er_race.date - timedelta(days_before)
             fp2_date = er_race.fp2_date if er_race.fp2_date else er_race.date - timedelta(days_before)
             fp3_date = er_race.fp3_date if er_race.fp3_date else er_race.date - timedelta(1)
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=fp1_date,
@@ -543,11 +530,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
             )
             session_count += 1
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=fp2_date,
@@ -555,11 +541,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
             )
             session_count += 1
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=fp3_date,
@@ -569,11 +554,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             session_count += 1
 
         if er_race.fp1_date:
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_ONE,
                     date=er_race.fp1_date,
@@ -583,11 +567,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             session_count += 1
         # If fp2 date make fp2 session, unless year is 2023, then a sprint quali should be created
         if er_race.fp2_date and not (er_race.year_id == 2023 and er_race.sprint_date):
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_TWO,
                     date=er_race.fp2_date,
@@ -596,11 +579,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             )
             session_count += 1
         if er_race.fp3_date:
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=1,
                     type=SessionType.PRACTICE_THREE,
                     date=er_race.fp3_date,
@@ -611,11 +593,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
         # sprints
         if er_race.year_id <= 2022 and er_race.sprint_date:
             point_id = 19 if er_race.year_id == 2021 else 21
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=point_id,
                     type=SessionType.SPRINT_RACE,
                     date=er_race.sprint_date,
@@ -625,11 +606,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
             session_count += 1
         elif er_race.sprint_date:
             for ty in [SessionType.SPRINT_QUALIFYING1, SessionType.SPRINT_QUALIFYING2, SessionType.SPRINT_QUALIFYING3]:
-                sessions_to_add.append(
+                sessions_in_round.append(
                     Session(
                         pk=session_count,
                         round=new_item,
-                        number=session_count - starting_session_count + 1,
                         point_system_id=1,
                         type=ty,
                         date=er_race.fp2_date,
@@ -637,11 +617,10 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                     )
                 )
                 session_count += 1
-            sessions_to_add.append(
+            sessions_in_round.append(
                 Session(
                     pk=session_count,
                     round=new_item,
-                    number=session_count - starting_session_count + 1,
                     point_system_id=23,
                     type=SessionType.SPRINT_RACE,
                     date=er_race.sprint_date,
@@ -649,7 +628,12 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
             )
             session_count += 1
+        # Add session numbers by date
+        sessions_in_round = sorted(sessions_in_round, key=lambda x: (x.date, x.time if x.time else time(23, 59)))
+        for i, session in enumerate(sessions_in_round):
+            session.number = i + 1
         count = count + 1
+        sessions_to_add.extend(sessions_in_round)
         completed.add(er_race.pk)
     Round.objects.bulk_create(
         round_to_add,
