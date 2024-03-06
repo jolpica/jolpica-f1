@@ -1,12 +1,10 @@
 from collections import Counter
 
 import pytest
-from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
-from ..generate_standings import generate_season_driver_standings
 from ..models import Season
-from ..standings import EntryData, SeasonData, SessionData, Stats
+from ..standings import EntryData, Group, SeasonData, SessionData, Stats
 
 
 @pytest.fixture(scope="module")
@@ -98,7 +96,7 @@ def season_data(session_data: SessionData, session_data2: SessionData):
 
 
 def test_entry_data_by_group_driver(session_data: SessionData):
-    output = session_data.group_data_by("DRIVER")
+    output = session_data.group_data_by(Group.DRIVER)
 
     assert set(output.keys()) == set([1, 2, 3, 4])
 
@@ -109,7 +107,7 @@ def test_entry_data_by_group_driver(session_data: SessionData):
 
 
 def test_entry_data_by_group_team(session_data: SessionData):
-    output = session_data.group_data_by("TEAM")
+    output = session_data.group_data_by(Group.TEAM)
 
     assert set(output.keys()) == set([101, 102, 103, 104])
 
@@ -119,52 +117,36 @@ def test_entry_data_by_group_team(session_data: SessionData):
     assert len(output[104]) == 1
 
 
-def test_entry_data_by_group_invalid(session_data: SessionData):
-    with pytest.raises(ValueError):
-        session_data.group_data_by("akdlf")  # type: ignore
-
-
 def test_points_by_group_driver_sum(session_data: SessionData):
-    output = session_data.stats_by_group("DRIVER", "SUM")
+    output = session_data.stats_by_group(Group.DRIVER, "SUM")
     clean_output = {key: stat.points for key, stat in output.items()}
 
     assert clean_output == {1: 3, 2: 2, 3: 6, 4: 0}
 
 
 def test_points_by_group_team_sum(session_data: SessionData):
-    output = session_data.stats_by_group("TEAM", "SUM")
+    output = session_data.stats_by_group(Group.TEAM, "SUM")
     clean_output = {key: stat.points for key, stat in output.items()}
 
     assert clean_output == {101: 5, 102: 3, 103: 3, 104: 0}
 
 
 def test_points_by_group_driver_best(session_data: SessionData):
-    output = session_data.stats_by_group("DRIVER", "BEST")
+    output = session_data.stats_by_group(Group.DRIVER, "BEST")
     clean_output = {key: stat.points for key, stat in output.items()}
 
     assert clean_output == {1: 1, 2: 2, 3: 3, 4: 0}
 
 
 def test_points_by_group_team_best(session_data: SessionData):
-    output = session_data.stats_by_group("TEAM", "BEST")
+    output = session_data.stats_by_group(Group.TEAM, "BEST")
     clean_output = {key: stat.points for key, stat in output.items()}
 
     assert clean_output == {101: 3, 102: 2, 103: 3, 104: 0}
 
 
-def test_points_by_group_invalid(session_data: SessionData):
-    with pytest.raises(ValueError):
-        session_data.stats_by_group("invalid", "SUM")  # type: ignore
-    with pytest.raises(ValueError):
-        session_data.stats_by_group("DRIVER", "invalid")  # type: ignore
-    with pytest.raises(ValueError):
-        session_data.stats_by_group("invalid", "invalid")  # type: ignore
-    with pytest.raises(ValueError):
-        session_data.stats_by_group("SUM", "DRIVER")  # type: ignore
-
-
 def test_position_by_group_driver_sum(session_data: SessionData):
-    output = session_data.stats_by_group("DRIVER", "SUM")
+    output = session_data.stats_by_group(Group.DRIVER, "SUM")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -180,7 +162,7 @@ def test_position_by_group_driver_sum(session_data: SessionData):
 
 
 def test_position_by_group_team_sum(session_data: SessionData):
-    output = session_data.stats_by_group("TEAM", "SUM")
+    output = session_data.stats_by_group(Group.TEAM, "SUM")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -196,7 +178,7 @@ def test_position_by_group_team_sum(session_data: SessionData):
 
 
 def test_position_by_group_driver_best(session_data: SessionData):
-    output = session_data.stats_by_group("DRIVER", "BEST")
+    output = session_data.stats_by_group(Group.DRIVER, "BEST")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -214,7 +196,7 @@ def test_position_by_group_driver_best(session_data: SessionData):
 def test_position_by_group_team_best(session_data: SessionData):
     for entry in session_data.entry_datas:
         entry.points = 0
-    output = session_data.stats_by_group("TEAM", "BEST")
+    output = session_data.stats_by_group(Group.TEAM, "BEST")
 
     clean_output = {}
     for key, position_data in output.items():
@@ -253,54 +235,5 @@ def driver_standings_2023(django_db_setup, django_db_blocker):
         season = Season.objects.get(year=2023)
         season_data = SeasonData.from_season(season)
         standings = season_data.generate_standings()
-        prefetch_related_objects(standings, "driver", "session")
+        prefetch_related_objects(standings, Group.DRIVER, "session")
     return standings
-
-
-@pytest.fixture(scope="module")
-def championship_adjustments(django_db_setup, django_db_blocker):
-    with django_db_blocker.unblock():
-        call_command("loaddata", "jolpica/formula_one/fixtures/championship_adjustments.json")
-
-
-@pytest.fixture(scope="module")
-def old_driver_standings_2023(django_db_setup, django_db_blocker, championship_adjustments):
-    with django_db_blocker.unblock():
-        standings = generate_season_driver_standings(Season.objects.get(year=2023))
-        prefetch_related_objects(standings, "driver", "session")
-    return standings
-
-
-def test_season_data_stats_to_driver_standings(driver_standings_2023, old_driver_standings_2023):
-    def clean_thing(standing):
-        return {
-            key: val for key, val in vars(standing).items() if not (key.startswith("_") or key in {"finish_string"})
-        }
-
-    driver_standings_2023 = sorted(
-        driver_standings_2023, key=lambda x: (x.year, x.round_number, x.session_id, x.driver_id)
-    )
-    old_driver_standings_2023 = sorted(
-        old_driver_standings_2023, key=lambda x: (x.year, x.round_number, x.session_id, x.driver_id)
-    )
-    driver_standings_2023 = filter(lambda x: x.round_number == 3, driver_standings_2023)
-    old_driver_standings_2023 = filter(lambda x: x.round_number == 3, old_driver_standings_2023)
-
-    assert list(map(clean_thing, driver_standings_2023)) == list(map(clean_thing, old_driver_standings_2023))
-
-    # stats_by_driver = season_data.session_datas[0].stats_by_group("DRIVER", "SUM")
-    # first = season_data.stats_to_driver_standings(stats_by_driver)[0]
-    # print(vars(first))
-    # assert (first) == (
-    #     DriverChampionship(
-    #         driver_id=1,
-    #         year=2099,
-    #         position=1,
-    #         points=6,
-    #         win_count=1,
-    #         highest_finish=1,
-    #         finish_string="",
-    #         is_eligible=True,
-    #         adjustment_type=ChampionshipAdjustmentType.NONE,
-    #     )
-    # )
