@@ -2,10 +2,16 @@ from __future__ import annotations
 
 from collections import Counter
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Literal
 
 from .models import ChampionshipAdjustmentType, Season, Session, SessionEntry
-from .models.managed_views import DriverChampionship
+from .models.managed_views import DriverChampionship, TeamChampionship
+
+
+class Group(Enum):
+    DRIVER = 1
+    TEAM = 2
 
 
 @dataclass()
@@ -60,7 +66,7 @@ class Stats:
             return Stats(0, {}, Counter([position]))
 
     @staticmethod
-    def from_entry(entry: SessionEntry):
+    def from_entry(entry: EntryData):
         finishes, unclassifies = [], []
         if entry.position is not None:
             if entry.is_classified is True:
@@ -140,7 +146,7 @@ class SessionData:
             round_id=session.round_id,
         )
 
-    def group_data_by(self, grouping_type: Literal["DRIVER", "TEAM"]) -> dict[int, list[EntryData]]:
+    def group_data_by(self, grouping_type: Group) -> dict[int, list[EntryData]]:
         """Group all entry data by driver_id or team_id.
 
         Args:
@@ -152,20 +158,16 @@ class SessionData:
         Returns:
             Mapping of driver_id/team_id to entry data.
         """
-        if grouping_type not in {"DRIVER", "TEAM"}:
-            raise ValueError("Unrecognised grouping type")
         data: dict[int, list[EntryData]] = {}
         for entry_data in self.entry_datas:
-            key = entry_data.driver_id if grouping_type == "DRIVER" else entry_data.team_id
+            key = entry_data.driver_id if grouping_type == Group.DRIVER else entry_data.team_id
             if key in data:
                 data[key].append(entry_data)
             else:
                 data[key] = [entry_data]
         return data
 
-    def stats_by_group(
-        self, grouping_type: Literal["DRIVER", "TEAM"], aggregate: Literal["SUM", "BEST"]
-    ) -> dict[int, Stats]:
+    def stats_by_group(self, grouping_type: Group, aggregate: Literal["SUM", "BEST"]) -> dict[int, Stats]:
         """Get a mapping of stats (points/position) by driver or team for the session.
 
         Args:
@@ -198,7 +200,10 @@ class SeasonData:
     season_year: int
     session_datas: list[SessionData]
     season_id: int
-    driver_adjustments: dict[int, ChampionshipAdjustmentType] = field(default_factory=dict)
+    adjustments: dict[tuple[Group, int], ChampionshipAdjustmentType] = field(default_factory=dict)
+    aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]] = field(
+        default_factory=lambda: {Group.DRIVER: "BEST", Group.TEAM: "SUM"}
+    )
 
     @classmethod
     def from_season(cls, season: Season) -> SeasonData:
@@ -212,16 +217,17 @@ class SeasonData:
                 if session.number is None:
                     continue
                 session_datas.append(SessionData.from_session(session, round.number))
-        driver_adjustments = {}
+        adjustments = {}
         for adjustment in season.championship_adjustments.all():
             if adjustment.driver_id:
-                print(f"adjustment: {adjustment.driver_id} {ChampionshipAdjustmentType(adjustment.adjustment)}")
-                driver_adjustments[adjustment.driver_id] = ChampionshipAdjustmentType(adjustment.adjustment)
+                adjustments[Group.DRIVER, adjustment.driver_id] = ChampionshipAdjustmentType(adjustment.adjustment)
+            if adjustment.team_id:
+                adjustments[Group.TEAM, adjustment.team_id] = ChampionshipAdjustmentType(adjustment.adjustment)
         return cls(
             season_year=season.year,
             session_datas=session_datas,
             season_id=season.id,
-            driver_adjustments=driver_adjustments,
+            adjustments=adjustments,
         )
 
     def is_stat_eligible_for_standings(self, stat: Stats) -> bool:
@@ -232,16 +238,47 @@ class SeasonData:
         """Return True if this driver/team should be exclused from standings"""
         return adjustment != ChampionshipAdjustmentType.NONE
 
-    def stats_to_driver_standings(self, stats: dict[int, Stats]) -> list[DriverChampionship]:
-        order = sorted(stats.items(), key=lambda t: t[1], reverse=True)
+    def create_group_standing(
+        self,
+        grouping_type: Group,
+        group_id: int,
+        stat: Stats,
+        position: int,
+        adjustment: ChampionshipAdjustmentType,
+    ) -> DriverChampionship | TeamChampionship:
+        is_eligible = self.is_stat_eligible_for_standings(stat)
+        is_disqualified = self.is_stat_disqualified_from_standings(adjustment)
+        kwargs = {
+            "year": self.season_year,
+            "position": position if is_eligible and not is_disqualified else None,
+            "points": stat.points,
+            "win_count": stat.finish_counts[1],
+            "highest_finish": min(stat.finish_counts.keys()) if stat.finish_counts else None,
+            "finish_string": "",
+            "is_eligible": is_eligible,
+            "adjustment_type": adjustment,
+        }
+        if grouping_type == Group.DRIVER:
+            return DriverChampionship(driver_id=group_id, **kwargs)
+        elif grouping_type == Group.TEAM:
+            return TeamChampionship(team_id=group_id, **kwargs)
+        else:
+            raise NotImplementedError()
+
+    def stats_to_group_standings(
+        self, stats: dict[int, Stats], grouping_type: Group
+    ) -> list[TeamChampionship] | list[DriverChampionship]:
+        ordered_stats = sorted(stats.items(), key=lambda t: t[1], reverse=True)
         standings = []
 
         position = 1
         draw_count = -1
         last_stat = None
-        for group_id, stat in order:
-            adjustment = self.driver_adjustments.get(group_id, ChampionshipAdjustmentType.NONE)
-            if adjustment in {ChampionshipAdjustmentType.EXCLUDED, ChampionshipAdjustmentType.DISQUALIFIED}:
+        for group_id, stat in ordered_stats:
+            adjustment = self.adjustments.get((grouping_type, group_id), ChampionshipAdjustmentType.NONE)
+
+            # Increment Position
+            if self.is_stat_disqualified_from_standings(adjustment):
                 pass
             elif last_stat is None or stat < last_stat:
                 position += 1 + draw_count
@@ -251,34 +288,23 @@ class SeasonData:
             else:
                 raise NotImplementedError()
 
-            is_eligible = self.is_stat_eligible_for_standings(stat)
-            is_disqualified = self.is_stat_disqualified_from_standings(adjustment)
+            if grouping_type == Group.DRIVER or grouping_type == Group.TEAM:
+                standing = self.create_group_standing(grouping_type, group_id, stat, position, adjustment)
 
-            standing = DriverChampionship(
-                driver_id=group_id,
-                year=self.season_year,
-                position=position if is_eligible and not is_disqualified else None,
-                points=stat.points,
-                win_count=stat.finish_counts[1],
-                highest_finish=min(stat.finish_counts.keys()) if stat.finish_counts else None,
-                finish_string="",
-                is_eligible=is_eligible,
-                adjustment_type=adjustment,
-            )
             standings.append(standing)
-        return standings
+        return standings  # type: ignore
 
-    def generate_standings(self):
+    def generate_standings(self, grouping_type: Group) -> list:
         ordered_sessions = sorted(self.session_datas, key=lambda x: (x.round_number, x.session_number))
 
-        stats_by_driver = {}
-        season_standings = []
+        stats_by_group: dict[int, Stats] = {}
+        season_standings: list = []
         for session, next_session in zip(ordered_sessions, [*ordered_sessions[1:], None]):
-            new_stats = session.stats_by_group("DRIVER", "BEST")
-            for driver in {*stats_by_driver, *new_stats}:
-                stats_by_driver[driver] = stats_by_driver.get(driver, Stats()) + new_stats.get(driver, Stats())
+            new_stats = session.stats_by_group(grouping_type, self.aggregate_by_grouping[grouping_type])
+            for group_id in {*stats_by_group, *new_stats}:
+                stats_by_group[group_id] = stats_by_group.get(group_id, Stats()) + new_stats.get(group_id, Stats())
 
-            standings = self.stats_to_driver_standings(stats_by_driver)
+            standings = self.stats_to_group_standings(stats_by_group, grouping_type)
             for standing in standings:
                 standing.session_id = session.session_id
                 standing.round_number = session.round_number
@@ -291,7 +317,3 @@ class SeasonData:
                     standing.season_id = self.season_id
             season_standings.extend(standings)
         return season_standings
-
-
-def generate_standings(data: list):
-    pass
