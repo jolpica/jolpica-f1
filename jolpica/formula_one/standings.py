@@ -207,16 +207,21 @@ class SeasonData:
             if round.number is None:
                 continue
             for session in round.sessions.filter(
-                point_system__gt=1
-            ):  # Assumption that point system 1 is only non-point
+                point_system__gt=1  # Assumption that point system with pk 1 is the only non-point system
+            ):
                 if session.number is None:
                     continue
                 session_datas.append(SessionData.from_session(session, round.number))
+        driver_adjustments = {}
+        for adjustment in season.championship_adjustments.all():
+            if adjustment.driver_id:
+                print(f"adjustment: {adjustment.driver_id} {ChampionshipAdjustmentType(adjustment.adjustment)}")
+                driver_adjustments[adjustment.driver_id] = ChampionshipAdjustmentType(adjustment.adjustment)
         return cls(
             season_year=season.year,
             session_datas=session_datas,
             season_id=season.id,
-            # TODO: driver_adjustments =
+            driver_adjustments=driver_adjustments,
         )
 
     def is_stat_eligible_for_standings(self, stat: Stats) -> bool:
@@ -236,7 +241,7 @@ class SeasonData:
         last_stat = None
         for group_id, stat in order:
             adjustment = self.driver_adjustments.get(group_id, ChampionshipAdjustmentType.NONE)
-            if ChampionshipAdjustmentType.EXCLUDED == adjustment:
+            if adjustment in {ChampionshipAdjustmentType.EXCLUDED, ChampionshipAdjustmentType.DISQUALIFIED}:
                 pass
             elif last_stat is None or stat < last_stat:
                 position += 1 + draw_count
