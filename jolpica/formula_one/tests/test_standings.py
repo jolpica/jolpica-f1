@@ -5,9 +5,8 @@ from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
 from ..generate_standings import generate_season_driver_standings
-from ..models import ChampionshipAdjustmentType, Season, SessionType
-from ..models.managed_views import DriverChampionship
-from ..standings import ChampionshipAdjustmentType, EntryData, SeasonData, SessionData, Stats
+from ..models import Season
+from ..standings import EntryData, SeasonData, SessionData, Stats
 
 
 @pytest.fixture(scope="module")

@@ -2,8 +2,8 @@ import pytest
 from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
-from ..generate_standings import generate_season_driver_standings
 from ..models import ChampionshipAdjustmentType, Season, SessionType
+from ..standings import SeasonData
 
 
 @pytest.fixture(scope="module")
@@ -15,7 +15,8 @@ def championship_adjustments(django_db_setup, django_db_blocker):
 @pytest.fixture(scope="module")
 def driver_standings_1997(django_db_setup, django_db_blocker, championship_adjustments):
     with django_db_blocker.unblock():
-        standings = generate_season_driver_standings(Season.objects.get(year=1997))
+        season_data = SeasonData.from_season(Season.objects.get(year=1997))
+        standings = season_data.generate_standings()
         prefetch_related_objects(standings, "driver", "session")
     return standings
 
@@ -23,7 +24,8 @@ def driver_standings_1997(django_db_setup, django_db_blocker, championship_adjus
 @pytest.fixture(scope="module")
 def driver_standings_2023(django_db_setup, django_db_blocker, championship_adjustments):
     with django_db_blocker.unblock():
-        standings = generate_season_driver_standings(Season.objects.get(year=2023))
+        season_data = SeasonData.from_season(Season.objects.get(year=2023))
+        standings = season_data.generate_standings()
         prefetch_related_objects(standings, "driver", "session")
     return standings
 
