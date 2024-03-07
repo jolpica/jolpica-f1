@@ -3,7 +3,7 @@ from collections import Counter
 import pytest
 from django.db.models import prefetch_related_objects
 
-from ..models import Season
+from ..models import Season, SessionType
 from ..standings import EntryData, Group, SeasonData, SessionData, Stats
 
 
@@ -40,6 +40,7 @@ def session_data(entry_datas: list[EntryData]):
         round_number=1,
         session_number=5,
         entry_datas=entry_datas,
+        session_type=SessionType.RACE,
         session_id=0,
         round_id=0,
     )
@@ -81,6 +82,7 @@ def session_data2(entry_datas2: list[EntryData]):
         round_number=2,
         session_number=2,
         entry_datas=entry_datas2,
+        session_type=SessionType.RACE,
         session_id=0,
         round_id=0,
     )
