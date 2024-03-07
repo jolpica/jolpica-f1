@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal, overload
 
-from .models import ChampionshipAdjustmentType, Season, Session, SessionEntry
+from .models import ChampionshipAdjustmentType, Season, Session, SessionEntry, SessionType
 from .models.managed_views import DriverChampionship, TeamChampionship
 
 
@@ -66,9 +66,9 @@ class Stats:
             return Stats(0, {}, Counter([position]))
 
     @staticmethod
-    def from_entry(entry: EntryData):
+    def from_entry(entry: EntryData, session_type: SessionType):
         finishes, unclassifies = [], []
-        if entry.position is not None:
+        if session_type == SessionType.RACE and entry.position is not None:
             if entry.is_classified is True:
                 finishes.append(entry.position)
             elif entry.is_classified is False:
@@ -129,11 +129,12 @@ class SessionData:
     session_number: int
 
     entry_datas: list[EntryData] = field(compare=False)
+    session_type: SessionType
     session_id: int
     round_id: int
 
     @classmethod
-    def from_session(cls, session: Session, round_number: int) -> SessionData:
+    def from_session(cls, session: Session, round_number: int, session_type: SessionType) -> SessionData:
         entry_datas = [EntryData.from_session_entry(entry) for entry in session.session_entries.all()]
         if session.number is None:
             raise ValueError("Session must have non-null number")
@@ -142,6 +143,7 @@ class SessionData:
             round_number=round_number,
             session_number=session.number,
             entry_datas=entry_datas,
+            session_type=session_type,
             session_id=session.id,
             round_id=session.round_id,
         )
@@ -184,7 +186,7 @@ class SessionData:
 
         stat_map = {}
         for key, entries in data_map.items():
-            stats = map(lambda x: Stats.from_entry(x), entries)
+            stats = map(lambda x: Stats.from_entry(x, self.session_type), entries)
             if aggregate == "SUM":
                 stat_map[key] = sum(stats, start=Stats(0, {}, {}))
             elif aggregate == "BEST":
@@ -216,7 +218,7 @@ class SeasonData:
             ):
                 if session.number is None:
                     continue
-                session_datas.append(SessionData.from_session(session, round.number))
+                session_datas.append(SessionData.from_session(session, round.number, SessionType(session.type)))
         adjustments = {}
         for adjustment in season.championship_adjustments.all():
             if adjustment.driver_id:
