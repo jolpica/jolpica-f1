@@ -3,6 +3,7 @@ from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
 from ..models import ChampionshipAdjustmentType, Season, SessionType
+from ..models.managed_views import DriverChampionship
 from ..standings import Group, SeasonData
 
 
@@ -30,12 +31,38 @@ def driver_standings_2023(django_db_setup, django_db_blocker, championship_adjus
     return standings
 
 
-def check_expected_in_standings(standings, round, reference, expected, session_type=SessionType.RACE):
+@pytest.fixture(scope="module")
+def team_standings_2007(django_db_setup, django_db_blocker, championship_adjustments):
+    with django_db_blocker.unblock():
+        season_data = SeasonData.from_season(Season.objects.get(year=2007))
+        standings = season_data.generate_standings(Group.TEAM)
+        prefetch_related_objects(standings, "team", "session")
+    return standings
+
+
+@pytest.fixture(scope="module")
+def team_standings_2023(django_db_setup, django_db_blocker, championship_adjustments):
+    with django_db_blocker.unblock():
+        season_data = SeasonData.from_season(Season.objects.get(year=2023))
+        standings = season_data.generate_standings(Group.TEAM)
+        prefetch_related_objects(standings, "team", "session")
+    return standings
+
+
+def check_expected_in_standings(standings, round, reference, expected):
     if isinstance(round, str) and round.startswith("s"):
         session_type = SessionType.SPRINT_RACE
         round = int(round[1:])
+    else:
+        session_type = SessionType.RACE
+    if isinstance(standings[0], DriverChampionship):
+        ref_attr = "driver"
+    else:
+        ref_attr = "team"
     standings = filter(
-        lambda x: x.round_number == round and x.session.type == session_type and x.driver.reference == reference,
+        lambda x: x.round_number == round
+        and x.session.type == session_type
+        and getattr(x, ref_attr).reference == reference,
         standings,
     )
     standing = next(standings, False)
@@ -95,3 +122,31 @@ def test_2023_driver_standings(driver_standings_2023, round, reference, expected
 )
 def test_1997_driver_standings(driver_standings_1997, round, reference, expected):
     check_expected_in_standings(driver_standings_1997, round, reference, expected)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (22, "red_bull", {"position": 1, "points": 860}),
+        (22, "mercedes", {"position": 2, "points": 409}),
+        (22, "alphatauri", {"position": 8, "points": 25}),
+        (20, "red_bull", {"position": 1, "points": 782}),
+        ("s20", "red_bull", {"position": 1, "points": 745}),
+        (19, "red_bull", {"position": 1, "points": 731}),
+        (15, "aston_martin", {"position": 4, "points": 217}),
+        (1, "red_bull", {"position": 1, "points": 43}),
+    ],
+)
+def test_2023_team_standings(team_standings_2023, round, reference, expected):
+    check_expected_in_standings(team_standings_2023, round, reference, expected)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (17, "ferrari", {"position": 1, "points": 204}),
+        (17, "mclaren", {"position": None, "points": 0,"adjustment": ChampionshipAdjustmentType.EXCLUDED}),
+    ],
+)
+def test_2007_team_standings(team_standings_2007, round, reference, expected):
+    check_expected_in_standings(team_standings_2007, round, reference, expected)
