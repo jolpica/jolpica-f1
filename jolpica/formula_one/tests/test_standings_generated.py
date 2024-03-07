@@ -75,12 +75,14 @@ def check_expected_in_standings(standings, round, reference, expected):
     assert standing.points == expected.get("points")
     assert standing.adjustment_type == expected.get("adjustment", 0)
     assert standing.is_eligible == expected.get("is_eligible", True)
+    if "win_count" in expected:
+        assert standing.win_count == expected["win_count"]
 
 
 @pytest.mark.parametrize(
     ["round", "reference", "expected"],
     [
-        (22, "max_verstappen", {"position": 1, "points": 575}),
+        (22, "max_verstappen", {"position": 1, "points": 575, "win_count": 19}),
         (22, "perez", {"position": 2, "points": 285}),
         (22, "ricciardo", {"position": 17, "points": 6}),
         (22, "de_vries", {"position": 22, "points": 0, "is_eligible": True}),
@@ -145,7 +147,7 @@ def test_2023_team_standings(team_standings_2023, round, reference, expected):
     ["round", "reference", "expected"],
     [
         (17, "ferrari", {"position": 1, "points": 204}),
-        (17, "mclaren", {"position": None, "points": 0,"adjustment": ChampionshipAdjustmentType.EXCLUDED}),
+        (17, "mclaren", {"position": None, "points": 0, "adjustment": ChampionshipAdjustmentType.EXCLUDED}),
     ],
 )
 def test_2007_team_standings(team_standings_2007, round, reference, expected):
