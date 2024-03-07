@@ -1,1 +1,1 @@
-[{"model": "formula_one.championshipadjustment", "pk": 1, "fields": {"season": 48, "driver": 703, "team": null, "adjustment": 1}}]
+[{"model": "formula_one.championshipadjustment", "pk": 1, "fields": {"season": 48, "driver": 703, "team": null, "adjustment": 1}}, {"model": "formula_one.championshipadjustment", "pk": 2, "fields": {"season": 58, "driver": null, "team": 117, "adjustment": 2}}]
