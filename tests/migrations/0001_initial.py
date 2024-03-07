@@ -2,7 +2,7 @@
 
 from django.db import migrations
 from django.core.management import call_command
-from jolpica.formula_one.generate_standings import generate_season_driver_standings
+from jolpica.formula_one.standings import SeasonData, Group
 
 
 
@@ -15,11 +15,16 @@ def add_test_data(apps, schema_editor):
 def create_driver_standings(apps, schema_editor):
     Season = apps.get_model("formula_one", "Season")
     DriverChampionship = apps.get_model("formula_one", "DriverChampionship")
+    TeamChampionship = apps.get_model("formula_one", "TeamChampionship")
 
+    team_standings = []
     driver_standings = []
     for season in Season.objects.all().select_related("championship_system"):
-        driver_standings.extend(generate_season_driver_standings(season))
+        season_data = SeasonData.from_season(season)
+        driver_standings.extend(season_data.generate_standings(Group.DRIVER))
+        team_standings.extend(season_data.generate_standings(Group.TEAM))
     DriverChampionship.objects.bulk_create(driver_standings)
+    TeamChampionship.objects.bulk_create(team_standings)
 
 class Migration(migrations.Migration):
     dependencies = []
