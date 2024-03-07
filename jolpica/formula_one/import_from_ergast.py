@@ -722,6 +722,7 @@ def run_import():
     # fixtures
     call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
     call_command("loaddata", "jolpica/formula_one/fixtures/championship_systems.json")
+    call_command("loaddata", "jolpica/formula_one/fixtures/championship_adjustments.json")
 
     # Data Fixes
     # wrong constructor in quali

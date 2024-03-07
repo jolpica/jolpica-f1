@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Literal
+from typing import Literal, overload
 
 from .models import ChampionshipAdjustmentType, Season, Session, SessionEntry
 from .models.managed_views import DriverChampionship, TeamChampionship
@@ -238,6 +238,10 @@ class SeasonData:
         """Return True if this driver/team should be exclused from standings"""
         return adjustment != ChampionshipAdjustmentType.NONE
 
+    def is_stripped_of_points(self, adjustment: ChampionshipAdjustmentType) -> bool:
+        """Return True if this driver/team should be stripped of points"""
+        return adjustment == ChampionshipAdjustmentType.EXCLUDED
+
     def create_group_standing(
         self,
         grouping_type: Group,
@@ -251,7 +255,7 @@ class SeasonData:
         kwargs = {
             "year": self.season_year,
             "position": position if is_eligible and not is_disqualified else None,
-            "points": stat.points,
+            "points": stat.points if not self.is_stripped_of_points(adjustment) else 0,
             "win_count": stat.finish_counts[1],
             "highest_finish": min(stat.finish_counts.keys()) if stat.finish_counts else None,
             "finish_string": "",
@@ -293,6 +297,14 @@ class SeasonData:
 
             standings.append(standing)
         return standings  # type: ignore
+
+    @overload
+    def generate_standings(self, grouping_type: Literal[Group.DRIVER]) -> list[DriverChampionship]:
+        ...
+
+    @overload
+    def generate_standings(self, grouping_type: Literal[Group.TEAM]) -> list[TeamChampionship]:
+        ...
 
     def generate_standings(self, grouping_type: Group) -> list:
         ordered_sessions = sorted(self.session_datas, key=lambda x: (x.round_number, x.session_number))
