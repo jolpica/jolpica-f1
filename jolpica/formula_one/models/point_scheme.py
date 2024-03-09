@@ -140,11 +140,15 @@ class ChampionshipSystem(models.Model):
 
 
 class ChampionshipAdjustmentType(models.IntegerChoices):
-    """Type of Championship Adjustment. Disqualification / Exclusion"""
+    """Type of Championship Adjustment. Point Adjustment / Disqualification / Exclusion
+
+    All adjustments that should result in removal from championship will have values > 100.
+    """
 
     NONE = 0
-    DISQUALIFIED = 1  # Keep points and results, but lose championship standing
-    EXCLUDED = 2  # Lose all points
+    POINT_DEDUCTION = 1
+    DISQUALIFIED = 101  # Keep points and results, but lose championship standing
+    EXCLUDED = 102  # Lose all points
 
 
 class ChampionshipAdjustment(models.Model):
@@ -160,3 +164,6 @@ class ChampionshipAdjustment(models.Model):
         "formula_one.Team", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )
     adjustment = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices)
+    points = models.FloatField(
+        null=True, blank=True, help_text="Points to deduct if POINT_DEDUCTION adjustment, otherwise null"
+    )
