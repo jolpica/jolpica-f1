@@ -19,7 +19,6 @@ class DriverChampionship(models.Model):
     points = models.FloatField()
     win_count = models.SmallIntegerField()
     highest_finish = models.SmallIntegerField(null=True)
-    finish_string = models.CharField(max_length=255)
 
     is_eligible = models.BooleanField(default=False)
     adjustment_type = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices, default=0)
@@ -54,7 +53,6 @@ class TeamChampionship(models.Model):
     points = models.FloatField()
     win_count = models.SmallIntegerField()
     highest_finish = models.SmallIntegerField(null=True)
-    finish_string = models.CharField(max_length=255)
 
     is_eligible = models.BooleanField(default=False)
     adjustment_type = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices, default=0)
