@@ -9,6 +9,7 @@ from .models import (
     ChampionshipAdjustment,
     ChampionshipAdjustmentType,
     ChampionshipSystem,
+    EligibilityChampionshipScheme,
     Season,
     Session,
     SessionEntry,
@@ -289,7 +290,7 @@ class SeasonData:
     season_year: int
     session_datas: list[SessionData]
     season_id: int
-    championship_system: ChampionshipSystem | None
+    championship_system: ChampionshipSystem
     adjustments: dict[tuple[Group, int], ChampionshipAdjustment] = field(default_factory=dict)
     aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]] = field(
         default_factory=lambda: {Group.DRIVER: "BEST", Group.TEAM: "SUM"}
@@ -317,6 +318,10 @@ class SeasonData:
                 adjustments[Group.DRIVER, adjustment.driver_id] = adjustment
             if adjustment.team_id:
                 adjustments[Group.TEAM, adjustment.team_id] = adjustment
+
+        if season.championship_system is None:
+            raise ValueError()
+
         return cls(
             season_year=season.year,
             session_datas=session_datas,
@@ -332,7 +337,12 @@ class SeasonData:
 
     def is_stat_eligible_for_standings(self, stat: Stats) -> bool:
         """Return True if the stat has met the baseline for inclusion in standings"""
-        return bool(stat.finish_counts)
+        if self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH:
+            return bool(stat.finish_counts)
+        elif self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_POINT:
+            return stat.points > 0
+        else:
+            raise NotImplementedError()
 
     def is_stat_disqualified_from_standings(self, group_type: Group, group_id: int) -> bool:
         """Return True if this driver/team should be exclused from standings"""
