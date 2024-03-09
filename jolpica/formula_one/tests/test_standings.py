@@ -88,15 +88,6 @@ def session_data2(entry_datas2: list[EntryData]):
     )
 
 
-@pytest.fixture(scope="module")
-def season_data(session_data: SessionData, session_data2: SessionData):
-    return SeasonData(
-        season_year=2099,
-        session_datas=[session_data2, session_data],
-        season_id=0,
-    )
-
-
 def test_entry_data_by_group_driver(session_data: SessionData):
     output = session_data.group_data_by(Group.DRIVER)
 
