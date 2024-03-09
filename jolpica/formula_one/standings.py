@@ -5,7 +5,15 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal, overload
 
-from .models import ChampionshipAdjustmentType, ChampionshipSystem, Season, Session, SessionEntry, SessionType
+from .models import (
+    ChampionshipAdjustment,
+    ChampionshipAdjustmentType,
+    ChampionshipSystem,
+    Season,
+    Session,
+    SessionEntry,
+    SessionType,
+)
 from .models.managed_views import DriverChampionship, TeamChampionship
 from .utils import calculate_championship_points
 
@@ -58,6 +66,7 @@ class Stats:
         unclassified_counts: dict | list | None = None,
         championship_system: ChampionshipSystem | None = None,
         group_type: Group = Group.OTHER,
+        point_adjustment: float = 0,
     ) -> None:
         if isinstance(points, int | float):
             self.points_by_round = Counter({99: points})
@@ -70,6 +79,7 @@ class Stats:
         self.unclassified_counts = Counter(unclassified_counts)
         self.championship_system = championship_system
         self.group_type = group_type
+        self.point_adjustment = point_adjustment
 
     @property
     def points(self) -> float:
@@ -91,7 +101,18 @@ class Stats:
             best_results,
             14,
         )
-        return points if points else 0
+        if points is None:
+            points = 0
+
+        points = max(0, points + self.point_adjustment)
+
+        return points
+
+    def with_point_adjustment(self, point_adjustment: float) -> Stats:
+        """Create a copy of this Stat, with an updated point adjustment"""
+        new = self + Stats()
+        new.point_adjustment = point_adjustment
+        return new
 
     @staticmethod
     def from_entry(
@@ -269,7 +290,7 @@ class SeasonData:
     session_datas: list[SessionData]
     season_id: int
     championship_system: ChampionshipSystem | None
-    adjustments: dict[tuple[Group, int], ChampionshipAdjustmentType] = field(default_factory=dict)
+    adjustments: dict[tuple[Group, int], ChampionshipAdjustment] = field(default_factory=dict)
     aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]] = field(
         default_factory=lambda: {Group.DRIVER: "BEST", Group.TEAM: "SUM"}
     )
@@ -293,9 +314,9 @@ class SeasonData:
         adjustments = {}
         for adjustment in season.championship_adjustments.all():
             if adjustment.driver_id:
-                adjustments[Group.DRIVER, adjustment.driver_id] = ChampionshipAdjustmentType(adjustment.adjustment)
+                adjustments[Group.DRIVER, adjustment.driver_id] = adjustment
             if adjustment.team_id:
-                adjustments[Group.TEAM, adjustment.team_id] = ChampionshipAdjustmentType(adjustment.adjustment)
+                adjustments[Group.TEAM, adjustment.team_id] = adjustment
         return cls(
             season_year=season.year,
             session_datas=session_datas,
@@ -304,17 +325,30 @@ class SeasonData:
             adjustments=adjustments,
         )
 
+    def get_adjustment(self, group_type: Group, group_id: int) -> ChampionshipAdjustment:
+        return self.adjustments.get(
+            (group_type, group_id), ChampionshipAdjustment(adjustment=ChampionshipAdjustmentType.NONE)
+        )
+
     def is_stat_eligible_for_standings(self, stat: Stats) -> bool:
         """Return True if the stat has met the baseline for inclusion in standings"""
         return bool(stat.finish_counts)
 
-    def is_stat_disqualified_from_standings(self, adjustment: ChampionshipAdjustmentType) -> bool:
+    def is_stat_disqualified_from_standings(self, group_type: Group, group_id: int) -> bool:
         """Return True if this driver/team should be exclused from standings"""
-        return adjustment != ChampionshipAdjustmentType.NONE
+        # Adjustments with value > 100 will result in removal
+        return self.get_adjustment(group_type, group_id).adjustment >= ChampionshipAdjustmentType.DISQUALIFIED
 
-    def is_stripped_of_points(self, adjustment: ChampionshipAdjustmentType) -> bool:
+    def is_stripped_of_points(self, adjustment: ChampionshipAdjustment) -> bool:
         """Return True if this driver/team should be stripped of points"""
-        return adjustment == ChampionshipAdjustmentType.EXCLUDED
+        return adjustment.adjustment == ChampionshipAdjustmentType.EXCLUDED
+
+    def get_points_from_stat(self, stat: Stats, group_type: Group, group_id: int) -> float:
+        adjustment = self.get_adjustment(group_type, group_id)
+        if self.is_stripped_of_points(adjustment):
+            return 0
+
+        return stat.points
 
     def create_group_standing(
         self,
@@ -322,19 +356,18 @@ class SeasonData:
         group_id: int,
         stat: Stats,
         position: int,
-        adjustment: ChampionshipAdjustmentType,
     ) -> DriverChampionship | TeamChampionship:
         is_eligible = self.is_stat_eligible_for_standings(stat)
-        is_disqualified = self.is_stat_disqualified_from_standings(adjustment)
+        is_disqualified = self.is_stat_disqualified_from_standings(grouping_type, group_id)
         kwargs = {
             "year": self.season_year,
             "position": position if is_eligible and not is_disqualified else None,
-            "points": stat.points if not self.is_stripped_of_points(adjustment) else 0,
+            "points": self.get_points_from_stat(stat, grouping_type, group_id),
             "win_count": stat.finish_counts[1],
             "highest_finish": min(stat.finish_counts.keys()) if stat.finish_counts else None,
             "finish_string": "",
             "is_eligible": is_eligible,
-            "adjustment_type": adjustment,
+            "adjustment_type": self.get_adjustment(grouping_type, group_id).adjustment,
         }
         if grouping_type == Group.DRIVER:
             return DriverChampionship(driver_id=group_id, **kwargs)
@@ -346,6 +379,11 @@ class SeasonData:
     def stats_to_group_standings(
         self, stats: dict[int, Stats], grouping_type: Group
     ) -> list[TeamChampionship] | list[DriverChampionship]:
+        for group_id, stat in stats.items():
+            adjustment = self.get_adjustment(grouping_type, group_id)
+            if adjustment.adjustment == ChampionshipAdjustmentType.POINT_DEDUCTION and adjustment.points:
+                stats[group_id] = stat.with_point_adjustment(-adjustment.points)
+
         ordered_stats = sorted(stats.items(), key=lambda t: t[1], reverse=True)
         standings = []
 
@@ -353,10 +391,8 @@ class SeasonData:
         draw_count = -1
         last_stat = None
         for group_id, stat in ordered_stats:
-            adjustment = self.adjustments.get((grouping_type, group_id), ChampionshipAdjustmentType.NONE)
-
             # Increment Position
-            if self.is_stat_disqualified_from_standings(adjustment):
+            if self.is_stat_disqualified_from_standings(grouping_type, group_id):
                 pass
             elif last_stat is None or stat < last_stat:
                 position += 1 + draw_count
@@ -367,7 +403,7 @@ class SeasonData:
                 raise NotImplementedError()
 
             if grouping_type == Group.DRIVER or grouping_type == Group.TEAM:
-                standing = self.create_group_standing(grouping_type, group_id, stat, position, adjustment)
+                standing = self.create_group_standing(grouping_type, group_id, stat, position)
 
             standings.append(standing)
         return standings  # type: ignore

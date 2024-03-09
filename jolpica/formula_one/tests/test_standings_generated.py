@@ -61,7 +61,9 @@ def check_expected_in_standings(standings, round, reference, expected):
     assert next(standings, False) is False, "Standing is not unique"
     assert standing.points == expected.get("points")
     assert standing.position == expected.get("position")
-    assert standing.adjustment_type == expected.get("adjustment", 0)
+    assert ChampionshipAdjustmentType(standing.adjustment_type) == expected.get(
+        "adjustment", ChampionshipAdjustmentType.NONE
+    )
     assert standing.is_eligible == expected.get("is_eligible", True)
     if "win_count" in expected:
         assert standing.win_count == expected["win_count"]
@@ -174,7 +176,11 @@ def team_standings_2020(team_standings_from_year):
         (17, "mercedes", {"position": 1, "points": 573}),
         (17, "red_bull", {"position": 2, "points": 319}),
         (17, "mclaren", {"position": 3, "points": 202}),
-        (17, "racing_point", {"position": 4, "points": 195}),
+        (
+            17,
+            "racing_point",
+            {"position": 4, "points": 195, "adjustment": ChampionshipAdjustmentType.POINT_DEDUCTION},
+        ),
         (17, "williams", {"position": 10, "points": 0, "is_eligible": True}),
     ],
 )
