@@ -109,6 +109,13 @@ class ResultsChampionshipScheme(models.IntegerChoices):
     ELEVEN = 11
 
 
+class EligibilityChampionshipScheme(models.IntegerChoices):
+    """How is eligibility for Championship Standings determined"""
+
+    HAS_POINT = 1, "Entry must score at least 1 championship point"
+    HAS_FINISH = 2, "Entry must have a classified finish in at least 1 round"
+
+
 class ChampionshipSystem(models.Model):
     """Drivers and Team Championship score calculation rules"""
 
@@ -117,8 +124,12 @@ class ChampionshipSystem(models.Model):
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
+
+    eligibility = models.PositiveSmallIntegerField(choices=EligibilityChampionshipScheme.choices)
+
     driver_season_split = models.PositiveSmallIntegerField(choices=SplitChampionshipScheme.choices)
     driver_best_results = models.SmallIntegerField(choices=ResultsChampionshipScheme.choices)
+
     team_season_split = models.PositiveSmallIntegerField(choices=SplitChampionshipScheme.choices)
     team_best_results = models.SmallIntegerField(choices=ResultsChampionshipScheme.choices)
 
@@ -126,6 +137,7 @@ class ChampionshipSystem(models.Model):
         constraints: ClassVar = [
             models.UniqueConstraint(
                 fields=[
+                    "eligibility",
                     "driver_season_split",
                     "driver_best_results",
                     "team_season_split",

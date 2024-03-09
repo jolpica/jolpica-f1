@@ -130,8 +130,10 @@ def year_to_championship_system(year: int) -> ChampionshipSystem:
         ref = "s1980"
     elif year >= 1981 and year <= 1990:
         ref = "s1981"
-    elif year >= 1991:
+    elif year >= 1991 and year <= 2001:
         ref = "s1991"
+    elif year >= 2002:
+        ref = "s2002"
     else:
         raise ValueError(f"Invalid year: {year}")
     return ChampionshipSystem.objects.get(reference=ref)
@@ -719,10 +721,10 @@ def import_teamdrivers_and_raceentries(
 def run_import():
     if PitStops.objects.filter(lap__isnull=True).count() != 0:
         raise ValueError("pitstop without a lap")
-    # fixtures
+    # point system fixtures
     call_command("loaddata", "jolpica/formula_one/fixtures/point_systems.json")
     call_command("loaddata", "jolpica/formula_one/fixtures/championship_systems.json")
-    call_command("loaddata", "jolpica/formula_one/fixtures/championship_adjustments.json")
+    ChampionshipSystem.objects.get(reference="s2002")
 
     # Data Fixes
     # wrong constructor in quali
@@ -757,6 +759,9 @@ def run_import():
 
     # Drivers
     driver_map = import_drivers()
+
+    # Championship Adjustments
+    call_command("loaddata", "jolpica/formula_one/fixtures/championship_adjustments.json")
 
     # Races and Sessions
     round_map, round_to_race_session_map = import_rounds_and_sessions(season_map, circuit_map)
