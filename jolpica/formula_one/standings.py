@@ -375,7 +375,6 @@ class SeasonData:
             "points": self.get_points_from_stat(stat, grouping_type, group_id),
             "win_count": stat.finish_counts[1],
             "highest_finish": min(stat.finish_counts.keys()) if stat.finish_counts else None,
-            "finish_string": "",
             "is_eligible": is_eligible,
             "adjustment_type": self.get_adjustment(grouping_type, group_id).adjustment,
         }
