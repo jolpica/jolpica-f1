@@ -394,7 +394,7 @@ class SeasonData:
             for standing in standings:
                 standing.session_id = session.session_id
                 standing.round_number = session.round_number
-                # standing.session_number = session.session_number
+                standing.session_number = session.session_number
                 if next_session is None or session.round_number != next_session.round_number:
                     # Last point scoring session of round
                     standing.round_id = session.round_id
