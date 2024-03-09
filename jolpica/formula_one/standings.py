@@ -42,31 +42,29 @@ class EntryData:
 
 
 class Stats:
-    points: float
+    points_by_round: Counter[int]
     finish_counts: Counter[int]
     unclassified_counts: Counter[int]
 
     def __init__(
         self,
-        points: float | None = None,
+        points: float | dict | None = None,
         finish_counts: dict | list | None = None,
         unclassified_counts: dict | list | None = None,
     ) -> None:
-        self.points = 0 if points is None else points
+        if isinstance(points, float | int):
+            self.points_by_round = Counter({0: points})
+        else:
+            self.points_by_round = Counter(points)
         self.finish_counts = Counter(finish_counts)
         self.unclassified_counts = Counter(unclassified_counts)
 
-    @staticmethod
-    def from_position(position, is_classified=False):
-        if position is None or is_classified is None:
-            return Stats(0, {}, {})
-        elif is_classified:
-            return Stats(0, Counter([position]), {})
-        else:
-            return Stats(0, {}, Counter([position]))
+    @property
+    def points(self) -> float:
+        return self.points_by_round.total()
 
     @staticmethod
-    def from_entry(entry: EntryData, session_type: SessionType):
+    def from_entry(entry: EntryData, session_type: SessionType, round_number: int):
         finishes, unclassifies = [], []
         if session_type == SessionType.RACE and entry.position is not None:
             if entry.is_classified is True:
@@ -119,8 +117,10 @@ class Stats:
         finishes.update(other.finish_counts)
         unclassifieds = Counter(self.unclassified_counts)
         unclassifieds.update(other.unclassified_counts)
+        points_by_round = Counter(self.points_by_round)
+        points_by_round.update(other.points_by_round)
 
-        return Stats(self.points + other.points, finishes, unclassifieds)
+        return Stats(points_by_round, finishes, unclassifieds)
 
 
 @dataclass(order=True)
@@ -186,7 +186,7 @@ class SessionData:
 
         stat_map = {}
         for key, entries in data_map.items():
-            stats = map(lambda x: Stats.from_entry(x, self.session_type), entries)
+            stats = map(lambda x: Stats.from_entry(x, self.session_type, self.round_number), entries)
             if aggregate == "SUM":
                 stat_map[key] = sum(stats, start=Stats(0, {}, {}))
             elif aggregate == "BEST":
