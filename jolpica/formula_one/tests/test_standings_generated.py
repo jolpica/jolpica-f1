@@ -59,8 +59,8 @@ def check_expected_in_standings(standings, round, reference, expected):
         return
     assert standing, "Standing does not exist"
     assert next(standings, False) is False, "Standing is not unique"
-    assert standing.position == expected.get("position")
     assert standing.points == expected.get("points")
+    assert standing.position == expected.get("position")
     assert standing.adjustment_type == expected.get("adjustment", 0)
     assert standing.is_eligible == expected.get("is_eligible", True)
     if "win_count" in expected:
@@ -164,6 +164,25 @@ def test_2023_team_standings(team_standings_2023: list[TeamChampionship], round,
 
 
 @pytest.fixture(scope="module")
+def team_standings_2020(team_standings_from_year):
+    return team_standings_from_year(2020)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (17, "mercedes", {"position": 1, "points": 573}),
+        (17, "red_bull", {"position": 2, "points": 319}),
+        (17, "mclaren", {"position": 3, "points": 202}),
+        (17, "racing_point", {"position": 4, "points": 195}),
+        (17, "williams", {"position": 10, "points": 0, "is_eligible": True}),
+    ],
+)
+def test_2020_team_standings(team_standings_2020, round, reference, expected):
+    check_expected_in_standings(team_standings_2020, round, reference, expected)
+
+
+@pytest.fixture(scope="module")
 def team_standings_2007(team_standings_from_year):
     return team_standings_from_year(2007)
 
@@ -172,8 +191,48 @@ def team_standings_2007(team_standings_from_year):
     ["round", "reference", "expected"],
     [
         (17, "ferrari", {"position": 1, "points": 204}),
-        (17, "mclaren", {"position": None, "points": 0, "adjustment": ChampionshipAdjustmentType.EXCLUDED}),
+        (
+            17,
+            "mclaren",
+            {"position": None, "points": 0, "is_eligible": True, "adjustment": ChampionshipAdjustmentType.EXCLUDED},
+        ),
     ],
 )
 def test_2007_team_standings(team_standings_2007, round, reference, expected):
     check_expected_in_standings(team_standings_2007, round, reference, expected)
+
+
+@pytest.fixture(scope="module")
+def team_standings_1997(team_standings_from_year):
+    return team_standings_from_year(1997)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (17, "williams", {"position": 1, "points": 123, "win_count": 8}),
+        (17, "ferrari", {"position": 2, "points": 102, "win_count": 5}),
+        (17, "lola", {"position": None, "points": 0, "is_eligible": False}),
+    ],
+)
+def test_1997_team_standings(team_standings_1997, round, reference, expected):
+    check_expected_in_standings(team_standings_1997, round, reference, expected)
+
+
+@pytest.fixture(scope="module")
+def team_standings_1979(team_standings_from_year):
+    return team_standings_from_year(1979)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (15, "ferrari", {"position": 1, "points": 113, "win_count": 6}),
+        (15, "williams", {"position": 2, "points": 75, "win_count": 5}),
+        (15, "merzario", {"position": None, "points": 0, "is_eligible": False}),
+        (5, "kauhsen", {"position": None, "points": 0, "is_eligible": False}),
+        (4, "kauhsen", None),
+    ],
+)
+def test_1979_team_standings(team_standings_1979, round, reference, expected):
+    check_expected_in_standings(team_standings_1979, round, reference, expected)
