@@ -137,6 +137,7 @@ def driver_standings_1980(driver_standings_from_year):
         (14, "jones", {"position": 1, "points": 67}),
         (14, "piquet", {"position": 2, "points": 54}),
         (14, "reutemann", {"position": 3, "points": 42}),
+        (14, "surer", {"position": None, "points": 0, "is_eligible": False}),
     ],
 )
 def test_1980_driver_standings(driver_standings_1980: list[DriverChampionship], round, reference, expected):
@@ -236,6 +237,7 @@ def team_standings_1979(team_standings_from_year):
         (15, "ferrari", {"position": 1, "points": 113, "win_count": 6}),
         (15, "williams", {"position": 2, "points": 75, "win_count": 5}),
         (15, "merzario", {"position": None, "points": 0, "is_eligible": False}),
+        (15, "brabham-ford", {"position": None, "points": 0, "is_eligible": False}),
         (5, "kauhsen", {"position": None, "points": 0, "is_eligible": False}),
         (4, "kauhsen", None),
     ],
