@@ -1,3 +1,5 @@
+from collections import Counter
+
 from .models import (
     ResultsChampionshipScheme,
     SplitChampionshipScheme,
@@ -5,7 +7,7 @@ from .models import (
 
 
 def calculate_championship_points(
-    round_points: dict[int, float],
+    round_points: dict[int, float] | Counter[int],
     split_type: int,
     best_results_type: int,
     total_rounds: int,
@@ -57,12 +59,3 @@ def calculate_championship_points(
     for split in splits:
         total_points += sum(split)
     return total_points
-
-
-def add_to_encoded_finishing_positions(encoded: str, position: int, amount: int = 1) -> str:
-    if not isinstance(position, int):
-        raise TypeError(position)
-    start, end = (position - 1) * 2, (position) * 2
-    if len(encoded) < end:
-        encoded = encoded.ljust(end, "0")
-    return encoded[:start] + f"{int(encoded[start:end]) + amount:0>2}" + encoded[end:]
