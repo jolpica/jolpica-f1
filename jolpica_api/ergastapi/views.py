@@ -1,7 +1,7 @@
-from django.db.models import Count, F, Max, Min, OuterRef, Prefetch, Q, Subquery, Sum, Value, Window, functions
+from django.db.models import Count, Min, OuterRef, Prefetch, Q, Subquery
 from django.db.models.query import QuerySet
 from jolpica.ergast.models import Status
-from jolpica.formula_one.models import RoundEntry, Season, Session, SessionType, Team, TeamDriver
+from jolpica.formula_one.models import Driver, Session, SessionType, Team
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
@@ -424,78 +424,36 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
     query_round = "team_drivers__round_entries__round__"
 
     required_params = ["season_year"]
-    order_by = []
+    order_by = ["position"]
 
-    def get_criteria_filters(self, season_year=None, race_round=None, format=None, **kwargs) -> Q:  # type: ignore
+    def get_criteria_filters(
+        self, season_year=None, race_round=None, constructor_standings_position=None, format=None, **kwargs
+    ) -> Q:  # type: ignore
         filters = Q()
+        if constructor_standings_position:
+            filters = filters & Q(position=constructor_standings_position)
         if season_year:
-            filters = filters & Q(team_drivers__season__year=season_year)
+            filters = filters & Q(year=season_year)
         if race_round:
-            filters = filters & Q(team_drivers__round_entries__round__number__lte=race_round)
-
+            filters = filters & Q(round_number=race_round)
         return filters
 
     def get_queryset(self) -> QuerySet:
-        self.validate_parameters()
-        season_year = self.kwargs["season_year"]
-
-        if position := self.kwargs.get("constructor_standings_position", None):
-            position_filter = Q(position=position)
-        else:
-            position_filter = Q()
-
-        season = (
-            Season.objects.filter(year=season_year)
-            .annotate(
-                championship_split=F("championship_system__team_season_split"),
-                championship_best_results=F("championship_system__team_best_results"),
-                season_rounds=Max("rounds__number"),
-            )
-            .first()
-        )
-        if season is None:
-            raise ValidationError("Season not found")
-        if (race_round := self.kwargs.get("race_round")) is None:
-            race_round = season.season_rounds
-            self.kwargs["race_round"] = str(race_round)
-
         return (
-            Team.objects.filter(self.get_criteria_filters(**self.kwargs))
-            .distinct()
-            .annotate(
-                sum_points=Sum("team_drivers__round_entries__session_entries__points"),
-                highest_finish=Min("team_drivers__round_entries__session_entries__position"),
-                wins=Count(
-                    "team_drivers__round_entries__session_entries__position",
-                    filter=Q(
-                        team_drivers__round_entries__session_entries__position=1,
-                        team_drivers__round_entries__session_entries__session__type=SessionType.RACE,
-                    ),
-                ),
-                position=Window(functions.RowNumber(), order_by=["-sum_points", "highest_finish"]),
-                season_year=Value(int(season_year)),
-                championship_split=Value(season.championship_split),
-                championship_best_results=Value(season.championship_best_results),
-                season_rounds=Value(season.season_rounds),
-            )
-            .filter(position_filter)
-            .order_by("position")
+            super()
+            .get_queryset()
             .prefetch_related(
                 Prefetch(
-                    "team_drivers",
-                    TeamDriver.objects.filter(
-                        round_entries__round__season__year=season_year, round_entries__round__number__lte=race_round
-                    ).distinct(),
-                ),
-                Prefetch(
-                    "team_drivers__round_entries",
-                    RoundEntry.objects.filter(round__season__year=season_year, round__number__lte=race_round).annotate(
-                        race_round=F("round__number"),
-                        race_points=Sum("session_entries__points"),
-                        race_position=Min(
-                            "session_entries__position", filter=Q(session_entries__session__type=SessionType.RACE)
-                        ),
-                    ),
-                ),
+                    "team__drivers",
+                    queryset=Driver.objects.all()
+                    .filter(
+                        team_drivers__season__year=self.kwargs.get("season_year"),
+                        team_drivers__round_entries__round__number__lte=self.kwargs.get("race_round"),
+                    )
+                    .annotate(first_round=Min("team_drivers__round_entries__round__number"))
+                    .order_by("first_round")
+                    .distinct(),
+                    to_attr="fetched_drivers",
+                )
             )
         )
