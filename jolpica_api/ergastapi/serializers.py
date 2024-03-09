@@ -1,4 +1,3 @@
-from collections import defaultdict
 from datetime import timedelta
 from typing import Any
 
@@ -16,9 +15,8 @@ from jolpica.formula_one.models import (
     SessionType,
     Team,
 )
-from jolpica.formula_one.models.managed_views import DriverChampionship
+from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica.formula_one.models.session import SessionStatus
-from jolpica.formula_one.utils import calculate_championship_points
 from rest_framework import serializers
 
 
@@ -472,29 +470,32 @@ class LapSerializer(ErgastModelSerializer):
         list_serializer_class = ListLapSerializer
 
 
-class DriverStandingSerializer(ErgastModelSerializer):
+class StandingSerializer(ErgastModelSerializer):
     position = serializers.CharField()
     positionText = serializers.SerializerMethodField(method_name="get_position_text")  # noqa: N815
     points = serializers.SerializerMethodField(method_name="get_points")
     wins = serializers.CharField(source="win_count")
-    Driver = DriverSerializer(source="driver")
-    Constructors = serializers.SerializerMethodField(method_name="get_constructors")
 
     def get_points(self, driver_championsihp: DriverChampionship) -> str:
         if driver_championsihp.points % 1 == 0:
             return str(int(driver_championsihp.points))
         return str(driver_championsihp.points)
 
-    def get_position_text(self, driver_championsihp: DriverChampionship) -> str:
-        if driver_championsihp.adjustment_type == ChampionshipAdjustmentType.DISQUALIFIED:
+    def get_position_text(self, championship: DriverChampionship) -> str:
+        if championship.adjustment_type == ChampionshipAdjustmentType.DISQUALIFIED:
             return "D"
-        elif driver_championsihp.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
+        elif championship.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
             return "E"
         else:
-            return str(driver_championsihp.position)
+            return str(championship.position)
 
-    def get_constructors(self, driver_championsihp: DriverChampionship) -> list:
-        teams = driver_championsihp.driver.fetched_teams  # Filtered in prefetch
+
+class DriverStandingSerializer(StandingSerializer):
+    Driver = DriverSerializer(source="driver")
+    Constructors = serializers.SerializerMethodField(method_name="get_constructors")
+
+    def get_constructors(self, championship: DriverChampionship) -> list:
+        teams = championship.driver.fetched_teams  # Filtered in prefetch
         return ConstructorSerializer(many=True).to_representation(teams)
 
     class Meta:
@@ -502,33 +503,9 @@ class DriverStandingSerializer(ErgastModelSerializer):
         fields = ["position", "positionText", "points", "wins", "Driver", "Constructors"]
 
 
-class ConstructorStandingSerializer(ErgastModelSerializer):
-    def to_representation(self, instance: Team) -> Any:
-        round_points = defaultdict(float)
-        wins = 0
-        for team_driver in instance.team_drivers.all():
-            for round_entry in team_driver.round_entries.all():
-                if round_entry.race_points:
-                    round_points[round_entry.race_round] += round_entry.race_points
-                if round_entry.race_position == 1:
-                    wins += 1
-
-        points = calculate_championship_points(
-            round_points, instance.championship_split, instance.championship_best_results, instance.season_rounds
-        )
-
-        if points % 1 == 0:
-            points = int(points)
-
-        override_position_text = None
-        return {
-            "position": f"{instance.position}",
-            "positionText": f"{instance.position}" if override_position_text is None else override_position_text,
-            "points": f"{points}",
-            "wins": f"{wins}",
-            "Constructor": ConstructorSerializer().to_representation(instance),
-        }
+class ConstructorStandingSerializer(StandingSerializer):
+    Constructor = ConstructorSerializer(source="team")
 
     class Meta:
-        model = Team
-        fields = "__all__"
+        model = TeamChampionship
+        fields = ["position", "positionText", "points", "wins", "Constructor"]
