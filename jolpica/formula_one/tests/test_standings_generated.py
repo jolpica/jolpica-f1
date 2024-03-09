@@ -125,6 +125,23 @@ def test_1997_driver_standings(driver_standings_1997, round, reference, expected
 
 
 @pytest.fixture(scope="module")
+def driver_standings_1980(driver_standings_from_year):
+    return driver_standings_from_year(1980)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (14, "jones", {"position": 1, "points": 67}),
+        (14, "piquet", {"position": 2, "points": 54}),
+        (14, "reutemann", {"position": 3, "points": 42}),
+    ],
+)
+def test_1980_driver_standings(driver_standings_1980: list[DriverChampionship], round, reference, expected):
+    check_expected_in_standings(driver_standings_1980, round, reference, expected)
+
+
+@pytest.fixture(scope="module")
 def team_standings_2023(team_standings_from_year):
     return team_standings_from_year(2023)
 

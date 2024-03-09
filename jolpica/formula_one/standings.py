@@ -5,13 +5,15 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal, overload
 
-from .models import ChampionshipAdjustmentType, Season, Session, SessionEntry, SessionType
+from .models import ChampionshipAdjustmentType, ChampionshipSystem, Season, Session, SessionEntry, SessionType
 from .models.managed_views import DriverChampionship, TeamChampionship
+from .utils import calculate_championship_points
 
 
 class Group(Enum):
     DRIVER = 1
     TEAM = 2
+    OTHER = 3
 
 
 @dataclass()
@@ -46,32 +48,70 @@ class Stats:
     finish_counts: Counter[int]
     unclassified_counts: Counter[int]
 
+    group_type: Group
+    championship_system: ChampionshipSystem | None
+
     def __init__(
         self,
         points: float | dict | None = None,
         finish_counts: dict | list | None = None,
         unclassified_counts: dict | list | None = None,
+        championship_system: ChampionshipSystem | None = None,
+        group_type: Group = Group.OTHER,
     ) -> None:
-        if isinstance(points, float | int):
-            self.points_by_round = Counter({0: points})
+        if isinstance(points, int | float):
+            self.points_by_round = Counter({99: points})
+        elif points is None:
+            self.points_by_round = Counter()
         else:
             self.points_by_round = Counter(points)
+
         self.finish_counts = Counter(finish_counts)
         self.unclassified_counts = Counter(unclassified_counts)
+        self.championship_system = championship_system
+        self.group_type = group_type
 
     @property
     def points(self) -> float:
-        return self.points_by_round.total()
+        if self.championship_system is None:
+            return self.points_by_round.total()
+
+        if self.group_type == Group.DRIVER:
+            season_split = self.championship_system.driver_season_split
+            best_results = self.championship_system.driver_best_results
+        elif self.group_type == Group.TEAM:
+            season_split = self.championship_system.team_season_split
+            best_results = self.championship_system.team_best_results
+        else:
+            raise NotImplementedError()
+
+        points = calculate_championship_points(
+            self.points_by_round,
+            season_split,
+            best_results,
+            14,
+        )
+        return points if points else 0
 
     @staticmethod
-    def from_entry(entry: EntryData, session_type: SessionType, round_number: int):
+    def from_entry(
+        entry: EntryData,
+        group_type: Group,
+        session_type: SessionType,
+        round_number: int,
+        championship_system: ChampionshipSystem | None = None,
+    ):
         finishes, unclassifies = [], []
         if session_type == SessionType.RACE and entry.position is not None:
             if entry.is_classified is True:
                 finishes.append(entry.position)
             elif entry.is_classified is False:
                 unclassifies.append(entry.position)
-        return Stats(entry.points, finishes, unclassifies)
+        if entry.points is None:
+            points_by_round = {}
+        else:
+            points_by_round = {round_number: entry.points}
+        return Stats(points_by_round, finishes, unclassifies, championship_system, group_type)
 
     def __eq__(self, other):
         if not isinstance(other, Stats):
@@ -113,6 +153,19 @@ class Stats:
         if not isinstance(other, Stats):
             raise NotImplementedError()
 
+        if (
+            self.championship_system == other.championship_system
+            and self.group_type == other.group_type
+            or (other == Stats())
+        ):
+            championship_system = self.championship_system
+            group_type = self.group_type
+        elif self == Stats():
+            championship_system = other.championship_system
+            group_type = other.group_type
+        else:
+            raise ValueError("Can only add stats of same group type and point system")
+
         finishes = Counter(self.finish_counts)
         finishes.update(other.finish_counts)
         unclassifieds = Counter(self.unclassified_counts)
@@ -120,7 +173,7 @@ class Stats:
         points_by_round = Counter(self.points_by_round)
         points_by_round.update(other.points_by_round)
 
-        return Stats(points_by_round, finishes, unclassifieds)
+        return Stats(points_by_round, finishes, unclassifieds, championship_system, group_type)
 
 
 @dataclass(order=True)
@@ -132,9 +185,16 @@ class SessionData:
     session_type: SessionType
     session_id: int
     round_id: int
+    championship_system: ChampionshipSystem | None = None
 
     @classmethod
-    def from_session(cls, session: Session, round_number: int, session_type: SessionType) -> SessionData:
+    def from_session(
+        cls,
+        session: Session,
+        round_number: int,
+        session_type: SessionType,
+        championship_system: ChampionshipSystem | None,
+    ) -> SessionData:
         entry_datas = [EntryData.from_session_entry(entry) for entry in session.session_entries.all()]
         if session.number is None:
             raise ValueError("Session must have non-null number")
@@ -146,6 +206,7 @@ class SessionData:
             session_type=session_type,
             session_id=session.id,
             round_id=session.round_id,
+            championship_system=championship_system,
         )
 
     def group_data_by(self, grouping_type: Group) -> dict[int, list[EntryData]]:
@@ -186,9 +247,14 @@ class SessionData:
 
         stat_map = {}
         for key, entries in data_map.items():
-            stats = map(lambda x: Stats.from_entry(x, self.session_type, self.round_number), entries)
+            stats = map(
+                lambda x: Stats.from_entry(
+                    x, grouping_type, self.session_type, self.round_number, self.championship_system
+                ),
+                entries,
+            )
             if aggregate == "SUM":
-                stat_map[key] = sum(stats, start=Stats(0, {}, {}))
+                stat_map[key] = sum(stats, start=Stats())
             elif aggregate == "BEST":
                 stat_map[key] = max(stats)
             else:
@@ -202,6 +268,7 @@ class SeasonData:
     season_year: int
     session_datas: list[SessionData]
     season_id: int
+    championship_system: ChampionshipSystem | None
     adjustments: dict[tuple[Group, int], ChampionshipAdjustmentType] = field(default_factory=dict)
     aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]] = field(
         default_factory=lambda: {Group.DRIVER: "BEST", Group.TEAM: "SUM"}
@@ -218,7 +285,11 @@ class SeasonData:
             ):
                 if session.number is None:
                     continue
-                session_datas.append(SessionData.from_session(session, round.number, SessionType(session.type)))
+                session_datas.append(
+                    SessionData.from_session(
+                        session, round.number, SessionType(session.type), season.championship_system
+                    )
+                )
         adjustments = {}
         for adjustment in season.championship_adjustments.all():
             if adjustment.driver_id:
@@ -229,6 +300,7 @@ class SeasonData:
             season_year=season.year,
             session_datas=session_datas,
             season_id=season.id,
+            championship_system=season.championship_system,
             adjustments=adjustments,
         )
 
