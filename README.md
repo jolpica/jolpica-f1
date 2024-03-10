@@ -1,25 +1,21 @@
 # jolpica-f1
+API for querying formula one data, with backwards compatible endpoints for the soon to be deprecated ergast api.
 
-geo libraries for postgis and geodjango are required to be installed
-``
 
-# Differences to Ergast API
+## Differences to Ergast API
+For a full list of differences please see the Issues tab.
 
 - No support for XML
 - If multiple of the same criteria are specified, the last specified will be used (not a 400 response)
 - /results
     - positionText no longer has "N" as a possible value, "R" is used instead.
     - The Time.time key will always 3 digits after decimal points (using trailing zeros).
-    - Time.time is generated from Time.millis so they will now always be consistent.
-- Standings position is based on total points scored instead of championship points rules (only effects seasons before 1991)
 - Standings requires a year to be specified
 
-## TODO
-- Remove session entries for drivers who did not (pre) qualify
-
-Fun Facts
-- Brazil 1962 had no second place
-- Drivers scored 1/7 of a point in 1954 British Grand Prix
+# Database Scheme
+Rather than import the existing database scheme used by ergast, we use a new scheme which will allow better adaption to changing rulesets, reduce duplication of information, and allow storage of more F1 related data.
+![Database Scheme for jolpica-f1](jolpica/formula_one/models/database.svg)
+Many Enumerations are used in the database, the mappings of these values are defined in their respective model files. For example you can find the enumerations for the PointSystem table [here](jolpica/formula_one/models/point_scheme.py)
 
 # Development
 ## Initial Setup
