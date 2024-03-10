@@ -486,6 +486,8 @@ class StandingSerializer(ErgastModelSerializer):
             return "D"
         elif championship.adjustment_type == ChampionshipAdjustmentType.EXCLUDED:
             return "E"
+        elif not championship.is_eligible:
+            return "-"
         else:
             return str(championship.position)
 
