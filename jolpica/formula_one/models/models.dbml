@@ -1,3 +1,91 @@
+Table PointSystem {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  name char [null]
+  driver_position_points positive_small_integer 
+  driver_fastest_lap positive_small_integer 
+  team_position_points positive_small_integer 
+  team_fastest_lap positive_small_integer 
+  partial positive_small_integer 
+  shared_drive positive_small_integer 
+  is_double_points boolean 
+  Note: '''Session point calculation rules'''
+}
+
+
+Table ChampionshipSystem {
+  id big_auto [pk, unique]
+  reference char [null, unique]
+  name char [null]
+  eligibility positive_small_integer 
+  driver_season_split positive_small_integer 
+  driver_best_results small_integer 
+  team_season_split positive_small_integer 
+  team_best_results small_integer 
+  Note: '''Drivers and Team Championship score calculation rules'''
+}
+
+
+Table ChampionshipAdjustment {
+  id big_auto [pk, unique]
+  season foreign_key 
+  driver foreign_key [null]
+  team foreign_key [null]
+  adjustment positive_small_integer 
+  points float [note:"Points to deduct if POINT_DEDUCTION adjustment, otherwise null", null]
+  Note: '''Adjustments such as Disqualifications and Exclusions from Driver/Team Championships'''
+}
+ref: ChampionshipAdjustment.season > Season.id
+ref: ChampionshipAdjustment.driver > Driver.id
+ref: ChampionshipAdjustment.team > Team.id
+
+
+Table DriverChampionship {
+  id big_auto [pk, unique]
+  session foreign_key 
+  driver foreign_key 
+  year small_integer 
+  round_number positive_small_integer 
+  session_number positive_small_integer 
+  position small_integer [null]
+  points float 
+  win_count small_integer 
+  highest_finish small_integer [null]
+  is_eligible boolean 
+  adjustment_type positive_small_integer 
+  season foreign_key [null]
+  round foreign_key [null]
+  Note: '''DriverChampionship(id, session, driver, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)'''
+}
+ref: DriverChampionship.session > Session.id
+ref: DriverChampionship.driver > Driver.id
+ref: DriverChampionship.season > Season.id
+ref: DriverChampionship.round > Round.id
+
+
+Table TeamChampionship {
+  id big_auto [pk, unique]
+  session foreign_key 
+  team foreign_key 
+  year small_integer 
+  round_number positive_small_integer 
+  session_number positive_small_integer 
+  position small_integer [null]
+  points float 
+  win_count small_integer 
+  highest_finish small_integer [null]
+  is_eligible boolean 
+  adjustment_type positive_small_integer 
+  season foreign_key [null]
+  round foreign_key [null]
+  Note: '''TeamChampionship(id, session, team, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)'''
+}
+ref: TeamChampionship.session > Session.id
+ref: TeamChampionship.team > Team.id
+ref: TeamChampionship.season > Season.id
+ref: TeamChampionship.round > Round.id
+
+
 Table Circuit {
   id big_auto [pk, unique]
   reference char [null, unique]
@@ -7,7 +95,7 @@ Table Circuit {
   location None [null]
   altitude float [null]
   wikipedia url [null]
-  Note: '''Race venue information'''
+  Note: '''Round venue information'''
 }
 
 
@@ -39,28 +127,6 @@ Table Lap {
 ref: Lap.session_entry > SessionEntry.id
 
 
-Table DriverStanding {
-  id big_auto [pk, unique]
-  session foreign_key 
-  driver foreign_key 
-  year small_integer 
-  round positive_small_integer 
-  position small_integer [null]
-  points float 
-  win_count small_integer 
-  highest_finish small_integer [null]
-  finish_string char 
-  is_disqualified boolean 
-  season foreign_key [null]
-  race foreign_key [null]
-  Note: '''DriverStanding(id, session, driver, year, round, position, points, win_count, highest_finish, finish_string, is_disqualified, season, race)'''
-}
-ref: DriverStanding.session > Session.id
-ref: DriverStanding.driver > Driver.id
-ref: DriverStanding.season > Season.id
-ref: DriverStanding.race > Race.id
-
-
 Table PitStop {
   id big_auto [pk, unique]
   session_entry foreign_key 
@@ -74,38 +140,11 @@ ref: PitStop.session_entry > SessionEntry.id
 ref: PitStop.lap - Lap.id
 
 
-Table PointSystem {
-  id big_auto [pk, unique]
-  reference char [null, unique]
-  name char [null]
-  driver_position_points positive_small_integer 
-  driver_fastest_lap positive_small_integer 
-  team_position_points positive_small_integer 
-  team_fastest_lap positive_small_integer 
-  partial positive_small_integer 
-  shared_drive positive_small_integer 
-  is_double_points boolean 
-  Note: '''Session point calculation rules'''
-}
-
-
-Table ChampionshipSystem {
-  id big_auto [pk, unique]
-  reference char [null, unique]
-  name char [null]
-  driver_season_split positive_small_integer 
-  driver_best_results small_integer 
-  team_season_split positive_small_integer 
-  team_best_results small_integer 
-  Note: '''Drivers and Team Championship score calculation rules'''
-}
-
-
-Table Race {
+Table Round {
   id big_auto [pk, unique]
   season foreign_key 
   circuit foreign_key 
-  round positive_small_integer [null]
+  number positive_small_integer [null]
   name char [null]
   date date [null]
   race_number positive_small_integer [null]
@@ -113,19 +152,19 @@ Table Race {
   is_cancelled boolean 
   Note: '''Race event information relevent to all sessions'''
 }
-ref: Race.season > Season.id
-ref: Race.circuit > Circuit.id
+ref: Round.season > Season.id
+ref: Round.circuit > Circuit.id
 
 
-Table RaceEntry {
+Table RoundEntry {
   id big_auto [pk, unique]
-  race foreign_key 
+  round foreign_key 
   team_driver foreign_key 
   car_number positive_small_integer [null]
   Note: '''All data relating to a driver racing for a specific team for a race'''
 }
-ref: RaceEntry.race > Race.id
-ref: RaceEntry.team_driver > TeamDriver.id
+ref: RoundEntry.round > Round.id
+ref: RoundEntry.team_driver > TeamDriver.id
 
 
 Table Season {
@@ -140,7 +179,8 @@ ref: Season.championship_system > ChampionshipSystem.id
 
 Table Session {
   id big_auto [pk, unique]
-  race foreign_key 
+  round foreign_key 
+  number positive_small_integer [null]
   point_system foreign_key 
   type char 
   date date [null]
@@ -149,7 +189,7 @@ Table Session {
   is_cancelled boolean 
   Note: '''Information about a scheduled session where cars are on track'''
 }
-ref: Session.race > Race.id
+ref: Session.round > Round.id
 ref: Session.point_system > PointSystem.id
 
 
@@ -168,10 +208,10 @@ Table SessionEntry {
   time duration [null]
   fastest_lap_rank positive_small_integer [null]
   laps_completed positive_small_integer [null]
-  Note: '''All information for a race entry for the session'''
+  Note: '''All information for a round entry for the session'''
 }
 ref: SessionEntry.session > Session.id
-ref: SessionEntry.round_entry > RaceEntry.id
+ref: SessionEntry.round_entry > RoundEntry.id
 ref: SessionEntry.fastest_lap > Lap.id
 
 
