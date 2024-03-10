@@ -1,6 +1,11 @@
 # jolpica-f1
 API for querying formula one data, with backwards compatible endpoints for the soon to be deprecated ergast api.
 
+The Ergast compatible API can be found here: http://api.jolpi.ca/ergast/f1/
+
+All endpoints documented [here](http://ergast.com/mrd/) should work, simply replace the start of the url.
+
+
 
 ## Differences to Ergast API
 For a full list of differences please see the Issues tab.
