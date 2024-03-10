@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
@@ -37,7 +39,7 @@ class Session(models.Model):
     round_entries = models.ManyToManyField(
         "formula_one.RoundEntry", through="formula_one.SessionEntry", related_name="sessions"
     )
-    session_entries: models.QuerySet["SessionEntry"]
+    session_entries: models.QuerySet[SessionEntry]
     driver_championships: models.QuerySet[DriverChampionship]
     team_championships: models.QuerySet[TeamChampionship]
 
@@ -82,10 +84,10 @@ class SessionEntry(models.Model):
         blank=True,
         related_name="+",
     )
-    laps: models.QuerySet["Lap"]
-    pit_stops: models.QuerySet["PitStop"]
-    penalties: models.QuerySet["Penalty"]
-    served_penalities: models.QuerySet["Penalty"]
+    laps: models.QuerySet[Lap]
+    pit_stops: models.QuerySet[PitStop]
+    penalties: models.QuerySet[Penalty]
+    served_penalities: models.QuerySet[Penalty]
 
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     is_classified = models.BooleanField(null=True, blank=True)
