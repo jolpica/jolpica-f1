@@ -1,7 +1,7 @@
 from django.db.models import Count, Min, OuterRef, Prefetch, Q, Subquery
 from django.db.models.query import QuerySet
 from jolpica.ergast.models import Status
-from jolpica.formula_one.models import Driver, Session, SessionType, Team
+from jolpica.formula_one.models import Round, Season, Session, SessionType, Team
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
@@ -385,10 +385,11 @@ class DriverStandingViewSet(ErgastModelViewSet):
         filters = Q()
         if driver_standings_position:
             filters = filters & Q(position=driver_standings_position)
-        if season_year:
-            filters = filters & Q(year=season_year)
-        if race_round:
-            filters = filters & Q(round_number=race_round)
+
+        if season_year and race_round:
+            filters = filters & Q(year=season_year) & Q(round__number=race_round)
+        elif season_year:
+            filters = filters & Q(season__year=season_year)
         return filters
 
     def get_queryset(self) -> QuerySet:
@@ -432,28 +433,12 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
         filters = Q()
         if constructor_standings_position:
             filters = filters & Q(position=constructor_standings_position)
-        if season_year:
-            filters = filters & Q(year=season_year)
-        if race_round:
-            filters = filters & Q(round_number=race_round)
+
+        if season_year and race_round:
+            filters = filters & Q(year=season_year) & Q(round__number=race_round)
+        elif season_year:
+            filters = filters & Q(season__year=season_year)
         return filters
 
     def get_queryset(self) -> QuerySet:
-        return (
-            super()
-            .get_queryset()
-            .prefetch_related(
-                Prefetch(
-                    "team__drivers",
-                    queryset=Driver.objects.all()
-                    .filter(
-                        team_drivers__season__year=self.kwargs.get("season_year"),
-                        team_drivers__round_entries__round__number__lte=self.kwargs.get("race_round"),
-                    )
-                    .annotate(first_round=Min("team_drivers__round_entries__round__number"))
-                    .order_by("first_round")
-                    .distinct(),
-                    to_attr="fetched_drivers",
-                )
-            )
-        )
+        return super().get_queryset().prefetch_related("team")

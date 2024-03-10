@@ -6,6 +6,7 @@ from django.db import models
 
 if TYPE_CHECKING:
     from . import ChampionshipAdjustment, Round, TeamDriver
+    from .managed_views import DriverChampionship, TeamChampionship
 
 
 class Season(models.Model):
@@ -20,6 +21,8 @@ class Season(models.Model):
     rounds: models.QuerySet[Round]
     team_drivers: models.QuerySet[TeamDriver]
     championship_adjustments: models.QuerySet[ChampionshipAdjustment]
+    driver_championships: models.QuerySet[DriverChampionship]
+    team_championships: models.QuerySet[TeamChampionship]
 
     year = models.SmallIntegerField(unique=True)
     wikipedia = models.URLField(max_length=255, null=True, blank=True)

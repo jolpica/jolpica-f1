@@ -4,6 +4,7 @@ from django.db import models
 
 if TYPE_CHECKING:
     from . import Lap, PitStop
+    from .managed_views import DriverChampionship, TeamChampionship
 
 
 class SessionType(models.TextChoices):
@@ -37,6 +38,8 @@ class Session(models.Model):
         "formula_one.RoundEntry", through="formula_one.SessionEntry", related_name="sessions"
     )
     session_entries: models.QuerySet["SessionEntry"]
+    driver_championships: models.QuerySet[DriverChampionship]
+    team_championships: models.QuerySet[TeamChampionship]
 
     type = models.CharField(max_length=3, choices=SessionType.choices)
     date = models.DateField(null=True, blank=True)

@@ -1,9 +1,12 @@
+from __future__ import annotations
+
 from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
 if TYPE_CHECKING:
     from . import Session, SessionEntry
+    from .managed_views import DriverChampionship, TeamChampionship
 
 
 class Round(models.Model):
@@ -15,8 +18,10 @@ class Round(models.Model):
     team_drivers = models.ManyToManyField(
         "formula_one.TeamDriver", through="formula_one.RoundEntry", related_name="rounds"
     )
-    round_entries: models.QuerySet["RoundEntry"]
-    sessions: models.QuerySet["Session"]
+    round_entries: models.QuerySet[RoundEntry]
+    sessions: models.QuerySet[Session]
+    driver_championships: models.QuerySet[DriverChampionship]
+    team_championships: models.QuerySet[TeamChampionship]
 
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
@@ -40,8 +45,8 @@ class RoundEntry(models.Model):
     id = models.BigAutoField(primary_key=True)
     round = models.ForeignKey("Round", on_delete=models.CASCADE, related_name="round_entries")
     team_driver = models.ForeignKey("TeamDriver", on_delete=models.CASCADE, related_name="round_entries")
-    sessions: models.QuerySet["Session"]
-    session_entries: models.QuerySet["SessionEntry"]
+    sessions: models.QuerySet[Session]
+    session_entries: models.QuerySet[SessionEntry]
 
     car_number = models.PositiveSmallIntegerField(null=True, blank=True)
 
