@@ -6,6 +6,7 @@ from django.db import models
 
 if TYPE_CHECKING:
     from . import ChampionshipAdjustment, Round, RoundEntry, Season
+    from .managed_views import DriverChampionship, TeamChampionship
 
 
 class BaseTeam(models.Model):
@@ -30,6 +31,8 @@ class Team(models.Model):
     round_entries: models.QuerySet[RoundEntry]
     team_drivers: models.QuerySet[TeamDriver]
     championship_adjustments: models.QuerySet[ChampionshipAdjustment]
+    driver_championships: models.QuerySet[DriverChampionship]
+    team_championships: models.QuerySet[TeamChampionship]
 
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)
