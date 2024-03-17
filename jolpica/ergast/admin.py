@@ -5,6 +5,11 @@ from django.contrib import admin
 class ListAdminMixin:
     def __init__(self, model, admin_site):
         self.list_display = [field.name for field in model._meta.fields]
+        if model.__name__ == "Results":
+            self.list_filter = [
+                "raceId__year__year",
+                "raceId__round",
+            ]
         super(ListAdminMixin, self).__init__(model, admin_site)
 
 
@@ -15,3 +20,4 @@ for model in models:
         admin.site.register(model, admin_class)
     except admin.sites.AlreadyRegistered:
         pass
+
