@@ -20,6 +20,7 @@ endpoints = {
         "drivers/alonso/fastest/1/circuits.json",
         "drivers/alonso/grid/11/circuits/monaco.json",
         "drivers/alonso/grid/1/circuits/monaco.json",
+        "2023/status/23/circuits.json",
     ],
     "constructors": [
         "2019/20/constructors.json",
