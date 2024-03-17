@@ -95,7 +95,11 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             if grid_position:
                 filters = filters & Q(**{f"{self.query_session_entries}grid": grid_position})
             if race_position:
-                filters = filters & Q(**{f"{self.query_session_entries}position": race_position})
+                filters = (
+                    filters
+                    & Q(**{f"{self.query_session_entries}position": race_position})
+                    & Q(**{f"{self.query_session_entries}is_classified": True})
+                )
             if fastest_lap_rank:
                 filters = filters & Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
         if ergast_status_id:

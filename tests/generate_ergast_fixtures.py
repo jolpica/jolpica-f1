@@ -32,6 +32,7 @@ endpoints = {
         "2018/99/drivers.json",
         "2018/drivers.json",
         "drivers/alonso.json",
+        "2023/results/20/drivers.json",
     ],
     "laps": [
         "2013/18/laps.json?offset=45",
