@@ -57,6 +57,9 @@ endpoints = {
         "2021/7/races.json",
         "2021/99/races.json",
         "2021/races.json",
+        "2021.json",
+        "2021/last.json",
+        "2021/next.json",
     ],
     "results": [
         "2017/99/results.json",

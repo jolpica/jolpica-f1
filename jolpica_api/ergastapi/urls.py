@@ -50,8 +50,8 @@ criteria = [
     r"(status/(?P<ergast_status_id>[a-zA-Z0-9_]+)/)",
     r"(laps/(?P<lap_number>[a-zA-Z0-9_]+)/)",
 ]
-season_criteria = r"(?P<season_year>[0-9]{4})"
-round_criteria = r"(?P<race_round>[0-9]{1,2})"
+season_criteria = r"(?P<season_year>[0-9]{4}|current)"
+round_criteria = r"(?P<race_round>[0-9]{1,2}|next|last)"
 season_round_criteria = f"({season_criteria}/({round_criteria}/)?)?"
 regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*"
 
