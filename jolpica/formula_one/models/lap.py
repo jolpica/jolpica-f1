@@ -2,6 +2,8 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
+from ..utils import format_timedelta
+
 if TYPE_CHECKING:
     from . import PitStop
 
@@ -24,4 +26,6 @@ class Lap(models.Model):
         ]
 
     def __str__(self) -> str:
-        return f"{self.session_entry.session.type}: {self.number}"
+        lap_number_string = f"{self.number} " if self.number else ""
+        time_delta_string = format_timedelta(self.time) if self.time else ""
+        return f"{self.session_entry.session.type}: {lap_number_string}{time_delta_string}"

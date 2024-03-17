@@ -308,7 +308,9 @@ class QualifyingViewSet(ErgastModelViewSet):
 
     def get_queryset(self) -> QuerySet:
         if grid_position := self.kwargs.get("grid_position", None):
-            grid_filters = Q(session_entries__session__type=SessionType.RACE) & Q(session_entries__grid=grid_position)
+            grid_filters = Q(session_entries__session__type__startswith="Q") & Q(
+                session_entries__position=grid_position
+            )
         else:
             grid_filters = Q()
         qs = (
