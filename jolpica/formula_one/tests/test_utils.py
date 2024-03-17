@@ -1,7 +1,9 @@
+from datetime import timedelta
+
 import pytest
 
 from ..models import ResultsChampionshipScheme, SplitChampionshipScheme
-from ..utils import calculate_championship_points
+from ..utils import calculate_championship_points, format_timedelta
 
 
 def year_to_scheme(year: int | str) -> tuple[int, int, int | None]:
@@ -102,3 +104,15 @@ def test_calculate_championship_points_all_variations():
         for best_results in ResultsChampionshipScheme:
             for total_rounds in [1, 17]:
                 assert calculate_championship_points({1: 4, 9: 6}, split, best_results, total_rounds) in (None, 10, 0)
+
+
+@pytest.mark.parametrize(
+    ["delta", "expected"],
+    [
+        (timedelta(seconds=100, milliseconds=100), "1:40.100"),
+        (timedelta(seconds=59, milliseconds=70), "59.070"),
+        (timedelta(seconds=90, milliseconds=0), "1:30.000"),
+    ],
+)
+def test_format_timedelta_expected(delta, expected):
+    assert format_timedelta(delta) == expected
