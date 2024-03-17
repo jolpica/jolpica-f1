@@ -32,10 +32,9 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
         criteria_dict = {
             name_map[key]: val for key, val in self.kwargs.items() if key != "format" and name_map[key] is not None
         }
-        last_path_section = self.request.get_full_path().lower().rstrip(".json").rsplit("/", maxsplit=1)[1]
-        if self.viewset == "QualifyingViewSet" and last_path_section != "qualifying":
+        if self.viewset == "QualifyingViewSet" and "grid" not in self.request.get_full_path():
             criteria_dict.pop("grid", None)
-        if self.viewset == "LapViewSet" and last_path_section != "laps":
+        if self.viewset == "LapViewSet":
             criteria_dict.pop("lap", None)
         return criteria_dict
 
