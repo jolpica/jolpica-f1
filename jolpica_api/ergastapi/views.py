@@ -86,7 +86,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             filters = filters & Q(**{f"{self.query_lap}number": lap_number})
         if pitstop_number:
             filters = filters & Q(**{f"{self.query_pitstop}number": pitstop_number})
-        if grid_position or race_position or fastest_lap_rank or sprint_race_position:
+        if grid_position or race_position or fastest_lap_rank or sprint_race_position or ergast_status_id:
             if sprint_race_position:
                 filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.SPRINT_RACE})
                 race_position = sprint_race_position
@@ -102,10 +102,10 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
                 )
             if fastest_lap_rank:
                 filters = filters & Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
-        if ergast_status_id:
-            filters = filters & Q(
-                **{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]}
-            )
+            if ergast_status_id:
+                filters = filters & Q(
+                    **{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]}
+                )
         return filters
 
     def validate_parameters(self):
@@ -174,8 +174,6 @@ class CircuitViewSet(ErgastModelViewSet):
     query_round = "rounds__"
     order_by = ["reference"]
 
-    def get_queryset(self) -> QuerySet:
-        return super().get_queryset()
 
 
 class RaceViewSet(ErgastModelViewSet):
