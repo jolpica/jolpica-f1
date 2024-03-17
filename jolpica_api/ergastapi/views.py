@@ -1,7 +1,9 @@
-from django.db.models import Count, Min, OuterRef, Prefetch, Q, Subquery
+from datetime import date
+
+from django.db.models import Count, Max, Min, OuterRef, Prefetch, Q, Subquery
 from django.db.models.query import QuerySet
 from jolpica.ergast.models import Status
-from jolpica.formula_one.models import Round, Season, Session, SessionType, Team
+from jolpica.formula_one.models import Season, Session, SessionType, Team
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
@@ -42,6 +44,31 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         pitstop_number=None,
         **kwargs,
     ) -> Q:
+        current_date = date.today()
+        if season_year == "current":
+            season_year = str(current_date.year)
+            self.kwargs["season_year"] = season_year
+        if race_round in {"next", "last"}:
+            round_info = Season.objects.filter(year=season_year).aggregate(
+                next=Min("rounds__number", filter=Q(rounds__date__gte=current_date)),
+                final=Max("rounds__number"),
+            )
+            if race_round == "next" and round_info["next"] is not None:
+                # Next Round of ongoing championship to take place
+                race_round = str(round_info["next"])
+            elif race_round == "next":
+                # First round of next season
+                race_round = str(1)
+                season_year = str(int(season_year) + 1)
+            elif race_round == "last" and round_info["next"] is not None:
+                # Last completed race of ongoing season
+                race_round = str(max(1, round_info["next"] - 1))
+            elif race_round == "last":
+                # Final round of completed season
+                race_round = str(round_info["final"])
+            self.kwargs["race_round"] = race_round
+            self.kwargs["season_year"] = season_year
+
         if fastest_lap_rank == "0":
             fastest_lap_rank = None
         filters = Q()
