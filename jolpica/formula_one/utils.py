@@ -1,11 +1,6 @@
 from collections import Counter
 from datetime import timedelta
 
-from .models import (
-    ResultsChampionshipScheme,
-    SplitChampionshipScheme,
-)
-
 
 def calculate_championship_points(
     round_points: dict[int, float] | Counter[int],
@@ -13,6 +8,11 @@ def calculate_championship_points(
     best_results_type: int,
     total_rounds: int,
 ) -> float | None:
+    from .models import (
+        ResultsChampionshipScheme,
+        SplitChampionshipScheme,
+    )
+
     if total_rounds <= 0:
         raise ValueError("Total rounds must be greater than 0")
     clean_round_points: dict[int, float] = {}
