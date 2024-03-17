@@ -37,6 +37,7 @@ endpoints = {
         "2013/18/laps.json?offset=45",
         "2013/1/laps.json",
         "2013/10/laps/1.json",
+        "2023/1/drivers/leclerc/qualifying.json",
     ],
     "pitstops": [
         "2014/5/pitstops.json",
@@ -53,7 +54,7 @@ endpoints = {
         "drivers/alonso/qualifying.json?offset=220",
         "2015/qualifying/1.json",
         "2015/grid/12/circuits/bahrain/qualifying/12.json",
-        "2015/grid/12/circuits/bahrain/qualifying.json?limit=1"
+        "2015/grid/12/circuits/bahrain/qualifying.json?limit=1",
     ],
     "races": [
         "2021/7/races.json",
