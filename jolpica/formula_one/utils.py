@@ -1,4 +1,5 @@
 from collections import Counter
+from datetime import timedelta
 
 from .models import (
     ResultsChampionshipScheme,
@@ -59,3 +60,22 @@ def calculate_championship_points(
     for split in splits:
         total_points += sum(split)
     return total_points
+
+
+def format_timedelta(time: timedelta) -> str:
+    total_seconds = time.total_seconds()
+    hours, mins, secs = (
+        total_seconds // (60 * 60),
+        (total_seconds % (60 * 60)) // 60,
+        total_seconds % (60) // 1,
+    )
+    millis = time.microseconds // 1000
+    display_time = ""
+    if hours:
+        display_time += f"{int(hours):02}:"
+    if mins:
+        display_time += f"{int(mins):02}:"
+    display_time += f"{int(secs):02}.{int(millis):03}"
+    if display_time[0] == "0":
+        display_time = display_time[1:]
+    return display_time

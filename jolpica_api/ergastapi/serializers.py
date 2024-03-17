@@ -17,6 +17,7 @@ from jolpica.formula_one.models import (
 )
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica.formula_one.models.session import SessionStatus
+from jolpica.formula_one.utils import format_timedelta
 from rest_framework import serializers
 
 
@@ -160,25 +161,6 @@ class DriverSerializer(ErgastModelSerializer):
     class Meta:
         model = Driver
         fields = ["driverId", "permanentNumber", "code", "url", "givenName", "familyName", "dateOfBirth", "nationality"]
-
-
-def format_timedelta(time: timedelta) -> str:
-    total_seconds = time.total_seconds()
-    hours, mins, secs = (
-        total_seconds // (60 * 60),
-        (total_seconds % (60 * 60)) // 60,
-        total_seconds % (60) // 1,
-    )
-    millis = time.microseconds // 1000
-    display_time = ""
-    if hours:
-        display_time += f"{int(hours):02}:"
-    if mins:
-        display_time += f"{int(mins):02}:"
-    display_time += f"{int(secs):02}.{int(millis):03}"
-    if display_time[0] == "0":
-        display_time = display_time[1:]
-    return display_time
 
 
 class ListResultsSerializer(serializers.ListSerializer):
@@ -332,7 +314,7 @@ class ListQualifyingSerializer(serializers.ListSerializer):
             }
             for session_entry in driver_session_entries:
                 if session_entry.fastest_lap.time:
-                    quali_time = str(session_entry.fastest_lap.time).lstrip(":0")[:-3]
+                    quali_time = format_timedelta(session_entry.fastest_lap.time)
                 else:
                     quali_time = ""
                 if session_entry.session.type in ("Q1", "Q2", "Q3"):
