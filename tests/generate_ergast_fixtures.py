@@ -52,6 +52,8 @@ endpoints = {
         "drivers/alonso/qualifying.json",
         "drivers/alonso/qualifying.json?offset=220",
         "2015/qualifying/1.json",
+        "2015/grid/12/circuits/bahrain/qualifying/12.json",
+        "2015/grid/12/circuits/bahrain/qualifying.json?limit=1"
     ],
     "races": [
         "2021/7/races.json",
