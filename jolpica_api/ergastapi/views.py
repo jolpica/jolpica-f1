@@ -175,7 +175,6 @@ class CircuitViewSet(ErgastModelViewSet):
     order_by = ["reference"]
 
 
-
 class RaceViewSet(ErgastModelViewSet):
     serializer_class = serializers.RaceSerializer
     lookup_field = None
@@ -299,26 +298,31 @@ class QualifyingViewSet(ErgastModelViewSet):
     query_round = "round__"
     order_by = ["round"]
 
-    def get_criteria_filters(self, *args, grid_position=None, **kwargs) -> Q:
-        # Grid position is handled in get_queryset
+    def get_criteria_filters(self, *args, grid_position=None, fastest_lap_rank=None, **kwargs) -> Q:
+        # fastest_lap_rank is handled in get_queryset
         filters = Q(session_entries__position__isnull=False)
+        if grid_position:
+            if grid_position:
+                filters = (
+                    filters
+                    & Q(session_entries__session__type__startswith="Q")
+                    & Q(session_entries__position=grid_position)
+                )
         return super().get_criteria_filters(*args, **kwargs) & filters
 
     def get_queryset(self) -> QuerySet:
-        if grid_position := self.kwargs.get("grid_position", None):
-            grid_filters = Q(session_entries__session__type__startswith="Q") & Q(
-                session_entries__position=grid_position
-            )
-        else:
-            grid_filters = Q()
+        ann_filters = Q()
+        if fastest_lap_rank := self.kwargs.get("fastest_lap_rank", None):
+            ann_filters = ann_filters & Q(fastest_lap_rank=fastest_lap_rank)
         qs = (
             super()
             .get_queryset()
             .annotate(
                 driver_sess_count=Count("session_entries", filter=Q(session_entries__session__type__startswith="Q")),
                 max_position=Min("session_entries__position", filter=Q(session_entries__session__type__startswith="Q")),
+                fastest_lap_rank=Min("session_entries__fastest_lap_rank", filter=Q(session_entries__session__type="R")),
             )
-            .filter(grid_filters, driver_sess_count__gt=0)
+            .filter(ann_filters, driver_sess_count__gt=0)
             .order_by(*self.order_by, "max_position")
             .select_related("round__circuit", "round__season", "team_driver__team", "team_driver__driver")
             .prefetch_related(Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))
