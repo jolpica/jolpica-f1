@@ -59,6 +59,7 @@ endpoints = {
         "2015/grid/12/circuits/bahrain/qualifying.json?limit=1",
         "2023/12/qualifying/1.json",
         "2023/12/qualifying/13.json",
+        "2023/fastest/1/qualifying.json",
     ],
     "races": [
         "2021/7/races.json",
