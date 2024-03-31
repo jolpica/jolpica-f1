@@ -39,7 +39,7 @@ load-ergast-data:
 	python manage.py updateergast	
 
 import-from-ergast:
-	python manage.py migrate formula_one 0001
+	python manage.py migrate formula_one zero
 	python manage.py migrate
 	python manage.py shell -c "from jolpica.formula_one.import_from_ergast import run_import; run_import()"
 	

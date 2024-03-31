@@ -11,4 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         CreateExtension("postgis"),
+        # Drop extensions enabled by default in devcontainer image
+        migrations.RunSQL("DROP EXTENSION IF EXISTS postgis_tiger_geocoder", reverse_sql=migrations.RunSQL.noop),
+        migrations.RunSQL("DROP EXTENSION IF EXISTS postgis_topology", reverse_sql=migrations.RunSQL.noop),
     ]
