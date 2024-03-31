@@ -1,1 +1,1 @@
-{"MRData":{"xmlns":"http:\/\/ergast.com\/mrd\/1.5","series":"f1","url":"http://ergast.com/api/f1/drivers/alonso/status/1.json","limit":"30","offset":"0","total":"1","StatusTable":{"driverId":"alonso","status":"1","Status":[{"statusId":"1","count":"245","status":"Finished"}]}}}
+{"MRData":{"xmlns":"http:\/\/ergast.com\/mrd\/1.5","series":"f1","url":"http://ergast.com/api/f1/drivers/alonso/status/1.json","limit":"30","offset":"0","total":"1","StatusTable":{"driverId":"alonso","status":"1","Status":[{"statusId":"1","count":"248","status":"Finished"}]}}}
