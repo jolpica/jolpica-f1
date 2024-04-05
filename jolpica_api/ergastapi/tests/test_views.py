@@ -110,6 +110,8 @@ def test_endpoint_does_not_support_final_filter(client: APIClient, endpoint):
     [
         "2023/11/laps/1/races.json",
         "2023/11/laps/1/drivers.json",
+        "2023/11/drivers/1/constructorstandings.json",
+        "2023/11/constructors/1/driverstandings.json",
     ],
 )
 @pytest.mark.django_db
