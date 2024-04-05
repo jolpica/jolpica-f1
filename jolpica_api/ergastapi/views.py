@@ -428,6 +428,10 @@ class DriverStandingViewSet(ErgastModelViewSet):
         return filters
 
     def get_queryset(self) -> QuerySet:
+        if self.kwargs.get("race_round") is None:
+            self.kwargs["race_round"] = str(Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(
+                Max("number")
+            )["number__max"])
         return (
             super()
             .get_queryset()
@@ -476,4 +480,8 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
         return filters
 
     def get_queryset(self) -> QuerySet:
+        if self.kwargs.get("race_round") is None:
+            self.kwargs["race_round"] = str(Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(
+                Max("number")
+            )["number__max"])
         return super().get_queryset().prefetch_related("team")
