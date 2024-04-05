@@ -121,6 +121,8 @@ endpoints = {
         "drivers/alonso/status/1.json",
     ],
     "driverstandings": [
+        "2023/driverstandings.json",
+        "2023/1/driverStandings.json",
         "2023/22/driverstandings.json",
         "1980/14/driverstandings.json?limit=21",
         "2023/22/driverstandings/1.json",
@@ -128,6 +130,8 @@ endpoints = {
         "2016/5/driverstandings.json",
     ],
     "constructorstandings": [
+        "2023/constructorstandings.json",
+        "2023/1/constructorStandings.json",
         "2023/22/constructorstandings.json",
         "2023/13/constructorstandings.json",
         "2023/22/constructorstandings/1.json",
