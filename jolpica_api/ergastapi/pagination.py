@@ -68,7 +68,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             table_name = self.model.capitalize() + "Table"
             data_name = self.model.capitalize().rstrip("s") + "s"
 
-        url = self.request.build_absolute_uri(self.request.path)
+        url = self.request.build_absolute_uri(self.request.path).lower()
         return Response(
             {
                 "MRData": {
