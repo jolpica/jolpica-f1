@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from rest_framework.test import APIClient
+import re
 
 
 @pytest.mark.parametrize(
@@ -16,7 +17,7 @@ from rest_framework.test import APIClient
     ),
 )
 @pytest.mark.django_db
-def test_viewsets(client: APIClient, endpoint, path: Path, django_assert_max_num_queries):
+def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_max_num_queries):
     # endpoint = endpoint_fixture.name.replace("@", "/")
     with open(path, mode="rb") as f:
         expected = json.load(f)
@@ -66,25 +67,10 @@ def test_viewsets(client: APIClient, endpoint, path: Path, django_assert_max_num
                         timing_data["time"] = timing_data["time"].rstrip("0")
 
     if "driverstandings.json" in endpoint or "constructorstandings.json" in endpoint:
-        if "driverstandings.json" in endpoint:
-            list_name = "DriverStandings"
+        # We add round to standings tables while ergast doesn't. remove for comparison
+        if re.search(r"^[0-9]{4}/(?![0-9]{1,2}/)", endpoint):
+            result["MRData"]["StandingsTable"].pop("round", "")
 
-            def key(d):
-                return d["Driver"]["driverId"]
-        else:
-            list_name = "ConstructorStandings"
-
-            def key(d):
-                return d["Constructor"]["constructorId"]
-
-        result["MRData"]["StandingsTable"]["StandingsLists"][0][list_name] = sorted(
-            result["MRData"]["StandingsTable"]["StandingsLists"][0][list_name],
-            key=key,
-        )
-        expected["MRData"]["StandingsTable"]["StandingsLists"][0][list_name] = sorted(
-            expected["MRData"]["StandingsTable"]["StandingsLists"][0][list_name],
-            key=key,
-        )
 
     assert result == expected
 
