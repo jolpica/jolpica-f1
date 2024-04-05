@@ -28,22 +28,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
     required_params: list[str] = []
     order_by: list[str] = []
 
-    def get_criteria_filters(
-        self,
-        season_year=None,
-        race_round=None,
-        circuit_ref=None,
-        team_ref=None,
-        driver_ref=None,
-        grid_position=None,
-        race_position=None,
-        sprint_race_position=None,
-        fastest_lap_rank=None,
-        ergast_status_id=None,
-        lap_number=None,
-        pitstop_number=None,
-        **kwargs,
-    ) -> Q:
+    def resolve_relative_filters(self, season_year=None, race_round=None):
         current_date = date.today()
         if season_year == "current":
             season_year = str(current_date.year)
@@ -68,6 +53,25 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
                 race_round = str(round_info["final"])
             self.kwargs["race_round"] = race_round
             self.kwargs["season_year"] = season_year
+        return season_year, race_round
+
+    def get_criteria_filters(
+        self,
+        season_year=None,
+        race_round=None,
+        circuit_ref=None,
+        team_ref=None,
+        driver_ref=None,
+        grid_position=None,
+        race_position=None,
+        sprint_race_position=None,
+        fastest_lap_rank=None,
+        ergast_status_id=None,
+        lap_number=None,
+        pitstop_number=None,
+        **kwargs,
+    ) -> Q:
+        season_year, race_round = self.resolve_relative_filters(season_year, race_round)
 
         if fastest_lap_rank == "0":
             fastest_lap_rank = None
@@ -404,12 +408,12 @@ class DriverStandingViewSet(ErgastModelViewSet):
     serializer_class = serializers.DriverStandingSerializer
     lookup_field = "driver_standings_position"
 
-    query_session_entries = "team_drivers__round_entries__session_entries__"
+    query_session_entries = None
     query_team = None
-    query_driver = ""
-    query_circuit = "team_drivers__round_entries__round__circuit__"
-    query_season = "team_drivers__season__"
-    query_round = "team_drivers__round_entries__round__"
+    query_driver = "driver__"
+    query_circuit = None
+    query_season = "season__"
+    query_round = "round__"
 
     required_params = ["season_year"]
     order_by = ["position"]
@@ -417,7 +421,9 @@ class DriverStandingViewSet(ErgastModelViewSet):
     def get_criteria_filters(
         self, season_year=None, race_round=None, driver_standings_position=None, format=None, **kwargs
     ) -> Q:  # type: ignore
-        filters = Q()
+        filters = super().get_criteria_filters(**kwargs)
+        season_year, race_round = self.resolve_relative_filters(season_year, race_round)
+
         if driver_standings_position:
             filters = filters & Q(position=driver_standings_position)
 
@@ -429,9 +435,9 @@ class DriverStandingViewSet(ErgastModelViewSet):
 
     def get_queryset(self) -> QuerySet:
         if self.kwargs.get("race_round") is None:
-            self.kwargs["race_round"] = str(Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(
-                Max("number")
-            )["number__max"])
+            self.kwargs["race_round"] = str(
+                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(Max("number"))["number__max"]
+            )
         return (
             super()
             .get_queryset()
@@ -456,12 +462,12 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
     serializer_class = serializers.ConstructorStandingSerializer
     lookup_field = "constructor_standings_position"
 
-    query_session_entries = "team_drivers__round_entries__session_entries__"
-    query_team = ""
+    query_session_entries = None
+    query_team = "team__"
     query_driver = None
-    query_circuit = "team_drivers__round_entries__round__circuit__"
-    query_season = "team_drivers__season__"
-    query_round = "team_drivers__round_entries__round__"
+    query_circuit = None
+    query_season = "season__"
+    query_round = "round__"
 
     required_params = ["season_year"]
     order_by = ["position"]
@@ -469,7 +475,9 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
     def get_criteria_filters(
         self, season_year=None, race_round=None, constructor_standings_position=None, format=None, **kwargs
     ) -> Q:  # type: ignore
-        filters = Q()
+        filters = super().get_criteria_filters(**kwargs)
+        season_year, race_round = self.resolve_relative_filters(season_year, race_round)
+
         if constructor_standings_position:
             filters = filters & Q(position=constructor_standings_position)
 
@@ -481,7 +489,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
 
     def get_queryset(self) -> QuerySet:
         if self.kwargs.get("race_round") is None:
-            self.kwargs["race_round"] = str(Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(
-                Max("number")
-            )["number__max"])
+            self.kwargs["race_round"] = str(
+                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(Max("number"))["number__max"]
+            )
         return super().get_queryset().prefetch_related("team")
