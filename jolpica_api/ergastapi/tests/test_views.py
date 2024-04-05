@@ -1,9 +1,9 @@
 import json
+import re
 from pathlib import Path
 
 import pytest
 from rest_framework.test import APIClient
-import re
 
 
 @pytest.mark.parametrize(
@@ -70,7 +70,6 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
         # We add round to standings tables while ergast doesn't. remove for comparison
         if re.search(r"^[0-9]{4}/(?![0-9]{1,2}/)", endpoint):
             result["MRData"]["StandingsTable"].pop("round", "")
-
 
     assert result == expected
 

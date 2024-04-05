@@ -2,6 +2,7 @@ from django.db.models import QuerySet
 from rest_framework import pagination
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework.utils.serializer_helpers import ReturnDict, ReturnList
 from rest_framework.views import APIView
 
 
@@ -38,7 +39,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             criteria_dict.pop("lap", None)
         return criteria_dict
 
-    def get_paginated_response(self, data):
+    def get_paginated_response(self, data: ReturnList | ReturnDict):
         match self.viewset:
             case "StatusViewSet":
                 self.model = "Status"
@@ -58,11 +59,12 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             table_name = "StandingsTable"
             data_name = "StandingsLists"
             if self.viewset == "DriverStandingViewSet":
-                criteria_key, data_key = "driverStandings", "DriverStandings"
+                data_key = "DriverStandings"
             else:
-                criteria_key, data_key = "constructorStandings", "ConstructorStandings"
+                data_key = "ConstructorStandings"
             criteria = self.get_criteria_dict()
-            criteria.pop(criteria_key, None)
+            for key in ["driverStandings", "constructorStandings", "driverId", "constructorId"]:
+                criteria.pop(key, None)
             data = [{**criteria, data_key: data}]
         else:
             table_name = self.model.capitalize() + "Table"
