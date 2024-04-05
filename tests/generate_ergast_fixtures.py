@@ -96,7 +96,7 @@ endpoints = {
         "drivers/piastri/results/1/seasons.json",
         "drivers/russell/seasons.json",
         "grid/999/constructors/notexist/seasons.json",
-        "constructors/brabham-ford/circuits/ain-diab/seasons.json"
+        "constructors/brabham-ford/circuits/ain-diab/seasons.json",
     ],
     "sprint": [
         "2023/3/sprint.json",
@@ -129,6 +129,7 @@ endpoints = {
         "2023/22/driverstandings/1.json",
         "2016/4/driverstandings.json",
         "2016/5/driverstandings.json",
+        "2023/drivers/alonso/driverstandings.json",
     ],
     "constructorstandings": [
         "2023/constructorstandings.json",
@@ -136,6 +137,7 @@ endpoints = {
         "2023/22/constructorstandings.json",
         "2023/13/constructorstandings.json",
         "2023/22/constructorstandings/1.json",
+        "2023/constructors/alfa/constructorstandings.json",
     ],
 }
 
