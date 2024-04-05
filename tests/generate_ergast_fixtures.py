@@ -96,6 +96,7 @@ endpoints = {
         "drivers/piastri/results/1/seasons.json",
         "drivers/russell/seasons.json",
         "grid/999/constructors/notexist/seasons.json",
+        "constructors/brabham-ford/circuits/ain-diab/seasons.json"
     ],
     "sprint": [
         "2023/3/sprint.json",
