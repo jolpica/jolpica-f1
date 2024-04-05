@@ -405,7 +405,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
     lookup_field = "driver_standings_position"
 
     query_session_entries = "team_drivers__round_entries__session_entries__"
-    query_team = "team_drivers__team__"
+    query_team = None
     query_driver = ""
     query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = "team_drivers__season__"
@@ -458,7 +458,7 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
 
     query_session_entries = "team_drivers__round_entries__session_entries__"
     query_team = ""
-    query_driver = "team_drivers__driver__"
+    query_driver = None
     query_circuit = "team_drivers__round_entries__round__circuit__"
     query_season = "team_drivers__season__"
     query_round = "team_drivers__round_entries__round__"
