@@ -42,9 +42,8 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
             result_prefix = "Sprint"
         else:
             result_prefix = ""
-        for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
-            for j, result_data in enumerate(race_data[f"{result_prefix}Results"]):
-                expected_data = expected["MRData"]["RaceTable"]["Races"][i][f"{result_prefix}Results"][j]
+        for race_data, exp_race_data in zip(result["MRData"]["RaceTable"]["Races"], expected["MRData"]["RaceTable"]["Races"]):
+            for result_data, expected_data in zip(race_data[f"{result_prefix}Results"], exp_race_data[f"{result_prefix}Results"]):
                 if expected_data.get("positionText") in ("N", "W") and expected_data.get("status") != "Withdrew":
                     expected_data["positionText"] = "R"
                 if result_data.get("Time"):

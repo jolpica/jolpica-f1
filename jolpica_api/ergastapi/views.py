@@ -291,15 +291,20 @@ class SprintViewSet(ResultViewSet):
 
     def get_criteria_filters(self, *args, **kwargs) -> Q:
         kwargs.pop("ergast_status_id", None)  # Filter status separately
+        kwargs.pop("grid_position", None)  # Filter status separately
         return super().get_criteria_filters(*args, **kwargs)
 
     def get_queryset(self) -> QuerySet:
         qs = super().get_queryset()
+
+        filters = Q()
         if ergast_status_id := self.kwargs.get("ergast_status_id", None):
-            qs = qs.filter(
-                round_entry__session_entries__session__type=SessionType.SPRINT_RACE,
-                round_entry__session_entries__detail=ERGAST_STATUS_MAPPING[int(ergast_status_id)],
-            )
+            filters &= Q(round_entry__session_entries__detail=ERGAST_STATUS_MAPPING[int(ergast_status_id)])
+        if grid_position := self.kwargs.get("grid_position", None):
+            filters &= Q(round_entry__session_entries__grid=grid_position)
+        if filters:
+            filters &= Q(round_entry__session_entries__session__type=SessionType.SPRINT_RACE)
+            qs = qs.filter(filters)
         return qs
 
 
