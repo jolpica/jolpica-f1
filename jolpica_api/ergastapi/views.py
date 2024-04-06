@@ -77,39 +77,35 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
             fastest_lap_rank = None
         filters = Q()
         if season_year:
-            filters = filters & Q(**{f"{self.query_season}year": season_year})
+            filters &= Q(**{f"{self.query_season}year": season_year})
         if race_round:
-            filters = filters & Q(**{f"{self.query_round}number": race_round})
+            filters &= Q(**{f"{self.query_round}number": race_round})
         if circuit_ref:
-            filters = filters & Q(**{f"{self.query_circuit}reference": circuit_ref})
+            filters &= Q(**{f"{self.query_circuit}reference": circuit_ref})
         if team_ref:
-            filters = filters & Q(**{f"{self.query_team}reference": team_ref})
+            filters &= Q(**{f"{self.query_team}reference": team_ref})
         if driver_ref:
-            filters = filters & Q(**{f"{self.query_driver}reference": driver_ref})
+            filters &= Q(**{f"{self.query_driver}reference": driver_ref})
         if lap_number:
-            filters = filters & Q(**{f"{self.query_lap}number": lap_number})
+            filters &= Q(**{f"{self.query_lap}number": lap_number})
         if pitstop_number:
-            filters = filters & Q(**{f"{self.query_pitstop}number": pitstop_number})
+            filters &= Q(**{f"{self.query_pitstop}number": pitstop_number})
         if grid_position or race_position or fastest_lap_rank or sprint_race_position or ergast_status_id:
             if sprint_race_position:
-                filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.SPRINT_RACE})
+                filters &= Q(**{f"{self.query_session_entries}session__type": SessionType.SPRINT_RACE})
                 race_position = sprint_race_position
             else:
-                filters = filters & Q(**{f"{self.query_session_entries}session__type": SessionType.RACE})
+                filters &= Q(**{f"{self.query_session_entries}session__type": SessionType.RACE})
             if grid_position:
-                filters = filters & Q(**{f"{self.query_session_entries}grid": grid_position})
+                filters &= Q(**{f"{self.query_session_entries}grid": grid_position})
             if race_position:
-                filters = (
-                    filters
-                    & Q(**{f"{self.query_session_entries}position": race_position})
-                    & Q(**{f"{self.query_session_entries}is_classified": True})
+                filters &= Q(**{f"{self.query_session_entries}position": race_position}) & Q(
+                    **{f"{self.query_session_entries}is_classified": True}
                 )
             if fastest_lap_rank:
-                filters = filters & Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
+                filters &= Q(**{f"{self.query_session_entries}fastest_lap_rank": fastest_lap_rank})
             if ergast_status_id:
-                filters = filters & Q(
-                    **{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]}
-                )
+                filters &= Q(**{f"{self.query_session_entries}detail": ERGAST_STATUS_MAPPING[int(ergast_status_id)]})
         return filters
 
     def validate_parameters(self):
@@ -266,7 +262,7 @@ class ResultViewSet(ErgastModelViewSet):
     def get_criteria_filters(self, *args, **kwargs) -> Q:
         filters = Q(session__type=self.result_session_type)
         if kwargs.get(self.lookup_field):
-            filters = filters & Q(is_classified=True)
+            filters &= Q(is_classified=True)
         return super().get_criteria_filters(*args, **kwargs) & filters
 
     def get_queryset(self) -> QuerySet:
@@ -327,11 +323,7 @@ class QualifyingViewSet(ErgastModelViewSet):
         quali_position = kwargs.pop("quali_position", None)
         filters = Q(session_entries__position__isnull=False)
         if quali_position:
-            filters = (
-                filters
-                & Q(session_entries__session__type__startswith="Q")
-                & Q(session_entries__position=quali_position)
-            )
+            filters &= Q(session_entries__session__type__startswith="Q") & Q(session_entries__position=quali_position)
         return super().get_criteria_filters(**kwargs) & filters
 
     def get_queryset(self) -> QuerySet:
@@ -339,15 +331,11 @@ class QualifyingViewSet(ErgastModelViewSet):
         if fastest_lap_rank := self.kwargs.get("fastest_lap_rank", None):
             ann_filters = ann_filters & Q(fastest_lap_rank=fastest_lap_rank)
         if grid_position := self.kwargs.get("grid_position", None):
-            ann_filters = (
-                ann_filters & Q(session_entries__session__type__startswith="R") & Q(session_entries__grid=grid_position)
-            )
+            ann_filters &= Q(session_entries__session__type__startswith="R") & Q(session_entries__grid=grid_position)
 
         if ergast_status_id := self.kwargs.get("ergast_status_id", None):
-            ann_filters = (
-                ann_filters
-                & Q(session_entries__session__type__startswith="R")
-                & Q(session_entries__detail=ERGAST_STATUS_MAPPING[int(ergast_status_id)])
+            ann_filters &= Q(session_entries__session__type__startswith="R") & Q(
+                session_entries__detail=ERGAST_STATUS_MAPPING[int(ergast_status_id)]
             )
         else:
             ann_filters = ann_filters & Q(driver_sess_count__gt=0)
@@ -459,12 +447,12 @@ class DriverStandingViewSet(ErgastModelViewSet):
         season_year, race_round = self.resolve_relative_filters(season_year, race_round)
 
         if driver_standings_position:
-            filters = filters & Q(position=driver_standings_position)
+            filters &= Q(position=driver_standings_position)
 
         if season_year and race_round:
-            filters = filters & Q(year=season_year) & Q(round__number=race_round)
+            filters &= Q(year=season_year) & Q(round__number=race_round)
         elif season_year:
-            filters = filters & Q(season__year=season_year)
+            filters &= Q(season__year=season_year)
         return filters
 
     def get_queryset(self) -> QuerySet:
@@ -513,12 +501,12 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
         season_year, race_round = self.resolve_relative_filters(season_year, race_round)
 
         if constructor_standings_position:
-            filters = filters & Q(position=constructor_standings_position)
+            filters &= Q(position=constructor_standings_position)
 
         if season_year and race_round:
-            filters = filters & Q(year=season_year) & Q(round__number=race_round)
+            filters &= Q(year=season_year) & Q(round__number=race_round)
         elif season_year:
-            filters = filters & Q(season__year=season_year)
+            filters &= Q(season__year=season_year)
         return filters
 
     def get_queryset(self) -> QuerySet:
