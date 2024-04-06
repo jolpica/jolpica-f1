@@ -130,6 +130,7 @@ endpoints = {
         "2016/4/driverstandings.json",
         "2016/5/driverstandings.json",
         "2023/drivers/alonso/driverstandings.json",
+        "2023/4/driverStandings/22.json",
     ],
     "constructorstandings": [
         "2023/constructorstandings.json",
@@ -138,6 +139,7 @@ endpoints = {
         "2023/13/constructorstandings.json",
         "2023/22/constructorstandings/1.json",
         "2023/constructors/alfa/constructorstandings.json",
+        "2023/constructorStandings/12.json",
     ],
 }
 
