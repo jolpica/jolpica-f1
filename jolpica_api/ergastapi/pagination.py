@@ -65,7 +65,8 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             criteria = self.get_criteria_dict()
             for key in ["driverStandings", "constructorStandings", "driverId", "constructorId"]:
                 criteria.pop(key, None)
-            data = [{**criteria, data_key: data}]
+            if data:
+                data = [{**criteria, data_key: data}]
         else:
             table_name = self.model.capitalize() + "Table"
             data_name = self.model.capitalize().rstrip("s") + "s"

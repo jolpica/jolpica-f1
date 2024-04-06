@@ -37,14 +37,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
 
     # Special case for results data, allow text time to be off by 1 millisecond
     # This is because in ergast the millis time and text based time is inconsistent
-    if (
-        "results.json" in endpoint
-        or "results/2.json" in endpoint
-        or "results/15.json" in endpoint
-        or "sprint.json" in endpoint
-        or "sprint/1.json" in endpoint
-        or "sprint/17.json" in endpoint
-    ):
+    if re.search(r"(?i)(?:results|sprint)(?:/[0-9]+)?.json", endpoint):
         if "sprint" in endpoint:
             result_prefix = "Sprint"
         else:
@@ -57,7 +50,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                 if result_data.get("Time"):
                     expected_data["Time"]["time"] = expected_data["Time"]["time"].rstrip("0")
                     result_data["Time"]["time"] = result_data["Time"]["time"].rstrip("0")
-    if "laps.json" in endpoint or "laps/1.json" in endpoint:
+    if re.search(r"(?i)laps(?:/[0-9]+)?.json", endpoint):
         for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
             for j, laps_data in enumerate(race_data["Laps"]):
                 for k, timing_data in enumerate(laps_data["Timings"]):
@@ -66,7 +59,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                         expected_data["time"] = expected_data["time"].rstrip("0")
                         timing_data["time"] = timing_data["time"].rstrip("0")
 
-    if "driverstandings.json" in endpoint or "constructorstandings.json" in endpoint:
+    if re.search(r"(?i)(?:driverstandings|constructorstandings)(?:/[0-9]+)?.json", endpoint):
         # We add round to standings tables while ergast doesn't. remove for comparison
         if re.search(r"^[0-9]{4}/(?![0-9]{1,2}/)", endpoint):
             result["MRData"]["StandingsTable"].pop("round", "")
