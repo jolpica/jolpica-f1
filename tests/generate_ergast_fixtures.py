@@ -60,6 +60,8 @@ endpoints = {
         "2023/12/qualifying/1.json",
         "2023/12/qualifying/13.json",
         "2023/fastest/1/qualifying.json",
+        "2023/status/1/qualifying.json",
+        "2023/grid/1/qualifying.json",
     ],
     "races": [
         "2021/7/races.json",
@@ -77,6 +79,8 @@ endpoints = {
         "drivers/alonso/results.json",
         "2017/results/2.json",
         "2017/results/15.json",
+        "2023/grid/1/results.json",
+        "2023/status/1/results.json",
     ],
     "seasons": [
         "2023/5/seasons.json",
@@ -106,6 +110,8 @@ endpoints = {
         "constructors/red_bull/sprint.json",
         "drivers/alonso/sprint.json",
         "2023/sprint/17.json",
+        "2023/grid/1/sprint.json",
+        "2023/status/1/sprint.json",
     ],
     "status": [
         "2020/17/status.json",
