@@ -69,7 +69,7 @@ class ErgastModelViewSet(viewsets.ModelViewSet):
         ergast_status_id=None,
         lap_number=None,
         pitstop_number=None,
-        **kwargs,
+        **kwargs, # quali_position
     ) -> Q:
         season_year, race_round = self.resolve_relative_filters(season_year, race_round)
 
@@ -292,7 +292,7 @@ class SprintViewSet(ResultViewSet):
 
 class QualifyingViewSet(ErgastModelViewSet):
     serializer_class = serializers.QualifyingResultsSerializer
-    lookup_field = "grid_position"
+    lookup_field = "quali_position"
 
     query_session_entries = "session_entries__"
     query_team = "team_driver__team__"
@@ -302,22 +302,23 @@ class QualifyingViewSet(ErgastModelViewSet):
     query_round = "round__"
     order_by = ["round"]
 
-    def get_criteria_filters(self, *args, grid_position=None, fastest_lap_rank=None, **kwargs) -> Q:
-        # fastest_lap_rank is handled in get_queryset
+    def get_criteria_filters(self, *args, grid_position=None, fastest_lap_rank=None, quali_position=None, **kwargs) -> Q:
+        # fastest_lap_rank and grid_position is handled in get_queryset
         filters = Q(session_entries__position__isnull=False)
-        if grid_position:
-            if grid_position:
-                filters = (
-                    filters
-                    & Q(session_entries__session__type__startswith="Q")
-                    & Q(session_entries__position=grid_position)
-                )
+        if quali_position:
+            filters = (
+                filters
+                & Q(session_entries__session__type__startswith="Q")
+                & Q(session_entries__position=quali_position)
+            )
         return super().get_criteria_filters(*args, **kwargs) & filters
 
     def get_queryset(self) -> QuerySet:
         ann_filters = Q()
         if fastest_lap_rank := self.kwargs.get("fastest_lap_rank", None):
             ann_filters = ann_filters & Q(fastest_lap_rank=fastest_lap_rank)
+        if grid_position := self.kwargs.get("grid_position", None):
+            ann_filters = ann_filters & Q(session_entries__session__type__startswith="R") & Q(session_entries__grid=grid_position)
         qs = (
             super()
             .get_queryset()
