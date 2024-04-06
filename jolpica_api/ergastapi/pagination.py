@@ -21,6 +21,7 @@ class ErgastAPIPagination(pagination.LimitOffsetPagination):
             "team_ref": "constructorId",
             "driver_ref": "driverId",
             "grid_position": "grid",
+            "quali_position": None,
             "race_position": "position",
             "sprint_race_position": None,
             "ergast_status_id": "status",
