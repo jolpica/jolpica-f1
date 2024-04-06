@@ -319,6 +319,12 @@ class QualifyingViewSet(ErgastModelViewSet):
             ann_filters = ann_filters & Q(fastest_lap_rank=fastest_lap_rank)
         if grid_position := self.kwargs.get("grid_position", None):
             ann_filters = ann_filters & Q(session_entries__session__type__startswith="R") & Q(session_entries__grid=grid_position)
+
+        if ergast_status_id := self.kwargs.get("ergast_status_id", None):
+            ann_filters = ann_filters & Q(session_entries__session__type__startswith="R") & Q(session_entries__detail=ERGAST_STATUS_MAPPING[int(ergast_status_id)]) 
+        else:
+            ann_filters = ann_filters & Q(driver_sess_count__gt=0)
+
         qs = (
             super()
             .get_queryset()
@@ -327,7 +333,7 @@ class QualifyingViewSet(ErgastModelViewSet):
                 max_position=Min("session_entries__position", filter=Q(session_entries__session__type__startswith="Q")),
                 fastest_lap_rank=Min("session_entries__fastest_lap_rank", filter=Q(session_entries__session__type="R")),
             )
-            .filter(ann_filters, driver_sess_count__gt=0)
+            .filter(ann_filters)
             .order_by(*self.order_by, "max_position")
             .select_related("round__circuit", "round__season", "team_driver__team", "team_driver__driver")
             .prefetch_related(Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))

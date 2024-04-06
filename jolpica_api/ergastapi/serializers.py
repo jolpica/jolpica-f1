@@ -327,6 +327,10 @@ class ListQualifyingSerializer(serializers.ListSerializer):
 
             race_results[round_id][self.child.results_list_name].append(result)
 
+        for round_id, round_dict in race_results.items():
+            round_dict[self.child.results_list_name].sort(key=lambda d: int(d["position"]))
+
+
         results = list(race_results.values())
         if is_single:
             return results[0]
