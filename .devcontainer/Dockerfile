@@ -1,6 +1,6 @@
-FROM mcr.microsoft.com/devcontainers/python:1-3.10-bullseye
+FROM mcr.microsoft.com/devcontainers/python:1-3.11-bullseye
 
-ENV POETRY_VERSION=1.6.1
+ENV POETRY_VERSION=1.8.2
 ENV PYTHONUNBUFFERED 1
 
 RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git && \
