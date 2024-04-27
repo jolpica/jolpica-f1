@@ -43,6 +43,7 @@ ALLOWED_HOSTS: list[str] = ["api.jolpi.ca", *live]
 if DEPLOYMENT_ENV == "PROD" and (private_ip := get_linux_ec2_private_ip()):
     ALLOWED_HOSTS.append(private_ip)
 
+INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
 # Application definition
 
@@ -60,7 +61,7 @@ INSTALLED_APPS = [
     "jolpica_api.ergastapi",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
-    INSTALLED_APPS += ["django_dbml", "fixture_magic"]
+    INSTALLED_APPS += ["django_dbml", "fixture_magic", "debug_toolbar"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -71,6 +72,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
+    # Debug toolbar should go as early as possible in middleware
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
 ROOT_URLCONF = "jolpica_api.urls"
 
