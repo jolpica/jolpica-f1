@@ -2,15 +2,25 @@ from datetime import date
 
 from django.db.models import Count, Max, Min, OuterRef, Prefetch, Q, Subquery
 from django.db.models.query import QuerySet
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Season, Session, SessionType, Team
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.exceptions import ValidationError
 
+from jolpica_api.settings import DEPLOYMENT_ENV
+
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
 
+CACHE_TIME_SECONDS = 5 * 60 if DEPLOYMENT_ENV == "PROD" else 15
 
+
+@method_decorator(
+    cache_page(CACHE_TIME_SECONDS),
+    name="dispatch",
+)
 class ErgastModelViewSet(viewsets.ModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     pagination_class = pagination.ErgastAPIPagination
