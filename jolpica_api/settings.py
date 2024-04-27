@@ -99,6 +99,19 @@ WSGI_APPLICATION = "jolpica_api.wsgi.application"
 DATABASES = {"default": env.db("DATABASE_SECRET_URL", default="postgis://postgres:postgres@localhost/jolpica")}
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
+# Cache
+# https://docs.djangoproject.com/en/4.2/topics/cache/#redis
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

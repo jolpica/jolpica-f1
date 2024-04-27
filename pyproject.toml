@@ -17,6 +17,7 @@ gunicorn = "^22.0.0"
 psycopg = "^3.1.12"
 requests = "^2.31.0"
 uvicorn = "^0.24.0.post1"
+django-redis = "^5.4.0"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.6.0"                                                            # Generation of dbml file
