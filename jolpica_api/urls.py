@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from . import views
+from .settings import DEPLOYMENT_ENV
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,3 +27,8 @@ urlpatterns = [
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", views.healthcheck),
 ]
+
+if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
+    urlpatterns += [
+        path("__debug__/", include("debug_toolbar.urls")),
+    ]
