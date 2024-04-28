@@ -63,11 +63,7 @@ class RaceRouter(routers.DefaultRouter):
     """
 
     def get_api_root_view(self, api_urls=None):
-        api_root_dict = dict()
-        list_name = self.routes[0].name
-        prefix, viewset, basename = self.registry[0]
-        api_root_dict["f1"] = list_name.format(basename=basename)
-        return self.APIRootView.as_view(api_root_dict=api_root_dict)
+        return views.api_root_view
 
 
 race_router = RaceRouter()
