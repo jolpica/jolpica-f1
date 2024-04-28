@@ -26,6 +26,7 @@ urlpatterns = [
     path("ergast/", include("jolpica_api.ergastapi.urls")),
     path("auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("", views.healthcheck),
+    path("test/", views.test),
 ]
 
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
