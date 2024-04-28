@@ -4,6 +4,7 @@ from django.db.models import Count, Max, Min, OuterRef, Prefetch, Q, Subquery
 from django.db.models.query import QuerySet
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from django_ratelimit.decorators import ratelimit
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Season, Session, SessionType, Team
 from rest_framework import permissions, viewsets  # noqa: F401
@@ -15,11 +16,13 @@ from rest_framework.response import Response
 from jolpica_api.settings import DEPLOYMENT_ENV
 
 from . import pagination, serializers
+from .ratelimits import long_ratelimit, short_ratelimit
 from .status_mapping import ERGAST_STATUS_MAPPING
 
-CACHE_TIME_SECONDS = 5 * 60 if DEPLOYMENT_ENV == "PROD" else 15
+CACHE_TIME_SECONDS = 60 * 60 if DEPLOYMENT_ENV == "PROD" else 15
 
 
+@cache_page(CACHE_TIME_SECONDS)
 @api_view()
 def api_root_view(request: Request) -> Response:
     return Response(
@@ -42,7 +45,11 @@ def api_root_view(request: Request) -> Response:
 
 
 @method_decorator(
-    cache_page(CACHE_TIME_SECONDS),
+    [
+        ratelimit(group="ergast", key="user_or_ip", rate=long_ratelimit),
+        ratelimit(group="ergast", key="user_or_ip", rate=short_ratelimit),
+        cache_page(CACHE_TIME_SECONDS),
+    ],
     name="dispatch",
 )
 class ErgastModelViewSet(viewsets.ReadOnlyModelViewSet):
