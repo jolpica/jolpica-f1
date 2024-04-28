@@ -10,11 +10,15 @@ def healthcheck(request: HttpRequest):
 
 
 def ratelimited_error(request: HttpRequest, exception):
-    return JsonResponse(data={"error": "ratelimited"}, status=429)
+    return JsonResponse(
+        data={
+            "error": "ratelimited",
+        },
+        status=429,
+    )
 
 
-@ratelimit(group="test", key="user_or_ip", rate="1/s", block=False)
-@ratelimit(group="test", key="user_or_ip", rate="10/m", block=True)
+@ratelimit(group="test", key="user_or_ip", rate="2/10s", block=False)
 def test(request: HttpRequest):
     try:
         return JsonResponse(
@@ -23,6 +27,7 @@ def test(request: HttpRequest):
                 "REMOTE_ADDR": request.META["REMOTE_ADDR"],
                 "HTTP_X_FORWARDED_FOR": request.META.get("HTTP_X_FORWARDED_FOR", ""),
                 "ratelimited": getattr(request, "limited", False),
+                "user": str(request.user),
             },
             status=200,
         )
