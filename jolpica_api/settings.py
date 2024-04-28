@@ -81,7 +81,7 @@ ROOT_URLCONF = "jolpica_api.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["jolpica_api/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
