@@ -45,7 +45,7 @@ def api_root_view(request: Request) -> Response:
     cache_page(CACHE_TIME_SECONDS),
     name="dispatch",
 )
-class ErgastModelViewSet(viewsets.ModelViewSet):
+class ErgastModelViewSet(viewsets.ReadOnlyModelViewSet):
     # permission_classes = [permissions.IsAuthenticated]
     pagination_class = pagination.ErgastAPIPagination
     lookup_field: str | None = None  # type: ignore
