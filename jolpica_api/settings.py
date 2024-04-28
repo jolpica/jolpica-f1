@@ -46,6 +46,12 @@ if DEPLOYMENT_ENV == "PROD" and (private_ip := get_linux_ec2_private_ip()):
 INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
 # Application definition
+ROOT_URLCONF = "jolpica_api.urls"
+
+WSGI_APPLICATION = "jolpica_api.wsgi.application"
+
+
+# Installed Django Apps
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -63,6 +69,9 @@ INSTALLED_APPS = [
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
     INSTALLED_APPS += ["django_dbml", "fixture_magic", "debug_toolbar"]
 
+
+# Middleware
+
 MIDDLEWARE = [
     "jolpica_api.deployment_utils.client_ip_middleware",
     "django.middleware.security.SecurityMiddleware",
@@ -72,12 +81,16 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_ratelimit.middleware.RatelimitMiddleware",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
     # Debug toolbar should go as early as possible in middleware
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
-ROOT_URLCONF = "jolpica_api.urls"
+RATELIMIT_VIEW = "jolpica_api.views.ratelimited_error"
+
+
+# Templates
 
 TEMPLATES = [
     {
@@ -94,8 +107,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = "jolpica_api.wsgi.application"
 
 
 # Database
