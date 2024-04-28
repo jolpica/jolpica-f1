@@ -27,3 +27,20 @@ def get_linux_ec2_private_ip() -> None | str:
         return response.text
     except Exception:
         return None
+
+
+def client_ip_middleware(get_response):
+    """Set the client ip (REMOTE_ADDR) value to the ip sent to the load balancer.
+
+    If developing locally and there is no HTTP_X_FORWARDED_FOR, default to existing value.
+    """
+
+    def process_request(request):
+        ips = request.META.get(
+            "HTTP_X_FORWARDED_FOR",
+            request.META["REMOTE_ADDR"],
+        )
+        request.META["REMOTE_ADDR"] = ips.rsplit(",", maxsplit=1)[-1]
+        return get_response(request)
+
+    return process_request
