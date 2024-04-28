@@ -64,6 +64,7 @@ if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
     INSTALLED_APPS += ["django_dbml", "fixture_magic", "debug_toolbar"]
 
 MIDDLEWARE = [
+    "jolpica_api.deployment_utils.client_ip_middleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
