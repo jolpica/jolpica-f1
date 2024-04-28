@@ -491,7 +491,9 @@ class StandingsErgastModelViewSet(ErgastModelViewSet):
         if race_round is None:
             # Set race round for paginator
             self.kwargs["race_round"] = str(
-                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(Max("number"))["number__max"]
+                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(
+                    round_number=Max("number", filter=Q(date__lte=date.today()))
+                )["round_number"]
             )
 
         if season_year and race_round:
