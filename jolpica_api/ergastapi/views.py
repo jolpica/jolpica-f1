@@ -460,7 +460,43 @@ class LapViewSet(ErgastModelViewSet):
         )
 
 
-class DriverStandingViewSet(ErgastModelViewSet):
+class StandingsErgastModelViewSet(ErgastModelViewSet):
+    required_params = ["season_year"]
+    order_by = ["position"]
+
+    def get_criteria_filters(
+        self,
+        season_year=None,
+        race_round=None,
+        constructor_standings_position=None,
+        driver_standings_position=None,
+        format=None,
+        **kwargs,
+    ) -> Q:  # type: ignore
+        filters = super().get_criteria_filters(**kwargs)
+        season_year, race_round = self.resolve_relative_filters(season_year, race_round)
+
+        if constructor_standings_position:
+            filters &= Q(position=constructor_standings_position)
+        elif driver_standings_position:
+            filters &= Q(position=driver_standings_position)
+
+        if race_round is None:
+            # Set race round for paginator
+            self.kwargs["race_round"] = str(
+                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(Max("number"))["number__max"]
+            )
+
+        if season_year and race_round:
+            filters &= Q(year=season_year) & Q(round__number=race_round)
+        elif season_year:
+            filters &= Q(season__year=season_year)
+        elif season_year is None:
+            filters &= Q(season__isnull=False)
+        return filters
+
+
+class DriverStandingViewSet(StandingsErgastModelViewSet):
     serializer_class = serializers.DriverStandingSerializer
     lookup_field = "driver_standings_position"
 
@@ -471,29 +507,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
     query_season = "season__"
     query_round = "round__"
 
-    required_params = ["season_year"]
-    order_by = ["position"]
-
-    def get_criteria_filters(
-        self, season_year=None, race_round=None, driver_standings_position=None, format=None, **kwargs
-    ) -> Q:  # type: ignore
-        filters = super().get_criteria_filters(**kwargs)
-        season_year, race_round = self.resolve_relative_filters(season_year, race_round)
-
-        if driver_standings_position:
-            filters &= Q(position=driver_standings_position)
-
-        if season_year and race_round:
-            filters &= Q(year=season_year) & Q(round__number=race_round)
-        elif season_year:
-            filters &= Q(season__year=season_year)
-        return filters
-
     def get_queryset(self) -> QuerySet:
-        if self.kwargs.get("race_round") is None:
-            self.kwargs["race_round"] = str(
-                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(Max("number"))["number__max"]
-            )
         return (
             super()
             .get_queryset()
@@ -514,7 +528,7 @@ class DriverStandingViewSet(ErgastModelViewSet):
         )
 
 
-class ConstructorStandingViewSet(ErgastModelViewSet):
+class ConstructorStandingViewSet(StandingsErgastModelViewSet):
     serializer_class = serializers.ConstructorStandingSerializer
     lookup_field = "constructor_standings_position"
 
@@ -525,27 +539,5 @@ class ConstructorStandingViewSet(ErgastModelViewSet):
     query_season = "season__"
     query_round = "round__"
 
-    required_params = ["season_year"]
-    order_by = ["position"]
-
-    def get_criteria_filters(
-        self, season_year=None, race_round=None, constructor_standings_position=None, format=None, **kwargs
-    ) -> Q:  # type: ignore
-        filters = super().get_criteria_filters(**kwargs)
-        season_year, race_round = self.resolve_relative_filters(season_year, race_round)
-
-        if constructor_standings_position:
-            filters &= Q(position=constructor_standings_position)
-
-        if season_year and race_round:
-            filters &= Q(year=season_year) & Q(round__number=race_round)
-        elif season_year:
-            filters &= Q(season__year=season_year)
-        return filters
-
     def get_queryset(self) -> QuerySet:
-        if self.kwargs.get("race_round") is None:
-            self.kwargs["race_round"] = str(
-                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(Max("number"))["number__max"]
-            )
         return super().get_queryset().prefetch_related("team")
