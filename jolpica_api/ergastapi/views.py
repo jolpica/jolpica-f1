@@ -7,7 +7,10 @@ from django.views.decorators.cache import cache_page
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Season, Session, SessionType, Team
 from rest_framework import permissions, viewsets  # noqa: F401
+from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
+from rest_framework.request import Request
+from rest_framework.response import Response
 
 from jolpica_api.settings import DEPLOYMENT_ENV
 
@@ -15,6 +18,27 @@ from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
 
 CACHE_TIME_SECONDS = 5 * 60 if DEPLOYMENT_ENV == "PROD" else 15
+
+
+@api_view()
+def api_root_view(request: Request) -> Response:
+    return Response(
+        {
+            "season": request.build_absolute_uri("f1/seasons"),
+            "circuit": request.build_absolute_uri("f1/circuits"),
+            "race": request.build_absolute_uri("f1/2023/races"),
+            "constructor": request.build_absolute_uri("f1/2023/constructors"),
+            "driver": request.build_absolute_uri("f1/2023/drivers"),
+            "result": request.build_absolute_uri("f1/2023/results"),
+            "sprint": request.build_absolute_uri("f1/2023/sprint"),
+            "qualifying": request.build_absolute_uri("f1/2023/qualifying"),
+            "pitstop": request.build_absolute_uri("f1/2023/1/pitstops"),
+            "lap": request.build_absolute_uri("f1/2023/1/laps"),
+            "driverstanding": request.build_absolute_uri("f1/2023/driverstandings"),
+            "constructorstanding": request.build_absolute_uri("f1/2023/driverstandings"),
+            "status": request.build_absolute_uri("f1/status"),
+        }
+    )
 
 
 @method_decorator(
