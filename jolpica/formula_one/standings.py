@@ -420,12 +420,10 @@ class SeasonData:
         return standings  # type: ignore
 
     @overload
-    def generate_standings(self, grouping_type: Literal[Group.DRIVER]) -> list[DriverChampionship]:
-        ...
+    def generate_standings(self, grouping_type: Literal[Group.DRIVER]) -> list[DriverChampionship]: ...
 
     @overload
-    def generate_standings(self, grouping_type: Literal[Group.TEAM]) -> list[TeamChampionship]:
-        ...
+    def generate_standings(self, grouping_type: Literal[Group.TEAM]) -> list[TeamChampionship]: ...
 
     def generate_standings(self, grouping_type: Group) -> list:
         ordered_sessions = sorted(self.session_datas, key=lambda x: (x.round_number, x.session_number))
