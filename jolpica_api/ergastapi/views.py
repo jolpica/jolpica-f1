@@ -5,15 +5,15 @@ from django.db.models.query import QuerySet
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django_ratelimit.decorators import ratelimit
-from jolpica.ergast.models import Status
-from jolpica.formula_one.models import Season, Session, SessionType, Team
-from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
 from rest_framework.request import Request
 from rest_framework.response import Response
 
+from jolpica.ergast.models import Status
+from jolpica.formula_one.models import Season, Session, SessionType, Team
+from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica_api.settings import DEPLOYMENT_ENV
 
 from . import pagination, serializers

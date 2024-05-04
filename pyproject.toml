@@ -11,24 +11,24 @@ python = ">=3.9,<3.13"
 
 Django = "^4.2.11"
 django-environ = "^0.11.2"
+django-ratelimit = "^4.1.0"
+django-redis = "^5.4.0"
 django-storages = "^1.14.2"
 djangorestframework = "^3.14.0"
 gunicorn = "^22.0.0"
 psycopg = "^3.1.12"
 requests = "^2.31.0"
 uvicorn = "^0.24.0.post1"
-django-redis = "^5.4.0"
-django-ratelimit = "^4.1.0"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.6.0"                                                            # Generation of dbml file
+django-debug-toolbar = "^4.3.0"
 django-fixture-magic = "^0.1.5"                                                   # Generation of fixture file
 django-stubs = { extras = ["compatible-mypy"], version = "^4.2.6" }
 djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.14.3" }
 mypy = { extras = ["dmypy"], version = "^1.7.0" }
 pytest-django = "^4.5.2"
-ruff = "^0.1.3"
-django-debug-toolbar = "^4.3.0"
+ruff = "^0.4.3"
 
 [tool.poetry.group.local.dependencies]
 # Only for local development e.g. Jupyter notebook
@@ -60,13 +60,15 @@ django_settings_module = "jolpica_api.settings"
 
 
 [tool.ruff]
-ignore-init-module-imports = true
+extend-exclude = ["**/migrations", "jolpica/ergast/*"]
 line-length = 120
-src = ["src"]
+src = ["jolpica", "jolpica_api"]
 target-version = "py310"
 
-extend-exclude = ["**/migrations", "jolpica/ergast/*"]
+[tool.ruff.lint]
 ignore = ["TRY300", "TRY003", "RUF012"]
+ignore-init-module-imports = true
+isort.known-first-party = ["jolpica", "jolpica_api"]
 select = [
     "RUF", # Ruff specific
     "I",   # isort - Import sorting
@@ -80,7 +82,7 @@ select = [
 
 pydocstyle.convention = "google"
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "**/tests/*.py" = ["D", "S", "E501"]
 
 
