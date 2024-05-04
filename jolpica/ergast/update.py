@@ -98,7 +98,7 @@ class ErgastUpdater:
                             if row[field] == "\\N":
                                 row[field] = None
                             if model_field.get_internal_type() == "ForeignKey":
-                                related_model = apps.get_model("ergast", model_field.related_model()._meta.model_name)
+                                # related_model = apps.get_model("ergast", model_field.related_model()._meta.model_name)
                                 # row[field] = related_model.objects.get(pk=row[field])
                                 new_row[field + "_id"] = int(row[field])
                             else:

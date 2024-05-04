@@ -10,7 +10,7 @@ class ListAdminMixin:
                 "raceId__year__year",
                 "raceId__round",
             ]
-        super(ListAdminMixin, self).__init__(model, admin_site)
+        super().__init__(model, admin_site)
 
 
 models = apps.get_app_config("ergast").get_models()
