@@ -5,6 +5,8 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal, overload
 
+from django.db.models import Count
+
 from .models import (
     ChampionshipAdjustment,
     ChampionshipAdjustmentType,
@@ -299,11 +301,11 @@ class SeasonData:
     @classmethod
     def from_season(cls, season: Season) -> SeasonData:
         session_datas = []
-        for round in season.rounds.all():
-            if round.number is None:
+        for round in season.rounds.all().annotate(round_entries_count=Count("round_entries")):
+            if round.number is None or round.round_entries_count == 0:
                 continue
             for session in round.sessions.filter(
-                point_system__gt=1  # Assumption that point system with pk 1 is the only non-point system
+                point_system__gt=1,  # Assumption that point system with pk 1 is the only non-point system
             ):
                 if session.number is None:
                     continue
