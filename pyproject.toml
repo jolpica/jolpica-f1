@@ -18,7 +18,7 @@ djangorestframework = "^3.14.0"
 gunicorn = "^22.0.0"
 psycopg = "^3.1.12"
 requests = "^2.31.0"
-uvicorn = "^0.24.0.post1"
+uvicorn = "^0.29"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.6.0"                                                            # Generation of dbml file
@@ -39,7 +39,7 @@ notebook = "^7.0.6"
 [tool.poetry.group.import.dependencies]
 # Only used in import scripts
 pandas = "^2.1.1"
-tqdm = "^4.66.1"
+tqdm = "^4.66.3"
 
 
 [tool.poetry.group.deploy.dependencies]
