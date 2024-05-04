@@ -2,6 +2,8 @@ from datetime import timedelta
 from typing import Any
 
 from django.db.models import QuerySet
+from rest_framework import serializers
+
 from jolpica.formula_one.models import (
     ChampionshipAdjustmentType,
     Circuit,
@@ -18,7 +20,6 @@ from jolpica.formula_one.models import (
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica.formula_one.models.session import SessionStatus
 from jolpica.formula_one.utils import format_timedelta
-from rest_framework import serializers
 
 
 class ErgastModelSerializer(serializers.ModelSerializer):
