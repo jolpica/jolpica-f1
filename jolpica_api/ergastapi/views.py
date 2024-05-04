@@ -7,6 +7,7 @@ from django.views.decorators.cache import cache_page
 from django_ratelimit.decorators import ratelimit
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Season, Session, SessionType, Team
+from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from rest_framework import permissions, viewsets  # noqa: F401
 from rest_framework.decorators import api_view
 from rest_framework.exceptions import ValidationError
@@ -470,6 +471,7 @@ class LapViewSet(ErgastModelViewSet):
 class StandingsErgastModelViewSet(ErgastModelViewSet):
     required_params = ["season_year"]
     order_by = ["position"]
+    standings_model: TeamChampionship | DriverChampionship
 
     def get_criteria_filters(
         self,
@@ -490,10 +492,10 @@ class StandingsErgastModelViewSet(ErgastModelViewSet):
 
         if race_round is None:
             # Set race round for paginator
+            standings_model: TeamChampionship | DriverChampionship = self.serializer_class.Meta.model
+
             self.kwargs["race_round"] = str(
-                Season.objects.get(year=self.kwargs.get("season_year")).rounds.aggregate(
-                    round_number=Max("number", filter=Q(date__lte=date.today()))
-                )["round_number"]
+                standings_model.objects.filter(season__year=self.kwargs.get("season_year")).first().round_number
             )
 
         if season_year and race_round:
