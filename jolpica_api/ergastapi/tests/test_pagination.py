@@ -1,6 +1,7 @@
 import pytest
-from jolpica.formula_one.models import Circuit, Driver, Round, Season, SessionEntry, SessionType, Team
 from rest_framework.test import APIClient
+
+from jolpica.formula_one.models import Circuit, Driver, Round, Season, SessionEntry, SessionType, Team
 
 
 @pytest.mark.parametrize("use_json", [True, False])
