@@ -149,9 +149,10 @@ endpoints = {
     ],
 }
 
-
+base_folder = Path("tests/fixtures/ergast_responses")
+base_folder.mkdir(exist_ok=True)
 for endpoint_type, test_urls in tqdm(endpoints.items()):
-    folder = Path("tests/fixtures/ergast_responses") / endpoint_type
+    folder = base_folder / endpoint_type
     folder.mkdir(exist_ok=True)
     for url in tqdm(test_urls, leave=False):
         file_path = folder / url.replace("/", "@").replace("?", "^")
