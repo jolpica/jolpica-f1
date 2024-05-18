@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "knox",
     "jolpica.ergast",
     "jolpica.formula_one",
+    "jolpica_api.auth",
     "jolpica_api.ergastapi",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
