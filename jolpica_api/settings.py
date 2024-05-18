@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.gis",
     "rest_framework",
+    "knox",
     "jolpica.ergast",
     "jolpica.formula_one",
     "jolpica_api.ergastapi",
@@ -201,8 +202,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # DJANGO REST FRAMEWORK
-# Pagination settings
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 30,
+}
+
+# django-rest-knox https://jazzband.github.io/django-rest-knox/settings/
+REST_KNOX = {
+    "TOKEN_TTL": None,
+    "TOKEN_PREFIX": "jolp",
 }
