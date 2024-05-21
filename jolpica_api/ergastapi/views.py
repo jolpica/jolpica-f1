@@ -16,8 +16,8 @@ from jolpica.formula_one.models import Season, Session, SessionType, Team
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica_api.settings import DEPLOYMENT_ENV
 
+from ..authentication.throttles import ErgastLongThrottle, ErgastShortThrottle
 from . import pagination, serializers
-from .ratelimits import ErgastLongThrottle, ErgastShortThrottle
 from .status_mapping import ERGAST_STATUS_MAPPING
 
 CACHE_TIME_SECONDS = 60 * 60 if DEPLOYMENT_ENV == "PROD" else 15
