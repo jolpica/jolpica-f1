@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class RatelimitThrottle(BaseThrottle):
-    group = None
+    group: str
 
     def get_ratelimit(self, request: Request, view: APIView) -> tuple[int, int] | None:
         """Get the allowed rate limit for the request
@@ -37,7 +37,7 @@ class RatelimitThrottle(BaseThrottle):
 class ErgastLongThrottle(RatelimitThrottle):
     group = "ergast"
 
-    def get_ratelimit(self, request: Request, view: APIView) -> tuple[int, int]:
+    def get_ratelimit(self, request: Request, view: APIView) -> tuple[int, int] | None:
         if request.user.is_anonymous:
             # 500 per hour
             return (500, 60 * 60)
@@ -47,7 +47,7 @@ class ErgastLongThrottle(RatelimitThrottle):
 class ErgastShortThrottle(RatelimitThrottle):
     group = "ergast"
 
-    def get_ratelimit(self, request: Request, view: APIView) -> tuple[int, int]:
+    def get_ratelimit(self, request: Request, view: APIView) -> tuple[int, int] | None:
         if request.user.is_anonymous:
             # 4 per second
             return (1, 10)
