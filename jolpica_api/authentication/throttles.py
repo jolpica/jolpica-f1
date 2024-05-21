@@ -50,5 +50,5 @@ class ErgastShortThrottle(RatelimitThrottle):
     def get_ratelimit(self, request: Request, view: APIView) -> tuple[int, int] | None:
         if request.user.is_anonymous:
             # 4 per second
-            return (1, 10)
+            return (4, 1)
         return None
