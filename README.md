@@ -54,3 +54,7 @@ To run tests after a migration change you must run with the `--create-db` flag t
 
 To run the tests
 ```pytest```
+
+## Reporting Bugs / Contributing
+
+For information on contributing to this project please read the [contributing guidelines](CONTRIBUTING.md).
