@@ -1,8 +1,9 @@
 from datetime import timedelta
-from typing import Any
+from typing import Any, Optional
 
 from django.db.models import QuerySet
 from rest_framework import serializers
+from rest_framework.fields import empty
 
 from jolpica.formula_one.models import (
     ChampionshipAdjustmentType,
@@ -12,6 +13,7 @@ from jolpica.formula_one.models import (
     PitStop,
     Round,
     RoundEntry,
+    RoundType,
     Season,
     SessionEntry,
     SessionType,
@@ -75,18 +77,6 @@ class BaseRaceSerializer(ErgastModelSerializer):
         else:
             return None
 
-    class Meta:
-        model = Round
-        fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
-
-
-class RaceSerializer(BaseRaceSerializer):
-    FirstPractice = serializers.SerializerMethodField(method_name="get_first_practice")
-    SecondPractice = serializers.SerializerMethodField(method_name="get_second_practice")
-    ThirdPractice = serializers.SerializerMethodField(method_name="get_third_practice")
-    Qualifying = serializers.SerializerMethodField(method_name="get_qualifying")
-    Sprint = serializers.SerializerMethodField(method_name="get_sprint")
-
     def get_session_date_time(self, race: Round, session_type: SessionType) -> dict | None:
         session = None
         for sess in race.sessions.all():
@@ -118,6 +108,44 @@ class RaceSerializer(BaseRaceSerializer):
     def get_sprint(self, race: Round):
         return self.get_session_date_time(race, SessionType.SPRINT_RACE)
 
+    def get_sprint_qualifying(self, race: Round):
+        return self.get_session_date_time(race, SessionType.SPRINT_QUALIFYING1)
+
+
+    class Meta:
+        model = Round
+        fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
+
+
+class ListRaceSerializer(serializers.ListSerializer):
+    def to_representation(self, data: list[Round]) -> dict:
+        races = list()
+        for _round in data:
+            if _round.is_sprint_format:
+                if _round.season.year in (2021, 2022):
+                    weekend_format = RoundType.SPRINT_V1
+                elif _round.season.year == 2023:
+                    weekend_format = RoundType.SPRINT_V2
+                elif _round.season.year >= 2024:
+                    weekend_format = RoundType.SPRINT_V3
+            else:
+                weekend_format = RoundType.CONVENTIONAL
+
+            races.append(RaceSerializer(round_type=weekend_format).to_representation(_round))
+
+        return races
+
+
+class RaceSerializer(BaseRaceSerializer):
+    FirstPractice = serializers.SerializerMethodField(method_name="get_first_practice")
+    SecondPractice = serializers.SerializerMethodField(method_name="get_second_practice")
+    ThirdPractice = serializers.SerializerMethodField(method_name="get_third_practice")
+    Qualifying = serializers.SerializerMethodField(method_name="get_qualifying")
+    Sprint = serializers.SerializerMethodField(method_name="get_sprint")
+    SprintQualifying = serializers.SerializerMethodField(method_name="get_sprint_qualifying")
+    # Sprint shooutout is a qualifying session. We can reuse the same method because it's the same session type.
+    SprintShootout = serializers.SerializerMethodField(method_name="get_sprint_qualifying")
+
     class Meta:
         model = Round
         fields = [
@@ -127,7 +155,32 @@ class RaceSerializer(BaseRaceSerializer):
             "ThirdPractice",
             "Qualifying",
             "Sprint",
+            "SprintQualifying",
+            "SprintShootout"
         ]
+        list_serializer_class = ListRaceSerializer
+
+    def __init__(self, *args, round_type: RoundType = RoundType.CONVENTIONAL, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # dynamically modify fields based on round type
+        match round_type:
+            case RoundType.CONVENTIONAL:
+                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
+                                      "FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"])
+            case RoundType.SPRINT_V1:
+                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
+                                      "FirstPractice", "SecondPractice", "Qualifying", "Sprint"])
+            case RoundType.SPRINT_V2:
+                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
+                                      "FirstPractice", "Qualifying", "Sprint", "SprintShootout"])
+            case RoundType.SPRINT_V3:
+                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
+                                      "FirstPractice", "Qualifying", "Sprint", "SprintQualifying"])
+
+        existing_fields = set(self.fields)
+        for field_name in (existing_fields - allowed_fields):
+            self.fields.pop(field_name)
 
 
 class StatusSerializer(ErgastModelSerializer):
