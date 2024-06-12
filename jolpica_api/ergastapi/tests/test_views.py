@@ -33,7 +33,22 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
         response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 200
 
+    # fetch the same data without the .json suffix and ensure that it matches exactly,
+    # except for the difference in the URL itself
+    # this is necessessary because the router uses complicated regexes to match the endpoint
+    # which may cause differences between the two responses if not handled correctly
+    html_response = client.get(f"/ergast/f1/{endpoint}".replace(".json", ""), follow=True)
+    # we need follow=True because the non-json endpoint will redirect from no trailing slash to trailing slash
+    assert html_response.status_code == 200
+
     result = response.json()
+    html_result = html_response.json()
+    # replace the last trailing slash with .json
+    html_result["MRData"]["url"] = re.sub(r"/(\?.*)?$", ".json", html_result["MRData"]["url"])
+
+    assert result == html_result
+
+    # continue to validate the response data itself agains the expected test result
 
     # Special case for results data, allow text time to be off by 1 millisecond
     # This is because in ergast the millis time and text based time is inconsistent
