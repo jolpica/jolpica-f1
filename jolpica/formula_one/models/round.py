@@ -11,15 +11,6 @@ if TYPE_CHECKING:
     from .managed_views import DriverChampionship, TeamChampionship
 
 
-class RoundType(models.TextChoices):
-    """The type of round"""
-
-    CONVENTIONAL = "C"
-    SPRINT_V1 = "S1"
-    SPRINT_V2 = "S2"
-    SPRINT_V3 = "S3"
-
-
 class Round(models.Model):
     """Race event information relevent to all sessions"""
 

@@ -13,7 +13,6 @@ from jolpica.formula_one.models import (
     PitStop,
     Round,
     RoundEntry,
-    RoundType,
     Season,
     SessionEntry,
     SessionType,
@@ -123,15 +122,15 @@ class ListRaceSerializer(serializers.ListSerializer):
         for _round in data:
             if _round.is_sprint_format:
                 if _round.season.year in (2021, 2022):
-                    weekend_format = RoundType.SPRINT_V1
+                    session_fields = ["FirstPractice", "SecondPractice", "Qualifying", "Sprint"]
                 elif _round.season.year == 2023:
-                    weekend_format = RoundType.SPRINT_V2
+                    session_fields = ["FirstPractice", "Qualifying", "Sprint", "SprintShootout"]
                 elif _round.season.year >= 2024:
-                    weekend_format = RoundType.SPRINT_V3
+                    session_fields = ["FirstPractice", "Qualifying", "Sprint", "SprintQualifying"]
             else:
-                weekend_format = RoundType.CONVENTIONAL
+                session_fields = ["FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"]
 
-            races.append(RaceSerializer(round_type=weekend_format).to_representation(_round))
+            races.append(RaceSerializer(session_fields=session_fields).to_representation(_round))
 
         return races
 
@@ -160,23 +159,13 @@ class RaceSerializer(BaseRaceSerializer):
         ]
         list_serializer_class = ListRaceSerializer
 
-    def __init__(self, *args, round_type: RoundType = RoundType.CONVENTIONAL, **kwargs):
+    def __init__(self, *args, session_fields: None | list[str] = None, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # dynamically modify fields based on round type
-        match round_type:
-            case RoundType.CONVENTIONAL:
-                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
-                                      "FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"])
-            case RoundType.SPRINT_V1:
-                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
-                                      "FirstPractice", "SecondPractice", "Qualifying", "Sprint"])
-            case RoundType.SPRINT_V2:
-                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
-                                      "FirstPractice", "Qualifying", "Sprint", "SprintShootout"])
-            case RoundType.SPRINT_V3:
-                allowed_fields = set([*BaseRaceSerializer.Meta.fields,
-                                      "FirstPractice", "Qualifying", "Sprint", "SprintQualifying"])
+        # dynamically modify fields
+        if session_fields is None:
+            session_fields = list()
+        allowed_fields = set([*BaseRaceSerializer.Meta.fields, *session_fields])
 
         existing_fields = set(self.fields)
         for field_name in (existing_fields - allowed_fields):
