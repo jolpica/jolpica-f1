@@ -76,7 +76,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
 
     if re.match(r"2023(/(next|last))?(/races)?\.json$", endpoint):
         # Ergast doesn't properly support sprint shootout
-        for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
+        for race_data in result["MRData"]["RaceTable"]["Races"]:
             if 'Sprint' in race_data:
                 assert 'SprintShootout' in race_data
                 race_data['SecondPractice'] = race_data['SprintShootout']
@@ -84,7 +84,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
 
     if re.match(r"2024(/(next|last))?(/races)?\.json$", endpoint):
         # Ergast doesn't properly support sprint qualifying
-        for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
+        for race_data in result["MRData"]["RaceTable"]["Races"]:
             if 'Sprint' in race_data:
                 assert 'SprintQualifying' in race_data
                 race_data['SecondPractice'] = race_data['SprintQualifying']
