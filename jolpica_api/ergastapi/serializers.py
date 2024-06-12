@@ -165,7 +165,7 @@ class DriverSerializer(ErgastModelSerializer):
 
 
 class ListResultsSerializer(serializers.ListSerializer):
-    def to_representation(self, data: QuerySet[SessionEntry]) -> Any:
+    def to_representation(self, data: list[SessionEntry]) -> Any:
         is_single = False
         is_qualifying = self.child.results_list_name == "QualifyingResults"
         if isinstance(data, SessionEntry):
@@ -281,7 +281,7 @@ class SprintResultsSerializer(RaceResultsSerializer):
 
 
 class ListQualifyingSerializer(serializers.ListSerializer):
-    def to_representation(self, round_entries: QuerySet[RoundEntry]) -> Any:
+    def to_representation(self, round_entries: list[RoundEntry]) -> Any:
         is_single = False
         if isinstance(round_entries, RoundEntry):
             round_entries = (
@@ -350,7 +350,7 @@ class QualifyingResultsSerializer(ErgastModelSerializer):
 
 
 class ListPitStopSerializer(serializers.ListSerializer):
-    def to_representation(self, pit_stops: QuerySet[PitStop]) -> Any:
+    def to_representation(self, pit_stops: list[PitStop]) -> Any:
         is_single = False
         if isinstance(pit_stops, PitStop):
             pit_stops = (
@@ -399,7 +399,7 @@ class PitStopSerializer(ErgastModelSerializer):
 
 
 class ListLapSerializer(serializers.ListSerializer):
-    def to_representation(self, laps: QuerySet[Lap]) -> Any:
+    def to_representation(self, laps: list[Lap]) -> Any:
         is_single = False
         if isinstance(laps, Lap):
             laps = Lap.objects.filter(pk=laps.pk).select_related("session_entry__round_entry__round").distinct()
