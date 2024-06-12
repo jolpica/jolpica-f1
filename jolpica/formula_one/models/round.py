@@ -40,9 +40,6 @@ class Round(models.Model):
     def __str__(self) -> str:
         return f"{self.season.year} {self.name}"
 
-    @property
-    def is_sprint_format(self) -> bool:
-        return self.sessions.filter(type__in=[SessionType.SPRINT_RACE, SessionType.SPRINT_QUALIFYING1]).exists()
 
 class RoundEntry(models.Model):
     """All data relating to a driver racing for a specific team for a race"""

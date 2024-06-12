@@ -120,7 +120,8 @@ class ListRaceSerializer(serializers.ListSerializer):
     def to_representation(self, data: list[Round]) -> dict:
         races = list()
         for _round in data:
-            if _round.is_sprint_format:
+            # check if there is any kind of sprint sesssion and if yes, use the sprint weekend format for that year
+            if _round.sessions.filter(type__startswith="S").exists():
                 if _round.season.year in (2021, 2022):
                     session_fields = ["FirstPractice", "SecondPractice", "Qualifying", "Sprint"]
                 elif _round.season.year == 2023:
