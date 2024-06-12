@@ -71,7 +71,7 @@ endpoints = {
         "2021/last.json",
         "2021/next.json",
         "2023.json",
-        "2024.json"
+        "2024.json",
     ],
     "results": [
         "2017/99/results.json",

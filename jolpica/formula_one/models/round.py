@@ -4,8 +4,6 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
-from jolpica.formula_one.models.session import SessionType
-
 if TYPE_CHECKING:
     from . import Session, SessionEntry
     from .managed_views import DriverChampionship, TeamChampionship

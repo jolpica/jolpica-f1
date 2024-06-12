@@ -1,9 +1,8 @@
 from datetime import timedelta
-from typing import Any, Optional
+from typing import Any
 
 from django.db.models import QuerySet
 from rest_framework import serializers
-from rest_framework.fields import empty
 
 from jolpica.formula_one.models import (
     ChampionshipAdjustmentType,
@@ -110,7 +109,6 @@ class BaseRaceSerializer(ErgastModelSerializer):
     def get_sprint_qualifying(self, race: Round):
         return self.get_session_date_time(race, SessionType.SPRINT_QUALIFYING1)
 
-
     class Meta:
         model = Round
         fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
@@ -156,7 +154,7 @@ class RaceSerializer(BaseRaceSerializer):
             "Qualifying",
             "Sprint",
             "SprintQualifying",
-            "SprintShootout"
+            "SprintShootout",
         ]
         list_serializer_class = ListRaceSerializer
 
@@ -169,7 +167,7 @@ class RaceSerializer(BaseRaceSerializer):
         allowed_fields = set([*BaseRaceSerializer.Meta.fields, *session_fields])
 
         existing_fields = set(self.fields)
-        for field_name in (existing_fields - allowed_fields):
+        for field_name in existing_fields - allowed_fields:
             self.fields.pop(field_name)
 
 
