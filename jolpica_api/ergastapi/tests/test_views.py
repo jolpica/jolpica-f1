@@ -29,7 +29,14 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
         "http://testserver/ergast/f1/",
     )
 
-    with django_assert_max_num_queries(10):
+    if re.match(r"\d{4}.*$", endpoint):
+        max_queries = 30
+        # more max queries for 2021.json, 2021/races.json, ...
+        # required because the weekend type (sprint/conventional) needs to be determined for every round
+    else:
+        max_queries = 10
+
+    with django_assert_max_num_queries(max_queries):
         response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 200
 
@@ -66,6 +73,22 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
         # We add round to standings tables while ergast doesn't. remove for comparison
         if re.search(r"^[0-9]{4}/(?![0-9]{1,2}/)", endpoint):
             result["MRData"]["StandingsTable"].pop("round", "")
+
+    if re.match(r"2023(/(next|last))?(/races)?\.json$", endpoint):
+        # Ergast doesn't properly support sprint shootout
+        for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
+            if 'Sprint' in race_data:
+                assert 'SprintShootout' in race_data
+                race_data['SecondPractice'] = race_data['SprintShootout']
+                race_data.pop('SprintShootout')
+
+    if re.match(r"2024(/(next|last))?(/races)?\.json$", endpoint):
+        # Ergast doesn't properly support sprint qualifying
+        for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
+            if 'Sprint' in race_data:
+                assert 'SprintQualifying' in race_data
+                race_data['SecondPractice'] = race_data['SprintQualifying']
+                race_data.pop('SprintQualifying')
 
     assert result == expected
 
