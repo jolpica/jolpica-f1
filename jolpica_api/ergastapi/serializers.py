@@ -117,19 +117,19 @@ class BaseRaceSerializer(ErgastModelSerializer):
 class ListRaceSerializer(serializers.ListSerializer):
     def to_representation(self, data: list[Round]) -> dict:
         races = list()
-        for _round in data:
+        for round_ in data:
             # check if there is any kind of sprint sesssion and if yes, use the sprint weekend format for that year
-            if _round.sessions.filter(type__startswith="S").exists():
-                if _round.season.year in (2021, 2022):
+            if round_.sessions.filter(type__startswith="S").exists():
+                if round_.season.year in (2021, 2022):
                     session_fields = ["FirstPractice", "SecondPractice", "Qualifying", "Sprint"]
-                elif _round.season.year == 2023:
+                elif round_.season.year == 2023:
                     session_fields = ["FirstPractice", "Qualifying", "Sprint", "SprintShootout"]
-                elif _round.season.year >= 2024:
+                elif round_.season.year >= 2024:
                     session_fields = ["FirstPractice", "Qualifying", "Sprint", "SprintQualifying"]
             else:
                 session_fields = ["FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"]
 
-            races.append(RaceSerializer(session_fields=session_fields).to_representation(_round))
+            races.append(RaceSerializer(session_fields=session_fields).to_representation(round_))
 
         return races
 
