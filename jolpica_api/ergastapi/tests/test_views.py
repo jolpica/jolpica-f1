@@ -29,14 +29,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
         "http://testserver/ergast/f1/",
     )
 
-    if re.match(r"\d{4}.*$", endpoint):
-        max_queries = 30
-        # more max queries for 2021.json, 2021/races.json, ...
-        # required because the weekend type (sprint/conventional) needs to be determined for every round
-    else:
-        max_queries = 10
-
-    with django_assert_max_num_queries(max_queries):
+    with django_assert_max_num_queries(10):
         response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 200
 
