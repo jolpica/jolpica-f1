@@ -42,19 +42,19 @@ router.register("constructor[sS]tandings", views.ConstructorStandingViewSet, bas
 
 
 criteria = [
-    r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(constructors/(?P<team_ref>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(drivers/(?P<driver_ref>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(grid/(?P<grid_position>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(results/(?P<race_position>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(fastest/(?P<fastest_lap_rank>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(status/(?P<ergast_status_id>[a-zA-Z0-9_\-]+)/)(?!$)",
-    r"(laps/(?P<lap_number>[a-zA-Z0-9_\-]+)/)(?!$)",
+    r"(circuits/(?P<circuit_ref>[a-zA-Z0-9_\-]+)/)",
+    r"(constructors/(?P<team_ref>[a-zA-Z0-9_\-]+)/)",
+    r"(drivers/(?P<driver_ref>[a-zA-Z0-9_\-]+)/)",
+    r"(grid/(?P<grid_position>[a-zA-Z0-9_\-]+)/)",
+    r"(results/(?P<race_position>[a-zA-Z0-9_\-]+)/)",
+    r"(fastest/(?P<fastest_lap_rank>[a-zA-Z0-9_\-]+)/)",
+    r"(status/(?P<ergast_status_id>[a-zA-Z0-9_\-]+)/)",
+    r"(laps/(?P<lap_number>[a-zA-Z0-9_\-]+)/)",
 ]
 season_criteria = r"(?P<season_year>[0-9]{4}|current)"
 round_criteria = r"(?P<race_round>[0-9]{1,2}|next|last)"
 season_round_criteria = f"({season_criteria}/({round_criteria}/)?)?"
-regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*"
+regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*" + r"(?!$)"
 
 
 class RaceRouter(routers.DefaultRouter):

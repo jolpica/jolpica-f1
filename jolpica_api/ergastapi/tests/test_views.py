@@ -32,26 +32,8 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
     with django_assert_max_num_queries(10):
         response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 200
-
-    # fetch the same data without the .json suffix and ensure that it matches exactly,
-    # except for the difference in the URL itself
-    # this is necessessary because the router uses complicated regexes to match the endpoint
-    # which may cause differences between the two responses if not handled correctly
-    html_response = client.get(f"/ergast/f1/{endpoint}".replace(".json", ""), follow=True)
-    # we need follow=True because the non-json endpoint will redirect from no trailing slash to trailing slash
-    assert html_response.status_code == 200
-
     result = response.json()
-    html_result = html_response.json()
-    # replace the last trailing slash with .json
-    html_result["MRData"]["url"] = re.sub(r"/(\?.*)?$", ".json", html_result["MRData"]["url"])
 
-    assert result == html_result
-
-    # continue to validate the response data itself agains the expected test result
-
-    # Special case for results data, allow text time to be off by 1 millisecond
-    # This is because in ergast the millis time and text based time is inconsistent
     if re.search(r"(?i)(?:results|sprint)(?:/[0-9]+)?.json", endpoint):
         if "sprint" in endpoint:
             result_prefix = "Sprint"
@@ -64,8 +46,10 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                 race_data[f"{result_prefix}Results"], exp_race_data[f"{result_prefix}Results"]
             ):
                 if expected_data.get("positionText") in ("N", "W") and expected_data.get("status") != "Withdrew":
+                    # Ergast is inconsistent with positionText vs status
                     expected_data["positionText"] = "R"
                 if result_data.get("Time"):
+                    # Ergast is inconsistent with trailing 0s
                     expected_data["Time"]["time"] = expected_data["Time"]["time"].rstrip("0")
                     result_data["Time"]["time"] = result_data["Time"]["time"].rstrip("0")
     if re.search(r"(?i)laps(?:/[0-9]+)?.json", endpoint):
@@ -74,6 +58,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                 for k, timing_data in enumerate(laps_data["Timings"]):
                     expected_data = expected["MRData"]["RaceTable"]["Races"][i]["Laps"][j]["Timings"][k]
                     if timing_data.get("time"):
+                        # Ergast is inconsistent with trailing 0s
                         expected_data["time"] = expected_data["time"].rstrip("0")
                         timing_data["time"] = timing_data["time"].rstrip("0")
 
@@ -84,6 +69,28 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
 
     assert result == expected
 
+@pytest.mark.parametrize(
+    ["endpoint1", "endpoint2"],
+    [
+        # Check json & non-json formats return same data
+        ("circuits/monza", "circuits/monza.json"),
+        ("drivers/alonso/status/1", "drivers/alonso/status/1.json"),
+        ("2017/results/2?limit=2", "2017/results/2.json?limit=2"),
+    ],
+)
+@pytest.mark.django_db
+def test_equivalent_urls(client: APIClient, endpoint1, endpoint2):
+    response1 = client.get(f"/ergast/f1/{endpoint1}", follow=True)
+    response2 = client.get(f"/ergast/f1/{endpoint2}", follow=True)
+    assert response1.status_code == response2.status_code
+
+    result1 = response1.json()
+    result2 = response2.json()
+
+    if "MRData" in result1:
+        result1["MRData"]["url"] = result2["MRData"]["url"]
+
+    assert result1 == result2
 
 @pytest.mark.parametrize(
     "endpoint",
