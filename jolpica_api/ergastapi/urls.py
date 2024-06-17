@@ -54,7 +54,7 @@ criteria = [
 season_criteria = r"(?P<season_year>[0-9]{4}|current)"
 round_criteria = r"(?P<race_round>[0-9]{1,2}|next|last)"
 season_round_criteria = f"({season_criteria}/({round_criteria}/)?)?"
-regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*"
+regex_criteria = season_round_criteria + f"({'|'.join(criteria)})*" + r"(?!$)"
 
 
 class RaceRouter(routers.DefaultRouter):
