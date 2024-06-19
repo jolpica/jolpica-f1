@@ -30,8 +30,8 @@ jobs:
           echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
           echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
 
+          apt-get install -y --no-install-recommends binutils libproj-dev gdal-bin
+
       - name: Run Linting
-        env:
-          DATABASE_SECRET_URL: "postgres://postgres:postgres@localhost/jolpica"
         run: |
           make lint
