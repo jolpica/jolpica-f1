@@ -31,5 +31,7 @@ jobs:
           echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
 
       - name: Run Linting
+        env:
+          DATABASE_SECRET_URL: "postgres://postgres:postgres@localhost/jolpica"
         run: |
           make lint
