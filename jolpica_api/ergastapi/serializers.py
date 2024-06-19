@@ -75,6 +75,31 @@ class BaseRaceSerializer(ErgastModelSerializer):
         else:
             return None
 
+    class Meta:
+        model = Round
+        fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
+
+
+class RaceSerializer(BaseRaceSerializer):
+    class Meta:
+        model = Round
+        fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
+
+    def to_representation(self, instance: Round) -> dict:
+        representation = super().to_representation(instance)
+
+        sprint_quali_name = "SprintShootout" if instance.season.year == 2023 else "SprintQualifying"
+        sessions_dict = {
+            "FirstPractice": self.get_session_date_time(instance, SessionType.PRACTICE_ONE),
+            "SecondPractice": self.get_session_date_time(instance, SessionType.PRACTICE_TWO),
+            "ThirdPractice": self.get_session_date_time(instance, SessionType.PRACTICE_THREE),
+            "Qualifying": self.get_session_date_time(instance, SessionType.QUALIFYING_ONE),
+            "Sprint": self.get_session_date_time(instance, SessionType.SPRINT_RACE),
+            sprint_quali_name: self.get_session_date_time(instance, SessionType.SPRINT_QUALIFYING1),
+        }
+        representation.update({key: value for key, value in sessions_dict.items() if value is not None})
+        return representation
+
     def get_session_date_time(self, race: Round, session_type: SessionType) -> dict | None:
         session = None
         for sess in race.sessions.all():
@@ -90,86 +115,6 @@ class BaseRaceSerializer(ErgastModelSerializer):
             time["time"] = f"{session.time}Z"
 
         return time
-
-    def get_first_practice(self, race: Round):
-        return self.get_session_date_time(race, SessionType.PRACTICE_ONE)
-
-    def get_second_practice(self, race: Round):
-        return self.get_session_date_time(race, SessionType.PRACTICE_TWO)
-
-    def get_third_practice(self, race: Round):
-        return self.get_session_date_time(race, SessionType.PRACTICE_THREE)
-
-    def get_qualifying(self, race: Round):
-        return self.get_session_date_time(race, SessionType.QUALIFYING_ONE)
-
-    def get_sprint(self, race: Round):
-        return self.get_session_date_time(race, SessionType.SPRINT_RACE)
-
-    def get_sprint_qualifying(self, race: Round):
-        return self.get_session_date_time(race, SessionType.SPRINT_QUALIFYING1)
-
-    class Meta:
-        model = Round
-        fields = ["season", "round", "url", "raceName", "Circuit", "date", "time"]
-
-
-class ListRaceSerializer(serializers.ListSerializer):
-    def to_representation(self, data: list[Round]) -> dict:
-        races = list()
-        for round_ in data:
-            # Check if round uses sprint weekend format
-            sprint_sessions = [session for session in round_.sessions.all() if session.type.startswith("S")]
-            if len(sprint_sessions) > 0:
-                if round_.season.year in (2021, 2022):
-                    session_fields = ["FirstPractice", "SecondPractice", "Qualifying", "Sprint"]
-                elif round_.season.year == 2023:
-                    session_fields = ["FirstPractice", "Qualifying", "Sprint", "SprintShootout"]
-                elif round_.season.year >= 2024:
-                    session_fields = ["FirstPractice", "Qualifying", "Sprint", "SprintQualifying"]
-            else:
-                session_fields = ["FirstPractice", "SecondPractice", "ThirdPractice", "Qualifying"]
-
-            races.append(RaceSerializer(session_fields=session_fields).to_representation(round_))
-
-        return races
-
-
-class RaceSerializer(BaseRaceSerializer):
-    FirstPractice = serializers.SerializerMethodField(method_name="get_first_practice")
-    SecondPractice = serializers.SerializerMethodField(method_name="get_second_practice")
-    ThirdPractice = serializers.SerializerMethodField(method_name="get_third_practice")
-    Qualifying = serializers.SerializerMethodField(method_name="get_qualifying")
-    Sprint = serializers.SerializerMethodField(method_name="get_sprint")
-    SprintQualifying = serializers.SerializerMethodField(method_name="get_sprint_qualifying")
-    # Sprint shooutout is a qualifying session. We can reuse the same method because it's the same session type.
-    SprintShootout = serializers.SerializerMethodField(method_name="get_sprint_qualifying")
-
-    class Meta:
-        model = Round
-        fields = [
-            *BaseRaceSerializer.Meta.fields,
-            "FirstPractice",
-            "SecondPractice",
-            "ThirdPractice",
-            "Qualifying",
-            "Sprint",
-            "SprintQualifying",
-            "SprintShootout",
-        ]
-        list_serializer_class = ListRaceSerializer
-
-    def __init__(self, *args, session_fields: None | list[str] = None, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # dynamically modify fields
-        if session_fields is None:
-            session_fields = list()
-        allowed_fields = set([*BaseRaceSerializer.Meta.fields, *session_fields])
-
-        existing_fields = set(self.fields)
-        for field_name in existing_fields - allowed_fields:
-            self.fields.pop(field_name)
 
 
 class StatusSerializer(ErgastModelSerializer):
