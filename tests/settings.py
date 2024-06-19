@@ -1,4 +1,5 @@
 from jolpica_api.settings import *  # noqa: F403
+from jolpica_api.settings import REST_KNOX
 
 INSTALLED_APPS += ["tests"]  # noqa: F405
 
