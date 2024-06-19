@@ -3,8 +3,9 @@ format:
 	ruff check --fix-only . jolpica/ergast/*
 
 lint:
-	ruff check .
-	mypy .
+	ruff check . --no-fix
+	ruff format . --check
+	mypy --ignore-missing-imports .
 	
 run: format
 	python manage.py runserver
