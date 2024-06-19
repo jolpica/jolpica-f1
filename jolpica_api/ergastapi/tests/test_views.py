@@ -85,6 +85,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
 
     assert result == expected
 
+
 @pytest.mark.parametrize(
     ["endpoint1", "endpoint2"],
     [
@@ -107,6 +108,7 @@ def test_equivalent_urls(client: APIClient, endpoint1, endpoint2):
         result1["MRData"]["url"] = result2["MRData"]["url"]
 
     assert result1 == result2
+
 
 @pytest.mark.parametrize(
     "endpoint",
