@@ -13,13 +13,13 @@ Django = "^4.2.11"
 django-environ = "^0.11.2"
 django-ratelimit = "^4.1.0"
 django-redis = "^5.4.0"
+django-rest-knox = "^4.2.0"
 django-storages = "^1.14.2"
 djangorestframework = "^3.14.0"
 gunicorn = "^22.0.0"
 psycopg = "^3.1.12"
 requests = "^2.31.0"
 uvicorn = "^0.29"
-django-rest-knox = "^4.2.0"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.6.0"                                                            # Generation of dbml file
@@ -50,7 +50,6 @@ boto3 = "^1.34.11" # For upload via collectstatic with django-storages
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.0.0"]
 
-
 [tool.mypy]
 exclude = ["^tests", "^jolpica_api/ergastapi/*"]
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
@@ -68,7 +67,6 @@ target-version = "py310"
 
 [tool.ruff.lint]
 ignore = ["TRY300", "TRY003", "RUF012"]
-ignore-init-module-imports = true
 isort.known-first-party = ["jolpica", "jolpica_api"]
 select = [
     "RUF", # Ruff specific
