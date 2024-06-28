@@ -15,12 +15,12 @@ _**Note: Jolpica does not provide API responses as XML, only JSON. More details 
 
 For a full list of differences please see the [Issues](https://github.com/jolpica/jolpica-f1/issues) tab.
 
-- No support for XML response. Only JSON.
+- Jolpica does not provide API responses in XML; JSON only.
 - If multiple of the same criteria are specified, the last specified will be used (not a 400 response).
 - `/results`
   - `positionText` no longer has "N" as a possible value, "R" is used instead.
   - The `Time.time` key will always 3 digits after decimal points (using trailing zeros).
-- Standings requires a year to be specified.
+- Constructor and Driver standings require a year parameter to be specified.
 
 # Database Scheme
 
