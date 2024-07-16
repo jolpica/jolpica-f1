@@ -29,7 +29,7 @@ django-stubs = { extras = ["compatible-mypy"], version = "^4.2.6" }
 djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.14.3" }
 mypy = { extras = ["dmypy"], version = "^1.7.0" }
 pytest-django = "^4.5.2"
-ruff = "^0.4.3"
+ruff = ">=0.4.3"
 
 [tool.poetry.group.local.dependencies]
 # Only for local development e.g. Jupyter notebook
