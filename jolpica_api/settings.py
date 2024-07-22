@@ -15,6 +15,7 @@ from typing import Literal
 import environ  # type: ignore
 
 from .deployment_utils import get_linux_ec2_private_ip
+from .logging import LOG_CONFIG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -214,3 +215,5 @@ REST_KNOX = {
     "TOKEN_TTL": None,
     "TOKEN_PREFIX": "jolp",
 }
+
+LOGGING = LOG_CONFIG if DEPLOYMENT_ENV != "LOCAL" else None
