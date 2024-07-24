@@ -39,6 +39,8 @@ from jolpica.formula_one.models import (
     Team,
     TeamDriver,
 )
+from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
+from jolpica.formula_one.standings import Group, SeasonData
 
 
 def str_to_delta(timestamp: str | None) -> timedelta | None:
@@ -971,3 +973,20 @@ def run_import():
     print(f"SessionEntries created.\tTook {perf_counter() - start}")
 
     run_data_correction()
+
+    print("Generating Team & Driver Standings...")
+    start = perf_counter()
+    team_standings = []
+    driver_standings = []
+    for season in Season.objects.all().select_related("championship_system"):
+        season_data = SeasonData.from_season(season)
+        driver_standings.extend(season_data.generate_standings(Group.DRIVER))
+        team_standings.extend(season_data.generate_standings(Group.TEAM))
+    DriverChampionship.objects.bulk_create(
+        driver_standings,
+        update_conflicts=True,
+        unique_fields=["session_id", "driver_id"],
+        update_fields=["season", "round"],
+    )
+    TeamChampionship.objects.bulk_create(team_standings)
+    print(f"Team & Driver Standings created.\tTook {perf_counter() - start}")
