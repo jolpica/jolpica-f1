@@ -567,8 +567,8 @@ def import_rounds_and_sessions(season_map: dict, circuit_map: dict) -> dict:
                 )
             )
             session_count += 1
-        # If fp2 date make fp2 session, unless year is 2023, then a sprint quali should be created
-        if er_race.fp2_date and not (er_race.year_id == 2023 and er_race.sprint_date):
+        # If fp2 date make fp2 session, unless year is >= 2023, then a sprint quali should be created
+        if er_race.fp2_date and not (er_race.year_id >= 2023 and er_race.sprint_date):
             sessions_in_round.append(
                 Session(
                     pk=session_count,
