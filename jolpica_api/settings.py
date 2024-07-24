@@ -21,8 +21,7 @@ from .logging import LOG_CONFIG
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-READ_DOT_ENV_FILE = True  # env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-if READ_DOT_ENV_FILE:
+if env.str("DEPLOYMENT_ENV", default="LOCAL") != "PROD":
     # OS environment variables take precedence over variables from .env
     env.read_env(str(BASE_DIR / ".env"))
 
