@@ -4,6 +4,7 @@ jolpica/ergast/download
 staticfiles/
 *.tmp.json
 notebook.ipynb
+scripts/dump.sql
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
