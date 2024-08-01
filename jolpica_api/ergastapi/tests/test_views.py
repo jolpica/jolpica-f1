@@ -50,10 +50,8 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                     expected_data["positionText"] = "R"
                 if result_data.get("Time"):
                     # Ergast is inconsistent with trailing 0s
-                    expected_data["Time"]["time"] = expected_data["Time"]["time"].rstrip(
-                        "0")
-                    result_data["Time"]["time"] = result_data["Time"]["time"].rstrip(
-                        "0")
+                    expected_data["Time"]["time"] = expected_data["Time"]["time"].rstrip("0")
+                    result_data["Time"]["time"] = result_data["Time"]["time"].rstrip("0")
     if re.search(r"(?i)laps(?:/[0-9]+)?.json", endpoint):
         for i, race_data in enumerate(result["MRData"]["RaceTable"]["Races"]):
             for j, laps_data in enumerate(race_data["Laps"]):
@@ -61,8 +59,7 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                     expected_data = expected["MRData"]["RaceTable"]["Races"][i]["Laps"][j]["Timings"][k]
                     if timing_data.get("time"):
                         # Ergast is inconsistent with trailing 0s
-                        expected_data["time"] = expected_data["time"].rstrip(
-                            "0")
+                        expected_data["time"] = expected_data["time"].rstrip("0")
                         timing_data["time"] = timing_data["time"].rstrip("0")
 
     if re.search(r"(?i)(?:driverstandings|constructorstandings)(?:/[0-9]+)?.json", endpoint):
@@ -126,8 +123,7 @@ def test_equivalent_urls(client: APIClient, endpoint1, endpoint2):
 def test_missing_required_parameters(client: APIClient, endpoint):
     response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 400
-    assert response.json()["detail"].startswith(
-        "Bad Request: Missing one of the required parameters")
+    assert response.json()["detail"].startswith("Bad Request: Missing one of the required parameters")
 
 
 @pytest.mark.parametrize(
@@ -141,8 +137,7 @@ def test_missing_required_parameters(client: APIClient, endpoint):
 def test_endpoint_does_not_support_final_filter(client: APIClient, endpoint):
     response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 400
-    assert response.json()["detail"].startswith(
-        "Bad Request: Endpoint does not support final filter")
+    assert response.json()["detail"].startswith("Bad Request: Endpoint does not support final filter")
 
 
 @pytest.mark.parametrize(
@@ -158,8 +153,7 @@ def test_endpoint_does_not_support_final_filter(client: APIClient, endpoint):
 def test_unsupported_filter_for_endpoint(client: APIClient, endpoint):
     response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 400
-    assert response.json()["detail"].startswith(
-        "Bad Request: Unsupported filter for endpoint")
+    assert response.json()["detail"].startswith("Bad Request: Unsupported filter for endpoint")
 
 
 @pytest.mark.parametrize(
