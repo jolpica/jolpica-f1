@@ -235,6 +235,7 @@ class RaceViewSet(ErgastModelViewSet):
 class StatusViewSet(ErgastModelViewSet):
     serializer_class = serializers.StatusSerializer
     lookup_field = "ergast_status_id"
+    lookup_value_regex = r"[0-9]+"
 
     query_session_entries = ""
     query_team = "round_entry__team_driver__team__"
@@ -289,6 +290,7 @@ class DriverViewSet(ErgastModelViewSet):
 class ResultViewSet(ErgastModelViewSet):
     serializer_class = serializers.RaceResultsSerializer
     lookup_field = "race_position"
+    lookup_value_regex = r"[0-9]+"
 
     query_session_entries = ""
     query_team = "round_entry__team_driver__team__"
@@ -323,6 +325,7 @@ class ResultViewSet(ErgastModelViewSet):
 class SprintViewSet(ResultViewSet):
     serializer_class = serializers.SprintResultsSerializer
     lookup_field = "sprint_race_position"
+    lookup_value_regex = r"[0-9]+"
 
     result_session_type = SessionType.SPRINT_RACE
 
@@ -348,6 +351,7 @@ class SprintViewSet(ResultViewSet):
 class QualifyingViewSet(ErgastModelViewSet):
     serializer_class = serializers.QualifyingResultsSerializer
     lookup_field = "quali_position"
+    lookup_value_regex = r"[0-9]+"
 
     query_session_entries = "session_entries__"
     query_team = "team_driver__team__"
@@ -400,6 +404,7 @@ class QualifyingViewSet(ErgastModelViewSet):
 class PitStopViewSet(ErgastModelViewSet):
     serializer_class = serializers.PitStopSerializer
     lookup_field = "pitstop_number"
+    lookup_value_regex = r"[0-9]+"
 
     query_session_entries = "session_entry__"
     query_team = "session_entry__round_entry__team_driver__team__"
@@ -436,6 +441,7 @@ class PitStopViewSet(ErgastModelViewSet):
 class LapViewSet(ErgastModelViewSet):
     serializer_class = serializers.LapSerializer
     lookup_field = "lap_number"
+    lookup_value_regex = r"[0-9]+"
 
     query_session_entries = "session_entry__"
     query_team = "session_entry__round_entry__team_driver__team__"
@@ -468,6 +474,7 @@ class LapViewSet(ErgastModelViewSet):
 
 
 class StandingsErgastModelViewSet(ErgastModelViewSet):
+    lookup_value_regex = r"[0-9]+"
     required_params = ["season_year"]
     order_by = ["position"]
     standings_model: TeamChampionship | DriverChampionship
