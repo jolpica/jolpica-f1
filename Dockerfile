@@ -1,4 +1,4 @@
-FROM python:3.11-bullseye as venv
+FROM python:3.11-slim-bullseye as venv
 
 WORKDIR /app
 
@@ -13,13 +13,12 @@ RUN python -m venv /poetry && \
     python -m venv /venv && \
     poetry install --only=main --no-root
 
-FROM python:3.11-bullseye
+FROM python:3.11-slim-bullseye
 ARG DEPLOYMENT_ENV=BUILD
 
-# Required geo spatial librarie
+# Required geo spatial library
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-       binutils libproj-dev gdal-bin
+    apt-get install -y --no-install-recommends gdal-bin
 
 COPY --from=venv /venv /venv
 COPY . /app
