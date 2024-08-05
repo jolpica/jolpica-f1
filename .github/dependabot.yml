@@ -6,7 +6,7 @@ updates:
   - package-ecosystem: "pip"
     directory: "/"
     allow:
-      dependency-type: "production"
+      - dependency-type: "production"
     schedule:
       interval: "weekly"
     groups:
