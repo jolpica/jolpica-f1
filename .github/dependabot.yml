@@ -5,6 +5,8 @@ version: 2
 updates:
   - package-ecosystem: "pip"
     directory: "/"
+    allow:
+      dependency-type: "production"
     schedule:
       interval: "weekly"
     groups:
@@ -22,5 +24,3 @@ updates:
         update-types:
         - "patch"
         - "minor"
-    ignore:
-      - dependency-name: "debugpy"
