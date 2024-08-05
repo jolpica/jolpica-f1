@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bullseye as venv
+FROM python:3.12-slim-bullseye as venv
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN python -m venv /poetry && \
     python -m venv /venv && \
     poetry install --only=main --no-root
 
-FROM python:3.11-slim-bullseye
+FROM python:3.12-slim-bullseye
 ARG DEPLOYMENT_ENV=BUILD
 
 # Required geo spatial library
