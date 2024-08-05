@@ -1,6 +1,6 @@
-FROM mcr.microsoft.com/devcontainers/python:1-3.11-bullseye
+FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
 
-ENV POETRY_VERSION=1.8.2
+ENV POETRY_VERSION=1.8.3
 ENV PYTHONUNBUFFERED 1
 
 RUN git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git && \
@@ -10,18 +10,15 @@ ENV VIRTUAL_ENV=/home/vscode/.venv
 ENV PATH=$VIRTUAL_ENV/bin:/root/.local/bin:/home/vscode/.ebcli-virtual-env/.ebcli-virtual-env/executables:$PATH
 ENV POETRY_VIRTUALENVS_CREATE=false
 
-# Required geo spatial librarie
+# Required geo spatial library & other tools
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gdal-bin
+    && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -y --no-install-recommends gdal-bin neovim
 
 USER vscode
 RUN pip install pipx && \
     pipx install poetry==${POETRY_VERSION} && \
     python -m venv ${VIRTUAL_ENV}
-
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends neovim
 
 WORKDIR /workspaces/python-one
 COPY pyproject.toml poetry.lock ./
