@@ -84,5 +84,5 @@ for model in models:
     admin_class = type("AdminClass", (FormulaOneModelAdmin,), {})
     try:
         admin.site.register(model, admin_class)
-    except admin.sites.AlreadyRegistered:
+    except admin.sites.AlreadyRegistered:  # type: ignore
         pass
