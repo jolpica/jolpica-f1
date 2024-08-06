@@ -1,14 +1,19 @@
+Project "My Django Project" {
+Note:  '''A project with a database
+Last Updated At 08-06-2024 09:08AM UTC'''
+}
+
 Table PointSystem {
   id big_auto [pk, unique]
   reference char [null, unique]
   name char [null]
   driver_position_points positive_small_integer 
-  driver_fastest_lap positive_small_integer 
+  driver_fastest_lap positive_small_integer [default:`0`]
   team_position_points positive_small_integer 
-  team_fastest_lap positive_small_integer 
-  partial positive_small_integer 
-  shared_drive positive_small_integer 
-  is_double_points boolean 
+  team_fastest_lap positive_small_integer [default:`0`]
+  partial positive_small_integer [default:`0`]
+  shared_drive positive_small_integer [default:`0`]
+  is_double_points boolean [default:`False`]
   Note: '''Session point calculation rules'''
 }
 
@@ -32,7 +37,9 @@ Table ChampionshipAdjustment {
   driver foreign_key [null]
   team foreign_key [null]
   adjustment positive_small_integer 
-  points float [note:"Points to deduct if POINT_DEDUCTION adjustment, otherwise null", null]
+  points float [note: '''
+Points to deduct if POINT_DEDUCTION adjustment, otherwise null
+''', null]
   Note: '''Adjustments such as Disqualifications and Exclusions from Driver/Team Championships'''
 }
 ref: ChampionshipAdjustment.season > Season.id
@@ -51,8 +58,8 @@ Table DriverChampionship {
   points float 
   win_count small_integer 
   highest_finish small_integer [null]
-  is_eligible boolean 
-  adjustment_type positive_small_integer 
+  is_eligible boolean [default:`False`]
+  adjustment_type positive_small_integer [default:`0`]
   season foreign_key [null]
   round foreign_key [null]
   Note: '''DriverChampionship(id, session, driver, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)'''
@@ -74,8 +81,8 @@ Table TeamChampionship {
   points float 
   win_count small_integer 
   highest_finish small_integer [null]
-  is_eligible boolean 
-  adjustment_type positive_small_integer 
+  is_eligible boolean [default:`False`]
+  adjustment_type positive_small_integer [default:`0`]
   season foreign_key [null]
   round foreign_key [null]
   Note: '''TeamChampionship(id, session, team, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)'''
@@ -149,7 +156,7 @@ Table Round {
   date date [null]
   race_number positive_small_integer [null]
   wikipedia url [null]
-  is_cancelled boolean 
+  is_cancelled boolean [default:`False`]
   Note: '''Race event information relevent to all sessions'''
 }
 ref: Round.season > Season.id
@@ -186,7 +193,7 @@ Table Session {
   date date [null]
   time time [null]
   scheduled_laps positive_small_integer [null]
-  is_cancelled boolean 
+  is_cancelled boolean [default:`False`]
   Note: '''Information about a scheduled session where cars are on track'''
 }
 ref: Session.round > Round.id
@@ -203,7 +210,7 @@ Table SessionEntry {
   status positive_small_integer [null]
   detail char [null]
   points float [null]
-  is_eligible_for_points boolean 
+  is_eligible_for_points boolean [default:`True`]
   grid positive_small_integer [null]
   time duration [null]
   fastest_lap_rank positive_small_integer [null]
