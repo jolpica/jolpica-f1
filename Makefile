@@ -13,7 +13,7 @@ run: format
 dbml:
 	python manage.py dbml formula_one > jolpica/formula_one/models/models.dbml
 # Remove duplicate through tables
-	perl -i -0pe "s/Table (formula_one[a-zA-Z_]+).+(\n|.)+ref:.* > \1.*\n\n\n//g" jolpica/formula_one/models.dbml
+	perl -i -0pe "s/Table (formula_one[a-zA-Z_]+).+(\n|.)+ref:.* > \1.*\n\n\n//g" jolpica/formula_one/models/models.dbml
 	
 2000s-fixture:
 	python manage.py dump_object formula_one.sessionentry --query '{"session__round__season__year__gte":2000}' > tests/fixtures/2000s_session_entries.tmp.json
