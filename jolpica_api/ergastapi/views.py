@@ -501,9 +501,12 @@ class StandingsErgastModelViewSet(ErgastModelViewSet):
             # Set race round for paginator
             standings_model: TeamChampionship | DriverChampionship = self.serializer_class.Meta.model
 
-            self.kwargs["race_round"] = str(
-                standings_model.objects.filter(season__year=self.kwargs.get("season_year")).first().round_number
+            latest_standing = (
+                standings_model.objects.filter(season__year=self.kwargs.get("season_year"))
+                .order_by("round_number")
+                .first()
             )
+            self.kwargs["race_round"] = str(latest_standing.round_number) if latest_standing else None
 
         if season_year and race_round:
             filters &= Q(year=season_year) & Q(round__number=race_round)
@@ -526,6 +529,12 @@ class DriverStandingViewSet(StandingsErgastModelViewSet):
     query_round = "round__"
 
     def get_queryset(self) -> QuerySet:
+        # Filter teams based on season and round
+        teams_filter = Q()
+        if season_year := self.kwargs.get("season_year", None):
+            teams_filter &= Q(team_drivers__season__year=season_year)
+        if race_round := self.kwargs.get("race_round", None):
+            teams_filter &= Q(team_drivers__round_entries__round__number__lte=race_round)
         return (
             super()
             .get_queryset()
@@ -533,10 +542,7 @@ class DriverStandingViewSet(StandingsErgastModelViewSet):
                 Prefetch(
                     "driver__teams",
                     queryset=Team.objects.all()
-                    .filter(
-                        team_drivers__season__year=self.kwargs.get("season_year"),
-                        team_drivers__round_entries__round__number__lte=self.kwargs.get("race_round"),
-                    )
+                    .filter(teams_filter)
                     .annotate(first_round=Min("team_drivers__round_entries__round__number"))
                     .order_by("first_round")
                     .distinct(),
