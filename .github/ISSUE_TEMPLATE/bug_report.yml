@@ -1,0 +1,69 @@
+name: Bug Report
+description: Report a bug related to the use of the API (errors, broken filters, ergast differences).
+title: "[Bug]: "
+labels: ["bug", "triage"]
+projects: ["jolpica/3"]
+# assignees:
+#   - octocat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        If the issue is related to the values of data, please use the [Data Correction](https://github.com/jolpica/jolpica-f1/issues/new/choose) form.
+        Examples include incorrect field values of lap times, race dates, results.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is happening? Why is this a bug?
+      placeholder: ex. When I use the `grid` filter, it filters by finishing position instead of starting position.
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Affected URL
+      description: Please give a URL where this occurs.
+      placeholder: api.jolpi.ca/ergast/f1/2009/11/results/?offset=6&limit=1
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: How can we reproduce the bug? Are you using a specific browser / api client?
+      placeholder: |
+        ex. This occurs for all endpoints that support the grid filter. This occurs while viewing the api in my browser.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+      placeholder: |
+        ex. The results should be filtered by grid instead, in the example given miss speedy should be returned instead of mr slow.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-value
+    attributes:
+      label: Supporting Data / Screenshots
+      description: |
+        - Please do not send screenshots of json, provide the data instead.
+        - Please provide minimal examples to make the bug easier to understand.
+      placeholder: | 
+        ex. On f1/9000/1/grid/1/results.json, it returns this snippet:
+        ```
+        { "position": 1, "driver": "mr slow" }
+        ```
+        But should return this (As they started in pole despite finishing 4th):
+        ```
+        { "position": 4, "driver": "miss speedy" }
+        ```
+
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!

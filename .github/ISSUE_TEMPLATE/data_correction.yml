@@ -1,7 +1,7 @@
 name: Data Correction
-description: Report incorrect data.
+description: Report incorrect Formula 1 data returned (lap times, race results, etc).
 title: "[Data Correction]: "
-labels: ["data-correction", "triage"]
+labels: ["data", "triage"]
 projects: ["jolpica/3"]
 # assignees:
 #   - octocat
