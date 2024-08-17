@@ -26,20 +26,21 @@ CACHE_TIME_SECONDS = 60 * 60 if DEPLOYMENT_ENV == "PROD" else 15
 @cache_page(CACHE_TIME_SECONDS)
 @api_view()
 def api_root_view(request: Request) -> Response:
+    example_season = "2024"
     return Response(
         {
             "season": request.build_absolute_uri("f1/seasons"),
             "circuit": request.build_absolute_uri("f1/circuits"),
-            "race": request.build_absolute_uri("f1/2023/races"),
-            "constructor": request.build_absolute_uri("f1/2023/constructors"),
-            "driver": request.build_absolute_uri("f1/2023/drivers"),
-            "result": request.build_absolute_uri("f1/2023/results"),
-            "sprint": request.build_absolute_uri("f1/2023/sprint"),
-            "qualifying": request.build_absolute_uri("f1/2023/qualifying"),
-            "pitstop": request.build_absolute_uri("f1/2023/1/pitstops"),
-            "lap": request.build_absolute_uri("f1/2023/1/laps"),
-            "driverstanding": request.build_absolute_uri("f1/2023/driverstandings"),
-            "constructorstanding": request.build_absolute_uri("f1/2023/driverstandings"),
+            "race": request.build_absolute_uri(f"f1/{example_season}/races"),
+            "constructor": request.build_absolute_uri(f"f1/{example_season}/constructors"),
+            "driver": request.build_absolute_uri(f"f1/{example_season}/drivers"),
+            "result": request.build_absolute_uri(f"f1/{example_season}/results"),
+            "sprint": request.build_absolute_uri(f"f1/{example_season}/sprint"),
+            "qualifying": request.build_absolute_uri(f"f1/{example_season}/qualifying"),
+            "pitstop": request.build_absolute_uri(f"f1/{example_season}/1/pitstops"),
+            "lap": request.build_absolute_uri(f"f1/{example_season}/1/laps"),
+            "driverstanding": request.build_absolute_uri(f"f1/{example_season}/driverstandings"),
+            "constructorstanding": request.build_absolute_uri(f"f1/{example_season}/constructorstandings"),
             "status": request.build_absolute_uri("f1/status"),
         }
     )
