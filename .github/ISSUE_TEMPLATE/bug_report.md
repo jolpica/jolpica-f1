@@ -7,17 +7,26 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Description of the bug
+<!-- What is happening? Why is this a bug? -->
 
-**To Reproduce**
-If applicable, include the full endpoint you queried and what program you used.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## To Reproduce
+<!-- 
+- Where does this happen (URL)? 
+- Does it always happen, or is it conditional?
+-->
+Url: `api.jolpi.ca/ergast/f1/...`
+How is the api accessed: <!-- ex. chrome browser, postman, python requests library, ... -->
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## Expected behaviour
+<!-- What should be happening instead of the current behaviour? -->
 
-**Additional context**
-Add any other context about the problem here.
+
+## Data / Screenshots
+<!-- 
+ - Please do not send screenshots of json, provide the data instead.
+ - Please provide minimal examples to make the bug easier to understand.
+-->
+
+

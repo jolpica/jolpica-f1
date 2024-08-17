@@ -1,0 +1,73 @@
+name: Data Correction
+description: Report incorrect data.
+title: "[Data Correction]: "
+labels: ["data-correction", "triage"]
+projects: ["jolpica/3"]
+# assignees:
+#   - octocat
+body:
+  - type: dropdown
+    id: endpoint
+    attributes:
+      label: Endpoint
+      description: What endpoint of api.jolpi.ca were you using?
+      multiple: true
+      options:
+        - circuits
+        - constructorStandings
+        - constructors
+        - driverStandings
+        - drivers
+        - laps
+        - pitstops
+        - qualifying
+        - races
+        - results
+        - seasons
+        - sprint
+        - status
+        - Other
+      default: 0
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: |
+        On what URL does this bad data appear?
+        Please provide a minimal example using offsets and limits if possible.
+      placeholder: api.jolpi.ca/ergast/f1/2009/11/results/?offset=6&limit=1
+    validations:
+      required: true
+  - type: textarea
+    id: current-value
+    attributes:
+      label: What is the current Value?
+      description: Formatted as code, please write any free text in the description.
+      render: shell
+      placeholder: |
+        { "name": "Toad Circuit" }
+    validations:
+      required: true
+  - type: textarea
+    id: expected-value
+    attributes:
+      label: What should the value be?
+      description: Formatted as code, please write any free text in the description.
+      render: shell
+      placeholder: | 
+        { "name": "Mario Circuit" }
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        Please provide a description of the issue, and a source to verify it.
+      placeholder: Is this a one off issue or is it a pattern? Where can this be verified?
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
