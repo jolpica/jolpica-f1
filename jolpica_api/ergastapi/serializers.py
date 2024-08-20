@@ -217,16 +217,17 @@ class ListResultsSerializer(serializers.ListSerializer):
                         session_entry.time, round_to_winner_time[round_id]
                     ),
                 }
-            if not is_qualifying and session_entry.fastest_lap:
+            if not is_qualifying and session_entry.fastest_lap_list:
+                fastest_lap = session_entry.fastest_lap_list[0]
                 result["FastestLap"] = {
                     "rank": str(session_entry.fastest_lap_rank),
-                    "lap": str(session_entry.fastest_lap.number),
-                    "Time": {"time": str(session_entry.fastest_lap.time).lstrip(":0")[:-3]},
+                    "lap": str(fastest_lap.number),
+                    "Time": {"time": str(fastest_lap.time).lstrip(":0")[:-3]},
                 }
-                if session_entry.fastest_lap.average_speed:
+                if fastest_lap.average_speed:
                     result["FastestLap"]["AverageSpeed"] = {
                         "units": "kph",
-                        "speed": str(session_entry.fastest_lap.average_speed).ljust(7, "0"),
+                        "speed": str(fastest_lap.average_speed).ljust(7, "0"),
                     }
                 result["FastestLap"] = {key: value for key, value in result["FastestLap"].items() if value != "None"}
 

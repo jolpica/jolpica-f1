@@ -841,6 +841,7 @@ def run_import():
             laps_to_add.append(new_lap)
             lap_count += 1
             if lap.lap == result.fastestLap:
+                new_lap.is_fastest_lap = True
                 fastest_lap_obj = new_lap
             if lap.lap in pit_dict:
                 pitstops_to_add.append(
