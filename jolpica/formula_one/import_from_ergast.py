@@ -865,6 +865,7 @@ def run_import():
                     id=lap_count,
                     session_entry=sess_entry,
                     number=result.fastestLap,
+                    is_fastest_lap=True,
                 )
                 lap_count += 1
                 laps_to_add.append(lap)
@@ -904,6 +905,7 @@ def run_import():
                     number=None,
                     time=time,
                     average_speed=None,
+                    is_fastest_lap=True,
                 )
                 laps_to_add.append(lap)
                 fastest_laps.append(lap)
@@ -935,6 +937,7 @@ def run_import():
             if lap.number or lap.time:
                 lap_count += 1
                 laps_to_add.append(lap)
+                lap.is_fastest_lap = True
                 fastest_laps.append(lap)
         if len(new_session_entries) > 5000 or len(pitstops_to_add) > 5000:
             start = perf_counter()
