@@ -48,6 +48,10 @@ CSRF_TRUSTED_ORIGINS = ["https://api.jolpi.ca"]
 
 INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://jolpi.ca",
+]
+
 # Application definition
 ROOT_URLCONF = "jolpica_api.urls"
 
@@ -57,6 +61,7 @@ WSGI_APPLICATION = "jolpica_api.wsgi.application"
 # Installed Django Apps
 
 INSTALLED_APPS = [
+    "corsheaders",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -79,6 +84,7 @@ if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
 
 MIDDLEWARE = [
     "jolpica_api.deployment_utils.client_ip_middleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
