@@ -13,6 +13,7 @@ from rest_framework.response import Response
 
 from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Season, Session, SessionType, Team
+from jolpica.formula_one.models.lap import Lap
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica_api.settings import DEPLOYMENT_ENV
 
@@ -314,13 +315,15 @@ class ResultViewSet(ErgastModelViewSet):
             super()
             .get_queryset()
             .select_related(
-                "fastest_lap",
                 "round_entry__round__season",
                 "round_entry__round__circuit",
                 "round_entry__team_driver__driver",
                 "round_entry__team_driver__team",
             )
-        ).prefetch_related("round_entry__round__sessions")
+        ).prefetch_related(
+            "round_entry__round__sessions",
+            Prefetch("laps", queryset=Lap.objects.filter(is_fastest_lap=True), to_attr="fastest_lap_list"),
+        )
 
 
 class SprintViewSet(ResultViewSet):
