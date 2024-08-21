@@ -12,8 +12,7 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 
 from jolpica.ergast.models import Status
-from jolpica.formula_one.models import Season, Session, SessionType, Team
-from jolpica.formula_one.models.lap import Lap
+from jolpica.formula_one.models import Lap, Season, Session, SessionEntry, SessionType, Team
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica_api.settings import DEPLOYMENT_ENV
 
@@ -400,7 +399,23 @@ class QualifyingViewSet(ErgastModelViewSet):
             .filter(ann_filters)
             .order_by(*self.order_by, "max_position")
             .select_related("round__circuit", "round__season", "team_driver__team", "team_driver__driver")
-            .prefetch_related(Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)))
+            .prefetch_related(
+                Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)),
+                Prefetch(
+                    "session_entries",
+                    queryset=SessionEntry.objects.filter(session__type__startswith="Q")
+                    .order_by("session__number")
+                    .select_related("session")
+                    .prefetch_related(
+                        Prefetch(
+                            "laps",
+                            queryset=Lap.objects.filter(is_entry_fastest_lap=True),
+                            to_attr="fastest_lap_list",
+                        )
+                    ),
+                    to_attr="quali_session_entries",
+                ),
+            )
         )
         return qs
 

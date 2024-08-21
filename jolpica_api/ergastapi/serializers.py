@@ -1,7 +1,6 @@
 from datetime import timedelta
 from typing import Any
 
-from django.db.models import QuerySet
 from rest_framework import serializers
 
 from jolpica.formula_one.models import (
@@ -270,28 +269,13 @@ class SprintResultsSerializer(RaceResultsSerializer):
 
 class ListQualifyingSerializer(serializers.ListSerializer):
     def to_representation(self, round_entries: list[RoundEntry]) -> Any:
-        is_single = False
-        if isinstance(round_entries, RoundEntry):
-            round_entries = (
-                RoundEntry.objects.filter(pk=round_entries.pk).select_related("round_entry__round").distinct()
-            )
-            is_single = True
-        driver_session_entries: QuerySet[SessionEntry] = (
-            SessionEntry.objects.filter(round_entry__in=round_entries, session__type__startswith="Q")
-            .order_by("session__date")
-            .select_related("session")
-        )
-
         race_results = {}
         round_entry_set = {}
         for round_entry in round_entries:
-            round_entry_set[round_entry.pk] = (round_entry, [])
+            round_entry_set[round_entry.pk] = (round_entry, round_entry.quali_session_entries)
 
             race_results[round_entry.round.pk] = BaseRaceSerializer().to_representation(round_entry.round)
             race_results[round_entry.round.pk][self.child.results_list_name] = []
-
-        for session_entry in driver_session_entries:
-            round_entry_set[session_entry.round_entry_id][1].append(session_entry)
 
         for round_entry, driver_session_entries in round_entry_set.values():
             round_id = round_entry.round_id
@@ -302,8 +286,9 @@ class ListQualifyingSerializer(serializers.ListSerializer):
                 "Constructor": ConstructorSerializer().to_representation(round_entry.team_driver.team),
             }
             for session_entry in driver_session_entries:
-                if session_entry.fastest_lap.time:
-                    quali_time = format_timedelta(session_entry.fastest_lap.time)
+                fastest_lap = session_entry.fastest_lap_list[0] if session_entry.fastest_lap_list else None
+                if fastest_lap and fastest_lap.time:
+                    quali_time = format_timedelta(fastest_lap.time)
                 else:
                     quali_time = ""
                 if session_entry.session.type in ("Q1", "Q2", "Q3"):
@@ -320,8 +305,6 @@ class ListQualifyingSerializer(serializers.ListSerializer):
             round_dict[self.child.results_list_name].sort(key=lambda d: int(d["position"]))
 
         results = list(race_results.values())
-        if is_single:
-            return results[0]
         return results
 
     class Meta:
