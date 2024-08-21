@@ -77,13 +77,6 @@ class SessionEntry(models.Model):
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")
     round_entry = models.ForeignKey("RoundEntry", on_delete=models.CASCADE, related_name="session_entries")
-    fastest_lap = models.ForeignKey(
-        "Lap",
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name="+",
-    )
     laps: models.QuerySet[Lap]
     pit_stops: models.QuerySet[PitStop]
     penalties: models.QuerySet[Penalty]
