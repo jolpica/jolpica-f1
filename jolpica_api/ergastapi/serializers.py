@@ -279,7 +279,7 @@ class ListQualifyingSerializer(serializers.ListSerializer):
         driver_session_entries: QuerySet[SessionEntry] = (
             SessionEntry.objects.filter(round_entry__in=round_entries, session__type__startswith="Q")
             .order_by("session__date")
-            .select_related("session", "fastest_lap")
+            .select_related("session")
         )
 
         race_results = {}
