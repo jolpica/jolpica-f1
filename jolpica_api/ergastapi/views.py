@@ -322,7 +322,7 @@ class ResultViewSet(ErgastModelViewSet):
             )
         ).prefetch_related(
             "round_entry__round__sessions",
-            Prefetch("laps", queryset=Lap.objects.filter(is_fastest_lap=True), to_attr="fastest_lap_list"),
+            Prefetch("laps", queryset=Lap.objects.filter(is_entry_fastest_lap=True), to_attr="fastest_lap_list"),
         )
 
 

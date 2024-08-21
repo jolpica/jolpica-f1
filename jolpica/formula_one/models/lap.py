@@ -19,14 +19,14 @@ class Lap(models.Model):
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
     average_speed = models.FloatField(null=True, blank=True)
-    is_fastest_lap = models.BooleanField(default=False)
+    is_entry_fastest_lap = models.BooleanField(default=False)
 
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["session_entry", "number"], name="lap_unique_session_entry_number"),
             models.UniqueConstraint(
-                fields=["session_entry", "is_fastest_lap"],
-                condition=models.Q(is_fastest_lap=True),
+                fields=["session_entry", "is_entry_fastest_lap"],
+                condition=models.Q(is_entry_fastest_lap=True),
                 name="lap_unique_fastest_lap",
             ),
         ]
