@@ -809,7 +809,6 @@ def run_import():
             pk=entry_count,
             session_id=round_entry_to_race_session_map[round_entry_id],
             round_entry_id=round_entry_id,
-            fastest_lap=None,
             position=result.positionOrder,
             is_classified=result.position is not None,
             status=map_status(result.statusId_id, pos_text=result.positionText),
@@ -891,7 +890,6 @@ def run_import():
                     pk=entry_count,
                     session=session,
                     round_entry_id=round_entry_id,
-                    fastest_lap=None,
                     position=quali.position,
                     status=map_status(result.statusId_id, qualifying=True),
                 )
@@ -916,7 +914,6 @@ def run_import():
                 pk=entry_count,
                 session=Session.objects.get(round__round_entries=round_entry_id, type=SessionType.SPRINT_RACE),
                 round_entry_id=round_entry_id,
-                fastest_lap=None,
                 position=sprint.positionOrder,
                 is_classified=sprint.position is not None,
                 status=map_status(sprint.statusId_id),
@@ -948,13 +945,6 @@ def run_import():
             print("Laps Created.", end="\t")
             PitStop.objects.bulk_create(pitstops_to_add, batch_size=10000)
             print("PitStops created.", end="\t")
-            updated_sessions = []
-            for lap in fastest_laps:
-                sess = lap.session_entry
-                sess.fastest_lap_id = lap.pk
-                updated_sessions.append(sess)
-            SessionEntry.objects.bulk_update(new_session_entries, fields=["fastest_lap"], batch_size=5000)
-            print(f"SessionEntries created.\tTook {perf_counter() - start}")
             laps_to_add = []
             pitstops_to_add = []
             new_session_entries = []
@@ -968,13 +958,6 @@ def run_import():
     print("Laps Created.", end="\t")
     PitStop.objects.bulk_create(pitstops_to_add, batch_size=10000)
     print("PitStops created.", end="\t")
-    updated_sessions = []
-    for lap in fastest_laps:
-        sess = lap.session_entry
-        sess.fastest_lap_id = lap.pk
-        updated_sessions.append(sess)
-    SessionEntry.objects.bulk_update(new_session_entries, fields=["fastest_lap"], batch_size=5000)
-    print(f"SessionEntries created.\tTook {perf_counter() - start}")
 
     run_data_correction()
 
