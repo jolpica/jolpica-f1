@@ -897,17 +897,19 @@ def run_import():
                     quali_entry.detail = result.ann_status_detail
                 new_session_entries.append(quali_entry)
                 entry_count += 1
-                lap = Lap(
-                    id=lap_count,
-                    session_entry=quali_entry,
-                    number=None,
-                    time=time,
-                    average_speed=None,
-                    is_entry_fastest_lap=True,
-                )
-                laps_to_add.append(lap)
-                fastest_laps.append(lap)
-                lap_count += 1
+                # Skip adding a lap if someone didn't set a time, but competed in the session
+                if time is not None:
+                    lap = Lap(
+                        id=lap_count,
+                        session_entry=quali_entry,
+                        number=None,
+                        time=time,
+                        average_speed=None,
+                        is_entry_fastest_lap=True,
+                    )
+                    laps_to_add.append(lap)
+                    fastest_laps.append(lap)
+                    lap_count += 1
         sprint = sprint_filtered[(result.raceId_id, result.driverId_id, result.constructorId_id)]
         if sprint:
             sprint_entry = SessionEntry(
