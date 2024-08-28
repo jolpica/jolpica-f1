@@ -1,0 +1,1 @@
+{"MRData":{"xmlns":"http:\/\/ergast.com\/mrd\/1.5","series":"f1","url":"http://ergast.com/api/f1/constructors/brawn/status.json","limit":"30","offset":"0","total":"3","StatusTable":{"constructorId":"brawn","Status":[{"statusId":"1","count":"32","status":"Finished"},{"statusId":"4","count":"1","status":"Collision"},{"statusId":"6","count":"1","status":"Gearbox"}]}}}
