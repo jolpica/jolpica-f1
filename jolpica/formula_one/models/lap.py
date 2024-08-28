@@ -20,6 +20,7 @@ class Lap(models.Model):
     time = models.DurationField(null=True, blank=True)
     average_speed = models.FloatField(null=True, blank=True)
     is_entry_fastest_lap = models.BooleanField(default=False)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         constraints: ClassVar = [
@@ -32,6 +33,11 @@ class Lap(models.Model):
         ]
 
     def __str__(self) -> str:
-        lap_number_string = f"{self.number} " if self.number else ""
+        lap_number_string = f"{self.number}" if self.number else "?"
         time_delta_string = format_timedelta(self.time) if self.time else ""
-        return f"{self.session_entry.session.type}: {lap_number_string}{time_delta_string}"
+        output = f"{self.session_entry.session.type}: {lap_number_string} {time_delta_string}"
+        if self.is_entry_fastest_lap:
+            output += " (F)"
+        if self.is_deleted:
+            output += " (D)"
+        return output
