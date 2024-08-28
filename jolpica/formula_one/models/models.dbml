@@ -1,6 +1,6 @@
 Project "My Django Project" {
 Note:  '''A project with a database
-Last Updated At 08-06-2024 09:08AM UTC'''
+Last Updated At 08-28-2024 10:03PM UTC'''
 }
 
 Table PointSystem {
@@ -129,6 +129,8 @@ Table Lap {
   position positive_small_integer [null]
   time duration [null]
   average_speed float [null]
+  is_entry_fastest_lap boolean [default:`False`]
+  is_deleted boolean [default:`False`]
   Note: '''Information on a driven Lap of Race, Qualifying, or any other session for a driver'''
 }
 ref: Lap.session_entry > SessionEntry.id
@@ -204,7 +206,6 @@ Table SessionEntry {
   id big_auto [pk, unique]
   session foreign_key 
   round_entry foreign_key 
-  fastest_lap foreign_key [null]
   position positive_small_integer [null]
   is_classified boolean [null]
   status positive_small_integer [null]
@@ -219,7 +220,6 @@ Table SessionEntry {
 }
 ref: SessionEntry.session > Session.id
 ref: SessionEntry.round_entry > RoundEntry.id
-ref: SessionEntry.fastest_lap > Lap.id
 
 
 Table Penalty {
