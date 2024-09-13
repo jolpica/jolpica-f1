@@ -547,6 +547,7 @@ class DriverStandingViewSet(StandingsErgastModelViewSet):
     query_round = "round__"
 
     def get_queryset(self) -> QuerySet:
+        queryset = super().get_queryset()
         # Filter teams based on season and round
         teams_filter = Q()
         if season_year := self.kwargs.get("season_year", None):
@@ -554,8 +555,7 @@ class DriverStandingViewSet(StandingsErgastModelViewSet):
         if race_round := self.kwargs.get("race_round", None):
             teams_filter &= Q(team_drivers__round_entries__round__number__lte=race_round)
         return (
-            super()
-            .get_queryset()
+            queryset
             .prefetch_related(
                 Prefetch(
                     "driver__teams",
