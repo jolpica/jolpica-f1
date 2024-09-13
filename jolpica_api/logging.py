@@ -48,7 +48,7 @@ LOG_CONFIG = {
         "level": "INFO",
     },
     "loggers": {
-        "uvicorn.access": {
+        "gunicorn.access": {
             "propagate": True,
         },
         "gunicorn.error": {

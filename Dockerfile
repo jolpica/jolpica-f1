@@ -31,9 +31,4 @@ ENV PATH=/venv/bin:$PATH \
     OTEL_SERVICE_NAME=jolpica-f1
 
 EXPOSE 5000
-CMD [ "python", "-m", "gunicorn", "jolpica_api.asgi:application", \
-    "--bind=0.0.0.0:5000", \
-    "--access-logfile=-", \
-    "--logger-class=jolpica_api.logging.GunicornLogger", \
-    "-k", "uvicorn.workers.UvicornWorker" \
-]
+CMD [ "python", "-m", "gunicorn", "--config", "gunicorn.conf.py"]
