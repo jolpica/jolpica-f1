@@ -554,18 +554,15 @@ class DriverStandingViewSet(StandingsErgastModelViewSet):
             teams_filter &= Q(team_drivers__season__year=season_year)
         if race_round := self.kwargs.get("race_round", None):
             teams_filter &= Q(team_drivers__round_entries__round__number__lte=race_round)
-        return (
-            queryset
-            .prefetch_related(
-                Prefetch(
-                    "driver__teams",
-                    queryset=Team.objects.all()
-                    .filter(teams_filter)
-                    .annotate(first_round=Min("team_drivers__round_entries__round__number"))
-                    .order_by("first_round")
-                    .distinct(),
-                    to_attr="fetched_teams",
-                )
+        return queryset.prefetch_related(
+            Prefetch(
+                "driver__teams",
+                queryset=Team.objects.all()
+                .filter(teams_filter)
+                .annotate(first_round=Min("team_drivers__round_entries__round__number"))
+                .order_by("first_round")
+                .distinct(),
+                to_attr="fetched_teams",
             )
         )
 
