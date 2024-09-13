@@ -48,9 +48,7 @@ CSRF_TRUSTED_ORIGINS = ["https://api.jolpi.ca"]
 
 INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://jolpi.ca",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 ROOT_URLCONF = "jolpica_api.urls"
