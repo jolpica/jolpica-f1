@@ -36,6 +36,14 @@ services:
     # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
+  oteltui: # To access run `docker attach otel-tui`
+    image: ymtdzzz/otel-tui:latest
+    network_mode: service:db
+    container_name: otel-tui
+    stdin_open: true
+    tty: true
+    entrypoint: ["/otel-tui", "--enable-zipkin"]
+
 
 volumes:
   postgres-data:

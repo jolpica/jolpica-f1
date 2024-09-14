@@ -15,6 +15,6 @@ threads = 3
 
 worker_class = "gthread"
 
-access_log_format = "%({x-forwarded-for}i)s %(u)s %(r)s %(s)s %(b)s %(f)s '%(a)s'"
+access_log_format = "%({x-forwarded-for}i)s %(u)s %(M)s '%(r)s' %(s)s %(b)s %(f)s '%(a)s'"
 
 logconfig_dict = LOG_CONFIG
