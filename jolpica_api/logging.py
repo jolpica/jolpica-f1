@@ -23,8 +23,12 @@ class CustomLoggingHandler(LoggingHandler):
                 # Split request into compatible types if present
                 # This occurs when getting "Not Found" error
                 request: HttpRequest = attributes.pop("request")
+                attributes["request.host"] = request.headers.get("Host")
                 attributes["request.path"] = request.path
+                attributes["request.query_string"] = request.META.get("QUERY_STRING")
                 attributes["request.method"] = request.method
+                attributes["request.user_agent"] = request.headers.get("User-Agent")
+                attributes["request.ip"] = request.META.get("X-Forwarded-For", request.META.get("REMOTE_ADDR"))
 
         return attributes
 
