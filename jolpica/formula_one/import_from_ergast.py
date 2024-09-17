@@ -317,14 +317,14 @@ def import_drivers():
         driver_map[er_driver.pk] = count
         new_item = Driver(
             pk=count,
-            reference=er_driver.driverRef,
-            forename=er_driver.forename,
-            surname=er_driver.surname,
+            reference=er_driver.driverRef.strip(),
+            forename=er_driver.forename.strip(),
+            surname=er_driver.surname.strip(),
             abbreviation=er_driver.code,
-            nationality=er_driver.nationality,
+            nationality=er_driver.nationality.strip(),
             permanent_car_number=er_driver.number,
             date_of_birth=er_driver.dob,
-            wikipedia=er_driver.url,
+            wikipedia=er_driver.url.strip(),
         )
         drivers_to_add.append(new_item)
         count = count + 1
