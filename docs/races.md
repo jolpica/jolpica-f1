@@ -4,6 +4,8 @@ Gets list of races
 
 **URL** : `/ergast/f1/races`
 
+---
+
 ## Route Parameters:
 
 ### Season
@@ -55,11 +57,15 @@ Gets list of races
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/2/races`
 
+---
+
 ## Query Parameters:
 
 `limit` - Allows you to alter the limit the number of results returned. Defaults to 30.
 
 `offset` - Allows you to offset the results by the specified number. Defaults to 0.
+
+---
 
 ## Success Response
 
@@ -76,6 +82,8 @@ Gets list of races
 `MRData.RaceTable` : The object containing the list of the all races.
 
 `MRData.RaceTable.Races` : The list of all races returned.
+
+---
 
 ## Examples:
 
