@@ -2,7 +2,9 @@
 
 API for querying formula one data, with backwards compatible endpoints for the soon to be deprecated ergast api.
 
-## Available Endpoints and Documentation:
+---
+
+## Endpoints and Documentation:
 
 ### Circuits - `/ergast/f1/circuits`
 ### Constructors - `/ergast/f1/constructors`
@@ -17,3 +19,10 @@ API for querying formula one data, with backwards compatible endpoints for the s
 ### Season - `/ergast/f1/seasons`
 ### Sprint - `/ergast/f1/sprint`
 ### Status -  `/ergast/f1/status`
+
+---
+
+## Known differences between Jolpica and Ergast
+
+- Jolpica doesn't support XML responses like Ergast does
+
