@@ -4,6 +4,8 @@ Gets list of races
 
 **URL** : `/ergast/f1/races`
 
+[Available Query Parameters](./README.md#query-parameters)
+
 ---
 
 ## Route Parameters:
@@ -64,6 +66,8 @@ Gets list of races
 **Code** : `200 OK`
 
 **Response Fields** :
+
+[Common Response Fields](./README.md#common-response-fields)
 
 `MRData.RaceTable` : The object containing the list of the all races.
 
