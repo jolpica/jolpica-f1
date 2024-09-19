@@ -1,3 +1,4 @@
+[← Documentation Home](/docs/README.md)
 # Seasons
 
 Gets list of seasons 

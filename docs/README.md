@@ -3,24 +3,31 @@
 API for querying formula one data, with backwards compatible endpoints for the soon to be deprecated ergast api.
 
 ---
+| Other Documentation
+|-
+| [Rate Limits](/docs/rate_limits.md)
+| [Differences to Ergast](/docs/ergast_differences.md)
+
+---
 
 ## Endpoints and Documentation:
+For gaps in our documentation, please check the ergast docs [here](http://ergast.com/mrd/). 
 
-| Endpoint | Route |
-|-----|-----|
-| Circuits | `/ergast/f1/circuits` |
-| Constructors | `/ergast/f1/constructors`|
-| Constructor Standings | `/ergast/f1/current/constructorstandings`|
-| [Drivers](/docs/drivers.md) | `/ergast/f1/drivers`|
-| Driver Standings | `/ergast/f1/current/driverstandings`|
-| Laps | `/ergast/f1/current/1/laps`|
-| Pitstops | `/ergast/f1/current/1/pitstops`|
-| Qualifying | `/ergast/f1/current/qualifying`|
-| [Races](/docs/races.md) | `/ergast/f1/races`|
-| Results | `/ergast/f1/results`|
-| [Seasons](/docs/seasons.md) | `/ergast/f1/seasons`|
-| Sprint | `/ergast/f1/sprint`|
-| Status |  `/ergast/f1/status`|
+| Endpoint                              | Route |
+|-----                                  |-----|
+| Circuits                              | `/ergast/f1/circuits` |
+| Constructors                          | `/ergast/f1/constructors`|
+| Constructor Standings                 | `/ergast/f1/{season}/constructorstandings`|
+| [Drivers](/docs/endpoints/drivers.md) | `/ergast/f1/drivers`|
+| Driver Standings                      | `/ergast/f1/{season}/driverstandings`|
+| Laps                                  | `/ergast/f1/{season}/{round}/laps`|
+| Pitstops                              | `/ergast/f1/{season}/{round}/pitstops`|
+| Qualifying                            | `/ergast/f1/{season}/qualifying`|
+| [Races](/docs/endpoitns/races.md)     | `/ergast/f1/races`|
+| Results                               | `/ergast/f1/results`|
+| [Seasons](/docs/endpoints/seasons.md) | `/ergast/f1/seasons`|
+| Sprint                                | `/ergast/f1/sprint`|
+| Status                                |  `/ergast/f1/status`|
 
 ---
 
@@ -28,7 +35,7 @@ API for querying formula one data, with backwards compatible endpoints for the s
 
 These parameters are shared between all API endpoints
 
-`limit` - Allows you to alter the limit the number of results returned. Defaults to 30. Max is 100
+`limit` - Maximum number of results results returned. Defaults to 30. Max is 100
 
 `offset` - Allows you to offset the results by the specified number for pagination. Defaults to 0.
 
@@ -40,19 +47,16 @@ These are field definitions that you will receive in the response for any call:
 
 `MRData` : The root object of the json response.
 
-`MRData.series` : The racing series that the races are a part of.
+`MRData.series` : The racing series of the results (always `f1`).
+
+`MRData.xmlns` : Blank, provided for compatibility with legacy ergast API.
 
 `MRData.url` : The API URL that the returned data was retrived from (without query paramters).
 
-`MRData.limit` : The limit of results that could be returned from this call.
+`MRData.limit` : The limit used for this call. May be different from the query parameter set in some cases.
 
 `MRData.offset` : The result offset of this call.
 
 `MRData.total` : The total number of items available from the endpoint.
 
 ---
-
-## Known differences between Jolpica and Ergast
-
-- Jolpica doesn't support XML responses like Ergast does
-
