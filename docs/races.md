@@ -20,7 +20,7 @@ Gets list of races
 
 ---
 
-### Circuit
+### circuits
 
 **Filters for only races featuring a specified circuit**
 
@@ -28,7 +28,7 @@ Gets list of races
 
 ---
 
-### Constructor
+### constructors
 
 **Filters for only races featuring a specified constructor**
 
@@ -36,7 +36,7 @@ Gets list of races
 
 ---
 
-### Driver
+### drivers
 
 **Filters for only races featuring a specified driver**
 
@@ -45,7 +45,7 @@ Gets list of races
 
 ---
 
-### Grid
+### grid
 
 **Filters for only races featuring a specified grid position**
 
@@ -53,7 +53,7 @@ Gets list of races
 
 ---
 
-### Status
+### status
 
 **Filters for only races featuring a specified finishing status of a driver**
 
