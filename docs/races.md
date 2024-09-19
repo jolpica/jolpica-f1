@@ -73,6 +73,29 @@ Gets list of races
 
 `MRData.RaceTable.Races` : The list of all races returned.
 
+`MRData.RaceTable.Races[i]` : A given race object
+
+---
+
+## Race Object Fields:
+
+|Field|Required|
+|---|:---:|
+|season| ✅ |
+|round|✅|
+|url|✅|
+|Circuit|✅|
+|Location|✅|
+|date|✅|
+|time|❌|
+|FirstPractice|❌|
+|SecondPractice|❌|
+|ThirdPractice|❌|
+|Qualifying|❌|
+|Sprint|❌|
+|SprintQualifying|❌|
+|date|❌|
+
 ---
 
 ## Examples:
