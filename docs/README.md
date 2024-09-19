@@ -24,6 +24,34 @@ API for querying formula one data, with backwards compatible endpoints for the s
 
 ---
 
+## Query Parameters
+
+These parameters are shared between all API endpoints
+
+`limit` - Allows you to alter the limit the number of results returned. Defaults to 30. Max is 100
+
+`offset` - Allows you to offset the results by the specified number for pagination. Defaults to 0.
+
+---
+
+## Common Response Fields:
+
+These are field definitions that you will receive in the response for any call:
+
+`MRData` : The root object of the json response.
+
+`MRData.series` : The racing series that the races are a part of.
+
+`MRData.url` : The API URL that the returned data was retrived from (without query paramters).
+
+`MRData.limit` : The limit of results that could be returned from this call.
+
+`MRData.offset` : The result offset of this call.
+
+`MRData.total` : The total number of items available from the endpoint.
+
+---
+
 ## Known differences between Jolpica and Ergast
 
 - Jolpica doesn't support XML responses like Ergast does

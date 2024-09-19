@@ -59,25 +59,11 @@ Gets list of races
 
 ---
 
-## Query Parameters:
-
-`limit` - Allows you to alter the limit the number of results returned. Defaults to 30.
-
-`offset` - Allows you to offset the results by the specified number. Defaults to 0.
-
----
-
 ## Success Response
 
 **Code** : `200 OK`
 
 **Response Fields** :
-
-`MRData` : The root object of the json response.
-
-`MRData.series` : The racing series that the races are a part of.
-
-`MRData.total` : The total number of races available.
 
 `MRData.RaceTable` : The object containing the list of the all races.
 
