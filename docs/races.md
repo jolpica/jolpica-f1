@@ -94,7 +94,6 @@ Gets list of races
 |Qualifying|❌|
 |Sprint|❌|
 |SprintQualifying|❌|
-|date|❌|
 
 ---
 
