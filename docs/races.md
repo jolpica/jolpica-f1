@@ -85,7 +85,6 @@ Gets list of races
 |round|✅|
 |url|✅|
 |Circuit|✅|
-|Location|✅|
 |date|✅|
 |time|❌|
 |FirstPractice|❌|
