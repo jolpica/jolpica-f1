@@ -18,7 +18,7 @@ API for querying formula one data, with backwards compatible endpoints for the s
 | Qualifying | `/ergast/f1/current/qualifying`|
 | [Races](/docs/races.md) | `/ergast/f1/races`|
 | Results | `/ergast/f1/results`|
-| Season | `/ergast/f1/seasons`|
+| [Seasons](/docs/seasons.md) | `/ergast/f1/seasons`|
 | Sprint | `/ergast/f1/sprint`|
 | Status |  `/ergast/f1/status`|
 
