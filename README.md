@@ -3,19 +3,13 @@ API for querying formula one data, with backwards compatible endpoints for the s
 
 The Ergast compatible API can be found here: http://api.jolpi.ca/ergast/f1/
 
-All endpoints documented [here](http://ergast.com/mrd/) should work, simply replace the start of the url.
+# Documentation
+Our documentation can be [found here](/docs/README.md).
+
+### Ergast Differences
+If you are migrating from the ergast api, please check the known differences [here](/docs/ergast_differences.md).
 
 
-
-## Differences to Ergast API
-For a full list of differences please see the Issues tab.
-
-- No support for XML
-- If multiple of the same criteria are specified, the last specified will be used (not a 400 response)
-- /results
-    - positionText no longer has "N" as a possible value, "R" is used instead.
-    - The Time.time key will always 3 digits after decimal points (using trailing zeros).
-- Standings requires a year to be specified
 
 # Database Scheme
 Rather than import the existing database scheme used by ergast, we use a new scheme which will allow better adaption to changing rulesets, reduce duplication of information, and allow storage of more F1 related data.
