@@ -84,6 +84,7 @@ Gets list of races
 |season| ✅ |
 |round|✅|
 |url|✅|
+|raceName|✅|
 |Circuit|✅|
 |date|✅|
 |time|❌|
