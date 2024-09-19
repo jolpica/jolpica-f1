@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 class ErgastAPIPagination(pagination.LimitOffsetPagination):
     default_limit = 30
     max_limit = 100
-    
+
     def paginate_queryset(self, queryset: QuerySet, request: Request, view: APIView | None = None) -> list | None:
         self.model: str = queryset.model.__name__
         self.viewset: str = view.__class__.__name__

@@ -40,7 +40,7 @@ def client_ip_middleware(get_response):
             "HTTP_X_FORWARDED_FOR",
             request.META["REMOTE_ADDR"],
         )
-        request.META["REMOTE_ADDR"] = ips.rsplit(",", maxsplit=1)[-1]
+        request.META["REMOTE_ADDR"] = ips.rsplit(", ", maxsplit=1)[-1]
         return get_response(request)
 
     return process_request
