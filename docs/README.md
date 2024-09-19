@@ -11,7 +11,7 @@ API for querying formula one data, with backwards compatible endpoints for the s
 | Circuits | `/ergast/f1/circuits` |
 | Constructors | `/ergast/f1/constructors`|
 | Constructor Standings | `/ergast/f1/current/constructorstandings`|
-| Drivers | `/ergast/f1/drivers`|
+| [Drivers](/docs/drivers.md) | `/ergast/f1/drivers`|
 | Driver Standings | `/ergast/f1/current/driverstandings`|
 | Laps | `/ergast/f1/current/1/laps`|
 | Pitstops | `/ergast/f1/current/1/pitstops`|
