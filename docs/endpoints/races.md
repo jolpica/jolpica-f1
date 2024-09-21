@@ -25,7 +25,7 @@ Gets list of races
 
 **Filters for the race for a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last` and `next`**
 
-`/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/races/`
+`/{season}/{round}/` -> ex: `/ergast/f1/2024/5/races/`
 
 **Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
 

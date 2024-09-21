@@ -25,7 +25,7 @@ Gets a given races list of pitstops. Data starts for the 2011 season
 
 **Filters for the round in a specific season that the list of pitstops will be from. Round numbers 1 -> n races are valid as well as `last`**
 
-`/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/pitstops/`
+`/{season}/{round}/` -> ex: `/ergast/f1/2024/5/pitstops/`
 
 **Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
 
