@@ -21,6 +21,16 @@ Gets a season's drivers standings
 
 ---
 
+### Round
+
+**Filters for the drivers standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as 'last'**
+
+`/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/driverstandings/`
+
+**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
+
+---
+
 ### drivers
 
 **Filters for only for a specific driver's drivers standing information for a given year**
