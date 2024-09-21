@@ -21,7 +21,7 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 | [Drivers](/docs/endpoints/drivers.md)                 | `/ergast/f1/drivers/` |
 | [Driver Standings](/docs/endpoints/driverStandings.md)| `/ergast/f1/{season}/driverstandings/` |
 | Laps                                                  | `/ergast/f1/{season}/{round}/laps/` |
-| Pitstops                                              | `/ergast/f1/{season}/{round}/pitstops/` |
+| [Pitstops](/docs/endpoints/pitstops.md)               | `/ergast/f1/{season}/{round}/pitstops/` |
 | Qualifying                                            | `/ergast/f1/{season}/qualifying/` |
 | [Races](/docs/endpoitns/races.md)                     | `/ergast/f1/races/` |
 | Results                                               | `/ergast/f1/results/` |
