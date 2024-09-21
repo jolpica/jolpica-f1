@@ -17,7 +17,7 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 |-----                                                  |-----|
 | Circuits                                              | `/ergast/f1/circuits/`|
 | [Constructors](/docs/endpoints/constructors.md)       | `/ergast/f1/constructors/` |
-| Constructor Standings                                 | `/ergast/f1/{season}/constructorstandings/` |
+| [Constructor Standings](/docs/endpoints/constructorStandings.md)  | `/ergast/f1/{season}/constructorstandings/` |
 | [Drivers](/docs/endpoints/drivers.md)                 | `/ergast/f1/drivers/` |
 | [Driver Standings](/docs/endpoints/driverStandings.md)| `/ergast/f1/{season}/driverstandings/` |
 | Laps                                                  | `/ergast/f1/{season}/{round}/laps/` |
@@ -28,6 +28,8 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 | [Seasons](/docs/endpoints/seasons.md)                 | `/ergast/f1/seasons/` |
 | Sprint                                                | `/ergast/f1/sprint/` |
 | Status                                                |  `/ergast/f1/status/` |
+
+Note: All endpoints should either end with a `/` or `.json`
 
 ---
 
