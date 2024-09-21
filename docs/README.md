@@ -15,19 +15,19 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 
 | Endpoint                                              | Route |
 |-----                                                  |-----|
-| Circuits                                              | `/ergast/f1/circuits` |
-| [Constructors](/docs/endpoints/constructors.md)       | `/ergast/f1/constructors`|
-| Constructor Standings                                 | `/ergast/f1/{season}/constructorstandings`|
-| [Drivers](/docs/endpoints/drivers.md)                 | `/ergast/f1/drivers`|
-| [Driver Standings](/docs/endpoints/driverStandings.md)| `/ergast/f1/{season}/driverstandings`|
-| Laps                                                  | `/ergast/f1/{season}/{round}/laps`|
-| Pitstops                                              | `/ergast/f1/{season}/{round}/pitstops`|
-| Qualifying                                            | `/ergast/f1/{season}/qualifying`|
-| [Races](/docs/endpoitns/races.md)                     | `/ergast/f1/races`|
-| Results                                               | `/ergast/f1/results`|
-| [Seasons](/docs/endpoints/seasons.md)                 | `/ergast/f1/seasons`|
-| Sprint                                                | `/ergast/f1/sprint`|
-| Status                                                |  `/ergast/f1/status`|
+| Circuits                                              | `/ergast/f1/circuits/`|
+| [Constructors](/docs/endpoints/constructors.md)       | `/ergast/f1/constructors/` |
+| Constructor Standings                                 | `/ergast/f1/{season}/constructorstandings/` |
+| [Drivers](/docs/endpoints/drivers.md)                 | `/ergast/f1/drivers/` |
+| [Driver Standings](/docs/endpoints/driverStandings.md)| `/ergast/f1/{season}/driverstandings/` |
+| Laps                                                  | `/ergast/f1/{season}/{round}/laps/` |
+| Pitstops                                              | `/ergast/f1/{season}/{round}/pitstops/` |
+| Qualifying                                            | `/ergast/f1/{season}/qualifying/` |
+| [Races](/docs/endpoitns/races.md)                     | `/ergast/f1/races/` |
+| Results                                               | `/ergast/f1/results/` |
+| [Seasons](/docs/endpoints/seasons.md)                 | `/ergast/f1/seasons/` |
+| Sprint                                                | `/ergast/f1/sprint/` |
+| Status                                                |  `/ergast/f1/status/` |
 
 ---
 

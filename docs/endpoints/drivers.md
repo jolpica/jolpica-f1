@@ -3,7 +3,7 @@
 
 Gets list of drivers 
 
-**URL** : `/ergast/f1/drivers`
+**URL** : `/ergast/f1/drivers/`
 
 [Available Query Parameters](./README.md#query-parameters)
 
@@ -15,7 +15,7 @@ Gets list of drivers
 
 **Filters only drivers that participated in a specified season. Year numbers are valid as is 'current' to get the current season list of drivers**
 
-`/{season}/` -> ex: `/ergast/f1/2024/drivers`
+`/{season}/` -> ex: `/ergast/f1/2024/drivers/`
 
 **Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
 
@@ -25,7 +25,7 @@ Gets list of drivers
 
 **Filters for only drivers who have participated in a race at a given circuit**
 
-`/circuits/{circuitId}/` -> ex: `/ergast/f1/2024/circuits/albert_park/drivers`
+`/circuits/{circuitId}/` -> ex: `/ergast/f1/2024/circuits/albert_park/drivers/`
 
 ---
 
@@ -33,7 +33,7 @@ Gets list of drivers
 
 **Filters for only drivers who have raced for a specified constructor**
 
-`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/drivers`
+`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/drivers/`
 
 ---
 
@@ -41,7 +41,7 @@ Gets list of drivers
 
 **Filters for only drivers that match the specific driverId**
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/drivers`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/drivers/`
 
 
 ---
@@ -50,7 +50,7 @@ Gets list of drivers
 
 **Filters for only drivers that finished a race with a lap that was the ranked in the specified position**
 
-`/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/1/drivers`
+`/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/1/drivers/`
 
 
 ---
@@ -59,7 +59,7 @@ Gets list of drivers
 
 **Filters for only drivers who has started a race in a specific grid position**
 
-`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/1/drivers`
+`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/1/drivers/`
 
 ---
 
@@ -67,7 +67,7 @@ Gets list of drivers
 
 **Filters for only drivers who has finished a race in a specific position**
 
-`/results/{position}/` -> ex: `/ergast/f1/results/1/drivers`
+`/results/{position}/` -> ex: `/ergast/f1/results/1/drivers/`
 
 ---
 
@@ -75,7 +75,7 @@ Gets list of drivers
 
 **Filters for only drivers who have finished a race with a specific statusId**
 
-`/status/{statusId}/` -> ex: `/ergast/f1/status/2/drivers`
+`/status/{statusId}/` -> ex: `/ergast/f1/status/2/drivers/`
 
 ---
 
@@ -114,7 +114,7 @@ Gets list of drivers
 
 ### Get list of all drivers in F1 history
 
-`https://api.jolpi.ca/ergast/f1/drivers`
+`https://api.jolpi.ca/ergast/f1/drivers/`
 
 ```json
 {
@@ -154,7 +154,7 @@ Gets list of drivers
 
 * Note this is missing Logan Sargent as he did not start the race even though he participated in the weekend.
 
-`https://api.jolpi.ca/ergast/f1/2024/circuits/albert_park/drivers`
+`https://api.jolpi.ca/ergast/f1/2024/circuits/albert_park/drivers/`
 
 ```json
 {

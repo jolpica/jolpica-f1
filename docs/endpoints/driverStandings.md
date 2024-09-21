@@ -3,7 +3,7 @@
 
 Gets a season's drivers standings 
 
-**URL** : `/ergast/f1/{YEAR}/driverstandings`
+**URL** : `/ergast/f1/{YEAR}/driverstandings/`
 
 [Available Query Parameters](./README.md#query-parameters)
 
@@ -15,7 +15,7 @@ Gets a season's drivers standings
 
 **Filters for the drivers' standing of a specified season. Year numbers are valid as is 'current' to get the current seasons drivers standings**
 
-`/{season}/` -> ex: `/ergast/f1/2024/driverstandings`
+`/{season}/` -> ex: `/ergast/f1/2024/driverstandings/`
 
 **Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
 
@@ -25,7 +25,7 @@ Gets a season's drivers standings
 
 **Filters for only for a specific driver's drivers standing information for a given year**
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/2024/drivers/hamilton/driverstandings`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/2024/drivers/hamilton/driverstandings/`
 
 ---
 
@@ -33,7 +33,7 @@ Gets a season's drivers standings
 
 **Filters for only for the driver in a given position for a given year**
 
-`/{position}` -> ex: `/ergast/f1/2024/driverstandings/1`
+`/{position}` -> ex: `/ergast/f1/2024/driverstandings/1/`
 
 **Note**: The position must be at the end after any filters and after `/driverstandings/`
 
@@ -78,7 +78,7 @@ Gets a season's drivers standings
 
 ### Get the 1972 season's drivers standing information
 
-`https://api.jolpi.ca/ergast/f1/1972/driverstandings`
+`https://api.jolpi.ca/ergast/f1/1972/driverstandings/`
 
 ```json
 {
@@ -152,7 +152,7 @@ Gets a season's drivers standings
 
 ### Get Pierre Gasly's 2020 drivers standing information
 
-`http://api.jolpi.ca/ergast/f1/2020/drivers/gasly/driverstandings`
+`http://api.jolpi.ca/ergast/f1/2020/drivers/gasly/driverstandings/`
 
 ```json
 {

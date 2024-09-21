@@ -3,7 +3,7 @@
 
 Gets list of seasons 
 
-**URL** : `/ergast/f1/seasons`
+**URL** : `/ergast/f1/seasons/`
 
 [Available Query Parameters](./README.md#query-parameters)
 
@@ -15,7 +15,7 @@ Gets list of seasons
 
 **Filters for a specified season. Year numbers are valid as is 'current' to get the current season**
 
-`/{season}/` -> ex: `/ergast/f1/2024/seasons`
+`/{season}/` -> ex: `/ergast/f1/2024/seasons/`
 
 **Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
 
@@ -25,7 +25,7 @@ Gets list of seasons
 
 **Filters for only seasons featuring a specified circuit**
 
-`/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/seasons`
+`/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/seasons/`
 
 ---
 
@@ -33,7 +33,7 @@ Gets list of seasons
 
 **Filters for only seasons featuring a specified constructor**
 
-`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/seasons`
+`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/seasons/`
 
 ---
 
@@ -41,7 +41,7 @@ Gets list of seasons
 
 **Filters for only seasons featuring a specified driver**
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/seasons`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/seasons/`
 
 
 ---
@@ -50,7 +50,7 @@ Gets list of seasons
 
 **Filters for only seasons featuring a specified grid position**
 
-`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/seasons`
+`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/seasons/`
 
 ---
 
@@ -58,7 +58,7 @@ Gets list of seasons
 
 **Filters for only seasons featuring a specified finishing status of a driver in at least one race that season**
 
-`/status/{statusId}/` -> ex: `/ergast/f1/status/2/seasons`
+`/status/{statusId}/` -> ex: `/ergast/f1/status/2/seasons/`
 
 ---
 
@@ -125,7 +125,7 @@ Gets list of seasons
 
 ### Get all seasons featuring a specific constructor (Alfa)
 
-`https://api.jolpi.ca/ergast/f1/constructors/alfa/seasons`
+`https://api.jolpi.ca/ergast/f1/constructors/alfa/seasons/`
 
 ```json
 {

@@ -3,7 +3,7 @@
 
 Gets list of races 
 
-**URL** : `/ergast/f1/races`
+**URL** : `/ergast/f1/races/`
 
 [Available Query Parameters](./README.md#query-parameters)
 
@@ -15,7 +15,7 @@ Gets list of races
 
 **Filters for races only from a specified season. Year numbers are valid as is 'current' to get the current season**
 
-`/{season}/` -> ex: `/ergast/f1/2024/races`
+`/{season}/` -> ex: `/ergast/f1/2024/races/`
 
 **Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
 
@@ -25,7 +25,7 @@ Gets list of races
 
 **Filters for only races featuring a specified circuit**
 
-`/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/races`
+`/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/races/`
 
 ---
 
@@ -33,7 +33,7 @@ Gets list of races
 
 **Filters for only races featuring a specified constructor**
 
-`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/races`
+`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/races/`
 
 ---
 
@@ -41,7 +41,7 @@ Gets list of races
 
 **Filters for only races featuring a specified driver**
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/races`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/races/`
 
 
 ---
@@ -50,7 +50,7 @@ Gets list of races
 
 **Filters for only races featuring a specified grid position**
 
-`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/races`
+`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/races/`
 
 ---
 
@@ -58,7 +58,7 @@ Gets list of races
 
 **Filters for only races featuring a specified finishing status of a driver**
 
-`/status/{statusId}/` -> ex: `/ergast/f1/status/2/races`
+`/status/{statusId}/` -> ex: `/ergast/f1/status/2/races/`
 
 ---
 
@@ -102,7 +102,7 @@ Gets list of races
 
 ### Get list of races in F1 history
 
-`https://api.jolpi.ca/ergast/f1/races/`
+`https://api.jolpi.ca/ergast/f1/races//`
 
 ```json
 {
@@ -160,7 +160,7 @@ Gets list of races
 
 ### Get all races of a specific season (2024) and associated information
 
-`https://api.jolpi.ca/ergast/f1/2024/races`
+`https://api.jolpi.ca/ergast/f1/2024/races/`
 
 ```json
 {
