@@ -13,7 +13,7 @@ Gets a season's drivers standings
 
 ### Season \*\*REQUIRED\*\*
 
-**Filters for the drivers' standing of a specified season. Year numbers are valid as is 'current' to get the current seasons drivers standings**
+**Filters for the drivers standing of a specified season. Year numbers are valid as is 'current' to get the current seasons drivers standings**
 
 `/{season}/` -> ex: `/ergast/f1/2024/driverstandings/`
 
