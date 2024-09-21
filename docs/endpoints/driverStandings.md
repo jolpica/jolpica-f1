@@ -33,7 +33,7 @@ Gets a season's drivers standings
 
 ### drivers
 
-**Filters for only for a specific driver's drivers standing information for a given year**
+**Filters for only a specific driver's drivers standing information for a given year**
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/2024/drivers/hamilton/driverstandings/`
 
@@ -41,7 +41,7 @@ Gets a season's drivers standings
 
 ### position
 
-**Filters for only for the driver in a given position for a given year**
+**Filters for only the driver in a given position for a given year**
 
 `/{position}` -> ex: `/ergast/f1/2024/driverstandings/1/`
 
