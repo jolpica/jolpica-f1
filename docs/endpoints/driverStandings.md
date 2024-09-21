@@ -3,7 +3,7 @@
 
 Gets a season's drivers standings 
 
-**URL** : `/ergast/f1/{YEAR}/driverstandings/`
+**URL** : `/ergast/f1/{season}/driverstandings/`
 
 [Available Query Parameters](./README.md#query-parameters)
 

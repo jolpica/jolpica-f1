@@ -3,7 +3,7 @@
 
 Gets a season's constructors standings 
 
-**URL** : `/ergast/f1/{YEAR}/constructorstandings/`
+**URL** : `/ergast/f1/{season}/constructorstandings/`
 
 [Available Query Parameters](./README.md#query-parameters)
 

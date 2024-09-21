@@ -3,7 +3,7 @@
 
 Gets a given races list of pitstops. Data starts for the 2011 season
 
-**URL** : `/ergast/f1/{YEAR}/{ROUND}/pitstops/`
+**URL** : `/ergast/f1/{season}/{ROUND}/pitstops/`
 
 [Available Query Parameters](./README.md#query-parameters)
 
