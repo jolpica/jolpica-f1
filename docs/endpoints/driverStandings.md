@@ -13,7 +13,7 @@ Gets a season's drivers standings
 
 ### Season \*\*REQUIRED\*\*
 
-**Filters for the drivers standing of a specified season. Year numbers are valid as is 'current' to get the current seasons drivers standings**
+**Filters for the drivers standing of a specified season. Year numbers are valid as is `current` to get the current seasons drivers standings**
 
 `/{season}/` -> ex: `/ergast/f1/2024/driverstandings/`
 
@@ -23,7 +23,7 @@ Gets a season's drivers standings
 
 ### Round
 
-**Filters for the drivers standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as 'last'**
+**Filters for the drivers standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last`**
 
 `/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/driverstandings/`
 

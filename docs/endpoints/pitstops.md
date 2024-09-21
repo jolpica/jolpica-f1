@@ -13,7 +13,7 @@ Gets a given races list of pitstops. Data starts for the 2011 season
 
 ### Season \*\*REQUIRED\*\*
 
-**Filters for the season that the list of pitstops will be from. Year numbers are valid as is 'current' to get the pitstops of a given round in the current season**
+**Filters for the season that the list of pitstops will be from. Year numbers are valid as is `current` to get the pitstops of a given round in the current season**
 
 `/{season}/` -> ex: `/ergast/f1/2024/1/pitstops/`
 
@@ -23,7 +23,7 @@ Gets a given races list of pitstops. Data starts for the 2011 season
 
 ### Round \*\*REQUIRED\*\*
 
-**Filters for the round in a specific season that the list of pitstops will be from. Round numbers 1 -> n races are valid as well as 'last'**
+**Filters for the round in a specific season that the list of pitstops will be from. Round numbers 1 -> n races are valid as well as `last`**
 
 `/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/pitstops/`
 

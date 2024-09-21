@@ -13,7 +13,7 @@ Gets list of constructors
 
 ### Season
 
-**Filters only constructors that participated in a specified season. Year numbers are valid as is 'current' to get the current season list of constructors**
+**Filters only constructors that participated in a specified season. Year numbers are valid as is `current` to get the current season list of constructors**
 
 `/{season}/` -> ex: `/ergast/f1/2024/constructors/`
 

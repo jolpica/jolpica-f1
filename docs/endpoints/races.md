@@ -13,7 +13,7 @@ Gets list of races
 
 ### Season
 
-**Filters for races only from a specified season. Year numbers are valid as is 'current' to get the current season**
+**Filters for races only from a specified season. Year numbers are valid as is `current` to get the current season**
 
 `/{season}/` -> ex: `/ergast/f1/2024/races/`
 
@@ -23,7 +23,7 @@ Gets list of races
 
 ### Round
 
-**Filters for the race for a specified round in a specific season. Round numbers 1 -> n races are valid as well as 'last' and 'next'**
+**Filters for the race for a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last` and `next`**
 
 `/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/races/`
 

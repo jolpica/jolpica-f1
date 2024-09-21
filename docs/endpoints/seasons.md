@@ -13,7 +13,7 @@ Gets list of seasons
 
 ### Season
 
-**Filters for a specified season. Year numbers are valid as is 'current' to get the current season**
+**Filters for a specified season. Year numbers are valid as is `current` to get the current season**
 
 `/{season}/` -> ex: `/ergast/f1/2024/seasons/`
 

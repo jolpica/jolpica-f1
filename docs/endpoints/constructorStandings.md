@@ -13,7 +13,7 @@ Gets a season's constructors standings
 
 ### Season \*\*REQUIRED\*\*
 
-**Filters for the constructors standing of a specified season. Year numbers are valid as is 'current' to get the current seasons constructors standings**
+**Filters for the constructors standing of a specified season. Year numbers are valid as is `current` to get the current seasons constructors standings**
 
 `/{season}/` -> ex: `/ergast/f1/2024/constructorstandings/`
 
@@ -23,7 +23,7 @@ Gets a season's constructors standings
 
 ### Round
 
-**Filters for the constructors standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as 'last'**
+**Filters for the constructors standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last`**
 
 `/{season}/{roundNumber}/` -> ex: `/ergast/f1/2024/5/constructorstandings/`
 

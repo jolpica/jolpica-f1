@@ -13,7 +13,7 @@ Gets list of drivers
 
 ### Season
 
-**Filters only drivers that participated in a specified season. Year numbers are valid as is 'current' to get the current season list of drivers**
+**Filters only drivers that participated in a specified season. Year numbers are valid as is `current` to get the current season list of drivers**
 
 `/{season}/` -> ex: `/ergast/f1/2024/drivers/`
 
