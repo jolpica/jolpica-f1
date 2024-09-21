@@ -43,7 +43,7 @@ Gets a season's drivers standings
 
 **Filters for only the driver in a given position for a given year**
 
-`/{position}` -> ex: `/ergast/f1/2024/driverstandings/1/`
+`/{finishPosition}` -> ex: `/ergast/f1/2024/driverstandings/1/`
 
 **Note**: The position must be at the end after any filters and after `/driverstandings/`
 

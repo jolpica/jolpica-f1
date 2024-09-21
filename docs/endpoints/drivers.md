@@ -67,7 +67,7 @@ Gets list of drivers
 
 **Filters for only drivers who has finished a race in a specific position**
 
-`/results/{position}/` -> ex: `/ergast/f1/results/1/drivers/`
+`/results/{finishPosition}/` -> ex: `/ergast/f1/results/1/drivers/`
 
 ---
 

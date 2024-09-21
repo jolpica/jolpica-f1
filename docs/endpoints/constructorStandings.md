@@ -43,7 +43,7 @@ Gets a season's constructors standings
 
 **Filters for only the constructor in a given position in a given year**
 
-`/{position}` -> ex: `/ergast/f1/2024/constructorstandings/1/`
+`/{finishPosition}` -> ex: `/ergast/f1/2024/constructorstandings/1/`
 
 **Note**: The position must be at the end after any filters and after `/constructorstandings/`
 

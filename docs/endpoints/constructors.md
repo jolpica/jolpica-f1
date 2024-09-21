@@ -67,7 +67,7 @@ Gets list of constructors
 
 **Filters for only constructors which had a driver racing for them finish a race in a specific position**
 
-`/results/{position}/` -> ex: `/ergast/f1/results/1/constructors/`
+`/results/{finishPosition}/` -> ex: `/ergast/f1/results/1/constructors/`
 
 ---
 
