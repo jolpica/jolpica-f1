@@ -79,7 +79,7 @@ Gets a season's constructors standings
 |positonText|✅|
 |points|✅|
 |wins|✅|
-|Constructors|✅|
+|Constructor|✅|
 
 ---
 
