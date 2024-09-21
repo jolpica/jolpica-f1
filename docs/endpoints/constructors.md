@@ -21,6 +21,16 @@ Gets list of constructors
 
 ---
 
+### Round
+
+**Filters only constructors that participated in a specified round of a specific season. Round numbers 1 -> n races are valid as well as `last`**
+
+`/{round}/` -> ex: `/ergast/f1/2024/1/constructors/`
+
+**Note**: To utilize the `round` parameter it needs to be used with the `season` filter and be the first route after `/ergast/f1/{season}/`
+
+---
+
 ### circuits
 
 **Filters for only constructors who have participated in a race at a given circuit**
