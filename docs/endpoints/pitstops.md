@@ -1,7 +1,9 @@
 [← Documentation Home](/docs/README.md)
 # Pitstops Standings
 
-Gets a given races list of pitstops. Data starts for the 2011 season
+Gets a given races list of pitstops in from earliest to latest `time` in which the pitstop occurred.
+
+**Note**: Data starts for the 2011 season.
 
 **URL** : `/ergast/f1/{season}/{ROUND}/pitstops/`
 

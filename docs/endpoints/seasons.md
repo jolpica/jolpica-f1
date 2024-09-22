@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Seasons
 
-Gets list of seasons 
+Gets list of seasons from earliest to latest.
 
 **URL** : `/ergast/f1/seasons/`
 

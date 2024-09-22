@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Races
 
-Gets list of races 
+Gets list of races from earliest to latest.
 
 **URL** : `/ergast/f1/races/`
 

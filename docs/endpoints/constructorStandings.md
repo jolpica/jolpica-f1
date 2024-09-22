@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Constructor Standings
 
-Gets a season's constructors standings 
+Gets a season's constructors standings from first to last place.
 
 **URL** : `/ergast/f1/{season}/constructorstandings/`
 

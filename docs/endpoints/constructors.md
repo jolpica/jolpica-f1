@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Constructors
 
-Gets list of constructors 
+Gets list of constructors alphabetically by constructorId
 
 **URL** : `/ergast/f1/constructors/`
 

@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Driver Standings
 
-Gets a season's drivers standings 
+Gets a season's drivers standings from first to last place. 
 
 **URL** : `/ergast/f1/{season}/driverstandings/`
 

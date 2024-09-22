@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Drivers
 
-Gets list of drivers 
+Gets list of drivers in alphabetical order by driverId
 
 **URL** : `/ergast/f1/drivers/`
 
