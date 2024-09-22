@@ -105,7 +105,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ---
 
-## Driver Object Fields:
+## Circuits Object Fields:
 
 |Field|Required|
 |---|:---:|
