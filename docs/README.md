@@ -15,7 +15,7 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 
 | Endpoint                                              | Route |
 |-----                                                  |-----|
-| Circuits                                              | `/ergast/f1/circuits/`|
+| [Circuits](/docs/endpoints/circuits.md)               | `/ergast/f1/circuits/`|
 | [Constructors](/docs/endpoints/constructors.md)       | `/ergast/f1/constructors/` |
 | [Constructor Standings](/docs/endpoints/constructorStandings.md)  | `/ergast/f1/{season}/constructorstandings/` |
 | [Drivers](/docs/endpoints/drivers.md)                 | `/ergast/f1/drivers/` |
