@@ -95,7 +95,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](docs/README.md#common-response-fields)
 
 `MRData.CircuitTable` : The object containing the list of the all drivers.
 
@@ -174,8 +174,6 @@ Gets list of circuits in alphabetical order by circuitId
 ```
 
 ### Get all circuits which have had a race with 29 driver results.
-
-* Note this is missing Logan Sargent as he did not start the race even though he participated in the weekend.
 
 `https://api.jolpi.ca/ergast/f1/results/29/circuits/`
 

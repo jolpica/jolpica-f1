@@ -86,10 +86,10 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 |Field|Required|
 |---|:---:|
 |driverId| ✅ |
-|lap|✅|
-|stop|✅|
-|time|✅|
-|duration|✅|
+|lap|🟡|
+|stop|🟡|
+|time|🟡|
+|duration|🟡|
 
 ---
 

@@ -75,12 +75,13 @@ Gets a season's drivers standings from first to last place.
 
 |Field|Required|
 |---|:---:|
-|position| ✅ |
+|position| ❌ |
 |positonText|✅|
 |points|✅|
 |wins|✅|
 |Driver|✅|
 |Constructors|✅|
+Possible values for positionText include: `E` Excluded, `D` Disqualified (1997 Schumacher), `-` for ineligible or the position as a string otherwise.  
 
 ---
 

@@ -51,7 +51,7 @@ Gets list of drivers in alphabetical order by driverId
 
 **Filters for only drivers that match the specific driverId**
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/drivers/`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/`
 
 
 ---

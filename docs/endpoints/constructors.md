@@ -43,7 +43,7 @@ Gets list of constructors alphabetically by constructorId
 
 **Filters for only a specified constructor**
 
-`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/constructors/`
+`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/`
 
 ---
 
@@ -109,10 +109,10 @@ Gets list of constructors alphabetically by constructorId
 
 |Field|Required|
 |---|:---:|
-|constructorId| ✅ |
-|url|✅|
+|constructorId| 🟡 |
+|url|🟡|
 |name|✅|
-|nationality|✅|
+|nationality|🟡|
 
 ---
 

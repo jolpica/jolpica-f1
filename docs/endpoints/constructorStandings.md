@@ -75,11 +75,12 @@ Gets a season's constructors standings from first to last place.
 
 |Field|Required|
 |---|:---:|
-|position| ✅ |
+|position| ❌ |
 |positonText|✅|
 |points|✅|
 |wins|✅|
 |Constructor|✅|
+Possible values for positionText include: `E` Excluded (2007 McLaren), `D` Disqualified, `-` for ineligible or the position as a string otherwise.  
 
 ---
 
