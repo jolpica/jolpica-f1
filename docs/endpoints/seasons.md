@@ -5,7 +5,7 @@ Gets list of seasons from earliest to latest.
 
 **URL** : `/ergast/f1/seasons/`
 
-[Available Query Parameters](./README.md#query-parameters)
+[Available Query Parameters](docs/README.md#query-parameters)
 
 ---
 

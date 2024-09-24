@@ -7,7 +7,7 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 
 **URL** : `/ergast/f1/{season}/{ROUND}/pitstops/`
 
-[Available Query Parameters](./README.md#query-parameters)
+[Available Query Parameters](docs/README.md#query-parameters)
 
 ---
 

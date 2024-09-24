@@ -5,7 +5,7 @@ Gets list of constructors alphabetically by constructorId
 
 **URL** : `/ergast/f1/constructors/`
 
-[Available Query Parameters](./README.md#query-parameters)
+[Available Query Parameters](docs/README.md#query-parameters)
 
 ---
 

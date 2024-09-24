@@ -5,7 +5,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 **URL** : `/ergast/f1/circuits/`
 
-[Available Query Parameters](./README.md#query-parameters)
+[Available Query Parameters](docs/README.md#query-parameters)
 
 ---
 
