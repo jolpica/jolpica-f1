@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Circuits
 
-Gets list of circuits in alphabetical order by circuitId
+Returns list of circuits in alphabetical order by `circuitId`
 
 **URL** : `/ergast/f1/circuits/`
 
@@ -9,31 +9,31 @@ Gets list of circuits in alphabetical order by circuitId
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters only circuits which hosted a race in a given seasons. Year numbers are valid as is `current` to get the current season list of circuits**
+Filters only circuits which hosted a race in a given season. Year numbers are valid as is `current` to get the current season's list of circuits.
 
 `/{season}/` -> ex: `/ergast/f1/2024/circuits/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### Round
 
-**Filters only for the circuit that hosted the race in the specified round of the specific season. Round numbers 1 -> n races are valid as well as `last` and `next`**
+Filters only for the circuit that hosted the race in the specified round of the specific season. Round numbers 1 -> `n` races are valid as well as `last` and `next`.
 
 `/{round}/` -> ex: `/ergast/f1/2024/1/circuits/`
 
-**Note**: To utilize the `round` parameter it needs to be used with the `season` filter and be the first route after `/ergast/f1/{season}`
+**Note**: **Note**: To utilize the `round` parameter it needs to be used with the `season` filter and be the first argument after `/ergast/f1/{season}`.
 
 ---
 
 ### circuits
 
-**Filters for only the circuit that matches the specified circuitId**
+Filters for only the circuit that matches the specified `circuitId`..
 
 `/circuits/{circuitId}/` -> ex: `/ergast/f1/2024/circuits/albert_park/circuits/`
 
@@ -41,7 +41,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ### constructors
 
-**Filters for only circuits that the specified constructor has participated in a race at**
+Filters for only circuits that the specified constructor has participated in a race at.
 
 `/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/circuits/`
 
@@ -49,7 +49,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ### drivers
 
-**Filters for only circuits that the specified driver has participated in a race at**
+Filters for only circuits that the specified driver has participated in a race at.
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/circuits/`
 
@@ -58,7 +58,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ### fastest
 
-**Filters for only circuits that have had a race with a lap that was the ranked in the specified position**
+Filters for a list of circuits where a race finished with a driver completing a lap that was the ranked in the specified position.
 
 `/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/24/circuits/`
 
@@ -67,7 +67,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ### grid
 
-**Filters for only circuits that have had a race with a specific grid position**
+Filters for only circuits that have had a race with a specific grid position.
 
 `/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/29/circuits/`
 
@@ -75,7 +75,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ### results
 
-**Filters for only circuits that have had a race where a specific finishing position was valid**
+Filters for only circuits that have had a race where a specific finishing position was valid.
 
 `/results/{finishPosition}/` -> ex: `/ergast/f1/results/1/circuits/`
 
@@ -83,7 +83,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ### status
 
-**Filters for only circuits that have had a race where a driver finished with a specific statusId**
+Filters for only circuits that have had a race where a driver finished with a specific `statusId`.
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/2/drivers/`
 
@@ -101,7 +101,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 `MRData.CircuitTable.Circuits` : The list of all drivers returned.
 
-`MRData.CircuitTable.Circuits[i]` : A given driver object
+`MRData.CircuitTable.Circuits[i]` : A given driver object.
 
 ---
 

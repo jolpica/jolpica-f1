@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Seasons
 
-Gets list of seasons from earliest to latest.
+Returns list of seasons from earliest to latest.
 
 **URL** : `/ergast/f1/seasons/`
 
@@ -9,21 +9,21 @@ Gets list of seasons from earliest to latest.
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters for a specified season. Year numbers are valid as is `current` to get the current season**
+Filters for a specified season. Year numbers are valid as is `current` to get the current season.
 
 `/{season}/` -> ex: `/ergast/f1/2024/seasons/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### circuits
 
-**Filters for only seasons featuring a specified circuit**
+Filters for only seasons featuring a specified circuit.
 
 `/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/seasons/`
 
@@ -31,7 +31,7 @@ Gets list of seasons from earliest to latest.
 
 ### constructors
 
-**Filters for only seasons featuring a specified constructor**
+Filters for only seasons featuring a specified constructor.
 
 `/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/seasons/`
 
@@ -39,7 +39,7 @@ Gets list of seasons from earliest to latest.
 
 ### drivers
 
-**Filters for only seasons featuring a specified driver**
+Filters for only seasons featuring a specified driver.
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/seasons/`
 
@@ -48,7 +48,7 @@ Gets list of seasons from earliest to latest.
 
 ### grid
 
-**Filters for only seasons featuring a specified grid position**
+Filters for only seasons featuring a specified grid position.
 
 `/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/seasons/`
 
@@ -56,7 +56,7 @@ Gets list of seasons from earliest to latest.
 
 ### status
 
-**Filters for only seasons featuring a specified finishing status of a driver in at least one race that season**
+Filters for only seasons featuring a specified finishing status of a driver in at least one race that season.
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/2/seasons/`
 
@@ -74,7 +74,7 @@ Gets list of seasons from earliest to latest.
 
 `MRData.SeasonTable.Seasons` : The list of all seasons returned.
 
-`MRData.SeasonTable.Seasons[i]` : A given season object
+`MRData.SeasonTable.Seasons[i]` : A given season object.
 
 ---
 

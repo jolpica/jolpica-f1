@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Pitstops Standings
 
-Gets a given races list of pitstops in from earliest to latest `time` in which the pitstop occurred.
+Returns a given races list of pitstops, from earliest to latest `time` in which the pitstop occurred.
 
 **Note**: Data starts for the 2011 season.
 
@@ -11,31 +11,31 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
-### Season \*\*REQUIRED\*\*
+### Season (required)
 
-**Filters for the season that the list of pitstops will be from. Year numbers are valid as is `current` to get the pitstops of a given round in the current season**
+Filters for the season that the list of pitstops will be from. Year numbers are valid as is `current` to get the pitstops of a given round in the current season.
 
 `/{season}/` -> ex: `/ergast/f1/2024/1/pitstops/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
-### Round \*\*REQUIRED\*\*
+### Round (required)
 
-**Filters for the round in a specific season that the list of pitstops will be from. Round numbers 1 -> n races are valid as well as `last`**
+Filters for the round in a specific season that the list of pitstops will be from. Round numbers 1 -> `n` races are valid as well as `last`.
 
 `/{season}/{round}/` -> ex: `/ergast/f1/2024/5/pitstops/`
 
-**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
+**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first argument after `/ergast/f1/{season}/`.
 
 ---
 
 ### drivers
 
-**Filters for only for a specific drivers's list of pitstops in a seasons round**
+Filters for only for a specific drivers's list of pitstops in a season's round.
 
 `/drivers/{driversId}/` -> ex: `/ergast/f1/2024/1/drivers/hamilton/pitstops/`
 
@@ -43,7 +43,7 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 
 ### laps
 
-**Filters for only pitstops that took place in a given lap of a race**
+Filters for only pitstops that took place in a given lap of a race.
 
 `/laps/{lapNumber}` -> ex: `/ergast/f1/2019/4/laps/12/pitstops`
 
@@ -163,7 +163,7 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 
 ### Get all of Fernando Alonso's pitstops in the 2023 Dutch Grand Prix
 
-`http://api.jolpi.ca/ergast/f1/2023/13/drivers/alonso/pitstops//`
+`http://api.jolpi.ca/ergast/f1/2023/13/drivers/alonso/pitstops/`
 
 ```json
 {

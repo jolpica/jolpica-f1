@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Driver Standings
 
-Gets a season's drivers standings from first to last place. 
+Returns a season's drivers standings from first to last place. 
 
 **URL** : `/ergast/f1/{season}/driverstandings/`
 
@@ -9,31 +9,31 @@ Gets a season's drivers standings from first to last place.
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
-### Season \*\*REQUIRED\*\*
+### Season (required)
 
-**Filters for the drivers standing of a specified season. Year numbers are valid as is `current` to get the current seasons drivers standings**
+Filters for the drivers standing of a specified season. Year numbers are valid as is `current` to get the current seasons drivers standings.
 
 `/{season}/` -> ex: `/ergast/f1/2024/driverstandings/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### Round
 
-**Filters for the drivers standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last`**
+Filters for the drivers standings after a specified round in a specific season. Round numbers 1 -> `n` races are valid as well as `last`.
 
 `/{season}/{round}/` -> ex: `/ergast/f1/2024/5/driverstandings/`
 
-**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
+**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first argument after `/ergast/f1/{season}/`.
 
 ---
 
 ### drivers
 
-**Filters for only a specific driver's drivers standing information for a given year**
+Filters for only a specific driver's drivers standing information for a given year.
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/2024/drivers/hamilton/driverstandings/`
 
@@ -41,7 +41,7 @@ Gets a season's drivers standings from first to last place.
 
 ### position
 
-**Filters for only the driver in a given position for a given year**
+Filters for only the driver in a given position for a given year.
 
 `/{finishPosition}` -> ex: `/ergast/f1/2024/driverstandings/1/`
 

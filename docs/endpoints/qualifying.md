@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Qualifying
 
-Gets list of qualification results from each race.
+Returns list of qualification results from each race.
 
 **URL** : `/ergast/f1/qualifying/`
 
@@ -9,31 +9,31 @@ Gets list of qualification results from each race.
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters for qualifying results only from a specified season. Year numbers are valid as is `current` to get the current season**
+Filters for qualifying results only from a specified season. Year numbers are valid as is `current` to get the current season.
 
 `/{season}/` -> ex: `/ergast/f1/2024/qualifying/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### Round
 
-**Filters for the qualifying results for a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last` and `next`**
+Filters for the qualifying results for a specified round in a specific season. Round numbers 1 -> `n` races are valid as well as `last` and `next`.
 
 `/{season}/{round}/` -> ex: `/ergast/f1/2024/5/qualifying/`
 
-**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
+**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first argument after `/ergast/f1/{season}/`.
 
 ---
 
 ### circuits
 
-**Filters for the qualifying results at a specified circuit**
+Filters for the qualifying results at a specified circuit.
 
 `/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/qualifying/`
 
@@ -41,7 +41,7 @@ Gets list of qualification results from each race.
 
 ### constructors
 
-**Filters for the qualifying results of drivers driving for a specified constructor**
+Filters for the qualifying results of drivers driving for a specified constructor.
 
 `/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/qualifying/`
 
@@ -49,7 +49,7 @@ Gets list of qualification results from each race.
 
 ### drivers
 
-**Filters for the qualifying results of a specified driver**
+Filters for the qualifying results of a specified driver.
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/qualifying/`
 
@@ -57,7 +57,7 @@ Gets list of qualification results from each race.
 
 ### grid
 
-**Filters for the qualifying results of a driver who started the associated race in a specified grid position**
+Filters for the qualifying results of a driver who started the associated race in a specified grid position.
 
 `/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/18/qualifying/`
 
@@ -67,7 +67,7 @@ Gets list of qualification results from each race.
 
 ### fastest
 
-**Filters for the qualifying results a driver with the fastest lap rank at a given Grand Prix**
+Filters for the qualifying results a driver with the fastest lap rank at a given Grand Prix.
 
 `/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/2/qualifying/`
 
@@ -77,7 +77,7 @@ Gets list of qualification results from each race.
 
 ### status
 
-**Filters for the qualifying results of any drivers with the finishing statusId at a given Grand Prix**
+Filters for the qualifying results of any drivers with the finishing statusId at a given Grand Prix.
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/11/qualifying/`
 

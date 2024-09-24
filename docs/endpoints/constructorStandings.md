@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Constructor Standings
 
-Gets a season's constructors standings from first to last place.
+Returns a season's constructors standings from first to last place.
 
 **URL** : `/ergast/f1/{season}/constructorstandings/`
 
@@ -9,31 +9,31 @@ Gets a season's constructors standings from first to last place.
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
-### Season \*\*REQUIRED\*\*
+### Season (required)
 
-**Filters for the constructors standing of a specified season. Year numbers are valid as is `current` to get the current seasons constructors standings**
+Filters for the constructors standing of a specified season. Year numbers are valid as is `current` to get the current seasons constructors standings.
 
 `/{season}/` -> ex: `/ergast/f1/2024/constructorstandings/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### Round
 
-**Filters for the constructors standings after a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last`**
+Filters for the constructors standings after a specified round in a specific season. Round numbers 1 -> `n` races are valid as well as `last`.
 
 `/{season}/{round}/` -> ex: `/ergast/f1/2024/5/constructorstandings/`
 
-**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
+**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first argument after `/ergast/f1/{season}/`.
 
 ---
 
 ### constructors
 
-**Filters for only for a specific constructors's constructors standing information for a given year**
+Filters for only for a specific constructors' standing information for a given year.
 
 `/constructors/{constructorsId}/` -> ex: `/ergast/f1/2024/constructors/ferrari/constructorstandings/`
 
@@ -41,7 +41,7 @@ Gets a season's constructors standings from first to last place.
 
 ### position
 
-**Filters for only the constructor in a given position in a given year**
+Filters for only the constructor in a given position in a given year.
 
 `/{finishPosition}` -> ex: `/ergast/f1/2024/constructorstandings/1/`
 

@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Constructors
 
-Gets list of constructors alphabetically by constructorId
+Returns a list of constructors alphabetically by `constructorId`
 
 **URL** : `/ergast/f1/constructors/`
 
@@ -9,31 +9,31 @@ Gets list of constructors alphabetically by constructorId
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters only constructors that participated in a specified season. Year numbers are valid as is `current` to get the current season list of constructors**
+Filters only constructors that participated in a specified season. Year numbers are valid as is `current` to get the current season list of constructors.
 
 `/{season}/` -> ex: `/ergast/f1/2024/constructors/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### Round
 
-**Filters only constructors that participated in a specified round of a specific season. Round numbers 1 -> n races are valid as well as `last`**
+Filters only constructors that participated in a specified round of a specific season. Round numbers 1 -> `n` races are valid as well as `last`.
 
 `/{round}/` -> ex: `/ergast/f1/2024/1/constructors/`
 
-**Note**: To utilize the `round` parameter it needs to be used with the `season` filter and be the first route after `/ergast/f1/{season}/`
+**Note**: To utilize the `round` parameter it needs to be used with the `season` filter and be the first argument after `/ergast/f1/{season}/`
 
 ---
 
 ### circuits
 
-**Filters for only constructors who have participated in a race at a given circuit**
+Filters for only constructors who have participated in a race at a given circuit.
 
 `/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/bahrain/constructors/`
 
@@ -41,7 +41,7 @@ Gets list of constructors alphabetically by constructorId
 
 ### constructors
 
-**Filters for only a specified constructor**
+Filters for only a specified constructor.
 
 `/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/`
 
@@ -49,7 +49,7 @@ Gets list of constructors alphabetically by constructorId
 
 ### drivers
 
-**Filters for only constructors that had a driver race for them**
+Filters for only constructors that had a driver race for them.
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/constructors/`
 
@@ -58,7 +58,7 @@ Gets list of constructors alphabetically by constructorId
 
 ### fastest
 
-**Filters for only constructors that finished a race with a lap that was the ranked in the specified position**
+Filters for only constructors that finished a race with a lap that was the ranked in the specified position.
 
 `/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/1/constructors/`
 
@@ -67,7 +67,7 @@ Gets list of constructors alphabetically by constructorId
 
 ### grid
 
-**Filters for only constructors which had a driver racing for them start a race in a specific grid position**
+Filters for only constructors which had a driver racing for them start a race in a specific grid position.
 
 `/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/1/constructors/`
 
@@ -75,7 +75,7 @@ Gets list of constructors alphabetically by constructorId
 
 ### results
 
-**Filters for only constructors which had a driver racing for them finish a race in a specific position**
+Filters for only constructors which had a driver racing for them finish a race in a specific position.
 
 `/results/{finishPosition}/` -> ex: `/ergast/f1/results/1/constructors/`
 
@@ -83,7 +83,7 @@ Gets list of constructors alphabetically by constructorId
 
 ### status
 
-**Filters for only constructors who had a driver finish a race with a specific statusId**
+Filters for only constructors who had a driver finish a race with a specific `statusId`.
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/2/constructors/`
 
@@ -101,7 +101,7 @@ Gets list of constructors alphabetically by constructorId
 
 `MRData.ConstructorTable.Constructors` : The list of all constructors returned.
 
-`MRData.ConstructorTable.Constructors[i]` : A given constructor object
+`MRData.ConstructorTable.Constructors[i]` : A given constructor object.
 
 ---
 

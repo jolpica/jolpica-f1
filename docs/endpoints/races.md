@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Races
 
-Gets list of races from earliest to latest.
+Returns list of races from earliest to latest.
 
 **URL** : `/ergast/f1/races/`
 
@@ -9,31 +9,31 @@ Gets list of races from earliest to latest.
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters for races only from a specified season. Year numbers are valid as is `current` to get the current season**
+Filters for races only from a specified season. Year numbers are valid as is `current` to get the current season.
 
 `/{season}/` -> ex: `/ergast/f1/2024/races/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### Round
 
-**Filters for the race for a specified round in a specific season. Round numbers 1 -> n races are valid as well as `last` and `next`**
+Filters for the race for a specified round in a specific season. Round numbers 1 -> `n` races are valid as well as `last` and `next`.
 
 `/{season}/{round}/` -> ex: `/ergast/f1/2024/5/races/`
 
-**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first route after `/ergast/f1/{season}/`
+**Note**: To utilize the `round` parameter it must be combined with a season filter and needs to be the first argument after `/ergast/f1/{season}/`.
 
 ---
 
 ### circuits
 
-**Filters for only races featuring a specified circuit**
+Filters for only races featuring a specified circuit.
 
 `/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/races/`
 
@@ -41,7 +41,7 @@ Gets list of races from earliest to latest.
 
 ### constructors
 
-**Filters for only races featuring a specified constructor**
+Filters for only races featuring a specified constructor.
 
 `/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/races/`
 
@@ -49,7 +49,7 @@ Gets list of races from earliest to latest.
 
 ### drivers
 
-**Filters for only races featuring a specified driver**
+Filters for only races featuring a specified driver.
 
 `/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/races/`
 
@@ -58,7 +58,7 @@ Gets list of races from earliest to latest.
 
 ### grid
 
-**Filters for only races featuring a specified grid position**
+Filters for only races featuring a specified grid position.
 
 `/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/races/`
 
@@ -66,7 +66,7 @@ Gets list of races from earliest to latest.
 
 ### status
 
-**Filters for only races featuring a specified finishing status of a driver**
+Filters for only races featuring a specified finishing status of a driver.
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/2/races/`
 
@@ -84,7 +84,7 @@ Gets list of races from earliest to latest.
 
 `MRData.RaceTable.Races` : The list of all races returned.
 
-`MRData.RaceTable.Races[i]` : A given race object
+`MRData.RaceTable.Races[i]` : A given race object.
 
 ---
 
@@ -112,7 +112,7 @@ Gets list of races from earliest to latest.
 
 ### Get list of races in F1 history
 
-`https://api.jolpi.ca/ergast/f1/races//`
+`https://api.jolpi.ca/ergast/f1/races/`
 
 ```json
 {
