@@ -5,7 +5,7 @@ Gets list of drivers in alphabetical order by driverId
 
 **URL** : `/ergast/f1/drivers/`
 
-[Available Query Parameters](docs/README.md#query-parameters)
+[Available Query Parameters](/docs/README.md#query-parameters)
 
 ---
 

@@ -5,7 +5,7 @@ Gets a season's drivers standings from first to last place.
 
 **URL** : `/ergast/f1/{season}/driverstandings/`
 
-[Available Query Parameters](docs/README.md#query-parameters)
+[Available Query Parameters](/docs/README.md#query-parameters)
 
 ---
 

@@ -5,7 +5,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 **URL** : `/ergast/f1/circuits/`
 
-[Available Query Parameters](docs/README.md#query-parameters)
+[Available Query Parameters](/docs/README.md#query-parameters)
 
 ---
 
@@ -95,7 +95,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 **Response Fields** :
 
-[Common Response Fields](docs/README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.CircuitTable` : The object containing the list of the all drivers.
 

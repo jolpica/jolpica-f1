@@ -5,7 +5,7 @@ Gets a season's constructors standings from first to last place.
 
 **URL** : `/ergast/f1/{season}/constructorstandings/`
 
-[Available Query Parameters](docs/README.md#query-parameters)
+[Available Query Parameters](/docs/README.md#query-parameters)
 
 ---
 
