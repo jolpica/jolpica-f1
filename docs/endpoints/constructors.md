@@ -107,12 +107,12 @@ Gets list of constructors alphabetically by constructorId
 
 ## Constructor Object Fields:
 
-|Field|Always Included|
-|---|:---:|
-|constructorId| 🟡 |
-|url|🟡|
-|name|✅|
-|nationality|🟡|
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|constructorId|🟡|Unique ID of the constructor|String
+|url|🟡|Wikipedia URL of the circuit|String
+|name|✅|Name of the Constructor|String
+|nationality|🟡|Nationality Demonym|String
 
 ---
 

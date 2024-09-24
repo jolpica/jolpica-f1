@@ -73,15 +73,16 @@ Gets a season's drivers standings from first to last place.
 
 ## Drivers Standing Object Fields:
 
-|Field|Always Included|
-|---|:---:|
-|position| 🟡 |
-|positonText|✅|
-|points|✅|
-|wins|✅|
-|Driver|✅|
-|Constructors|✅|
-Possible values for positionText include: `E` Excluded, `D` Disqualified (1997 Schumacher), `-` for ineligible or the position as a string otherwise.  
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|position|🟡|Position in the Championship|String
+|positonText|✅|Description of position `*`|String
+|points|✅|Total points in the Championship|String
+|wins|✅|Count of race wins|String
+|Driver|✅|Driver information (driverId, url, givenName, familyName, dateOfBirth, nationality)|Object
+|Constructors|✅|List of all constructors the driver drove for in the given season|Array
+
+`*` - Possible values for positionText include: `E` Excluded, `D` Disqualified (1997 Schumacher), `-` for ineligible or the position as a string otherwise.  
 
 ---
 

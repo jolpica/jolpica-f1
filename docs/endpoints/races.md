@@ -90,21 +90,21 @@ Gets list of races from earliest to latest.
 
 ## Race Object Fields:
 
-|Field|Always Included|
-|---|:---:|
-|season| ✅ |
-|round|✅|
-|url|✅|
-|raceName|✅|
-|Circuit|✅|
-|date|✅|
-|time|🟡|
-|FirstPractice|🟡|
-|SecondPractice|🟡|
-|ThirdPractice|🟡|
-|Qualifying|🟡|
-|Sprint|🟡|
-|SprintQualifying|🟡|
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|season|✅|Season year|String
+|round|✅|Round Number|String
+|url|✅|Wikipedia URL of race|String
+|raceName|✅|Name of the race|String
+|Circuit|✅|Circuit information (circuitId, url, circuitName, Location)|Object
+|date|✅|Date of the race (YYYY-MM-DD)|String
+|time|🟡|UTC start time of the race|String
+|FirstPractice|🟡|First Practice (date, time)|Object
+|SecondPractice|🟡|Second Practice (date, time)|Object
+|ThirdPractice|🟡|Third Practice (date, time)|Object
+|Qualifying|🟡|Qualifying (date, time)|Object
+|Sprint|🟡|Sprint Race (date, time)|Object
+|SprintQualifying|🟡|Sprint Qualifying (date, time)|Object
 
 ---
 

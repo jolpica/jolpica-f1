@@ -73,14 +73,15 @@ Gets a season's constructors standings from first to last place.
 
 ## Constrcutors Standing Object Fields:
 
-|Field|Always Included|
-|---|:---:|
-|position| 🟡 |
-|positonText|✅|
-|points|✅|
-|wins|✅|
-|Constructor|✅|
-Possible values for positionText include: `E` Excluded (2007 McLaren), `D` Disqualified, `-` for ineligible or the position as a string otherwise.  
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|position|🟡|Position in the Championship|String
+|positonText|✅|Description of position `*`|String
+|points|✅|Total points in the Championship|String
+|wins|✅|Count of race wins|String
+|Constructor|✅|Constructor information (constructorId, name, url, nationality)|Object
+
+`*` - Possible values for positionText include: `E` Excluded (2007 McLaren), `D` Disqualified, `-` for ineligible or the position as a string otherwise.  
 
 ---
 

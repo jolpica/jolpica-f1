@@ -107,12 +107,12 @@ Gets list of circuits in alphabetical order by circuitId
 
 ## Circuits Object Fields:
 
-|Field|Always Included|
-|---|:---:|
-|circuitId| ✅ |
-|url|✅|
-|circuitName|✅|
-|Location|✅|
+|Field|Always Included|Description|type|
+|---|:---:|---|---|
+|circuitId|✅|Unique ID of the circuit|String
+|url|✅|Wikipedia URL of circuit|String
+|circuitName|✅|Name of the Circuit|String
+|Location|✅|Location of circuit (lat, long, locality, country)|Object
 
 ---
 

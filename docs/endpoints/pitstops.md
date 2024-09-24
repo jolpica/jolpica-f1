@@ -83,13 +83,13 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 
 ## Pitstops Object Fields:
 
-|Field|Always Included|
-|---|:---:|
-|driverId| ✅ |
-|lap|🟡|
-|stop|🟡|
-|time|🟡|
-|duration|🟡|
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|driverId|✅|Unique ID of the driver|String
+|lap|🟡|Lap Identifier|String
+|stop|🟡|Stop number for this driver in the race|String
+|time|🟡|Time that the stop occurred (HH:mm:ss)|String
+|duration|🟡|Duration of the stop, including pit entry, exit and red flag time, if necessary (MM:ss.sss)|String
 
 ---
 
