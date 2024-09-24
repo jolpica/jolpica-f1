@@ -83,7 +83,7 @@ Gets a given races list of pitstops in from earliest to latest `time` in which t
 
 ## Pitstops Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |driverId| ✅ |
 |lap|🟡|

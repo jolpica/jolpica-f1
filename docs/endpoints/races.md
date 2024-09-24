@@ -90,7 +90,7 @@ Gets list of races from earliest to latest.
 
 ## Race Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |season| ✅ |
 |round|✅|

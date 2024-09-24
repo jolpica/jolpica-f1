@@ -107,7 +107,7 @@ Gets list of drivers in alphabetical order by driverId
 
 ## Driver Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |driverId| ✅ |
 |permanentNumber|🟡|

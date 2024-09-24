@@ -73,7 +73,7 @@ Gets a season's constructors standings from first to last place.
 
 ## Constrcutors Standing Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |position| 🟡 |
 |positonText|✅|

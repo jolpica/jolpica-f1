@@ -107,7 +107,7 @@ Gets list of circuits in alphabetical order by circuitId
 
 ## Circuits Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |circuitId| ✅ |
 |url|✅|

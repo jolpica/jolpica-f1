@@ -107,7 +107,7 @@ Gets list of constructors alphabetically by constructorId
 
 ## Constructor Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |constructorId| 🟡 |
 |url|🟡|

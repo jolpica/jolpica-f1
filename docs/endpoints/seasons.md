@@ -80,7 +80,7 @@ Gets list of seasons from earliest to latest.
 
 ## Season Object Fields:
 
-|Field|Required|
+|Field|Always Included|
 |---|:---:|
 |season|✅|
 |url|✅|
