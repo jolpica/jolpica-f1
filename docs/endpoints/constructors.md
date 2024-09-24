@@ -112,7 +112,7 @@ Gets list of constructors alphabetically by constructorId
 |constructorId|🟡|Unique ID of the constructor|String
 |url|🟡|Wikipedia URL of the circuit|String
 |name|✅|Name of the Constructor|String
-|nationality|🟡|Nationality Demonym|String
+|nationality|🟡|Nationality|String
 
 ---
 
