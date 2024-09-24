@@ -75,7 +75,7 @@ Gets a season's constructors standings from first to last place.
 
 |Field|Required|
 |---|:---:|
-|position| ❌ |
+|position| 🟡 |
 |positonText|✅|
 |points|✅|
 |wins|✅|

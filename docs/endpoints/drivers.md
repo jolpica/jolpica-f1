@@ -110,8 +110,8 @@ Gets list of drivers in alphabetical order by driverId
 |Field|Required|
 |---|:---:|
 |driverId| ✅ |
-|permanentNumber|❌|
-|code|❌|
+|permanentNumber|🟡|
+|code|🟡|
 |url|✅|
 |givenName|✅|
 |familyName|✅|

@@ -98,13 +98,13 @@ Gets list of races from earliest to latest.
 |raceName|✅|
 |Circuit|✅|
 |date|✅|
-|time|❌|
-|FirstPractice|❌|
-|SecondPractice|❌|
-|ThirdPractice|❌|
-|Qualifying|❌|
-|Sprint|❌|
-|SprintQualifying|❌|
+|time|🟡|
+|FirstPractice|🟡|
+|SecondPractice|🟡|
+|ThirdPractice|🟡|
+|Qualifying|🟡|
+|Sprint|🟡|
+|SprintQualifying|🟡|
 
 ---
 
