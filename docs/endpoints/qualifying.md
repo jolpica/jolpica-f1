@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Qualifying
 
-Returns list of qualification results from each race.
+Returns a list of qualification results from each race.
 
 **URL** : `/ergast/f1/qualifying/`
 

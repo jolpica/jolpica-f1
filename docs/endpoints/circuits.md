@@ -1,7 +1,7 @@
 [← Documentation Home](/docs/README.md)
 # Circuits
 
-Returns list of circuits in alphabetical order by `circuitId`
+Returns a list of circuits in alphabetical order by `circuitId`
 
 **URL** : `/ergast/f1/circuits/`
 
