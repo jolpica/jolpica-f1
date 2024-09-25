@@ -112,11 +112,11 @@ Filters for only drivers who have finished a race with a specific `statusId`.
 |driverId|✅|Unique ID of the Driver|String
 |permanentNumber|🟡|Permanent Number assigned to the driver|String
 |code|🟡|Driver Code, usually 3 characters|String
-|url|✅|Wikipedia URL to the Drivers profile|String
+|url| 🟡 |Wikipedia URL to the Drivers profile|String
 |givenName|✅|First name|String
 |familyName|✅|Last name|String
-|dateOfBirth|✅|Date of Birth (YYYY-MM-DD format)|String
-|nationality|✅|Nationality of Driver|String
+|dateOfBirth| 🟡 |Date of Birth (YYYY-MM-DD format)|String
+|nationality| 🟡 |Nationality of Driver|String
 
 ---
 

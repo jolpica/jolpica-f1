@@ -104,7 +104,7 @@ Filters for only races featuring a specified finishing status of a driver.
 |ThirdPractice|🟡|Third Practice (date, time)|Object
 |Qualifying|🟡|Qualifying (date, time)|Object
 |Sprint|🟡|Sprint Race (date, time)|Object
-|SprintQualifying|🟡|Sprint Qualifying (date, time)|Object
+|SprintQualifying / SprintShootout|🟡| Shootouts took place in 2023, otherwise they are Qualifying (date, time)|Object
 
 ---
 

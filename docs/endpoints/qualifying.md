@@ -108,7 +108,7 @@ Filters for the qualifying results of any drivers with the finishing statusId at
 |Field|Always Included|Description|type
 |---|:---:|---|---|
 |number|✅|Driver's car number|String
-|position|✅|Qualifying Result Position|String
+|position| 🟡 |Qualifying Result Position|String
 |Driver|✅|Driver information (driverId, permanentNumber, code, url, givenName, familyName, dateOfBirth, nationality)|Object
 |Constructor|✅|Constructor information (constructorId, url, name, nationality)|Object
 |Q1|🟡|Qualifying 1 Result (mm:ss.sss)|String
