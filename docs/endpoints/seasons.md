@@ -1,64 +1,64 @@
 [← Documentation Home](/docs/README.md)
 # Seasons
 
-Gets list of seasons 
+Returns a list of seasons from earliest to latest.
 
-**URL** : `/ergast/f1/seasons`
+**URL** : `/ergast/f1/seasons/`
 
-[Available Query Parameters](./README.md#query-parameters)
+[Available Query Parameters](/docs/README.md#query-parameters)
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters for a specified season. Year numbers are valid as is 'current' to get the current season**
+Filters for a specified season. Year numbers are valid as is `current` to get the current season.
 
-`/{season}/` -> ex: `/ergast/f1/2024/seasons`
+`/{season}/` -> ex: `/ergast/f1/2024/seasons/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
 
 ---
 
 ### circuits
 
-**Filters for only seasons featuring a specified circuit**
+Filters for only seasons featuring a specified circuit.
 
-`/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/seasons`
+`/circuits/{circuitId}/` -> ex: `/ergast/f1/circuits/monza/seasons/`
 
 ---
 
 ### constructors
 
-**Filters for only seasons featuring a specified constructor**
+Filters for only seasons featuring a specified constructor.
 
-`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/seasons`
+`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/seasons/`
 
 ---
 
 ### drivers
 
-**Filters for only seasons featuring a specified driver**
+Filters for only seasons featuring a specified driver.
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/seasons`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/seasons/`
 
 
 ---
 
 ### grid
 
-**Filters for only seasons featuring a specified grid position**
+Filters for only seasons featuring a specified grid position.
 
-`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/seasons`
+`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/27/seasons/`
 
 ---
 
 ### status
 
-**Filters for only seasons featuring a specified finishing status of a driver in at least one race that season**
+Filters for only seasons featuring a specified finishing status of a driver in at least one race that season.
 
-`/status/{statusId}/` -> ex: `/ergast/f1/status/2/seasons`
+`/status/{statusId}/` -> ex: `/ergast/f1/status/2/seasons/`
 
 ---
 
@@ -74,16 +74,16 @@ Gets list of seasons
 
 `MRData.SeasonTable.Seasons` : The list of all seasons returned.
 
-`MRData.SeasonTable.Seasons[i]` : A given season object
+`MRData.SeasonTable.Seasons[i]` : A given season object.
 
 ---
 
 ## Season Object Fields:
 
-|Field|Required|
-|---|:---:|
-|season|✅|
-|url|✅|
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|season|✅|Season year|String
+|url|✅|Wikipedia URL of the season|String
 
 ---
 
@@ -125,7 +125,7 @@ Gets list of seasons
 
 ### Get all seasons featuring a specific constructor (Alfa)
 
-`https://api.jolpi.ca/ergast/f1/constructors/alfa/seasons`
+`https://api.jolpi.ca/ergast/f1/constructors/alfa/seasons/`
 
 ```json
 {

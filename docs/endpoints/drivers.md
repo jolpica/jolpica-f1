@@ -1,81 +1,91 @@
 [← Documentation Home](/docs/README.md)
 # Drivers
 
-Gets list of drivers 
+Returns a list of drivers in alphabetical order by `driverId`
 
-**URL** : `/ergast/f1/drivers`
+**URL** : `/ergast/f1/drivers/`
 
-[Available Query Parameters](./README.md#query-parameters)
+[Available Query Parameters](/docs/README.md#query-parameters)
 
 ---
 
-## Route Parameters:
+## Route Parameters
 
 ### Season
 
-**Filters only drivers that participated in a specified season. Year numbers are valid as is 'current' to get the current season list of drivers**
+Filters only drivers that participated in a specified season. Year numbers are valid as is `current` to get the current season list of drivers.
 
-`/{season}/` -> ex: `/ergast/f1/2024/drivers`
+`/{season}/` -> ex: `/ergast/f1/2024/drivers/`
 
-**Note**: To utilize the `season` parameter it needs to be the first route after `/ergast/f1/`
+**Note**: To utilize the `season` parameter, it needs to be the first argument after `/ergast/f1/`.
+
+---
+
+### Round
+
+Filters only drivers that participated in a specified round of a specific season. Round numbers 1 -> `n` races are valid as well as `last`.
+
+`/{round}/` -> ex: `/ergast/f1/2024/1/drivers/`
+
+**Note**: **Note**: To utilize the `round` parameter it needs to be used with the `season` filter and be the first argument after `/ergast/f1/{season}`.
 
 ---
 
 ### circuits
 
-**Filters for only drivers who have participated in a race at a given circuit**
+Filters for only drivers who have participated in a race at a given circuit.
 
-`/circuits/{circuitId}/` -> ex: `/ergast/f1/2024/circuits/albert_park/drivers`
+`/circuits/{circuitId}/` -> ex: `/ergast/f1/2024/circuits/albert_park/drivers/`
 
 ---
 
 ### constructors
 
-**Filters for only drivers who have raced for a specified constructor**
+Filters for only drivers who have raced for a specified constructor.
 
-`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/drivers`
+`/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/williams/drivers/`
 
 ---
 
 ### drivers
 
-**Filters for only drivers that match the specific driverId**
+Filters for only drivers that match the specific `driverId`.
 
-`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/drivers`
+`/drivers/{driverId}/` -> ex: `/ergast/f1/drivers/hamilton/`
 
 
 ---
 
 ### fastest
 
-**Filters for only drivers that finished a race with a lap that was the ranked in the specified position**
+Filters for only drivers that finished a race with a lap that was the ranked in the specified position.
 
-`/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/1/drivers`
+`/fastest/{lapRank}/` -> ex: `/ergast/f1/fastest/1/drivers/`
 
 
 ---
 
 ### grid
 
-**Filters for only drivers who has started a race in a specific grid position**
+Filters for only drivers who have started a race in a specific grid position.
 
-`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/1/drivers`
+`/grid/{gridPosition}/` -> ex: `/ergast/f1/grid/1/drivers/`
 
 ---
 
 ### results
 
-**Filters for only drivers who has finished a race in a specific position**
+Filters for only drivers who have finished a race in a specific position.
 
-`/results/{position}/` -> ex: `/ergast/f1/results/1/drivers`
+`/results/{finishPosition}/` -> ex: `/ergast/f1/results/1/drivers/`
 
 ---
 
 ### status
 
-**Filters for only drivers who have finished a race with a specific statusId**
+Filters for only drivers who have finished a race with a specific `statusId`.
 
-`/status/{statusId}/` -> ex: `/ergast/f1/status/2/drivers`
+`/status/{statusId}/` -> ex: `/ergast/f1/status/2/drivers/`
 
 ---
 
@@ -91,22 +101,22 @@ Gets list of drivers
 
 `MRData.DriverTable.Drivers` : The list of all drivers returned.
 
-`MRData.DriverTable.Drivers[i]` : A given driver object
+`MRData.DriverTable.Drivers[i]` : A given driver object.
 
 ---
 
 ## Driver Object Fields:
 
-|Field|Required|
-|---|:---:|
-|driverId| ✅ |
-|permanentNumber|❌|
-|code|❌|
-|url|✅|
-|givenName|✅|
-|familyName|✅|
-|dateOfBirth|✅|
-|nationality|✅|
+|Field|Always Included|Description|type
+|---|:---:|---|---|
+|driverId|✅|Unique ID of the Driver|String
+|permanentNumber|🟡|Permanent Number assigned to the driver|String
+|code|🟡|Driver Code, usually 3 characters|String
+|url| 🟡 |Wikipedia URL to the Drivers profile|String
+|givenName|✅|First name|String
+|familyName|✅|Last name|String
+|dateOfBirth| 🟡 |Date of Birth (YYYY-MM-DD format)|String
+|nationality| 🟡 |Nationality of Driver|String
 
 ---
 
@@ -114,7 +124,7 @@ Gets list of drivers
 
 ### Get list of all drivers in F1 history
 
-`https://api.jolpi.ca/ergast/f1/drivers`
+`https://api.jolpi.ca/ergast/f1/drivers/`
 
 ```json
 {
@@ -154,7 +164,7 @@ Gets list of drivers
 
 * Note this is missing Logan Sargent as he did not start the race even though he participated in the weekend.
 
-`https://api.jolpi.ca/ergast/f1/2024/circuits/albert_park/drivers`
+`https://api.jolpi.ca/ergast/f1/2024/circuits/albert_park/drivers/`
 
 ```json
 {
