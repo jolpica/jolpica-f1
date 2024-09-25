@@ -42,6 +42,14 @@ Current requirements are:
   ```
 This will fill the database with the latest data from ergast, and create the initial test database so all future tests will run quicker.
 
+## Running the Server
+
+To run the server
+
+```python manage.py runserver 0.0.0.0:8000```
+
+This will start it on port 8000
+
 ## Running Tests
 The first time the tests are run it will take upto 2 minutes to populate the database with test data, pytest is configured to reuse this database on future runs, so tests should run much faster on future runs.<br>
 To run tests after a migration change you must run with the `--create-db` flag to ensure it uses the new migrations.<br>
