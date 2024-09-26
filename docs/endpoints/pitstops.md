@@ -1,5 +1,5 @@
 [← Documentation Home](/docs/README.md)
-# Pitstops Standings
+# Pitstops
 
 Returns a given races list of pitstops, from earliest to latest `time` in which the pitstop occurred.
 
