@@ -5,7 +5,7 @@ Returns a given races list of pitstops, from earliest to latest `time` in which 
 
 **Note**: Data starts for the 2011 season.
 
-**URL** : `/ergast/f1/{season}/{ROUND}/pitstops/`
+**URL** : `/ergast/f1/{season}/{round}/pitstops/`
 
 [Available Query Parameters](/docs/README.md#query-parameters)
 
