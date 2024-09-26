@@ -20,7 +20,7 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 | [Constructor Standings](/docs/endpoints/constructorStandings.md)  | `/ergast/f1/{season}/constructorstandings/` |
 | [Drivers](/docs/endpoints/drivers.md)                 | `/ergast/f1/drivers/` |
 | [Driver Standings](/docs/endpoints/driverStandings.md)| `/ergast/f1/{season}/driverstandings/` |
-| Laps                                                  | `/ergast/f1/{season}/{round}/laps/` |
+| [Laps](/docs/endpoints/laps.md)                       | `/ergast/f1/{season}/{round}/laps/` |
 | [Pitstops](/docs/endpoints/pitstops.md)               | `/ergast/f1/{season}/{round}/pitstops/` |
 | [Qualifying](/docs/endpoints/qualifying)              | `/ergast/f1/{season}/qualifying/` |
 | [Races](/docs/endpoitns/races.md)                     | `/ergast/f1/races/` |
