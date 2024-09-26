@@ -39,7 +39,7 @@ Filters for the `n`th stop for each driver in a given race.
 
 `/{season}/{round}/pitstops/{stopNumber}` -> ex: `/ergast/f1/2023/9/pitstops/4/`
 
-**Note**: To utilize the `stopNumber` parameter, it must be combined with a season filter and needs to be the last argument at the end of request after `/pitstops/` -> `/ergast/f1/{season}/{round}/{stopNumber}`.
+**Note**: To utilize the `stopNumber` parameter, it needs to be the last argument at the end of request after `/pitstops/` -> `/ergast/f1/{season}/{round}/pitstops/{stopNumber}`.
 
 ---
 
