@@ -55,7 +55,7 @@ Filters for only for a specific drivers's list of laps in a specific race.
 
 Filters for the lap data for the drivers of a specific constructor in a given race.
 
-`/constructors/{constructorId}` -> ex: `/ergast/f1/2021/11/constructors/alfa/laps`
+`/constructors/{constructorId}` -> ex: `/ergast/f1/2021/11/constructors/alfa/laps/`
 
 ---
 
@@ -63,7 +63,7 @@ Filters for the lap data for the drivers of a specific constructor in a given ra
 
 Filters for the lap data for a specific lap in a race. This functions the same as specifying the lap at the end of the request, however will be superceded if there is a specified lap the end of the request
 
-`/laps/{lapNumber}` -> ex: `/ergast/f1/2019/4/laps/12/laps`
+`/laps/{lapNumber}` -> ex: `/ergast/f1/2019/4/laps/12/laps/`
 
 ---
 
@@ -95,7 +95,7 @@ Filters for the lap data for a specific lap in a race. This functions the same a
 
 `MRData.RaceTable.Races[i].time` : The time of the race.
 
-`MRData.RaceTable.Races[i].Laps` : The list of laps in a given race.
+`MRData.RaceTable.Races[i].laps/` : The list of laps in a given race.
 
 ---
 
