@@ -75,17 +75,17 @@ Filters for only pitstops that took place in a given lap of a race.
 
 `MRData.RaceTable.url` : The race's wikipedia url.
 
-`MRData.RaceTable.raceName` : The race's name.
-
-`MRData.RaceTable.Circuit` : The circuit of the race.
-
-`MRData.RaceTable.date` : The date of the race.
-
-`MRData.RaceTable.time` : The time of the race.
-
 `MRData.RaceTable.Races` : The list of races.
 
 `MRData.RaceTable.Races[i]` : A given race's object.
+
+`MRData.RaceTable.Races[i].raceName` : The race's name.
+
+`MRData.RaceTable.Races[i].Circuit` : The circuit of the race.
+
+`MRData.RaceTable.Races[i].date` : The date of the race.
+
+`MRData.RaceTable.Races[i].time` : The time of the race.
 
 `MRData.RaceTable.Races[i].Pitstops` : The list of pitstops in a given race.
 
