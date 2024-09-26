@@ -23,8 +23,8 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 | [Laps](/docs/endpoints/laps.md)                       | `/ergast/f1/{season}/{round}/laps/` |
 | [Pitstops](/docs/endpoints/pitstops.md)               | `/ergast/f1/{season}/{round}/pitstops/` |
 | [Qualifying](/docs/endpoints/qualifying)              | `/ergast/f1/{season}/qualifying/` |
-| [Races](/docs/endpoitns/races.md)                     | `/ergast/f1/races/` |
 | Results                                               | `/ergast/f1/results/` |
+| [Races](/docs/endpoints/races.md)                     | `/ergast/f1/races/` |
 | [Seasons](/docs/endpoints/seasons.md)                 | `/ergast/f1/seasons/` |
 | Sprint                                                | `/ergast/f1/sprint/` |
 | Status                                                |  `/ergast/f1/status/` |
