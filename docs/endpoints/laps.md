@@ -95,7 +95,7 @@ Filters for the lap data for a specific lap in a race. This functions the same a
 
 `MRData.RaceTable.Races[i].time` : The time of the race.
 
-`MRData.RaceTable.Races[i].laps/` : The list of laps in a given race.
+`MRData.RaceTable.Races[i].laps` : The list of laps in a given race.
 
 ---
 
