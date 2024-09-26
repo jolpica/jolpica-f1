@@ -48,7 +48,7 @@ To run the server
 
 ```python manage.py runserver 0.0.0.0:8000```
 
-This will start it on port 8000
+This will start Jolpica on port 8000. Once it is running you can access the API via browser, curl or other API testing tool like Postman or Bruno with `http://0.0.0.0:8000/ergast/f1/`
 
 ## Running Tests
 The first time the tests are run it will take upto 2 minutes to populate the database with test data, pytest is configured to reuse this database on future runs, so tests should run much faster on future runs.<br>
