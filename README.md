@@ -46,7 +46,7 @@ This will fill the database with the latest data from ergast, and create the ini
 
 To run the server
 
-```python manage.py runserver 0.0.0.0:8000```
+```make run```
 
 This will start jolpica-f1 on port 8000. Once it is running you can access the API via browser, curl or any other tools with `http://localhost:8000/ergast/f1/`. Any changes made to the source code will be automatically updated, while it is running.
 
