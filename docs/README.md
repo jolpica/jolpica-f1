@@ -1,6 +1,6 @@
 # jolpica-f1 Documentation
 
-Jolipica is an open-source API for querying Formula 1 data. It is the successor to the Ergast F1 API, containing backwards compatible endpoints for the soon to be deprecated API.
+jolpica-f1 is an open-source API for querying Formula 1 data. It is the successor to the Ergast F1 API, containing backwards compatible endpoints for the soon to be deprecated API.
 
 ---
 | Important information
