@@ -1,9 +1,9 @@
 # jolpica-f1 Documentation
 
-API for querying formula one data, with backwards compatible endpoints for the soon to be deprecated ergast api.
+Jolipica is an open-source API for querying Formula 1 data. It is the successor to the Ergast F1 API, containing backwards compatible endpoints for the soon to be deprecated API.
 
 ---
-| Other Documentation
+| Important information
 |-
 | [Rate Limits](/docs/rate_limits.md)
 | [Differences to Ergast](/docs/ergast_differences.md)
@@ -11,7 +11,7 @@ API for querying formula one data, with backwards compatible endpoints for the s
 ---
 
 ## Endpoints and Documentation:
-For gaps in our documentation, please check the ergast docs [here](http://ergast.com/mrd/). 
+For any gaps found within our documentation, please check the Ergast docs [here](http://ergast.com/mrd/). 
 
 | Endpoint                                              | Route |
 |-----                                                  |-----|
@@ -29,7 +29,7 @@ For gaps in our documentation, please check the ergast docs [here](http://ergast
 | Sprint                                                | `/ergast/f1/sprint/` |
 | Status                                                |  `/ergast/f1/status/` |
 
-Note: All endpoints should either end with a `/` or `.json`
+**Note**: All endpoints should either end with a `/` or `.json`
 
 ---
 
