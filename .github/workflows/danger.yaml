@@ -1,0 +1,28 @@
+name: Danger
+
+on:
+  pull_request:
+    branches: [main]
+    types: [synchronize, opened, reopened, labeled, unlabeled, edited]
+
+jobs:
+  build:
+    name: Danger JS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get Token
+        uses: actions/create-github-app-token@v1
+        id: token
+        with:
+          app-id: 1010763
+          private-key: ${{ secrets.DANGER_APP_PRIAVATE_KEY }}
+          owner: 'jolpica'
+          repositories: 'jolpica-f1'
+
+      - name: Danger
+        uses: danger/danger-js@12.3.3
+        env:
+          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
