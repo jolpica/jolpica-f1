@@ -42,6 +42,14 @@ Current requirements are:
   ```
 This will fill the database with the latest data from ergast, and create the initial test database so all future tests will run quicker.
 
+## Running the Server
+
+To run the server
+
+```make run```
+
+This will start jolpica-f1 on port 8000. Once it is running you can access the API via browser, curl or any other tools with `http://localhost:8000/ergast/f1/`. Any changes made to the source code will be automatically updated, while it is running.
+
 ## Running Tests
 The first time the tests are run it will take upto 2 minutes to populate the database with test data, pytest is configured to reuse this database on future runs, so tests should run much faster on future runs.<br>
 To run tests after a migration change you must run with the `--create-db` flag to ensure it uses the new migrations.<br>
