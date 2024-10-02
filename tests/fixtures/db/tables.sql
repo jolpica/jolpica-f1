@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 16.3 (Debian 16.3-1.pgdg110+1)
--- Dumped by pg_dump version 16.3 (Debian 16.3-1.pgdg110+1)
+-- Dumped by pg_dump version 16.4 (Debian 16.4-1.pgdg110+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -62,8 +62,22 @@ COPY public.ergast_status ("statusId", status) FROM stdin;
 39	Technical
 40	Electronics
 41	Broken wing
-42	Heat shield fire
 43	Exhaust
+126	Supercharger
+127	+20 Laps
+130	Collision damage
+131	Power Unit
+132	ERS
+133	+49 Laps
+134	+38 Laps
+135	Brake duct
+136	Seat
+137	Damage
+138	Debris
+139	Illness
+140	Undertray
+141	Cooling system
+42	Heat shield fire
 44	Oil leak
 45	+11 Laps
 46	Wheel rim
@@ -146,20 +160,6 @@ COPY public.ergast_status ("statusId", status) FROM stdin;
 123	+30 Laps
 124	+19 Laps
 125	+46 Laps
-126	Supercharger
-127	+20 Laps
-130	Collision damage
-131	Power Unit
-132	ERS
-133	+49 Laps
-134	+38 Laps
-135	Brake duct
-136	Seat
-137	Damage
-138	Debris
-139	Illness
-140	Undertray
-141	Cooling system
 \.
 
 
@@ -1053,6 +1053,7 @@ COPY public.formula_one_driver (id, reference, forename, surname, abbreviation, 
 857	piastri	Oscar	Piastri	PIA	Australian	81	2001-04-06	http://en.wikipedia.org/wiki/Oscar_Piastri
 858	lawson	Liam	Lawson	LAW	New Zealander	40	2002-02-11	http://en.wikipedia.org/wiki/Liam_Lawson
 859	bearman	Oliver	Bearman	BEA	British	38	2005-05-08	http://en.wikipedia.org/wiki/Oliver_Bearman
+860	colapinto	Franco	Colapinto	COL	Argentinian	43	2003-05-27	http://en.wikipedia.org/wiki/Franco_Colapinto
 \.
 
 
@@ -7447,8 +7448,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 35	\N	35	1	11
 36	\N	36	1	11
 37	\N	37	1	10
-38	\N	39	1	10
-39	\N	38	1	10
+38	\N	38	1	10
+39	\N	39	1	10
 40	\N	40	1	23
 41	\N	41	1	10
 42	\N	42	1	19
@@ -7519,8 +7520,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 107	\N	85	2	26
 108	\N	40	2	10
 109	\N	86	2	10
-110	\N	48	2	10
-111	\N	87	2	10
+110	\N	87	2	10
+111	\N	48	2	10
 112	\N	88	2	33
 113	\N	89	2	29
 114	\N	59	2	23
@@ -7688,8 +7689,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 276	\N	160	3	26
 277	\N	161	3	26
 278	\N	26	3	6
-279	\N	109	3	2
-280	\N	162	3	2
+279	\N	162	3	2
+280	\N	109	3	2
 281	\N	163	3	25
 282	\N	132	3	8
 283	\N	27	3	2
@@ -7706,8 +7707,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 294	\N	131	4	6
 295	\N	167	4	2
 296	\N	114	4	36
-297	\N	29	4	36
-298	\N	31	4	36
+297	\N	31	4	36
+298	\N	29	4	36
 299	\N	168	4	7
 300	\N	116	4	7
 301	\N	28	4	36
@@ -7719,18 +7720,18 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 307	\N	171	4	7
 308	\N	99	4	10
 309	\N	123	4	10
-310	\N	46	4	10
-311	\N	65	4	10
-312	\N	43	4	10
-313	\N	63	4	10
+310	\N	65	4	10
+311	\N	46	4	10
+312	\N	63	4	10
+313	\N	43	4	10
 314	\N	48	4	10
 315	\N	172	4	10
-316	\N	58	4	10
-317	\N	128	4	10
+316	\N	128	4	10
+317	\N	58	4	10
 318	\N	173	4	20
-319	\N	95	4	28
-320	\N	38	4	28
-321	\N	50	4	28
+319	\N	50	4	28
+320	\N	95	4	28
+321	\N	38	4	28
 322	\N	51	4	10
 323	\N	91	4	10
 324	\N	130	4	10
@@ -7738,20 +7739,20 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 326	\N	87	4	28
 327	\N	124	4	29
 328	\N	35	4	10
-329	\N	97	4	10
-330	\N	88	4	10
+329	\N	88	4	10
+330	\N	97	4	10
 331	\N	67	4	10
 332	\N	174	4	10
 333	\N	41	4	10
 334	\N	175	4	10
-335	\N	176	4	10
+335	\N	54	4	10
 336	\N	57	4	10
-337	\N	54	4	10
+337	\N	176	4	10
 338	\N	129	4	28
 339	\N	86	4	43
 340	\N	44	4	28
-341	\N	95	4	10
-342	\N	55	4	10
+341	\N	55	4	10
+342	\N	95	4	10
 343	\N	46	4	19
 344	\N	34	4	10
 345	\N	177	4	9
@@ -7811,8 +7812,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 399	\N	195	4	25
 400	\N	109	4	2
 401	\N	85	4	6
-402	\N	197	4	2
-403	\N	196	4	2
+402	\N	196	4	2
+403	\N	197	4	2
 404	\N	198	4	6
 405	\N	15	4	2
 406	\N	183	4	40
@@ -7848,34 +7849,34 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 436	\N	55	5	10
 437	\N	202	5	10
 438	\N	178	5	20
-439	\N	123	5	10
-440	\N	51	5	10
+439	\N	34	5	10
+440	\N	123	5	10
 441	\N	88	5	10
-442	\N	65	5	10
-443	\N	34	5	10
-444	\N	41	5	28
-445	\N	95	5	28
+442	\N	51	5	10
+443	\N	65	5	10
+444	\N	95	5	28
+445	\N	41	5	28
 446	\N	87	5	28
 447	\N	129	5	10
-448	\N	38	5	10
+448	\N	175	5	10
 449	\N	64	5	10
-450	\N	175	5	10
+450	\N	38	5	10
 451	\N	173	5	10
 452	\N	125	5	46
-453	\N	130	5	20
-454	\N	203	5	20
-455	\N	127	5	10
-456	\N	204	5	10
+453	\N	203	5	20
+454	\N	130	5	20
+455	\N	204	5	10
+456	\N	127	5	10
 457	\N	58	5	10
 458	\N	205	5	10
-459	\N	128	5	30
-460	\N	97	5	30
+459	\N	97	5	30
+460	\N	128	5	30
 461	\N	50	5	10
-462	\N	88	5	22
-463	\N	176	5	22
-464	\N	172	5	22
-465	\N	88	5	29
-466	\N	130	5	29
+462	\N	172	5	22
+463	\N	88	5	22
+464	\N	176	5	22
+465	\N	130	5	29
+466	\N	88	5	29
 467	\N	172	5	10
 468	\N	44	5	10
 469	\N	206	5	31
@@ -7926,20 +7927,20 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 514	\N	24	5	51
 515	\N	26	5	51
 516	\N	13	6	48
-517	\N	27	6	6
-518	\N	29	6	6
+517	\N	29	6	6
+518	\N	27	6	6
 519	\N	1	6	6
 520	\N	198	6	6
-521	\N	209	6	48
-522	\N	82	6	48
-523	\N	185	6	48
+521	\N	82	6	48
+522	\N	185	6	48
+523	\N	209	6	48
 524	\N	179	6	2
-525	\N	114	6	2
-526	\N	31	6	2
+525	\N	31	6	2
+526	\N	114	6	2
 527	\N	196	6	2
 528	\N	197	6	2
-529	\N	169	6	2
-530	\N	218	6	2
+529	\N	218	6	2
+530	\N	169	6	2
 531	\N	221	6	36
 532	\N	26	6	51
 533	\N	222	6	51
@@ -7950,8 +7951,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 538	\N	224	6	2
 539	\N	19	6	51
 540	\N	210	6	36
-541	\N	76	6	6
-542	\N	132	6	6
+541	\N	132	6	6
+542	\N	76	6	6
 543	\N	31	6	6
 544	\N	28	6	36
 545	\N	103	6	48
@@ -7960,8 +7961,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 548	\N	118	6	2
 549	\N	225	6	25
 550	\N	129	6	10
-551	\N	38	6	10
-552	\N	43	6	10
+551	\N	43	6	10
+552	\N	38	6	10
 553	\N	51	6	10
 554	\N	176	6	28
 555	\N	208	6	10
@@ -8003,8 +8004,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 591	\N	21	6	2
 592	\N	76	6	48
 593	\N	235	6	36
-594	\N	115	6	49
-595	\N	31	6	49
+594	\N	31	6	49
+595	\N	115	6	49
 596	\N	236	6	7
 597	\N	145	6	40
 598	\N	119	6	2
@@ -8034,8 +8035,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 622	\N	222	7	6
 623	\N	27	7	2
 624	\N	234	7	36
-625	\N	164	7	36
-626	\N	101	7	36
+625	\N	101	7	36
+626	\N	164	7	36
 627	\N	224	7	2
 628	\N	214	7	2
 629	\N	28	7	36
@@ -8118,9 +8119,9 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 706	\N	31	8	2
 707	\N	27	8	6
 708	\N	250	8	6
-709	\N	119	8	6
-710	\N	224	8	6
-711	\N	259	8	6
+709	\N	224	8	6
+710	\N	259	8	6
+711	\N	119	8	6
 712	\N	257	8	2
 713	\N	82	8	2
 714	\N	260	8	6
@@ -8396,8 +8397,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 984	\N	332	10	2
 985	\N	297	11	59
 986	\N	276	11	6
-987	\N	29	11	59
-988	\N	82	11	59
+987	\N	82	11	59
+988	\N	29	11	59
 989	\N	169	11	60
 990	\N	259	11	6
 991	\N	312	11	58
@@ -10959,6 +10960,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 3547	\N	820	75	182
 3548	\N	856	75	141
 3549	\N	859	75	6
+3550	\N	860	75	141
+3551	\N	859	75	207
 \.
 
 

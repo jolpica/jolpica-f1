@@ -1,12 +1,3 @@
-# team champ 1,376
-# driver champ 3,280
-
-# lap 44,000
-# sessionentry 4,800
-# roundentry 1,600
-# pitstop 1,040
-
-
 pg_dump -h localhost -U postgres -d jolpica  -a \
     -t "formula_one*" \
     -t "ergast_status" \
@@ -16,7 +7,7 @@ pg_dump -h localhost -U postgres -d jolpica  -a \
     -T "formula_one_*entry" > tests/fixtures/db/tables.sql
 
 SESSION_ENTRY_WHERE_CLAUSE="1979,1980,1997,2007,2008,2009,2020,2023"
-PITSTOP_WHERE_CLAUSE="season.year = 2023 AND round.number in (1, 10, 18)"
+PITSTOP_WHERE_CLAUSE="season.year = 2023 AND round.number in (1, 10, 18, 22)"
 psql -h localhost -U postgres -d jolpica -c "\copy
 (
 SELECT pitstop.*
@@ -33,7 +24,7 @@ WHERE
 WITH CSV HEADER;"
 
 LAP_WHERE_CLAUSE="
-    (season.year = 2023 AND (round.number in (1, 10, 18)))
+    (season.year = 2023 AND (round.number in (1, 10, 18, 22)))
     OR ($PITSTOP_WHERE_CLAUSE)
 "
 psql -h localhost -U postgres -d jolpica -c "\copy
