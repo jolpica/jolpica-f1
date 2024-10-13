@@ -16,7 +16,7 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 # Required geo spatial library & other tools
 RUN apt-get update \
     && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends gdal-bin neovim
+    && apt-get install -y --no-install-recommends gdal-bin
 
 USER vscode
 RUN pip install pipx && \

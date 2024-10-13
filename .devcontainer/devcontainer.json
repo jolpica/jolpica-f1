@@ -10,6 +10,7 @@
 		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers/features/aws-cli:1": {},
 		"ghcr.io/devcontainers/features/github-cli": {},
+		"ghcr.io/duduribeiro/devcontainer-features/neovim:1": {},
 		"ghcr.io/robbert229/devcontainer-features/postgresql-client:1": {
 			"version": "16"
 		}
