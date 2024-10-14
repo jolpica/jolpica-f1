@@ -2,19 +2,20 @@ import pickle
 from pathlib import Path
 
 import pytest
-from unittest.mock import patch
+
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.imports.deserialisers import (
     ModelDeserialiser,
     RoundEntryDeserialiser,
-    ModelDeserialisationResult,
+    SessionEntryDeserialiser,
 )
+from datetime import timedelta
 
 
 @pytest.fixture
 def entry_list_data():
     return {
-        "object_type": "driver",
+        "object_type": "round_entry",
         "foreign_keys": {"year": 2023, "round": 22},
         "objects": [
             {"car_number": 1, "name": "Max Verstappen", "team": "Oracle Red Bull Racing"},
@@ -79,13 +80,12 @@ def test_deserialise_round_entries(entry_list_data):
         (2023, 22, {"car_number": 1, "name": "Max Verstappen", "team": "invalid"}, "(unmapped team name)"),
         (2023, 22, {"car_number": 1, "name": "Max Verstappen", "team": "invalid"}, "(team miss)"),
         (2023, 22, {"car_number": 1, "name": "Invalid Driver", "team": "Oracle Red Bull Racing"}, "(driver miss)"),
-        
     ],
 )
 @pytest.mark.django_db
 def test_round_entry_deserialiser_invalid_team(year, round, object, error):
     data = {
-        "object_type": "driver",
+        "object_type": "round_entry",
         "foreign_keys": {"year": year, "round": round},
         "objects": [object],
     }
@@ -94,4 +94,119 @@ def test_round_entry_deserialiser_invalid_team(year, round, object, error):
 
     assert len(result.failed_objects) == 1
     assert "TeamDriver not found" in result.failed_objects[0][1]
+    assert error in result.failed_objects[0][1]
+
+
+@pytest.mark.django_db
+def test_deserialise_laps():
+    with open(Path(__file__).parent.parent / "fixtures/laps.pkl", "rb") as f:
+        objects = pickle.load(f)
+
+    laps = ModelDeserialiser().create_from_dicts(objects)
+
+    new_lap_num = 0
+    existing_laps = 0
+    for lap in laps:
+        try:
+            f1.Lap.objects.get(session_entry=lap.session_entry, time=lap.time, number=lap.number)
+        except f1.Lap.DoesNotExist:
+            new_lap_num += 1
+        else:
+            existing_laps += 1
+
+    num_objects = sum([len(items["objects"]) for items in objects])
+    assert num_objects == len(laps)
+
+    assert new_lap_num == 0
+    assert existing_laps == len(laps)
+
+
+@pytest.mark.django_db
+def test_deserialise_fastest_laps():
+    with open(Path(__file__).parent.parent / "fixtures/fastest_laps.pkl", "rb") as f:
+        objects = pickle.load(f)
+
+    # TODO: REMOVE BEFORE MERGE, TEMP DATA FIX
+    for item in objects:
+        for obj in item["objects"]:
+            obj["is_entry_fastest_lap"] = True
+
+    laps = ModelDeserialiser().create_from_dicts(objects)
+
+    new_lap_num = 0
+    existing_laps = 0
+    for lap in laps:
+        try:
+            f1.Lap.objects.get(session_entry=lap.session_entry, is_entry_fastest_lap=True)
+        except f1.Lap.DoesNotExist:
+            new_lap_num += 1
+        else:
+            existing_laps += 1
+
+    num_objects = sum([len(items["objects"]) for items in objects])
+    assert num_objects == len(laps)
+
+    assert new_lap_num == 0
+    assert existing_laps == len(laps)
+
+
+@pytest.fixture
+def session_entry_race_data():
+    return {
+        "object_type": "classification",
+        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+        "objects": [
+            {
+                "position": 1,
+                "is_classified": True,
+                "status": 0,
+                "points": 25.0,
+                "time": timedelta(seconds=5721, microseconds=362000),
+                "laps_completed": 56,
+            }
+        ],
+    }
+
+
+@pytest.mark.django_db
+def test_deserialise_session_entries(session_entry_race_data):
+    deserialised = SessionEntryDeserialiser().deserialise(session_entry_race_data)
+
+    assert len(deserialised.models) + len(deserialised.failed_objects) == len(session_entry_race_data["objects"])
+    assert len(deserialised.models) == 1
+    assert len(deserialised.failed_objects) == 0
+
+    new_models = 0
+    existing_models = 0
+    for model in deserialised.models:
+        try:
+            f1.SessionEntry.objects.get(session_id=model.session_id, round_entry_id=model.round_entry_id)
+        except f1.SessionEntry.DoesNotExist:
+            new_models += 1
+        else:
+            existing_models += 1
+
+    assert new_models == 0
+    assert existing_models == len(deserialised.models)
+
+
+@pytest.mark.parametrize(
+    ["year", "round", "session", "car_number", "object", "error"],
+    [
+        (2023, 22, "R", 1, {"invalid_key": "value"}, "Invalid key: invalid_key"),
+        (2023, 99, "R", 1, {}, "Session matching query does not exist"),
+        (2023, 22, "R", 99, {}, "RoundEntry matching query does not exist"),
+    ],
+)
+@pytest.mark.django_db
+def test_session_entry_deserialiser_invalid_data(year, round, session, car_number, object, error):
+    data = {
+        "object_type": "session_entry",
+        "foreign_keys": {"year": year, "round": round, "session": session, "car_number": car_number},
+        "objects": [object],
+    }
+    deserialiser = SessionEntryDeserialiser()
+    result = deserialiser.deserialise(data)
+
+    assert len(result.failed_objects) == 1
     assert error in result.failed_objects[0][1]
