@@ -1,15 +1,17 @@
 import pickle
+from datetime import timedelta
 from pathlib import Path
 
 import pytest
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.imports.deserialisers import (
+    LapDeserialiser,
     ModelDeserialiser,
     RoundEntryDeserialiser,
     SessionEntryDeserialiser,
+    PitStopDeserialiser
 )
-from datetime import timedelta
 
 
 @pytest.fixture
@@ -206,6 +208,123 @@ def test_session_entry_deserialiser_invalid_data(year, round, session, car_numbe
         "objects": [object],
     }
     deserialiser = SessionEntryDeserialiser()
+    result = deserialiser.deserialise(data)
+
+    assert len(result.failed_objects) == 1
+    assert error in result.failed_objects[0][1]
+
+
+@pytest.fixture
+def lap_data():
+    return {
+        "object_type": "lap",
+        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+        "objects": [
+            {"number": 1, "position": 1, "time": timedelta(minutes=1, seconds=30), "average_speed": 200.0},
+            {"number": 2, "position": 1, "time": timedelta(minutes=1, seconds=29), "average_speed": 201.0},
+        ],
+    }
+
+
+@pytest.mark.django_db
+def test_deserialise_laps(lap_data):
+    deserialised = LapDeserialiser().deserialise(lap_data)
+
+    assert len(deserialised.models) + len(deserialised.failed_objects) == len(lap_data["objects"])
+    assert len(deserialised.models) == 2
+    assert len(deserialised.failed_objects) == 0
+
+    new_laps = 0
+    existing_laps = 0
+    for lap in deserialised.models:
+        try:
+            f1.Lap.objects.get(session_entry_id=lap.session_entry_id, number=lap.number)
+        except f1.Lap.DoesNotExist:
+            new_laps += 1
+        else:
+            existing_laps += 1
+
+    assert new_laps == 0
+    assert existing_laps == len(deserialised.models)
+
+
+@pytest.mark.parametrize(
+    ["year", "round", "session", "car_number", "object", "error"],
+    [
+        (2023, 18, "R", 1, {"invalid_key": "value"}, "Invalid key: invalid_key"),
+        (
+            2023,
+            99,
+            "R",
+            1,
+            {},
+            "SessionEntry matching query does not exist",
+        ),
+    ],
+)
+@pytest.mark.django_db
+def test_lap_deserialiser_invalid_data(year, round, session, car_number, object, error):
+    data = {
+        "object_type": "lap",
+        "foreign_keys": {"year": year, "round": round, "session": session, "car_number": car_number},
+        "objects": [object],
+    }
+    deserialiser = LapDeserialiser()
+    result = deserialiser.deserialise(data)
+
+    assert len(result.failed_objects) == 1
+    assert error in result.failed_objects[0][1]
+
+
+@pytest.fixture
+def pit_stop_data():
+    return {
+        "object_type": "pit_stop",
+        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+        "objects": [
+            {"number": 1, "duration": timedelta(seconds=25), "local_timestamp": timedelta(minutes=30)},
+            {"number": 2, "duration": timedelta(seconds=24), "local_timestamp": timedelta(minutes=60)},
+        ],
+    }
+
+
+@pytest.mark.django_db
+def test_deserialise_pit_stops(pit_stop_data):
+    deserialised = PitStopDeserialiser().deserialise(pit_stop_data)
+
+    assert len(deserialised.models) + len(deserialised.failed_objects) == len(pit_stop_data["objects"])
+    assert len(deserialised.models) == 2
+    assert len(deserialised.failed_objects) == 0
+
+    new_pit_stops = 0
+    existing_pit_stops = 0
+    for pit_stop in deserialised.models:
+        try:
+            f1.PitStop.objects.get(session_entry_id=pit_stop.session_entry_id, number=pit_stop.number)
+        except f1.PitStop.DoesNotExist:
+            new_pit_stops += 1
+        else:
+            existing_pit_stops += 1
+
+    assert new_pit_stops == 0
+    assert existing_pit_stops == len(deserialised.models)
+
+
+@pytest.mark.parametrize(
+    ["year", "round", "session", "car_number", "object", "error"],
+    [
+        (2023, 18, "R", 1, {"invalid_key": "value"}, "Invalid key: invalid_key"),
+        (2023, 99, "R", 1, {}, "SessionEntry matching query does not exist"),
+    ],
+)
+@pytest.mark.django_db
+def test_pit_stop_deserialiser_invalid_data(year, round, session, car_number, object, error):
+    data = {
+        "object_type": "pit_stop",
+        "foreign_keys": {"year": year, "round": round, "session": session, "car_number": car_number},
+        "objects": [object],
+    }
+    deserialiser = PitStopDeserialiser()
     result = deserialiser.deserialise(data)
 
     assert len(result.failed_objects) == 1
