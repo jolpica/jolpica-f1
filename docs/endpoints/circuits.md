@@ -118,9 +118,9 @@ Filters for only circuits that have had a race where a driver finished with a sp
 
 ## Examples:
 
-### Get list of all drivers in F1 history
+### Get list of all circuits in F1 history
 
-`https://api.jolpi.ca/ergast/f1/drivers/`
+`https://api.jolpi.ca/ergast/f1/circuits/`
 
 ```json
 {
