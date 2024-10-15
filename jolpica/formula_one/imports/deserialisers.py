@@ -170,28 +170,26 @@ class SessionEntryDeserialiser(BaseDeserializer):
             "round_entry_id": round_entry.id,
         }
 
-    def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
-        try:
-            foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
-        except (f1.Session.DoesNotExist, f1.RoundEntry.DoesNotExist) as ex:
-            return ModelDeserialisationResult(self.MODEL, None, [], [(object, str(ex)) for object in data["objects"]])
 
-        failed_objects = []
-        round_entries = []
-        for object in data["objects"]:
-            try:
-                round_entry = self.create_model_instance(foreign_keys, object)
-            except ValueError as ex:
-                failed_objects.append((object, str(ex)))
-                continue
-            round_entries.append(round_entry)
+class LapDeserialiser(BaseDeserializer):
+    MODEL = f1.Lap
+    ALLOWED_FIELD_VALUES = {"number", "position", "time", "average_speed", "is_entry_fastest_lap", "is_deleted"}
 
-        return ModelDeserialisationResult(
-            self.MODEL,
-            foreign_keys,
-            round_entries,
-            failed_objects,
+    def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
+        session_entry = f1.SessionEntry.objects.get(
+                session__round__season__year=foreign_keys_dict["year"],
+                session__round__number=foreign_keys_dict["round"],
+                session__type=foreign_keys_dict["session"],
+                round_entry__car_number=foreign_keys_dict["car_number"],
         )
+        return {
+            "session_entry_id": session_entry.id,
+        }
+
+
+class PitStopDeserialiser(LapDeserialiser):
+    MODEL = f1.PitStop
+    ALLOWED_FIELD_VALUES = { "number", "duration", "local_timestamp" }
 
 
 class ModelDeserialiser:
