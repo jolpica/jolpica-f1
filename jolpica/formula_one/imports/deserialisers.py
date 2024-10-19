@@ -2,10 +2,18 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Literal, TypedDict
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import Q
 
 from .. import models as f1
+
+"""
+convert all snake_case object_type values to CapitalCase (e.g. session_entry -> SessionEntry)
+"classification" object type should be "SessionEntry"
+"driver" / "RoundEntry" objects should have team_entrant_name / team_constructor_name / driver_name in foreign keys
+
+"""
 
 
 @dataclass(frozen=True)
@@ -30,6 +38,10 @@ class BaseModelDict(TypedDict):
     objects: list[dict]
 
 
+class ForeignKeyDeserialisationError(Exception):
+    pass
+
+
 class BaseDeserializer:
     """Base class for all deserializers."""
 
@@ -43,6 +55,11 @@ class BaseDeserializer:
             raise NotImplementedError("Subclasses must define ALLOWED_FIELD_VALUES")
 
     def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
+        """Get the foreign keys that are required to get or create the unique model instance.
+
+        :param foreign_keys_dict: Dictionary of identifying values
+        :return: Mapping of foreign key primary key fields to their values (e.g. {"round_id": 1})
+        """
         raise NotImplementedError("Subclasses must implement this method")
 
     def create_model_instance(self, foreign_keys: dict[str, int], field_values: dict) -> models.Model:
@@ -53,12 +70,30 @@ class BaseDeserializer:
         return self.MODEL(**foreign_keys, **field_values)
 
     def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
-        raise NotImplementedError("Subclasses must implement this method")
+        try:
+            foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
+        except (ObjectDoesNotExist, ForeignKeyDeserialisationError) as ex:
+            return ModelDeserialisationResult(self.MODEL, None, [], [(object, str(ex)) for object in data["objects"]])
+
+        failed_objects = []
+        model_instances = []
+        for object in data["objects"]:
+            try:
+                model = self.create_model_instance(foreign_keys, object)
+            except ValueError as ex:
+                failed_objects.append((object, str(ex)))
+            else:
+                model_instances.append(model)
+
+        return ModelDeserialisationResult(
+            self.MODEL,
+            foreign_keys,
+            model_instances,
+            failed_objects,
+        )
 
 
 class RoundEntryDeserialiser(BaseDeserializer):
-    """Special values of `name` and `team` are mapped to the correct TeamDriver object."""
-
     MODEL = f1.RoundEntry
     ALLOWED_FIELD_VALUES = {"car_number"}
 
@@ -76,66 +111,72 @@ class RoundEntryDeserialiser(BaseDeserializer):
     }
 
     def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
-        season = f1.Season.objects.get(year=foreign_keys_dict["year"])
-        round_ = f1.Round.objects.get(season=season, number=foreign_keys_dict["round"])
+        round = f1.Round.objects.get(
+            season__year=foreign_keys_dict["year"],
+            number=foreign_keys_dict["round"],
+        )
+        team_driver = self.get_team_driver(foreign_keys_dict)
         return {
-            "season_id": season.id,
-            "round_id": round_.id,
+            "round_id": round.id,
+            "team_driver_id": team_driver.id,
         }
 
-    def get_team_driver(
-        self, season_id: int, driver_full_name: str, team_full_name: str, car_number: int
-    ) -> tuple[f1.TeamDriver | None, str]:
-        driver_names = driver_full_name.split(" ")
+    def get_team_driver(self, foreign_keys_dict: dict) -> f1.TeamDriver:
+        driver_names = foreign_keys_dict["driver_name"].split(" ")
         # Find a driver with matching first & last name, or 1 of the names and the car number.
         driver_query = Q(driver__forename__in=driver_names, driver__surname__in=driver_names) | (
-            (Q(driver__forename__in=driver_names) | Q(driver__surname__in=driver_names))
-            & Q(driver__permanent_car_number=car_number)
+            Q(driver__forename__in=driver_names) | Q(driver__surname__in=driver_names)
         )
-        team_name = self.team_mapping.get(team_full_name, team_full_name)
+        team_name = self.team_mapping.get(foreign_keys_dict["team_name"], foreign_keys_dict["team_name"])
         team_query = Q(team__name=team_name)
-        team_drivers = f1.TeamDriver.objects.filter(Q(season_id=season_id) & driver_query & team_query)
+        team_drivers = f1.TeamDriver.objects.filter(
+            Q(season__year=foreign_keys_dict["year"]) & driver_query & team_query
+        )
         if len(team_drivers) == 0:
-            message = f"TeamDriver not found for {driver_full_name} in {team_name}"
-            if team_full_name not in self.team_mapping:
+            message = f"TeamDriver not found for {foreign_keys_dict["driver_name"]} in {team_name}"
+            if foreign_keys_dict["team_name"] not in self.team_mapping:
                 message += " (unmapped team name)"
-            if not f1.TeamDriver.objects.filter(Q(season_id=season_id) & driver_query).exists():
+            if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys_dict["year"]) & driver_query).exists():
                 message += " (driver miss)"
-            if not f1.TeamDriver.objects.filter(Q(season_id=season_id) & team_query).exists():
+            if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys_dict["year"]) & team_query).exists():
                 message += " (team miss)"
-            return None, message
+            raise ForeignKeyDeserialisationError(message)
         elif len(team_drivers) > 1:
-            return None, f"Multiple TeamDrivers found for {driver_full_name} in {team_name}"
-        return team_drivers.first(), ""
+            message = f"Multiple TeamDrivers found for {foreign_keys_dict["driver_name"]} in {team_name}"
+            raise ForeignKeyDeserialisationError(message)
+        return team_drivers.first()
+
+
+class ClassificationDeserialiser(BaseDeserializer):
+    """Special values of `name` and `team` are mapped to the correct TeamDriver object."""
+
+    MODEL = f1.RoundEntry
+    ALLOWED_FIELD_VALUES = {"car_number"}
 
     def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
-        foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
-
-        failed_objects = []
-        round_entries = []
+        results: list[ModelDeserialisationResult] = []
         for object in data["objects"]:
-            team_driver, error = self.get_team_driver(
-                foreign_keys["season_id"],
-                object["name"],
-                object["team"],
-                object["car_number"],
+            result = RoundEntryDeserialiser().deserialise(
+                {
+                    "object_type": "RoundEntry",
+                    "foreign_keys": {
+                        "year": data["foreign_keys"]["year"],
+                        "round": data["foreign_keys"]["round"],
+                        "team_name": object["team"],
+                        "driver_name": object["name"],
+                    },
+                    "objects": [{"car_number": object["car_number"]}],
+                }
             )
-            if team_driver is None:
-                failed_objects.append((object, error))
-                continue
-            values_dict = {k: v for k, v in object.items() if k not in ["name", "team"]}
-            model_foreign_keys = {  # drop season_id, add team_driver_id
-                "round_id": foreign_keys["round_id"],
-                "team_driver_id": team_driver.id,
-            }
-            round_entry = self.create_model_instance(model_foreign_keys, values_dict)
-            round_entries.append(round_entry)
+            if result.failed_objects:
+                result.failed_objects[0] = (object, result.failed_objects[0][1])
+            results.append(result)
 
         return ModelDeserialisationResult(
             self.MODEL,
-            foreign_keys,
-            round_entries,
-            failed_objects,
+            None,
+            [obj for result in results for obj in result.models],
+            [obj for result in results for obj in result.failed_objects],
         )
 
 
@@ -177,10 +218,10 @@ class LapDeserialiser(BaseDeserializer):
 
     def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
         session_entry = f1.SessionEntry.objects.get(
-                session__round__season__year=foreign_keys_dict["year"],
-                session__round__number=foreign_keys_dict["round"],
-                session__type=foreign_keys_dict["session"],
-                round_entry__car_number=foreign_keys_dict["car_number"],
+            session__round__season__year=foreign_keys_dict["year"],
+            session__round__number=foreign_keys_dict["round"],
+            session__type=foreign_keys_dict["session"],
+            round_entry__car_number=foreign_keys_dict["car_number"],
         )
         return {
             "session_entry_id": session_entry.id,
@@ -189,7 +230,7 @@ class LapDeserialiser(BaseDeserializer):
 
 class PitStopDeserialiser(LapDeserialiser):
     MODEL = f1.PitStop
-    ALLOWED_FIELD_VALUES = { "number", "duration", "local_timestamp" }
+    ALLOWED_FIELD_VALUES = {"number", "duration", "local_timestamp"}
 
 
 class ModelDeserialiser:
