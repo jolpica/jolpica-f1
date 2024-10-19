@@ -6,11 +6,12 @@ import pytest
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.imports.deserialisers import (
+    ClassificationDeserialiser,
     LapDeserialiser,
     ModelDeserialiser,
+    PitStopDeserialiser,
     RoundEntryDeserialiser,
     SessionEntryDeserialiser,
-    PitStopDeserialiser
 )
 
 
@@ -55,8 +56,8 @@ def entry_list_data():
 
 
 @pytest.mark.django_db
-def test_deserialise_round_entries(entry_list_data):
-    deserialised = RoundEntryDeserialiser().deserialise(entry_list_data)
+def test_deserialise_classification(entry_list_data):
+    deserialised = ClassificationDeserialiser().deserialise(entry_list_data)
 
     assert len(deserialised.models) + len(deserialised.failed_objects) == len(entry_list_data["objects"])
     assert len(deserialised.models) == 20
@@ -77,25 +78,34 @@ def test_deserialise_round_entries(entry_list_data):
 
 
 @pytest.mark.parametrize(
-    ["year", "round", "object", "error"],
+    ["year", "round", "driver", "team", "object", "error"],
     [
-        (2023, 22, {"car_number": 1, "name": "Max Verstappen", "team": "invalid"}, "(unmapped team name)"),
-        (2023, 22, {"car_number": 1, "name": "Max Verstappen", "team": "invalid"}, "(team miss)"),
-        (2023, 22, {"car_number": 1, "name": "Invalid Driver", "team": "Oracle Red Bull Racing"}, "(driver miss)"),
+        (2023, 22, "Max Verstappen", "invalid", {"car_number": 1}, "(unmapped team name)"),
+        (2023, 22, "Max Verstappen", "invalid", {"car_number": 1}, "(team miss)"),
+        (2023, 22, "Invalid Driver", "Oracle Red Bull Racing", {"car_number": 1}, "(driver miss)"),
+        (2009, 1, "Sébastien AMBIGUOUS", "Toro Rosso", {}, "Multiple TeamDrivers found"),
     ],
 )
 @pytest.mark.django_db
-def test_round_entry_deserialiser_invalid_team(year, round, object, error):
+def test_round_entry_deserialiser_get_team_driver_error(year, round, driver, team, object, error):
     data = {
         "object_type": "round_entry",
-        "foreign_keys": {"year": year, "round": round},
+        "foreign_keys": {
+            "year": year,
+            "round": round,
+            "driver_name": driver,
+            "team_name": team,
+        },
         "objects": [object],
     }
     deserialiser = RoundEntryDeserialiser()
     result = deserialiser.deserialise(data)
 
     assert len(result.failed_objects) == 1
-    assert "TeamDriver not found" in result.failed_objects[0][1]
+    assert (
+        "TeamDriver not found" in result.failed_objects[0][1]
+        or "Multiple TeamDrivers found" in result.failed_objects[0][1]
+    )
     assert error in result.failed_objects[0][1]
 
 
