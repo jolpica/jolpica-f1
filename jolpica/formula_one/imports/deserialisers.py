@@ -249,11 +249,14 @@ class PitStopDeserialiser(LapDeserialiser):
 
 class DeserialiserFactory:
     deserialisers = {
+        "SessionEntry": SessionEntryDeserialiser,
         "classification": SessionEntryDeserialiser,
+        "session_entry": SessionEntryDeserialiser,
         "driver": DriverDeserialiser,
         "RoundEntry": RoundEntryDeserialiser,
-        "session_entry": SessionEntryDeserialiser,
+        "Lap": LapDeserialiser,
         "lap": LapDeserialiser,
+        "PitStop": PitStopDeserialiser,
         "pit_stop": PitStopDeserialiser,
     }
 
