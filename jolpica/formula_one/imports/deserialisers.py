@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import Literal, TypedDict
+from typing import ClassVar, Literal, TypedDict
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
@@ -25,6 +25,8 @@ class ForeignKeysDict(TypedDict, total=False):
     session: str
     type: str
     car_number: int
+    driver_name: str
+    team_name: str
 
 
 class BaseModelDict(TypedDict):
@@ -40,7 +42,7 @@ class ForeignKeyDeserialisationError(Exception):
 class BaseDeserializer:
     """Base class for all deserializers."""
 
-    MODEL: type[models.Model] | None = None
+    MODEL: ClassVar[type[models.Model] | None] = None
     ALLOWED_FIELD_VALUES: set | None = None
 
     def __init__(self):
@@ -227,7 +229,7 @@ class SessionEntryDeserialiser(BaseDeserializer):
 
 
 class LapDeserialiser(BaseDeserializer):
-    MODEL = f1.Lap
+    MODEL: ClassVar[type[models.Model]] = f1.Lap
     ALLOWED_FIELD_VALUES = {"number", "position", "time", "average_speed", "is_entry_fastest_lap", "is_deleted"}
 
     def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
