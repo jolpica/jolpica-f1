@@ -6,7 +6,7 @@ import pytest
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.imports.deserialisers import (
-    ClassificationDeserialiser,
+    DriverDeserialiser,
     LapDeserialiser,
     ModelDeserialiser,
     PitStopDeserialiser,
@@ -57,7 +57,7 @@ def entry_list_data():
 
 @pytest.mark.django_db
 def test_deserialise_classification(entry_list_data):
-    deserialised = ClassificationDeserialiser().deserialise(entry_list_data)
+    deserialised = DriverDeserialiser().deserialise(entry_list_data)
 
     assert len(deserialised.models) + len(deserialised.failed_objects) == len(entry_list_data["objects"])
     assert len(deserialised.models) == 20
