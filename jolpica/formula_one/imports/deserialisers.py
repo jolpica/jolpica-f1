@@ -8,17 +8,11 @@ from django.db.models import Q
 
 from .. import models as f1
 
-"""
-convert all snake_case object_type values to CapitalCase (e.g. session_entry -> SessionEntry)
-"classification" object type should be "SessionEntry"
-"driver" / "RoundEntry" objects should have team_entrant_name / team_constructor_name / driver_name in foreign keys
-
-"""
-
 
 @dataclass(frozen=True)
 class ModelDeserialisationResult:
     model: type[models.Model]
+    object_type: str
     resolved_foreign_keys: dict[str, int] | None
     models: Sequence[models.Model]
     failed_objects: list[tuple[dict, str]]
@@ -73,7 +67,7 @@ class BaseDeserializer:
         try:
             foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
         except (ObjectDoesNotExist, ForeignKeyDeserialisationError) as ex:
-            return ModelDeserialisationResult(self.MODEL, None, [], [(object, str(ex)) for object in data["objects"]])
+            return ModelDeserialisationResult(self.MODEL, data["object_type"], data["foreign_keys"], [], [(object, str(ex)) for object in data["objects"]])
 
         failed_objects = []
         model_instances = []
@@ -87,6 +81,7 @@ class BaseDeserializer:
 
         return ModelDeserialisationResult(
             self.MODEL,
+            data["object_type"],
             foreign_keys,
             model_instances,
             failed_objects,
@@ -147,7 +142,7 @@ class RoundEntryDeserialiser(BaseDeserializer):
         return team_drivers.first()
 
 
-class ClassificationDeserialiser(BaseDeserializer):
+class DriverDeserialiser(BaseDeserializer):
     """Special values of `name` and `team` are mapped to the correct TeamDriver object."""
 
     MODEL = f1.RoundEntry
@@ -174,6 +169,7 @@ class ClassificationDeserialiser(BaseDeserializer):
 
         return ModelDeserialisationResult(
             self.MODEL,
+            data["object_type"],
             None,
             [obj for result in results for obj in result.models],
             [obj for result in results for obj in result.failed_objects],
@@ -232,65 +228,29 @@ class PitStopDeserialiser(LapDeserialiser):
     MODEL = f1.PitStop
     ALLOWED_FIELD_VALUES = {"number", "duration", "local_timestamp"}
 
+    def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
+        return super().deserialise(data)
 
-class ModelDeserialiser:
-    def get_foreign_keys(self, object_type: Literal["lap"], identifiers: ForeignKeysDict):
-        object_key_fields = {
-            "lap": ["session_entry_id"],
-        }
-        foreign_key_fields = {}
-        if "session_entry_id" in object_key_fields[object_type]:
-            foreign_key_fields["session_entry_id"] = self.get_session_entry_id(identifiers)
-        return foreign_key_fields
+class DeserialiserFactory:
+    deserialisers = {
+        "classification": SessionEntryDeserialiser,
+        "driver": DriverDeserialiser,
+        "RoundEntry": RoundEntryDeserialiser,
+        "session_entry": SessionEntryDeserialiser,
+        "lap": LapDeserialiser,
+        "pit_stop": PitStopDeserialiser,
+    }
 
-    def get_session_entry_id(self, identifiers: ForeignKeysDict):
-        for key in ["year", "round", "session", "car_number"]:
-            if key not in identifiers:
-                raise ValueError(f"Missing required key for session_entry: {key}")
-        try:
-            return f1.SessionEntry.objects.get(
-                session__round__season__year=identifiers["year"],
-                session__round__number=identifiers["round"],
-                session__type=identifiers["session"],
-                round_entry__car_number=identifiers["car_number"],
-            ).id
-        except f1.SessionEntry.DoesNotExist:
-            # TODO: Create it
-            print(identifiers)
-            raise ValueError("SessionEntry not found")
+    def get_deserialiser(self, object_type: str) -> BaseDeserializer:
+        return self.deserialisers[object_type]()
 
-    def create_from_dicts(self, model_dicts: list[BaseModelDict]):
-        if not isinstance(model_dicts, list):
-            raise TypeError("Expected a list of Dicts")
-        models = []
-        for obj in model_dicts:
-            models.extend(self.create_from_dict(obj))
-        return models
+class FormulaOneDeserialiser:
+    def __init__(self):
+        self.factory = DeserialiserFactory()
 
-    def create_from_dict(self, model_dict: BaseModelDict):
-        if model_dict["object_type"] == "fastest_lap":
-            model_dict["object_type"] = "lap"
-        if model_dict["object_type"] != "lap":
-            raise ValueError(f"Unknown object type: {model_dict['object_type']}")
-        common_foreign_keys = self.get_foreign_keys(model_dict["object_type"], model_dict["foreign_keys"])
-        # TODO: REMOVE WHEN FASTEST_LAP OBJECTS ARE NO LONGER A DICT
-        if isinstance(model_dict["objects"], dict):
-            model_dict["objects"] = [model_dict["objects"]]
-
-        models = []
-        for obj in model_dict["objects"]:
-            if "fastest_lap_rank" in obj:
-                if f1.SessionEntry.objects.get(pk=common_foreign_keys["session_entry_id"]).fastest_lap_rank != obj.pop(
-                    "fastest_lap_rank"
-                ):
-                    # TODO: return the session entry to be saved / updated
-                    raise ValueError("Mismatch in fastest lap rank")
-            models.append(self.create(**obj, **common_foreign_keys))
-        return models
-
-    def create(self, **kwargs):
-        # kwargs["is_entry_fastest_lap"] = kwargs.pop("is_fastest_lap")
-        # TODO: REMOVE WHEN FASTEST_LAP OBJECTS HAVE RENAMED lap_number to number
-        if "lap_number" in kwargs:
-            kwargs["number"] = kwargs.pop("lap_number")
-        return f1.Lap(**kwargs)
+    def deserialise(self, data: dict) -> ModelDeserialisationResult:
+        deserialiser = self.factory.get_deserialiser(data["object_type"])
+        return deserialiser.deserialise(data)
+    
+    def deserialise_all(self, data: list[dict]) -> list[ModelDeserialisationResult]:
+        return [self.deserialise(item) for item in data]
