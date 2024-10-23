@@ -1,5 +1,6 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
+from datetime import timedelta
 from typing import Literal, TypedDict
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -56,8 +57,19 @@ class BaseDeserializer:
         """
         raise NotImplementedError("Subclasses must implement this method")
 
+    def parse_field_values(self, field_values: dict) -> dict:
+        """Check if any field values are of a special type, such as timedelta and parse them."""
+        for key, value in field_values.items():
+            if not isinstance(value, dict) or "_type" not in value.keys():
+                continue
+            if value["_type"] == "timedelta":
+                del value["_type"]
+                field_values[key] = timedelta(**value)
+        return field_values
+
     def create_model_instance(self, foreign_keys: dict[str, int], field_values: dict) -> models.Model:
         # TODO: Create sensible field_value validator (e.g. points > 26 likely is an error)
+        self.parse_field_values(field_values)
         for key in field_values.keys():
             if key not in self.ALLOWED_FIELD_VALUES:
                 raise ValueError(f"Invalid key: {key}")
@@ -67,7 +79,13 @@ class BaseDeserializer:
         try:
             foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
         except (ObjectDoesNotExist, ForeignKeyDeserialisationError) as ex:
-            return ModelDeserialisationResult(self.MODEL, data["object_type"], data["foreign_keys"], [], [(object, str(ex)) for object in data["objects"]])
+            return ModelDeserialisationResult(
+                self.MODEL,
+                data["object_type"],
+                data["foreign_keys"],
+                [],
+                [(object, str(ex)) for object in data["objects"]],
+            )
 
         failed_objects = []
         model_instances = []
@@ -228,8 +246,6 @@ class PitStopDeserialiser(LapDeserialiser):
     MODEL = f1.PitStop
     ALLOWED_FIELD_VALUES = {"number", "duration", "local_timestamp"}
 
-    def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
-        return super().deserialise(data)
 
 class DeserialiserFactory:
     deserialisers = {
@@ -244,6 +260,7 @@ class DeserialiserFactory:
     def get_deserialiser(self, object_type: str) -> BaseDeserializer:
         return self.deserialisers[object_type]()
 
+
 class FormulaOneDeserialiser:
     def __init__(self):
         self.factory = DeserialiserFactory()
@@ -251,6 +268,6 @@ class FormulaOneDeserialiser:
     def deserialise(self, data: dict) -> ModelDeserialisationResult:
         deserialiser = self.factory.get_deserialiser(data["object_type"])
         return deserialiser.deserialise(data)
-    
+
     def deserialise_all(self, data: list[dict]) -> list[ModelDeserialisationResult]:
         return [self.deserialise(item) for item in data]

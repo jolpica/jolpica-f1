@@ -1,14 +1,13 @@
-import pickle
 from datetime import timedelta
-from pathlib import Path
+from unittest.mock import MagicMock
 
 import pytest
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.imports.deserialisers import (
+    BaseDeserializer,
     DriverDeserialiser,
     LapDeserialiser,
-    ModelDeserialiser,
     PitStopDeserialiser,
     RoundEntryDeserialiser,
     SessionEntryDeserialiser,
@@ -107,59 +106,6 @@ def test_round_entry_deserialiser_get_team_driver_error(year, round, driver, tea
         or "Multiple TeamDrivers found" in result.failed_objects[0][1]
     )
     assert error in result.failed_objects[0][1]
-
-
-@pytest.mark.django_db
-def test_deserialise_laps():
-    with open(Path(__file__).parent.parent / "fixtures/laps.pkl", "rb") as f:
-        objects = pickle.load(f)
-
-    laps = ModelDeserialiser().create_from_dicts(objects)
-
-    new_lap_num = 0
-    existing_laps = 0
-    for lap in laps:
-        try:
-            f1.Lap.objects.get(session_entry=lap.session_entry, time=lap.time, number=lap.number)
-        except f1.Lap.DoesNotExist:
-            new_lap_num += 1
-        else:
-            existing_laps += 1
-
-    num_objects = sum([len(items["objects"]) for items in objects])
-    assert num_objects == len(laps)
-
-    assert new_lap_num == 0
-    assert existing_laps == len(laps)
-
-
-@pytest.mark.django_db
-def test_deserialise_fastest_laps():
-    with open(Path(__file__).parent.parent / "fixtures/fastest_laps.pkl", "rb") as f:
-        objects = pickle.load(f)
-
-    # TODO: REMOVE BEFORE MERGE, TEMP DATA FIX
-    for item in objects:
-        for obj in item["objects"]:
-            obj["is_entry_fastest_lap"] = True
-
-    laps = ModelDeserialiser().create_from_dicts(objects)
-
-    new_lap_num = 0
-    existing_laps = 0
-    for lap in laps:
-        try:
-            f1.Lap.objects.get(session_entry=lap.session_entry, is_entry_fastest_lap=True)
-        except f1.Lap.DoesNotExist:
-            new_lap_num += 1
-        else:
-            existing_laps += 1
-
-    num_objects = sum([len(items["objects"]) for items in objects])
-    assert num_objects == len(laps)
-
-    assert new_lap_num == 0
-    assert existing_laps == len(laps)
 
 
 @pytest.fixture
@@ -339,3 +285,83 @@ def test_pit_stop_deserialiser_invalid_data(year, round, session, car_number, ob
 
     assert len(result.failed_objects) == 1
     assert error in result.failed_objects[0][1]
+
+
+@pytest.mark.parametrize(
+    "input_data, expected_output",
+    [
+        (
+            {"time": {"_type": "timedelta", "days": 1, "hours": 2, "minutes": 30, "seconds": 45}},
+            {"time": timedelta(days=1, hours=2, minutes=30, seconds=45)},
+        ),
+        (
+            {"time": {"_type": "timedelta", "milliseconds": 1000}},
+            {"time": timedelta(microseconds=1000000)},
+        ),
+        (
+            {"time": {"_type": "timedelta", "milliseconds": 1000}},
+            {"time": timedelta(milliseconds=1000)},
+        ),
+        (
+            {"time": {"_type": "timedelta", "seconds": 3600}, "other_field": "value"},
+            {"time": timedelta(seconds=3600), "other_field": "value"},
+        ),
+    ],
+)
+def test_parse_field_values(input_data, expected_output):
+    result = BaseDeserializer.parse_field_values(MagicMock(), input_data)
+    assert result == expected_output
+
+
+@pytest.mark.parametrize(
+    "deserializer_class, foreign_keys, field_values, expected_exception, expected_message",
+    [
+        (
+            SessionEntryDeserialiser,
+            {"session_id": 1, "round_entry_id": 1},
+            {
+                "position": 1,
+                "is_classified": True,
+                "status": 0,
+                "points": 25.0,
+                "time": {"_type": "timedelta", "milliseconds": 1000},
+                "laps_completed": 56,
+                "invalid_key": "value",
+            },
+            ValueError,
+            "Invalid key: invalid_key",
+        ),
+        (
+            LapDeserialiser,
+            {"session_entry_id": 1},
+            {
+                "number": 1,
+                "position": 1,
+                "time": timedelta(minutes=1, seconds=30),
+                "average_speed": 200.0,
+                "invalid_key": "value",
+            },
+            ValueError,
+            "Invalid key: invalid_key",
+        ),
+        (
+            PitStopDeserialiser,
+            {"session_entry_id": 1},
+            {
+                "number": 1,
+                "duration": timedelta(seconds=25),
+                "local_timestamp": timedelta(minutes=30),
+                "invalid_key": "value",
+            },
+            ValueError,
+            "Invalid key: invalid_key",
+        ),
+    ],
+)
+def test_create_model_instance_invalid_key(
+    deserializer_class, foreign_keys, field_values, expected_exception, expected_message
+):
+    deserializer = deserializer_class()
+    with pytest.raises(expected_exception) as excinfo:
+        deserializer.create_model_instance(foreign_keys, field_values)
+    assert str(excinfo.value) == expected_message
