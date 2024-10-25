@@ -1,5 +1,5 @@
-from django.http import HttpResponseForbidden
 import requests
+from django.http import HttpResponseForbidden
 
 
 def get_ec2_token() -> str:
@@ -45,6 +45,7 @@ def client_ip_middleware(get_response):
         return get_response(request)
 
     return process_request
+
 
 def ip_blocks_middleware(get_response):
     """Block IP addresses from accessing the API."""
