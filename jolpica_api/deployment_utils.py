@@ -1,3 +1,4 @@
+from django.http import HttpResponseForbidden
 import requests
 
 
@@ -41,6 +42,17 @@ def client_ip_middleware(get_response):
             request.META["REMOTE_ADDR"],
         )
         request.META["REMOTE_ADDR"] = ips.rsplit(", ", maxsplit=1)[-1]
+        return get_response(request)
+
+    return process_request
+
+def ip_blocks_middleware(get_response):
+    """Block IP addresses from accessing the API."""
+
+    def process_request(request):
+        if request.META["REMOTE_ADDR"] in {"45.61.185.154"}:
+            # IP of http://allorigins.win
+            return HttpResponseForbidden("Too many requests from this IP. Please avoid proxy services.")
         return get_response(request)
 
     return process_request

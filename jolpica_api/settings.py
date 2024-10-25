@@ -82,6 +82,7 @@ if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
 
 MIDDLEWARE = [
     "jolpica_api.deployment_utils.client_ip_middleware",
+    "jolpica_api.deployment_utils.ip_blocks_middleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
