@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 from dataclasses import dataclass
 from datetime import timedelta
-from typing import ClassVar, Literal, TypedDict
+from typing import ClassVar, TypedDict
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
@@ -30,7 +30,7 @@ class ForeignKeysDict(TypedDict, total=False):
 
 
 class BaseModelDict(TypedDict):
-    object_type: Literal["lap"]
+    object_type: str
     foreign_keys: ForeignKeysDict
     objects: list[dict]
 
@@ -42,7 +42,7 @@ class ForeignKeyDeserialisationError(Exception):
 class BaseDeserializer:
     """Base class for all deserializers."""
 
-    MODEL: ClassVar[type[models.Model] | None] = None
+    MODEL: ClassVar[type[models.Model]]
     ALLOWED_FIELD_VALUES: set | None = None
 
     def __init__(self):
@@ -73,7 +73,7 @@ class BaseDeserializer:
         # TODO: Create sensible field_value validator (e.g. points > 26 likely is an error)
         self.parse_field_values(field_values)
         for key in field_values.keys():
-            if key not in self.ALLOWED_FIELD_VALUES:
+            if self.ALLOWED_FIELD_VALUES and key not in self.ALLOWED_FIELD_VALUES:
                 raise ValueError(f"Invalid key: {key}")
         return self.MODEL(**foreign_keys, **field_values)
 
@@ -84,7 +84,7 @@ class BaseDeserializer:
             return ModelDeserialisationResult(
                 self.MODEL,
                 data["object_type"],
-                data["foreign_keys"],
+                None,
                 [],
                 [(object, str(ex)) for object in data["objects"]],
             )
@@ -136,7 +136,7 @@ class RoundEntryDeserialiser(BaseDeserializer):
             "team_driver_id": team_driver.id,
         }
 
-    def get_team_driver(self, foreign_keys_dict: dict) -> f1.TeamDriver:
+    def get_team_driver(self, foreign_keys_dict: ForeignKeysDict) -> f1.TeamDriver:
         driver_names = foreign_keys_dict["driver_name"].split(" ")
         # Find a driver with matching first & last name, or 1 of the names and the car number.
         driver_query = Q(driver__forename__in=driver_names, driver__surname__in=driver_names) | (
@@ -147,7 +147,12 @@ class RoundEntryDeserialiser(BaseDeserializer):
         team_drivers = f1.TeamDriver.objects.filter(
             Q(season__year=foreign_keys_dict["year"]) & driver_query & team_query
         )
-        if len(team_drivers) == 0:
+        if len(team_drivers) > 1:
+            message = f"Multiple TeamDrivers found for {foreign_keys_dict["driver_name"]} in {team_name}"
+            raise ForeignKeyDeserialisationError(message)
+
+        result = team_drivers.first()
+        if result is None:
             message = f"TeamDriver not found for {foreign_keys_dict["driver_name"]} in {team_name}"
             if foreign_keys_dict["team_name"] not in self.team_mapping:
                 message += " (unmapped team name)"
@@ -156,10 +161,7 @@ class RoundEntryDeserialiser(BaseDeserializer):
             if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys_dict["year"]) & team_query).exists():
                 message += " (team miss)"
             raise ForeignKeyDeserialisationError(message)
-        elif len(team_drivers) > 1:
-            message = f"Multiple TeamDrivers found for {foreign_keys_dict["driver_name"]} in {team_name}"
-            raise ForeignKeyDeserialisationError(message)
-        return team_drivers.first()
+        return result
 
 
 class DriverDeserialiser(BaseDeserializer):
