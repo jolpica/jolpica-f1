@@ -89,7 +89,7 @@ Filters for the qualifying results of any drivers with the finishing statusId at
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.RaceTable` : The object containing the list of the all races and associated filters.
 
