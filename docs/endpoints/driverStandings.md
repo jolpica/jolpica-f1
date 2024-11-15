@@ -55,7 +55,7 @@ Filters for only the driver in a given position for a given year.
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.StandingsTable` : The object containing the season's drivers standing information.
 

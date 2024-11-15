@@ -95,7 +95,7 @@ Filters for only constructors who had a driver finish a race with a specific `st
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.ConstructorTable` : The object containing the list of the all constructors.
 

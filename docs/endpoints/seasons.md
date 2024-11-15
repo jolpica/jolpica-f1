@@ -68,7 +68,7 @@ Filters for only seasons featuring a specified finishing status of a driver in a
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.SeasonTable` : The object containing the list of the all seasons returned.
 

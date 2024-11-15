@@ -73,7 +73,7 @@ Filters for the lap data for a specific lap in a race. This functions the same a
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.RaceTable` : The object containing the lap information.
 
