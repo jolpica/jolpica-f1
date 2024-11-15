@@ -95,7 +95,7 @@ Filters for only drivers who have finished a race with a specific `statusId`.
 
 **Response Fields** :
 
-[Common Response Fields](./README.md#common-response-fields)
+[Common Response Fields](/docs/README.md#common-response-fields)
 
 `MRData.DriverTable` : The object containing the list of the all drivers.
 
