@@ -21,14 +21,13 @@ from .session import Penalty, Session, SessionEntry, SessionStatus, SessionType
 from .team import BaseTeam, Team, TeamDriver, TeamDriverRole
 
 __all__ = [
-    "managed_views",
     "BaseTeam",
     "ChampionshipAdjustment",
     "ChampionshipAdjustmentType",
     "ChampionshipSystem",
-    "EligibilityChampionshipScheme",
     "Circuit",
     "Driver",
+    "EligibilityChampionshipScheme",
     "FastestLapPointScheme",
     "Lap",
     "PartialPointScheme",
@@ -36,9 +35,9 @@ __all__ = [
     "PitStop",
     "PointSystem",
     "PositionPointScheme",
+    "ResultsChampionshipScheme",
     "Round",
     "RoundEntry",
-    "ResultsChampionshipScheme",
     "Season",
     "Session",
     "SessionEntry",
@@ -48,4 +47,5 @@ __all__ = [
     "Team",
     "TeamDriver",
     "TeamDriverRole",
+    "managed_views",
 ]

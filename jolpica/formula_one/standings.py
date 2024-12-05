@@ -178,8 +178,8 @@ class Stats:
             raise NotImplementedError()
 
         if (
-            self.championship_system == other.championship_system
-            and self.group_type == other.group_type
+            (self.championship_system == other.championship_system
+            and self.group_type == other.group_type)
             or (other == Stats())
         ):
             championship_system = self.championship_system
