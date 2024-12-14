@@ -1,3 +1,6 @@
+setup:
+	pre-commit install # Install pre-commit hooks
+
 format:
 	ruff format . jolpica/ergast/*
 	ruff check --fix-only . jolpica/ergast/*
