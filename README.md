@@ -27,6 +27,10 @@ Current requirements are:
 
 ### Data Import
 - If not using the devcontainer, Install python dependencies `poetry install`, and activate the venv `poetry shell`
+- Run any initial setup for development
+  ```
+  make setup
+  ```
 - Create all required database tables
   ```
   python manage.py migrate

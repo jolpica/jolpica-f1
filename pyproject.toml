@@ -33,6 +33,7 @@ djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.15.0" 
 mypy = { extras = ["dmypy"], version = "^1.10.0" }
 pytest-django = "^4.8.0"
 ruff = ">=0.5.6"
+pre-commit = "^4.0.1"
 
 [tool.poetry.group.local.dependencies]
 # Only for local development e.g. Jupyter notebook
