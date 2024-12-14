@@ -177,10 +177,8 @@ class Stats:
         if not isinstance(other, Stats):
             raise NotImplementedError()
 
-        if (
-            (self.championship_system == other.championship_system
-            and self.group_type == other.group_type)
-            or (other == Stats())
+        if (self.championship_system == other.championship_system and self.group_type == other.group_type) or (
+            other == Stats()
         ):
             championship_system = self.championship_system
             group_type = self.group_type
