@@ -13,7 +13,7 @@ If you are migrating from the ergast api, please check the known differences [he
 
 # Database Scheme
 Rather than import the existing database scheme used by ergast, we use a new scheme which will allow better adaption to changing rulesets, reduce duplication of information, and allow storage of more F1 related data.
-![Database Scheme for jolpica-f1](jolpica/formula_one/models/database.svg)
+![Database Scheme for jolpica-f1](docs/database.svg)
 Many Enumerations are used in the database, the mappings of these values are defined in their respective model files. For example you can find the enumerations for the PointSystem table [here](jolpica/formula_one/models/point_scheme.py)
 
 # Development

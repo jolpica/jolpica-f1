@@ -5,6 +5,7 @@
 .git
 .gitignore
 **/tests/
+docs/
 notebook.ipynb
 **/__pycache__/
 Dockerfile
