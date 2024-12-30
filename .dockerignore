@@ -5,6 +5,9 @@
 .git
 .gitignore
 **/tests/
+docs/
+dangerfile.js
+.pre-commit-config.yaml
 notebook.ipynb
 **/__pycache__/
 Dockerfile

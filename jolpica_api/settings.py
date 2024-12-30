@@ -223,3 +223,9 @@ REST_KNOX = {
 }
 
 LOGGING = LOG_CONFIG if DEPLOYMENT_ENV != "LOCAL" else None
+
+if Path("VERSION").exists():
+    with open("VERSION") as f:
+        VERSION = f.read().strip()
+else:
+    VERSION = "dev"

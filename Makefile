@@ -9,6 +9,9 @@ lint:
 	ruff check . --no-fix
 	ruff format . --check
 	mypy --ignore-missing-imports .
+
+test: format lint
+	pytest
 	
 run: format
 	python manage.py runserver
