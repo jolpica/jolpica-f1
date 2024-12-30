@@ -1,7 +1,12 @@
-from .models import SessionEntry, SessionType
+from .models import Session, SessionEntry, SessionType
 
 
 def run_data_correction():
+    session_entry_corrections()
+    session_correction()
+
+
+def session_entry_corrections():
     updated = []
     # 2011 round 7 - missed karthikeyan's penlty
     to_update = SessionEntry.objects.filter(
@@ -35,3 +40,23 @@ def run_data_correction():
         entry.is_eligible_for_points = False
         updated.append(entry)
     SessionEntry.objects.bulk_update(updated, fields=["position", "is_eligible_for_points"])
+
+
+def session_correction():
+    # 2024 round 23 - incorrect times for sessions issue #113
+    corrections = {
+        SessionType.RACE: "16:00:00",
+        SessionType.SPRINT_RACE: "14:00:00",
+        SessionType.QUALIFYING_ONE: "18:00:00",
+        SessionType.QUALIFYING_TWO: "18:00:00",
+        SessionType.QUALIFYING_THREE: "18:00:00",
+    }
+
+    qatar_2024 = Session.objects.filter(round__season__year=2024, round__number=23, type__in=corrections.keys())
+
+    updates = []
+    for session in qatar_2024:
+        session.time = corrections[session.type]
+        updates.append(session)
+
+    Session.objects.bulk_update(updates, fields=["time"])
