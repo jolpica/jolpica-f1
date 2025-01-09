@@ -50,7 +50,7 @@ class ListAdminMixin:
     def _get_search_fields(self, model_name: str) -> list[str]:
         match model_name:
             case "Circuit":
-                return ["name", "reference", "country", "city"]
+                return ["name", "reference", "country", "locality"]
             case "Season":
                 return ["year"]
             case "Round":
