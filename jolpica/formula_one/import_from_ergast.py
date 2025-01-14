@@ -1,7 +1,7 @@
 # type: ignore
 from collections import defaultdict
 from datetime import datetime, time, timedelta
-from time import perf_counter
+from time import perf_counter, sleep
 
 import requests
 from django.contrib.gis.geos import Point
@@ -50,9 +50,8 @@ def str_to_delta(timestamp: str | None) -> timedelta | None:
     return timedelta(minutes=t.minute, seconds=t.second, microseconds=t.microsecond)
 
 
-def follow_wiki_redirects(url: str) -> str:
+def follow_wiki_redirects(url: str, retry: bool = False) -> str:
     """Get URL that wikipedia will redirect to"""
-    return url
     title = url.lstrip("http://")
     title = title.lstrip("https://")
     title = title.lstrip("en.wikipedia.org/wiki/")
@@ -65,11 +64,19 @@ def follow_wiki_redirects(url: str) -> str:
         r"https://en.wikipedia.org/w/api.php" + r"?action=query" + r"&redirects&format=json" + rf"&titles={title}",
         timeout=10,
     )
+    if query.status_code != 200:
+        if retry:
+            print(f"ERROR for {url=} ({query.status_code})")
+            return url
+        print(f"Retrying {url=} after 10second sleep")
+        sleep(10)
+        return follow_wiki_redirects(url, retry=True)
+
     data = query.json()
 
     if data.get("query", {}).get("redirects"):
         title = data["query"]["redirects"][-1]["to"]
-    new_url = f"https://en.wikipedia.org/wiki/{title}{end}"
+    new_url = f"https://en.wikipedia.org/wiki/{title}{end}".replace(" ", "_")
     return new_url
 
 
