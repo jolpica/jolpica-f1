@@ -66,6 +66,10 @@ class BaseDeserializer:
                 continue
             if value["_type"] == "timedelta":
                 del value["_type"]
+                for val in value.keys():
+                    if val not in {"milliseconds", "seconds", "minutes", "hours", "days"}:
+                        # Important to prevent arbitary malicious args being input
+                        del value[val]
                 field_values[key] = timedelta(**value)
         return field_values
 
