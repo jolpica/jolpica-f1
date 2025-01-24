@@ -14,9 +14,24 @@ from .. import models as f1
 class ModelDeserialisationResult:
     model: type[models.Model]
     object_type: str
+    foreign_keys: dict
     resolved_foreign_keys: dict[str, int] | None
     models: Sequence[models.Model]
-    failed_objects: list[tuple[dict, str]]
+
+    foreign_key_failure: str | None
+    object_failures: list[tuple[dict, str]]
+
+    @property
+    def has_failure(self) -> bool:
+        return bool(self.foreign_key_failure is not None or len(self.object_failures) > 0)
+
+    @property
+    def get_unique_failure_reasons(self) -> list[str]:
+        return (
+            [self.foreign_key_failure]
+            if self.foreign_key_failure is not None
+            else [reason for _, reason in self.object_failures]
+        )
 
 
 class ForeignKeysDict(TypedDict, total=False):
@@ -90,11 +105,13 @@ class BaseDeserializer:
             foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
         except (ObjectDoesNotExist, ForeignKeyDeserialisationError) as ex:
             return ModelDeserialisationResult(
-                self.MODEL,
-                data["object_type"],
-                None,
-                [],
-                [(object, str(ex)) for object in data["objects"]],
+                model=self.MODEL,
+                object_type=data["object_type"],
+                foreign_keys=data["foreign_keys"],
+                resolved_foreign_keys=None,
+                models=[],
+                foreign_key_failure=str(ex),
+                object_failures=[],
             )
 
         failed_objects = []
@@ -108,11 +125,13 @@ class BaseDeserializer:
                 model_instances.append(model)
 
         return ModelDeserialisationResult(
-            self.MODEL,
-            data["object_type"],
-            foreign_keys,
-            model_instances,
-            failed_objects,
+            model=self.MODEL,
+            object_type=data["object_type"],
+            foreign_keys=data["foreign_keys"],
+            resolved_foreign_keys=foreign_keys,
+            models=model_instances,
+            foreign_key_failure=None,
+            object_failures=failed_objects,
         )
 
 
@@ -122,15 +141,23 @@ class RoundEntryDeserialiser(BaseDeserializer):
 
     team_mapping = {  # TODO: Move this mapping to the DB, & add full entrant / constructor name to team models
         "Oracle Red Bull Racing": "Red Bull",
+        "Red Bull Racing Honda RBPT": "Red Bull",
         "Mercedes-AMG PETRONAS F1 Team": "Mercedes",
         "Alfa Romeo F1 Team Stake": "Alfa Romeo",
+        "Alfa Romeo Ferrari": "Alfa Romeo",
         "Aston Martin Aramco Cognizant F1 Team": "Aston Martin",
+        "Aston Martin Aramco Mercedes": "Aston Martin",
         "BWT Alpine F1 Team": "Alpine F1 Team",
+        "Alpine Renault": "Alpine F1 Team",
         "McLaren F1 Team": "McLaren",
+        "McLaren Mercedes": "McLaren",
         "MoneyGram Haas F1 Team": "Haas F1 Team",
+        "Haas Ferrari": "Haas F1 Team",
         "Scuderia AlphaTauri": "AlphaTauri",
+        "AlphaTauri Honda RBPT": "AlphaTauri",
         "Scuderia Ferrari": "Ferrari",
         "Williams Racing": "Williams",
+        "Williams Mercedes": "Williams",
     }
 
     def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
@@ -193,16 +220,18 @@ class DriverDeserialiser(BaseDeserializer):
                     "objects": [{"car_number": object["car_number"]}],
                 }
             )
-            if result.failed_objects:
-                result.failed_objects[0] = (object, result.failed_objects[0][1])
+            if result.object_failures:
+                result.object_failures[0] = (object, result.object_failures[0][1])
             results.append(result)
 
         return ModelDeserialisationResult(
-            self.MODEL,
-            data["object_type"],
-            None,
-            [obj for result in results for obj in result.models],
-            [obj for result in results for obj in result.failed_objects],
+            model=self.MODEL,
+            object_type=data["object_type"],
+            foreign_keys=data["foreign_keys"],
+            resolved_foreign_keys=None,
+            models=[obj for result in results for obj in result.models],
+            foreign_key_failure=None,
+            object_failures=[obj for result in results for obj in result.object_failures],
         )
 
 
