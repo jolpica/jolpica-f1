@@ -11,6 +11,7 @@ from jolpica.formula_one.imports.deserialisers import (
     PitStopDeserialiser,
     RoundEntryDeserialiser,
     SessionEntryDeserialiser,
+    UnableToParseValueError,
 )
 
 
@@ -288,7 +289,7 @@ def test_pit_stop_deserialiser_invalid_data(year, round, session, car_number, ob
 
 
 @pytest.mark.parametrize(
-    "input_data, expected_output",
+    ["input_data", "expected_output"],
     [
         (
             {"time": {"_type": "timedelta", "days": 1, "hours": 2, "minutes": 30, "seconds": 45}},
@@ -314,7 +315,21 @@ def test_parse_field_values(input_data, expected_output):
 
 
 @pytest.mark.parametrize(
-    "deserializer_class, foreign_keys, field_values, expected_exception, expected_message",
+    ["input_data", "expected_error"],
+    [
+        (
+            {"time": {"_type": "timedelta", "self_destruction_time": 1000}},
+            "self_destruction_time is not a valid field for given type",
+        ),
+    ],
+)
+def test_error_on_invalid_parse_field_values(input_data, expected_error):
+    with pytest.raises(UnableToParseValueError):
+        BaseDeserializer.parse_field_values(MagicMock(), input_data)
+
+
+@pytest.mark.parametrize(
+    ["deserializer_class", "foreign_keys", "field_values", "expected_exception", "expected_message"],
     [
         (
             SessionEntryDeserialiser,
