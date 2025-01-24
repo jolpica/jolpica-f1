@@ -103,14 +103,14 @@ class BaseDeserializer:
     def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
         try:
             foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
-        except (ObjectDoesNotExist, ForeignKeyDeserialisationError) as ex:
+        except (ObjectDoesNotExist, ForeignKeyDeserialisationError, KeyError) as ex:
             return ModelDeserialisationResult(
                 model=self.MODEL,
                 object_type=data["object_type"],
                 foreign_keys=data["foreign_keys"],
                 resolved_foreign_keys=None,
                 models=[],
-                foreign_key_failure=str(ex),
+                foreign_key_failure=repr(ex),
                 object_failures=[],
             )
 
@@ -286,6 +286,14 @@ class LapDeserialiser(BaseDeserializer):
 class PitStopDeserialiser(LapDeserialiser):
     MODEL = f1.PitStop
     ALLOWED_FIELD_VALUES = {"number", "duration", "local_timestamp"}
+
+    def get_common_foreign_keys(self, foreign_keys_dict):
+        resolved_foreign_keys = super().get_common_foreign_keys(foreign_keys_dict)
+
+        resolved_foreign_keys["lap"] = f1.Lap.objects.get(
+            session_entry_id=resolved_foreign_keys["session_entry_id"], number=foreign_keys_dict["lap"]
+        )
+        return resolved_foreign_keys
 
 
 class DeserialiserFactory:
