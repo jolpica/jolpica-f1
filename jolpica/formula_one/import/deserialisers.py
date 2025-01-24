@@ -39,6 +39,10 @@ class ForeignKeyDeserialisationError(Exception):
     pass
 
 
+class UnableToParseValueError(Exception):
+    pass
+
+
 class BaseDeserializer:
     """Base class for all deserializers."""
 
@@ -69,7 +73,7 @@ class BaseDeserializer:
                 for val in value.keys():
                     if val not in {"milliseconds", "seconds", "minutes", "hours", "days"}:
                         # Important to prevent arbitary malicious args being input
-                        del value[val]
+                        raise UnableToParseValueError(f"{val} is not a valid field for given type")
                 field_values[key] = timedelta(**value)
         return field_values
 
@@ -270,15 +274,3 @@ class DeserialiserFactory:
 
     def get_deserialiser(self, object_type: str) -> BaseDeserializer:
         return self.deserialisers[object_type]()
-
-
-class FormulaOneDeserialiser:
-    def __init__(self):
-        self.factory = DeserialiserFactory()
-
-    def deserialise(self, data: dict) -> ModelDeserialisationResult:
-        deserialiser = self.factory.get_deserialiser(data["object_type"])
-        return deserialiser.deserialise(data)
-
-    def deserialise_all(self, data: list[dict]) -> list[ModelDeserialisationResult]:
-        return [self.deserialise(item) for item in data]
