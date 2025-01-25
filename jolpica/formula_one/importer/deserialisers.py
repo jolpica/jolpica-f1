@@ -183,12 +183,12 @@ class RoundEntryDeserialiser(BaseDeserializer):
             Q(season__year=foreign_keys_dict["year"]) & driver_query & team_query
         )
         if len(team_drivers) > 1:
-            message = f"Multiple TeamDrivers found for {foreign_keys_dict["driver_name"]} in {team_name}"
+            message = f"Multiple TeamDrivers found for {foreign_keys_dict['driver_name']} in {team_name}"
             raise ForeignKeyDeserialisationError(message)
 
         result = team_drivers.first()
         if result is None:
-            message = f"TeamDriver not found for {foreign_keys_dict["driver_name"]} in {team_name}"
+            message = f"TeamDriver not found for {foreign_keys_dict['driver_name']} in {team_name}"
             if foreign_keys_dict["team_name"] not in self.team_mapping:
                 message += " (unmapped team name)"
             if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys_dict["year"]) & driver_query).exists():

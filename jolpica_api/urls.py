@@ -24,6 +24,7 @@ from .settings import DEPLOYMENT_ENV
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("ergast/", include("jolpica_api.ergastapi.urls")),
+    path("data/", include("jolpica_api.data_import.urls")),
     path("auth/", include("jolpica_api.authentication.urls")),
     path("", views.healthcheck),
     path("test/", views.test),
