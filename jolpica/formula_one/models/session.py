@@ -35,7 +35,7 @@ class Session(models.Model):
     id = models.BigAutoField(primary_key=True)
     round = models.ForeignKey("formula_one.Round", on_delete=models.CASCADE, related_name="sessions")
     number = models.PositiveSmallIntegerField(null=True, blank=True)
-    point_system = models.ForeignKey("PointSystem", on_delete=models.PROTECT, related_name="sessions")
+    point_system = models.ForeignKey("PointSystem", on_delete=models.PROTECT, default=1, related_name="sessions")
     round_entries = models.ManyToManyField(
         "formula_one.RoundEntry", through="formula_one.SessionEntry", related_name="sessions"
     )

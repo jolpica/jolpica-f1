@@ -6,6 +6,7 @@ from typing import ClassVar, TypedDict
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import Q
+from pydantic import BaseModel
 
 from .. import models as f1
 
@@ -44,7 +45,7 @@ class ForeignKeysDict(TypedDict, total=False):
     team_name: str
 
 
-class BaseModelDict(TypedDict):
+class BaseModelDict(BaseModel):
     object_type: str
     foreign_keys: ForeignKeysDict
     objects: list[dict]
