@@ -2,6 +2,8 @@ from django.apps import apps
 from django.contrib import admin
 from django.contrib.gis import admin as geo_admin
 
+from jolpica.formula_one import models as f1
+
 
 class ListAdminMixin:
     def __init__(self, model, admin_site):
@@ -75,8 +77,17 @@ class ListAdminMixin:
         return []
 
 
+class SessionInline(admin.TabularInline):
+    model = f1.Session
+
+
 class FormulaOneModelAdmin(ListAdminMixin, geo_admin.GISModelAdmin):
     gis_widget_kwargs = {"attrs": {"default_lon": 10, "default_lat": 55, "default_zoom": 3.75}}
+
+    def __init__(self, model, admin_site):
+        super().__init__(model, admin_site)
+        if model.__name__ == "Round":
+            self.inlines = [SessionInline]
 
 
 models = apps.get_app_config("formula_one").get_models()
