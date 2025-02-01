@@ -1,7 +1,7 @@
 # jolpica-f1
 Jolpica F1 is an open source API for querying Formula 1 data, with backwards compatible endpoints for the soon to be deprecated Ergast API.
 
-Jolpica F1 is maintained by a small group of volunteers. Our hosting costs are around $45 USD. If you want to support the project's ongoing development and improvements, please consider [donating to our Kofi]([url](https://ko-fi.com/jolpicaf1)). Our fundraising goal is to be break-even by the start of the 2025 season.
+Jolpica F1 is maintained by a small group of volunteers. Our hosting costs are around $45 USD per month. If you want to support the project's ongoing development and improvements, please consider [donating to our Kofi]([url](https://ko-fi.com/jolpicaf1)). Our fundraising goal is to be break-even by the start of the 2025 season.
 
 The Ergast compatible API can be found here: http://api.jolpi.ca/ergast/f1/
 
