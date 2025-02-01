@@ -4,7 +4,7 @@ from unittest.mock import MagicMock
 import pytest
 
 from jolpica.formula_one import models as f1
-from jolpica.formula_one.imports.deserialisers import (
+from jolpica.formula_one.importer.deserialisers import (
     BaseDeserializer,
     DriverDeserialiser,
     LapDeserialiser,
@@ -59,9 +59,9 @@ def entry_list_data():
 def test_deserialise_classification(entry_list_data):
     deserialised = DriverDeserialiser().deserialise(entry_list_data)
 
-    assert len(deserialised.models) + len(deserialised.failed_objects) == len(entry_list_data["objects"])
+    assert len(deserialised.models) + len(deserialised.object_failures) == len(entry_list_data["objects"])
     assert len(deserialised.models) == 20
-    assert len(deserialised.failed_objects) == 10
+    assert len(deserialised.object_failures) == 10
 
     new_models = 0
     existing_models = 0
@@ -101,12 +101,13 @@ def test_round_entry_deserialiser_get_team_driver_error(year, round, driver, tea
     deserialiser = RoundEntryDeserialiser()
     result = deserialiser.deserialise(data)
 
-    assert len(result.failed_objects) == 1
+    assert result.has_failure
+    assert result.foreign_key_failure
     assert (
-        "TeamDriver not found" in result.failed_objects[0][1]
-        or "Multiple TeamDrivers found" in result.failed_objects[0][1]
+        "TeamDriver not found" in result.foreign_key_failure
+        or "Multiple TeamDrivers found" in result.foreign_key_failure
     )
-    assert error in result.failed_objects[0][1]
+    assert error in result.foreign_key_failure
 
 
 @pytest.fixture
@@ -131,9 +132,9 @@ def session_entry_race_data():
 def test_deserialise_session_entries(session_entry_race_data):
     deserialised = SessionEntryDeserialiser().deserialise(session_entry_race_data)
 
-    assert len(deserialised.models) + len(deserialised.failed_objects) == len(session_entry_race_data["objects"])
+    assert len(deserialised.models) + len(deserialised.object_failures) == len(session_entry_race_data["objects"])
     assert len(deserialised.models) == 1
-    assert len(deserialised.failed_objects) == 0
+    assert len(deserialised.object_failures) == 0
 
     new_models = 0
     existing_models = 0
@@ -167,8 +168,12 @@ def test_session_entry_deserialiser_invalid_data(year, round, session, car_numbe
     deserialiser = SessionEntryDeserialiser()
     result = deserialiser.deserialise(data)
 
-    assert len(result.failed_objects) == 1
-    assert error in result.failed_objects[0][1]
+    assert result.has_failure
+    if result.foreign_key_failure:
+        assert error in result.foreign_key_failure
+    else:
+        assert len(result.object_failures) == 1
+        assert error in result.object_failures[0][1]
 
 
 @pytest.fixture
@@ -187,9 +192,9 @@ def lap_data():
 def test_deserialise_laps(lap_data):
     deserialised = LapDeserialiser().deserialise(lap_data)
 
-    assert len(deserialised.models) + len(deserialised.failed_objects) == len(lap_data["objects"])
+    assert len(deserialised.models) + len(deserialised.object_failures) == len(lap_data["objects"])
     assert len(deserialised.models) == 2
-    assert len(deserialised.failed_objects) == 0
+    assert len(deserialised.object_failures) == 0
 
     new_laps = 0
     existing_laps = 0
@@ -229,15 +234,19 @@ def test_lap_deserialiser_invalid_data(year, round, session, car_number, object,
     deserialiser = LapDeserialiser()
     result = deserialiser.deserialise(data)
 
-    assert len(result.failed_objects) == 1
-    assert error in result.failed_objects[0][1]
+    assert result.has_failure
+    if result.object_failures:
+        assert len(result.object_failures) == 1
+        assert error in result.object_failures[0][1]
+    else:
+        assert error in result.foreign_key_failure
 
 
 @pytest.fixture
 def pit_stop_data():
     return {
         "object_type": "pit_stop",
-        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1, "lap": 1},
         "objects": [
             {"number": 1, "duration": timedelta(seconds=25), "local_timestamp": timedelta(minutes=30)},
             {"number": 2, "duration": timedelta(seconds=24), "local_timestamp": timedelta(minutes=60)},
@@ -249,9 +258,9 @@ def pit_stop_data():
 def test_deserialise_pit_stops(pit_stop_data):
     deserialised = PitStopDeserialiser().deserialise(pit_stop_data)
 
-    assert len(deserialised.models) + len(deserialised.failed_objects) == len(pit_stop_data["objects"])
+    assert len(deserialised.models) + len(deserialised.object_failures) == len(pit_stop_data["objects"])
     assert len(deserialised.models) == 2
-    assert len(deserialised.failed_objects) == 0
+    assert len(deserialised.object_failures) == 0
 
     new_pit_stops = 0
     existing_pit_stops = 0
@@ -270,7 +279,7 @@ def test_deserialise_pit_stops(pit_stop_data):
 @pytest.mark.parametrize(
     ["year", "round", "session", "car_number", "object", "error"],
     [
-        (2023, 18, "R", 1, {"invalid_key": "value"}, "Invalid key: invalid_key"),
+        (2023, 18, "R", 1, {"invalid_key": "value"}, "KeyError"),
         (2023, 99, "R", 1, {}, "SessionEntry matching query does not exist"),
     ],
 )
@@ -284,8 +293,12 @@ def test_pit_stop_deserialiser_invalid_data(year, round, session, car_number, ob
     deserialiser = PitStopDeserialiser()
     result = deserialiser.deserialise(data)
 
-    assert len(result.failed_objects) == 1
-    assert error in result.failed_objects[0][1]
+    assert result.has_failure
+    if result.foreign_key_failure:
+        assert error in result.foreign_key_failure
+    else:
+        assert len(result.object_failures) == 1
+        assert error in result.object_failures[0][1]
 
 
 @pytest.mark.parametrize(

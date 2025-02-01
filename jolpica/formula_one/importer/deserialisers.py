@@ -6,7 +6,6 @@ from typing import ClassVar, TypedDict
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models import Q
-from pydantic import BaseModel
 
 from .. import models as f1
 
@@ -15,7 +14,7 @@ from .. import models as f1
 class ModelDeserialisationResult:
     model: type[models.Model]
     object_type: str
-    foreign_keys: dict
+    foreign_keys: "ForeignKeysDict"
     resolved_foreign_keys: dict[str, int] | None
     models: Sequence[models.Model]
 
@@ -45,7 +44,7 @@ class ForeignKeysDict(TypedDict, total=False):
     team_name: str
 
 
-class BaseModelDict(BaseModel):
+class BaseModelDict(TypedDict):
     object_type: str
     foreign_keys: ForeignKeysDict
     objects: list[dict]
@@ -221,8 +220,11 @@ class DriverDeserialiser(BaseDeserializer):
                     "objects": [{"car_number": object["car_number"]}],
                 }
             )
-            if result.object_failures:
-                result.object_failures[0] = (object, result.object_failures[0][1])
+            if result.has_failure:
+                if result.object_failures:
+                    result.object_failures[0] = (object, result.object_failures[0][1])
+                elif result.foreign_key_failure:
+                    result.object_failures.append((object, result.foreign_key_failure))
             results.append(result)
 
         return ModelDeserialisationResult(
