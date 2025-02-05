@@ -25,7 +25,6 @@ class ModelDeserialisationResult:
     def has_failure(self) -> bool:
         return bool(self.foreign_key_failure is not None or len(self.object_failures) > 0)
 
-    @property
     def get_unique_failure_reasons(self) -> list[str]:
         return (
             [self.foreign_key_failure]

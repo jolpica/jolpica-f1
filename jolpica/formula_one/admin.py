@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.contrib import admin
 from django.contrib.gis import admin as geo_admin
+from django.urls import resolve
 
 from jolpica.formula_one import models as f1
 
@@ -81,13 +82,34 @@ class SessionInline(admin.TabularInline):
     model = f1.Session
 
 
+class RoundEntryInline(admin.TabularInline):
+    model = f1.RoundEntry
+
+    def get_parent_id_from_request(self, request):
+        resolved = resolve(request.path_info)
+        if resolved.kwargs:
+            return resolved.kwargs["object_id"]
+        return None
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "team_driver":
+            parent_id = self.get_parent_id_from_request(request)
+            if parent_id:
+                kwargs["queryset"] = f1.TeamDriver.objects.filter(season__rounds__id=parent_id).prefetch_related(
+                    "team", "driver", "season"
+                )
+            else:
+                kwargs["queryset"] = f1.TeamDriver.objects.prefetch_related("team", "driver", "season")
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+
 class FormulaOneModelAdmin(ListAdminMixin, geo_admin.GISModelAdmin):
     gis_widget_kwargs = {"attrs": {"default_lon": 10, "default_lat": 55, "default_zoom": 3.75}}
 
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         if model.__name__ == "Round":
-            self.inlines = [SessionInline]
+            self.inlines = [SessionInline, RoundEntryInline]
 
 
 models = apps.get_app_config("formula_one").get_models()
