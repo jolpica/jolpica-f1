@@ -2,6 +2,7 @@ from pydantic import BaseModel, ValidationError
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from jolpica.formula_one.importer.importer import JSONModelImporter
 
 
@@ -18,7 +19,7 @@ class ImportData(APIView):
             return Response({"errors": ex.errors(include_url=False, include_input=False)}, status=400)
 
         results = JSONModelImporter().deserialise_all(request_data.data)
-        
+
         deserialisation_errors = []
         instances = []
         for res in results:
@@ -27,5 +28,9 @@ class ImportData(APIView):
             instances.extend(res.models)
         if deserialisation_errors:
             return Response({"errors": deserialisation_errors}, status=400)
+
+        if not request_data.dry_run and request.user.is_staff:
+            for ins in instances:
+                ins.save()
 
         return Response({"instances": [repr(ins) for ins in instances]})
