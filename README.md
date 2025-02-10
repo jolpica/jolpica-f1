@@ -64,3 +64,7 @@ To run the tests
 ## Reporting Bugs / Contributing
 
 For information on contributing to this project please read the [contributing guidelines](CONTRIBUTING.md).
+
+# Community Projects
+
+- [JolpicaKit](https://github.com/fantasia-y/JolpicaKit): A Swift wrapper for the Jolpica F1 API
