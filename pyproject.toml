@@ -57,7 +57,7 @@ requires = ["poetry-core>=1.0.0"]
 [tool.mypy]
 exclude = ["^tests", "^jolpica_api/ergastapi/*"]
 plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
-python_version = "3.11"
+python_version = "3.12"
 
 [tool.django-stubs]
 django_settings_module = "jolpica_api.settings"
