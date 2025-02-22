@@ -1,10 +1,10 @@
 from pydantic import BaseModel, ValidationError
+from rest_framework.permissions import IsAdminUser
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from jolpica.formula_one.importer.importer import JSONModelImporter
-from jolpica.formula_one.importer.json_models import F1Import
 
 
 class ImportDataRequestData(BaseModel):
@@ -13,6 +13,8 @@ class ImportDataRequestData(BaseModel):
 
 
 class ImportData(APIView):
+    permission_classes = [IsAdminUser]
+
     def put(self, request: Request) -> Response:
         try:
             request_data = ImportDataRequestData.model_validate(request.data)
