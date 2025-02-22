@@ -105,7 +105,7 @@ class BaseDeserializer[R: json_models.F1Object, S: json_models.F1ForeignKeys, T:
 class RoundEntryDeserialiser(BaseDeserializer):
     MODEL = f1.RoundEntry
     JSON_IMPORT_TYPE = json_models.RoundEntryImport
-    UNIQUE_FIELDS = ("round_id", "team_driver_id")
+    UNIQUE_FIELDS = ("round_id", "team_driver_id", "car_number")
 
     team_mapping = {  # TODO: Move this mapping to the DB, & add full entrant / constructor name to team models
         "Oracle Red Bull Racing": "Red Bull",

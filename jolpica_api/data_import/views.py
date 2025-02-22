@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from jolpica.formula_one.importer.importer import JSONModelImporter
+from jolpica.formula_one.importer.json_models import F1Import
 
 
 class ImportDataRequestData(BaseModel):
@@ -12,25 +13,23 @@ class ImportDataRequestData(BaseModel):
 
 
 class ImportData(APIView):
-    def post(self, request: Request) -> Response:
+    def put(self, request: Request) -> Response:
         try:
             request_data = ImportDataRequestData.model_validate(request.data)
         except ValidationError as ex:
             return Response({"errors": ex.errors(include_url=False, include_input=False)}, status=400)
 
-        results = JSONModelImporter().deserialise_all(request_data.data)
+        result = JSONModelImporter().deserialise_all(request_data.data)
 
-        deserialisation_errors = []
-        instances = []
-        for res in results:
-            if res.has_failure:
-                deserialisation_errors.extend(res.get_unique_failure_reasons())
-            instances.extend(res.models)
-        if deserialisation_errors:
-            return Response({"errors": deserialisation_errors}, status=400)
+        if not result.success:
+            return Response({"errors": result.errors}, status=400)
 
         if not request_data.dry_run and request.user.is_staff:
-            for ins in instances:
-                ins.save()
+            for model_import, instances in result.instances.items():
+                for ins in instances:
+                    model_import.model_class.objects.update_or_create(
+                        **{field: getattr(ins, field) for field in model_import.unique_fields},
+                        defaults={field: getattr(ins, field) for field in model_import.update_fields},
+                    )
 
-        return Response({"instances": [repr(ins) for ins in instances]})
+        return Response({})
