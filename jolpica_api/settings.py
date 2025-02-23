@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     "jolpica_api.ergastapi",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
-    INSTALLED_APPS += ["django_dbml", "fixture_magic", "debug_toolbar"]
+    INSTALLED_APPS += ["django_dbml", "debug_toolbar"]
 
 
 # Middleware
