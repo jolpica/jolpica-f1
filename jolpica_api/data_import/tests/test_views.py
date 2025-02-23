@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pytest
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
@@ -136,15 +139,15 @@ def test_data_import_model_is_successfully_updated(client: APIClient):
     assert updated_instance.time.total_seconds() == 100, "Time should be updated"
 
 
-# @pytest.mark.django_db
-# def test_data_import_2023_18_models_are_imported(client: APIClient):
-#     input_data = []
-#     for path in Path(".").glob("2023_18_*.json"):
-#         with open(path) as f:
-#             input_data.extend(json.load(f))
+@pytest.mark.django_db
+def test_data_import_2023_18_models_are_imported(client: APIClient):
+    input_data = []
+    for path in Path("jolpica/formula_one/tests/fixtures").glob("2023_18_*.json"):
+        with open(path) as f:
+            input_data.extend(json.load(f))
 
-#     client.force_authenticate(user=User.objects.get(username="test_user"))
+    client.force_authenticate(user=User.objects.get(username="test_user"))
 
-#     # Dry Run
-#     response = client.put("/data/import/", {"dry_run": True, "data": input_data}, format="json")
-#     assert response.status_code == 200
+    # Dry Run
+    response = client.put("/data/import/", {"dry_run": True, "data": input_data}, format="json")
+    assert response.status_code == 200

@@ -56,8 +56,9 @@ class ModelLookupCache[M: models.Model]:
             "session__type": "session",
             "round_entry__car_number": "car_number",
         },
+        f1.Lap: {"session_entry_id": "session_entry_id", "number": "lap"},
     }
-    EXCLUDE_FROM_CACHE: ClassVar[tuple] = (f1.Lap, f1.PitStop)
+    EXCLUDE_FROM_CACHE: ClassVar[tuple] = (f1.PitStop,)
 
     def add_to_cache(self, model: M, foreign_keys: json_models.F1ForeignKeys) -> None:
         model_class = type(model)
@@ -73,11 +74,14 @@ class ModelLookupCache[M: models.Model]:
         if model_class not in self._model_cache:
             self._model_cache[model_class] = {}
         cache = self._model_cache[model_class]
+        cache_key: tuple
         if isinstance(model, f1.RoundEntry):
             if model.car_number is None:
                 logger.warning("Not adding RoundEntry to cache as car_number is None")
                 return
             cache_key = (foreign_keys.year, foreign_keys.round, model.car_number)  # type: ignore[attr-defined]
+        elif isinstance(model, f1.Lap):
+            cache_key = (model.session_entry_id, model.number)  # type: ignore[attr-defined]
         else:
             cache_key = tuple(getattr(foreign_keys, val) for val in self.MODEL_CACHE_FIELD_MAP[model_class].values())
         cache[cache_key] = model
@@ -255,7 +259,7 @@ class PitStopDeserialiser(BaseDeserializer):
             session__type=foreign_keys.session,
             round_entry__car_number=foreign_keys.car_number,
         )
-        lap = f1.Lap.objects.get(session_entry_id=session_entry.id, number=foreign_keys.lap)
+        lap = self._cache.get_model_instance(f1.Lap, session_entry_id=session_entry.id, number=foreign_keys.lap)
         return {
             "session_entry_id": session_entry.id,
             "lap_id": lap.id,
@@ -274,5 +278,10 @@ class DeserialiserFactory:
         "pit_stop": PitStopDeserialiser,
     }
 
+    def __init__(self, cache: ModelLookupCache | None = None):
+        if cache is None:
+            cache = ModelLookupCache()
+        self.cache = cache
+
     def get_deserialiser(self, object_type: str) -> BaseDeserializer:
-        return self.deserialisers[object_type]()
+        return self.deserialisers[object_type](cache=self.cache)
