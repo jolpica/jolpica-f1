@@ -15,7 +15,11 @@ class JSONModelImporter:
         results = [self.deserialise(item) for item in data]
 
         import_instances = defaultdict(list)
-        for result in results:
+        errors = []
+        for i, result in enumerate(results):
+            if not result.success:
+                errors.append({"index": i, "type": result.data.get("object_type"), "message": result.errors})
+                
             for model_import, instances in result.instances.items():
                 import_instances[model_import].extend(instances)
 
@@ -23,5 +27,5 @@ class JSONModelImporter:
             success=all(result.success for result in results) and len(results) > 0,
             data=data,
             instances=import_instances,
-            errors=[error for result in results for error in result.errors],
+            errors=errors,
         )

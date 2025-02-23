@@ -19,8 +19,8 @@ def max_round_entry_data():
         "foreign_keys": {
             "year": 2023,
             "round": 18,
-            "driver_name": "Max Verstappen",
-            "team_name": "Red Bull Racing Honda RBPT",
+            "driver_reference": "max_verstappen",
+            "team_reference": "red_bull",
         },
         "objects": [{"car_number": 1}],
     }
