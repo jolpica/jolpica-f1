@@ -36,9 +36,6 @@ class DeserialisationResult:
             raise ValueError("Error message must be provided if success is False")
 
 
-class ForeignKeyDeserialisationError(Exception):
-    pass
-
 
 class BaseDeserializer[R: json_models.F1Object, S: json_models.F1ForeignKeys, T: json_models.F1Import]:
     """Base class for all deserializers."""
@@ -73,7 +70,7 @@ class BaseDeserializer[R: json_models.F1Object, S: json_models.F1ForeignKeys, T:
             )
         try:
             foreign_key_fields = self._get_common_foreign_keys(data.foreign_keys)
-        except (ObjectDoesNotExist, ForeignKeyDeserialisationError) as ex:
+        except ObjectDoesNotExist as ex:
             return DeserialisationResult(
                 success=False,
                 data=data_dict,
@@ -107,62 +104,20 @@ class RoundEntryDeserialiser(BaseDeserializer):
     JSON_IMPORT_TYPE = json_models.RoundEntryImport
     UNIQUE_FIELDS = ("round_id", "team_driver_id", "car_number")
 
-    team_mapping = {  # TODO: Move this mapping to the DB, & add full entrant / constructor name to team models
-        "Oracle Red Bull Racing": "Red Bull",
-        "Red Bull Racing Honda RBPT": "Red Bull",
-        "Mercedes-AMG PETRONAS F1 Team": "Mercedes",
-        "Alfa Romeo F1 Team Stake": "Alfa Romeo",
-        "Alfa Romeo Ferrari": "Alfa Romeo",
-        "Aston Martin Aramco Cognizant F1 Team": "Aston Martin",
-        "Aston Martin Aramco Mercedes": "Aston Martin",
-        "BWT Alpine F1 Team": "Alpine F1 Team",
-        "Alpine Renault": "Alpine F1 Team",
-        "McLaren F1 Team": "McLaren",
-        "McLaren Mercedes": "McLaren",
-        "MoneyGram Haas F1 Team": "Haas F1 Team",
-        "Haas Ferrari": "Haas F1 Team",
-        "Scuderia AlphaTauri": "AlphaTauri",
-        "AlphaTauri Honda RBPT": "AlphaTauri",
-        "Scuderia Ferrari": "Ferrari",
-        "Williams Racing": "Williams",
-        "Williams Mercedes": "Williams",
-    }
-
     def _get_common_foreign_keys(self, foreign_keys: json_models.RoundEntryForeignKeys) -> dict[str, int]:
         round = f1.Round.objects.get(
             season__year=foreign_keys.year,
             number=foreign_keys.round,
         )
-        team_driver = self.get_team_driver(foreign_keys)
+        team_driver = f1.TeamDriver.objects.get(
+            season__year=foreign_keys.year,
+            driver__reference=foreign_keys.driver_reference,
+            team__reference=foreign_keys.team_reference,
+        )
         return {
             "round_id": round.id,
             "team_driver_id": team_driver.id,
         }
-
-    def get_team_driver(self, foreign_keys: json_models.RoundEntryForeignKeys) -> f1.TeamDriver:
-        driver_names = foreign_keys.driver_name.split(" ")
-        # Find a driver with matching first & last name, or 1 of the names and the car number.
-        driver_query = Q(driver__forename__in=driver_names, driver__surname__in=driver_names) | (
-            Q(driver__forename__in=driver_names) | Q(driver__surname__in=driver_names)
-        )
-        team_name = self.team_mapping.get(foreign_keys.team_name, foreign_keys.team_name)
-        team_query = Q(team__name=team_name)
-        team_drivers = f1.TeamDriver.objects.filter(Q(season__year=foreign_keys.year) & driver_query & team_query)
-        if len(team_drivers) > 1:
-            message = f"Multiple TeamDrivers found for {foreign_keys.driver_name} in {team_name}"
-            raise ForeignKeyDeserialisationError(message)
-
-        result = team_drivers.first()
-        if result is None:
-            message = f"TeamDriver not found for {foreign_keys.driver_name} in {team_name}"
-            if foreign_keys.team_name not in self.team_mapping:
-                message += " (unmapped team name)"
-            if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys.year) & driver_query).exists():
-                message += " (driver miss)"
-            if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys.year) & team_query).exists():
-                message += " (team miss)"
-            raise ForeignKeyDeserialisationError(message)
-        return result
 
 
 class SessionEntryDeserialiser(BaseDeserializer):

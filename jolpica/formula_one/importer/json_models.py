@@ -34,8 +34,8 @@ class F1Import[T: F1Object, R: F1ForeignKeys](BaseModel):
 class RoundEntryForeignKeys(F1ForeignKeys):
     year: int
     round: int
-    driver_name: str
-    team_name: str
+    driver_reference: str
+    team_reference: str
 
 
 class RoundEntryObject(F1Object):

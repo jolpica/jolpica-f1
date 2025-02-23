@@ -20,8 +20,8 @@ from jolpica.formula_one.importer.deserialisers import (
                 "foreign_keys": {
                     "year": 2023,
                     "round": 22,
-                    "team_name": "MoneyGram Haas F1 Team",
-                    "driver_name": "Oliver Bearman",
+                    "team_reference": "haas",
+                    "driver_reference": "bearman",
                 },
                 "objects": [{"car_number": 50}],
             },
@@ -32,8 +32,8 @@ from jolpica.formula_one.importer.deserialisers import (
                 "foreign_keys": {
                     "year": 2023,
                     "round": 22,
-                    "team_name": "BWT Alpine F1 Team",
-                    "driver_name": "Jack Doohan",
+                    "team_reference": "alpine",
+                    "driver_reference": "doohan",
                 },
                 "objects": [{"car_number": 61}],
             },
@@ -44,8 +44,8 @@ from jolpica.formula_one.importer.deserialisers import (
                 "foreign_keys": {
                     "year": 2023,
                     "round": 22,
-                    "team_name": "Williams Racing",
-                    "driver_name": "Zak O'Sullivan",
+                    "team_reference": "williams",
+                    "driver_reference": "osullivan",
                 },
                 "objects": [{"car_number": 45}],
             },
@@ -57,7 +57,7 @@ def test_round_entry_deserialiser_error(input_data):
     result = RoundEntryDeserialiser().deserialise(input_data)
 
     assert not result.success
-    assert "ForeignKeyDeserialisationError" in result.errors[0]
+    assert "TeamDriver" in result.errors[0]
 
 
 @pytest.mark.parametrize(
@@ -69,8 +69,8 @@ def test_round_entry_deserialiser_error(input_data):
                 "foreign_keys": {
                     "year": 2023,
                     "round": 22,
-                    "team_name": "Oracle Red Bull Racing",
-                    "driver_name": "Max Verstappen",
+                    "team_reference": "red_bull",
+                    "driver_reference": "max_verstappen",
                 },
                 "objects": [{"car_number": 1}],
             },
@@ -81,22 +81,22 @@ def test_round_entry_deserialiser_error(input_data):
                 "foreign_keys": {
                     "year": 2023,
                     "round": 22,
-                    "team_name": "Oracle Red Bull Racing",
-                    "driver_name": "Sergio Perez",
+                    "team_reference": "red_bull",
+                    "driver_reference": "perez",
                 },
                 "objects": [{"car_number": 11}],
             },
         ),
-        (
+        ( # Can make round entry with no car number
             {
                 "object_type": "RoundEntry",
                 "foreign_keys": {
                     "year": 2023,
                     "round": 22,
-                    "team_name": "Mercedes-AMG PETRONAS F1 Team",
-                    "driver_name": "Lewis Hamilton",
+                    "team_reference": "mercedes",
+                    "driver_reference": "hamilton",
                 },
-                "objects": [{"car_number": 44}],
+                "objects": [{}],
             },
         ),
     ],
@@ -198,6 +198,8 @@ def test_deserialise_pit_stops(pit_stop_data):
 @pytest.mark.parametrize(
     ["deserialiser", "foreign_keys", "object", "error"],
     [
+        (RoundEntryDeserialiser, {"year": 2023, "round": 22, "driver_reference": "hamilton", "team_reference": "mercedes"}, {"extra_key": "1"}, ("type", "extra_forbidden")),
+        (RoundEntryDeserialiser, {"year": 2023, "round": 22, "driver_reference": "None", "team_reference": "mercedes"}, {}, "TeamDriver"),
         (
             SessionEntryDeserialiser,
             {"year": 2023, "round": 22, "session": "R", "car_number": 1},
@@ -232,32 +234,3 @@ def test_deserialiser_invalid_data(deserialiser, foreign_keys, object, error):
         assert result.errors[0][error[0]] == error[1]
     else:
         assert error in result.errors[0]
-
-
-@pytest.mark.parametrize(
-    ["year", "round", "driver", "team", "object", "error"],
-    [
-        (2023, 22, "Max Verstappen", "invalid", {"car_number": 1}, "(unmapped team name)"),
-        (2023, 22, "Max Verstappen", "invalid", {"car_number": 1}, "(team miss)"),
-        (2023, 22, "Invalid Driver", "Oracle Red Bull Racing", {"car_number": 1}, "(driver miss)"),
-        (2009, 1, "Sébastien AMBIGUOUS", "Toro Rosso", {}, "Multiple TeamDrivers found"),
-    ],
-)
-@pytest.mark.django_db
-def test_round_entry_deserialiser_get_team_driver_error(year, round, driver, team, object, error):
-    data = {
-        "object_type": "RoundEntry",
-        "foreign_keys": {
-            "year": year,
-            "round": round,
-            "driver_name": driver,
-            "team_name": team,
-        },
-        "objects": [object],
-    }
-    deserialiser = RoundEntryDeserialiser()
-    result = deserialiser.deserialise(data)
-
-    assert not result.success
-    assert "TeamDriver not found" in result.errors[0] or "Multiple TeamDrivers found" in result.errors[0]
-    assert error in result.errors[0]

@@ -20,7 +20,7 @@ class JSONModelImporter:
                 import_instances[model_import].extend(instances)
 
         return DeserialisationResult(
-            success=all(result.success for result in results),
+            success=all(result.success for result in results) and len(results) > 0,
             data=data,
             instances=import_instances,
             errors=[error for result in results for error in result.errors],
