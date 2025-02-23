@@ -57,7 +57,7 @@ def test_data_import_deserialise_error(client: APIClient, max_round_entry_data):
     data = response.json()
 
     assert "errors" in data
-    assert "DoesNotExist('Round matching query does not exist.')" in data["errors"][0]
+    assert "DoesNotExist('Round matching query does not exist.')" in data["errors"][0]["message"]
 
 
 @pytest.mark.django_db
@@ -134,3 +134,17 @@ def test_data_import_model_is_successfully_updated(client: APIClient):
     assert updated_instance.position == 1, "Position should stay the same"
     assert updated_instance.average_speed == 198.412, "Average speed should not be updated"
     assert updated_instance.time.total_seconds() == 100, "Time should be updated"
+
+
+# @pytest.mark.django_db
+# def test_data_import_2023_18_models_are_imported(client: APIClient):
+#     input_data = []
+#     for path in Path(".").glob("2023_18_*.json"):
+#         with open(path) as f:
+#             input_data.extend(json.load(f))
+
+#     client.force_authenticate(user=User.objects.get(username="test_user"))
+
+#     # Dry Run
+#     response = client.put("/data/import/", {"dry_run": True, "data": input_data}, format="json")
+#     assert response.status_code == 200

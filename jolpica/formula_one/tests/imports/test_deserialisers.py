@@ -1,10 +1,13 @@
+import json
 from datetime import timedelta
+from pathlib import Path
 
 import pytest
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.importer.deserialisers import (
     LapDeserialiser,
+    ModelLookupCache,
     PitStopDeserialiser,
     RoundEntryDeserialiser,
     SessionEntryDeserialiser,
@@ -87,7 +90,7 @@ def test_round_entry_deserialiser_error(input_data):
                 "objects": [{"car_number": 11}],
             },
         ),
-        ( # Can make round entry with no car number
+        (  # Can make round entry with no car number
             {
                 "object_type": "RoundEntry",
                 "foreign_keys": {
@@ -198,8 +201,18 @@ def test_deserialise_pit_stops(pit_stop_data):
 @pytest.mark.parametrize(
     ["deserialiser", "foreign_keys", "object", "error"],
     [
-        (RoundEntryDeserialiser, {"year": 2023, "round": 22, "driver_reference": "hamilton", "team_reference": "mercedes"}, {"extra_key": "1"}, ("type", "extra_forbidden")),
-        (RoundEntryDeserialiser, {"year": 2023, "round": 22, "driver_reference": "None", "team_reference": "mercedes"}, {}, "TeamDriver"),
+        (
+            RoundEntryDeserialiser,
+            {"year": 2023, "round": 22, "driver_reference": "hamilton", "team_reference": "mercedes"},
+            {"extra_key": "1"},
+            ("type", "extra_forbidden"),
+        ),
+        (
+            RoundEntryDeserialiser,
+            {"year": 2023, "round": 22, "driver_reference": "None", "team_reference": "mercedes"},
+            {},
+            "TeamDriver",
+        ),
         (
             SessionEntryDeserialiser,
             {"year": 2023, "round": 22, "session": "R", "car_number": 1},
@@ -234,3 +247,47 @@ def test_deserialiser_invalid_data(deserialiser, foreign_keys, object, error):
         assert result.errors[0][error[0]] == error[1]
     else:
         assert error in result.errors[0]
+
+
+@pytest.fixture
+def quali_session_entries_2023_18():
+    with open(Path(__file__).parent.parent / "fixtures/2023_18_quali_classification.json") as f:
+        return json.load(f)
+
+
+@pytest.fixture
+def quali_laps_2023_18():
+    with open(Path(__file__).parent.parent / "fixtures/2023_18_quali_lap_times.json") as f:
+        return json.load(f)
+
+
+@pytest.mark.django_db
+def test_deserialiser_uses_cache(django_assert_max_num_queries, quali_session_entries_2023_18):
+    with django_assert_max_num_queries(999) as baseline_queries:
+        for entry in quali_session_entries_2023_18[:10]:
+            SessionEntryDeserialiser().deserialise(entry)
+
+    cached_deserialiser = SessionEntryDeserialiser()
+    with django_assert_max_num_queries(999) as cached_queries:
+        for entry in quali_session_entries_2023_18[10:20]:
+            cached_deserialiser.deserialise(entry)
+
+    assert len(baseline_queries.captured_queries) > len(cached_queries.captured_queries)
+    assert len(cached_queries.captured_queries) == 11
+
+
+@pytest.mark.django_db
+def test_deserialiser_cache_across_deserialisers(
+    django_assert_max_num_queries, quali_session_entries_2023_18, quali_laps_2023_18
+):
+    cache = ModelLookupCache()
+    cached_se_deserialiser = SessionEntryDeserialiser(cache=cache)
+    for entry in quali_session_entries_2023_18:
+        assert cached_se_deserialiser.deserialise(entry).success
+
+    cached_l_deserialiser = LapDeserialiser(cache=cache)
+    with django_assert_max_num_queries(999) as cached_queries:
+        for entry in quali_laps_2023_18:
+            assert cached_l_deserialiser.deserialise(entry).success
+
+    assert len(cached_queries.captured_queries) == 0

@@ -29,7 +29,7 @@ class ImportData(APIView):
         if not request_data.dry_run and request.user.is_staff:
             for model_import, instances in result.instances.items():
                 for ins in instances:
-                    model_import.model_class.objects.update_or_create(
+                    model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
                         **{field: getattr(ins, field) for field in model_import.unique_fields},
                         defaults={field: getattr(ins, field) for field in model_import.update_fields},
                     )

@@ -17,9 +17,9 @@ class JSONModelImporter:
         import_instances = defaultdict(list)
         errors = []
         for i, result in enumerate(results):
-            if not result.success:
+            if not result.success and isinstance(result.data, dict):
                 errors.append({"index": i, "type": result.data.get("object_type"), "message": result.errors})
-                
+
             for model_import, instances in result.instances.items():
                 import_instances[model_import].extend(instances)
 
