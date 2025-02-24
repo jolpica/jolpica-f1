@@ -7,7 +7,7 @@ packages = [{ include = "jolpica" }]
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
+python = ">=3.12,<3.13"
 
 Django = "^5.1"
 django-environ = "^0.12.0"
