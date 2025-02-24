@@ -8,7 +8,13 @@ from jolpica.formula_one.importer.importer import JSONModelImporter
 
 
 class ImportDataRequestData(BaseModel):
+    # If True, the data will be validated but not saved to the database
     dry_run: bool = True
+
+    # If True, provisions to be compatible with legacy existing data will be used.
+    # Should never be used for data from 2025 onwards.
+    legacy_import: bool = False
+
     data: list
 
 
@@ -21,17 +27,13 @@ class ImportData(APIView):
         except ValidationError as ex:
             return Response({"errors": ex.errors(include_url=False, include_input=False)}, status=400)
 
-        result = JSONModelImporter().deserialise_all(request_data.data)
+        model_importer = JSONModelImporter(legacy_import=request_data.legacy_import)
+        result = model_importer.deserialise_all(request_data.data)
 
         if not result.success:
             return Response({"errors": result.errors}, status=400)
 
         if not request_data.dry_run and request.user.is_staff:
-            for model_import, instances in result.instances.items():
-                for ins in instances:
-                    model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
-                        **{field: getattr(ins, field) for field in model_import.unique_fields},
-                        defaults={field: getattr(ins, field) for field in model_import.update_fields},
-                    )
+            model_importer.save_deserialisation_result_to_db(result)
 
         return Response({})

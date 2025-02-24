@@ -149,5 +149,9 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
     client.force_authenticate(user=User.objects.get(username="test_user"))
 
     # Dry Run
-    response = client.put("/data/import/", {"dry_run": True, "data": input_data}, format="json")
+    response = client.put("/data/import/", {"dry_run": True, "legacy_import": True, "data": input_data}, format="json")
+    assert response.status_code == 200
+
+    # Dry Run
+    response = client.put("/data/import/", {"dry_run": False, "legacy_import": True, "data": input_data}, format="json")
     assert response.status_code == 200
