@@ -148,10 +148,37 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
 
     client.force_authenticate(user=User.objects.get(username="test_user"))
 
+    assert (
+        f1.Lap.objects.filter(
+            session_entry__round_entry__round__season__year=2023,
+            session_entry__round_entry__round__number=18,
+            session_entry__session__type__contains="Q",
+        ).count()
+        == 45
+    )
+
     # Dry Run
     response = client.put("/data/import/", {"dry_run": True, "legacy_import": True, "data": input_data}, format="json")
     assert response.status_code == 200
 
-    # Dry Run
+    assert (
+        f1.Lap.objects.filter(
+            session_entry__round_entry__round__season__year=2023,
+            session_entry__round_entry__round__number=18,
+            session_entry__session__type__contains="Q",
+        ).count()
+        == 45
+    )
+
+    # Import Data
     response = client.put("/data/import/", {"dry_run": False, "legacy_import": True, "data": input_data}, format="json")
     assert response.status_code == 200
+
+    assert (
+        f1.Lap.objects.filter(
+            session_entry__round_entry__round__season__year=2023,
+            session_entry__round_entry__round__number=18,
+            session_entry__session__type__contains="Q",
+        ).count()
+        > 45
+    )
