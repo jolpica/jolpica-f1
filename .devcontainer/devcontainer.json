@@ -34,7 +34,8 @@
 				"ms-python.python",
 				"charliermarsh.ruff",
 				"ms-toolsai.jupyter",
-				"njpwerner.autodocstring"
+				"njpwerner.autodocstring",
+				"google.geminicodeassist"
 			]
 		}
 	},
