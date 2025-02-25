@@ -70,4 +70,4 @@ For information on contributing to this project please read the [contributing gu
 
 # Community Projects
 
-- [JolpicaKit](https://github.com/fantasia-y/JolpicaKit): A Swift wrapper for the Jolpica F1 API
+Check out the list of [community projects](/docs/community_projects.md) using Jolpica F1
