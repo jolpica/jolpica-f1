@@ -67,3 +67,7 @@ To run the tests
 ## Reporting Bugs / Contributing
 
 For information on contributing to this project please read the [contributing guidelines](CONTRIBUTING.md).
+
+# Community Projects
+
+Check out the list of [community projects](/docs/community_projects.md) using Jolpica F1
