@@ -17,3 +17,8 @@ These issues are intentional and there are no plans to resolve them.
 
 #### Standings
 - `jolpica-f1` requires a year to be specified.
+
+#### Races
+- 2023: Ergast lists the Sprint Shootout as "SecondPractice", we have renamed this to "SprintShootout".
+- 2024 onwards: Ergast lists Sprint Qualifying as "SecondPractice", we have renamed this to "SprintQualifying".
+For more details on the returned values, refer to the [races endpoint](./endpoints/races.md).
