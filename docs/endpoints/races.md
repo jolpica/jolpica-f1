@@ -94,7 +94,7 @@ Filters for only races featuring a specified finishing status of a driver.
 |---|:---:|---|---|
 |season|✅|Season year|String
 |round|✅|Round Number|String
-|url|✅|Wikipedia URL of race|String
+|url|🟡|Wikipedia URL of race|String
 |raceName|✅|Name of the race|String
 |Circuit|✅|Circuit information (circuitId, url, circuitName, Location)|Object
 |date|✅|Date of the race (YYYY-MM-DD)|String

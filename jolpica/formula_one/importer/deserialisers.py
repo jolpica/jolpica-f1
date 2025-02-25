@@ -1,76 +1,132 @@
-from collections.abc import Sequence
-from dataclasses import dataclass
-from datetime import timedelta
-from typing import ClassVar, TypedDict
+import logging
+from collections import defaultdict
+from dataclasses import dataclass, field
+from typing import ClassVar
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
-from django.db.models import Q
+from pydantic import ValidationError
 
 from .. import models as f1
+from . import json_models
+
+logger = logging.getLogger(__name__)
+
+type ForeignKeyDict = dict[str, int | models.Model]
 
 
 @dataclass(frozen=True)
-class ModelDeserialisationResult:
-    model: type[models.Model]
-    object_type: str
-    foreign_keys: "ForeignKeysDict"
-    resolved_foreign_keys: dict[str, int] | None
-    models: Sequence[models.Model]
-
-    foreign_key_failure: str | None
-    object_failures: list[tuple[dict, str]]
-
-    @property
-    def has_failure(self) -> bool:
-        return bool(self.foreign_key_failure is not None or len(self.object_failures) > 0)
-
-    @property
-    def get_unique_failure_reasons(self) -> list[str]:
-        return (
-            [self.foreign_key_failure]
-            if self.foreign_key_failure is not None
-            else [reason for _, reason in self.object_failures]
-        )
+class ModelImport:
+    model_class: type[models.Model]
+    update_fields: tuple
+    unique_fields: tuple
 
 
-class ForeignKeysDict(TypedDict, total=False):
-    year: int
-    round: int
-    session: str
-    type: str
-    car_number: int
-    driver_name: str
-    team_name: str
+@dataclass(frozen=True)
+class DeserialisationResult:
+    success: bool
+    data: list[dict] | dict
+
+    # Success
+    instances: dict[ModelImport, list[models.Model]] = field(default_factory=dict)
+
+    # Failure
+    errors: list = field(default_factory=list)
+
+    def __post_init__(self):
+        if self.success and not self.instances:
+            raise ValueError("Instances must be provided if success is True")
+        elif not self.success and not self.errors:
+            raise ValueError("Error message must be provided if success is False")
 
 
-class BaseModelDict(TypedDict):
-    object_type: str
-    foreign_keys: ForeignKeysDict
-    objects: list[dict]
+@dataclass
+class ModelLookupCache[M: models.Model]:
+    _model_cache: dict[type[M], dict[tuple, M]] = field(default_factory=dict)
+
+    cached_model_fields: dict[type[models.Model], tuple] = field(default_factory=dict)
+
+    MODEL_CACHE_FIELD_MAP: ClassVar[dict[type[models.Model], dict[str, str]]] = {
+        f1.RoundEntry: {
+            "round__season__year": "year",
+            "round__number": "round",
+            "car_number": "car_number",
+        },
+        f1.SessionEntry: {
+            "session__round__season__year": "year",
+            "session__round__number": "round",
+            "session__type": "session",
+            "round_entry__car_number": "car_number",
+        },
+        f1.Lap: {"session_entry_id": "session_entry_id", "number": "lap"},
+    }
+    EXCLUDE_FROM_CACHE: ClassVar[tuple] = (f1.PitStop,)
+
+    def add_to_cache(self, model: M, foreign_keys: json_models.F1ForeignKeys) -> None:
+        model_class = type(model)
+        if model_class in self.EXCLUDE_FROM_CACHE:
+            return
+        if model_class not in self.MODEL_CACHE_FIELD_MAP:
+            raise ValueError(f"Cache fields not defined for {model_class}")
+        if (model_class in self.cached_model_fields) and (
+            self.cached_model_fields[model_class] != tuple(self.MODEL_CACHE_FIELD_MAP[model_class].keys())
+        ):
+            raise ValueError("Unique fields have changed since last lookup")
+
+        if model_class not in self._model_cache:
+            self._model_cache[model_class] = {}
+        cache = self._model_cache[model_class]
+        cache_key: tuple
+        if isinstance(model, f1.RoundEntry):
+            if model.car_number is None:
+                logger.warning("Not adding RoundEntry to cache as car_number is None")
+                return
+            cache_key = (foreign_keys.year, foreign_keys.round, model.car_number)  # type: ignore[attr-defined]
+        elif isinstance(model, f1.Lap):
+            cache_key = (model.session_entry_id, model.number)  # type: ignore[attr-defined]
+        else:
+            cache_key = tuple(getattr(foreign_keys, val) for val in self.MODEL_CACHE_FIELD_MAP[model_class].values())
+        cache[cache_key] = model
+
+    def get_model_instance(self, model_class: type[M], **unique_fields) -> M:
+        if model_class in self.EXCLUDE_FROM_CACHE:
+            model_class.objects.get(**unique_fields)  # type: ignore[attr-defined]
+
+        if (model_class in self.cached_model_fields) and (
+            self.cached_model_fields[model_class] != tuple(unique_fields.keys())
+        ):
+            raise ValueError("Unique fields have changed since last lookup")
+
+        if model_class not in self._model_cache:
+            self._model_cache[model_class] = {}
+
+        cache = self._model_cache[model_class]
+
+        cache_key = tuple(unique_fields.values())
+        if cache_key not in cache:
+            model_instance = model_class.objects.get(**unique_fields)  # type: ignore[attr-defined]
+            cache[cache_key] = model_instance
+        return cache[cache_key]
 
 
-class ForeignKeyDeserialisationError(Exception):
-    pass
-
-
-class UnableToParseValueError(Exception):
-    pass
-
-
-class BaseDeserializer:
+class BaseDeserializer[O: json_models.F1Object, F: json_models.F1ForeignKeys, I: json_models.F1Import]:
     """Base class for all deserializers."""
 
     MODEL: ClassVar[type[models.Model]]
-    ALLOWED_FIELD_VALUES: set | None = None
+    JSON_IMPORT_TYPE: ClassVar[type[json_models.F1Import]]
+    UNIQUE_FIELDS: ClassVar[tuple]
 
-    def __init__(self):
+    _cache: ModelLookupCache
+
+    def __init__(self, cache: ModelLookupCache | None = None, legacy_import: bool = False):
         if self.MODEL is None:
             raise NotImplementedError("Subclasses must define MODEL")
-        if self.ALLOWED_FIELD_VALUES is None:
-            raise NotImplementedError("Subclasses must define ALLOWED_FIELD_VALUES")
+        if cache is None:
+            cache = ModelLookupCache()
+        self._cache = cache
+        self.legacy_import = legacy_import
 
-    def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
+    def _get_common_foreign_keys(self, foreign_keys: F) -> ForeignKeyDict:
         """Get the foreign keys that are required to get or create the unique model instance.
 
         :param foreign_keys_dict: Dictionary of identifying values
@@ -78,233 +134,157 @@ class BaseDeserializer:
         """
         raise NotImplementedError("Subclasses must implement this method")
 
-    def parse_field_values(self, field_values: dict) -> dict:
-        """Check if any field values are of a special type, such as timedelta and parse them."""
-        for key, value in field_values.items():
-            if not isinstance(value, dict) or "_type" not in value.keys():
-                continue
-            if value["_type"] == "timedelta":
-                del value["_type"]
-                for val in value.keys():
-                    if val not in {"milliseconds", "seconds", "minutes", "hours", "days"}:
-                        # Important to prevent arbitary malicious args being input
-                        raise UnableToParseValueError(f"{val} is not a valid field for given type")
-                field_values[key] = timedelta(**value)
-        return field_values
+    def create_model_instance(self, foreign_key_fields: ForeignKeyDict, field_values: O) -> models.Model:
+        return self.MODEL(**foreign_key_fields, **field_values.model_dump(exclude_unset=True))
 
-    def create_model_instance(self, foreign_keys: dict[str, int], field_values: dict) -> models.Model:
-        # TODO: Create sensible field_value validator (e.g. points > 26 likely is an error)
-        self.parse_field_values(field_values)
-        for key in field_values.keys():
-            if self.ALLOWED_FIELD_VALUES and key not in self.ALLOWED_FIELD_VALUES:
-                raise ValueError(f"Invalid key: {key}")
-        return self.MODEL(**foreign_keys, **field_values)
+    def get_unique_fields(self, data: I, object_data: O) -> tuple:
+        return self.UNIQUE_FIELDS
 
-    def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
+    def deserialise(self, data_dict: dict) -> DeserialisationResult:
         try:
-            foreign_keys = self.get_common_foreign_keys(data["foreign_keys"])
-        except (ObjectDoesNotExist, ForeignKeyDeserialisationError, KeyError) as ex:
-            return ModelDeserialisationResult(
-                model=self.MODEL,
-                object_type=data["object_type"],
-                foreign_keys=data["foreign_keys"],
-                resolved_foreign_keys=None,
-                models=[],
-                foreign_key_failure=repr(ex),
-                object_failures=[],
+            data: I = self.JSON_IMPORT_TYPE.model_validate(data_dict)  # type: ignore
+        except ValidationError as ex:
+            return DeserialisationResult(
+                success=False,
+                data=data_dict,
+                errors=ex.errors(include_url=False, include_input=False),
+            )
+        try:
+            foreign_key_fields = self._get_common_foreign_keys(data.foreign_keys)
+        except ObjectDoesNotExist as ex:
+            return DeserialisationResult(
+                success=False,
+                data=data_dict,
+                errors=[repr(ex)],
             )
 
         failed_objects = []
-        model_instances = []
-        for object in data["objects"]:
+        model_instances = defaultdict(list)
+        for obj_data in data.objects:
             try:
-                model = self.create_model_instance(foreign_keys, object)
+                model = self.create_model_instance(foreign_key_fields, obj_data)
             except ValueError as ex:
-                failed_objects.append((object, str(ex)))
+                failed_objects.append((obj_data, str(ex)))
             else:
-                model_instances.append(model)
-
-        return ModelDeserialisationResult(
-            model=self.MODEL,
-            object_type=data["object_type"],
-            foreign_keys=data["foreign_keys"],
-            resolved_foreign_keys=foreign_keys,
-            models=model_instances,
-            foreign_key_failure=None,
-            object_failures=failed_objects,
+                self._cache.add_to_cache(model, data.foreign_keys)
+                model_instances[
+                    ModelImport(
+                        self.MODEL,
+                        tuple(obj_data.model_fields_set),
+                        self.get_unique_fields(data, obj_data),
+                    )
+                ].append(model)
+        if failed_objects:
+            return DeserialisationResult(
+                success=False,
+                data=data_dict,
+                errors=failed_objects,
+            )
+        return DeserialisationResult(
+            success=True,
+            data=data_dict,
+            instances=model_instances,
         )
 
 
 class RoundEntryDeserialiser(BaseDeserializer):
     MODEL = f1.RoundEntry
-    ALLOWED_FIELD_VALUES = {"car_number"}
+    JSON_IMPORT_TYPE = json_models.RoundEntryImport
+    UNIQUE_FIELDS = ("round", "team_driver", "car_number")
 
-    team_mapping = {  # TODO: Move this mapping to the DB, & add full entrant / constructor name to team models
-        "Oracle Red Bull Racing": "Red Bull",
-        "Red Bull Racing Honda RBPT": "Red Bull",
-        "Mercedes-AMG PETRONAS F1 Team": "Mercedes",
-        "Alfa Romeo F1 Team Stake": "Alfa Romeo",
-        "Alfa Romeo Ferrari": "Alfa Romeo",
-        "Aston Martin Aramco Cognizant F1 Team": "Aston Martin",
-        "Aston Martin Aramco Mercedes": "Aston Martin",
-        "BWT Alpine F1 Team": "Alpine F1 Team",
-        "Alpine Renault": "Alpine F1 Team",
-        "McLaren F1 Team": "McLaren",
-        "McLaren Mercedes": "McLaren",
-        "MoneyGram Haas F1 Team": "Haas F1 Team",
-        "Haas Ferrari": "Haas F1 Team",
-        "Scuderia AlphaTauri": "AlphaTauri",
-        "AlphaTauri Honda RBPT": "AlphaTauri",
-        "Scuderia Ferrari": "Ferrari",
-        "Williams Racing": "Williams",
-        "Williams Mercedes": "Williams",
-    }
-
-    def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
-        round = f1.Round.objects.get(
-            season__year=foreign_keys_dict["year"],
-            number=foreign_keys_dict["round"],
+    def _get_common_foreign_keys(self, foreign_keys: json_models.RoundEntryForeignKeys) -> ForeignKeyDict:
+        round = self._cache.get_model_instance(
+            f1.Round,
+            season__year=foreign_keys.year,
+            number=foreign_keys.round,
         )
-        team_driver = self.get_team_driver(foreign_keys_dict)
+        team_driver = self._cache.get_model_instance(
+            f1.TeamDriver,
+            season__year=foreign_keys.year,
+            driver__reference=foreign_keys.driver_reference,
+            team__reference=foreign_keys.team_reference,
+        )
         return {
-            "round_id": round.id,
-            "team_driver_id": team_driver.id,
+            "round": round,
+            "team_driver": team_driver,
         }
-
-    def get_team_driver(self, foreign_keys_dict: ForeignKeysDict) -> f1.TeamDriver:
-        driver_names = foreign_keys_dict["driver_name"].split(" ")
-        # Find a driver with matching first & last name, or 1 of the names and the car number.
-        driver_query = Q(driver__forename__in=driver_names, driver__surname__in=driver_names) | (
-            Q(driver__forename__in=driver_names) | Q(driver__surname__in=driver_names)
-        )
-        team_name = self.team_mapping.get(foreign_keys_dict["team_name"], foreign_keys_dict["team_name"])
-        team_query = Q(team__name=team_name)
-        team_drivers = f1.TeamDriver.objects.filter(
-            Q(season__year=foreign_keys_dict["year"]) & driver_query & team_query
-        )
-        if len(team_drivers) > 1:
-            message = f"Multiple TeamDrivers found for {foreign_keys_dict['driver_name']} in {team_name}"
-            raise ForeignKeyDeserialisationError(message)
-
-        result = team_drivers.first()
-        if result is None:
-            message = f"TeamDriver not found for {foreign_keys_dict['driver_name']} in {team_name}"
-            if foreign_keys_dict["team_name"] not in self.team_mapping:
-                message += " (unmapped team name)"
-            if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys_dict["year"]) & driver_query).exists():
-                message += " (driver miss)"
-            if not f1.TeamDriver.objects.filter(Q(season__year=foreign_keys_dict["year"]) & team_query).exists():
-                message += " (team miss)"
-            raise ForeignKeyDeserialisationError(message)
-        return result
-
-
-class DriverDeserialiser(BaseDeserializer):
-    """Special values of `name` and `team` are mapped to the correct TeamDriver object."""
-
-    MODEL = f1.RoundEntry
-    ALLOWED_FIELD_VALUES = {"car_number"}
-
-    def deserialise(self, data: BaseModelDict) -> ModelDeserialisationResult:
-        results: list[ModelDeserialisationResult] = []
-        for object in data["objects"]:
-            result = RoundEntryDeserialiser().deserialise(
-                {
-                    "object_type": "RoundEntry",
-                    "foreign_keys": {
-                        "year": data["foreign_keys"]["year"],
-                        "round": data["foreign_keys"]["round"],
-                        "team_name": object["team"],
-                        "driver_name": object["name"],
-                    },
-                    "objects": [{"car_number": object["car_number"]}],
-                }
-            )
-            if result.has_failure:
-                if result.object_failures:
-                    result.object_failures[0] = (object, result.object_failures[0][1])
-                elif result.foreign_key_failure:
-                    result.object_failures.append((object, result.foreign_key_failure))
-            results.append(result)
-
-        return ModelDeserialisationResult(
-            model=self.MODEL,
-            object_type=data["object_type"],
-            foreign_keys=data["foreign_keys"],
-            resolved_foreign_keys=None,
-            models=[obj for result in results for obj in result.models],
-            foreign_key_failure=None,
-            object_failures=[obj for result in results for obj in result.object_failures],
-        )
 
 
 class SessionEntryDeserialiser(BaseDeserializer):
     MODEL = f1.SessionEntry
-    ALLOWED_FIELD_VALUES = {
-        "position",
-        "is_classified",
-        "status",
-        "detail",
-        "points",
-        "is_eligible_for_points",
-        "grid",
-        "time",
-        "fastest_lap_rank",
-        "laps_completed",
-    }
+    JSON_IMPORT_TYPE = json_models.SessionEntryImport
+    UNIQUE_FIELDS = ("session", "round_entry")
 
-    def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
-        session = f1.Session.objects.get(
-            round__season__year=foreign_keys_dict["year"],
-            round__number=foreign_keys_dict["round"],
-            type=foreign_keys_dict["session"],
+    def _get_common_foreign_keys(self, foreign_keys_dict: json_models.SessionEntryForeignKeys) -> ForeignKeyDict:
+        session = self._cache.get_model_instance(
+            f1.Session,
+            round__season__year=foreign_keys_dict.year,
+            round__number=foreign_keys_dict.round,
+            type=foreign_keys_dict.session,
         )
-        round_entry = f1.RoundEntry.objects.get(
-            round__season__year=foreign_keys_dict["year"],
-            round__number=foreign_keys_dict["round"],
-            car_number=foreign_keys_dict["car_number"],
+        round_entry = self._cache.get_model_instance(
+            f1.RoundEntry,
+            round__season__year=foreign_keys_dict.year,
+            round__number=foreign_keys_dict.round,
+            car_number=foreign_keys_dict.car_number,
         )
         return {
-            "session_id": session.id,
-            "round_entry_id": round_entry.id,
+            "session": session,
+            "round_entry": round_entry,
         }
 
 
 class LapDeserialiser(BaseDeserializer):
     MODEL: ClassVar[type[models.Model]] = f1.Lap
-    ALLOWED_FIELD_VALUES = {"number", "position", "time", "average_speed", "is_entry_fastest_lap", "is_deleted"}
+    JSON_IMPORT_TYPE: ClassVar[type[json_models.F1Import]] = json_models.LapImport
+    UNIQUE_FIELDS = ("session_entry", "number")
 
-    def get_common_foreign_keys(self, foreign_keys_dict: ForeignKeysDict) -> dict[str, int]:
-        session_entry = f1.SessionEntry.objects.get(
-            session__round__season__year=foreign_keys_dict["year"],
-            session__round__number=foreign_keys_dict["round"],
-            session__type=foreign_keys_dict["session"],
-            round_entry__car_number=foreign_keys_dict["car_number"],
+    def get_unique_fields(self, data: json_models.LapImport, object_data: json_models.LapObject) -> tuple:
+        if self.legacy_import and data.foreign_keys.session != "R" and object_data.is_entry_fastest_lap:
+            # Update existing session data that does not provide lap numbers
+            # Previously only race fastest laps had lap numbers
+            logger.warning(f"Legacy import for {data.object_type} overriding unique fields")
+            return ("session_entry", "is_entry_fastest_lap")
+        return super().get_unique_fields(data, object_data)
+
+    def _get_common_foreign_keys(self, foreign_keys: json_models.LapForeignKeys) -> ForeignKeyDict:
+        session_entry = self._cache.get_model_instance(
+            f1.SessionEntry,
+            session__round__season__year=foreign_keys.year,
+            session__round__number=foreign_keys.round,
+            session__type=foreign_keys.session,
+            round_entry__car_number=foreign_keys.car_number,
         )
         return {
-            "session_entry_id": session_entry.id,
+            "session_entry": session_entry,
         }
 
 
-class PitStopDeserialiser(LapDeserialiser):
+class PitStopDeserialiser(BaseDeserializer):
     MODEL = f1.PitStop
-    ALLOWED_FIELD_VALUES = {"number", "duration", "local_timestamp"}
+    JSON_IMPORT_TYPE = json_models.PitStopImport
+    UNIQUE_FIELDS = ("session_entry", "number")
 
-    def get_common_foreign_keys(self, foreign_keys_dict):
-        resolved_foreign_keys = super().get_common_foreign_keys(foreign_keys_dict)
-
-        resolved_foreign_keys["lap"] = f1.Lap.objects.get(
-            session_entry_id=resolved_foreign_keys["session_entry_id"], number=foreign_keys_dict["lap"]
+    def _get_common_foreign_keys(self, foreign_keys: json_models.PitStopForeignKeys) -> ForeignKeyDict:
+        session_entry = self._cache.get_model_instance(
+            f1.SessionEntry,
+            session__round__season__year=foreign_keys.year,
+            session__round__number=foreign_keys.round,
+            session__type=foreign_keys.session,
+            round_entry__car_number=foreign_keys.car_number,
         )
-        return resolved_foreign_keys
+        lap = self._cache.get_model_instance(f1.Lap, session_entry_id=session_entry.id, number=foreign_keys.lap)
+        return {
+            "session_entry": session_entry,
+            "lap": lap,
+        }
 
 
 class DeserialiserFactory:
-    deserialisers = {
+    deserialisers: ClassVar[dict[str, type[BaseDeserializer]]] = {
         "SessionEntry": SessionEntryDeserialiser,
         "classification": SessionEntryDeserialiser,
         "session_entry": SessionEntryDeserialiser,
-        "driver": DriverDeserialiser,
         "RoundEntry": RoundEntryDeserialiser,
         "Lap": LapDeserialiser,
         "lap": LapDeserialiser,
@@ -312,5 +292,11 @@ class DeserialiserFactory:
         "pit_stop": PitStopDeserialiser,
     }
 
+    def __init__(self, cache: ModelLookupCache | None = None, legacy_import: bool = False):
+        if cache is None:
+            cache = ModelLookupCache()
+        self.cache = cache
+        self.legecy_import = legacy_import
+
     def get_deserialiser(self, object_type: str) -> BaseDeserializer:
-        return self.deserialisers[object_type]()
+        return self.deserialisers[object_type](cache=self.cache, legacy_import=self.legecy_import)
