@@ -19,16 +19,24 @@ def mutate_timedelta_from_dict(value: Any) -> Any:
 class F1ForeignKeys(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
+    year: int | None = None
+    round: int | None = None
+    session: str | None = None
+    driver_reference: str | None = None
+    team_reference: str | None = None
+    car_number: int | None = None
+    lap: int | None = None
+
 
 class F1Object(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
 
-class F1Import[T: F1Object, R: F1ForeignKeys](BaseModel):
+class F1Import[O: F1Object](BaseModel):
     model_config = ConfigDict(extra="forbid")
     object_type: str
-    foreign_keys: R
-    objects: Sequence[T]
+    foreign_keys: F1ForeignKeys
+    objects: Sequence[O]
 
 
 class RoundEntryForeignKeys(F1ForeignKeys):

@@ -109,7 +109,7 @@ class ModelLookupCache[M: models.Model]:
         return cache[cache_key]
 
 
-class BaseDeserializer[O: json_models.F1Object, F: json_models.F1ForeignKeys, I: json_models.F1Import]:
+class BaseDeserializer[O: json_models.F1Object]:
     """Base class for all deserializers."""
 
     MODEL: ClassVar[type[models.Model]]
@@ -126,23 +126,73 @@ class BaseDeserializer[O: json_models.F1Object, F: json_models.F1ForeignKeys, I:
         self._cache = cache
         self.legacy_import = legacy_import
 
-    def _get_common_foreign_keys(self, foreign_keys: F) -> ForeignKeyDict:
+    def _get_common_foreign_keys(self, foreign_keys: json_models.F1ForeignKeys) -> ForeignKeyDict:
         """Get the foreign keys that are required to get or create the unique model instance.
 
         :param foreign_keys_dict: Dictionary of identifying values
         :return: Mapping of foreign key primary key fields to their values (e.g. {"round_id": 1})
         """
-        raise NotImplementedError("Subclasses must implement this method")
+        values = {}
+        if self.MODEL in {f1.RoundEntry}:
+            values["round"] = self._cache.get_model_instance(
+                f1.Round,
+                season__year=foreign_keys.year,
+                number=foreign_keys.round,
+            )
+            values["team_driver"] = self._cache.get_model_instance(
+                f1.TeamDriver,
+                season__year=foreign_keys.year,
+                driver__reference=foreign_keys.driver_reference,
+                team__reference=foreign_keys.team_reference,
+            )
+        if self.MODEL in {f1.SessionEntry}:
+            values["session"] = self._cache.get_model_instance(
+                f1.Session,
+                round__season__year=foreign_keys.year,
+                round__number=foreign_keys.round,
+                type=foreign_keys.session,
+            )
+            values["round_entry"] = self._cache.get_model_instance(
+                f1.RoundEntry,
+                round__season__year=foreign_keys.year,
+                round__number=foreign_keys.round,
+                car_number=foreign_keys.car_number,
+            )
+        if self.MODEL in {f1.Lap, f1.PitStop}:
+            values["session_entry"] = self._cache.get_model_instance(
+                f1.SessionEntry,
+                session__round__season__year=foreign_keys.year,
+                session__round__number=foreign_keys.round,
+                session__type=foreign_keys.session,
+                round_entry__car_number=foreign_keys.car_number,
+            )
+            if self.MODEL in {f1.PitStop}:
+                values["lap"] = self._cache.get_model_instance(
+                    f1.Lap, session_entry_id=values["session_entry"].id, number=foreign_keys.lap
+                )
+
+        return values
 
     def create_model_instance(self, foreign_key_fields: ForeignKeyDict, field_values: O) -> models.Model:
         return self.MODEL(**foreign_key_fields, **field_values.model_dump(exclude_unset=True))
 
-    def get_unique_fields(self, data: I, object_data: O) -> tuple:
+    def get_unique_fields(self, data: json_models.F1Import[O], object_data: O) -> tuple:
+        if (
+            self.MODEL is f1.Lap
+            and isinstance(object_data, json_models.LapObject)
+            and self.legacy_import
+            and data.foreign_keys.session != "R"
+            and object_data.is_entry_fastest_lap
+        ):
+            # Update existing session data that does not provide lap numbers
+            # Previously only race fastest laps had lap numbers
+            logger.warning(f"Legacy import for {data.object_type} overriding unique fields")
+            return ("session_entry", "is_entry_fastest_lap")
         return self.UNIQUE_FIELDS
 
     def deserialise(self, data_dict: dict) -> DeserialisationResult:
         try:
-            data: I = self.JSON_IMPORT_TYPE.model_validate(data_dict)  # type: ignore
+            data: json_models.F1Import[O] = self.JSON_IMPORT_TYPE.model_validate(data_dict)  # type: ignore
         except ValidationError as ex:
             return DeserialisationResult(
                 success=False,
@@ -192,92 +242,23 @@ class RoundEntryDeserialiser(BaseDeserializer):
     JSON_IMPORT_TYPE = json_models.RoundEntryImport
     UNIQUE_FIELDS = ("round", "team_driver", "car_number")
 
-    def _get_common_foreign_keys(self, foreign_keys: json_models.RoundEntryForeignKeys) -> ForeignKeyDict:
-        round = self._cache.get_model_instance(
-            f1.Round,
-            season__year=foreign_keys.year,
-            number=foreign_keys.round,
-        )
-        team_driver = self._cache.get_model_instance(
-            f1.TeamDriver,
-            season__year=foreign_keys.year,
-            driver__reference=foreign_keys.driver_reference,
-            team__reference=foreign_keys.team_reference,
-        )
-        return {
-            "round": round,
-            "team_driver": team_driver,
-        }
-
 
 class SessionEntryDeserialiser(BaseDeserializer):
     MODEL = f1.SessionEntry
     JSON_IMPORT_TYPE = json_models.SessionEntryImport
     UNIQUE_FIELDS = ("session", "round_entry")
 
-    def _get_common_foreign_keys(self, foreign_keys_dict: json_models.SessionEntryForeignKeys) -> ForeignKeyDict:
-        session = self._cache.get_model_instance(
-            f1.Session,
-            round__season__year=foreign_keys_dict.year,
-            round__number=foreign_keys_dict.round,
-            type=foreign_keys_dict.session,
-        )
-        round_entry = self._cache.get_model_instance(
-            f1.RoundEntry,
-            round__season__year=foreign_keys_dict.year,
-            round__number=foreign_keys_dict.round,
-            car_number=foreign_keys_dict.car_number,
-        )
-        return {
-            "session": session,
-            "round_entry": round_entry,
-        }
-
 
 class LapDeserialiser(BaseDeserializer):
-    MODEL: ClassVar[type[models.Model]] = f1.Lap
-    JSON_IMPORT_TYPE: ClassVar[type[json_models.F1Import]] = json_models.LapImport
+    MODEL = f1.Lap
+    JSON_IMPORT_TYPE = json_models.LapImport
     UNIQUE_FIELDS = ("session_entry", "number")
-
-    def get_unique_fields(self, data: json_models.LapImport, object_data: json_models.LapObject) -> tuple:
-        if self.legacy_import and data.foreign_keys.session != "R" and object_data.is_entry_fastest_lap:
-            # Update existing session data that does not provide lap numbers
-            # Previously only race fastest laps had lap numbers
-            logger.warning(f"Legacy import for {data.object_type} overriding unique fields")
-            return ("session_entry", "is_entry_fastest_lap")
-        return super().get_unique_fields(data, object_data)
-
-    def _get_common_foreign_keys(self, foreign_keys: json_models.LapForeignKeys) -> ForeignKeyDict:
-        session_entry = self._cache.get_model_instance(
-            f1.SessionEntry,
-            session__round__season__year=foreign_keys.year,
-            session__round__number=foreign_keys.round,
-            session__type=foreign_keys.session,
-            round_entry__car_number=foreign_keys.car_number,
-        )
-        return {
-            "session_entry": session_entry,
-        }
 
 
 class PitStopDeserialiser(BaseDeserializer):
     MODEL = f1.PitStop
     JSON_IMPORT_TYPE = json_models.PitStopImport
     UNIQUE_FIELDS = ("session_entry", "number")
-
-    def _get_common_foreign_keys(self, foreign_keys: json_models.PitStopForeignKeys) -> ForeignKeyDict:
-        session_entry = self._cache.get_model_instance(
-            f1.SessionEntry,
-            session__round__season__year=foreign_keys.year,
-            session__round__number=foreign_keys.round,
-            session__type=foreign_keys.session,
-            round_entry__car_number=foreign_keys.car_number,
-        )
-        lap = self._cache.get_model_instance(f1.Lap, session_entry_id=session_entry.id, number=foreign_keys.lap)
-        return {
-            "session_entry": session_entry,
-            "lap": lap,
-        }
 
 
 class DeserialiserFactory:
