@@ -2,17 +2,33 @@ from collections.abc import Sequence
 from datetime import timedelta
 from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, BeforeValidator, ConfigDict
+from pydantic import (
+    BaseModel,
+    BeforeValidator,
+    ConfigDict,
+    NonNegativeFloat,
+    NonNegativeInt,
+    PositiveFloat,
+    PositiveInt,
+)
 
 
-# TODO: Create more validators (e.g. points > 26 likely is an error)
+class TimedeltaDict(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    milliseconds: NonNegativeInt = 0
+    seconds: NonNegativeInt = 0
+    minutes: NonNegativeInt = 0
+    hours: NonNegativeInt = 0
+    days: NonNegativeInt = 0
+
+    def to_timedelta(self) -> timedelta:
+        return timedelta(**self.model_dump())
+
+
 def mutate_timedelta_from_dict(value: Any) -> Any:
     if isinstance(value, dict) and value.get("_type") == "timedelta":
         del value["_type"]
-        for val in value.keys():
-            if val not in {"milliseconds", "seconds", "minutes", "hours", "days"}:
-                raise ValueError(f"{val} is not a valid field for timedelta")
-        return timedelta(**value)
+        return TimedeltaDict(**value).to_timedelta()
     return value
 
 
@@ -47,7 +63,7 @@ class RoundEntryForeignKeys(F1ForeignKeys):
 
 
 class RoundEntryObject(F1Object):
-    car_number: int | None = None
+    car_number: PositiveInt | None = None
 
 
 class RoundEntryImport(F1Import):
@@ -64,16 +80,16 @@ class SessionEntryForeignKeys(F1ForeignKeys):
 
 
 class SessionEntryObject(F1Object):
-    position: int | None = None
+    position: PositiveInt | None = None
     is_classified: bool | None = None
     status: int | None = None
     detail: str | None = None
-    points: int | None = None
+    points: NonNegativeFloat | None = None
     is_eligible_for_points: bool | None = None
-    grid: int | None = None
+    grid: PositiveInt | None = None
     time: Annotated[timedelta | None, BeforeValidator(mutate_timedelta_from_dict)] = None
-    fastest_lap_rank: int | None = None
-    laps_completed: int | None = None
+    fastest_lap_rank: PositiveInt | None = None
+    laps_completed: NonNegativeInt | None = None
 
 
 class SessionEntryImport(F1Import):
@@ -90,10 +106,10 @@ class LapForeignKeys(F1ForeignKeys):
 
 
 class LapObject(F1Object):
-    number: int | None = None
-    position: int | None = None
+    number: PositiveInt | None = None
+    position: PositiveInt | None = None
     time: Annotated[timedelta | None, BeforeValidator(mutate_timedelta_from_dict)] = None
-    average_speed: float | None = None
+    average_speed: PositiveFloat | None = None
     is_entry_fastest_lap: bool | None = None
     is_deleted: bool | None = None
 
@@ -113,7 +129,7 @@ class PitStopForeignKeys(F1ForeignKeys):
 
 
 class PitStopObject(F1Object):
-    number: int | None = None
+    number: PositiveInt | None = None
     duration: Annotated[timedelta | None, BeforeValidator(mutate_timedelta_from_dict)] = None
     local_timestamp: str | None = None
 

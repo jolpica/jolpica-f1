@@ -117,31 +117,30 @@ class ModelLookupCache[M: models.Model]:
         return cache[cache_key]
 
 
-class BaseDeserializer[O: json_models.F1Object]:
+class Deserialiser[O: json_models.F1Object]:
     """Base class for all deserializers."""
-
-    MODEL: ClassVar[type[models.Model]]
-    JSON_IMPORT_TYPE: ClassVar[type[json_models.F1Import]]
-    UNIQUE_FIELDS: ClassVar[tuple[str, ...]]
 
     _cache: ModelLookupCache
     legacy_import: bool
 
-    def __init__(self, cache: ModelLookupCache | None = None, legacy_import: bool = False):
-        if not hasattr(self, "MODEL") or self.MODEL is None:
-            raise NotImplementedError(f"{self.__class__.__name__} must define MODEL")
-        if not hasattr(self, "JSON_IMPORT_TYPE") or self.JSON_IMPORT_TYPE is None:
-            raise NotImplementedError(f"{self.__class__.__name__} must define JSON_IMPORT_TYPE")
-        if not hasattr(self, "UNIQUE_FIELDS") or self.UNIQUE_FIELDS is None:
-            raise NotImplementedError(f"{self.__class__.__name__} must define UNIQUE_FIELDS")
-
+    def __init__(
+        self,
+        model: type[models.Model],
+        json_import_type: type[json_models.F1Import[O]],
+        unique_fields: tuple[str, ...],
+        cache: ModelLookupCache | None = None,
+        legacy_import: bool = False,
+    ):
+        self.model = model
+        self.json_import_type = json_import_type
+        self.unique_fields = unique_fields
         self._cache = cache if cache is not None else ModelLookupCache()
         self.legacy_import = legacy_import
 
     def _get_common_foreign_keys(self, foreign_keys: json_models.F1ForeignKeys) -> ForeignKeyDict:
         """Get the foreign keys that are required to get or create the unique model instance."""
         values = {}
-        if self.MODEL == f1.RoundEntry:
+        if self.model == f1.RoundEntry:
             values["round"] = self._cache.get_model_instance(
                 f1.Round, season__year=foreign_keys.year, number=foreign_keys.round
             )
@@ -151,7 +150,7 @@ class BaseDeserializer[O: json_models.F1Object]:
                 driver__reference=foreign_keys.driver_reference,
                 team__reference=foreign_keys.team_reference,
             )
-        elif self.MODEL == f1.SessionEntry:
+        elif self.model == f1.SessionEntry:
             values["session"] = self._cache.get_model_instance(
                 f1.Session,
                 round__season__year=foreign_keys.year,
@@ -164,7 +163,7 @@ class BaseDeserializer[O: json_models.F1Object]:
                 round__number=foreign_keys.round,
                 car_number=foreign_keys.car_number,
             )
-        elif self.MODEL in {f1.Lap, f1.PitStop}:
+        elif self.model in {f1.Lap, f1.PitStop}:
             values["session_entry"] = self._cache.get_model_instance(
                 f1.SessionEntry,
                 session__round__season__year=foreign_keys.year,
@@ -172,18 +171,18 @@ class BaseDeserializer[O: json_models.F1Object]:
                 session__type=foreign_keys.session,
                 round_entry__car_number=foreign_keys.car_number,
             )
-            if self.MODEL == f1.PitStop:
+            if self.model == f1.PitStop:
                 values["lap"] = self._cache.get_model_instance(
                     f1.Lap, session_entry_id=values["session_entry"].id, number=foreign_keys.lap
                 )
         return values
 
     def create_model_instance(self, foreign_key_fields: ForeignKeyDict, field_values: O) -> models.Model:
-        return self.MODEL(**foreign_key_fields, **field_values.model_dump(exclude_unset=True))
+        return self.model(**foreign_key_fields, **field_values.model_dump(exclude_unset=True))
 
     def get_unique_fields(self, data: json_models.F1Import[O], object_data: O) -> tuple[str, ...]:
         if (
-            self.MODEL == f1.Lap
+            self.model == f1.Lap
             and isinstance(object_data, json_models.LapObject)
             and self.legacy_import
             and data.foreign_keys.session != "R"
@@ -191,11 +190,11 @@ class BaseDeserializer[O: json_models.F1Object]:
         ):
             logger.warning(f"Legacy import for {data.object_type} overriding unique fields")
             return ("session_entry", "is_entry_fastest_lap")
-        return self.UNIQUE_FIELDS
+        return self.unique_fields
 
     def deserialise(self, data_dict: dict) -> DeserialisationResult:
         try:
-            data = self.JSON_IMPORT_TYPE.model_validate(data_dict)
+            data = self.json_import_type.model_validate(data_dict)
         except ValidationError as ex:
             return DeserialisationResult(
                 success=False, data=data_dict, errors=ex.errors(include_url=False, include_input=False)
@@ -218,7 +217,7 @@ class BaseDeserializer[O: json_models.F1Object]:
                 unique_fields = self.get_unique_fields(data, obj_data)
                 model_instances[
                     ModelImport(
-                        self.MODEL,
+                        self.model,
                         tuple(obj_data.model_fields_set),
                         unique_fields,
                     )
@@ -230,49 +229,26 @@ class BaseDeserializer[O: json_models.F1Object]:
         return DeserialisationResult(success=True, data=data_dict, instances=model_instances)
 
 
-class RoundEntryDeserialiser(BaseDeserializer[json_models.RoundEntryObject]):
-    MODEL = f1.RoundEntry
-    JSON_IMPORT_TYPE = json_models.RoundEntryImport
-    UNIQUE_FIELDS = ("round", "team_driver", "car_number")
-
-
-class SessionEntryDeserialiser(BaseDeserializer[json_models.SessionEntryObject]):
-    MODEL = f1.SessionEntry
-    JSON_IMPORT_TYPE = json_models.SessionEntryImport
-    UNIQUE_FIELDS = ("session", "round_entry")
-
-
-class LapDeserialiser(BaseDeserializer[json_models.LapObject]):
-    MODEL = f1.Lap
-    JSON_IMPORT_TYPE = json_models.LapImport
-    UNIQUE_FIELDS = ("session_entry", "number")
-
-
-class PitStopDeserialiser(BaseDeserializer[json_models.PitStopObject]):
-    MODEL = f1.PitStop
-    JSON_IMPORT_TYPE = json_models.PitStopImport
-    UNIQUE_FIELDS = ("session_entry", "number")
-
-
 class DeserialiserFactory:
-    deserialisers: ClassVar[dict[str, type[BaseDeserializer]]] = {
-        "SessionEntry": SessionEntryDeserialiser,
-        "classification": SessionEntryDeserialiser,
-        "session_entry": SessionEntryDeserialiser,
-        "RoundEntry": RoundEntryDeserialiser,
-        "Lap": LapDeserialiser,
-        "lap": LapDeserialiser,
-        "PitStop": PitStopDeserialiser,
-        "pit_stop": PitStopDeserialiser,
+    deserialisers: ClassVar[dict[str, tuple[type[models.Model], type[json_models.F1Import], tuple[str, ...]]]] = {
+        "SessionEntry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
+        "classification": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
+        "session_entry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
+        "RoundEntry": (f1.RoundEntry, json_models.RoundEntryImport, ("round", "team_driver", "car_number")),
+        "Lap": (f1.Lap, json_models.LapImport, ("session_entry", "number")),
+        "lap": (f1.Lap, json_models.LapImport, ("session_entry", "number")),
+        "PitStop": (f1.PitStop, json_models.PitStopImport, ("session_entry", "number")),
+        "pit_stop": (f1.PitStop, json_models.PitStopImport, ("session_entry", "number")),
     }
 
     def __init__(self, cache: ModelLookupCache[models.Model] | None = None, legacy_import: bool = False):
         self.cache = cache if cache is not None else ModelLookupCache()
         self.legacy_import = legacy_import
 
-    def get_deserialiser(self, object_type: str) -> BaseDeserializer:
-        deserialiser_class = self.deserialisers.get(object_type)
-        if deserialiser_class is None:
+    def get_deserialiser(self, object_type: str) -> Deserialiser:
+        args = self.deserialisers.get(object_type, None)
+        if not args:
             raise ValueError(f"Deserializer not found for object type: {object_type}")
+        model, json_import_type, unique_fields = args
 
-        return deserialiser_class(cache=self.cache, legacy_import=self.legacy_import)
+        return Deserialiser(model, json_import_type, unique_fields, cache=self.cache, legacy_import=self.legacy_import)

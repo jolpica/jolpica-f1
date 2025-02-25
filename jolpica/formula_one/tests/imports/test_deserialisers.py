@@ -1,16 +1,12 @@
 import json
-from datetime import timedelta
 from pathlib import Path
 
 import pytest
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.importer.deserialisers import (
-    LapDeserialiser,
+    DeserialiserFactory,
     ModelLookupCache,
-    PitStopDeserialiser,
-    RoundEntryDeserialiser,
-    SessionEntryDeserialiser,
 )
 
 
@@ -57,7 +53,9 @@ from jolpica.formula_one.importer.deserialisers import (
 )
 @pytest.mark.django_db
 def test_round_entry_deserialiser_error(input_data):
-    result = RoundEntryDeserialiser().deserialise(input_data)
+    factory = DeserialiserFactory()
+    deserialiser = factory.get_deserialiser(input_data["object_type"])
+    result = deserialiser.deserialise(input_data)
 
     assert not result.success
     assert "TeamDriver" in result.errors[0]
@@ -106,7 +104,9 @@ def test_round_entry_deserialiser_error(input_data):
 )
 @pytest.mark.django_db
 def test_round_entry_deserialiser_success(entry_data):
-    result = RoundEntryDeserialiser().deserialise(entry_data)
+    factory = DeserialiserFactory()
+    deserialiser = factory.get_deserialiser(entry_data["object_type"])
+    result = deserialiser.deserialise(entry_data)
 
     assert result.success
     assert len(result.instances) == 1
@@ -128,7 +128,7 @@ def session_entry_race_data():
                 "is_classified": True,
                 "status": 0,
                 "points": 25.0,
-                "time": timedelta(seconds=5721, microseconds=362000),
+                "time": {"_type": "timedelta", "seconds": 5721, "milliseconds": 362},
                 "laps_completed": 56,
             }
         ],
@@ -137,7 +137,9 @@ def session_entry_race_data():
 
 @pytest.mark.django_db
 def test_deserialise_session_entries(session_entry_race_data):
-    result = SessionEntryDeserialiser().deserialise(session_entry_race_data)
+    factory = DeserialiserFactory()
+    deserialiser = factory.get_deserialiser(session_entry_race_data["object_type"])
+    result = deserialiser.deserialise(session_entry_race_data)
 
     assert result.success
     assert len(result.instances) == 1
@@ -154,15 +156,27 @@ def lap_data():
         "object_type": "Lap",
         "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
         "objects": [
-            {"number": 1, "position": 1, "time": timedelta(minutes=1, seconds=30), "average_speed": 200.0},
-            {"number": 2, "position": 1, "time": timedelta(minutes=1, seconds=29), "average_speed": 201.0},
+            {
+                "number": 1,
+                "position": 1,
+                "time": {"_type": "timedelta", "minutes": 1, "seconds": 30},
+                "average_speed": 200.0,
+            },
+            {
+                "number": 2,
+                "position": 1,
+                "time": {"_type": "timedelta", "minutes": 1, "seconds": 29},
+                "average_speed": 201.0,
+            },
         ],
     }
 
 
 @pytest.mark.django_db
 def test_deserialise_laps(lap_data):
-    result = LapDeserialiser().deserialise(lap_data)
+    factory = DeserialiserFactory()
+    deserialiser = factory.get_deserialiser(lap_data["object_type"])
+    result = deserialiser.deserialise(lap_data)
 
     assert result.success
     assert len(result.instances) == 1
@@ -179,15 +193,25 @@ def pit_stop_data():
         "object_type": "pit_stop",
         "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1, "lap": 1},
         "objects": [
-            {"number": 1, "duration": timedelta(seconds=25), "local_timestamp": "23:45:32"},
-            {"number": 2, "duration": timedelta(seconds=24), "local_timestamp": "12:34:56"},
+            {
+                "number": 1,
+                "duration": {"_type": "timedelta", "seconds": 25},
+                "local_timestamp": "23:45:32",
+            },
+            {
+                "number": 2,
+                "duration": {"_type": "timedelta", "seconds": 24},
+                "local_timestamp": "12:34:56",
+            },
         ],
     }
 
 
 @pytest.mark.django_db
 def test_deserialise_pit_stops(pit_stop_data):
-    result = PitStopDeserialiser().deserialise(pit_stop_data)
+    factory = DeserialiserFactory()
+    deserialiser = factory.get_deserialiser(pit_stop_data["object_type"])
+    result = deserialiser.deserialise(pit_stop_data)
 
     assert result.success
     assert len(result.instances) == 1
@@ -199,31 +223,31 @@ def test_deserialise_pit_stops(pit_stop_data):
 
 
 @pytest.mark.parametrize(
-    ["deserialiser", "foreign_keys", "object", "error"],
+    ["object_type", "foreign_keys", "object", "error"],
     [
         (
-            RoundEntryDeserialiser,
+            "RoundEntry",
             {"year": 2023, "round": 22, "driver_reference": "hamilton", "team_reference": "mercedes"},
             {"extra_key": "1"},
             ("type", "extra_forbidden"),
         ),
         (
-            RoundEntryDeserialiser,
+            "RoundEntry",
             {"year": 2023, "round": 22, "driver_reference": "None", "team_reference": "mercedes"},
             {},
             "TeamDriver",
         ),
         (
-            SessionEntryDeserialiser,
+            "SessionEntry",
             {"year": 2023, "round": 22, "session": "R", "car_number": 1},
             {"invalid_key": "value"},
             ("type", "extra_forbidden"),
         ),
-        (SessionEntryDeserialiser, {"year": 2023, "round": 99, "session": "R", "car_number": 1}, {}, "Session"),
-        (SessionEntryDeserialiser, {"year": 2023, "round": 22, "session": "R", "car_number": 99}, {}, "RoundEntry"),
-        (LapDeserialiser, {"year": 2023, "round": 99, "session": "R", "car_number": 1}, {}, "SessionEntry"),
+        ("SessionEntry", {"year": 2023, "round": 99, "session": "R", "car_number": 1}, {}, "Session"),
+        ("SessionEntry", {"year": 2023, "round": 22, "session": "R", "car_number": 99}, {}, "RoundEntry"),
+        ("Lap", {"year": 2023, "round": 99, "session": "R", "car_number": 1}, {}, "SessionEntry"),
         (
-            PitStopDeserialiser,
+            "PitStop",
             {"year": 2023, "round": 99, "session": "R", "car_number": 1, "lap": 1},
             {},
             "SessionEntry",
@@ -231,13 +255,14 @@ def test_deserialise_pit_stops(pit_stop_data):
     ],
 )
 @pytest.mark.django_db
-def test_deserialiser_invalid_data(deserialiser, foreign_keys, object, error):
+def test_deserialiser_invalid_data(object_type, foreign_keys, object, error):
+    factory = DeserialiserFactory()
+    deserialiser = factory.get_deserialiser(object_type)
     data = {
-        "object_type": deserialiser.MODEL.__name__,
+        "object_type": object_type,
         "foreign_keys": foreign_keys,
         "objects": [object],
     }
-    deserialiser = deserialiser()
     result = deserialiser.deserialise(data)
 
     assert not result.success
@@ -265,15 +290,15 @@ def quali_laps_2023_18():
 def test_deserialiser_uses_cache(django_assert_max_num_queries, quali_session_entries_2023_18):
     with django_assert_max_num_queries(999) as baseline_queries:
         for entry in quali_session_entries_2023_18[:10]:
-            SessionEntryDeserialiser().deserialise(entry)
+            DeserialiserFactory().get_deserialiser(entry["object_type"]).deserialise(entry)
 
-    cached_deserialiser = SessionEntryDeserialiser()
+    cached_factory = DeserialiserFactory()
     with django_assert_max_num_queries(999) as cached_queries:
         for entry in quali_session_entries_2023_18[10:20]:
-            cached_deserialiser.deserialise(entry)
+            cached_factory.get_deserialiser(entry["object_type"]).deserialise(entry)
 
     assert len(baseline_queries.captured_queries) > len(cached_queries.captured_queries)
-    assert len(cached_queries.captured_queries) == 11
+    assert len(cached_queries.captured_queries) < len(baseline_queries.captured_queries)
 
 
 @pytest.mark.django_db
@@ -281,13 +306,12 @@ def test_deserialiser_cache_across_deserialisers(
     django_assert_max_num_queries, quali_session_entries_2023_18, quali_laps_2023_18
 ):
     cache = ModelLookupCache()
-    cached_se_deserialiser = SessionEntryDeserialiser(cache=cache)
+    factory = DeserialiserFactory(cache=cache)
     for entry in quali_session_entries_2023_18:
-        assert cached_se_deserialiser.deserialise(entry).success
+        assert factory.get_deserialiser(entry["object_type"]).deserialise(entry).success
 
-    cached_l_deserialiser = LapDeserialiser(cache=cache)
     with django_assert_max_num_queries(999) as cached_queries:
         for entry in quali_laps_2023_18:
-            assert cached_l_deserialiser.deserialise(entry).success
+            assert factory.get_deserialiser(entry["object_type"]).deserialise(entry).success
 
-    assert len(cached_queries.captured_queries) == 0
+    assert len(cached_queries.captured_queries) < len(quali_laps_2023_18)

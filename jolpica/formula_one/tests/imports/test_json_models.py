@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 import pytest
+from pydantic import ValidationError
 
 from jolpica.formula_one.importer.json_models import mutate_timedelta_from_dict
 
@@ -44,10 +45,10 @@ def test_mutate_timedelta_from_dict(input_data, expected_output):
     [
         (
             {"_type": "timedelta", "fentoseconds": 1000},
-            "fentoseconds is not a valid field for timedelta",
+            "Extra inputs are not permitted",
         ),
     ],
 )
 def test_mutate_timedelta_from_dict_error(input_data, expected_error):
-    with pytest.raises(ValueError, match=str(expected_error)):
+    with pytest.raises(ValidationError, match=expected_error):
         mutate_timedelta_from_dict(input_data)
