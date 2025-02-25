@@ -4,5 +4,5 @@ Jolpica F1 is maintained by a small group of volunteers, but we welcome contribu
 
 - [tap-f1](https://github.com/ReubenFrankel/tap-f1): A Singer tap for F1
 - [f1dataR](https://github.com/SCasanova/f1dataR): An R package to access Formula 1 Data from the Jolpica API
-- [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card): Present the data of Formula One in Home Assistant
+- [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card): Home Assistant Card showing Formula One Data
 - [JolpicaKit](https://github.com/fantasia-y/JolpicaKit): A Swift wrapper for the Jolpica F1 API
