@@ -61,7 +61,7 @@ class ModelLookupCache[M: models.Model]:
     }
     EXCLUDE_FROM_CACHE: ClassVar[tuple[type[models.Model], ...]] = (f1.PitStop,)
 
-    def add_to_cache(self, model: M, foreign_keys: json_models.F1ForeignKeys) -> None:
+    def add_to_cache(self, model: M, foreign_keys: json_models.F1ForeignKeysSchema) -> None:
         model_class = type(model)
         if model_class in self.EXCLUDE_FROM_CACHE:
             return
@@ -117,7 +117,7 @@ class ModelLookupCache[M: models.Model]:
         return cache[cache_key]
 
 
-class Deserialiser[O: json_models.F1Object]:
+class Deserialiser:
     """Base class for all deserializers."""
 
     _cache: ModelLookupCache
@@ -126,7 +126,7 @@ class Deserialiser[O: json_models.F1Object]:
     def __init__(
         self,
         model: type[models.Model],
-        json_import_type: type[json_models.F1Import[O]],
+        json_import_type: type[json_models.F1Import],
         unique_fields: tuple[str, ...],
         cache: ModelLookupCache | None = None,
         legacy_import: bool = False,
@@ -140,30 +140,32 @@ class Deserialiser[O: json_models.F1Object]:
     def _get_common_foreign_keys(self, foreign_keys: json_models.F1ForeignKeys) -> ForeignKeyDict:
         """Get the foreign keys that are required to get or create the unique model instance."""
         values = {}
-        if self.model == f1.RoundEntry:
+        if isinstance(foreign_keys, json_models.HasRoundForeignKey):
             values["round"] = self._cache.get_model_instance(
                 f1.Round, season__year=foreign_keys.year, number=foreign_keys.round
             )
+        if isinstance(foreign_keys, json_models.HasTeamDriverForeignKey):
             values["team_driver"] = self._cache.get_model_instance(
                 f1.TeamDriver,
                 season__year=foreign_keys.year,
                 driver__reference=foreign_keys.driver_reference,
                 team__reference=foreign_keys.team_reference,
             )
-        elif self.model == f1.SessionEntry:
+        if isinstance(foreign_keys, json_models.HasSessionForeignKey):
             values["session"] = self._cache.get_model_instance(
                 f1.Session,
                 round__season__year=foreign_keys.year,
                 round__number=foreign_keys.round,
                 type=foreign_keys.session,
             )
+        if isinstance(foreign_keys, json_models.HasRoundEntryForeignKey):
             values["round_entry"] = self._cache.get_model_instance(
                 f1.RoundEntry,
                 round__season__year=foreign_keys.year,
                 round__number=foreign_keys.round,
                 car_number=foreign_keys.car_number,
             )
-        elif self.model in {f1.Lap, f1.PitStop}:
+        if isinstance(foreign_keys, json_models.HasSessionEntryForeignKey):
             values["session_entry"] = self._cache.get_model_instance(
                 f1.SessionEntry,
                 session__round__season__year=foreign_keys.year,
@@ -171,24 +173,27 @@ class Deserialiser[O: json_models.F1Object]:
                 session__type=foreign_keys.session,
                 round_entry__car_number=foreign_keys.car_number,
             )
-            if self.model == f1.PitStop:
-                values["lap"] = self._cache.get_model_instance(
-                    f1.Lap, session_entry_id=values["session_entry"].id, number=foreign_keys.lap
-                )
+        if isinstance(foreign_keys, json_models.HasLapForeignKey):
+            values["lap"] = self._cache.get_model_instance(
+                f1.Lap, session_entry_id=values["session_entry"].id, number=foreign_keys.lap
+            )
         return values
 
-    def create_model_instance(self, foreign_key_fields: ForeignKeyDict, field_values: O) -> models.Model:
+    def create_model_instance(
+        self, foreign_key_fields: ForeignKeyDict, field_values: json_models.F1ObjectSchema
+    ) -> models.Model:
         return self.model(**foreign_key_fields, **field_values.model_dump(exclude_unset=True))
 
-    def get_unique_fields(self, data: json_models.F1Import[O], object_data: O) -> tuple[str, ...]:
+    def get_unique_fields(
+        self, foreign_keys: json_models.F1ForeignKeysSchema, object_data: json_models.F1Object
+    ) -> tuple[str, ...]:
         if (
-            self.model == f1.Lap
+            isinstance(foreign_keys, json_models.LapForeignKeys)
             and isinstance(object_data, json_models.LapObject)
             and self.legacy_import
-            and data.foreign_keys.session != "R"
+            and foreign_keys.session != "R"
             and object_data.is_entry_fastest_lap
         ):
-            logger.warning(f"Legacy import for {data.object_type} overriding unique fields")
             return ("session_entry", "is_entry_fastest_lap")
         return self.unique_fields
 
@@ -214,7 +219,7 @@ class Deserialiser[O: json_models.F1Object]:
                 failed_objects.append((obj_data, str(ex)))
             else:
                 self._cache.add_to_cache(model, data.foreign_keys)
-                unique_fields = self.get_unique_fields(data, obj_data)
+                unique_fields = self.get_unique_fields(data.foreign_keys, obj_data)
                 model_instances[
                     ModelImport(
                         self.model,

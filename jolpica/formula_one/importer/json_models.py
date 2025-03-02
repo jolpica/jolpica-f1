@@ -6,14 +6,37 @@ from pydantic import (
     BaseModel,
     BeforeValidator,
     ConfigDict,
+    Field,
     NonNegativeFloat,
     NonNegativeInt,
     PositiveFloat,
     PositiveInt,
 )
 
+type F1Import = Annotated[
+    RoundEntryImport | SessionEntryImport | LapImport | PitStopImport, Field(discriminator="object_type")
+]
 
-class TimedeltaDict(BaseModel):
+type F1Object = RoundEntryObject | SessionEntryObject | LapObject | PitStopObject
+type F1ForeignKeys = RoundEntryForeignKeys | SessionEntryForeignKeys | LapForeignKeys | PitStopForeignKeys
+
+
+class F1ImportSchema(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    object_type: str
+    foreign_keys: F1ForeignKeys
+    objects: Sequence[F1Object]
+
+
+class F1ForeignKeysSchema(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+class F1ObjectSchema(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+
+class TimedeltaModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
     milliseconds: NonNegativeInt = 0
     seconds: NonNegativeInt = 0
@@ -28,58 +51,63 @@ class TimedeltaDict(BaseModel):
 def mutate_timedelta_from_dict(value: Any) -> Any:
     if isinstance(value, dict) and value.get("_type") == "timedelta":
         del value["_type"]
-        return TimedeltaDict(**value).to_timedelta()
+        return TimedeltaModel(**value).to_timedelta()
     return value
 
 
-class F1ForeignKeys(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    year: int | None = None
-    round: int | None = None
-    session: str | None = None
-    driver_reference: str | None = None
-    team_reference: str | None = None
-    car_number: int | None = None
-    lap: int | None = None
-
-
-class F1Object(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-
-class F1Import[O: F1Object](BaseModel):
-    model_config = ConfigDict(extra="forbid")
-    object_type: str
-    foreign_keys: F1ForeignKeys
-    objects: Sequence[O]
-
-
-class RoundEntryForeignKeys(F1ForeignKeys):
+class HasRoundForeignKey(F1ForeignKeysSchema):
     year: int
     round: int
+
+
+class HasTeamDriverForeignKey(F1ForeignKeysSchema):
+    year: int
     driver_reference: str
     team_reference: str
 
 
-class RoundEntryObject(F1Object):
-    car_number: PositiveInt | None = None
+class HasSessionForeignKey(F1ForeignKeysSchema):
+    year: int
+    round: int
+    session: str
 
 
-class RoundEntryImport(F1Import):
-    object_type: Literal["RoundEntry"]
-    foreign_keys: RoundEntryForeignKeys
-    objects: list[RoundEntryObject]
+class HasRoundEntryForeignKey(F1ForeignKeysSchema):
+    year: int
+    round: int
+    car_number: int
 
 
-class SessionEntryForeignKeys(F1ForeignKeys):
+class HasSessionEntryForeignKey(F1ForeignKeysSchema):
     year: int
     round: int
     session: str
     car_number: int
 
 
-class SessionEntryObject(F1Object):
+class HasLapForeignKey(HasSessionEntryForeignKey):
+    lap: int
+
+
+class RoundEntryForeignKeys(HasRoundForeignKey, HasTeamDriverForeignKey):
+    pass
+
+
+class RoundEntryObject(F1ObjectSchema):
+    car_number: PositiveInt | None = None
+
+
+class RoundEntryImport(F1ImportSchema):
+    object_type: Literal["RoundEntry"]
+    foreign_keys: RoundEntryForeignKeys
+    objects: list[RoundEntryObject]
+
+
+class SessionEntryForeignKeys(HasSessionForeignKey, HasRoundEntryForeignKey):
+    pass
+
+
+class SessionEntryObject(F1ObjectSchema):
     position: PositiveInt | None = None
     is_classified: bool | None = None
     status: int | None = None
@@ -92,20 +120,17 @@ class SessionEntryObject(F1Object):
     laps_completed: NonNegativeInt | None = None
 
 
-class SessionEntryImport(F1Import):
+class SessionEntryImport(F1ImportSchema):
     object_type: Literal["SessionEntry"]
     foreign_keys: SessionEntryForeignKeys
     objects: list[SessionEntryObject]
 
 
-class LapForeignKeys(F1ForeignKeys):
-    year: int
-    round: int
-    session: str
-    car_number: int
+class LapForeignKeys(HasSessionEntryForeignKey):
+    pass
 
 
-class LapObject(F1Object):
+class LapObject(F1ObjectSchema):
     number: PositiveInt | None = None
     position: PositiveInt | None = None
     time: Annotated[timedelta | None, BeforeValidator(mutate_timedelta_from_dict)] = None
@@ -114,27 +139,23 @@ class LapObject(F1Object):
     is_deleted: bool | None = None
 
 
-class LapImport(F1Import):
+class LapImport(F1ImportSchema):
     object_type: Literal["Lap", "lap"]
     foreign_keys: LapForeignKeys
     objects: list[LapObject]
 
 
-class PitStopForeignKeys(F1ForeignKeys):
-    year: int
-    round: int
-    session: str
-    car_number: int
-    lap: int
+class PitStopForeignKeys(HasLapForeignKey):
+    pass
 
 
-class PitStopObject(F1Object):
+class PitStopObject(F1ObjectSchema):
     number: PositiveInt | None = None
     duration: Annotated[timedelta | None, BeforeValidator(mutate_timedelta_from_dict)] = None
     local_timestamp: str | None = None
 
 
-class PitStopImport(F1Import):
+class PitStopImport(F1ImportSchema):
     object_type: Literal["PitStop", "pit_stop"]
     foreign_keys: PitStopForeignKeys
     objects: list[PitStopObject]
