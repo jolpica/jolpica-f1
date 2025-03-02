@@ -3,9 +3,11 @@ from pathlib import Path
 
 import pytest
 from django.contrib.auth.models import User
+from rest_framework import status
 from rest_framework.test import APIClient
 
 import jolpica.formula_one.models as f1
+from jolpica_api.data_import.models import DataImportLog
 
 
 @pytest.fixture(scope="function")
@@ -182,3 +184,126 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
         ).count()
         > 45
     )
+
+
+@pytest.mark.django_db
+def test_successful_import(client):
+    """Test successful data import."""
+    data = {
+        "dry_run": False,
+        "data": [
+            {
+                "object_type": "Driver",
+                "foreign_keys": {},
+                "objects": [{"reference": "max_verstappen", "forename": "Max"}],
+            }
+        ],
+    }
+    response = client.put("/data/import/", data, format="json")
+
+    assert response.status_code == status.HTTP_200_OK
+    assert DataImportLog.objects.count() == 1
+    log = DataImportLog.objects.first()
+    assert log.completed_at is not None
+    assert log.error_type is None
+    assert log.updated_records == {"Driver": [831]}
+    assert log.is_success
+    assert log.error_type is None
+    assert log.errors is None
+
+
+@pytest.mark.django_db
+def test_validation_error_has_logs(client):
+    """Test import with deserialization errors."""
+    data = {
+        "dry_run": False,
+        "data": [
+            {
+                "object_type": "Driver",
+                "objects": [{"reference": "max_verstappen", "forename": "Max"}],
+            }
+        ],
+    }
+    response = client.put("/data/import/", data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert DataImportLog.objects.count() == 1
+    log = DataImportLog.objects.first()
+    assert not log.is_success
+    assert log.error_type == "VALIDATION"
+    assert log.errors[0]["type"] == "missing"
+
+
+@pytest.mark.django_db
+def test_deserialisation_error_has_log(client):
+    """Test validation error during request data validation."""
+    data = {
+        "dry_run": False,
+        "data": [
+            {
+                "object_type": "Round",
+                "foreign_keys": {"year": 9999},
+                "objects": [{"number": 5}],
+            }
+        ],
+    }
+    response = client.put("/data/import/", data, format="json")
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert DataImportLog.objects.count() == 1
+    log = DataImportLog.objects.first()
+    assert not log.is_success
+    assert log.error_type == "DESERIALISATION"
+    assert response.json()["errors"][0] == {
+        "index": 0,
+        "message": ["DoesNotExist('Season matching query does not exist.')"],
+        "type": "Round",
+    }
+
+
+@pytest.mark.django_db
+def test_dry_run(client):
+    """Test dry run."""
+    data = {
+        "dry_run": True,
+        "data": [
+            {
+                "object_type": "Driver",
+                "foreign_keys": {},
+                "objects": [{"reference": "max_verstappen", "forename": "Max"}],
+            }
+        ],
+    }
+    response = client.put("/data/import/", data, format="json")
+
+    assert response.status_code == status.HTTP_200_OK
+    assert DataImportLog.objects.count() == 0  # No log for dry run
+
+
+@pytest.mark.django_db
+def test_db_error(client):
+    """Test database error during import."""
+    data = {
+        "dry_run": False,
+        "legacy_import": False,
+        "data": [
+            {
+                "object_type": "Lap",
+                "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+                "objects": [
+                    {"number": 1, "position": 1, "average_speed": 200.0, "is_entry_fastest_lap": True},
+                    {
+                        "number": 2,
+                        "position": 1,
+                        "average_speed": 201.0,
+                    },
+                ],
+            },
+        ],
+    }
+    response = client.put("/data/import/", data, format="json")
+    assert response.status_code == status.HTTP_400_BAD_REQUEST
+    assert DataImportLog.objects.count() == 1
+    log = DataImportLog.objects.first()
+    assert not log.is_success
+    assert log.error_type == "IMPORT"

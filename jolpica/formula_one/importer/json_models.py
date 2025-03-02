@@ -49,8 +49,7 @@ class TimedeltaModel(BaseModel):
 
 def mutate_timedelta_from_dict(value: Any) -> Any:
     if isinstance(value, dict) and value.get("_type") == "timedelta":
-        del value["_type"]
-        return TimedeltaModel(**value).to_timedelta()
+        return TimedeltaModel(**{key: val for key, val in value.items() if key != "_type"}).to_timedelta()
     return value
 
 

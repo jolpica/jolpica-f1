@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     "jolpica.formula_one",
     "jolpica_api.authentication",
     "jolpica_api.ergastapi",
+    "jolpica_api.data_import",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
     INSTALLED_APPS += ["django_dbml", "debug_toolbar"]
