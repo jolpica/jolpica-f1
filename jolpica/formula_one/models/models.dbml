@@ -254,6 +254,7 @@ May track reserve drivers with no sessions, or junior drivers only taking part i
   surname char [not null]
   abbreviation char [null]
   nationality char [null]
+  country_code char [null]
   permanent_car_number positive_small_integer [null]
   date_of_birth date [null]
   wikipedia url [null]
@@ -528,6 +529,7 @@ Information about a Constructor / Team
   reference char [unique, null]
   name char [not null]
   nationality char [null]
+  country_code char [null]
   wikipedia url [null]
 
   indexes {

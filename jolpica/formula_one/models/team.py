@@ -37,6 +37,7 @@ class Team(models.Model):
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)
     nationality = models.CharField(max_length=255, null=True, blank=True)
+    country_code = models.CharField("3 Letter country code (ISO 3166-1 alpha-3)", max_length=3, null=True, blank=True)
     wikipedia = models.URLField(max_length=255, null=True, blank=True)
 
     def __str__(self) -> str:

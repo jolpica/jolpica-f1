@@ -107,6 +107,7 @@ class TeamObject(F1ObjectSchema):
     reference: str | None = None
     name: str | None = None
     nationality: str | None = None
+    country_code: str | None = Field(None, max_length=3)
     wikipedia: HttpUrl | None = None
 
 
@@ -126,6 +127,7 @@ class DriverObject(F1ObjectSchema):
     surname: str | None = None
     abbreviation: str | None = None
     nationality: str | None = None
+    country_code: str | None = Field(None, max_length=3)
     permanent_car_number: PositiveInt | None = None
     date_of_birth: date | None = None
     wikipedia: HttpUrl | None = None

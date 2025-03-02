@@ -260,9 +260,9 @@ def test_factory_deserialisers_require_at_least_one_object():
         data = {"object_type": object_type, "foreign_keys": {}, "objects": []}
         result = deserialiser.deserialise(data)
 
-        assert "too_short" in [
-            error["type"] for error in result.errors if "objects" in error["loc"]
-        ], "Not all deserialisers requite at least 1 object"
+        assert "too_short" in [error["type"] for error in result.errors if "objects" in error["loc"]], (
+            "Not all deserialisers requite at least 1 object"
+        )
 
 
 @pytest.fixture
