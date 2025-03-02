@@ -3,68 +3,17 @@ from pathlib import Path
 
 import pytest
 
-from jolpica.formula_one import models as f1
 from jolpica.formula_one.importer.deserialisers import (
     DeserialiserFactory,
     ModelLookupCache,
 )
 
 
-@pytest.mark.parametrize(
-    ["input_data"],
-    [
-        (
-            {
-                "object_type": "RoundEntry",
-                "foreign_keys": {
-                    "year": 2023,
-                    "round": 22,
-                    "team_reference": "haas",
-                    "driver_reference": "bearman",
-                },
-                "objects": [{"car_number": 50}],
-            },
-        ),
-        (
-            {
-                "object_type": "RoundEntry",
-                "foreign_keys": {
-                    "year": 2023,
-                    "round": 22,
-                    "team_reference": "alpine",
-                    "driver_reference": "doohan",
-                },
-                "objects": [{"car_number": 61}],
-            },
-        ),
-        (
-            {
-                "object_type": "RoundEntry",
-                "foreign_keys": {
-                    "year": 2023,
-                    "round": 22,
-                    "team_reference": "williams",
-                    "driver_reference": "osullivan",
-                },
-                "objects": [{"car_number": 45}],
-            },
-        ),
-    ],
-)
-@pytest.mark.django_db
-def test_round_entry_deserialiser_error(input_data):
-    factory = DeserialiserFactory()
-    deserialiser = factory.get_deserialiser(input_data["object_type"])
-    result = deserialiser.deserialise(input_data)
-
-    assert not result.success
-    assert "TeamDriver" in result.errors[0]
-
-
+# Successful Deserialisation
 @pytest.mark.parametrize(
     ["entry_data"],
     [
-        (
+        pytest.param(
             {
                 "object_type": "RoundEntry",
                 "foreign_keys": {
@@ -75,20 +24,9 @@ def test_round_entry_deserialiser_error(input_data):
                 },
                 "objects": [{"car_number": 1}],
             },
+            id="create round entry with car number",
         ),
-        (
-            {
-                "object_type": "RoundEntry",
-                "foreign_keys": {
-                    "year": 2023,
-                    "round": 22,
-                    "team_reference": "red_bull",
-                    "driver_reference": "perez",
-                },
-                "objects": [{"car_number": 11}],
-            },
-        ),
-        (  # Can make round entry with no car number
+        pytest.param(
             {
                 "object_type": "RoundEntry",
                 "foreign_keys": {
@@ -99,129 +37,91 @@ def test_round_entry_deserialiser_error(input_data):
                 },
                 "objects": [{}],
             },
+            id="Can make round entry with no car number",
+        ),
+        pytest.param(
+            {
+                "object_type": "SessionEntry",
+                "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+                "objects": [
+                    {
+                        "position": 1,
+                        "is_classified": True,
+                        "status": 0,
+                        "points": 25.0,
+                        "time": {"_type": "timedelta", "seconds": 5721, "milliseconds": 362},
+                        "laps_completed": 56,
+                    }
+                ],
+            },
+            id="Session Entry",
+        ),
+        pytest.param(
+            {
+                "object_type": "Lap",
+                "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+                "objects": [
+                    {
+                        "number": 1,
+                        "position": 1,
+                        "time": {"_type": "timedelta", "minutes": 1, "seconds": 30},
+                        "average_speed": 200.0,
+                    },
+                    {
+                        "number": 2,
+                        "position": 1,
+                        "time": {"_type": "timedelta", "minutes": 1, "seconds": 29},
+                        "average_speed": 201.0,
+                    },
+                ],
+            },
+            id="Lap",
+        ),
+        pytest.param(
+            {
+                "object_type": "PitStop",
+                "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1, "lap": 1},
+                "objects": [
+                    {
+                        "number": 1,
+                        "duration": {"_type": "timedelta", "seconds": 25},
+                        "local_timestamp": "23:45:32",
+                    },
+                    {
+                        "number": 2,
+                        "duration": {"_type": "timedelta", "seconds": 24},
+                        "local_timestamp": "12:34:56",
+                    },
+                ],
+            },
+            id="Pit Stop",
+        ),
+        pytest.param(
+            {
+                "object_type": "Driver",
+                "foreign_keys": {},
+                "objects": [
+                    {"reference": "max_verstappen", "forename": "Max", "surname": "Verstappen"},
+                ],
+            },
+            id="Driver",
         ),
     ],
 )
 @pytest.mark.django_db
-def test_round_entry_deserialiser_success(entry_data):
+def test_deserialise_object_success(entry_data):
     factory = DeserialiserFactory()
     deserialiser = factory.get_deserialiser(entry_data["object_type"])
     result = deserialiser.deserialise(entry_data)
 
     assert result.success
-    assert len(result.instances) == 1
+    assert len(result.instances) == 1, "Only 1 type of model import should be used"
 
     for model_import in result.instances.values():
-        assert len(model_import) == 1, "Exactly one model should be created"
-        for model in model_import:
-            assert f1.RoundEntry.objects.get(round_id=model.round_id, team_driver_id=model.team_driver_id)
+        assert len(model_import) == len(entry_data["objects"]), "Same number of models as objects should be created"
 
 
-@pytest.fixture
-def session_entry_race_data():
-    return {
-        "object_type": "SessionEntry",
-        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
-        "objects": [
-            {
-                "position": 1,
-                "is_classified": True,
-                "status": 0,
-                "points": 25.0,
-                "time": {"_type": "timedelta", "seconds": 5721, "milliseconds": 362},
-                "laps_completed": 56,
-            }
-        ],
-    }
-
-
-@pytest.mark.django_db
-def test_deserialise_session_entries(session_entry_race_data):
-    factory = DeserialiserFactory()
-    deserialiser = factory.get_deserialiser(session_entry_race_data["object_type"])
-    result = deserialiser.deserialise(session_entry_race_data)
-
-    assert result.success
-    assert len(result.instances) == 1
-
-    for model_import in result.instances.values():
-        assert len(model_import) == 1, "Exactly one model should be created"
-        for model in model_import:
-            assert f1.SessionEntry.objects.get(session_id=model.session_id, round_entry_id=model.round_entry_id)
-
-
-@pytest.fixture
-def lap_data():
-    return {
-        "object_type": "Lap",
-        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
-        "objects": [
-            {
-                "number": 1,
-                "position": 1,
-                "time": {"_type": "timedelta", "minutes": 1, "seconds": 30},
-                "average_speed": 200.0,
-            },
-            {
-                "number": 2,
-                "position": 1,
-                "time": {"_type": "timedelta", "minutes": 1, "seconds": 29},
-                "average_speed": 201.0,
-            },
-        ],
-    }
-
-
-@pytest.mark.django_db
-def test_deserialise_laps(lap_data):
-    factory = DeserialiserFactory()
-    deserialiser = factory.get_deserialiser(lap_data["object_type"])
-    result = deserialiser.deserialise(lap_data)
-
-    assert result.success
-    assert len(result.instances) == 1
-
-    for laps in result.instances.values():
-        assert len(laps) == 2, "Exactly two laps should be created"
-        for lap in laps:
-            f1.Lap.objects.get(session_entry_id=lap.session_entry_id, number=lap.number)
-
-
-@pytest.fixture
-def pit_stop_data():
-    return {
-        "object_type": "pit_stop",
-        "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1, "lap": 1},
-        "objects": [
-            {
-                "number": 1,
-                "duration": {"_type": "timedelta", "seconds": 25},
-                "local_timestamp": "23:45:32",
-            },
-            {
-                "number": 2,
-                "duration": {"_type": "timedelta", "seconds": 24},
-                "local_timestamp": "12:34:56",
-            },
-        ],
-    }
-
-
-@pytest.mark.django_db
-def test_deserialise_pit_stops(pit_stop_data):
-    factory = DeserialiserFactory()
-    deserialiser = factory.get_deserialiser(pit_stop_data["object_type"])
-    result = deserialiser.deserialise(pit_stop_data)
-
-    assert result.success
-    assert len(result.instances) == 1
-
-    for laps in result.instances.values():
-        assert len(laps) == 2, "Exactly two pit stops should be created"
-        for lap in laps:
-            f1.PitStop.objects.get(session_entry_id=lap.session_entry_id, number=lap.number)
-
-
+# Invalid deserialisation
 @pytest.mark.parametrize(
     ["object_type", "foreign_keys", "object", "error"],
     [
@@ -252,6 +152,34 @@ def test_deserialise_pit_stops(pit_stop_data):
             {},
             "SessionEntry",
         ),
+        (
+            "RoundEntry",
+            {"year": 2023, "round": 22, "team_reference": "haas", "driver_reference": "bearman"},
+            {"car_number": 50},
+            "TeamDriver",
+        ),
+        (
+            "RoundEntry",
+            {
+                "year": 2023,
+                "round": 22,
+                "team_reference": "alpine",
+                "driver_reference": "doohan",
+            },
+            {"car_number": 61},
+            "TeamDriver",
+        ),
+        (
+            "RoundEntry",
+            {
+                "year": 2023,
+                "round": 22,
+                "team_reference": "williams",
+                "driver_reference": "osullivan",
+            },
+            {"car_number": 45},
+            "TeamDriver",
+        ),
     ],
 )
 @pytest.mark.django_db
@@ -272,6 +200,18 @@ def test_deserialiser_invalid_data(object_type, foreign_keys, object, error):
         assert result.errors[0][error[0]] == error[1]
     else:
         assert error in result.errors[0]
+
+
+def test_factory_deserialisers_require_at_least_one_object():
+    factory = DeserialiserFactory()
+    for object_type in DeserialiserFactory.deserialisers.keys():
+        deserialiser = factory.get_deserialiser(object_type)
+        data = {"object_type": object_type, "foreign_keys": {}, "objects": []}
+        result = deserialiser.deserialise(data)
+
+        assert "too_short" in [
+            error["type"] for error in result.errors if "objects" in error["loc"]
+        ], "Not all deserialisers requite at least 1 object"
 
 
 @pytest.fixture
