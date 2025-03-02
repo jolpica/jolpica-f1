@@ -53,6 +53,7 @@ class ModelLookupCache[M: models.Model]:
             "driver__reference": "driver_reference",
             "team__reference": "team_reference",
         },
+        f1.Round: {"season__year": "year", "number": "round"},
         f1.RoundEntry: {
             "round__season__year": "year",
             "round__number": "round",
@@ -102,6 +103,8 @@ class ModelLookupCache[M: models.Model]:
             cache_key = (model.reference,)  # type: ignore[attr-defined]
         elif isinstance(model, f1.Lap):
             cache_key = (model.session_entry_id, model.number)  # type: ignore[attr-defined]
+        elif isinstance(model, f1.Round) and isinstance(foreign_keys, json_models.HasSeasonForeignKey):
+            cache_key = (foreign_keys.year, model.number)
         else:
             cache_key = tuple(getattr(foreign_keys, val) for val in self.MODEL_CACHE_FIELD_MAP[model_class].values())
         cache[cache_key] = model
@@ -259,6 +262,7 @@ class DeserialiserFactory:
         "Team": (f1.Team, json_models.TeamImport, ("reference",)),
         "Driver": (f1.Driver, json_models.DriverImport, ("reference",)),
         "TeamDriver": (f1.TeamDriver, json_models.TeamDriverImport, ("season", "team", "driver")),
+        "Round": (f1.Round, json_models.RoundImport, ("season", "number")),
         "SessionEntry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
         "classification": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
         "session_entry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),

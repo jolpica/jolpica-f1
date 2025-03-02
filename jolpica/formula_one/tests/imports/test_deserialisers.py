@@ -15,6 +15,16 @@ from jolpica.formula_one.importer.deserialisers import (
     [
         pytest.param(
             {
+                "object_type": "Round",
+                "foreign_keys": {
+                    "year": 2023,
+                },
+                "objects": [{"number": 22, "is_cancelled": False, "wikipedia": "https://test"}],
+            },
+            id="Round",
+        ),
+        pytest.param(
+            {
                 "object_type": "RoundEntry",
                 "foreign_keys": {
                     "year": 2023,

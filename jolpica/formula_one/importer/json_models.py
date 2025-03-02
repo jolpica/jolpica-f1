@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 from collections.abc import Sequence
 from datetime import date, timedelta
 from typing import Annotated, Any, Literal
@@ -151,6 +152,25 @@ class TeamDriverImport(F1ImportSchema):
     objects: list[TeamDriverObject] = Field(min_length=1)
 
 
+class RoundForeignKeys(HasSeasonForeignKey):
+    pass
+
+
+class RoundObject(F1ObjectSchema):
+    number: PositiveInt | None = None
+    name: str | None = None
+    date: datetime.date | None = None
+    race_number: PositiveInt | None = None
+    wikipedia: HttpUrl | None = None
+    is_cancelled: bool | None = None
+
+
+class RoundImport(F1ImportSchema):
+    object_type: Literal["Round"]
+    foreign_keys: RoundForeignKeys
+    objects: list[RoundObject] = Field(min_length=1)
+
+
 class RoundEntryForeignKeys(HasRoundForeignKey, HasTeamDriverForeignKey):
     pass
 
@@ -224,10 +244,34 @@ class PitStopImport(F1ImportSchema):
 
 
 type F1Import = Annotated[
-    DriverImport | RoundEntryImport | SessionEntryImport | LapImport | PitStopImport, Field(discriminator="object_type")
+    RoundImport
+    | TeamDriverImport
+    | TeamImport
+    | DriverImport
+    | RoundEntryImport
+    | SessionEntryImport
+    | LapImport
+    | PitStopImport,
+    Field(discriminator="object_type"),
 ]
 
-type F1Object = DriverObject | RoundEntryObject | SessionEntryObject | LapObject | PitStopObject
+type F1Object = (
+    RoundObject
+    | TeamDriverObject
+    | TeamObject
+    | DriverObject
+    | RoundEntryObject
+    | SessionEntryObject
+    | LapObject
+    | PitStopObject
+)
 type F1ForeignKeys = (
-    DriverForeignKeys | RoundEntryForeignKeys | SessionEntryForeignKeys | LapForeignKeys | PitStopForeignKeys
+    RoundForeignKeys
+    | TeamDriverForeignKeys
+    | TeamForeignKeys
+    | DriverForeignKeys
+    | RoundEntryForeignKeys
+    | SessionEntryForeignKeys
+    | LapForeignKeys
+    | PitStopForeignKeys
 )
