@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Sequence
-from datetime import timedelta
+from datetime import date, timedelta
 from typing import Annotated, Any, Literal
 
 from pydantic import (
@@ -7,25 +9,19 @@ from pydantic import (
     BeforeValidator,
     ConfigDict,
     Field,
+    HttpUrl,
     NonNegativeFloat,
     NonNegativeInt,
     PositiveFloat,
     PositiveInt,
 )
 
-type F1Import = Annotated[
-    RoundEntryImport | SessionEntryImport | LapImport | PitStopImport, Field(discriminator="object_type")
-]
-
-type F1Object = RoundEntryObject | SessionEntryObject | LapObject | PitStopObject
-type F1ForeignKeys = RoundEntryForeignKeys | SessionEntryForeignKeys | LapForeignKeys | PitStopForeignKeys
-
 
 class F1ImportSchema(BaseModel):
     model_config = ConfigDict(extra="forbid")
     object_type: str
     foreign_keys: F1ForeignKeys
-    objects: Sequence[F1Object]
+    objects: Sequence[F1Object] = Field(min_length=1)
 
 
 class F1ForeignKeysSchema(BaseModel):
@@ -89,6 +85,27 @@ class HasLapForeignKey(HasSessionEntryForeignKey):
     lap: int
 
 
+class DriverForeignKeys(F1ForeignKeysSchema):
+    pass  # Driver has No Foreign Keys
+
+
+class DriverObject(F1ObjectSchema):
+    reference: str | None = None
+    forename: str | None = None
+    surname: str | None = None
+    abbreviation: str | None = None
+    nationality: str | None = None
+    permanent_car_number: PositiveInt | None = None
+    date_of_birth: date | None = None
+    wikipedia: HttpUrl | None = None
+
+
+class DriverImport(F1ImportSchema):
+    object_type: Literal["Driver"]
+    foreign_keys: DriverForeignKeys
+    objects: list[DriverObject] = Field(min_length=1)
+
+
 class RoundEntryForeignKeys(HasRoundForeignKey, HasTeamDriverForeignKey):
     pass
 
@@ -100,7 +117,7 @@ class RoundEntryObject(F1ObjectSchema):
 class RoundEntryImport(F1ImportSchema):
     object_type: Literal["RoundEntry"]
     foreign_keys: RoundEntryForeignKeys
-    objects: list[RoundEntryObject]
+    objects: list[RoundEntryObject] = Field(min_length=1)
 
 
 class SessionEntryForeignKeys(HasSessionForeignKey, HasRoundEntryForeignKey):
@@ -123,7 +140,7 @@ class SessionEntryObject(F1ObjectSchema):
 class SessionEntryImport(F1ImportSchema):
     object_type: Literal["SessionEntry"]
     foreign_keys: SessionEntryForeignKeys
-    objects: list[SessionEntryObject]
+    objects: list[SessionEntryObject] = Field(min_length=1)
 
 
 class LapForeignKeys(HasSessionEntryForeignKey):
@@ -142,7 +159,7 @@ class LapObject(F1ObjectSchema):
 class LapImport(F1ImportSchema):
     object_type: Literal["Lap", "lap"]
     foreign_keys: LapForeignKeys
-    objects: list[LapObject]
+    objects: list[LapObject] = Field(min_length=1)
 
 
 class PitStopForeignKeys(HasLapForeignKey):
@@ -158,4 +175,14 @@ class PitStopObject(F1ObjectSchema):
 class PitStopImport(F1ImportSchema):
     object_type: Literal["PitStop", "pit_stop"]
     foreign_keys: PitStopForeignKeys
-    objects: list[PitStopObject]
+    objects: list[PitStopObject] = Field(min_length=1)
+
+
+type F1Import = Annotated[
+    DriverImport | RoundEntryImport | SessionEntryImport | LapImport | PitStopImport, Field(discriminator="object_type")
+]
+
+type F1Object = DriverObject | RoundEntryObject | SessionEntryObject | LapObject | PitStopObject
+type F1ForeignKeys = (
+    DriverForeignKeys | RoundEntryForeignKeys | SessionEntryForeignKeys | LapForeignKeys | PitStopForeignKeys
+)
