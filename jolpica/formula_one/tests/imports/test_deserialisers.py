@@ -101,10 +101,45 @@ from jolpica.formula_one.importer.deserialisers import (
                 "object_type": "Driver",
                 "foreign_keys": {},
                 "objects": [
-                    {"reference": "max_verstappen", "forename": "Max", "surname": "Verstappen"},
+                    {
+                        "reference": "max_verstappen",
+                        "forename": "Max",
+                        "surname": "Verstappen",
+                        "date_of_birth": "2025-05-05",
+                    },
                 ],
             },
-            id="Driver",
+            id="Driver (with reference)",
+        ),
+        pytest.param(
+            {
+                "object_type": "Driver",
+                "foreign_keys": {},
+                "objects": [
+                    {"forename": "Max", "surname": "Verstappen", "date_of_birth": "2025-05-05"},
+                ],
+            },
+            id="Driver (no reference)",
+        ),
+        pytest.param(
+            {
+                "object_type": "Team",
+                "foreign_keys": {},
+                "objects": [
+                    {"reference": "red_bull", "name": "Red Bull"},
+                ],
+            },
+            id="Team",
+        ),
+        pytest.param(
+            {
+                "object_type": "TeamDriver",
+                "foreign_keys": {"year": 2023, "team_reference": "red_bull", "driver_reference": "max_verstappen"},
+                "objects": [
+                    {"role": 0},
+                ],
+            },
+            id="Team",
         ),
     ],
 )
@@ -125,6 +160,12 @@ def test_deserialise_object_success(entry_data):
 @pytest.mark.parametrize(
     ["object_type", "foreign_keys", "object", "error"],
     [
+        (
+            "TeamDriver",
+            {"year": 2023, "team_reference": "red_bull", "driver_reference": "max_verstappen"},
+            {"role": 123},
+            ("type", "enum"),
+        ),
         (
             "RoundEntry",
             {"year": 2023, "round": 22, "driver_reference": "hamilton", "team_reference": "mercedes"},

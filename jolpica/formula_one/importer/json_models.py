@@ -16,6 +16,8 @@ from pydantic import (
     PositiveInt,
 )
 
+from jolpica.formula_one import models as f1
+
 
 class F1ImportSchema(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -51,9 +53,21 @@ def mutate_timedelta_from_dict(value: Any) -> Any:
     return value
 
 
+class HasSeasonForeignKey(F1ForeignKeysSchema):
+    year: int
+
+
 class HasRoundForeignKey(F1ForeignKeysSchema):
     year: int
     round: int
+
+
+class HasTeamForeignKey(F1ForeignKeysSchema):
+    team_reference: str
+
+
+class HasDriverForeignKey(F1ForeignKeysSchema):
+    driver_reference: str
 
 
 class HasTeamDriverForeignKey(F1ForeignKeysSchema):
@@ -85,6 +99,23 @@ class HasLapForeignKey(HasSessionEntryForeignKey):
     lap: int
 
 
+class TeamForeignKeys(F1ForeignKeysSchema):
+    pass  # Team has No Foreign Keys
+
+
+class TeamObject(F1ObjectSchema):
+    reference: str | None = None
+    name: str | None = None
+    nationality: str | None = None
+    wikipedia: HttpUrl | None = None
+
+
+class TeamImport(F1ImportSchema):
+    object_type: Literal["Team"]
+    foreign_keys: TeamForeignKeys
+    objects: list[TeamObject] = Field(min_length=1)
+
+
 class DriverForeignKeys(F1ForeignKeysSchema):
     pass  # Driver has No Foreign Keys
 
@@ -104,6 +135,20 @@ class DriverImport(F1ImportSchema):
     object_type: Literal["Driver"]
     foreign_keys: DriverForeignKeys
     objects: list[DriverObject] = Field(min_length=1)
+
+
+class TeamDriverForeignKeys(HasSeasonForeignKey, HasTeamForeignKey, HasDriverForeignKey):
+    pass
+
+
+class TeamDriverObject(F1ObjectSchema):
+    role: f1.team.TeamDriverRole | None = None
+
+
+class TeamDriverImport(F1ImportSchema):
+    object_type: Literal["TeamDriver"]
+    foreign_keys: TeamDriverForeignKeys
+    objects: list[TeamDriverObject] = Field(min_length=1)
 
 
 class RoundEntryForeignKeys(HasRoundForeignKey, HasTeamDriverForeignKey):

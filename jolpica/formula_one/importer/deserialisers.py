@@ -46,6 +46,13 @@ class ModelLookupCache[M: models.Model]:
     cached_model_fields: dict[type[models.Model], tuple[str, ...]] = field(default_factory=dict)
 
     MODEL_CACHE_FIELD_MAP: ClassVar[dict[type[models.Model], dict[str, str]]] = {
+        f1.Team: {"reference": "team_reference"},
+        f1.Driver: {"reference": "driver_reference"},
+        f1.TeamDriver: {
+            "season__year": "year",
+            "driver__reference": "driver_reference",
+            "team__reference": "team_reference",
+        },
         f1.RoundEntry: {
             "round__season__year": "year",
             "round__number": "round",
@@ -59,7 +66,7 @@ class ModelLookupCache[M: models.Model]:
         },
         f1.Lap: {"session_entry_id": "session_entry_id", "number": "lap"},
     }
-    EXCLUDE_FROM_CACHE: ClassVar[tuple[type[models.Model], ...]] = (f1.PitStop, f1.Driver)
+    EXCLUDE_FROM_CACHE: ClassVar[tuple[type[models.Model], ...]] = (f1.PitStop,)
 
     def add_to_cache(self, model: M, foreign_keys: json_models.F1ForeignKeysSchema) -> None:
         model_class = type(model)
@@ -88,6 +95,11 @@ class ModelLookupCache[M: models.Model]:
                 logger.warning("Not adding RoundEntry to cache as car_number is None")
                 return
             cache_key = (foreign_keys.year, foreign_keys.round, model.car_number)  # type: ignore[attr-defined]
+        elif isinstance(model, f1.Driver | f1.Team):
+            if model.reference is None:
+                logger.warning(f"Not adding {type(model).__name__} to cache as reference is None")
+                return
+            cache_key = (model.reference,)  # type: ignore[attr-defined]
         elif isinstance(model, f1.Lap):
             cache_key = (model.session_entry_id, model.number)  # type: ignore[attr-defined]
         else:
@@ -140,6 +152,14 @@ class Deserialiser:
     def _get_common_foreign_keys(self, foreign_keys: json_models.F1ForeignKeys) -> ForeignKeyDict:
         """Get the foreign keys that are required to get or create the unique model instance."""
         values = {}
+        if isinstance(foreign_keys, json_models.HasSeasonForeignKey):
+            values["season"] = self._cache.get_model_instance(f1.Season, year=foreign_keys.year)
+        if isinstance(foreign_keys, json_models.HasTeamForeignKey):
+            values["team"] = self._cache.get_model_instance(f1.Team, reference=foreign_keys.team_reference)
+        if isinstance(foreign_keys, json_models.HasTeamForeignKey):
+            values["team"] = self._cache.get_model_instance(f1.Team, reference=foreign_keys.team_reference)
+        if isinstance(foreign_keys, json_models.HasDriverForeignKey):
+            values["driver"] = self._cache.get_model_instance(f1.Driver, reference=foreign_keys.driver_reference)
         if isinstance(foreign_keys, json_models.HasRoundForeignKey):
             values["round"] = self._cache.get_model_instance(
                 f1.Round, season__year=foreign_keys.year, number=foreign_keys.round
@@ -236,7 +256,9 @@ class Deserialiser:
 
 class DeserialiserFactory:
     deserialisers: ClassVar[dict[str, tuple[type[models.Model], type[json_models.F1Import], tuple[str, ...]]]] = {
+        "Team": (f1.Team, json_models.TeamImport, ("reference",)),
         "Driver": (f1.Driver, json_models.DriverImport, ("reference",)),
+        "TeamDriver": (f1.TeamDriver, json_models.TeamDriverImport, ("season", "team", "driver")),
         "SessionEntry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
         "classification": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
         "session_entry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
