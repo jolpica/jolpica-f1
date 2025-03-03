@@ -40,9 +40,19 @@ def test_data_import_validation_error(client: APIClient):
 
     assert data == {
         "errors": [
-            {"loc": ["dry_run"], "msg": "Input should be a valid boolean", "type": "bool_type"},
-            {"loc": ["data"], "msg": "Field required", "type": "missing"},
-        ],
+            {
+                "input": ["5"],
+                "loc": ["dry_run"],
+                "msg": "Input should be a valid boolean",
+                "type": "bool_type",
+            },
+            {
+                "input": {"dry_run": "5", "extra_key": "test"},
+                "loc": ["data"],
+                "msg": "Field required",
+                "type": "missing",
+            },
+        ]
     }
 
 
@@ -191,6 +201,7 @@ def test_successful_import(client):
     """Test successful data import."""
     data = {
         "dry_run": False,
+        "description": "Test import",
         "data": [
             {
                 "object_type": "Driver",
@@ -210,6 +221,7 @@ def test_successful_import(client):
     assert log.is_success
     assert log.error_type is None
     assert log.errors is None
+    assert log.description == "Test import"
 
 
 @pytest.mark.django_db
