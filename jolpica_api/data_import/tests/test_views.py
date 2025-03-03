@@ -216,8 +216,12 @@ def test_successful_import(client):
     assert DataImportLog.objects.count() == 1
     log = DataImportLog.objects.first()
     assert log.completed_at is not None
+    assert not log.dry_run
     assert log.error_type is None
-    assert log.updated_records == {"Driver": [831]}
+    assert log.import_result["created_count"] == 0
+    assert log.import_result["updated_count"] == 1
+    assert list(log.import_result["models"].keys()) == ["Driver"]
+    assert log.import_result["models"]["Driver"]["updated"] == [831]
     assert log.is_success
     assert log.error_type is None
     assert log.errors is None
@@ -242,6 +246,7 @@ def test_validation_error_has_logs(client):
     assert DataImportLog.objects.count() == 1
     log = DataImportLog.objects.first()
     assert not log.is_success
+    assert not log.dry_run
     assert log.error_type == "VALIDATION"
     assert log.errors[0]["type"] == "missing"
 
@@ -265,6 +270,7 @@ def test_deserialisation_error_has_log(client):
     assert DataImportLog.objects.count() == 1
     log = DataImportLog.objects.first()
     assert not log.is_success
+    assert not log.dry_run
     assert log.error_type == "DESERIALISATION"
     assert response.json()["errors"][0] == {
         "index": 0,
@@ -276,27 +282,31 @@ def test_deserialisation_error_has_log(client):
 @pytest.mark.django_db
 def test_dry_run(client):
     """Test dry run."""
+    assert f1.Driver.objects.get(reference="max_verstappen").forename == "Max"
     data = {
         "dry_run": True,
         "data": [
             {
                 "object_type": "Driver",
                 "foreign_keys": {},
-                "objects": [{"reference": "max_verstappen", "forename": "Max"}],
+                "objects": [{"reference": "max_verstappen", "forename": "Maxxx"}],
             }
         ],
     }
     response = client.put("/data/import/", data, format="json")
 
     assert response.status_code == status.HTTP_200_OK
-    assert DataImportLog.objects.count() == 0  # No log for dry run
+    assert f1.Driver.objects.get(reference="max_verstappen").forename == "Max"
+    assert DataImportLog.objects.count() == 1
+    assert DataImportLog.objects.first().dry_run
 
 
+@pytest.mark.parametrize(["dry_run"], [(True,), (False,)])
 @pytest.mark.django_db
-def test_db_error(client):
+def test_db_error(client, dry_run):
     """Test database error during import."""
     data = {
-        "dry_run": False,
+        "dry_run": dry_run,
         "legacy_import": False,
         "data": [
             {
@@ -317,5 +327,6 @@ def test_db_error(client):
     assert response.status_code == status.HTTP_400_BAD_REQUEST
     assert DataImportLog.objects.count() == 1
     log = DataImportLog.objects.first()
+    assert log.dry_run == dry_run
     assert not log.is_success
     assert log.error_type == "IMPORT"

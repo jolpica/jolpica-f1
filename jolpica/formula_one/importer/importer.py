@@ -19,18 +19,6 @@ class JSONModelImporter:
         deserialiser = self.factory.get_deserialiser(data["object_type"])
         return deserialiser.deserialise(data)
 
-    def get_object_priority(self, object_dict: dict) -> int:
-        object_type = object_dict.get("object_type")
-
-        if object_type in self.OBJECT_TYPE_PRIORITY:
-            return self.OBJECT_TYPE_PRIORITY.index(object_type)
-        else:
-            return len(self.OBJECT_TYPE_PRIORITY)
-
-    def get_model_import_priority(self, import_key: ModelImport) -> int:
-        object_type = import_key.model_class.__name__
-        return self.get_object_priority({"object_type": object_type})
-
     def deserialise_all(self, data: list[dict]) -> DeserialisationResult:
         prioritised_data = sorted(enumerate(data), key=lambda x: self.get_object_priority(x[1]))
         indexed_results = [(i, self.deserialise(item)) for i, item in prioritised_data]
@@ -51,11 +39,52 @@ class JSONModelImporter:
             errors=errors,
         )
 
-    def save_deserialisation_result_to_db(self, result: DeserialisationResult):
-        prioritised_items = sorted(result.instances.items(), key=lambda x: self.get_model_import_priority(x[0]))
+    @classmethod
+    def get_object_priority(cls, object_dict: dict) -> int:
+        object_type = object_dict.get("object_type")
+
+        if object_type in cls.OBJECT_TYPE_PRIORITY:
+            return cls.OBJECT_TYPE_PRIORITY.index(object_type)
+        else:
+            return len(cls.OBJECT_TYPE_PRIORITY)
+
+    @classmethod
+    def get_model_import_priority(cls, import_key: ModelImport) -> int:
+        object_type = import_key.model_class.__name__
+        return cls.get_object_priority({"object_type": object_type})
+
+    @classmethod
+    def save_deserialisation_result_to_db(cls, result: DeserialisationResult) -> dict:
+        prioritised_items = sorted(result.instances.items(), key=lambda x: cls.get_model_import_priority(x[0]))
+
+        import_stats = {"updated_count": 0, "created_count": 0, "models": {}}
+
         for model_import, instances in prioritised_items:
+            model_name = model_import.model_class.__name__
+            if model_name not in import_stats["models"]:
+                import_stats["models"][model_name] = {
+                    "updated_count": 0,
+                    "created_count": 0,
+                    "updated": [],
+                    "created": [],
+                }
+
             for ins in instances:
-                ins.id = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
+                updated_ins, is_created = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
                     **{field: getattr(ins, field) for field in model_import.unique_fields},
                     defaults={field: getattr(ins, field) for field in model_import.update_fields},
-                )[0].id
+                )
+                ins.pk = updated_ins.pk
+
+                if is_created:
+                    import_stats["created_count"] += 1
+                    import_stats["models"][model_name]["created_count"] += 1
+                    import_stats["models"][model_name]["created"].append(updated_ins.pk)
+                else:
+                    import_stats["updated_count"] += 1
+                    import_stats["models"][model_name]["updated_count"] += 1
+                    import_stats["models"][model_name]["updated"].append(updated_ins.pk)
+
+        import_stats["total_count"] = import_stats["created_count"] + import_stats["updated_count"]
+
+        return import_stats

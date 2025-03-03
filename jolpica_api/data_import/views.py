@@ -1,6 +1,5 @@
-from collections import defaultdict
-
 from django.contrib.auth.models import User
+from django.db import transaction
 from pydantic import BaseModel, Field, ValidationError
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.request import Request
@@ -12,6 +11,10 @@ from jolpica.formula_one.importer.importer import JSONModelImporter
 from jolpica.formula_one.importer.json_models import F1Import
 
 from .models import DataImportLog
+
+
+class DryRunError(Exception):
+    pass
 
 
 class ImportDataRequestData(BaseModel):
@@ -38,51 +41,74 @@ class ImportData(APIView):
             request_data = ImportDataRequestData.model_validate(request.data)
         except ValidationError as ex:
             errors = ex.errors(include_url=False)
-            DataImportLog(user=request.user, is_success=False, error_type="VALIDATION", errors=errors).save()
+            dry_run = request.data.get("dry_run", True)
+            log_data_import_result(
+                request.user,
+                dry_run=dry_run if isinstance(dry_run, bool) else True,
+                error_type="VALIDATION",
+                errors=errors,
+            )
             return Response({"errors": errors}, status=400)
 
         model_importer = JSONModelImporter(legacy_import=request_data.legacy_import)
         result = model_importer.deserialise_all(request.data["data"])
 
         if not result.success:
-            DataImportLog(
+            log_data_import_result(
+                request.user,
+                dry_run=request_data.dry_run,
                 description=request_data.description,
-                user=request.user,
-                is_success=False,
                 error_type="DESERIALISATION",
                 errors=result.errors,
-            ).save()
+            )
             return Response({"errors": result.errors}, status=400)
 
-        if not request_data.dry_run:
-            try:
-                model_importer.save_deserialisation_result_to_db(result)
-            except Exception as ex:
-                DataImportLog(
-                    description=request_data.description,
-                    user=request.user,
-                    is_success=False,
-                    error_type="IMPORT",
-                    errors=[repr(ex)],
-                ).save()
-                return Response({"errors": [{"type": "import_error", "message": repr(ex)}]}, status=400)
+        try:
+            import_stats = save_deserialisation_result_to_db(result, request_data.dry_run)
+        except Exception as ex:
+            errors = [{"type": "import_error", "message": repr(ex)}]
+            log_data_import_result(
+                request.user,
+                dry_run=request_data.dry_run,
+                description=request_data.description,
+                error_type="IMPORT",
+                errors=errors,
+            )
+            return Response({"errors": errors}, status=400)
 
-            save_successful_import_to_db(request_data.description, request.user, result)
-        return Response({})
+        log_data_import_result(
+            request.user, dry_run=request_data.dry_run, description=request_data.description, import_stats=import_stats
+        )
+        return Response(import_stats)
 
 
-def save_successful_import_to_db(description: str, user: User | None, result: DeserialisationResult) -> None:
-    updated_record_count = 0
-    updated_records = defaultdict(list)
-    for model_import, instances in result.instances.items():
-        instance_pks = [ins.pk for ins in instances]
-        updated_record_count += len(instance_pks)
-        updated_records[model_import.model_class.__name__].extend(instance_pks)
+def save_deserialisation_result_to_db(result: DeserialisationResult, dry_run: bool) -> dict:
+    try:
+        with transaction.atomic():
+            import_stats = JSONModelImporter.save_deserialisation_result_to_db(result)
 
+            if dry_run:
+                raise DryRunError("Transaction should be rolled back as this is a dry run")  # noqa: TRY301
+    except DryRunError:
+        pass  # Rollback the transaction, but keep import_stats
+    return import_stats
+
+
+def log_data_import_result(
+    user: User,
+    dry_run: bool,
+    description: str = "",
+    import_stats: dict | None = None,
+    error_type: str | None = None,
+    errors: list | None = None,
+):
     DataImportLog(
-        description=description,
+        is_success=False if error_type else True,
+        dry_run=dry_run,
         user=user,
-        is_success=True,
-        total_records=updated_record_count,
-        updated_records=updated_records,
+        description=description,
+        total_records=import_stats.get("total_count") if import_stats else None,
+        import_result=import_stats,
+        error_type=error_type,
+        errors=errors,
     ).save()
