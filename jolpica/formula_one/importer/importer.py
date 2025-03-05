@@ -1,6 +1,8 @@
 import logging
 from collections import defaultdict
 
+from django.db import IntegrityError
+
 from .deserialisers import DeserialisationResult, DeserialiserFactory, ModelImport, ModelLookupCache
 
 logger = logging.getLogger(__name__)
@@ -70,10 +72,16 @@ class JSONModelImporter:
                 }
 
             for ins in instances:
-                updated_ins, is_created = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
-                    **{field: getattr(ins, field) for field in model_import.unique_fields},
-                    defaults={field: getattr(ins, field) for field in model_import.update_fields},
-                )
+                try:
+                    updated_ins, is_created = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
+                        **{field: getattr(ins, field) for field in model_import.unique_fields},
+                        defaults={field: getattr(ins, field) for field in model_import.update_fields},
+                    )
+                except IntegrityError as ex:
+                    values = {key: val for key, val in vars(ins).items() if not key.startswith("_")}
+                    ex.add_note(str(model_import))
+                    ex.add_note(f"Failed to update {values}")
+                    raise
                 ins.pk = updated_ins.pk
 
                 if is_created:

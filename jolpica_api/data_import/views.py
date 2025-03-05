@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import transaction
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -18,6 +18,7 @@ class DryRunError(Exception):
 
 
 class ImportDataRequestData(BaseModel):
+    model_config = ConfigDict(extra="forbid")
     # If True, the data will be validated but not saved to the database
     dry_run: bool = True
 
@@ -66,7 +67,7 @@ class ImportData(APIView):
         try:
             import_stats = save_deserialisation_result_to_db(result, request_data.dry_run)
         except Exception as ex:
-            errors = [{"type": "import_error", "message": repr(ex)}]
+            errors = [{"type": "import_error", "message": repr(ex), "notes": getattr(ex, "__notes__", None)}]
             log_data_import_result(
                 request.user,
                 dry_run=request_data.dry_run,
