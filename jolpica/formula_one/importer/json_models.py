@@ -5,6 +5,7 @@ from collections.abc import Sequence
 from datetime import date, timedelta
 from typing import Annotated, Any, Literal
 
+from django.contrib.gis.geos import Point
 from pydantic import (
     BaseModel,
     BeforeValidator,
@@ -53,6 +54,22 @@ def mutate_timedelta_from_dict(value: Any) -> Any:
     return value
 
 
+class PointModel(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    x: float
+    y: float
+    srid: int = 4326
+
+    def to_point(self) -> Point:
+        return Point(**self.model_dump())
+
+
+def mutate_point_from_dict(value: Any) -> Any:
+    if isinstance(value, dict) and value.get("_type") == "point":
+        return PointModel(**{key: val for key, val in value.items() if key != "_type"}).to_point()
+    return value
+
+
 class HasSeasonForeignKey(F1ForeignKeysSchema):
     year: int
 
@@ -97,6 +114,28 @@ class HasSessionEntryForeignKey(F1ForeignKeysSchema):
 
 class HasLapForeignKey(HasSessionEntryForeignKey):
     lap: int
+
+
+class CircuitForeignKeys(F1ForeignKeysSchema):
+    pass  # Circuit has No Foreign Keys
+
+
+class CircuitObject(F1ObjectSchema):
+    model_config = ConfigDict(extra="forbid", arbitrary_types_allowed=True)
+    reference: str | None = None
+    name: str | None = None
+    locality: str | None = None
+    country: str | None = None
+    country_code: str | None = Field(None, max_length=3)
+    location: Annotated[Point | None, BeforeValidator(mutate_point_from_dict)] = None
+    altitude: float | None = None
+    wikipedia: HttpUrl | None = None
+
+
+class CircuitImport(F1ImportSchema):
+    object_type: Literal["Circuit"]
+    foreign_keys: CircuitForeignKeys
+    objects: list[CircuitObject] = Field(min_length=1)
 
 
 class TeamForeignKeys(F1ForeignKeysSchema):
@@ -246,6 +285,7 @@ class PitStopImport(F1ImportSchema):
 
 type F1Import = Annotated[
     RoundImport
+    | CircuitImport
     | TeamDriverImport
     | TeamImport
     | DriverImport
@@ -258,6 +298,7 @@ type F1Import = Annotated[
 
 type F1Object = (
     RoundObject
+    | CircuitObject
     | TeamDriverObject
     | TeamObject
     | DriverObject
@@ -268,6 +309,7 @@ type F1Object = (
 )
 type F1ForeignKeys = (
     RoundForeignKeys
+    | CircuitForeignKeys
     | TeamDriverForeignKeys
     | TeamForeignKeys
     | DriverForeignKeys

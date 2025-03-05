@@ -67,7 +67,7 @@ class ModelLookupCache[M: models.Model]:
         },
         f1.Lap: {"session_entry_id": "session_entry_id", "number": "lap"},
     }
-    EXCLUDE_FROM_CACHE: ClassVar[tuple[type[models.Model], ...]] = (f1.PitStop,)
+    EXCLUDE_FROM_CACHE: ClassVar[tuple[type[models.Model], ...]] = (f1.PitStop, f1.Circuit)
 
     def add_to_cache(self, model: M, foreign_keys: json_models.F1ForeignKeysSchema) -> None:
         model_class = type(model)
@@ -261,6 +261,7 @@ class DeserialiserFactory:
     deserialisers: ClassVar[dict[str, tuple[type[models.Model], type[json_models.F1Import], tuple[str, ...]]]] = {
         "Team": (f1.Team, json_models.TeamImport, ("reference",)),
         "Driver": (f1.Driver, json_models.DriverImport, ("reference",)),
+        "Circuit": (f1.Circuit, json_models.CircuitImport, ("reference",)),
         "TeamDriver": (f1.TeamDriver, json_models.TeamDriverImport, ("season", "team", "driver")),
         "Round": (f1.Round, json_models.RoundImport, ("season", "number")),
         "SessionEntry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),

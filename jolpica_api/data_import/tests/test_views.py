@@ -52,6 +52,16 @@ def test_data_import_validation_error(client: APIClient):
                 "msg": "Field required",
                 "type": "missing",
             },
+            {
+                "input": [
+                    "test",
+                ],
+                "loc": [
+                    "extra_key",
+                ],
+                "msg": "Extra inputs are not permitted",
+                "type": "extra_forbidden",
+            },
         ]
     }
 

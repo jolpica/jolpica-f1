@@ -83,6 +83,13 @@ from jolpica.formula_one.importer.deserialisers import (
                         "time": {"_type": "timedelta", "minutes": 1, "seconds": 29},
                         "average_speed": 201.0,
                     },
+                    {
+                        "number": 3,
+                        "position": 1,
+                        "time": {"_type": "timedelta", "minutes": 1, "seconds": 29},
+                        "average_speed": 201.0,
+                        "is_entry_fastest_lap": True,
+                    },
                 ],
             },
             id="Lap",
@@ -151,6 +158,26 @@ from jolpica.formula_one.importer.deserialisers import (
             },
             id="Team",
         ),
+        pytest.param(
+            {
+                "object_type": "Circuit",
+                "foreign_keys": {},
+                "objects": [
+                    {"reference": "new_circ", "name": "New Circuit", "country_code": "USA"},
+                ],
+            },
+            id="Circuit",
+        ),
+        pytest.param(
+            {
+                "object_type": "Circuit",
+                "foreign_keys": {},
+                "objects": [
+                    {"reference": "monza", "location": {"_type": "point", "x": 1, "y": 1}},
+                ],
+            },
+            id="Circuit with lat long",
+        ),
     ],
 )
 @pytest.mark.django_db
@@ -160,10 +187,11 @@ def test_deserialise_object_success(entry_data):
     result = deserialiser.deserialise(entry_data)
 
     assert result.success
-    assert len(result.instances) == 1, "Only 1 type of model import should be used"
 
+    total_instances = 0
     for model_import in result.instances.values():
-        assert len(model_import) == len(entry_data["objects"]), "Same number of models as objects should be created"
+        total_instances += len(model_import)
+    assert total_instances == len(entry_data["objects"])
 
 
 # Invalid deserialisation
