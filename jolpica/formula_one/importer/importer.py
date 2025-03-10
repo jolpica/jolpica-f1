@@ -59,17 +59,14 @@ class JSONModelImporter:
     def save_deserialisation_result_to_db(cls, result: DeserialisationResult) -> dict:
         prioritised_items = sorted(result.instances.items(), key=lambda x: cls.get_model_import_priority(x[0]))
 
-        import_stats = {"updated_count": 0, "created_count": 0, "models": {}}
+        import_stats: dict = {
+            "updated_count": 0,
+            "created_count": 0,
+            "models": defaultdict(lambda: {"updated_count": 0, "created_count": 0, "updated": [], "created": []}),
+        }
 
         for model_import, instances in prioritised_items:
             model_name = model_import.model_class.__name__
-            if model_name not in import_stats["models"]:
-                import_stats["models"][model_name] = {
-                    "updated_count": 0,
-                    "created_count": 0,
-                    "updated": [],
-                    "created": [],
-                }
 
             for ins in instances:
                 try:

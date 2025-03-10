@@ -41,7 +41,7 @@ class ImportData(APIView):
         try:
             request_data = ImportDataRequestData.model_validate(request.data)
         except ValidationError as ex:
-            errors = ex.errors(include_url=False)
+            errors: list = ex.errors(include_url=False)
             dry_run = request.data.get("dry_run", True)
             log_data_import_result(
                 request.user,
