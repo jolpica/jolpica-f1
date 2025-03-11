@@ -5,6 +5,8 @@ staticfiles/
 *.tmp.json
 notebook.ipynb
 scripts/dump.sql
+dump.zip
+dump/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
