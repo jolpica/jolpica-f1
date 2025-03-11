@@ -179,13 +179,13 @@ class ListResultsSerializer(serializers.ListSerializer):
             round_id = session_entry.round_entry.round_id
             result = {
                 "number": str(session_entry.round_entry.car_number),
-                "position": str(session_entry.position),
-                "positionText": str(session_entry.position),
+                "position": str(session_entry.position) if session_entry.position is not None else None,
+                "positionText": str(session_entry.position) if session_entry.position is not None else None,
                 "points": None,
                 "Driver": DriverSerializer().to_representation(session_entry.round_entry.team_driver.driver),
                 "Constructor": ConstructorSerializer().to_representation(session_entry.round_entry.team_driver.team),
-                "grid": str(session_entry.grid),
-                "laps": str(session_entry.laps_completed),
+                "grid": str(session_entry.grid) if session_entry.grid is not None else None,
+                "laps": str(session_entry.laps_completed) if session_entry.laps_completed is not None else None,
                 "status": session_entry.detail,
             }
             if session_entry.points is not None:
@@ -445,6 +445,8 @@ class StandingSerializer(ErgastModelSerializer):
             return "E"
         elif not championship.is_eligible:
             return "-"
+        elif championship.position is None:
+            return None
         else:
             return str(championship.position)
 

@@ -15,10 +15,10 @@ class DriverChampionship(models.Model):
     year = models.SmallIntegerField()
     round_number = models.PositiveSmallIntegerField()
     session_number = models.PositiveSmallIntegerField()
-    position = models.SmallIntegerField(null=True)
+    position = models.SmallIntegerField(null=True, blank=True)
     points = models.FloatField()
     win_count = models.SmallIntegerField()
-    highest_finish = models.SmallIntegerField(null=True)
+    highest_finish = models.SmallIntegerField(null=True, blank=True)
 
     is_eligible = models.BooleanField(default=False)
     adjustment_type = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices, default=0)

@@ -19,6 +19,7 @@ class ListAdminMixin:
                     "round",
                     "session_entry",
                     "round_entry",
+                    "team_driver",
                     "driver",
                     "team",
                     "lap",
@@ -57,7 +58,16 @@ class ListAdminMixin:
             case "Season":
                 return ["year"]
             case "Round":
-                return ["season__year", "name", "circuit__country"]
+                return ["number", "season__year", "name", "circuit__country"]
+            case "TeamDriver":
+                return [
+                    "season__year",
+                    "team__reference",
+                    "team__name",
+                    "driver__reference",
+                    "driver__forename",
+                    "driver__surname",
+                ]
             case "Driver":
                 return ["forename", "surname", "abbreviation"]
             case "Team":
@@ -70,9 +80,9 @@ class ListAdminMixin:
                     "session_entry__round_entry__driver__surname",
                 ]
             case "Session":
-                return ["round__season__year", "round__name", "type"]
+                return ["number", "round__season__year", "round__name", "type"]
             case "RoundEntry":
-                return ["round__name", "car_number"]
+                return ["round__season__year", "round__name", "car_number"]
             case "SessionEntry":
                 return ["session__round__season__year", "session__round__name", "round_entry__driver__forename"]
         return []
