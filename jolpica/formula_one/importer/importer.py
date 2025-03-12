@@ -3,6 +3,8 @@ from collections import defaultdict
 
 from django.db import IntegrityError
 
+from jolpica.formula_one import models as f1
+
 from .deserialisers import DeserialisationResult, DeserialiserFactory, ModelImport, ModelLookupCache
 
 logger = logging.getLogger(__name__)
@@ -69,6 +71,10 @@ class JSONModelImporter:
             model_name = model_import.model_class.__name__
 
             for ins in instances:
+                if isinstance(ins, f1.Lap) and ins.is_entry_fastest_lap:
+                    f1.Lap.objects.filter(session_entry=ins.session_entry, is_entry_fastest_lap=True).update(
+                        is_entry_fastest_lap=False
+                    )
                 try:
                     updated_ins, is_created = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
                         **{field: getattr(ins, field) for field in model_import.unique_fields},

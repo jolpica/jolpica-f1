@@ -231,7 +231,9 @@ class Deserialiser:
         try:
             foreign_key_fields = self._get_common_foreign_keys(data.foreign_keys)
         except ObjectDoesNotExist as ex:
-            return DeserialisationResult(success=False, data=data_dict, errors=[repr(ex)])
+            return DeserialisationResult(
+                success=False, data=data_dict, errors=[{"error": repr(ex), "input": data.foreign_keys.model_dump()}]
+            )
 
         failed_objects = []
         model_instances = defaultdict(list)
