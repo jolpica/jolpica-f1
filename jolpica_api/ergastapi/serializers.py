@@ -343,7 +343,7 @@ class ListPitStopSerializer(serializers.ListSerializer):
             round_id = pit_stop.session_entry.round_entry.round_id
             result = {
                 "driverId": pit_stop.session_entry.round_entry.team_driver.driver.reference,
-                "lap": str(pit_stop.lap.number),
+                "lap": str(pit_stop.lap.number) if pit_stop.lap else None,
                 "stop": str(pit_stop.number),
                 "time": pit_stop.local_timestamp,
                 "duration": str(pit_stop.duration).lstrip("0:")[:-3],
