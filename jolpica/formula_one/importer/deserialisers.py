@@ -248,7 +248,12 @@ class Deserialiser:
                 model_instances[
                     ModelImport(
                         self.model,
-                        tuple(obj_data.model_fields_set),
+                        tuple(
+                            (
+                                *obj_data.model_fields_set,
+                                *[fk for fk in foreign_key_fields.keys() if fk not in unique_fields],
+                            )
+                        ),
                         unique_fields,
                     )
                 ].append(model)

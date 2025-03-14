@@ -71,13 +71,17 @@ class JSONModelImporter:
             model_name = model_import.model_class.__name__
 
             for ins in instances:
+                unique_fields = {field: getattr(ins, field) for field in model_import.unique_fields}
                 if isinstance(ins, f1.Lap) and ins.is_entry_fastest_lap:
                     f1.Lap.objects.filter(session_entry=ins.session_entry, is_entry_fastest_lap=True).update(
                         is_entry_fastest_lap=False
                     )
+                if isinstance(ins, f1.PitStop) and ins.lap and f1.PitStop.objects.filter(lap=ins.lap).exists():
+                    unique_fields = {"lap": ins.lap}
+
                 try:
                     updated_ins, is_created = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
-                        **{field: getattr(ins, field) for field in model_import.unique_fields},
+                        **unique_fields,
                         defaults={field: getattr(ins, field) for field in model_import.update_fields},
                     )
                 except IntegrityError as ex:

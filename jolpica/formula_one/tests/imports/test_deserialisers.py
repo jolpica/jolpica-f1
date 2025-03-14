@@ -278,7 +278,7 @@ def test_deserialiser_invalid_data(object_type, foreign_keys, object, error):
     if isinstance(error, tuple):
         assert result.errors[0][error[0]] == error[1]
     else:
-        assert error in result.errors[0]
+        assert error in result.errors[0]["error"]
 
 
 def test_factory_deserialisers_require_at_least_one_object():

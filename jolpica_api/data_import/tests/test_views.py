@@ -82,7 +82,7 @@ def test_data_import_deserialise_error(client: APIClient, max_round_entry_data):
     data = response.json()
 
     assert "errors" in data
-    assert "DoesNotExist('Round matching query does not exist.')" in data["errors"][0]["message"]
+    assert "DoesNotExist('Round matching query does not exist.')" in data["errors"][0]["message"][0]["error"]
 
 
 @pytest.mark.django_db
@@ -180,7 +180,7 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
     )
 
     # Dry Run
-    response = client.put("/data/import/", {"dry_run": True, "legacy_import": True, "data": input_data}, format="json")
+    response = client.put("/data/import/", {"dry_run": True, "legacy_import": False, "data": input_data}, format="json")
     assert response.status_code == 200
 
     assert (
@@ -193,7 +193,9 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
     )
 
     # Import Data
-    response = client.put("/data/import/", {"dry_run": False, "legacy_import": True, "data": input_data}, format="json")
+    response = client.put(
+        "/data/import/", {"dry_run": False, "legacy_import": False, "data": input_data}, format="json"
+    )
     assert response.status_code == 200
 
     assert (
@@ -284,7 +286,7 @@ def test_deserialisation_error_has_log(client):
     assert log.error_type == "DESERIALISATION"
     assert response.json()["errors"][0] == {
         "index": 0,
-        "message": ["DoesNotExist('Season matching query does not exist.')"],
+        "message": [{"error": "DoesNotExist('Season matching query does not exist.')", "input": {"year": 9999}}],
         "type": "Round",
     }
 
@@ -325,7 +327,7 @@ def test_db_error(client, dry_run):
                 "objects": [
                     {"number": 1, "position": 1, "average_speed": 200.0, "is_entry_fastest_lap": True},
                     {
-                        "number": 2,
+                        "number": 9999999999,
                         "position": 1,
                         "average_speed": 201.0,
                     },

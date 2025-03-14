@@ -1,5 +1,9 @@
+import json
+from pathlib import Path
+
 import pytest
 
+from jolpica.formula_one import models as f1
 from jolpica.formula_one.importer.deserialisers import DeserialisationResult
 from jolpica.formula_one.importer.importer import JSONModelImporter
 
@@ -109,3 +113,23 @@ def test_deserialise_all_prioritisation(monkeypatch, importer):
     assert len(result.instances) == 2
     assert result.errors == []
     assert deserialisation_order == ["RoundEntry", "SessionEntry"]
+
+
+@pytest.mark.django_db
+def test_deserialise_monaco_data(importer):
+    with open(Path("jolpica/formula_one/tests/fixtures/2024_08_monaco.json")) as f:
+        data = json.load(f)
+
+    result = importer.deserialise_all(data)
+
+    assert result.errors == []
+    assert result.success
+
+    for model_import, instances in result.instances.items():
+        if model_import.model_class is f1.PitStop:
+            for ins in instances:
+                assert ins.lap is not None
+
+    assert f1.PitStop.objects.filter(lap__isnull=True).count() == 0
+    importer.save_deserialisation_result_to_db(result)
+    assert f1.PitStop.objects.filter(lap__isnull=True).count() == 0
