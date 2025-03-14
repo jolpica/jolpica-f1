@@ -36,6 +36,13 @@ class ListAdminMixin:
                 "session_entry__session__round__number",
                 "session_entry__round_entry__team_driver__driver",
             ]
+        elif model.__name__ == "PitStop":
+            self.list_filter = [
+                "session_entry__session__round__season__year",
+                "session_entry__session__round__number",
+                "session_entry__session__type",
+                "lap__number",
+            ]
         elif model.__name__ == "SessionEntry":
             self.list_filter = ["session__type", "session__round__season", "session__round__number"]
         elif model.__name__ == "Session":

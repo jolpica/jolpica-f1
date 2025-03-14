@@ -11,6 +11,7 @@ class PitStop(models.Model):
     lap = models.OneToOneField(
         "Lap",
         on_delete=models.CASCADE,
+        unique=True,
         null=True,
         blank=True,
         related_name="pit_stop",
@@ -23,7 +24,6 @@ class PitStop(models.Model):
 
     class Meta:
         constraints: ClassVar = [
-            models.UniqueConstraint(fields=["session_entry", "lap"], name="pit_stop_unique_session_entry_lap"),
             models.UniqueConstraint(fields=["session_entry", "number"], name="pit_stop_unique_session_entry_number"),
         ]
 
