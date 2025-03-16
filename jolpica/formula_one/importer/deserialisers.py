@@ -205,7 +205,12 @@ class Deserialiser:
     def create_model_instance(
         self, foreign_key_fields: ForeignKeyDict, field_values: json_models.F1ObjectSchema
     ) -> models.Model:
-        return self.model(**foreign_key_fields, **field_values.model_dump(exclude_unset=True))
+        value_map = field_values.model_dump(exclude_unset=True)
+        # Set detail field as stop gap to support legacy ergast status
+        if self.model == f1.SessionEntry and "status" in value_map and "detail" not in value_map:
+            value_map["detail"] = f1.SessionStatus(value_map["status"]).name.replace("_", " ").capitalize()
+
+        return self.model(**foreign_key_fields, **value_map)
 
     def get_unique_fields(
         self, foreign_keys: json_models.F1ForeignKeysSchema, object_data: json_models.F1Object
@@ -245,15 +250,17 @@ class Deserialiser:
             else:
                 self._cache.add_to_cache(model, data.foreign_keys)
                 unique_fields = self.get_unique_fields(data.foreign_keys, obj_data)
+                update_fields = [
+                    *obj_data.model_fields_set,
+                    *[fk for fk in foreign_key_fields.keys() if fk not in unique_fields],
+                ]
+                if isinstance(model, f1.SessionEntry) and model.detail:
+                    update_fields.append("detail")
+
                 model_instances[
                     ModelImport(
                         self.model,
-                        tuple(
-                            (
-                                *obj_data.model_fields_set,
-                                *[fk for fk in foreign_key_fields.keys() if fk not in unique_fields],
-                            )
-                        ),
+                        tuple(update_fields),
                         unique_fields,
                     )
                 ].append(model)
