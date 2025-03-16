@@ -209,7 +209,7 @@ class ListResultsSerializer(serializers.ListSerializer):
                         result["positionText"] = "F"
                     case _:
                         result["positionText"] = "R"
-            if session_entry.time:
+            if session_entry.time and session_entry.is_classified:
                 result["Time"] = {
                     "millis": str(int(session_entry.time.total_seconds() * 1000)),
                     "time": self.calculate_finish_display_from_millis(
