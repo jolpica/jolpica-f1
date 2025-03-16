@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import transaction
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
@@ -112,4 +113,5 @@ def log_data_import_result(
         import_result=import_stats,
         error_type=error_type,
         errors=errors,
+        api_version=settings.VERSION,
     ).save()
