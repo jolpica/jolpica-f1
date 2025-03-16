@@ -140,3 +140,5 @@ ERGAST_STATUS_MAPPING = {
     140: "Undertray",
     141: "Cooling system",
 }
+
+ERGAST_REVERSE_STATUS_MAPPING = {v: k for k, v in ERGAST_STATUS_MAPPING.items()}
