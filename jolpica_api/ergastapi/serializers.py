@@ -186,7 +186,7 @@ class ListResultsSerializer(serializers.ListSerializer):
                 "Constructor": ConstructorSerializer().to_representation(session_entry.round_entry.team_driver.team),
                 "grid": str(session_entry.grid) if session_entry.grid is not None else None,
                 "laps": str(session_entry.laps_completed) if session_entry.laps_completed is not None else None,
-                "status": session_entry.detail,
+                "status": session_entry.detail or SessionStatus(session_entry.status).name.capitalize(),
             }
             if session_entry.points is not None:
                 if session_entry.points % 1 == 0:
