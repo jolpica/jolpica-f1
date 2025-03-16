@@ -254,7 +254,8 @@ class StatusViewSet(ErgastModelViewSet):
             .annotate(
                 count=Count("detail"),
             )
-            .order_by("count", "detail")
+            .filter(count__gt=0)
+            .order_by("-count", "detail")
             .distinct()
         )
 
