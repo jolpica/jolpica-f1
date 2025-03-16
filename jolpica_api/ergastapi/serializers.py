@@ -20,6 +20,8 @@ from jolpica.formula_one.models.managed_views import DriverChampionship, TeamCha
 from jolpica.formula_one.models.session import SessionStatus
 from jolpica.formula_one.utils import format_timedelta
 
+from .status_mapping import ERGAST_REVERSE_STATUS_MAPPING
+
 
 class ErgastModelSerializer(serializers.ModelSerializer):
     def to_representation(self, instance: Any) -> Any:
@@ -117,9 +119,12 @@ class RaceSerializer(BaseRaceSerializer):
 
 
 class StatusSerializer(ErgastModelSerializer):
-    statusId = serializers.CharField()  # noqa: N815
+    statusId = serializers.SerializerMethodField(method_name="get_status_id")  # noqa: N815
     status = serializers.CharField(source="detail")
     count = serializers.CharField()
+
+    def get_status_id(self, session_entry: dict) -> str:
+        return str(ERGAST_REVERSE_STATUS_MAPPING.get(session_entry["detail"], ""))
 
     class Meta:
         model = SessionEntry
