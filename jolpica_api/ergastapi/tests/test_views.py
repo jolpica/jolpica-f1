@@ -83,6 +83,12 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
                 race_data["SecondPractice"] = race_data["SprintQualifying"]
                 race_data.pop("SprintQualifying")
 
+    if re.search(r"(?i)status(?:/[0-9]+)?.json", endpoint):
+        # Intentional Difference from Ergast, sort by count instead of statusId
+        expected["MRData"]["StatusTable"]["Status"] = sorted(
+            expected["MRData"]["StatusTable"]["Status"], key=lambda x: (int(x["count"]), x["status"])
+        )
+
     assert result == expected
 
 
