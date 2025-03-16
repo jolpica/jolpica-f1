@@ -1,7 +1,7 @@
 from datetime import date
 
 import knox.auth
-from django.db.models import Count, Max, Min, OuterRef, Prefetch, Q, Subquery
+from django.db.models import Count, Max, Min, Prefetch, Q
 from django.db.models.query import QuerySet
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
@@ -11,7 +11,6 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from jolpica.ergast.models import Status
 from jolpica.formula_one.models import Lap, Season, Session, SessionEntry, SessionType, Team
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
 from jolpica_api.settings import DEPLOYMENT_ENV
@@ -249,15 +248,13 @@ class StatusViewSet(ErgastModelViewSet):
     def get_queryset(self) -> QuerySet:
         model = self.serializer_class.Meta.model
         filters = self.get_criteria_filters(**self.kwargs)
-        status_id_subquery = Status.objects.filter(status=OuterRef("detail"))
         return (
             model.objects.filter(Q(session__type=SessionType.RACE) & filters)
             .values("detail")
             .annotate(
                 count=Count("detail"),
-                statusId=Subquery(status_id_subquery.values("pk")[:1]),
             )
-            .order_by("statusId")
+            .order_by("count", "detail")
             .distinct()
         )
 
