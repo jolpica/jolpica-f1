@@ -4,6 +4,7 @@ from collections import defaultdict
 from django.db import IntegrityError
 
 from jolpica.formula_one import models as f1
+from jolpica.formula_one.standings import update_championship_standings_in_db
 
 from .deserialisers import DeserialisationResult, DeserialiserFactory, ModelImport, ModelLookupCache
 
@@ -58,6 +59,18 @@ class JSONModelImporter:
         return cls.get_object_priority({"object_type": object_type})
 
     @classmethod
+    def update_managed_views_and_save_to_db(cls, import_data: list[dict]) -> None:
+        # Get list of seasons changed
+        season_years = set()
+        for data in import_data:
+            year = data["foreign_keys"].get("year")
+            if year:
+                season_years.add(year)
+
+        if season_years:
+            update_championship_standings_in_db(season_years)
+
+    @classmethod
     def save_deserialisation_result_to_db(cls, result: DeserialisationResult) -> dict:
         prioritised_items = sorted(result.instances.items(), key=lambda x: cls.get_model_import_priority(x[0]))
 
@@ -101,5 +114,7 @@ class JSONModelImporter:
                     import_stats["models"][model_name]["updated"].append(updated_ins.pk)
 
         import_stats["total_count"] = import_stats["created_count"] + import_stats["updated_count"]
+
+        cls.update_managed_views_and_save_to_db(result.data if isinstance(result.data, list) else [result.data])
 
         return import_stats

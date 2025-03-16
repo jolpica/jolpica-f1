@@ -3,8 +3,10 @@ from collections import Counter
 import pytest
 from django.db.models import prefetch_related_objects
 
+from jolpica.formula_one.models.managed_views import DriverChampionship
+
 from ..models import Season, SessionType
-from ..standings import EntryData, Group, SeasonData, SessionData, Stats
+from ..standings import EntryData, Group, SeasonData, SessionData, Stats, update_championship_standings_in_db
 
 
 @pytest.fixture(scope="module")
@@ -230,3 +232,33 @@ def driver_standings_2023(django_db_setup, django_db_blocker):
         standings = season_data.generate_standings()
         prefetch_related_objects(standings, Group.DRIVER, "session")
     return standings
+
+
+@pytest.mark.parametrize(
+    ["adjust_type"],
+    [
+        ("leave as is",),
+        ("delete",),
+        ("change",),
+    ],
+)
+@pytest.mark.django_db
+def test_update_in_db(django_assert_max_num_queries, adjust_type):
+    before = list(DriverChampionship.objects.filter(year=2023).all().order_by("driver_id", "session_id"))
+
+    if adjust_type == "delete":
+        DriverChampionship.objects.filter(year=2023).delete()
+    elif adjust_type == "change":
+        DriverChampionship.objects.filter(year=2023, round__isnull=False).update(points=99)
+        DriverChampionship.objects.filter(year=2023, season__isnull=False).delete()
+
+    with django_assert_max_num_queries(139):  # Should look into better prefetching
+        update_championship_standings_in_db({2023})
+
+    after = list(DriverChampionship.objects.filter(year=2023).all().order_by("driver_id", "session_id"))
+
+    assert len(before) == len(after)
+    for champ1, champ2 in zip(before, after):
+        for field in DriverChampionship._meta.get_fields():
+            if field.name != "id":
+                assert getattr(champ1, field.name) == getattr(champ2, field.name)

@@ -21,6 +21,45 @@ from .models.managed_views import DriverChampionship, TeamChampionship
 from .utils import calculate_championship_points
 
 
+def update_championship_standings_in_db(season_years: set[int]) -> None:
+    team_standings = []
+    driver_standings = []
+
+    seasons = (
+        Season.objects.filter(year__in=season_years)
+        .select_related("championship_system")
+        .prefetch_related("championship_adjustments")
+    )
+
+    for season in seasons:
+        season_data = SeasonData.from_season(season)
+        driver_standings.extend(season_data.generate_standings(Group.DRIVER))
+        team_standings.extend(season_data.generate_standings(Group.TEAM))
+
+    unique_fields = ["session_id", "driver_id"]
+    DriverChampionship.objects.bulk_create(
+        driver_standings,
+        update_conflicts=True,
+        unique_fields=unique_fields,
+        update_fields=[
+            f.name
+            for f in DriverChampionship._meta.get_fields()
+            if getattr(f, "column", None) not in {"id", *unique_fields}
+        ],
+    )
+    unique_fields = ["session_id", "team_id"]
+    TeamChampionship.objects.bulk_create(
+        team_standings,
+        update_conflicts=True,
+        unique_fields=unique_fields,
+        update_fields=[
+            f.name
+            for f in TeamChampionship._meta.get_fields()
+            if getattr(f, "column", None) not in {"id", *unique_fields}
+        ],
+    )
+
+
 class Group(Enum):
     DRIVER = 1
     TEAM = 2
@@ -217,7 +256,12 @@ class SessionData:
         session_type: SessionType,
         championship_system: ChampionshipSystem | None,
     ) -> SessionData:
-        entry_datas = [EntryData.from_session_entry(entry) for entry in session.session_entries.all()]
+        entry_datas = [
+            EntryData.from_session_entry(entry)
+            for entry in session.session_entries.all().prefetch_related(
+                "session", "round_entry", "round_entry__round", "round_entry__team_driver"
+            )
+        ]
         if session.number is None:
             raise ValueError("Session must have non-null number")
 
@@ -312,6 +356,7 @@ class SeasonData:
                         session, round.number, SessionType(session.type), season.championship_system
                     )
                 )
+
         adjustments = {}
         for adjustment in season.championship_adjustments.all():
             if adjustment.driver_id:

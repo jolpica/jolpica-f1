@@ -9,7 +9,7 @@ from jolpica.formula_one.importer.importer import JSONModelImporter
 
 
 @pytest.fixture
-def importer():
+def importer() -> JSONModelImporter:
     return JSONModelImporter()
 
 
@@ -116,7 +116,7 @@ def test_deserialise_all_prioritisation(monkeypatch, importer):
 
 
 @pytest.mark.django_db
-def test_deserialise_monaco_data(importer):
+def test_deserialise_monaco_data(importer: JSONModelImporter):
     with open(Path("jolpica/formula_one/tests/fixtures/2024_08_monaco.json")) as f:
         data = json.load(f)
 
@@ -130,6 +130,8 @@ def test_deserialise_monaco_data(importer):
             for ins in instances:
                 assert ins.lap is not None
 
+    assert f1.managed_views.DriverChampionship.objects.filter(year=2024).count() == 0
     assert f1.PitStop.objects.filter(lap__isnull=True).count() == 0
     importer.save_deserialisation_result_to_db(result)
+    assert f1.managed_views.DriverChampionship.objects.filter(year=2024).count() > 0
     assert f1.PitStop.objects.filter(lap__isnull=True).count() == 0
