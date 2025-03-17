@@ -63,8 +63,18 @@ class BaseRaceSerializer(ErgastModelSerializer):
     url = serializers.CharField(source="wikipedia")
     raceName = serializers.CharField(source="name")  # noqa: N815
     Circuit = CircuitSerializer(source="circuit")
-    date = serializers.CharField()
+    date = serializers.SerializerMethodField(method_name="get_date")
     time = serializers.SerializerMethodField(method_name="get_time")
+
+    def get_date(self, race: Round) -> str | None:
+        date = None
+        for session in race.sessions.all():
+            if session.type == SessionType.RACE:
+                date = session.date
+        if date:
+            return str(date)
+        else:
+            return None
 
     def get_time(self, race: Round) -> str | None:
         time = None
