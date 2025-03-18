@@ -1,6 +1,5 @@
 pg_dump -h localhost -U postgres -d jolpica  -a \
     -t "formula_one*" \
-    -t "ergast_status" \
     -T "formula_one_lap" \
     -T "formula_one_*championship" \
     -T "formula_one_pitstop" \

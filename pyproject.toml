@@ -63,7 +63,7 @@ django_settings_module = "jolpica_api.settings"
 
 
 [tool.ruff]
-extend-exclude = ["**/migrations", "jolpica/ergast/*"]
+extend-exclude = ["**/migrations"]
 line-length = 120
 src = ["jolpica", "jolpica_api"]
 target-version = "py310"

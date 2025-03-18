@@ -1,6 +1,5 @@
 .vscode/
 .env
-jolpica/ergast/download
 staticfiles/
 *.tmp.json
 notebook.ipynb

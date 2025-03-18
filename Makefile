@@ -2,8 +2,8 @@ setup:
 	pre-commit install # Install pre-commit hooks
 
 format:
-	ruff format . jolpica/ergast/*
-	ruff check --fix-only . jolpica/ergast/*
+	ruff format .
+	ruff check --fix-only .
 
 lint:
 	ruff check . --no-fix
@@ -25,14 +25,6 @@ dbml:
 test-fixtures:
 	tests/create_data_fixtures.sh
 	pytest --create-db
-	
-load-ergast-data:
-	python manage.py updateergast	
-
-import-from-ergast:
-	python manage.py migrate formula_one zero
-	python manage.py migrate
-	python manage.py shell -c "from jolpica.formula_one.import_from_ergast import run_import; run_import()"
 	
 deploy:
 	DJANGO_DEBUG=False python manage.py collectstatic

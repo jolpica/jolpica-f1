@@ -69,7 +69,6 @@ INSTALLED_APPS = [
     "django.contrib.gis",
     "rest_framework",
     "knox",
-    "jolpica.ergast",
     "jolpica.formula_one",
     "jolpica_api.authentication",
     "jolpica_api.ergastapi",
