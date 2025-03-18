@@ -65,7 +65,13 @@ class ModelLookupCache[M: models.Model]:
             "session__type": "session",
             "round_entry__car_number": "car_number",
         },
-        f1.Lap: {"session_entry_id": "session_entry_id", "number": "lap"},
+        f1.Lap: {
+            "session_entry__session__round__season__year": "year",
+            "session_entry__session__round__number": "round",
+            "session_entry__session__type": "session",
+            "session_entry__round_entry__car_number": "car_number",
+            "number": "lap",
+        },
     }
     EXCLUDE_FROM_CACHE: ClassVar[tuple[type[models.Model], ...]] = (f1.PitStop, f1.Circuit)
 
@@ -102,7 +108,13 @@ class ModelLookupCache[M: models.Model]:
                 return
             cache_key = (model.reference,)  # type: ignore[attr-defined]
         elif isinstance(model, f1.Lap):
-            cache_key = (model.session_entry_id, model.number)  # type: ignore[attr-defined]
+            cache_key = (
+                foreign_keys.year,  # type: ignore[attr-defined]
+                foreign_keys.round,  # type: ignore[attr-defined]
+                foreign_keys.session,  # type: ignore[attr-defined]
+                foreign_keys.car_number,  # type: ignore[attr-defined]
+                model.number,
+            )
         elif isinstance(model, f1.Round) and isinstance(foreign_keys, json_models.HasSeasonForeignKey):
             cache_key = (foreign_keys.year, model.number)
         else:
@@ -198,7 +210,12 @@ class Deserialiser:
             )
         if isinstance(foreign_keys, json_models.HasLapForeignKey):
             values["lap"] = self._cache.get_model_instance(
-                f1.Lap, session_entry_id=values["session_entry"].id, number=foreign_keys.lap
+                f1.Lap,
+                session_entry__session__round__season__year=foreign_keys.year,
+                session_entry__session__round__number=foreign_keys.round,
+                session_entry__session__type=foreign_keys.session,
+                session_entry__round_entry__car_number=foreign_keys.car_number,
+                number=foreign_keys.lap,
             )
         return values
 

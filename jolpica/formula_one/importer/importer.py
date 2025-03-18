@@ -13,7 +13,17 @@ logger = logging.getLogger(__name__)
 
 class JSONModelImporter:
     # These object types should be prioritised in the deserialisation process to allow Lookups to be created first
-    OBJECT_TYPE_PRIORITY = ("RoundEntry", "SessionEntry", "Lap", "lap", "pit_stop")
+    OBJECT_TYPE_PRIORITY = (
+        "Round",
+        "Driver",
+        "Team",
+        "TeamDriver",
+        "RoundEntry",
+        "SessionEntry",
+        "Lap",
+        "lap",
+        "pit_stop",
+    )
 
     def __init__(self, legacy_import: bool = False):
         self.legacy_import = legacy_import

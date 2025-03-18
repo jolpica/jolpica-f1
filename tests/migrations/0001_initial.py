@@ -39,6 +39,12 @@ def add_test_data(apps, schema_editor):
     ]
     subprocess.run(command, check=True)
 
+    command = [
+        "sh", 
+        "tests/fixtures/fix_auto_increments.sh",
+    ]
+    subprocess.run(command, check=True)
+
 
 def create_driver_standings(apps, schema_editor):
     Season = apps.get_model("formula_one", "Season")
