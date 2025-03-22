@@ -1,4 +1,4 @@
-name: Data Correction
+name: 📊 Data Correction
 description: Report incorrect Formula 1 data returned (lap times, race results, etc).
 title: "[Data Correction]: "
 labels: ["data", "triage"]

@@ -1,4 +1,4 @@
-name: Bug Report
+name: 🐞 Bug Report
 description: Report a bug related to the use of the API (errors, broken filters, ergast differences).
 title: "[Bug]: "
 labels: ["bug", "triage"]
