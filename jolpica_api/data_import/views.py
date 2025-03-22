@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 
 from jolpica.formula_one.importer.deserialisers import DeserialisationResult
 from jolpica.formula_one.importer.importer import JSONModelImporter
-from jolpica.formula_one.importer.json_models import F1Import
+from jolpica.schemas.data_import import F1Import
 
 from .models import DataImportLog
 
