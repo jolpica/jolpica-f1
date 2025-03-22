@@ -944,6 +944,22 @@ files = [
 ]
 
 [[package]]
+name = "jolpica-schemas"
+version = "0.1.0"
+description = "Schemas for the jolpica project."
+optional = false
+python-versions = "^3.8"
+files = []
+develop = true
+
+[package.dependencies]
+pydantic = "^2.10.6"
+
+[package.source]
+type = "directory"
+url = "jolpica/schemas"
+
+[[package]]
 name = "jupyter-client"
 version = "8.6.3"
 description = "Jupyter protocol implementation and client libraries"
@@ -2288,4 +2304,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.12,<3.13"
-content-hash = "da191f503318821fde2acf118dedce40656630e5107e72461cba06f8b1d43d9d"
+content-hash = "7278f5cf0507fd3cd7741b8021518b50200878d5e8929b8708115632a6d8e3ac"

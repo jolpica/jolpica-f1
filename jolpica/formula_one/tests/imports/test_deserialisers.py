@@ -168,16 +168,6 @@ from jolpica.formula_one.importer.deserialisers import (
             },
             id="Circuit",
         ),
-        pytest.param(
-            {
-                "object_type": "Circuit",
-                "foreign_keys": {},
-                "objects": [
-                    {"reference": "monza", "location": {"_type": "point", "x": 1, "y": 1}},
-                ],
-            },
-            id="Circuit with lat long",
-        ),
     ],
 )
 @pytest.mark.django_db
@@ -202,7 +192,7 @@ def test_deserialise_object_success(entry_data):
             "TeamDriver",
             {"year": 2023, "team_reference": "red_bull", "driver_reference": "max_verstappen"},
             {"role": 123},
-            ("type", "enum"),
+            ("type", "literal_error"),
         ),
         (
             "RoundEntry",

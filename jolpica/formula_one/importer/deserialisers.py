@@ -7,8 +7,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from pydantic import ValidationError
 
+from jolpica.schemas import data_import as json_models
+
 from .. import models as f1
-from . import json_models
 
 logger = logging.getLogger(__name__)
 

@@ -9,6 +9,8 @@ version = "0.1.0"
 [tool.poetry.dependencies]
 python = ">=3.12,<3.13"
 
+jolpica-schemas = { path = "jolpica/schemas/", develop=true}
+
 Django = "^5.1"
 django-environ = "^0.12.0"
 django-ratelimit = "^4.1.0"
@@ -23,7 +25,6 @@ uvicorn = "^0.30.5"
 opentelemetry-sdk = "^1.26.0"
 opentelemetry-exporter-otlp = "^1.26.0"
 django-cors-headers = "^4.4.0"
-pydantic = "^2.10.6"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.10.1"                                                            # Generation of dbml file
