@@ -34,17 +34,11 @@ mypy = { extras = ["dmypy"], version = "^1.10.0" }
 pytest-django = "^4.8.0"
 ruff = ">=0.5.6"
 pre-commit = "^4.0.1"
+tqdm = "^4.66.3"
 
 [tool.poetry.group.local.dependencies]
 # Only for local development e.g. Jupyter notebook
 ipykernel = "^6.29.5"
-notebook = "^7.0.6"
-
-[tool.poetry.group.import.dependencies]
-# Only used in import scripts
-pandas = "^2.1.1"
-tqdm = "^4.66.3"
-
 
 [tool.poetry.group.deploy.dependencies]
 boto3 = "^1.34.11" # For upload via collectstatic with django-storages
