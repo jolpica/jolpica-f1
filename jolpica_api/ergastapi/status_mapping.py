@@ -139,6 +139,8 @@ ERGAST_STATUS_MAPPING = {
     139: "Illness",
     140: "Undertray",
     141: "Cooling system",
+    142: "Did not start",
+    143: "Lapped",
 }
 
 ERGAST_REVERSE_STATUS_MAPPING = {v: k for k, v in ERGAST_STATUS_MAPPING.items()}
