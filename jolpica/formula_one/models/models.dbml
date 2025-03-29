@@ -1,5 +1,5 @@
 Project "jolpica-f1" {
-  database_type: 'Unknown (django.contrib.gis.db.backends.postgis)'
+  database_type: 'PostgreSQL'
   Note: '''jolpica-f1 Database Structure'''
 }
 

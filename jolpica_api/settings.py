@@ -66,7 +66,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.gis",
     "rest_framework",
     "knox",
     "jolpica.formula_one",
@@ -125,7 +124,7 @@ TEMPLATES = [
 DATABASES = {
     "default": env.db(
         "DATABASE_SECRET_URL",
-        default="postgis://postgres:postgres@localhost/jolpica",
+        default="postgres://postgres:postgres@localhost/jolpica",
     ),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True

@@ -1,6 +1,5 @@
 from django.apps import apps
 from django.contrib import admin
-from django.contrib.gis import admin as geo_admin
 from django.urls import resolve
 
 from jolpica.formula_one import models as f1
@@ -120,9 +119,7 @@ class RoundEntryInline(admin.TabularInline):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-class FormulaOneModelAdmin(ListAdminMixin, geo_admin.GISModelAdmin):
-    gis_widget_kwargs = {"attrs": {"default_lon": 10, "default_lat": 55, "default_zoom": 3.75}}
-
+class FormulaOneModelAdmin(ListAdminMixin, admin.ModelAdmin):
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         if model.__name__ == "Round":

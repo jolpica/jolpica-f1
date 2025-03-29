@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from django.contrib.gis.db import models
+from django.db import models
 
 if TYPE_CHECKING:
     from . import Round
