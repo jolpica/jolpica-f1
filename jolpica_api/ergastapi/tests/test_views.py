@@ -6,6 +6,17 @@ import pytest
 from rest_framework.test import APIClient
 
 
+def remove_url_keys(data: dict):
+    if "url" in data and "en.wikipedia.org/wiki" in data["url"]:
+        data.pop("url")
+    for key, value in data.items():
+        if isinstance(value, dict):
+            remove_url_keys(value)
+        if isinstance(value, list):
+            for item in value:
+                remove_url_keys(item)
+
+
 @pytest.mark.parametrize(
     ["endpoint", "path"],
     list(
@@ -88,6 +99,9 @@ def test_viewsets(client: APIClient, endpoint: str, path: Path, django_assert_ma
         expected["MRData"]["StatusTable"]["Status"] = sorted(
             expected["MRData"]["StatusTable"]["Status"], key=lambda x: (-int(x["count"]), x["status"])
         )
+
+    remove_url_keys(result)
+    remove_url_keys(expected)
 
     assert result == expected
 

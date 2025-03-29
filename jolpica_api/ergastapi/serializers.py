@@ -46,8 +46,8 @@ class CircuitSerializer(ErgastModelSerializer):
 
     def get_location(self, circuit: Circuit) -> dict:
         return {
-            "lat": f"{circuit.location.y:.7g}" if circuit.location else None,
-            "long": f"{circuit.location.x:.7g}" if circuit.location else None,
+            "lat": f"{circuit.latitude:.7g}" if circuit.latitude else None,
+            "long": f"{circuit.longitude:.7g}" if circuit.longitude else None,
             "locality": circuit.locality,
             "country": circuit.country,
         }

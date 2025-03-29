@@ -230,7 +230,8 @@ Round venue information
   locality char [null]
   country char [null]
   country_code char [null]
-  location point [null]
+  latitude float [null]
+  longitude float [null]
   altitude float [null]
   wikipedia url [null]
 

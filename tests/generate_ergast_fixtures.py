@@ -165,7 +165,7 @@ for endpoint_type, test_urls in tqdm(endpoints.items()):
             continue
         sleep(1)
         try:
-            response = requests.get(f"http://ergast.com/api/f1/{url}", timeout=60)
+            response = requests.get(f"https://api.jolpi.ca/ergast/f1/{url}", timeout=60)
         except Exception as ex:
             print(f"{url} had an exception: {ex}")
             continue

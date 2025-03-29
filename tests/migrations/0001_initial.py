@@ -64,7 +64,12 @@ def create_driver_standings(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-    dependencies = []
+    dependencies = [
+        (
+            "formula_one",
+            "0007_circuit_latitude_circuit_longitude",
+        ), 
+    ]
 
     operations = [
         migrations.RunPython(add_test_data),

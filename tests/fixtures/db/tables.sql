@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 16.3 (Debian 16.3-1.pgdg110+1)
--- Dumped by pg_dump version 16.4 (Debian 16.4-1.pgdg110+1)
+-- Dumped by pg_dump version 16.8 (Debian 16.8-1.pgdg110+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1375,84 +1375,84 @@ COPY public.formula_one_championshipadjustment (id, adjustment, points, driver_i
 -- Data for Name: formula_one_circuit; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.formula_one_circuit (id, reference, name, locality, country, location, altitude, wikipedia) FROM stdin;
-1	silverstone	Silverstone Circuit	Silverstone	UK	0101000020E610000068E89FE06245F0BF99BB96900F0A4A40	153	http://en.wikipedia.org/wiki/Silverstone_Circuit
-2	monaco	Circuit de Monaco	Monte-Carlo	Monaco	0101000020E6100000E605D847A7AE1D40832F4CA60ADE4540	7	http://en.wikipedia.org/wiki/Circuit_de_Monaco
-3	indianapolis	Indianapolis Motor Speedway	Indianapolis	USA	0101000020E6100000C2172653058F55C0F6285C8FC2E54340	223	http://en.wikipedia.org/wiki/Indianapolis_Motor_Speedway
-4	bremgarten	Circuit Bremgarten	Bern	Switzerland	0101000020E610000024D1CB28969B1D403411363CBD7A4740	551	http://en.wikipedia.org/wiki/Circuit_Bremgarten
-5	spa	Circuit de Spa-Francorchamps	Spa	Belgium	0101000020E610000051A5660FB4E21740D5E76A2BF6374940	401	http://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps
-6	reims	Reims-Gueux	Reims	France	0101000020E6100000DF15C1FF56720F40545227A089A04840	88	http://en.wikipedia.org/wiki/Reims-Gueux
-7	monza	Autodromo Nazionale di Monza	Monza	Italy	0101000020E6100000392861A6ED8F224074B515FBCBCE4640	162	http://en.wikipedia.org/wiki/Autodromo_Nazionale_Monza
-8	nurburgring	Nürburgring	Nürburg	Germany	0101000020E61000000AD7A3703DCA1B40D044D8F0F42A4940	578	http://en.wikipedia.org/wiki/N%C3%BCrburgring
-9	pedralbes	Circuit de Pedralbes	Barcelona	Spain	0101000020E6100000026553AEF0EE00407DD0B359F5B14440	85	http://en.wikipedia.org/wiki/Pedralbes_Circuit
-10	essarts	Rouen-Les-Essarts	Rouen	France	0101000020E61000006D73637AC212F03F5F07CE1951AA4840	81	http://en.wikipedia.org/wiki/Rouen-Les-Essarts
-11	zandvoort	Circuit Park Zandvoort	Zandvoort	Netherlands	0101000020E61000006002B7EEE6291240A857CA32C4314A40	6	http://en.wikipedia.org/wiki/Circuit_Zandvoort
-12	galvez	Autódromo Juan y Oscar Gálvez	Buenos Aires	Argentina	0101000020E6100000C286A757CA3A4DC070CE88D2DE5841C0	8	http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Oscar_Alfredo_G%C3%A1lvez
-13	aintree	Aintree	Liverpool	UK	0101000020E6100000F5673F52448607C030BB270F0BBD4A40	20	http://en.wikipedia.org/wiki/Aintree_Motor_Racing_Circuit
-14	pescara	Pescara Circuit	Pescara	Italy	0101000020E61000003E7958A8354D2C40CDCCCCCCCC3C4540	129	http://en.wikipedia.org/wiki/Pescara_Circuit
-15	boavista	Circuito da Boavista	Oporto	Portugal	0101000020E610000062105839B45821C0E7FBA9F1D2954440	28	http://en.wikipedia.org/wiki/Circuito_da_Boavista
-16	ain-diab	Ain Diab	Casablanca	Morocco	0101000020E61000000000000000C01EC099BB96900FCA4040	19	http://en.wikipedia.org/wiki/Ain-Diab_Circuit
-17	avus	AVUS	Berlin	Germany	0101000020E6100000C66D3480B7802A40933A014D843D4A40	53	http://en.wikipedia.org/wiki/AVUS
-18	monsanto	Monsanto Park Circuit	Lisbon	Portugal	0101000020E61000006440F67AF76722C032772D211F5C4340	158	http://en.wikipedia.org/wiki/Monsanto_Park_Circuit
-19	sebring	Sebring International Raceway	Florida	USA	0101000020E6100000984C158C4A5654C0BF7D1D3867743B40	18	http://en.wikipedia.org/wiki/Sebring_Raceway
-20	riverside	Riverside International Raceway	California	USA	0101000020E6100000B6F3FDD478515DC00E2DB29DEFF74040	470	http://en.wikipedia.org/wiki/Riverside_International_Raceway
-21	watkins_glen	Watkins Glen	New York State	USA	0101000020E61000007A36AB3E573B53C0DE02098A1F2B4540	485	http://en.wikipedia.org/wiki/Watkins_Glen_International
-22	george	Prince George Circuit	Eastern Cape Province	South Africa	0101000020E61000001DC9E53FA4DF3B40F54A5986388640C0	15	http://en.wikipedia.org/wiki/Prince_George_Circuit
-23	rodriguez	Autódromo Hermanos Rodríguez	Mexico City	Mexico	0101000020E6100000D26F5F07CEC558C00F0BB5A679673340	2227	http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez
-24	brands_hatch	Brands Hatch	Kent	UK	0101000020E6100000950F41D5E8D5D03FA1F831E6AEAD4940	145	http://en.wikipedia.org/wiki/Brands_Hatch
-25	zeltweg	Zeltweg	Styria	Austria	0101000020E6100000C9E53FA4DF7E2D40C3D32B65199A4740	676	http://en.wikipedia.org/wiki/Zeltweg_Airfield
-26	charade	Charade Circuit	Clermont-Ferrand	France	0101000020E6100000AB21718FA54F08401DC9E53FA4DF4640	790	http://en.wikipedia.org/wiki/Charade_Circuit
-27	kyalami	Kyalami	Midrand	South Africa	0101000020E61000006B9A779CA2133C4093A9825149FD39C0	1460	http://en.wikipedia.org/wiki/Kyalami
-28	lemans	Le Mans	Le Mans	France	0101000020E61000008EEBDFF599B3CC3F9A99999999F94740	67	http://en.wikipedia.org/wiki/Circuit_de_la_Sarthe#Bugatti_Circuit
-29	mosport	Mosport International Raceway	Ontario	Canada	0101000020E61000005E4BC8073DAB53C003780B2428064640	332	http://en.wikipedia.org/wiki/Mosport
-30	jarama	Jarama	Madrid	Spain	0101000020E61000009088299144AF0CC0492EFF21FD4E4440	609	http://en.wikipedia.org/wiki/Circuito_Permanente_Del_Jarama
-31	tremblant	Circuit Mont-Tremblant	Quebec	Canada	0101000020E61000002575029A08A752C0C7BAB88D06184740	214	http://en.wikipedia.org/wiki/Circuit_Mont-Tremblant
-32	montjuic	Montjuïc	Barcelona	Spain	0101000020E61000004A46CEC29E36014090A0F831E6AE4440	79	http://en.wikipedia.org/wiki/Montju%C3%AFc_circuit
-33	hockenheimring	Hockenheimring	Hockenheim	Germany	0101000020E6100000FD304278B42121407DD0B359F5A94840	103	http://en.wikipedia.org/wiki/Hockenheimring
-34	red_bull_ring	Red Bull Ring	Spielberg	Austria	0101000020E61000009D8026C286872D4032772D211F9C4740	678	http://en.wikipedia.org/wiki/Red_Bull_Ring
-35	ricard	Circuit Paul Ricard	Le Castellet	France	0101000020E6100000B4E55C8AAB2A174055302AA913A04540	432	http://en.wikipedia.org/wiki/Paul_Ricard_Circuit
-36	nivelles	Nivelles-Baulers	Brussels	Belgium	0101000020E61000005704FF5BC94E1140D6C56D34804F4940	139	http://en.wikipedia.org/wiki/Nivelles-Baulers
-37	interlagos	Autódromo José Carlos Pace	São Paulo	Brazil	0101000020E61000006F8104C58F5947C032772D211FB437C0	785	http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace
-38	zolder	Zolder	Heusden-Zolder	Belgium	0101000020E6100000102384471B071540CA54C1A8A47E4940	36	http://en.wikipedia.org/wiki/Zolder
-39	anderstorp	Scandinavian Raceway	Anderstorp	Sweden	0101000020E6100000857CD0B359352B407DD0B359F5A14C40	153	http://en.wikipedia.org/wiki/Scandinavian_Raceway
-40	dijon	Dijon-Prenois	Dijon	France	0101000020E6100000F168E388B59813406666666666AE4740	484	http://en.wikipedia.org/wiki/Dijon-Prenois
-41	long_beach	Long Beach	California	USA	0101000020E61000006ABC7493188C5DC0B515FBCBEEE14040	12	http://en.wikipedia.org/wiki/Long_Beach,_California
-42	fuji	Fuji Speedway	Oyama	Japan	0101000020E61000008B6CE7FBA95D61402BF697DD93AF4140	583	http://en.wikipedia.org/wiki/Fuji_Speedway
-43	jacarepagua	Autódromo Internacional Nelson Piquet	Rio de Janeiro	Brazil	0101000020E6100000C3F5285C8FB245C044FAEDEBC0F936C0	1126	http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_Nelson_Piquet
-44	villeneuve	Circuit Gilles Villeneuve	Montreal	Canada	0101000020E61000005396218E756152C00000000000C04640	13	http://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve
-45	imola	Autodromo Enzo e Dino Ferrari	Imola	Italy	0101000020E61000001E166A4DF36E2740158C4AEA042C4640	37	http://en.wikipedia.org/wiki/Autodromo_Enzo_e_Dino_Ferrari
-46	las_vegas	Las Vegas Street Circuit	Nevada	USA	0101000020E61000004260E5D022CB5CC0C9E53FA4DF0E4240	639	http://en.wikipedia.org/wiki/Las_Vegas_Street_Circuit
-47	detroit	Detroit Street Circuit	Detroit	USA	0101000020E6100000742497FF90C254C0431CEBE2362A4540	177	http://en.wikipedia.org/wiki/Detroit_street_circuit
-48	dallas	Fair Park	Dallas	USA	0101000020E61000006ADE718A8E3058C088F4DBD781634040	139	http://en.wikipedia.org/wiki/Fair_Park
-49	estoril	Autódromo do Estoril	Estoril	Portugal	0101000020E6100000EF2076A6D0C922C055302AA913604340	130	http://en.wikipedia.org/wiki/Aut%C3%B3dromo_do_Estoril
-50	adelaide	Adelaide Street Circuit	Adelaide	Australia	0101000020E610000039B4C876BE536140F46C567DAE7641C0	58	http://en.wikipedia.org/wiki/Adelaide_Street_Circuit
-51	jerez	Circuito de Jerez	Jerez de la Frontera	Spain	0101000020E61000006C04E275FD2218C0DFE00B93A95A4240	37	http://en.wikipedia.org/wiki/Circuito_Permanente_de_Jerez
-52	hungaroring	Hungaroring	Budapest	Hungary	0101000020E61000001DC9E53FA43F3340C3D32B6519CA4740	264	http://en.wikipedia.org/wiki/Hungaroring
-53	suzuka	Suzuka Circuit	Suzuka	Japan	0101000020E61000005A643BDF4F116140F9A067B3EA6B4140	45	http://en.wikipedia.org/wiki/Suzuka_Circuit
-54	phoenix	Phoenix street circuit	Phoenix	USA	0101000020E6100000CDCCCCCCCC045CC06FF085C954B94040	345	http://en.wikipedia.org/wiki/Phoenix_street_circuit
-55	magny_cours	Circuit de Nevers Magny-Cours	Magny Cours	France	0101000020E610000073637AC2124F0940029A081B9E6E4740	228	http://en.wikipedia.org/wiki/Circuit_de_Nevers_Magny-Cours
-56	catalunya	Circuit de Barcelona-Catalunya	Montmeló	Spain	0101000020E6100000BB44F5D6C0160240295C8FC2F5C84440	109	http://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya
-57	donington	Donington Park	Castle Donington	UK	0101000020E6100000707CED992501F6BF5F07CE19516A4A40	88	http://en.wikipedia.org/wiki/Donington_Park
-58	okayama	Okayama International Circuit	Okayama	Japan	0101000020E6100000508D976E12C7604085EB51B81E754140	266	http://en.wikipedia.org/wiki/TI_Circuit
-59	albert_park	Albert Park Grand Prix Circuit	Melbourne	Australia	0101000020E6100000E5D022DBF91E6240A2B437F8C2EC42C0	10	http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit
-60	sepang	Sepang International Circuit	Kuala Lumpur	Malaysia	0101000020E6100000AC1C5A643B6F59408386FE092E160640	18	http://en.wikipedia.org/wiki/Sepang_International_Circuit
-61	bahrain	Bahrain International Circuit	Sakhir	Bahrain	0101000020E610000036AB3E575B414940B81E85EB51083A40	7	http://en.wikipedia.org/wiki/Bahrain_International_Circuit
-62	shanghai	Shanghai International Circuit	Shanghai	China	0101000020E6100000AE47E17A144E5E40499D8026C2563F40	5	http://en.wikipedia.org/wiki/Shanghai_International_Circuit
-63	istanbul	Istanbul Park	Istanbul	Turkey	0101000020E610000048E17A14AE673D4036CD3B4ED1794440	130	http://en.wikipedia.org/wiki/Istanbul_Park
-64	valencia	Valencia Street Circuit	Valencia	Spain	0101000020E610000049658A39083AD5BF3411363CBDBA4340	4	http://en.wikipedia.org/wiki/Valencia_Street_Circuit
-65	marina_bay	Marina Bay Street Circuit	Marina Bay	Singapore	0101000020E61000009EEFA7C64BF75940D3DEE00B93A9F43F	18	http://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit
-66	yas_marina	Yas Marina Circuit	Abu Dhabi	UAE	0101000020E6100000DA1B7C61324D4B40F2B0506B9A773840	3	http://en.wikipedia.org/wiki/Yas_Marina_Circuit
-67	yeongam	Korean International Circuit	Yeongam County	Korea	0101000020E6100000A69BC420B09A5F4012143FC6DC5D4140	0	http://en.wikipedia.org/wiki/Korean_International_Circuit
-68	buddh	Buddh International Circuit	Uttar Pradesh	India	0101000020E6100000D95F764F1E6253407E1D386744593C40	194	http://en.wikipedia.org/wiki/Buddh_International_Circuit
-69	americas	Circuit of the Americas	Austin	USA	0101000020E6100000CC5D4BC8076958C0A7E8482EFF213E40	161	http://en.wikipedia.org/wiki/Circuit_of_the_Americas
-70	sochi	Sochi Autodrom	Sochi	Russia	0101000020E6100000ED0DBE3099FA43405DFE43FAEDB34540	2	http://en.wikipedia.org/wiki/Sochi_Autodrom
-71	baku	Baku City Circuit	Baku	Azerbaijan	0101000020E6100000A1D634EF38ED484048E17A14AE2F4440	-7	http://en.wikipedia.org/wiki/Baku_City_Circuit
-72	mugello	Autodromo Internazionale del Mugello	Mugello	Italy	0101000020E6100000CAC342AD69BE264048E17A14AEFF4540	255	http://en.wikipedia.org/wiki/Mugello_Circuit
-73	portimao	Autódromo Internacional do Algarve	Portimão	Portugal	0101000020E610000070CE88D2DE4021C0931804560E9D4240	108	http://en.wikipedia.org/wiki/Algarve_International_Circuit
-74	losail	Losail International Circuit	Al Daayen	Qatar	0101000020E6100000EEEBC03923BA49403D0AD7A3707D3940	12	http://en.wikipedia.org/wiki/Losail_International_Circuit
-75	jeddah	Jeddah Corniche Circuit	Jeddah	Saudi Arabia	0101000020E6100000E8D9ACFA5C8D4340A857CA32C4A13540	15	http://en.wikipedia.org/wiki/Jeddah_Street_Circuit
-76	miami	Miami International Autodrome	Miami	USA	0101000020E6100000ECC039234A0F54C0304CA60A46F53940	0	http://en.wikipedia.org/wiki/Miami_International_Autodrome
-77	vegas	Las Vegas Strip Street Circuit	Las Vegas	United States	0101000020E6100000508D976E12CB5CC0F46C567DAE0E4240	642	https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix#Circuit
+COPY public.formula_one_circuit (id, reference, name, locality, country, altitude, wikipedia, country_code, latitude, longitude) FROM stdin;
+10	essarts	Rouen-Les-Essarts	Rouen	France	81	https://en.wikipedia.org/wiki/Rouen-Les-Essarts	FRA	49.3306	1.00458
+38	zolder	Zolder	Heusden-Zolder	Belgium	36	https://en.wikipedia.org/wiki/Circuit_Zolder	BEL	50.9894	5.25694
+52	hungaroring	Hungaroring	Budapest	Hungary	264	https://en.wikipedia.org/wiki/Hungaroring	HUN	47.5789	19.2486
+75	jeddah	Jeddah Corniche Circuit	Jeddah	Saudi Arabia	15	https://en.wikipedia.org/wiki/Jeddah_Corniche_Circuit	SAU	21.6319	39.1044
+60	sepang	Sepang International Circuit	Kuala Lumpur	Malaysia	18	https://en.wikipedia.org/wiki/Sepang_International_Circuit	MYS	2.76083	101.738
+45	imola	Autodromo Enzo e Dino Ferrari	Imola	Italy	37	https://en.wikipedia.org/wiki/Imola_Circuit	ITA	44.3439	11.7167
+74	losail	Losail International Circuit	Al Daayen	Qatar	12	https://en.wikipedia.org/wiki/Lusail_International_Circuit	QAT	25.49	51.4542
+63	istanbul	Istanbul Park	Istanbul	Turkey	130	https://en.wikipedia.org/wiki/Istanbul_Park	TUR	40.9517	29.405
+31	tremblant	Circuit Mont-Tremblant	Quebec	Canada	214	https://en.wikipedia.org/wiki/Circuit_Mont-Tremblant	CAN	46.1877	-74.6099
+61	bahrain	Bahrain International Circuit	Sakhir	Bahrain	7	https://en.wikipedia.org/wiki/Bahrain_International_Circuit	BHR	26.0325	50.5106
+7	monza	Autodromo Nazionale di Monza	Monza	Italy	162	https://en.wikipedia.org/wiki/Monza_Circuit	ITA	45.6156	9.28111
+36	nivelles	Nivelles-Baulers	Brussels	Belgium	139	https://en.wikipedia.org/wiki/Nivelles-Baulers	BEL	50.6211	4.32694
+34	red_bull_ring	Red Bull Ring	Spielberg	Austria	678	https://en.wikipedia.org/wiki/Red_Bull_Ring	AUT	47.2197	14.7647
+29	mosport	Mosport International Raceway	Ontario	Canada	332	https://en.wikipedia.org/wiki/Canadian_Tire_Motorsport_Park	CAN	44.0481	-78.6756
+8	nurburgring	Nürburgring	Nürburg	Germany	578	https://en.wikipedia.org/wiki/N%C3%BCrburgring	DEU	50.3356	6.9475
+32	montjuic	Montjuïc	Barcelona	Spain	79	https://en.wikipedia.org/wiki/Montju%C3%AFc_circuit	ESP	41.3664	2.15167
+66	yas_marina	Yas Marina Circuit	Abu Dhabi	UAE	3	https://en.wikipedia.org/wiki/Yas_Marina_Circuit	ARE	24.4672	54.6031
+54	phoenix	Phoenix street circuit	Phoenix	USA	345	https://en.wikipedia.org/wiki/Phoenix_street_circuit	USA	33.4479	-112.075
+51	jerez	Circuito de Jerez	Jerez de la Frontera	Spain	37	https://en.wikipedia.org/wiki/Circuito_de_Jerez	ESP	36.7083	-6.03417
+28	lemans	Le Mans	Le Mans	France	67	https://en.wikipedia.org/wiki/Circuit_de_la_Sarthe#Bugatti_Circuit	FRA	47.95	0.22423
+4	bremgarten	Circuit Bremgarten	Bern	Switzerland	551	https://en.wikipedia.org/wiki/Circuit_Bremgarten	CHE	46.9589	7.40194
+55	magny_cours	Circuit de Nevers Magny-Cours	Magny Cours	France	228	https://en.wikipedia.org/wiki/Circuit_de_Nevers_Magny-Cours	FRA	46.8642	3.16361
+15	boavista	Circuito da Boavista	Oporto	Portugal	28	https://en.wikipedia.org/wiki/Circuito_da_Boavista	PRT	41.1705	-8.67325
+53	suzuka	Suzuka Circuit	Suzuka	Japan	45	https://en.wikipedia.org/wiki/Suzuka_International_Racing_Course	JPN	34.8431	136.541
+69	americas	Circuit of the Americas	Austin	USA	161	https://en.wikipedia.org/wiki/Circuit_of_the_Americas	USA	30.1328	-97.6411
+35	ricard	Circuit Paul Ricard	Le Castellet	France	432	https://en.wikipedia.org/wiki/Circuit_Paul_Ricard	FRA	43.2506	5.79167
+26	charade	Charade Circuit	Clermont-Ferrand	France	790	https://en.wikipedia.org/wiki/Circuit_de_Charade	FRA	45.7472	3.03889
+76	miami	Miami International Autodrome	Miami	USA	0	https://en.wikipedia.org/wiki/Miami_International_Autodrome	USA	25.9581	-80.2389
+9	pedralbes	Circuit de Pedralbes	Barcelona	Spain	85	https://en.wikipedia.org/wiki/Pedralbes_Circuit	ESP	41.3903	2.11667
+18	monsanto	Monsanto Park Circuit	Lisbon	Portugal	158	https://en.wikipedia.org/wiki/Circuito_de_Monsanto	PRT	38.7197	-9.20306
+27	kyalami	Kyalami	Midrand	South Africa	1460	https://en.wikipedia.org/wiki/Kyalami	ZAF	-25.9894	28.0767
+77	vegas	Las Vegas Strip Street Circuit	Las Vegas	USA	642	https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix#Circuit	USA	36.1147	-115.173
+65	marina_bay	Marina Bay Street Circuit	Marina Bay	Singapore	18	https://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit	SGP	1.2914	103.864
+33	hockenheimring	Hockenheimring	Hockenheim	Germany	103	https://en.wikipedia.org/wiki/Hockenheimring	DEU	49.3278	8.56583
+16	ain-diab	Ain Diab	Casablanca	Morocco	19	https://en.wikipedia.org/wiki/Ain-Diab_Circuit	MAR	33.5786	-7.6875
+50	adelaide	Adelaide Street Circuit	Adelaide	Australia	58	https://en.wikipedia.org/wiki/Adelaide_Street_Circuit	AUS	-34.9272	138.617
+39	anderstorp	Scandinavian Raceway	Anderstorp	Sweden	153	https://en.wikipedia.org/wiki/Anderstorp_Raceway	SWE	57.2653	13.6042
+6	reims	Reims-Gueux	Reims	France	88	https://en.wikipedia.org/wiki/Reims-Gueux	FRA	49.2542	3.93083
+62	shanghai	Shanghai International Circuit	Shanghai	China	5	https://en.wikipedia.org/wiki/Shanghai_International_Circuit	CHN	31.3389	121.22
+44	villeneuve	Circuit Gilles Villeneuve	Montreal	Canada	13	https://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve	CAN	45.5	-73.5228
+25	zeltweg	Zeltweg	Styria	Austria	676	https://en.wikipedia.org/wiki/Zeltweg_Air_Base	AUT	47.2039	14.7478
+11	zandvoort	Circuit Park Zandvoort	Zandvoort	Netherlands	6	https://en.wikipedia.org/wiki/Circuit_Zandvoort	NLD	52.3888	4.54092
+41	long_beach	Long Beach	California	USA	12	https://en.wikipedia.org/wiki/Long_Beach,_California	USA	33.7651	-118.189
+48	dallas	Fair Park	Dallas	USA	139	https://en.wikipedia.org/wiki/Fair_Park	USA	32.7774	-96.7587
+47	detroit	Detroit Street Circuit	Detroit	USA	177	https://en.wikipedia.org/wiki/Detroit_street_circuit	USA	42.3298	-83.0401
+68	buddh	Buddh International Circuit	Uttar Pradesh	India	194	https://en.wikipedia.org/wiki/Buddh_International_Circuit	IND	28.3487	77.5331
+20	riverside	Riverside International Raceway	California	USA	470	https://en.wikipedia.org/wiki/Riverside_International_Raceway	USA	33.937	-117.273
+30	jarama	Jarama	Madrid	Spain	609	https://en.wikipedia.org/wiki/Circuito_del_Jarama	ESP	40.6171	-3.58558
+73	portimao	Autódromo Internacional do Algarve	Portimão	Portugal	108	https://en.wikipedia.org/wiki/Algarve_International_Circuit	PRT	37.227	-8.6267
+59	albert_park	Albert Park Grand Prix Circuit	Melbourne	Australia	10	https://en.wikipedia.org/wiki/Albert_Park_Circuit	AUS	-37.8497	144.968
+21	watkins_glen	Watkins Glen	New York State	USA	485	https://en.wikipedia.org/wiki/Watkins_Glen_International	USA	42.3369	-76.9272
+49	estoril	Autódromo do Estoril	Estoril	Portugal	130	https://en.wikipedia.org/wiki/Circuito_do_Estoril	PRT	38.7506	-9.39417
+67	yeongam	Korean International Circuit	Yeongam County	Korea	0	https://en.wikipedia.org/wiki/Korea_International_Circuit	KOR	34.7333	126.417
+43	jacarepagua	Autódromo Internacional Nelson Piquet	Rio de Janeiro	Brazil	1126	https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_Nelson_Piquet	BRA	-22.9756	-43.395
+72	mugello	Autodromo Internazionale del Mugello	Mugello	Italy	255	https://en.wikipedia.org/wiki/Mugello_Circuit	ITA	43.9975	11.3719
+58	okayama	Okayama International Circuit	Okayama	Japan	266	https://en.wikipedia.org/wiki/Okayama_International_Circuit	JPN	34.915	134.221
+42	fuji	Fuji Speedway	Oyama	Japan	583	https://en.wikipedia.org/wiki/Fuji_Speedway	JPN	35.3717	138.927
+12	galvez	Autódromo Juan y Oscar Gálvez	Buenos Aires	Argentina	8	https://en.wikipedia.org/wiki/Autódromo_Oscar_y_Juan_Gálvez	ARG	-34.6943	-58.4593
+14	pescara	Pescara Circuit	Pescara	Italy	129	https://en.wikipedia.org/wiki/Pescara_Circuit	ITA	42.475	14.1508
+2	monaco	Circuit de Monaco	Monte-Carlo	Monaco	7	https://en.wikipedia.org/wiki/Circuit_de_Monaco	MCO	43.7347	7.42056
+1	silverstone	Silverstone Circuit	Silverstone	UK	153	https://en.wikipedia.org/wiki/Silverstone_Circuit	GBR	52.0786	-1.01694
+5	spa	Circuit de Spa-Francorchamps	Spa	Belgium	401	https://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps	BEL	50.4372	5.97139
+19	sebring	Sebring International Raceway	Florida	USA	18	https://en.wikipedia.org/wiki/Sebring_International_Raceway	USA	27.4547	-81.3483
+37	interlagos	Autódromo José Carlos Pace	São Paulo	Brazil	785	https://en.wikipedia.org/wiki/Interlagos_Circuit	BRA	-23.7036	-46.6997
+23	rodriguez	Autódromo Hermanos Rodríguez	Mexico City	Mexico	2227	https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez	MEX	19.4042	-99.0907
+22	george	Prince George Circuit	Eastern Cape Province	South Africa	15	https://en.wikipedia.org/wiki/Prince_George_Circuit	ZAF	-33.0486	27.8736
+56	catalunya	Circuit de Barcelona-Catalunya	Montmeló	Spain	109	https://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya	ESP	41.57	2.26111
+57	donington	Donington Park	Castle Donington	UK	88	https://en.wikipedia.org/wiki/Donington_Park	GBR	52.8306	-1.37528
+17	avus	AVUS	Berlin	Germany	53	https://en.wikipedia.org/wiki/AVUS	DEU	52.4806	13.2514
+40	dijon	Dijon-Prenois	Dijon	France	484	https://en.wikipedia.org/wiki/Dijon-Prenois	FRA	47.3625	4.89913
+70	sochi	Sochi Autodrom	Sochi	Russia	2	https://en.wikipedia.org/wiki/Sochi_Autodrom	RUS	43.4057	39.9578
+13	aintree	Aintree	Liverpool	UK	20	https://en.wikipedia.org/wiki/Aintree_Motor_Racing_Circuit	GBR	53.4769	-2.94056
+3	indianapolis	Indianapolis Motor Speedway	Indianapolis	USA	223	https://en.wikipedia.org/wiki/Indianapolis_Motor_Speedway	USA	39.795	-86.2347
+46	las_vegas	Las Vegas Street Circuit	Nevada	USA	639	https://en.wikipedia.org/wiki/Las_Vegas_Strip_Circuit	USA	36.1162	-115.174
+64	valencia	Valencia Street Circuit	Valencia	Spain	4	https://en.wikipedia.org/wiki/Valencia_Street_Circuit	ESP	39.4589	-0.331667
+24	brands_hatch	Brands Hatch	Kent	UK	145	https://en.wikipedia.org/wiki/Brands_Hatch	GBR	51.3569	0.26306
+71	baku	Baku City Circuit	Baku	Azerbaijan	-7	https://en.wikipedia.org/wiki/Baku_City_Circuit	AZE	40.3725	49.8533
 \.
 
 
