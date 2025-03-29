@@ -1,4 +1,5 @@
 setup:
+	poetry install
 	pre-commit install # Install pre-commit hooks
 
 format:

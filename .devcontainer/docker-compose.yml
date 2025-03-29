@@ -18,7 +18,7 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
-    image: postgis/postgis:16-3.4
+    image: postgres:16
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data

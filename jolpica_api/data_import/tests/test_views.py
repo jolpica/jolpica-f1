@@ -260,7 +260,7 @@ def test_validation_error_has_logs(client):
     assert not log.is_success
     assert not log.dry_run
     assert log.error_type == "VALIDATION"
-    assert log.errors[0]["type"] == "missing"
+    assert log.errors[0]["type"] == "literal_error"
 
 
 @pytest.mark.django_db
