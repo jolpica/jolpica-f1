@@ -2,11 +2,13 @@
 set -e
 
 DATABASE_HOST=${1:-localhost}
+DATABASE_NAME=${2:-jolpica}
+DATABASE_USERNAME=${3:-postgres}
 
 echo "Restoring database from dump.zip to $DATABASE_HOST"
 
 # Unzip the dump
-unzip -o dump.zip -d dump/
+unzip -o dump.zip
 
 # Define the table order based on dependencies
 FOREIGN_KEY_TABLE_ORDER=(
@@ -44,7 +46,7 @@ done
 echo "Starting table truncating"
 for table in "${ALL_TABLES[@]}"; do
   echo "Truncating table: $table"
-  PGOPTIONS="-c client_min_messages=error" psql -h $DATABASE_HOST -U postgres -d jolpica -c "TRUNCATE TABLE $table CASCADE;"
+  PGOPTIONS="-c client_min_messages=error" psql -h $DATABASE_HOST -U $DATABASE_USERNAME -d $DATABASE_NAME -c "TRUNCATE TABLE $table CASCADE;"
 done
 
 # Import dumped data
@@ -53,11 +55,12 @@ echo "Starting table import"
 for table in "${PROCESS_TABLES[@]}"; do
   file="dump/${table}.csv"
   if [ -f "$file" ]; then
+    header=$(head -n 1 $file)
     echo "Restoring table: $table"
-    psql -h $DATABASE_HOST -U postgres -d jolpica -c "\copy $table FROM '$file' WITH CSV HEADER;"
+    psql -h $DATABASE_HOST -U $DATABASE_USERNAME -d $DATABASE_NAME -c "\copy $table ($header) FROM '$file' WITH CSV HEADER;"
     # Update the auto-increment sequence
     sequence_name="${table}_id_seq"
-    psql -h $DATABASE_HOST -U postgres -d jolpica -c "SELECT setval('${sequence_name}', (SELECT COALESCE(MAX(id), 1) FROM ${table}));"
+    psql -h $DATABASE_HOST -U $DATABASE_USERNAME -d $DATABASE_NAME -c "SELECT setval('${sequence_name}', (SELECT COALESCE(MAX(id), 1) FROM ${table}));"
   else
     echo "Warning: CSV file not found for table $table"
   fi
