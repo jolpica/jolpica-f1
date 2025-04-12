@@ -401,13 +401,13 @@ class QualifyingViewSet(ErgastModelViewSet):
                 Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)),
                 Prefetch(
                     "session_entries",
-                    queryset=SessionEntry.objects.filter(session__type__startswith="Q")
+                    queryset=SessionEntry.objects.filter(session__type__startswith="Q", is_classified=True)
                     .order_by("session__number")
                     .select_related("session")
                     .prefetch_related(
                         Prefetch(
                             "laps",
-                            queryset=Lap.objects.filter(is_entry_fastest_lap=True),
+                            queryset=Lap.objects.filter(is_entry_fastest_lap=True, is_deleted=False),
                             to_attr="fastest_lap_list",
                         )
                     ),
