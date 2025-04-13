@@ -1,5 +1,6 @@
 import requests
 from django.http import HttpResponseForbidden
+from django.http.request import HttpRequest
 
 
 def get_ec2_token() -> str:
@@ -50,10 +51,22 @@ def client_ip_middleware(get_response):
 def ip_blocks_middleware(get_response):
     """Block IP addresses from accessing the API."""
 
-    def process_request(request):
+    def process_request(request: HttpRequest):
         if request.META["REMOTE_ADDR"] in {"45.61.185.154"}:
             # IP of http://allorigins.win
             return HttpResponseForbidden("Too many requests from this IP. Please avoid proxy services.")
+        return get_response(request)
+
+    return process_request
+
+
+def queryparam_blocks_middleware(get_response):
+    """Block IP addresses from accessing the API."""
+
+    def process_request(request: HttpRequest):
+        for key in request.GET.keys():
+            if "cache" in key.lower():
+                return HttpResponseForbidden("Please be considerate of other API users and do not avoid caches.")
         return get_response(request)
 
     return process_request
