@@ -401,7 +401,7 @@ class QualifyingViewSet(ErgastModelViewSet):
                 Prefetch("round__sessions", queryset=Session.objects.filter(type=SessionType.RACE)),
                 Prefetch(
                     "session_entries",
-                    queryset=SessionEntry.objects.filter(session__type__startswith="Q", is_classified=True)
+                    queryset=SessionEntry.objects.filter(session__type__startswith="Q")
                     .order_by("session__number")
                     .select_related("session")
                     .prefetch_related(
