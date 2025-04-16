@@ -29,10 +29,9 @@ Current requirements are:
 - A postgres database which can be accessed via the `DATABASE_SECRET_URL` environment variable.
 
 ### Data Import
-- If not using the devcontainer, Install python dependencies `poetry install`, and activate the shell
+- If not using the devcontainer, Install python dependencies `poetry install`, and activate the environment
   ```
-  poetry self add poetry-plugin-shell
-  poetry shell
+  eval $(poetry env activate)
   ```
 - Run any initial setup for development
   ```
