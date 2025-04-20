@@ -9,7 +9,7 @@ wsgi_app = "jolpica_api.wsgi:application"
 
 bind = "0.0.0.0:5000"
 
-workers = 2
+workers = 4
 
 threads = 3
 
