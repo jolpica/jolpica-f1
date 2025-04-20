@@ -13,7 +13,7 @@ Returns a list of sprint race results.
 
 ### Season
 
-Filters for sprint results only from a specified season. Year numbers are valid as is `current`.
+Filters for sprint results only from a specified season. Year numbers are valid, as is `current`.
 
 `/{season}/` -> ex: `/ergast/f1/2023/sprint/`
 
@@ -41,7 +41,7 @@ Filters for only sprint results from races at a specified circuit.
 
 ### constructors
 
-Filters for only sprint results for drivers racings for a specified constructor.
+Filters for only sprint results for drivers racing for a specified constructor.
 
 `/constructors/{constructorId}/` -> ex: `/ergast/f1/constructors/mclaren/sprint/`
 

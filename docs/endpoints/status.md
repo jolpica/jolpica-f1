@@ -9,7 +9,7 @@ In the future data returned by this endpoint, and the status field returned by o
 
 Seasons prior to 2024 may have their corresponding status ids changed to match our updated enumeration of possible statuses ([see here](https://github.com/jolpica/jolpica-f1/blob/71f12b1c9637aa838926abcb6f4840fbfac4d87c/jolpica/formula_one/models/session.py#L64-L71)). So it is not recommended to rely on statusId values other than: 1 (Finished), 2 (Disqualified), 3 (Accident), 31 (Retired), 143 (Lapped).
 
-Please note statusId 3, is currently not implemented for newer seasons, so some statuses that currently return 31 (Retired), may be updated to 3 (Retired) in the future.
+Please note statusId 3, is currently not implemented for newer seasons, so some statuses that currently return 31 (Retired), may be updated to 3 (Accident) in the future.
 
 **URL** : `/ergast/f1/status/`
 
@@ -93,9 +93,9 @@ Filters for only a specific status ID.
 
 `/status/{statusId}/` -> ex: `/ergast/f1/status/1/`
 
-**DISCLAIMER**: Seasons prior to 2024 may have their corresponding status ids changed to match our updated enumeration of possible statuses ([see here](https://github.com/jolpica/jolpica-f1/blob/71f12b1c9637aa838926abcb6f4840fbfac4d87c/jolpica/formula_one/models/session.py#L64-L71)). So it is not recommended to rely on statusId values other than: 1 (Finished), 2 (Disqualified), 3 (Accident), 31 (Retired), 143 (Lapped).
+**DISCLAIMER**: Seasons prior to 2024 may have their corresponding status ids changed to match our updated enumeration of possible statuses ([see here](https://github.com/jolpica/jolpica-f1/blob/71f12b1c9637aa838926abcb6f4840fbfac4d87c/jolpica/formula_one/models/session.py#L64-L71)). So it is not recommended to rely on `statusId` values other than: 1 (Finished), 2 (Disqualified), 3 (Accident), 31 (Retired), 143 (Lapped).
 
-Please note statusId 3, is currently not implemented for newer seasons, so some statuses that currently return 31 (Retired), may be updated to 3 (Retired) in the future.
+Please note `statusId` 3, is currently not implemented for newer seasons, so some statuses that currently return 31 (Retired), may be updated to 3 (Retired) in the future.
 
 ---
 
