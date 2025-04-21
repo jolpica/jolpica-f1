@@ -25,7 +25,7 @@ CACHE_TIME_SECONDS = 60 * 60 if DEPLOYMENT_ENV == "PROD" else 15
 @cache_page(CACHE_TIME_SECONDS)
 @api_view()
 def api_root_view(request: Request) -> Response:
-    example_season = "2024"
+    example_season = "2025"
     return Response(
         {
             "season": request.build_absolute_uri("f1/seasons"),
