@@ -11,7 +11,7 @@ jolpica-f1 is an open-source API for querying Formula 1 data. It is the successo
 ---
 
 ## Endpoints and Documentation:
-For any gaps found within our documentation, please check the Ergast docs [here](http://ergast.com/mrd/). 
+For any gaps found within our documentation, please check the Ergast docs [here](http://ergast.com/mrd/).
 
 | Endpoint                                              | Route |
 |-----                                                  |-----|
@@ -22,12 +22,12 @@ For any gaps found within our documentation, please check the Ergast docs [here]
 | [Driver Standings](/docs/endpoints/driverStandings.md)| `/ergast/f1/{season}/driverstandings/` |
 | [Laps](/docs/endpoints/laps.md)                       | `/ergast/f1/{season}/{round}/laps/` |
 | [Pitstops](/docs/endpoints/pitstops.md)               | `/ergast/f1/{season}/{round}/pitstops/` |
-| [Qualifying](/docs/endpoints/qualifying.md)              | `/ergast/f1/{season}/qualifying/` |
+| [Qualifying](/docs/endpoints/qualifying.md)           | `/ergast/f1/{season}/qualifying/` |
 | [Races](/docs/endpoints/races.md)                     | `/ergast/f1/races/` |
 | [Results](/docs/endpoints/results.md)                 | `/ergast/f1/results/` |
 | [Seasons](/docs/endpoints/seasons.md)                 | `/ergast/f1/seasons/` |
-| Sprint                                                | `/ergast/f1/sprint/` |
-| Status                                                |  `/ergast/f1/status/` |
+| [Sprint](/docs/endpoints/sprint.md)                   | `/ergast/f1/sprint/` |
+| [Status](/docs/endpoints/status.md)                   | `/ergast/f1/status/` |
 
 **Note**: All endpoints should either end with a `/` or `.json`
 
