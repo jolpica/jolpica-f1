@@ -19,58 +19,22 @@ Check out our database docs [here](https://dbdocs.io/jolpica/jolpica-f1?view=rel
 [![Database Scheme for jolpica-f1](docs/database.svg)](https://dbdocs.io/jolpica/jolpica-f1?view=relationships)
 Many Enumerations are used in the database, the mappings of these values are defined in their respective model files. For example you can find the enumerations for the PointSystem table [here](jolpica/formula_one/models/point_scheme.py)
 
-# Development
-## Initial Setup
-### Prerequisite
-Use of the devcontainer is recommended. If not using, look at `.devcontainer/Dockerfile` for required installs.<br>
-Current requirements are:
-- Poetry for python
-- [Geo Libraries for postgis and geodjango](https://docs.djangoproject.com/en/4.2/ref/contrib/gis/install/geolibs/#geosbuild)
-- A postgres database which can be accessed via the `DATABASE_SECRET_URL` environment variable.
-
-### Data Import
-- If not using the devcontainer, Install python dependencies `poetry install`, and activate the environment
-  ```
-  eval $(poetry env activate)
-  ```
-- Run any initial setup for development
-  ```
-  make setup
-  ```
-- Create all required database tables
-  ```
-  python manage.py migrate
-  ```
-- Download csv data from ergast and import into postgres database
-  ```
-  make load-ergast-data
-  ```
-- Convert data to new schema, then run & create the test database
-  ```
-  make import-from-ergast
-  pytest --create-db
-  ```
-This will fill the database with the latest data from ergast, and create the initial test database so all future tests will run quicker.
-
-## Running the Server
-
-To run the server
-
-```make run```
-
-This will start jolpica-f1 on port 8000. Once it is running you can access the API via browser, curl or any other tools with `http://localhost:8000/ergast/f1/`. Any changes made to the source code will be automatically updated, while it is running.
-
-## Running Tests
-The first time the tests are run it will take upto 2 minutes to populate the database with test data, pytest is configured to reuse this database on future runs, so tests should run much faster on future runs.<br>
-To run tests after a migration change you must run with the `--create-db` flag to ensure it uses the new migrations.<br>
-
-To run the tests
-```pytest```
-
 ## Reporting Bugs / Contributing
 
 For information on contributing to this project please read the [contributing guidelines](CONTRIBUTING.md).
+You can also find instructions to run the project locally in [CONTRIBUTING.md](CONTRIBUTING.md).
 
 # Community Projects
 
-Check out the list of [community projects](/docs/community_projects.md) using Jolpica F1
+Below is a list of some open source community projects that use the jolpica-f1 API. If you've created something you'd like to share feel free to open a pull request to add it to the list.
+
+### SDKs
+- [FastF1](https://github.com/theOehrly/Fast-F1) - Python package for accessing and analyzing Formula 1 results, schedules, timing data and telemetry.
+- [f1dataR](https://github.com/SCasanova/f1dataR)-  R package to access Formula 1 Data from the jolpica-f1 API.
+- [JolpicaKit](https://github.com/fantasia-y/JolpicaKit) - Swift wrapper for the jolpica-f1 API.
+
+### Applications and Integrations
+- [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card) - Home Assistant Card showing Formula One Data.
+- [tap-f1](https://github.com/ReubenFrankel/tap-f1)-  A Singer tap for F1.
+- [Next F1 Race scriptable widget](https://github.com/timespacedecay/scriptable) - Widget for scriptable to display the next F1 Race.
+- [FormulaVision](https://github.com/skat9234/formula-vision) - A Mobile F1 Dashboard built with Flutter.
