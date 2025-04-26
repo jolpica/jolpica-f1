@@ -29,11 +29,12 @@ You can also find instructions to run the project locally in [CONTRIBUTING.md](C
 Below is a list of some open source community projects that use the jolpica-f1 API. If you've created something you'd like to share feel free to open a pull request to add it to the list.
 
 ### SDKs
-- [FastF1](https://github.com/theOehrly/Fast-F1): FastF1 is a python package for accessing and analyzing Formula 1 results, schedules, timing data and telemetry.
-- [f1dataR](https://github.com/SCasanova/f1dataR): An R package to access Formula 1 Data from the Jolpica API.
-- [JolpicaKit](https://github.com/fantasia-y/JolpicaKit): A Swift wrapper for the Jolpica F1 API.
+- [FastF1](https://github.com/theOehrly/Fast-F1) - Python package for accessing and analyzing Formula 1 results, schedules, timing data and telemetry.
+- [f1dataR](https://github.com/SCasanova/f1dataR)-  R package to access Formula 1 Data from the jolpica-f1 API.
+- [JolpicaKit](https://github.com/fantasia-y/JolpicaKit) - Swift wrapper for the jolpica-f1 API.
 
 ### Applications and Integrations
-- [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card): Home Assistant Card showing Formula One Data.
-- [tap-f1](https://github.com/ReubenFrankel/tap-f1): A Singer tap for F1.
-- [Next F1 Race scriptable widget](https://github.com/timespacedecay/scriptable) Widget for scriptable to display the next F1 Race.
+- [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card) - Home Assistant Card showing Formula One Data.
+- [tap-f1](https://github.com/ReubenFrankel/tap-f1)-  A Singer tap for F1.
+- [Next F1 Race scriptable widget](https://github.com/timespacedecay/scriptable) - Widget for scriptable to display the next F1 Race.
+- [FormulaVision](https://github.com/skat9234/formula-vision) - A Mobile F1 Dashboard built with Flutter.
