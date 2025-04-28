@@ -1,161 +1,124 @@
-from django.db.models import Q
-from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import filters, viewsets
-from rest_framework.pagination import PageNumberPagination
+from django.db.models import Prefetch
+from django.utils import timezone
+from rest_framework import permissions, response, viewsets
 
-from jolpica.formula_one.models import (
-    Circuit,
-    Driver,
-    Round,
-    Season,
-    Session,
-    SessionEntry,
-    Team,
-)
+from jolpica.formula_one.models import Round, Season, Session, SessionType
 
-from .serializers import (
-    CircuitSerializer,
-    DriverSerializer,
-    RoundSerializer,
-    SeasonSerializer,
-    SessionEntrySerializer,
-    SessionSerializer,
-    TeamSerializer,
-)
+# Import the updated serializers
+from .serializers import SeasonScheduleSerializer
 
 
-class CustomPageNumberPagination(PageNumberPagination):
-    page_size = 100
+class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows the full schedule for a season to be viewed.
+    Includes details for each round and session, plus links to previous/next race.
+    Optimized to reduce database queries.
+    """
 
-
-class SeasonViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Season.objects.all()
-    serializer_class = SeasonSerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["year"]
-    search_fields = ["year"]
+    serializer_class = SeasonScheduleSerializer
+    permission_classes = [permissions.AllowAny]  # Or adjust as needed
     lookup_field = "year"
 
-
-class RoundViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Round.objects.all()
-    serializer_class = RoundSerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["season__year", "number"]
-    search_fields = ["season__year", "number"]
-
     def get_queryset(self):
         """
-        Optionally filter rounds by year.
+        Prefetch related rounds (ordered by date) and their sessions (ordered by date/time)
+        and circuit details for efficiency.
         """
-        queryset = self.queryset
+        rounds_prefetch = Prefetch(
+            "rounds",
+            queryset=Round.objects.prefetch_related(
+                Prefetch("sessions", queryset=Session.objects.order_by("date", "time"), to_attr="prefetched_sessions"),
+                "circuit",
+            )
+            .select_related("circuit")
+            .order_by("date"),
+            to_attr="prefetched_rounds_ordered",
+        )
+
+        queryset = Season.objects.prefetch_related(rounds_prefetch).all()
+
         year = self.kwargs.get("year")
-        if year is not None:
-            queryset = queryset.filter(season__year=year)
+        if year:
+            queryset = queryset.filter(year=year)
+
         return queryset
 
-
-class CircuitViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Circuit.objects.all()
-    serializer_class = CircuitSerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["location", "country"]
-    search_fields = ["name", "location", "country"]
-
-    def get_queryset(self):
+    def get_serializer_context(self):
         """
-        Optionally filter circuits by year.
+        Pass request and pre-calculated next/previous round info to the serializer.
         """
-        queryset = self.queryset
-        year = self.request.query_params.get("year")
-        if year is not None:
-            queryset = queryset.filter(Q(sessions__round__season__year=year)).distinct()
-        return queryset
+        context = super().get_serializer_context()
+        context["request"] = self.request
+        # We will add previous_round_info and next_round_info in retrieve
+        return context
 
-
-class TeamViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Team.objects.all()
-    serializer_class = TeamSerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["nationality"]
-    search_fields = ["name", "nationality"]
-
-    def get_queryset(self):
+    def retrieve(self, request, *args, **kwargs):
         """
-        Optionally filter teams by year.
+        Handle single season retrieval, calculating next/previous round number and index efficiently.
         """
-        queryset = self.queryset
-        year = self.request.query_params.get("year")
-        if year is not None:
-            queryset = queryset.filter(Q(session_entries__session__round__season__year=year)).distinct()
-        return queryset
+        instance = self.get_object()  # Gets the Season instance with prefetched data
 
+        # --- Optimization: Calculate next/previous round number and index here ---
+        today = timezone.now().date()
+        previous_round_info = None
+        next_round_info = None
 
-class DriverViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Driver.objects.all()
-    serializer_class = DriverSerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["nationality"]
-    search_fields = ["forename", "surname", "nationality"]
+        rounds_list = (
+            list(instance.prefetched_rounds_ordered)
+            if hasattr(instance, "prefetched_rounds_ordered")
+            else list(instance.rounds.order_by("date"))
+        )
 
-    def get_queryset(self):
-        """
-        Optionally filter drivers by year.
-        """
-        queryset = self.queryset
-        year = self.request.query_params.get("year")
-        if year is not None:
-            queryset = queryset.filter(Q(session_entries__session__round__season__year=year)).distinct()
-        return queryset
+        last_valid_previous_index = -1
+        first_valid_next_index = -1
 
+        for i, round_instance in enumerate(rounds_list):
+            # Check if the round has a Race session
+            has_race_session = False
+            if hasattr(round_instance, "prefetched_sessions"):
+                has_race_session = any(s.type == SessionType.RACE for s in round_instance.prefetched_sessions)
 
-class SessionViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Session.objects.all()
-    serializer_class = SessionSerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["round__season__year", "round", "session_type"]
-    search_fields = ["round__season__year", "round__round_number", "session_type"]
+            if has_race_session and round_instance.date:
+                if round_instance.date < today:
+                    # Store the index of the latest past race found so far
+                    last_valid_previous_index = i
+                elif round_instance.date >= today and first_valid_next_index == -1:
+                    # This is the first upcoming race
+                    first_valid_next_index = i
+                    # Now we have the next race index, the previous one is the one right before it (if valid)
+                    break  # Stop searching once the first upcoming race is found
 
-    def get_queryset(self):
-        """
-        Optionally filter sessions by year and round.
-        """
-        queryset = self.queryset
-        year = self.request.query_params.get("year")
-        round = self.request.query_params.get("round")
-        if year is not None:
-            queryset = queryset.filter(round__season__year=year)
-        if round is not None:
-            queryset = queryset.filter(round=round)
-        return queryset
+        # Construct the output dictionaries using the calculated indices
+        if last_valid_previous_index != -1:
+            prev_round = rounds_list[last_valid_previous_index]
+            if prev_round.number is not None:  # Ensure round number exists
+                previous_round_info = {"number": prev_round.number, "index": last_valid_previous_index}
 
+        if first_valid_next_index != -1:
+            next_round = rounds_list[first_valid_next_index]
+            if next_round.number is not None:  # Ensure round number exists
+                next_round_info = {"number": next_round.number, "index": first_valid_next_index}
 
-class SessionEntryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = SessionEntry.objects.all()
-    serializer_class = SessionEntrySerializer
-    pagination_class = CustomPageNumberPagination
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ["session__round__season__year", "session"]
-    search_fields = [
-        "session__round__season__year",
-        "session__round__round_number",
-    ]
+        # --- End Optimization ---
 
-    def get_queryset(self):
-        """
-        Optionally filter session entries by year and session.
-        """
-        queryset = self.queryset
-        year = self.request.query_params.get("year")
-        session = self.request.query_params.get("session")
-        if year is not None:
-            queryset = queryset.filter(session__round__season__year=year).distinct()
-        if session is not None:
-            queryset = queryset.filter(session=session)
-        return queryset
+        # Pass the calculated info to the serializer context
+        context = self.get_serializer_context()
+        context["previous_round_info"] = previous_round_info
+        context["next_round_info"] = next_round_info
+
+        # Manually assign prefetched sessions using a temp attribute
+        if hasattr(instance, "prefetched_rounds_ordered"):
+            instance.rounds_for_serializer = []
+            for r in instance.prefetched_rounds_ordered:
+                if hasattr(r, "prefetched_sessions"):
+                    r.sessions_for_serializer = r.prefetched_sessions
+                else:
+                    r.sessions_for_serializer = list(r.sessions.order_by("date", "time"))  # Fallback query
+                instance.rounds_for_serializer.append(r)
+        else:
+            instance.rounds_for_serializer = list(instance.rounds.order_by("date").prefetch_related("sessions"))
+            for r in instance.rounds_for_serializer:
+                r.sessions_for_serializer = list(r.sessions.order_by("date", "time"))
+
+        serializer = self.get_serializer(instance, context=context)
+        return response.Response(serializer.data)

@@ -26,6 +26,7 @@ urlpatterns = [
     path("ergast/", include("jolpica_api.ergastapi.urls")),
     path("data/", include("jolpica_api.data_import.urls")),
     path("auth/", include("jolpica_api.authentication.urls")),
+    path("f1/alpha/", include("jolpica_api.f1_api.urls")),
     path("", views.healthcheck),
     path("test/", views.test),
 ]
