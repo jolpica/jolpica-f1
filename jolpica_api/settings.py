@@ -17,6 +17,12 @@ import environ  # type: ignore
 from .deployment_utils import get_linux_ec2_private_ip
 from .logging import LOG_CONFIG
 
+if Path("VERSION").exists():
+    with open("VERSION") as f:
+        VERSION = f.read().strip()
+else:
+    VERSION = "dev"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -68,6 +74,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "knox",
+    "drf_spectacular",
     "jolpica.formula_one",
     "jolpica_api.authentication",
     "jolpica_api.ergastapi",
@@ -213,6 +220,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "PAGE_SIZE": 30,
 }
 
@@ -222,10 +230,30 @@ REST_KNOX = {
     "TOKEN_PREFIX": "jolp",
 }
 
-LOGGING = LOG_CONFIG if DEPLOYMENT_ENV != "LOCAL" else None
+SPECTACULAR_SETTINGS = {
+    "TITLE": "jolpica-f1 API",
+    "DESCRIPTION": "API for Formula 1 data.",
+    "VERSION": VERSION,
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX": "/f1/",
+    "PREPROCESSING_HOOKS": [
+        "jolpica_api.deployment_utils.drf_spectacular_filter_preprocess",
+    ],
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "persistAuthorization": True,
+    },
+    "SERVE_PERMISSIONS": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "SERVE_AUTHENTICATION": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+    # Target only the /f1/alpha/ endpoints for inclusion in the schema
+    # 'SERVERS': [
+    #     {'url': '/'}, # Or specific domain if deployed
+    # ],
+}
 
-if Path("VERSION").exists():
-    with open("VERSION") as f:
-        VERSION = f.read().strip()
-else:
-    VERSION = "dev"
+LOGGING = LOG_CONFIG if DEPLOYMENT_ENV != "LOCAL" else None
