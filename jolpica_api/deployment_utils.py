@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 import requests
 from django.http import HttpResponseForbidden
 from django.http.request import HttpRequest
@@ -70,3 +72,14 @@ def queryparam_blocks_middleware(get_response):
         return get_response(request)
 
     return process_request
+
+
+def drf_spectacular_filter_preprocess(
+    endpoints: list[tuple[str, str, str, Callable]],
+) -> list[tuple[str, str, str, Callable]]:
+    """Filter the OpenAPI schema to remove unwanted endpoints."""
+    filtered = []
+    for path, path_regex, method, callback in endpoints:
+        if path.startswith("/f1"):
+            filtered.append((path, path_regex, method, callback))
+    return filtered

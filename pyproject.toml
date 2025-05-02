@@ -25,6 +25,7 @@ uvicorn = "^0.30.5"
 opentelemetry-sdk = "^1.26.0"
 opentelemetry-exporter-otlp = "^1.26.0"
 django-cors-headers = "^4.4.0"
+drf-spectacular = "^0.28.0"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.10.1"                                                            # Generation of dbml file

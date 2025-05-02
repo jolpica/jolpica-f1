@@ -1,32 +1,30 @@
-"""URL configuration for jolpica project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+# jolpica_api/urls.py
 
 from django.contrib import admin
 from django.urls import include, path
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView,
+)
 
 from . import views
 from .settings import DEPLOYMENT_ENV
+
+# Define the spectacular patterns for the F1 API docs
+open_api_docs_urlpatterns = [
+    path("", SpectacularSwaggerView.as_view(url_name="f1-api-schema"), name="f1-api-docs"),
+    path("schema/", SpectacularAPIView.as_view(), name="f1-api-schema"),
+    path("redoc/", SpectacularRedocView.as_view(url_name="f1-api-schema"), name="f1-api-redoc"),
+]
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("ergast/", include("jolpica_api.ergastapi.urls")),
     path("data/", include("jolpica_api.data_import.urls")),
     path("auth/", include("jolpica_api.authentication.urls")),
-    path("f1/alpha/", include("jolpica_api.f1_api.urls")),
+    path("f1/", include("jolpica_api.f1_api.urls")),
+    path("docs/", include(open_api_docs_urlpatterns)),
     path("", views.healthcheck),
     path("test/", views.test),
 ]

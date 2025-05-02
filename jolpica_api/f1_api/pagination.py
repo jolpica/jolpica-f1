@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 class StandardMetadataPagination(PageNumberPagination):
     page_size_query_param = None
-    page_size = 100 
+    page_size = 100
     max_page_size = 100
 
     def get_paginated_response(self, data):
@@ -20,23 +20,3 @@ class StandardMetadataPagination(PageNumberPagination):
             "previous_url": self.get_previous_link(),
         }
         return Response({"metadata": metadata, "data": data})
-
-    def get_paginated_response_schema(self, schema):
-        return {
-            "type": "object",
-            "properties": {
-                "metadata": {
-                    "type": "object",
-                    "properties": {
-                        "timestamp": {"type": "string", "format": "date-time"},
-                        "count": {"type": "integer"},
-                        "page_size": {"type": "integer"},
-                        "current_page": {"type": "integer"},
-                        "total_pages": {"type": "integer"},
-                        "next_url": {"type": "string", "nullable": True, "format": "uri"},
-                        "previous_url": {"type": "string", "nullable": True, "format": "uri"},
-                    },
-                },
-                "data": schema,
-            },
-        }
