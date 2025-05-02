@@ -9,7 +9,6 @@ class StandardMetadataPagination(PageNumberPagination):
     max_page_size = 100
 
     def get_paginated_response(self, data):
-        # Metadata specific to paginated list views
         metadata = {
             "timestamp": timezone.now(),
             "count": self.page.paginator.count,

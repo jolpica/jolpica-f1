@@ -1,5 +1,3 @@
-# jolpica_api/f1_api/serializers.py
-
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
@@ -14,7 +12,6 @@ class SessionSerializer(serializers.ModelSerializer):
 
 
 class CircuitScheduleSerializer(serializers.ModelSerializer):
-    # Source fields from the related 'location' object
     latitude = serializers.FloatField(read_only=True, allow_null=True)
     longitude = serializers.FloatField(read_only=True, allow_null=True)
     altitude = serializers.FloatField(read_only=True, allow_null=True)
