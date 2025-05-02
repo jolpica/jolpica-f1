@@ -1,5 +1,3 @@
-# jolpica_api/urls.py
-
 from django.contrib import admin
 from django.urls import include, path
 from drf_spectacular.views import (
@@ -11,7 +9,6 @@ from drf_spectacular.views import (
 from . import views
 from .settings import DEPLOYMENT_ENV
 
-# Define the spectacular patterns for the F1 API docs
 open_api_docs_urlpatterns = [
     path("", SpectacularSwaggerView.as_view(url_name="f1-api-schema"), name="f1-api-docs"),
     path("schema/", SpectacularAPIView.as_view(), name="f1-api-schema"),

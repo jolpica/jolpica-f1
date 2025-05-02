@@ -1,4 +1,3 @@
-# jolpica/schemas/f1_api/alpha.py
 import datetime
 
 from pydantic import BaseModel, Field, HttpUrl
