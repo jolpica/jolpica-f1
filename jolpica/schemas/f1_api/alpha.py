@@ -26,7 +26,7 @@ class PaginatedResponse[T](BaseModel):
     data: T
 
 
-class CircuitScheduleSchema(BaseModel):
+class ScheduleCircuit(BaseModel):
     name: str
     reference: str | None = None
     wikipedia: HttpUrl | None = None
@@ -38,40 +38,44 @@ class CircuitScheduleSchema(BaseModel):
     country_code: str | None = Field(None, max_length=3)
 
 
-class SessionSchema(BaseModel):
+class ScheduleSession(BaseModel):
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")
     date: datetime.date | None = None
     time: datetime.time | None = None
 
 
-class RoundScheduleSchema(BaseModel):
+class ScheduleRound(BaseModel):
     number: int
     name: str | None = None
-    circuit: CircuitScheduleSchema
+    circuit: ScheduleCircuit
     date: datetime.date | None = None
-    sessions: list[SessionSchema]
+    sessions: list[ScheduleSession]
 
 
-class RoundInfoDetailSchema(BaseModel):
+class ScheduleRoundInfoDetail(BaseModel):
     number: int
     index: int
 
 
-class RoundsInfoSchema(BaseModel):
-    next: RoundInfoDetailSchema | None = None
-    previous: RoundInfoDetailSchema | None = None
+class ScheduleRoundsInfo(BaseModel):
+    next: ScheduleRoundInfoDetail | None = None
+    previous: ScheduleRoundInfoDetail | None = None
 
 
-class SeasonScheduleListSchema(BaseModel):
+class ScheduleSummary(BaseModel):
     url: HttpUrl
     year: int
     wikipedia: HttpUrl | None = None
 
 
-class SeasonScheduleDetailSchema(BaseModel):
+class ScheduleDetail(BaseModel):
     url: HttpUrl
     year: int
     wikipedia: HttpUrl | None = None
-    rounds_info: RoundsInfoSchema | None = None
-    rounds: list[RoundScheduleSchema]
+    rounds_info: ScheduleRoundsInfo | None = None
+    rounds: list[ScheduleRound]
+
+
+class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
+    """Schema for season schedule detail responses"""

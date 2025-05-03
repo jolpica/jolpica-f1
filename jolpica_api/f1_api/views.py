@@ -7,8 +7,9 @@ from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha import (
     DetailMetadata,
     DetailResponse,
-    SeasonScheduleDetailSchema,
-    SeasonScheduleListSchema,
+    RetrievedScheduleDetail,
+    ScheduleDetail,
+    ScheduleSummary,
 )
 
 from .pagination import StandardMetadataPagination
@@ -19,13 +20,13 @@ from .serializers import SeasonScheduleDetailSerializer, SeasonScheduleSerialize
     list=extend_schema(
         summary="List all F1 Season Schedules",
         description="Provides a paginated list of all available F1 seasons with links to their detailed schedule.",
-        responses={200: SeasonScheduleListSchema},
+        responses={200: ScheduleSummary},
     ),
     retrieve=extend_schema(
         summary="Get Detailed F1 Season Schedule",
         description="Provides the full schedule for a given season year, "
         + "including rounds, sessions, and circuit details.",
-        responses={200: DetailResponse[SeasonScheduleDetailSchema]},
+        responses={200: RetrievedScheduleDetail},
     ),
 )
 class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
@@ -149,6 +150,6 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
             instance.rounds_for_serializer.append(r)
 
         serializer = self.get_serializer(instance, context=context)
-        data = SeasonScheduleDetailSchema.model_validate(serializer.data)
+        data = ScheduleDetail.model_validate(serializer.data)
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(DetailResponse(metadata=metadata, data=data).model_dump(mode="json"))

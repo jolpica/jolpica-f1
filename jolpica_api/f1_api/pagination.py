@@ -23,7 +23,6 @@ class StandardMetadataPagination(PageNumberPagination):
         return Response(PaginatedResponse(metadata=metadata, data=data).model_dump())
 
     def get_paginated_response_schema(self, schema):
-        print(PaginatedResponse.model_json_schema())
         return {
             "type": "object",
             "properties": {
