@@ -5,7 +5,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.include_format_suffixes = False
-router.register(r"schedule", views.SeasonScheduleViewSet, basename="season-schedule")
+router.register(r"schedules", views.SeasonScheduleViewSet, basename="schedules")
 
 urlpatterns = [
     path("alpha/", include(router.urls)),

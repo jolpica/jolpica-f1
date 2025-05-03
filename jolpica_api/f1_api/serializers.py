@@ -47,7 +47,7 @@ class SeasonScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = f1.Season
         fields = ["url", "year", "wikipedia"]
-        extra_kwargs = {"url": {"view_name": "season-schedule-detail", "lookup_field": "year"}}
+        extra_kwargs = {"url": {"view_name": "schedules-detail", "lookup_field": "year"}}
 
 
 class SeasonScheduleDetailSerializer(serializers.HyperlinkedModelSerializer):
@@ -57,7 +57,7 @@ class SeasonScheduleDetailSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = f1.Season
         fields = ["url", "year", "wikipedia", "rounds_info", "rounds"]
-        extra_kwargs = {"url": {"view_name": "season-schedule-detail", "lookup_field": "year"}}
+        extra_kwargs = {"url": {"view_name": "schedules-detail", "lookup_field": "year"}}
 
     def get_rounds_info(self, obj):
         return self.context.get("rounds_info")
