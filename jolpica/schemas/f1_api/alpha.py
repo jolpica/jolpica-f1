@@ -3,6 +3,29 @@ import datetime
 from pydantic import BaseModel, Field, HttpUrl
 
 
+class DetailMetadata(BaseModel):
+    timestamp: datetime.datetime
+
+
+class DetailResponse[T](BaseModel):
+    metadata: DetailMetadata
+    data: T
+
+
+class PaginationMetadata(DetailMetadata):
+    count: int
+    page_size: int
+    current_page: int
+    total_pages: int
+    next_url: HttpUrl | None = None
+    previous_url: HttpUrl | None = None
+
+
+class PaginatedResponse[T](BaseModel):
+    metadata: PaginationMetadata
+    data: T
+
+
 class CircuitScheduleSchema(BaseModel):
     name: str
     reference: str | None = None
@@ -52,25 +75,3 @@ class SeasonScheduleDetailSchema(BaseModel):
     wikipedia: HttpUrl | None = None
     rounds_info: RoundsInfoSchema | None = None
     rounds: list[RoundScheduleSchema]
-
-
-class PaginatedSeasonScheduleListSchema(BaseModel):
-    class MetadataSchema(BaseModel):
-        timestamp: datetime.datetime
-        count: int
-        page_size: int
-        current_page: int
-        total_pages: int
-        next_url: HttpUrl | None = None
-        previous_url: HttpUrl | None = None
-
-    metadata: MetadataSchema
-    data: list[SeasonScheduleListSchema]
-
-
-class DetailResponseSchema(BaseModel):
-    class MetadataSchema(BaseModel):
-        timestamp: datetime.datetime
-
-    metadata: MetadataSchema
-    data: SeasonScheduleDetailSchema

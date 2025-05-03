@@ -12,12 +12,12 @@ class SessionSerializer(serializers.ModelSerializer):
 
 
 class CircuitScheduleSerializer(serializers.ModelSerializer):
-    latitude = serializers.FloatField(read_only=True, allow_null=True)
-    longitude = serializers.FloatField(read_only=True, allow_null=True)
-    altitude = serializers.FloatField(read_only=True, allow_null=True)
-    locality = serializers.CharField(read_only=True, allow_null=True)
-    country = serializers.CharField(read_only=True, allow_null=True)
-    country_code = serializers.CharField(read_only=True, allow_null=True)
+    latitude = serializers.FloatField(read_only=True)
+    longitude = serializers.FloatField(read_only=True)
+    altitude = serializers.FloatField(read_only=True)
+    locality = serializers.CharField(read_only=True)
+    country = serializers.CharField(read_only=True)
+    country_code = serializers.CharField(read_only=True)
 
     class Meta:
         model = f1.Circuit

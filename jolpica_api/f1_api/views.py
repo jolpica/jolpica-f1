@@ -5,8 +5,10 @@ from rest_framework import permissions, response, viewsets
 
 from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha import (
-    DetailResponseSchema,
-    PaginatedSeasonScheduleListSchema,
+    DetailMetadata,
+    DetailResponse,
+    SeasonScheduleDetailSchema,
+    SeasonScheduleListSchema,
 )
 
 from .pagination import StandardMetadataPagination
@@ -17,12 +19,13 @@ from .serializers import SeasonScheduleDetailSerializer, SeasonScheduleSerialize
     list=extend_schema(
         summary="List all F1 Season Schedules",
         description="Provides a paginated list of all available F1 seasons with links to their detailed schedule.",
-        responses={200: PaginatedSeasonScheduleListSchema},
+        responses={200: SeasonScheduleListSchema},
     ),
     retrieve=extend_schema(
         summary="Get Detailed F1 Season Schedule",
-        description="Provides the full schedule for a given season year, including rounds, sessions, and circuit details.",
-        responses={200: DetailResponseSchema},
+        description="Provides the full schedule for a given season year, "
+        + "including rounds, sessions, and circuit details.",
+        responses={200: DetailResponse[SeasonScheduleDetailSchema]},
     ),
 )
 class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
@@ -146,10 +149,6 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
             instance.rounds_for_serializer.append(r)
 
         serializer = self.get_serializer(instance, context=context)
-        data = serializer.data
-
-        # Structure the response according to DetailResponseSchema
-        metadata = {
-            "timestamp": timezone.now(),
-        }
-        return response.Response({"metadata": metadata, "data": data})
+        data = SeasonScheduleDetailSchema.model_validate(serializer.data)
+        metadata = DetailMetadata(timestamp=timezone.now())
+        return response.Response(DetailResponse(metadata=metadata, data=data).model_dump(mode="json"))
