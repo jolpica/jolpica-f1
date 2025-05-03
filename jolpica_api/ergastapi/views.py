@@ -518,7 +518,7 @@ class StandingsErgastModelViewSet(ErgastModelViewSet):
             standings_model: TeamChampionship | DriverChampionship = self.serializer_class.Meta.model
 
             latest_standing = (
-                standings_model.objects.filter(season__year=self.kwargs.get("season_year"))
+                standings_model.objects.filter(season__isnull=False, year=self.kwargs.get("season_year"))
                 .order_by("round_number")
                 .first()
             )
@@ -527,7 +527,7 @@ class StandingsErgastModelViewSet(ErgastModelViewSet):
         if season_year and race_round:
             filters &= Q(year=season_year) & Q(round__number=race_round)
         elif season_year:
-            filters &= Q(season__year=season_year)
+            filters &= Q(season__isnull=False) & Q(year=season_year)
         elif season_year is None:
             filters &= Q(season__isnull=False)
         return filters
@@ -577,4 +577,4 @@ class ConstructorStandingViewSet(StandingsErgastModelViewSet):
     query_round = "round__"
 
     def get_queryset(self) -> QuerySet:
-        return super().get_queryset().prefetch_related("team")
+        return super().get_queryset().select_related("team")
