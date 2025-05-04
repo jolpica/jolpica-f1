@@ -106,7 +106,7 @@ class RaceSerializer(BaseRaceSerializer):
             "ThirdPractice": self.get_session_date_time(instance, SessionType.PRACTICE_THREE),
             "Qualifying": self.get_session_date_time(instance, SessionType.QUALIFYING_ONE),
             "Sprint": self.get_session_date_time(instance, SessionType.SPRINT_RACE),
-            sprint_quali_name: self.get_session_date_time(instance, SessionType.SPRINT_QUALIFYING1),
+            sprint_quali_name: self.get_session_date_time(instance, SessionType.SPRINT_QUALIFYING_ONE),
         }
         representation.update({key: value for key, value in sessions_dict.items() if value is not None})
         return representation
