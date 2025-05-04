@@ -136,7 +136,7 @@ DATABASES = {
     ),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = False
-DATABASES["default"]["CONN_MAX_AGE"] = 60 # Interim solution to avoid connection errors with psycopg2
+DATABASES["default"]["CONN_MAX_AGE"] = 60  # Interim solution to avoid connection errors with psycopg2
 
 # Cache
 # https://docs.djangoproject.com/en/4.2/topics/cache/#redis
