@@ -4,6 +4,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, response, viewsets
 
 from jolpica.formula_one import models as f1
+from jolpica.formula_one.models import SessionType
 from jolpica.schemas.f1_api.alpha import (
     DetailMetadata,
     DetailResponse,
@@ -40,6 +41,16 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = "year"
     pagination_class = StandardMetadataPagination
 
+    # Sessions to consolidate into a single entry in the retrieve response
+    CONSOLIDATED_SESSIONS = {
+        (SessionType.QUALIFYING_ONE, SessionType.QUALIFYING_TWO, SessionType.QUALIFYING_THREE): ("Q", "Qualifying"),
+        (
+            SessionType.SPRINT_QUALIFYING_ONE,
+            SessionType.SPRINT_QUALIFYING_TWO,
+            SessionType.SPRINT_QUALIFYING_THREE,
+        ): ("SQ", "Sprint Qualifying"),
+    }
+
     def get_queryset(self):
         """
         Prefetch related rounds (ordered by date) and their sessions (ordered by date/time)
@@ -54,9 +65,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
             rounds_prefetch = Prefetch(
                 "rounds",
                 queryset=f1.Round.objects.prefetch_related(
-                    Prefetch(
-                        "sessions", queryset=f1.Session.objects.order_by("date", "time"), to_attr="prefetched_sessions"
-                    ),
+                    Prefetch("sessions", queryset=f1.Session.objects.order_by("number"), to_attr="prefetched_sessions"),
                 )
                 .select_related("circuit")
                 .order_by("date"),
@@ -142,11 +151,28 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
 
         instance.rounds_for_serializer = []
         for r in rounds_list:
-            r.sessions_for_serializer = (
-                r.prefetched_sessions
+            has_consolidated = {sessions: False for sessions in self.CONSOLIDATED_SESSIONS.keys()}
+            original_sessions = (
+                list(r.prefetched_sessions)
                 if hasattr(r, "prefetched_sessions")
-                else list(r.sessions.order_by("date", "time"))
+                else list(r.sessions.order_by("number"))
             )
+
+            processed_sessions = []
+            # Collapse consolidated sessions into a single entry
+            for s in original_sessions:
+                for session_types in has_consolidated.keys():
+                    if SessionType(s.type) in session_types:
+                        if not has_consolidated[session_types]:
+                            s._is_consolidated_session = True
+                            s._consolidated_session_type = self.CONSOLIDATED_SESSIONS[session_types]
+                            processed_sessions.append(s)
+                            has_consolidated[session_types] = True
+                        break
+                else:
+                    processed_sessions.append(s)
+
+            r.sessions_for_serializer = processed_sessions
             instance.rounds_for_serializer.append(r)
 
         serializer = self.get_serializer(instance, context=context)

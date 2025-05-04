@@ -3,12 +3,20 @@ from rest_framework import serializers
 from jolpica.formula_one import models as f1
 
 
-class SessionSerializer(serializers.ModelSerializer):
-    type_display = serializers.CharField(source="get_type_display")
+class SessionSerializer(serializers.Serializer):
+    type = serializers.CharField(read_only=True)
+    type_display = serializers.CharField(source="get_type_display", read_only=True)
+    date = serializers.DateField(read_only=True)
+    time = serializers.TimeField(read_only=True)
 
-    class Meta:
-        model = f1.Session
-        fields = ["type", "type_display", "date", "time"]
+    def to_representation(self, instance):
+        """
+        Modify representation for consolidated qualifying sessions.
+        """
+        representation = super().to_representation(instance)
+        if getattr(instance, "_is_consolidated_session", False):
+            representation["type"], representation["type_display"] = instance._consolidated_session_type
+        return representation
 
 
 class CircuitScheduleSerializer(serializers.ModelSerializer):
