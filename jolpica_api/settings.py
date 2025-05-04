@@ -54,6 +54,8 @@ CSRF_TRUSTED_ORIGINS = ["https://api.jolpi.ca"]
 
 INTERNAL_IPS = ["127.0.0.1", "localhost"]
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition

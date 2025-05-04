@@ -52,20 +52,20 @@ class RoundScheduleSerializer(serializers.ModelSerializer):
 
 
 class SeasonScheduleSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="schedules-detail", lookup_field="year", read_only=True)
+
     class Meta:
         model = f1.Season
         fields = ["url", "year", "wikipedia"]
-        extra_kwargs = {"url": {"view_name": "schedules-detail", "lookup_field": "year"}}
 
 
-class SeasonScheduleDetailSerializer(serializers.HyperlinkedModelSerializer):
+class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
     rounds = RoundScheduleSerializer(many=True, read_only=True, source="rounds_for_serializer")
     rounds_info = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.Season
         fields = ["url", "year", "wikipedia", "rounds_info", "rounds"]
-        extra_kwargs = {"url": {"view_name": "schedules-detail", "lookup_field": "year"}}
 
     def get_rounds_info(self, obj):
         return self.context.get("rounds_info")
