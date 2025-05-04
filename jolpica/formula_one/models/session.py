@@ -24,9 +24,9 @@ class SessionType(models.TextChoices):
     PRACTICE_THREE = "FP3"
     PREQUALIFYING = "PQ"
     SPRINT_RACE = "SR"
-    SPRINT_QUALIFYING1 = "SQ1"
-    SPRINT_QUALIFYING2 = "SQ2"
-    SPRINT_QUALIFYING3 = "SQ3"
+    SPRINT_QUALIFYING_ONE = "SQ1"
+    SPRINT_QUALIFYING_TWO = "SQ2"
+    SPRINT_QUALIFYING_THREE = "SQ3"
 
 
 class Session(models.Model):
