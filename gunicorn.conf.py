@@ -11,7 +11,7 @@ bind = "0.0.0.0:5000"
 
 workers = 4
 
-threads = 10
+threads = 5
 
 worker_class = "gthread"
 
