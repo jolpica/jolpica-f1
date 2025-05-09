@@ -1,4 +1,5 @@
 from django.db.models import Prefetch
+from django.http import Http404
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, response, viewsets
@@ -214,6 +215,28 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
 
     permission_classes = [permissions.AllowAny]
     pagination_class = StandardMetadataPagination
+    lookup_url_kwarg = None  # We'll handle the URL kwargs manually in get_object
+
+    def get_object(self):
+        """
+        Retrieve session by year, round number, and session type
+        """
+        year = self.kwargs.get("year")
+        round_number = self.kwargs.get("round_number")
+        session_type = self.kwargs.get("session_type")
+
+        if not all([year, round_number, session_type]):
+            raise Http404("Missing required path parameters")
+
+        queryset = self.get_queryset()
+        obj = queryset.filter(
+            round__season__year=year, round__number=round_number, type=session_type).first()
+
+        if obj is None:
+            raise Http404
+
+        self.check_object_permissions(self.request, obj)
+        return obj
 
     def get_queryset(self):
         queryset = f1.Session.objects.filter(session_entries__isnull=False).distinct()
