@@ -90,6 +90,11 @@ class FastestLap(BaseModel):
     time: ResultTime | None = None
 
 
+class QualifyingTime(BaseModel):
+    session_type: str
+    time: ResultTime | None = None
+
+
 class ResultDriver(BaseModel):
     reference: str | None = None
     forename: str
@@ -123,6 +128,7 @@ class SessionResult(BaseModel):
     is_classified: bool | None = None
     classification: str | None = None
     time: ResultTime | None = None
+    qualifying_times: list[QualifyingTime] | None = None
     fastest_lap: FastestLap | None = None
     driver: ResultDriver
     team: ResultTeam
