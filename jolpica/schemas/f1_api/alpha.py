@@ -34,7 +34,6 @@ class ScheduleCircuit(BaseModel):
     longitude: float | None = None
     altitude: float | None = None
     locality: str | None = None
-    country: str | None = None
     country_code: str | None = Field(None, max_length=3)
 
 
@@ -82,7 +81,7 @@ class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
 
 
 class ResultTime(BaseModel):
-    milliseconds: str
+    milliseconds: int
 
 
 class FastestLap(BaseModel):
@@ -96,22 +95,27 @@ class ResultDriver(BaseModel):
     forename: str
     surname: str
     abbreviation: str | None = None
-    nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
-    wikipedia: HttpUrl | None = None
 
 
 class ResultTeam(BaseModel):
     reference: str | None = None
     name: str
-    nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
-    wikipedia: HttpUrl | None = None
+
+
+class ResultRound(BaseModel):
+    number: int
+    name: str | None = None
+
+
+class ResultPosition(BaseModel):
+    order: int
+    display: str
 
 
 class SessionResult(BaseModel):
-    position: int | None = None
-    position_text: str | None = None
+    position: ResultPosition
     car_number: str | None = None
     points: float | None = None
     grid_position: int | None = None
@@ -130,9 +134,7 @@ class SessionSummary(BaseModel):
     type_display: str = Field(..., description="Display name for the session type")
     date: datetime.date | None = None
     time: datetime.time | None = None
-    round_number: int
-    round_name: str | None = None
-    circuit_name: str
+    round: ResultRound
     season_year: int
 
 
