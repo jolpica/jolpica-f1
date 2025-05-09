@@ -69,3 +69,109 @@ class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
 
     def get_rounds_info(self, obj):
         return self.context.get("rounds_info")
+
+
+class FastestLapSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = f1.Lap
+        fields = ["lap_number", "time"]
+
+    def to_representation(self, instance):
+        return {
+            "rank": instance.position,
+            "lap_number": instance.number,
+            "time": {"milliseconds": str(instance.time.total_seconds() * 1000) if instance.time else None},
+        }
+
+
+class ResultDriverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = f1.Driver
+        fields = ["reference", "forename", "surname", "abbreviation", "nationality", "country_code"]
+
+
+class ResultTeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = f1.Team
+        fields = ["reference", "name", "nationality", "country_code"]
+
+
+class RoundInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = f1.Round
+        fields = ["number", "name"]
+
+
+class SessionResultSerializer(serializers.ModelSerializer):
+    driver = ResultDriverSerializer(source="round_entry.team_driver.driver")
+    team = ResultTeamSerializer(source="round_entry.team_driver.team")
+    round = RoundInfoSerializer(source="round_entry.round")
+    fastest_lap = serializers.SerializerMethodField()
+    time = serializers.SerializerMethodField()
+
+    class Meta:
+        model = f1.SessionEntry
+        fields = [
+            "position",
+            "points",
+            "grid",
+            "laps_completed",
+            "is_classified",
+            "status",
+            "time",
+            "fastest_lap",
+            "driver",
+            "team",
+            "round",
+        ]
+
+    def get_fastest_lap(self, obj):
+        # Get the fastest lap for this session entry
+        fastest_lap = obj.laps.order_by("time").first()
+        if fastest_lap:
+            return FastestLapSerializer(fastest_lap).data
+        return None
+
+    def get_time(self, obj):
+        if obj.time:
+            return {"milliseconds": str(int(obj.time.total_seconds() * 1000))}
+        return None
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret["position_text"] = str(ret["position"]) if ret.get("position") else None
+        ret["grid_position"] = ret.pop("grid")
+        ret["completed_laps"] = ret.pop("laps_completed")
+        ret["classification"] = instance.get_status_display() if instance.status is not None else None
+        return ret
+
+
+class SessionListSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name="results-detail", lookup_field="pk", read_only=True)
+    round_number = serializers.IntegerField(source="round.number", read_only=True)
+    round_name = serializers.CharField(source="round.name", read_only=True)
+    type_display = serializers.CharField(source="get_type_display", read_only=True)
+    circuit_name = serializers.CharField(source="round.circuit.name", read_only=True)
+    season_year = serializers.IntegerField(source="round.season.year", read_only=True)
+
+    class Meta:
+        model = f1.Session
+        fields = [
+            "url",
+            "season_year",
+            "round_number",
+            "round_name",
+            "type",
+            "type_display",
+            "date",
+            "time",
+            "circuit_name",
+        ]
+
+
+class SessionDetailSerializer(SessionListSerializer):
+    circuit = CircuitScheduleSerializer(source="round.circuit")
+    results = SessionResultSerializer(source="session_entries", many=True)
+
+    class Meta(SessionListSerializer.Meta):
+        fields = [*SessionListSerializer.Meta.fields, "circuit", "results"]

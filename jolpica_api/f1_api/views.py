@@ -9,12 +9,19 @@ from jolpica.schemas.f1_api.alpha import (
     DetailMetadata,
     DetailResponse,
     RetrievedScheduleDetail,
+    RetrievedSessionDetail,
     ScheduleDetail,
     ScheduleSummary,
+    SessionSummary,
 )
 
 from .pagination import StandardMetadataPagination
-from .serializers import SeasonScheduleDetailSerializer, SeasonScheduleSerializer
+from .serializers import (
+    SeasonScheduleDetailSerializer,
+    SeasonScheduleSerializer,
+    SessionDetailSerializer,
+    SessionListSerializer,
+)
 
 
 @extend_schema_view(
@@ -65,7 +72,8 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
             rounds_prefetch = Prefetch(
                 "rounds",
                 queryset=f1.Round.objects.prefetch_related(
-                    Prefetch("sessions", queryset=f1.Session.objects.order_by("number"), to_attr="prefetched_sessions"),
+                    Prefetch("sessions", queryset=f1.Session.objects.order_by(
+                        "number"), to_attr="prefetched_sessions"),
                 )
                 .select_related("circuit")
                 .order_by("date"),
@@ -101,7 +109,8 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                         "sessions", queryset=f1.Session.objects.order_by("date", "time"), to_attr="prefetched_sessions"
                     )
                 )
-                .select_related("circuit")  # Added select_related here for fallback
+                # Added select_related here for fallback
+                .select_related("circuit")
             )
         )
         last_valid_previous_index = -1
@@ -114,7 +123,8 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                 if hasattr(round_instance, "prefetched_sessions")
                 else round_instance.sessions.all()
             )
-            has_race_session = any(s.type == f1.SessionType.RACE for s in sessions_to_check)
+            has_race_session = any(
+                s.type == f1.SessionType.RACE for s in sessions_to_check)
 
             if has_race_session and round_instance.date:
                 if round_instance.date < today:
@@ -126,7 +136,8 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         if last_valid_previous_index != -1:
             prev_round = rounds_list[last_valid_previous_index]
             if prev_round.number is not None:
-                previous_round_info = {"number": prev_round.number, "index": last_valid_previous_index}
+                previous_round_info = {
+                    "number": prev_round.number, "index": last_valid_previous_index}
 
         next_round_info = None
         potential_next_index = last_valid_previous_index + 1
@@ -137,9 +148,11 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                 if hasattr(next_round, "prefetched_sessions")
                 else next_round.sessions.all()
             )
-            has_race_session = any(s.type == f1.SessionType.RACE for s in sessions_to_check)
+            has_race_session = any(
+                s.type == f1.SessionType.RACE for s in sessions_to_check)
             if has_race_session and next_round.number is not None:
-                next_round_info = {"number": next_round.number, "index": potential_next_index}
+                next_round_info = {
+                    "number": next_round.number, "index": potential_next_index}
                 break
             potential_next_index += 1
 
@@ -151,7 +164,8 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
 
         instance.rounds_for_serializer = []
         for r in rounds_list:
-            has_consolidated = {sessions: False for sessions in self.CONSOLIDATED_SESSIONS.keys()}
+            has_consolidated = {
+                sessions: False for sessions in self.CONSOLIDATED_SESSIONS.keys()}
             original_sessions = (
                 list(r.prefetched_sessions)
                 if hasattr(r, "prefetched_sessions")
@@ -179,3 +193,69 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         data = ScheduleDetail.model_validate(serializer.data)
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(DetailResponse(metadata=metadata, data=data).model_dump(mode="json"))
+
+
+@extend_schema_view(
+    list=extend_schema(
+        summary="List all F1 Session Results",
+        description="Provides a paginated list of all available F1 sessions with links to their detailed results.",
+        responses={200: SessionSummary},
+    ),
+    retrieve=extend_schema(
+        summary="Get F1 Session Results",
+        description=(
+            "Provides detailed results for a specific F1 session, including position, timing, "
+            "and driver/team information."
+        ),
+        responses={200: RetrievedSessionDetail},
+    ),
+)
+class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint that allows viewing F1 session results.
+    List view provides basic session information with links to details.
+    Detail view includes full results with timing and classification data.
+    Uses standard metadata/data response format. (Alpha Version)
+    """
+
+    permission_classes = [permissions.AllowAny]
+    pagination_class = StandardMetadataPagination
+
+    def get_queryset(self):
+        queryset = f1.Session.objects.filter(
+            session_entries__isnull=False).distinct()
+
+        if self.action == "retrieve":
+            # Full prefetch for detail view
+            return (
+                queryset.select_related("round__circuit", "round__season")
+                .prefetch_related(
+                    Prefetch(
+                        "session_entries",
+                        queryset=(
+                            f1.SessionEntry.objects.select_related(
+                                "round_entry__team_driver__driver",
+                                "round_entry__team_driver__team",
+                                "round_entry__round",
+                            )
+                            .prefetch_related("laps")
+                            .order_by("position", "-points")
+                        ),
+                    )
+                )
+                .order_by("-date", "-time")
+            )
+
+        # Simplified queryset for list view
+        return queryset.select_related("round__circuit", "round__season").order_by("-date", "-time")
+
+    def get_serializer_class(self):
+        if self.action == "retrieve":
+            return SessionDetailSerializer
+        return SessionListSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        metadata = DetailMetadata(timestamp=timezone.now())
+        return response.Response(DetailResponse(metadata=metadata, data=serializer.data).model_dump(mode="json"))

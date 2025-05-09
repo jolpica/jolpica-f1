@@ -53,6 +53,7 @@ class Session(models.Model):
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["round", "number"], name="session_unique_number_round"),
         ]
+        ordering = ["date", "time", "type"]
 
     def __str__(self) -> str:
         return f"{self.round} - {SessionType(self.type).label}"
