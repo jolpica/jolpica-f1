@@ -229,8 +229,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
             raise Http404("Missing required path parameters")
 
         queryset = self.get_queryset()
-        obj = queryset.filter(
-            round__season__year=year, round__number=round_number, type=session_type).first()
+        obj = queryset.filter(round__season__year=year, round__number=round_number, type=session_type).first()
 
         if obj is None:
             raise Http404
@@ -252,9 +251,14 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
                             f1.SessionEntry.objects.select_related(
                                 "round_entry__team_driver__driver",
                                 "round_entry__team_driver__team",
-                                "round_entry__round",
                             )
-                            .prefetch_related("laps")
+                            .prefetch_related(
+                                Prefetch(
+                                    "laps",
+                                    queryset=f1.Lap.objects.filter(is_entry_fastest_lap=True),
+                                    to_attr="fastest_lap_list",
+                                )
+                            )
                             .order_by("position", "-points")
                         ),
                     )
@@ -274,4 +278,6 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(DetailResponse(metadata=metadata, data=serializer.data).model_dump(mode="json"))
+        return response.Response(
+            RetrievedSessionDetail(metadata=metadata, data=serializer.data).model_dump(mode="json")
+        )
