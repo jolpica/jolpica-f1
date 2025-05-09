@@ -84,15 +84,11 @@ class ResultTime(BaseModel):
     milliseconds: int
 
 
-class FastestLap(BaseModel):
-    rank: int
-    lap_number: int
+class TimedLap(BaseModel):
+    session_type: str = Field(..., description="Session type code (e.g., Q1, Q2, Q3, FASTEST)")
+    lap_number: int | None = None
     time: ResultTime | None = None
-
-
-class QualifyingTime(BaseModel):
-    session_type: str
-    time: ResultTime | None = None
+    rank: int | None = None
 
 
 class ResultDriver(BaseModel):
@@ -128,8 +124,7 @@ class SessionResult(BaseModel):
     is_classified: bool | None = None
     classification: str | None = None
     time: ResultTime | None = None
-    qualifying_times: list[QualifyingTime] | None = None
-    fastest_lap: FastestLap | None = None
+    fastest_laps: list[TimedLap] | None = None
     driver: ResultDriver
     team: ResultTeam
 
