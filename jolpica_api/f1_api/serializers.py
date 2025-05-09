@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
@@ -147,7 +148,7 @@ class SessionResultSerializer(serializers.ModelSerializer):
 
 
 class SessionListSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="results-detail", lookup_field="pk", read_only=True)
+    url = serializers.SerializerMethodField()
     round_number = serializers.IntegerField(source="round.number", read_only=True)
     round_name = serializers.CharField(source="round.name", read_only=True)
     type_display = serializers.CharField(source="get_type_display", read_only=True)
@@ -167,6 +168,14 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
             "time",
             "circuit_name",
         ]
+
+    def get_url(self, obj):
+        return self.context["request"].build_absolute_uri(
+            reverse(
+                "results-detail",
+                kwargs={"year": obj.round.season.year, "round_number": obj.round.number, "session_type": obj.type},
+            )
+        )
 
 
 class SessionDetailSerializer(SessionListSerializer):
