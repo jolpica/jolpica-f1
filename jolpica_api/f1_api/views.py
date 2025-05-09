@@ -217,9 +217,12 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = StandardMetadataPagination
     lookup_url_kwarg = None  # We'll handle the URL kwargs manually in get_object
 
+    CONSOLIDATED_SESSIONS = {"Q": ["Q1", "Q2", "Q3"], "SQ": ["SQ1", "SQ2", "SQ3"]}
+
     def get_object(self):
         """
-        Retrieve session by year, round number, and session type
+        Retrieve session by year, round number, and session type.
+        For 'Q' and 'SQ', consolidates multiple qualifying sessions.
         """
         year = self.kwargs.get("year")
         round_number = self.kwargs.get("round_number")
@@ -229,10 +232,62 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
             raise Http404("Missing required path parameters")
 
         queryset = self.get_queryset()
-        obj = queryset.filter(round__season__year=year, round__number=round_number, type=session_type).first()
 
-        if obj is None:
-            raise Http404
+        # Handle consolidated qualifying sessions
+        if session_type in self.CONSOLIDATED_SESSIONS:
+            sessions = list(
+                queryset.filter(
+                    round__season__year=year,
+                    round__number=round_number,
+                    type__in=self.CONSOLIDATED_SESSIONS[session_type],
+                ).order_by("type")
+            )
+
+            if not sessions:
+                raise Http404
+
+            # Use the first session as base but collect all entries
+            base_session = sessions[0]
+            base_session._is_consolidated_session = True
+            session_name = "Qualifying" if session_type == "Q" else "Sprint Qualifying"
+            base_session._consolidated_session_type = (session_type, session_name)
+
+            # Create a dictionary to track best results and all times per driver
+            best_results = {}
+            all_times = {}
+            for session in reversed(sessions):  # Reverse to prioritize later sessions (Q3 over Q2 over Q1)
+                for entry in (
+                    session.session_entries.all().prefetch_related("laps").filter(laps__is_entry_fastest_lap=True)
+                ):
+                    driver_id = entry.round_entry.team_driver.driver_id
+                    fastest_lap = next((lap for lap in entry.laps.all() if lap.is_entry_fastest_lap), None)
+
+                    # Track all qualifying times for this driver
+                    if driver_id not in all_times:
+                        all_times[driver_id] = []
+                    all_times[driver_id].append((session.type, fastest_lap.time if fastest_lap else None))
+
+                    # Track best result for this driver
+                    if driver_id not in best_results:
+                        best_results[driver_id] = entry
+                    elif entry.is_classified and not best_results[driver_id].is_classified:
+                        best_results[driver_id] = entry
+
+            # Add consolidated times to each entry
+            consolidated_entries = []
+            for driver_id, entry in best_results.items():
+                entry._consolidated_times = sorted(all_times[driver_id], key=lambda x: x[0])
+                consolidated_entries.append(entry)
+
+            # Sort consolidated entries by position
+            consolidated_entries.sort(key=lambda x: (x.position if x.position is not None else float("inf")))
+            base_session._consolidated_entries = consolidated_entries
+            return base_session
+        else:
+            obj = queryset.filter(round__season__year=year, round__number=round_number, type=session_type).first()
+
+            if obj is None:
+                raise Http404
 
         self.check_object_permissions(self.request, obj)
         return obj
@@ -278,6 +333,4 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(
-            RetrievedSessionDetail(metadata=metadata, data=serializer.data).model_dump(mode="json")
-        )
+        return response.Response(DetailResponse(metadata=metadata, data=serializer.data).model_dump(mode="json"))

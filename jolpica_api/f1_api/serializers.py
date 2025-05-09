@@ -113,6 +113,7 @@ class SessionResultSerializer(serializers.ModelSerializer):
     completed_laps = serializers.IntegerField(source="laps_completed")
     classification = serializers.SerializerMethodField()
     car_number = serializers.CharField(source="round_entry.car_number", read_only=True)
+    qualifying_times = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.SessionEntry
@@ -124,6 +125,7 @@ class SessionResultSerializer(serializers.ModelSerializer):
             "is_classified",
             "classification",
             "time",
+            "qualifying_times",
             "fastest_lap",
             "car_number",
             "driver",
@@ -149,6 +151,19 @@ class SessionResultSerializer(serializers.ModelSerializer):
 
     def get_classification(self, obj):
         return f1.SessionStatus(obj.status).name if obj.status is not None else None
+
+    def get_qualifying_times(self, obj):
+        # Only include qualifying times for consolidated qualifying sessions
+        if not hasattr(obj, "_consolidated_times"):
+            return None
+
+        return [
+            {
+                "session_type": session_type,
+                "time": {"milliseconds": int(time.total_seconds() * 1000)} if time is not None else None,
+            }
+            for session_type, time in obj._consolidated_times
+        ]
 
 
 class SessionListSerializer(serializers.HyperlinkedModelSerializer):
@@ -180,7 +195,12 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
 
 class SessionDetailSerializer(SessionListSerializer):
     circuit = CircuitScheduleSerializer(source="round.circuit")
-    results = SessionResultSerializer(source="session_entries", many=True)
+    results = serializers.SerializerMethodField()
 
     class Meta(SessionListSerializer.Meta):
         fields = [*SessionListSerializer.Meta.fields, "circuit", "results"]
+
+    def get_results(self, obj):
+        # Use consolidated entries if available, otherwise use normal session entries
+        entries = getattr(obj, "_consolidated_entries", None) or obj.session_entries.all()
+        return SessionResultSerializer(entries, many=True).data

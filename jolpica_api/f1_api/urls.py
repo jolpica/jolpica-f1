@@ -27,8 +27,7 @@ class CustomRouter(routers.DefaultRouter):
 
 
 router = CustomRouter()
-router.register(r"schedules", views.SeasonScheduleViewSet,
-                basename="schedules")
+router.register(r"schedules", views.SeasonScheduleViewSet, basename="schedules")
 router.register(r"results", views.SessionResultViewSet, basename="results")
 
 urlpatterns = [
