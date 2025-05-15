@@ -106,14 +106,13 @@ class RoundInfoSerializer(serializers.ModelSerializer):
 class SessionResultSerializer(serializers.ModelSerializer):
     driver = ResultDriverSerializer(source="round_entry.team_driver.driver")
     team = ResultTeamSerializer(source="round_entry.team_driver.team")
-    fastest_lap = serializers.SerializerMethodField()
     time = serializers.SerializerMethodField()
     position = serializers.SerializerMethodField()
     grid_position = serializers.IntegerField(source="grid")
     completed_laps = serializers.IntegerField(source="laps_completed")
     classification = serializers.SerializerMethodField()
     car_number = serializers.CharField(source="round_entry.car_number", read_only=True)
-    qualifying_times = serializers.SerializerMethodField()
+    fastest_laps = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.SessionEntry
@@ -125,18 +124,11 @@ class SessionResultSerializer(serializers.ModelSerializer):
             "is_classified",
             "classification",
             "time",
-            "qualifying_times",
-            "fastest_lap",
+            "fastest_laps",
             "car_number",
             "driver",
             "team",
         ]
-
-    def get_fastest_lap(self, obj):
-        # Get the fastest lap from prefetched list
-        if hasattr(obj, "fastest_lap_list") and obj.fastest_lap_list:
-            return FastestLapSerializer(obj.fastest_lap_list[0]).data
-        return None
 
     def get_time(self, obj):
         if obj.time:
@@ -152,17 +144,19 @@ class SessionResultSerializer(serializers.ModelSerializer):
     def get_classification(self, obj):
         return f1.SessionStatus(obj.status).name if obj.status is not None else None
 
-    def get_qualifying_times(self, obj):
-        # Only include qualifying times for consolidated qualifying sessions
-        if not hasattr(obj, "_consolidated_times"):
+    def get_fastest_laps(self, obj):
+        if not hasattr(obj, "fastest_laps"):
             return None
 
+        # Handle Lap objects
         return [
             {
-                "session_type": session_type,
-                "time": {"milliseconds": int(time.total_seconds() * 1000)} if time is not None else None,
+                "session_type": lap.session_entry.session.type,
+                "time": {"milliseconds": int(lap.time.total_seconds() * 1000)} if lap.time else None,
+                "lap_number": lap.number,
+                "rank": lap.position,
             }
-            for session_type, time in obj._consolidated_times
+            for lap in obj.fastest_laps
         ]
 
 

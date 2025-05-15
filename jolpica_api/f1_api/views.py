@@ -217,7 +217,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = StandardMetadataPagination
     lookup_url_kwarg = None  # We'll handle the URL kwargs manually in get_object
 
-    CONSOLIDATED_SESSIONS = {"Q": ["Q1", "Q2", "Q3"], "SQ": ["SQ1", "SQ2", "SQ3"]}
+    CONSOLIDATED_SESSIONS = ("Q", "SQ")
 
     def get_object(self):
         """
@@ -231,16 +231,14 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
         if not all([year, round_number, session_type]):
             raise Http404("Missing required path parameters")
 
-        queryset = self.get_queryset()
+        queryset = self.get_queryset().filter(round__season__year=year, round__number=round_number)
 
         # Handle consolidated qualifying sessions
         if session_type in self.CONSOLIDATED_SESSIONS:
             sessions = list(
                 queryset.filter(
-                    round__season__year=year,
-                    round__number=round_number,
-                    type__in=self.CONSOLIDATED_SESSIONS[session_type],
-                ).order_by("type")
+                    type__startswith=session_type,
+                ).order_by("date", "time", "type")
             )
 
             if not sessions:
@@ -252,44 +250,27 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
             session_name = "Qualifying" if session_type == "Q" else "Sprint Qualifying"
             base_session._consolidated_session_type = (session_type, session_name)
 
-            # Create a dictionary to track best results and all times per driver
-            best_results = {}
-            all_times = {}
-            for session in reversed(sessions):  # Reverse to prioritize later sessions (Q3 over Q2 over Q1)
-                for entry in (
-                    session.session_entries.all().prefetch_related("laps").filter(laps__is_entry_fastest_lap=True)
-                ):
+            consolidated_entries = {}  # driver_id -> session_entry
+            for session in sessions:
+                for entry in session.session_entries.all():
                     driver_id = entry.round_entry.team_driver.driver_id
-                    fastest_lap = next((lap for lap in entry.laps.all() if lap.is_entry_fastest_lap), None)
 
-                    # Track all qualifying times for this driver
-                    if driver_id not in all_times:
-                        all_times[driver_id] = []
-                    all_times[driver_id].append((session.type, fastest_lap.time if fastest_lap else None))
+                    if driver_id in consolidated_entries and entry.is_classified:
+                        # Update existing entry with other session data
+                        entry.fastest_laps = [
+                            *consolidated_entries[driver_id].fastest_laps,
+                            *entry.fastest_laps,
+                        ]
+                    consolidated_entries[driver_id] = entry
 
-                    # Track best result for this driver
-                    if driver_id not in best_results:
-                        best_results[driver_id] = entry
-                    elif entry.is_classified and not best_results[driver_id].is_classified:
-                        best_results[driver_id] = entry
-
-            # Add consolidated times to each entry
-            consolidated_entries = []
-            for driver_id, entry in best_results.items():
-                entry._consolidated_times = sorted(all_times[driver_id], key=lambda x: x[0])
-                consolidated_entries.append(entry)
-
-            # Sort consolidated entries by position
-            consolidated_entries.sort(key=lambda x: (x.position if x.position is not None else float("inf")))
-            base_session._consolidated_entries = consolidated_entries
+            base_session._consolidated_entries = consolidated_entries.values()
             return base_session
         else:
-            obj = queryset.filter(round__season__year=year, round__number=round_number, type=session_type).first()
+            obj = queryset.filter(type=session_type).first()
 
             if obj is None:
                 raise Http404
 
-        self.check_object_permissions(self.request, obj)
         return obj
 
     def get_queryset(self):
@@ -311,7 +292,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
                                 Prefetch(
                                     "laps",
                                     queryset=f1.Lap.objects.filter(is_entry_fastest_lap=True),
-                                    to_attr="fastest_lap_list",
+                                    to_attr="fastest_laps",
                                 )
                             )
                             .order_by("position", "-points")
