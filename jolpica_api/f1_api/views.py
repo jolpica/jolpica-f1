@@ -192,24 +192,24 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all F1 Session Results",
-        description="Provides a paginated list of all available F1 sessions with links to their detailed results.",
+        summary="List all F1 Sessions",
+        description="Provides a paginated list of all available F1 sessions with links to their details.",
         responses={200: SessionSummary},
     ),
     retrieve=extend_schema(
-        summary="Get F1 Session Results",
+        summary="Get F1 Session Details",
         description=(
-            "Provides detailed results for a specific F1 session, including position, timing, "
+            "Provides detailed information for a specific F1 session, including position, timing, "
             "and driver/team information."
         ),
         responses={200: RetrievedSessionDetail},
     ),
 )
-class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
+class SessionViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    API endpoint that allows viewing F1 session results.
+    API endpoint that allows viewing F1 sessions.
     List view provides basic session information with links to details.
-    Detail view includes full results with timing and classification data.
+    Detail view includes full session results with timing and classification.
     Uses standard metadata/data response format. (Alpha Version)
     """
 
@@ -222,7 +222,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
     def get_object(self):
         """
         Retrieve session by year, round number, and session type.
-        For 'Q' and 'SQ', consolidates multiple qualifying sessions.
+        For 'Q' and 'SQ', consolidates multiple qualifying session results.
         """
         year = self.kwargs.get("year")
         round_number = self.kwargs.get("round_number")
@@ -233,7 +233,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
 
         queryset = self.get_queryset().filter(round__season__year=year, round__number=round_number)
 
-        # Handle consolidated qualifying sessions
+        # Handle consolidated qualifying session results
         if session_type in self.CONSOLIDATED_SESSIONS:
             sessions = list(
                 queryset.filter(
@@ -244,26 +244,27 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
             if not sessions:
                 raise Http404
 
-            # Use the first session as base but collect all entries
+            # Use the first session as base but collect all results
             base_session = sessions[0]
             base_session._is_consolidated_session = True
             session_name = "Qualifying" if session_type == "Q" else "Sprint Qualifying"
             base_session._consolidated_session_type = (session_type, session_name)
 
-            consolidated_entries = {}  # driver_id -> session_entry
+            consolidated_results = {}  # driver_id -> session_entry
             for session in sessions:
                 for entry in session.session_entries.all():
                     driver_id = entry.round_entry.team_driver.driver_id
 
-                    if driver_id in consolidated_entries and entry.is_classified:
-                        # Update existing entry with other session data
+                    if driver_id in consolidated_results and entry.is_classified:
+                        # Update existing entry with other entry data
                         entry.fastest_laps = [
-                            *consolidated_entries[driver_id].fastest_laps,
+                            *consolidated_results[driver_id].fastest_laps,
                             *entry.fastest_laps,
                         ]
-                    consolidated_entries[driver_id] = entry
+                    consolidated_results[driver_id] = entry
 
-            base_session._consolidated_entries = consolidated_entries.values()
+            # Maintain original session_entries for DB operations but add consolidated_results for serialization
+            base_session._consolidated_results = consolidated_results.values()
             return base_session
         else:
             obj = queryset.filter(type=session_type).first()
@@ -271,7 +272,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
             if obj is None:
                 raise Http404
 
-        return obj
+            return obj
 
     def get_queryset(self):
         queryset = f1.Session.objects.filter(session_entries__isnull=False).distinct()
@@ -314,4 +315,6 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(DetailResponse(metadata=metadata, data=serializer.data).model_dump(mode="json"))
+        return response.Response(
+            RetrievedSessionDetail(metadata=metadata, data=serializer.data).model_dump(mode="json", exclude_none=True)
+        )

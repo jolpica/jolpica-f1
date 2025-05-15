@@ -85,16 +85,19 @@ class FastestLapSerializer(serializers.ModelSerializer):
         return None
 
 
-class ResultDriverSerializer(serializers.ModelSerializer):
+class SessionDriverSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source="forename")
+    last_name = serializers.CharField(source="surname")
+
     class Meta:
         model = f1.Driver
-        fields = ["reference", "forename", "surname", "abbreviation", "country_code"]
+        fields = ["first_name", "last_name", "abbreviation", "country_code"]
 
 
-class ResultTeamSerializer(serializers.ModelSerializer):
+class SessionTeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = f1.Team
-        fields = ["reference", "name", "country_code"]
+        fields = ["name", "country_code"]
 
 
 class RoundInfoSerializer(serializers.ModelSerializer):
@@ -103,12 +106,13 @@ class RoundInfoSerializer(serializers.ModelSerializer):
         fields = ["number", "name"]
 
 
-class SessionResultSerializer(serializers.ModelSerializer):
-    driver = ResultDriverSerializer(source="round_entry.team_driver.driver")
-    team = ResultTeamSerializer(source="round_entry.team_driver.team")
+class SessionEntrySerializer(serializers.ModelSerializer):
+    driver = SessionDriverSerializer(source="round_entry.team_driver.driver")
+    team = SessionTeamSerializer(source="round_entry.team_driver.team")
     time = serializers.SerializerMethodField()
-    position = serializers.SerializerMethodField()
-    grid_position = serializers.IntegerField(source="grid")
+    position_order = serializers.IntegerField(source="position")
+    position_display = serializers.SerializerMethodField()
+    grid_order = serializers.IntegerField(source="grid")
     completed_laps = serializers.IntegerField(source="laps_completed")
     classification = serializers.SerializerMethodField()
     car_number = serializers.CharField(source="round_entry.car_number", read_only=True)
@@ -117,9 +121,10 @@ class SessionResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = f1.SessionEntry
         fields = [
-            "position",
+            "position_order",
+            "position_display",
             "points",
-            "grid_position",
+            "grid_order",
             "completed_laps",
             "is_classified",
             "classification",
@@ -135,11 +140,8 @@ class SessionResultSerializer(serializers.ModelSerializer):
             return {"milliseconds": int(obj.time.total_seconds() * 1000)}
         return None
 
-    def get_position(self, obj):
-        return {
-            "order": obj.position,
-            "display": str(obj.position) if obj.position and obj.is_classified else "-",
-        }
+    def get_position_display(self, obj):
+        return str(obj.position) if obj.position and obj.is_classified else "-"
 
     def get_classification(self, obj):
         return f1.SessionStatus(obj.status).name if obj.status is not None else None
@@ -148,12 +150,11 @@ class SessionResultSerializer(serializers.ModelSerializer):
         if not hasattr(obj, "fastest_laps"):
             return None
 
-        # Handle Lap objects
         return [
             {
                 "session_type": lap.session_entry.session.type,
-                "time": {"milliseconds": int(lap.time.total_seconds() * 1000)} if lap.time else None,
                 "lap_number": lap.number,
+                "time": {"milliseconds": int(lap.time.total_seconds() * 1000)} if lap.time else None,
                 "rank": lap.position,
             }
             for lap in obj.fastest_laps
@@ -163,7 +164,8 @@ class SessionResultSerializer(serializers.ModelSerializer):
 class SessionListSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.SerializerMethodField()
     round = RoundInfoSerializer()
-    type_display = serializers.CharField(source="get_type_display", read_only=True)
+    type = serializers.SerializerMethodField()
+    type_display = serializers.SerializerMethodField()
     season_year = serializers.IntegerField(source="round.season.year", read_only=True)
 
     class Meta:
@@ -181,10 +183,21 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
     def get_url(self, obj):
         return self.context["request"].build_absolute_uri(
             reverse(
-                "results-detail",
+                "sessions-detail",
                 kwargs={"year": obj.round.season.year, "round_number": obj.round.number, "session_type": obj.type},
             )
         )
+
+    def get_type(self, instance):
+        if hasattr(instance, "_consolidated_session_type"):
+            return instance._consolidated_session_type[0]
+        return instance.type
+
+    def get_type_display(self, instance):
+        print("hi")
+        if hasattr(instance, "_consolidated_session_type"):
+            return instance._consolidated_session_type[1]
+        return instance.get_type_display()
 
 
 class SessionDetailSerializer(SessionListSerializer):
@@ -195,6 +208,9 @@ class SessionDetailSerializer(SessionListSerializer):
         fields = [*SessionListSerializer.Meta.fields, "circuit", "results"]
 
     def get_results(self, obj):
-        # Use consolidated entries if available, otherwise use normal session entries
-        entries = getattr(obj, "_consolidated_entries", None) or obj.session_entries.all()
-        return SessionResultSerializer(entries, many=True).data
+        """Get either consolidated or regular session results."""
+        if hasattr(obj, "_consolidated_results"):
+            entries = obj._consolidated_results
+        else:
+            entries = obj.session_entries.all()
+        return SessionEntrySerializer(entries, many=True).data
