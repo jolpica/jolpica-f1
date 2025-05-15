@@ -72,8 +72,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
             rounds_prefetch = Prefetch(
                 "rounds",
                 queryset=f1.Round.objects.prefetch_related(
-                    Prefetch("sessions", queryset=f1.Session.objects.order_by(
-                        "number"), to_attr="prefetched_sessions"),
+                    Prefetch("sessions", queryset=f1.Session.objects.order_by("number"), to_attr="prefetched_sessions"),
                 )
                 .select_related("circuit")
                 .order_by("date"),
@@ -123,8 +122,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                 if hasattr(round_instance, "prefetched_sessions")
                 else round_instance.sessions.all()
             )
-            has_race_session = any(
-                s.type == f1.SessionType.RACE for s in sessions_to_check)
+            has_race_session = any(s.type == f1.SessionType.RACE for s in sessions_to_check)
 
             if has_race_session and round_instance.date:
                 if round_instance.date < today:
@@ -136,8 +134,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         if last_valid_previous_index != -1:
             prev_round = rounds_list[last_valid_previous_index]
             if prev_round.number is not None:
-                previous_round_info = {
-                    "number": prev_round.number, "index": last_valid_previous_index}
+                previous_round_info = {"number": prev_round.number, "index": last_valid_previous_index}
 
         next_round_info = None
         potential_next_index = last_valid_previous_index + 1
@@ -148,11 +145,9 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                 if hasattr(next_round, "prefetched_sessions")
                 else next_round.sessions.all()
             )
-            has_race_session = any(
-                s.type == f1.SessionType.RACE for s in sessions_to_check)
+            has_race_session = any(s.type == f1.SessionType.RACE for s in sessions_to_check)
             if has_race_session and next_round.number is not None:
-                next_round_info = {
-                    "number": next_round.number, "index": potential_next_index}
+                next_round_info = {"number": next_round.number, "index": potential_next_index}
                 break
             potential_next_index += 1
 
@@ -164,8 +159,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
 
         instance.rounds_for_serializer = []
         for r in rounds_list:
-            has_consolidated = {
-                sessions: False for sessions in self.CONSOLIDATED_SESSIONS.keys()}
+            has_consolidated = {sessions: False for sessions in self.CONSOLIDATED_SESSIONS.keys()}
             original_sessions = (
                 list(r.prefetched_sessions)
                 if hasattr(r, "prefetched_sessions")
@@ -222,8 +216,7 @@ class SessionResultViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = StandardMetadataPagination
 
     def get_queryset(self):
-        queryset = f1.Session.objects.filter(
-            session_entries__isnull=False).distinct()
+        queryset = f1.Session.objects.filter(session_entries__isnull=False).distinct()
 
         if self.action == "retrieve":
             # Full prefetch for detail view

@@ -1,0 +1,48 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls %}
+
+{% block extrahead %}{{ block.super }}
+<style>
+    .token-display {
+        word-break: break-all;
+        font-family: monospace;
+        background: #f5f5f5;
+        padding: 10px;
+        border: 1px solid #ccc;
+        color: #333;  /* Dark text color for light background */
+        max-width: 800px;  /* Limit width */
+    }
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+        .token-display {
+            background: #2b2b2b;
+            border-color: #404040;
+            color: #e0e0e0;  /* Light text color for dark background */
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <div class="module">
+        <h2>Token Generated Successfully</h2>
+        <div class="form-row">
+            <label><strong>User:</strong></label>
+            <div>{{ user.username }}</div>
+        </div>
+        <div class="form-row">
+            <label><strong>Expiry:</strong></label>
+            <div>{{ expiry|default:"Never" }}</div>
+        </div>
+        <div class="form-row">
+            <label><strong>Token:</strong></label>
+            <div class="token-display">{{ token }}</div>
+            <div class="help">Please copy this token now. For security reasons, it won't be shown again.</div>
+        </div>
+    </div>
+    <div class="submit-row">
+        <a href="{% url 'admin:knox_authtoken_changelist' %}" class="button">Return to token list</a>
+    </div>
+</div>
+{% endblock %}
