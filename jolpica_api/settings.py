@@ -246,13 +246,6 @@ SPECTACULAR_SETTINGS = {
         "deepLinking": True,
         "persistAuthorization": True,
     },
-    "SERVE_PERMISSIONS": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
-    "SERVE_AUTHENTICATION": [
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
-    ],
     # Target only the /f1/alpha/ endpoints for inclusion in the schema
     # 'SERVERS': [
     #     {'url': '/'}, # Or specific domain if deployed
