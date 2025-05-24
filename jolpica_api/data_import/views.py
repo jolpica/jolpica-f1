@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import transaction
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
-from rest_framework.permissions import BasePermission, IsAuthenticated
+from rest_framework.permissions import BasePermission
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -40,7 +40,6 @@ class CanImportDataPermission(BasePermission):
     """
 
     def has_permission(self, request, view):
-        print(request.user.user_permissions.all().first().codename)
         if request.method == "PUT":
             user = request.user
             return user.is_authenticated and (user.has_perm("data_import.can_import_f1_data") or user.is_superuser)
@@ -48,7 +47,7 @@ class CanImportDataPermission(BasePermission):
 
 
 class ImportData(APIView):
-    permission_classes = [IsAuthenticated, CanImportDataPermission]
+    permission_classes = [CanImportDataPermission]
 
     def put(self, request: Request) -> Response:
         if request.user.is_anonymous:
