@@ -1,3 +1,4 @@
+from django.urls import reverse
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
@@ -24,7 +25,6 @@ class CircuitScheduleSerializer(serializers.ModelSerializer):
     longitude = serializers.FloatField(read_only=True)
     altitude = serializers.FloatField(read_only=True)
     locality = serializers.CharField(read_only=True)
-    country = serializers.CharField(read_only=True)
     country_code = serializers.CharField(read_only=True)
 
     class Meta:
@@ -37,7 +37,6 @@ class CircuitScheduleSerializer(serializers.ModelSerializer):
             "longitude",
             "altitude",
             "locality",
-            "country",
             "country_code",
         ]
 
@@ -72,28 +71,33 @@ class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
 
 
 class FastestLapSerializer(serializers.ModelSerializer):
+    rank = serializers.IntegerField(source="position")
+    lap_number = serializers.IntegerField(source="number")
+    time = serializers.SerializerMethodField()
+
     class Meta:
         model = f1.Lap
-        fields = ["lap_number", "time"]
+        fields = ["rank", "lap_number", "time"]
 
-    def to_representation(self, instance):
-        return {
-            "rank": instance.position,
-            "lap_number": instance.number,
-            "time": {"milliseconds": str(instance.time.total_seconds() * 1000) if instance.time else None},
-        }
+    def get_time(self, obj):
+        if obj.time:
+            return {"milliseconds": int(obj.time.total_seconds() * 1000)}
+        return None
 
 
-class ResultDriverSerializer(serializers.ModelSerializer):
+class SessionDriverSerializer(serializers.ModelSerializer):
+    first_name = serializers.CharField(source="forename")
+    last_name = serializers.CharField(source="surname")
+
     class Meta:
         model = f1.Driver
-        fields = ["reference", "forename", "surname", "abbreviation", "nationality", "country_code"]
+        fields = ["first_name", "last_name", "abbreviation", "country_code"]
 
 
-class ResultTeamSerializer(serializers.ModelSerializer):
+class SessionTeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = f1.Team
-        fields = ["reference", "name", "nationality", "country_code"]
+        fields = ["name", "country_code"]
 
 
 class RoundInfoSerializer(serializers.ModelSerializer):
@@ -102,56 +106,66 @@ class RoundInfoSerializer(serializers.ModelSerializer):
         fields = ["number", "name"]
 
 
-class SessionResultSerializer(serializers.ModelSerializer):
-    driver = ResultDriverSerializer(source="round_entry.team_driver.driver")
-    team = ResultTeamSerializer(source="round_entry.team_driver.team")
-    round = RoundInfoSerializer(source="round_entry.round")
-    fastest_lap = serializers.SerializerMethodField()
+class SessionEntrySerializer(serializers.ModelSerializer):
+    driver = SessionDriverSerializer(source="round_entry.team_driver.driver")
+    team = SessionTeamSerializer(source="round_entry.team_driver.team")
     time = serializers.SerializerMethodField()
+    position_order = serializers.IntegerField(source="position")
+    position_display = serializers.SerializerMethodField()
+    grid_order = serializers.IntegerField(source="grid")
+    completed_laps = serializers.IntegerField(source="laps_completed")
+    classification = serializers.SerializerMethodField()
+    car_number = serializers.CharField(source="round_entry.car_number", read_only=True)
+    fastest_laps = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.SessionEntry
         fields = [
-            "position",
+            "position_order",
+            "position_display",
             "points",
-            "grid",
-            "laps_completed",
+            "grid_order",
+            "completed_laps",
             "is_classified",
-            "status",
+            "classification",
             "time",
-            "fastest_lap",
+            "fastest_laps",
+            "car_number",
             "driver",
             "team",
-            "round",
         ]
-
-    def get_fastest_lap(self, obj):
-        # Get the fastest lap for this session entry
-        fastest_lap = obj.laps.order_by("time").first()
-        if fastest_lap:
-            return FastestLapSerializer(fastest_lap).data
-        return None
 
     def get_time(self, obj):
         if obj.time:
-            return {"milliseconds": str(int(obj.time.total_seconds() * 1000))}
+            return {"milliseconds": int(obj.time.total_seconds() * 1000)}
         return None
 
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        ret["position_text"] = str(ret["position"]) if ret.get("position") else None
-        ret["grid_position"] = ret.pop("grid")
-        ret["completed_laps"] = ret.pop("laps_completed")
-        ret["classification"] = instance.get_status_display() if instance.status is not None else None
-        return ret
+    def get_position_display(self, obj):
+        return str(obj.position) if obj.position and obj.is_classified else "-"
+
+    def get_classification(self, obj):
+        return f1.SessionStatus(obj.status).name if obj.status is not None else None
+
+    def get_fastest_laps(self, obj):
+        if not hasattr(obj, "fastest_laps"):
+            return None
+
+        return [
+            {
+                "session_type": lap.session_entry.session.type,
+                "lap_number": lap.number,
+                "time": {"milliseconds": int(lap.time.total_seconds() * 1000)} if lap.time else None,
+                "rank": lap.position,
+            }
+            for lap in obj.fastest_laps
+        ]
 
 
 class SessionListSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name="results-detail", lookup_field="pk", read_only=True)
-    round_number = serializers.IntegerField(source="round.number", read_only=True)
-    round_name = serializers.CharField(source="round.name", read_only=True)
-    type_display = serializers.CharField(source="get_type_display", read_only=True)
-    circuit_name = serializers.CharField(source="round.circuit.name", read_only=True)
+    url = serializers.SerializerMethodField()
+    round = RoundInfoSerializer()
+    type = serializers.SerializerMethodField()
+    type_display = serializers.SerializerMethodField()
     season_year = serializers.IntegerField(source="round.season.year", read_only=True)
 
     class Meta:
@@ -159,19 +173,44 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
         fields = [
             "url",
             "season_year",
-            "round_number",
-            "round_name",
+            "round",
             "type",
             "type_display",
             "date",
             "time",
-            "circuit_name",
         ]
+
+    def get_url(self, obj):
+        return self.context["request"].build_absolute_uri(
+            reverse(
+                "sessions-detail",
+                kwargs={"year": obj.round.season.year, "round_number": obj.round.number, "session_type": obj.type},
+            )
+        )
+
+    def get_type(self, instance):
+        if hasattr(instance, "_consolidated_session_type"):
+            return instance._consolidated_session_type[0]
+        return instance.type
+
+    def get_type_display(self, instance):
+        print("hi")
+        if hasattr(instance, "_consolidated_session_type"):
+            return instance._consolidated_session_type[1]
+        return instance.get_type_display()
 
 
 class SessionDetailSerializer(SessionListSerializer):
     circuit = CircuitScheduleSerializer(source="round.circuit")
-    results = SessionResultSerializer(source="session_entries", many=True)
+    results = serializers.SerializerMethodField()
 
     class Meta(SessionListSerializer.Meta):
         fields = [*SessionListSerializer.Meta.fields, "circuit", "results"]
+
+    def get_results(self, obj):
+        """Get either consolidated or regular session results."""
+        if hasattr(obj, "_consolidated_results"):
+            entries = obj._consolidated_results
+        else:
+            entries = obj.session_entries.all()
+        return SessionEntrySerializer(entries, many=True).data

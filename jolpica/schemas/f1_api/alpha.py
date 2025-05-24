@@ -34,7 +34,6 @@ class ScheduleCircuit(BaseModel):
     longitude: float | None = None
     altitude: float | None = None
     locality: str | None = None
-    country: str | None = None
     country_code: str | None = Field(None, max_length=3)
 
 
@@ -81,47 +80,47 @@ class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
     """Schema for season schedule detail responses"""
 
 
-class ResultTime(BaseModel):
-    milliseconds: str
+class SessionTime(BaseModel):
+    milliseconds: int
 
 
-class FastestLap(BaseModel):
-    rank: int
-    lap_number: int
-    time: ResultTime | None = None
+class SessionLap(BaseModel):
+    session_type: str = Field(..., description="Session type code (e.g., Q1, Q2, Q3, R)")
+    lap_number: int | None = None
+    time: SessionTime | None = None
+    rank: int | None = None
 
 
-class ResultDriver(BaseModel):
-    reference: str | None = None
-    forename: str
-    surname: str
+class SessionDriver(BaseModel):
+    first_name: str
+    last_name: str
     abbreviation: str | None = None
-    nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
-    wikipedia: HttpUrl | None = None
 
 
-class ResultTeam(BaseModel):
-    reference: str | None = None
+class SessionTeam(BaseModel):
     name: str
-    nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
-    wikipedia: HttpUrl | None = None
+
+
+class SessionRound(BaseModel):
+    number: int
+    name: str | None = None
 
 
 class SessionResult(BaseModel):
-    position: int | None = None
-    position_text: str | None = None
+    position_order: int
+    position_display: str
     car_number: str | None = None
     points: float | None = None
-    grid_position: int | None = None
+    grid_order: int | None = None
     completed_laps: int | None = None
     is_classified: bool | None = None
     classification: str | None = None
-    time: ResultTime | None = None
-    fastest_lap: FastestLap | None = None
-    driver: ResultDriver
-    team: ResultTeam
+    time: SessionTime | None = None
+    fastest_laps: list[SessionLap] | None = None
+    driver: SessionDriver
+    team: SessionTeam
 
 
 class SessionSummary(BaseModel):
@@ -130,9 +129,7 @@ class SessionSummary(BaseModel):
     type_display: str = Field(..., description="Display name for the session type")
     date: datetime.date | None = None
     time: datetime.time | None = None
-    round_number: int
-    round_name: str | None = None
-    circuit_name: str
+    round: SessionRound
     season_year: int
 
 
@@ -142,4 +139,4 @@ class SessionDetail(SessionSummary):
 
 
 class RetrievedSessionDetail(DetailResponse[SessionDetail]):
-    """Schema for session results detail responses"""
+    """Schema for session detail responses"""
