@@ -23,7 +23,7 @@ RUN pip install pipx && \
     pipx install poetry==${POETRY_VERSION} && \
     python -m venv ${VIRTUAL_ENV}
 
-WORKDIR /workspaces/python-one
+WORKDIR /workspaces/jolpica-f1
 # COPY pyproject.toml poetry.lock jolpica/ ./
 # RUN poetry install --no-root
 # [Optional] If your requirements rarely change, uncomment this section to add them to the image.
