@@ -255,13 +255,17 @@ class SessionViewSet(viewsets.ReadOnlyModelViewSet):
                 for entry in session.session_entries.all():
                     driver_id = entry.round_entry.team_driver.driver_id
 
-                    if driver_id in consolidated_results and entry.is_classified:
-                        # Update existing entry with other entry data
-                        entry.fastest_laps = [
-                            *consolidated_results[driver_id].fastest_laps,
-                            *entry.fastest_laps,
-                        ]
-                    consolidated_results[driver_id] = entry
+                    if driver_id in consolidated_results:
+                        existing_entry = consolidated_results[driver_id]
+                        if entry.is_classified or not existing_entry.is_classified:
+                            # Update existing entry with other entry data
+                            entry.fastest_laps = [
+                                *existing_entry.fastest_laps,
+                                *entry.fastest_laps,
+                            ]
+                            consolidated_results[driver_id] = entry
+                    else:
+                        consolidated_results[driver_id] = entry
 
             # Maintain original session_entries for DB operations but add consolidated_results for serialization
             base_session._consolidated_results = consolidated_results.values()
