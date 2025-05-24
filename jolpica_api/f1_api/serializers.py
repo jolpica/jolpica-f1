@@ -194,7 +194,6 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
         return instance.type
 
     def get_type_display(self, instance):
-        print("hi")
         if hasattr(instance, "_consolidated_session_type"):
             return instance._consolidated_session_type[1]
         return instance.get_type_display()
