@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import transaction
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import BasePermission, IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -33,12 +33,26 @@ class ImportDataRequestData(BaseModel):
     data: list[F1Import] = Field(min_length=1)
 
 
+class CanImportDataPermission(BasePermission):
+    """
+    Allows access only to users with the 'can_import_f1_data' permission for PUT requests,
+    or if the user is a site admin (is_superuser).
+    """
+
+    def has_permission(self, request, view):
+        print(request.user.user_permissions.all().first().codename)
+        if request.method == "PUT":
+            user = request.user
+            return user.is_authenticated and (user.has_perm("data_import.can_import_f1_data") or user.is_superuser)
+        return False
+
+
 class ImportData(APIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated, CanImportDataPermission]
 
     def put(self, request: Request) -> Response:
-        if request.user.is_anonymous or not request.user.is_staff:
-            return Response(status=401)
+        if request.user.is_anonymous:
+            return Response({"detail": "Authentication credentials were not provided."}, status=401)
         try:
             request_data = ImportDataRequestData.model_validate(request.data)
         except ValidationError as ex:

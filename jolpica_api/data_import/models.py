@@ -16,3 +16,8 @@ class DataImportLog(models.Model):
     error_type = models.CharField(max_length=255, null=True, blank=True)
     errors = models.JSONField(null=True, blank=True)
     api_version = models.CharField(max_length=255, null=True, blank=True)
+
+    class Meta:
+        permissions = [
+            ("can_import_f1_data", "Can import Formula 1 data"),
+        ]
