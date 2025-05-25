@@ -346,7 +346,8 @@ class SeasonData:
         for round in season.rounds.all().annotate(round_entries_count=Count("round_entries")):
             if round.number is None or round.round_entries_count == 0:
                 continue
-            for session in round.sessions.filter(
+            for session in round.sessions.annotate(session_entries_count=Count("session_entries")).filter(
+                session_entries_count__gt=0,
                 point_system__gt=1,  # Assumption that point system with pk 1 is the only non-point system
             ):
                 if session.number is None:
@@ -474,6 +475,7 @@ class SeasonData:
         stats_by_group: dict[int, Stats] = {}
         season_standings: list = []
         for session, next_session in zip(ordered_sessions, [*ordered_sessions[1:], None]):
+            print(f"Processing session {session.round_number} {session.session_type} for {grouping_type.name}")
             new_stats = session.stats_by_group(grouping_type, self.aggregate_by_grouping[grouping_type])
             for group_id in {*stats_by_group, *new_stats}:
                 stats_by_group[group_id] = stats_by_group.get(group_id, Stats()) + new_stats.get(group_id, Stats())

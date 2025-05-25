@@ -5,7 +5,7 @@ from django.db.models import prefetch_related_objects
 
 from jolpica.formula_one.models.managed_views import DriverChampionship
 
-from ..models import Season, SessionType
+from .. import models as f1
 from ..standings import EntryData, Group, SeasonData, SessionData, Stats, update_championship_standings_in_db
 
 
@@ -42,7 +42,7 @@ def session_data(entry_datas: list[EntryData]):
         round_number=1,
         session_number=5,
         entry_datas=entry_datas,
-        session_type=SessionType.RACE,
+        session_type=f1.SessionType.RACE,
         session_id=0,
         round_id=0,
     )
@@ -84,7 +84,7 @@ def session_data2(entry_datas2: list[EntryData]):
         round_number=2,
         session_number=2,
         entry_datas=entry_datas2,
-        session_type=SessionType.RACE,
+        session_type=f1.SessionType.RACE,
         session_id=0,
         round_id=0,
     )
@@ -227,7 +227,7 @@ def test_position_count_add(args1, args2, expected):
 @pytest.fixture(scope="module")
 def driver_standings_2023(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
-        season = Season.objects.get(year=2023)
+        season = f1.Season.objects.get(year=2023)
         season_data = SeasonData.from_season(season)
         standings = season_data.generate_standings()
         prefetch_related_objects(standings, Group.DRIVER, "session")
@@ -262,3 +262,31 @@ def test_update_in_db(django_assert_max_num_queries, adjust_type):
         for field in DriverChampionship._meta.get_fields():
             if field.name != "id":
                 assert getattr(champ1, field.name) == getattr(champ2, field.name)
+
+
+@pytest.mark.django_db
+def test_from_season_whole_year(monkeypatch):
+    season = f1.Season.objects.get(year=2023)
+    monkeypatch.setattr(SessionData, "from_session", lambda *args, **kwargs: None)
+
+    season_data = SeasonData.from_season(season)
+
+    assert season_data.season_year == 2023
+    assert len(season_data.session_datas) == 28  # 22 races, 6 sprints sessions in 2023 season
+
+
+@pytest.mark.django_db
+def test_from_season_last_round_has_quali_but_no_race(monkeypatch):
+    season = f1.Season.objects.get(year=2023)
+    # Removing session entries from a race session should result in no entries in the season data
+    f1.SessionEntry.objects.filter(
+        session__round__season=season,
+        session__round__number=22,
+        session__type="R",
+    ).delete()
+    monkeypatch.setattr(SessionData, "from_session", lambda *args, **kwargs: None)
+
+    season_data = SeasonData.from_season(season)
+
+    assert season_data.season_year == 2023
+    assert len(season_data.session_datas) == 27  # 21/22 races, 6 sprints sessions in 2023 season
