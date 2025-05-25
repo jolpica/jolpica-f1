@@ -76,7 +76,9 @@ class ErgastModelViewSet(viewsets.ReadOnlyModelViewSet):
             self.kwargs["season_year"] = season_year
         if race_round in {"next", "last"}:
             round_info = Season.objects.filter(year=season_year).aggregate(
-                next=Min("rounds__number", filter=Q(rounds__date__gte=current_date)),
+                next=Min(
+                    "rounds__number", filter=Q(rounds__sessions__type="R") & Q(rounds__sessions__session_entries=None)
+                ),
                 final=Max("rounds__number"),
             )
             if race_round == "next" and round_info["next"] is not None:
