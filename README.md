@@ -38,3 +38,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [tap-f1](https://github.com/ReubenFrankel/tap-f1)-  A Singer tap for F1.
 - [Next F1 Race scriptable widget](https://github.com/timespacedecay/scriptable) - Widget for scriptable to display the next F1 Race.
 - [FormulaVision](https://github.com/skat9234/formula-vision) - A Mobile F1 Dashboard built with Flutter.
+- [RaceTimeApp](https://www.github.com/MayckGomes/RaceTimeApp) - An Android App showing latest F1 data, Built with Jetpack Compose.
