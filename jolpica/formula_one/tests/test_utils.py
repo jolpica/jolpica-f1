@@ -2,7 +2,7 @@ from datetime import timedelta
 
 import pytest
 
-from ..models import ResultsChampionshipScheme, SplitChampionshipScheme
+from ..models import BestRoundsChampionshipScheme, SplitChampionshipScheme
 from ..utils import calculate_championship_points, format_timedelta
 
 
@@ -101,7 +101,7 @@ def test_calculate_championship_points_error(race_points, split, results, total_
 
 def test_calculate_championship_points_all_variations():
     for split in SplitChampionshipScheme:
-        for best_results in ResultsChampionshipScheme:
+        for best_results in BestRoundsChampionshipScheme:
             for total_rounds in [1, 17]:
                 assert calculate_championship_points({1: 4, 9: 6}, split, best_results, total_rounds) in (None, 10, 0)
 
