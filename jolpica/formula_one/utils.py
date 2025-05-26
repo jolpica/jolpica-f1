@@ -9,7 +9,7 @@ def calculate_championship_points(
     total_rounds: int,
 ) -> float | None:
     from .models import (
-        ResultsChampionshipScheme,
+        BestRoundsChampionshipScheme,
         SplitChampionshipScheme,
     )
 
@@ -38,12 +38,12 @@ def calculate_championship_points(
     else:
         raise ValueError("Invalid season split type")
 
-    if best_results_type == ResultsChampionshipScheme.NONE:
+    if best_results_type == BestRoundsChampionshipScheme.NONE:
         return None
 
     # Sort points from most to least (unless the point scheme uses all results)
-    if best_results_type != ResultsChampionshipScheme.ALL:
-        if best_results_type == ResultsChampionshipScheme.ALL_BUT_ONE:
+    if best_results_type != BestRoundsChampionshipScheme.ALL:
+        if best_results_type == BestRoundsChampionshipScheme.ALL_BUT_ONE:
             if split_type == SplitChampionshipScheme.NONE:
                 take_until_indexes = [total_rounds - 1]
             else:

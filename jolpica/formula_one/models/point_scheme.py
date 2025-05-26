@@ -95,12 +95,12 @@ class SplitChampionshipScheme(models.IntegerChoices):
     HALF_LARGER_BACK = 3, "Split in halves (remainder in second half)"
 
 
-class ResultsChampionshipScheme(models.IntegerChoices):
-    """Integer number of results per split to include, with special cases of ALL and ALL_BUT_ONE"""
+class BestRoundsChampionshipScheme(models.IntegerChoices):
+    """Integer number of rounds per split to include, with special cases of ALL and ALL_BUT_ONE"""
 
-    ALL_BUT_ONE = -2, "One less than total races per split"
-    ALL = -1, "All results are counted"
-    NONE = 0, "No results are counted"
+    ALL_BUT_ONE = -2, "One less than total rounds per split"
+    ALL = -1, "All rounds are counted"
+    NONE = 0, "No rounds are counted"
     FOUR = 4
     FIVE = 5
     SIX = 6
@@ -116,6 +116,13 @@ class EligibilityChampionshipScheme(models.IntegerChoices):
     HAS_FINISH = 2, "Entry must have a classified finish in at least 1 round"
 
 
+class PointsPerSessionChampionshipScheme(models.IntegerChoices):
+    """What point scoring results should be selected for the team championship"""
+
+    SUM_POINTS = 0, "All points are summed"
+    BEST_POINTS = 1, "Single highest points selected"
+
+
 class ChampionshipSystem(models.Model):
     """Drivers and Team Championship score calculation rules"""
 
@@ -128,10 +135,11 @@ class ChampionshipSystem(models.Model):
     eligibility = models.PositiveSmallIntegerField(choices=EligibilityChampionshipScheme.choices)
 
     driver_season_split = models.PositiveSmallIntegerField(choices=SplitChampionshipScheme.choices)
-    driver_best_results = models.SmallIntegerField(choices=ResultsChampionshipScheme.choices)
+    driver_best_results = models.SmallIntegerField(choices=BestRoundsChampionshipScheme.choices)
 
     team_season_split = models.PositiveSmallIntegerField(choices=SplitChampionshipScheme.choices)
-    team_best_results = models.SmallIntegerField(choices=ResultsChampionshipScheme.choices)
+    team_best_results = models.SmallIntegerField(choices=BestRoundsChampionshipScheme.choices)
+    team_points_per_session = models.PositiveSmallIntegerField(choices=PointsPerSessionChampionshipScheme.choices)
 
     class Meta:
         constraints: ClassVar = [
@@ -142,6 +150,7 @@ class ChampionshipSystem(models.Model):
                     "driver_best_results",
                     "team_season_split",
                     "team_best_results",
+                    "team_points_per_session",
                 ],
                 name="championship_point_scheme_unique",
             )

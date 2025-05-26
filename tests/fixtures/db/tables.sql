@@ -175,17 +175,17 @@ COPY public.formula_one_baseteam (id, name) FROM stdin;
 -- Data for Name: formula_one_championshipsystem; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.formula_one_championshipsystem (id, reference, name, eligibility, driver_season_split, driver_best_results, team_season_split, team_best_results) FROM stdin;
-1	s1950	1950 - 1953 Championship	1	0	4	0	0
-2	s1954	1954 - 1957 Championship	1	0	5	0	0
-3	s1958	1958, 1960, 1963-1965\tChampionship	1	0	6	0	6
-4	s1959	1959, 1961, 1962, 1966 Championship	1	0	5	0	5
-5	s1967	1967 - 1978 Championship	1	2	-2	2	-2
-6	s1979	1979 Championship	1	3	4	0	-1
-7	s1980	1980 Championship	1	3	5	0	-1
-8	s1981	1981-1990 Championship	1	0	11	0	-1
-9	s1991	1991 - 2001 Championship	1	0	-1	0	-1
-10	s2002	2002 - Present Championship	2	0	-1	0	-1
+COPY public.formula_one_championshipsystem (id, reference, name, eligibility, driver_season_split, driver_best_results, team_season_split, team_best_results, team_points_per_session) FROM stdin;
+6	s1979	1979 Championship	1	3	4	0	-1	0
+7	s1980	1980 Championship	1	3	5	0	-1	0
+8	s1981	1981-1990 Championship	1	0	11	0	-1	0
+9	s1991	1991 - 2001 Championship	1	0	-1	0	-1	0
+10	s2002	2002 - Present Championship	2	0	-1	0	-1	0
+2	s1954	1954 - 1957 Championship	1	0	5	0	0	0
+1	s1950	1950 - 1953 Championship	1	0	4	0	0	0
+3	s1958	1958, 1960, 1963-1965\tChampionship	1	0	6	0	6	1
+4	s1959	1959, 1961, 1962, 1966 Championship	1	0	5	0	5	1
+5	s1967	1967 - 1978 Championship	1	2	-2	2	-2	1
 \.
 
 

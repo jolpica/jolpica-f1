@@ -4,6 +4,7 @@ from .driver import Driver
 from .lap import Lap
 from .pit_stop import PitStop
 from .point_scheme import (
+    BestRoundsChampionshipScheme,
     ChampionshipAdjustment,
     ChampionshipAdjustmentType,
     ChampionshipSystem,
@@ -12,7 +13,6 @@ from .point_scheme import (
     PartialPointScheme,
     PointSystem,
     PositionPointScheme,
-    ResultsChampionshipScheme,
     SplitChampionshipScheme,
 )
 from .round import Round, RoundEntry
@@ -22,6 +22,7 @@ from .team import BaseTeam, Team, TeamDriver, TeamDriverRole
 
 __all__ = [
     "BaseTeam",
+    "BestRoundsChampionshipScheme",
     "ChampionshipAdjustment",
     "ChampionshipAdjustmentType",
     "ChampionshipSystem",
@@ -35,7 +36,6 @@ __all__ = [
     "PitStop",
     "PointSystem",
     "PositionPointScheme",
-    "ResultsChampionshipScheme",
     "Round",
     "RoundEntry",
     "Season",

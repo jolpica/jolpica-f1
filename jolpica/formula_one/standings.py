@@ -335,10 +335,8 @@ class SeasonData:
     session_datas: list[SessionData]
     season_id: int
     championship_system: ChampionshipSystem
-    adjustments: dict[tuple[Group, int], ChampionshipAdjustment] = field(default_factory=dict)
-    aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]] = field(
-        default_factory=lambda: {Group.DRIVER: "BEST", Group.TEAM: "SUM"}
-    )
+    adjustments: dict[tuple[Group, int], ChampionshipAdjustment]
+    aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]]
 
     @classmethod
     def from_season(cls, season: Season) -> SeasonData:
@@ -374,6 +372,10 @@ class SeasonData:
             season_id=season.id,
             championship_system=season.championship_system,
             adjustments=adjustments,
+            aggregate_by_grouping={
+                Group.DRIVER: "BEST",
+                Group.TEAM: "SUM" if season.championship_system.team_points_per_session == 0 else "BEST",
+            },
         )
 
     def get_adjustment(self, group_type: Group, group_id: int) -> ChampionshipAdjustment:
@@ -475,7 +477,6 @@ class SeasonData:
         stats_by_group: dict[int, Stats] = {}
         season_standings: list = []
         for session, next_session in zip(ordered_sessions, [*ordered_sessions[1:], None]):
-            print(f"Processing session {session.round_number} {session.session_type} for {grouping_type.name}")
             new_stats = session.stats_by_group(grouping_type, self.aggregate_by_grouping[grouping_type])
             for group_id in {*stats_by_group, *new_stats}:
                 stats_by_group[group_id] = stats_by_group.get(group_id, Stats()) + new_stats.get(group_id, Stats())
