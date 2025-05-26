@@ -207,5 +207,28 @@ def test_1997_team_standings(team_standings_from_year, round, reference, expecte
         (4, "kauhsen", None),
     ],
 )
-def test_1979_team_standings(team_standings_1979, round, reference, expected):
-    check_expected_in_standings(team_standings_1979, round, reference, expected)
+@pytest.mark.django_db
+def test_1979_team_standings(team_standings_from_year, round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(1979), round, reference, expected)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (1, "maserati", {"position": 3, "points": 3, "win_count": 0}),
+        (1, "ferrari", {"position": 2, "points": 6, "win_count": 0}),
+        (2, "ferrari", {"position": 2, "points": 12, "win_count": 0}),
+        (3, "ferrari", {"position": 2, "points": 14, "win_count": 0}),
+        (4, "ferrari", {"position": 2, "points": 14, "win_count": 0}),  # indy500 no points
+        (5, "ferrari", {"position": 1, "points": 20, "win_count": 0}),
+        (6, "ferrari", {"position": 2, "points": 28, "win_count": 1}),
+        (7, "ferrari", {"position": 2, "points": 36, "win_count": 2}),
+        (8, "ferrari", {"position": 1, "points": 37, "win_count": 2}),
+        (9, "ferrari", {"position": 1, "points": 40, "win_count": 2}),
+        (10, "ferrari", {"position": 1, "points": 40, "win_count": 2}),
+        (11, "ferrari", {"position": 2, "points": 40, "win_count": 2}),
+    ],
+)
+@pytest.mark.django_db
+def test_1958_team_standings(team_standings_from_year, round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(1958), round, reference, expected)

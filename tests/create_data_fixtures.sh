@@ -5,7 +5,7 @@ pg_dump -h localhost -U postgres -d jolpica  -a \
     -T "formula_one_pitstop" \
     -T "formula_one_*entry" > tests/fixtures/db/tables.sql
 
-SESSION_ENTRY_WHERE_CLAUSE="1979,1980,1997,2007,2008,2009,2020,2023"
+SESSION_ENTRY_WHERE_CLAUSE="1958,1979,1980,1997,2007,2008,2009,2020,2023"
 PITSTOP_WHERE_CLAUSE="season.year = 2023 AND round.number in (1, 10, 18, 22)"
 psql -h localhost -U postgres -d jolpica -c "\copy
 (
