@@ -16,10 +16,9 @@ def championship_adjustments(django_db_setup, django_db_blocker):
 @pytest.fixture(scope="module")
 def driver_standings_from_year(django_db_setup, django_db_blocker, championship_adjustments):
     def from_year(year) -> list[DriverChampionship]:
-        with django_db_blocker.unblock():
-            season_data = SeasonData.from_season(Season.objects.get(year=year))
-            standings = season_data.generate_standings(Group.DRIVER)
-            prefetch_related_objects(standings, "driver", "session")
+        season_data = SeasonData.from_season(Season.objects.get(year=year))
+        standings = season_data.generate_standings(Group.DRIVER)
+        prefetch_related_objects(standings, "driver", "session")
         return standings
 
     return from_year
@@ -28,10 +27,9 @@ def driver_standings_from_year(django_db_setup, django_db_blocker, championship_
 @pytest.fixture(scope="module")
 def team_standings_from_year(django_db_setup, django_db_blocker, championship_adjustments):
     def from_year(year) -> list[TeamChampionship]:
-        with django_db_blocker.unblock():
-            season_data = SeasonData.from_season(Season.objects.get(year=year))
-            standings = season_data.generate_standings(Group.TEAM)
-            prefetch_related_objects(standings, "team", "session")
+        season_data = SeasonData.from_season(Season.objects.get(year=year))
+        standings = season_data.generate_standings(Group.TEAM)
+        prefetch_related_objects(standings, "team", "session")
         return standings
 
     return from_year
@@ -69,11 +67,6 @@ def check_expected_in_standings(standings, round, reference, expected):
         assert standing.win_count == expected["win_count"]
 
 
-@pytest.fixture(scope="module")
-def driver_standings_2023(driver_standings_from_year):
-    return driver_standings_from_year(2023)
-
-
 @pytest.mark.parametrize(
     ["round", "reference", "expected"],
     [
@@ -89,13 +82,9 @@ def driver_standings_2023(driver_standings_from_year):
         (1, "leclerc", {"position": None, "points": 0, "is_eligible": False}),
     ],
 )
-def test_2023_driver_standings(driver_standings_2023: list[DriverChampionship], round, reference, expected):
-    check_expected_in_standings(driver_standings_2023, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def driver_standings_1997(driver_standings_from_year):
-    return driver_standings_from_year(1997)
+@pytest.mark.django_db
+def test_2023_driver_standings(driver_standings_from_year: list[DriverChampionship], round, reference, expected):
+    check_expected_in_standings(driver_standings_from_year(2023), round, reference, expected)
 
 
 @pytest.mark.parametrize(
@@ -122,13 +111,9 @@ def driver_standings_1997(driver_standings_from_year):
         (1, "coulthard", {"position": 1, "points": 10}),
     ],
 )
-def test_1997_driver_standings(driver_standings_1997, round, reference, expected):
-    check_expected_in_standings(driver_standings_1997, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def driver_standings_1980(driver_standings_from_year):
-    return driver_standings_from_year(1980)
+@pytest.mark.django_db
+def test_1997_driver_standings(driver_standings_from_year, round, reference, expected):
+    check_expected_in_standings(driver_standings_from_year(1997), round, reference, expected)
 
 
 @pytest.mark.parametrize(
@@ -140,13 +125,9 @@ def driver_standings_1980(driver_standings_from_year):
         (14, "surer", {"position": None, "points": 0, "is_eligible": False}),
     ],
 )
-def test_1980_driver_standings(driver_standings_1980: list[DriverChampionship], round, reference, expected):
-    check_expected_in_standings(driver_standings_1980, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def team_standings_2023(team_standings_from_year):
-    return team_standings_from_year(2023)
+@pytest.mark.django_db
+def test_1980_driver_standings(driver_standings_from_year: list[DriverChampionship], round, reference, expected):
+    check_expected_in_standings(driver_standings_from_year(1980), round, reference, expected)
 
 
 @pytest.mark.parametrize(
@@ -162,13 +143,9 @@ def team_standings_2023(team_standings_from_year):
         (1, "red_bull", {"position": 1, "points": 43}),
     ],
 )
-def test_2023_team_standings(team_standings_2023: list[TeamChampionship], round, reference, expected):
-    check_expected_in_standings(team_standings_2023, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def team_standings_2020(team_standings_from_year):
-    return team_standings_from_year(2020)
+@pytest.mark.django_db
+def test_2023_team_standings(team_standings_from_year: list[TeamChampionship], round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(2023), round, reference, expected)
 
 
 @pytest.mark.parametrize(
@@ -185,13 +162,9 @@ def team_standings_2020(team_standings_from_year):
         (17, "williams", {"position": 10, "points": 0, "is_eligible": True}),
     ],
 )
-def test_2020_team_standings(team_standings_2020, round, reference, expected):
-    check_expected_in_standings(team_standings_2020, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def team_standings_2007(team_standings_from_year):
-    return team_standings_from_year(2007)
+@pytest.mark.django_db
+def test_2020_team_standings(team_standings_from_year, round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(2020), round, reference, expected)
 
 
 @pytest.mark.parametrize(
@@ -205,13 +178,9 @@ def team_standings_2007(team_standings_from_year):
         ),
     ],
 )
-def test_2007_team_standings(team_standings_2007, round, reference, expected):
-    check_expected_in_standings(team_standings_2007, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def team_standings_1997(team_standings_from_year):
-    return team_standings_from_year(1997)
+@pytest.mark.django_db
+def test_2007_team_standings(team_standings_from_year, round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(2007), round, reference, expected)
 
 
 @pytest.mark.parametrize(
@@ -222,13 +191,9 @@ def team_standings_1997(team_standings_from_year):
         (17, "lola", {"position": None, "points": 0, "is_eligible": False}),
     ],
 )
-def test_1997_team_standings(team_standings_1997, round, reference, expected):
-    check_expected_in_standings(team_standings_1997, round, reference, expected)
-
-
-@pytest.fixture(scope="module")
-def team_standings_1979(team_standings_from_year):
-    return team_standings_from_year(1979)
+@pytest.mark.django_db
+def test_1997_team_standings(team_standings_from_year, round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(1997), round, reference, expected)
 
 
 @pytest.mark.parametrize(
