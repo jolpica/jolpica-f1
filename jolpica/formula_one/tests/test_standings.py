@@ -20,6 +20,7 @@ def entry_datas():
             points=i,
             position=pos + 1,
             is_classified=True,
+            fastest_lap_rank=None,
         )
         for pos, (i, j) in enumerate([(1, 101), (1, 101), (1, 102), (2, 102), (3, 103), (3, 101)])
     ] + [
@@ -31,13 +32,29 @@ def entry_datas():
             points=None,
             position=None,
             is_classified=None,
+            fastest_lap_rank=None,
         )
     ]
     return output[::-1]
 
 
 @pytest.fixture(scope="module")
-def session_data(entry_datas: list[EntryData]):
+def point_system():
+    return f1.PointSystem(
+        name="Mock Point System",
+        reference="mock_point_system",
+        driver_position_points=f1.PositionPointScheme.RACE_2010,
+        driver_fastest_lap=f1.FastestLapPointScheme.NONE,
+        team_position_points=f1.PositionPointScheme.RACE_2010,
+        team_fastest_lap=f1.FastestLapPointScheme.NONE,
+        partial=f1.PartialPointScheme.NONE,
+        shared_drive=f1.SharedDrivePointScheme.NONE,
+        is_double_points=False,
+    )
+
+
+@pytest.fixture(scope="module")
+def session_data(entry_datas: list[EntryData], point_system):
     return SessionData(
         round_number=1,
         session_number=5,
@@ -45,6 +62,7 @@ def session_data(entry_datas: list[EntryData]):
         session_type=f1.SessionType.RACE,
         session_id=0,
         round_id=0,
+        point_system=point_system,
     )
 
 
@@ -59,6 +77,7 @@ def entry_datas2():
             points=6 - pos,
             position=pos + 1,
             is_classified=True,
+            fastest_lap_rank=None,
         )
         for pos, (i, j) in enumerate([(1, 101), (2, 101), (3, 102), (4, 102), (5, 103), (6, 103)])
     ]
@@ -71,6 +90,7 @@ def entry_datas2():
             points=0,
             position=pos + 1,
             is_classified=False,
+            fastest_lap_rank=None,
         )
         for pos, (i, j) in enumerate([(7, 104), (8, 104)])
     ]
@@ -79,7 +99,7 @@ def entry_datas2():
 
 
 @pytest.fixture(scope="module")
-def session_data2(entry_datas2: list[EntryData]):
+def session_data2(entry_datas2: list[EntryData], point_system):
     return SessionData(
         round_number=2,
         session_number=2,
@@ -87,6 +107,7 @@ def session_data2(entry_datas2: list[EntryData]):
         session_type=f1.SessionType.RACE,
         session_id=0,
         round_id=0,
+        point_system=point_system,
     )
 
 

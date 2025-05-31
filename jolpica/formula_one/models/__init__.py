@@ -13,6 +13,7 @@ from .point_scheme import (
     PartialPointScheme,
     PointSystem,
     PositionPointScheme,
+    SharedDrivePointScheme,
     SplitChampionshipScheme,
 )
 from .round import Round, RoundEntry
@@ -43,6 +44,7 @@ __all__ = [
     "SessionEntry",
     "SessionStatus",
     "SessionType",
+    "SharedDrivePointScheme",
     "SplitChampionshipScheme",
     "Team",
     "TeamDriver",
