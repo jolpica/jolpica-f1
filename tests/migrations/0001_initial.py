@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.db import migrations
 
-from jolpica.formula_one.standings import Group, SeasonData
+from jolpica.formula_one.standings import Group, SeasonData, update_championship_standings_in_db
 
 
 def add_test_data(apps, schema_editor):
@@ -48,19 +48,8 @@ def add_test_data(apps, schema_editor):
 
 def create_driver_standings(apps, schema_editor):
     Season = apps.get_model("formula_one", "Season")
-    DriverChampionship = apps.get_model("formula_one", "DriverChampionship")
-    TeamChampionship = apps.get_model("formula_one", "TeamChampionship")
 
-    team_standings = []
-    driver_standings = []
-
-    for season in Season.objects.all().select_related("championship_system"):
-        season_data = SeasonData.from_season(season)
-        driver_standings.extend(season_data.generate_standings(Group.DRIVER))
-        team_standings.extend(season_data.generate_standings(Group.TEAM))
-
-    DriverChampionship.objects.bulk_create(driver_standings)
-    TeamChampionship.objects.bulk_create(team_standings)
+    update_championship_standings_in_db(set(Season.objects.values_list("year", flat=True)))
 
 
 class Migration(migrations.Migration):
