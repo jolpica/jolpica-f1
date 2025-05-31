@@ -240,6 +240,7 @@ def driver_standings_2023(django_db_setup, django_db_blocker):
         ("leave as is",),
         ("delete",),
         ("change",),
+        ("invalid entries",),
     ],
 )
 @pytest.mark.django_db
@@ -251,8 +252,19 @@ def test_update_in_db(django_assert_max_num_queries, adjust_type):
     elif adjust_type == "change":
         DriverChampionship.objects.filter(year=2023, round__isnull=False).update(points=99)
         DriverChampionship.objects.filter(year=2023, season__isnull=False).delete()
+    elif adjust_type == "invalid entries":
+        DriverChampionship.objects.create(
+            year=2023,
+            round_number=1,
+            session_number=7,
+            win_count=0,
+            driver_id=1,
+            session_id=1,
+            points=10,
+            position=1,
+        )
 
-    with django_assert_max_num_queries(7):
+    with django_assert_max_num_queries(9):
         update_championship_standings_in_db({2023})
 
     after = list(DriverChampionship.objects.filter(year=2023).all().order_by("driver_id", "session_id"))
