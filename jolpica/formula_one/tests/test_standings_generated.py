@@ -220,6 +220,7 @@ def test_1979_team_standings(team_standings_from_year, round, reference, expecte
         (2, "ferrari", {"position": 2, "points": 12, "win_count": 0}),
         (3, "ferrari", {"position": 2, "points": 14, "win_count": 0}),
         (4, "ferrari", {"position": 2, "points": 14, "win_count": 0}),  # indy500 no points
+        (4, "epperly", None),  # Teams in Indy 500 not counted
         (5, "ferrari", {"position": 1, "points": 20, "win_count": 0}),
         (6, "ferrari", {"position": 2, "points": 28, "win_count": 1}),
         (7, "ferrari", {"position": 2, "points": 36, "win_count": 2}),
@@ -232,3 +233,23 @@ def test_1979_team_standings(team_standings_from_year, round, reference, expecte
 @pytest.mark.django_db
 def test_1958_team_standings(team_standings_from_year, round, reference, expected):
     check_expected_in_standings(team_standings_from_year(1958), round, reference, expected)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (1, "fangio", {"position": 4, "points": 4, "is_eligible": True}),
+        (1, "brooks", None),
+        (1, "collins", {"position": None, "points": 0, "is_eligible": False}),
+        (3, "bryan", None),
+        (4, "bryan", {"position": 4, "points": 8, "is_eligible": True}),
+        (4, "fangio", {"position": 11, "points": 4, "is_eligible": True}),
+        (11, "hawthorn", {"position": 1, "points": 42}),
+        (11, "moss", {"position": 2, "points": 41}),
+        (11, "phil_hill", {"position": 10, "points": 9}),
+        (11, "behra", {"position": 12, "points": 9}),  # TODO: issue #239 - Should be joint 10th
+    ],
+)
+@pytest.mark.django_db
+def test_1958_driver_standings(driver_standings_from_year: list[DriverChampionship], round, reference, expected):
+    check_expected_in_standings(driver_standings_from_year(1958), round, reference, expected)
