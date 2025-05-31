@@ -43,7 +43,8 @@ class ListAdminMixin:
                 "lap__number",
             ]
         elif model.__name__ == "SessionEntry":
-            self.list_filter = ["session__type", "session__round__season", "session__round__number"]
+            self.list_display = [*self.list_display, "round_entry__car_number"]
+            self.list_filter = ["session__type", "session__round__number", "session__round__season"]
         elif model.__name__ == "Session":
             self.list_filter = ["type", "round__season", "round__number"]
         elif model.__name__ == "TeamDriver":
@@ -52,8 +53,8 @@ class ListAdminMixin:
             self.list_filter = [
                 ("season", admin.EmptyFieldListFilter),
                 ("round", admin.EmptyFieldListFilter),
-                "year",
                 "round_number",
+                "year",
             ]
         super().__init__(model, admin_site)
 
@@ -90,7 +91,13 @@ class ListAdminMixin:
             case "RoundEntry":
                 return ["round__season__year", "round__name", "car_number"]
             case "SessionEntry":
-                return ["session__round__season__year", "session__round__name", "round_entry__driver__forename"]
+                return [
+                    "session__round__season__year",
+                    "session__round__name",
+                    "round_entry__team_driver__driver__forename",
+                    "round_entry__team_driver__driver__surname",
+                    "round_entry__team_driver__team__name",
+                ]
         return []
 
 
