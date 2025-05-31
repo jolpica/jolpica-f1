@@ -35,11 +35,13 @@ def update_championship_standings_in_db(season_years: set[int]) -> None:
 
     for season in seasons:
         season_data = SeasonData.from_season(season)
-        driver_standings.extend(season_data.generate_standings(Group.DRIVER))
-        team_standings.extend(season_data.generate_standings(Group.TEAM))
+        driver_objs = season_data.generate_standings(Group.DRIVER)
+        driver_standings.extend(driver_objs)
+        team_objs = season_data.generate_standings(Group.TEAM)
+        team_standings.extend(team_objs)
 
     unique_fields = ["session_id", "driver_id"]
-    DriverChampionship.objects.bulk_create(
+    driver_bulk = DriverChampionship.objects.bulk_create(
         driver_standings,
         update_conflicts=True,
         unique_fields=unique_fields,
@@ -49,8 +51,11 @@ def update_championship_standings_in_db(season_years: set[int]) -> None:
             if getattr(f, "column", None) not in {"id", *unique_fields}
         ],
     )
+    driver_pks = [obj.pk for obj in driver_bulk if obj.pk is not None]
+    DriverChampionship.objects.filter(year__in=season_years).exclude(pk__in=driver_pks).delete()
+
     unique_fields = ["session_id", "team_id"]
-    TeamChampionship.objects.bulk_create(
+    team_bulk = TeamChampionship.objects.bulk_create(
         team_standings,
         update_conflicts=True,
         unique_fields=unique_fields,
@@ -60,6 +65,8 @@ def update_championship_standings_in_db(season_years: set[int]) -> None:
             if getattr(f, "column", None) not in {"id", *unique_fields}
         ],
     )
+    team_pks = [obj.pk for obj in team_bulk if obj.pk is not None]
+    TeamChampionship.objects.filter(year__in=season_years).exclude(pk__in=team_pks).delete()
 
 
 class Group(Enum):
