@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Literal, overload
 
-from django.db.models import Count
+from django.db.models import Count, Prefetch
 
 from .models import (
     ChampionshipAdjustment,
@@ -259,12 +259,7 @@ class SessionData:
         session_type: SessionType,
         championship_system: ChampionshipSystem | None,
     ) -> SessionData:
-        entry_datas = [
-            EntryData.from_session_entry(entry)
-            for entry in session.session_entries.all().prefetch_related(
-                "session", "round_entry", "round_entry__round", "round_entry__team_driver"
-            )
-        ]
+        entry_datas = [EntryData.from_session_entry(entry) for entry in session.session_entries.all()]
         if session.number is None:
             raise ValueError("Session must have non-null number")
 
@@ -354,13 +349,33 @@ class SeasonData:
     @classmethod
     def from_season(cls, season: Season) -> SeasonData:
         session_datas = []
-        for round in season.rounds.all().annotate(round_entries_count=Count("round_entries")):
+        for round in (
+            season.rounds.all()
+            .annotate(round_entries_count=Count("round_entries"))
+            .prefetch_related(
+                Prefetch(
+                    "sessions",
+                    to_attr="prefetched_sessions",
+                    queryset=Session.objects.all()
+                    .annotate(session_entires_count=Count("session_entries"))
+                    .filter(
+                        session_entires_count__gt=0, point_system__gt=1
+                    )  # Assumption that point system with pk 1 is the only non-point system
+                    .select_related("point_system")
+                    .prefetch_related(
+                        Prefetch(
+                            "session_entries",
+                            queryset=SessionEntry.objects.all().select_related(
+                                "session", "round_entry", "round_entry__round", "round_entry__team_driver"
+                            ),
+                        )
+                    ),
+                )
+            )
+        ):
             if round.number is None or round.round_entries_count == 0:
                 continue
-            for session in round.sessions.annotate(session_entries_count=Count("session_entries")).filter(
-                session_entries_count__gt=0,
-                point_system__gt=1,  # Assumption that point system with pk 1 is the only non-point system
-            ):
+            for session in round.prefetched_sessions:
                 if session.number is None:
                     continue
                 session_datas.append(
