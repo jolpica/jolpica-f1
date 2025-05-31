@@ -12,6 +12,8 @@ from .models import (
     ChampionshipAdjustmentType,
     ChampionshipSystem,
     EligibilityChampionshipScheme,
+    PointSystem,
+    PositionPointScheme,
     Season,
     Session,
     SessionEntry,
@@ -246,6 +248,7 @@ class SessionData:
     session_type: SessionType
     session_id: int
     round_id: int
+    point_system: PointSystem
     championship_system: ChampionshipSystem | None = None
 
     @classmethod
@@ -272,6 +275,7 @@ class SessionData:
             session_type=session_type,
             session_id=session.id,
             round_id=session.round_id,
+            point_system=session.point_system,
             championship_system=championship_system,
         )
 
@@ -309,6 +313,15 @@ class SessionData:
         Returns:
             Mapping of group id to points for this session
         """
+        # If no points awarded for the group, return empty
+        pos_point_scheme = (
+            self.point_system.driver_position_points
+            if grouping_type == Group.DRIVER
+            else self.point_system.team_position_points
+        )
+        if pos_point_scheme == PositionPointScheme.NONE:
+            return {}
+
         data_map = self.group_data_by(grouping_type)
 
         stat_map = {}
