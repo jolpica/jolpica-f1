@@ -19,6 +19,7 @@ FROM
     JOIN formula_one_season as season ON round.season_id = season.id
 WHERE 
     $PITSTOP_WHERE_CLAUSE
+ORDER BY pitstop.id
 ) to 'tests/fixtures/db/pitstops.csv' 
 WITH CSV HEADER;"
 
@@ -38,6 +39,7 @@ FROM
 WHERE 
     (lap.is_entry_fastest_lap = true and (season.year in ($SESSION_ENTRY_WHERE_CLAUSE)))
     OR ($LAP_WHERE_CLAUSE)
+ORDER BY lap.id
 ) to 'tests/fixtures/db/laps.csv'
 WITH CSV HEADER;"
 
@@ -52,6 +54,7 @@ FROM
 WHERE 
     (season.year IN ($SESSION_ENTRY_WHERE_CLAUSE))
     OR ($LAP_WHERE_CLAUSE)
+ORDER BY sessionentry.id
 ) to 'tests/fixtures/db/sessionentrys.csv'
 WITH CSV HEADER;"
 
@@ -64,5 +67,6 @@ FROM
 WHERE 
     (season.year IN ($SESSION_ENTRY_WHERE_CLAUSE))
     OR ($LAP_WHERE_CLAUSE)
+ORDER BY roundentry.id
 ) TO 'tests/fixtures/db/roundentrys.csv'
 WITH CSV HEADER;"

@@ -10,7 +10,7 @@ rm -rf dump/
 mkdir -p dump
 
 for table in $tables; do
-  psql -h $DATABASE_HOST -U $USERNAME -d $DATABASE --csv -c "SELECT * FROM ${table};" > "dump/${table}.csv"
+  psql -h $DATABASE_HOST -U $USERNAME -d $DATABASE --csv -c "SELECT * FROM ${table} ORDER BY ${table}.id;" > "dump/${table}.csv"
   echo "Dumped ${table}.csv"
 done
 
