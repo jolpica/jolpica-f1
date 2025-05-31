@@ -252,7 +252,7 @@ def test_update_in_db(django_assert_max_num_queries, adjust_type):
         DriverChampionship.objects.filter(year=2023, round__isnull=False).update(points=99)
         DriverChampionship.objects.filter(year=2023, season__isnull=False).delete()
 
-    with django_assert_max_num_queries(139):  # Should look into better prefetching
+    with django_assert_max_num_queries(7):
         update_championship_standings_in_db({2023})
 
     after = list(DriverChampionship.objects.filter(year=2023).all().order_by("driver_id", "session_id"))
