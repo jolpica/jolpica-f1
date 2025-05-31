@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from collections import Counter
 from dataclasses import dataclass, field
 from enum import Enum
@@ -12,6 +13,7 @@ from .models import (
     ChampionshipAdjustmentType,
     ChampionshipSystem,
     EligibilityChampionshipScheme,
+    FastestLapPointScheme,
     PointSystem,
     PositionPointScheme,
     Season,
@@ -86,6 +88,7 @@ class EntryData:
     points: float | None
     position: int | None
     is_classified: bool | None
+    fastest_lap_rank: int | None
 
     @classmethod
     def from_session_entry(cls, entry: SessionEntry) -> EntryData:
@@ -98,6 +101,7 @@ class EntryData:
                 points=entry.points,
                 position=entry.position,
                 is_classified=entry.is_classified,
+                fastest_lap_rank=entry.fastest_lap_rank,
             )
         raise ValueError("Missing required fields in entry")
 
@@ -172,6 +176,7 @@ class Stats:
         session_type: SessionType,
         round_number: int,
         championship_system: ChampionshipSystem | None = None,
+        should_remove_fastest_lap_points: bool = False,
     ):
         finishes, unclassifies = [], []
         if session_type == SessionType.RACE and entry.position is not None:
@@ -182,7 +187,10 @@ class Stats:
         if entry.points is None:
             points_by_round = {}
         else:
-            points_by_round = {round_number: entry.points}
+            points = entry.points
+            if should_remove_fastest_lap_points and entry.fastest_lap_rank == 1:
+                points = math.ceil(points) - 1  # TODO Handle fractional points from non-fastest lap
+            points_by_round = {round_number: points}
         return Stats(points_by_round, finishes, unclassifies, championship_system, group_type)
 
     def __eq__(self, other):
@@ -324,13 +332,28 @@ class SessionData:
         if pos_point_scheme == PositionPointScheme.NONE:
             return {}
 
+        # If there are points awarded for driver fastest lap, but not for team fastest lap, then
+        # we should subtract the fastest lap points from the team points.
+        should_remove_fastest_lap_points = False
+        if grouping_type == Group.TEAM and self.point_system.team_fastest_lap != self.point_system.driver_fastest_lap:
+            if self.point_system.team_fastest_lap != FastestLapPointScheme.NONE:
+                raise NotImplementedError(
+                    "team fastest lap points different from driver fastest lap points, but team fastest lap is not NONE"
+                )
+            should_remove_fastest_lap_points = True
+
         data_map = self.group_data_by(grouping_type)
 
         stat_map = {}
         for key, entries in data_map.items():
             stats = map(
                 lambda x: Stats.from_entry(
-                    x, grouping_type, self.session_type, self.round_number, self.championship_system
+                    x,
+                    grouping_type,
+                    self.session_type,
+                    self.round_number,
+                    self.championship_system,
+                    should_remove_fastest_lap_points,
                 ),
                 entries,
             )
@@ -382,7 +405,7 @@ class SeasonData:
         ):
             if round.number is None or round.round_entries_count == 0:
                 continue
-            for session in round.prefetched_sessions:
+            for session in round.prefetched_sessions:  # type: ignore[attr-defined]  # Created by Prefetch
                 if session.number is None:
                     continue
                 session_datas.append(

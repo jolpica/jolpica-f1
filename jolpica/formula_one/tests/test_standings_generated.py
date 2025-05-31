@@ -1,5 +1,4 @@
 import pytest
-from django.core.management import call_command
 from django.db.models import prefetch_related_objects
 
 from ..models import ChampionshipAdjustmentType, Season, SessionType
@@ -8,13 +7,7 @@ from ..standings import Group, SeasonData
 
 
 @pytest.fixture(scope="module")
-def championship_adjustments(django_db_setup, django_db_blocker):
-    with django_db_blocker.unblock():
-        call_command("loaddata", "jolpica/formula_one/fixtures/championship_adjustments.json")
-
-
-@pytest.fixture(scope="module")
-def driver_standings_from_year(django_db_setup, django_db_blocker, championship_adjustments):
+def driver_standings_from_year(django_db_setup):
     def from_year(year) -> list[DriverChampionship]:
         season_data = SeasonData.from_season(Season.objects.get(year=year))
         standings = season_data.generate_standings(Group.DRIVER)
@@ -25,7 +18,7 @@ def driver_standings_from_year(django_db_setup, django_db_blocker, championship_
 
 
 @pytest.fixture(scope="module")
-def team_standings_from_year(django_db_setup, django_db_blocker, championship_adjustments):
+def team_standings_from_year(django_db_setup):
     def from_year(year) -> list[TeamChampionship]:
         season_data = SeasonData.from_season(Season.objects.get(year=year))
         standings = season_data.generate_standings(Group.TEAM)
@@ -222,11 +215,11 @@ def test_1979_team_standings(team_standings_from_year, round, reference, expecte
         (4, "ferrari", {"position": 2, "points": 14, "win_count": 0}),  # indy500 no points
         (4, "epperly", None),  # Teams in Indy 500 not counted
         (5, "ferrari", {"position": 1, "points": 20, "win_count": 0}),
-        (6, "ferrari", {"position": 2, "points": 28, "win_count": 1}),
-        (7, "ferrari", {"position": 2, "points": 36, "win_count": 2}),
+        (6, "ferrari", {"position": 1, "points": 28, "win_count": 1}),
+        (7, "ferrari", {"position": 1, "points": 36, "win_count": 2}),
         (8, "ferrari", {"position": 1, "points": 37, "win_count": 2}),
-        (9, "ferrari", {"position": 1, "points": 40, "win_count": 2}),
-        (10, "ferrari", {"position": 1, "points": 40, "win_count": 2}),
+        (9, "ferrari", {"position": 2, "points": 40, "win_count": 2}),
+        (10, "ferrari", {"position": 2, "points": 40, "win_count": 2}),
         (11, "ferrari", {"position": 2, "points": 40, "win_count": 2}),
     ],
 )
