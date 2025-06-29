@@ -236,7 +236,7 @@ class ListResultsSerializer(serializers.ListSerializer):
                 result["FastestLap"] = {
                     "rank": str(session_entry.fastest_lap_rank),
                     "lap": str(fastest_lap.number),
-                    "Time": {"time": str(fastest_lap.time).lstrip(":0")[:-3]},
+                    "Time": {"time": format_timedelta(fastest_lap.time)},
                 }
                 if fastest_lap.average_speed:
                     result["FastestLap"]["AverageSpeed"] = {
