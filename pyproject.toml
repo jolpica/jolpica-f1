@@ -62,7 +62,7 @@ django_settings_module = "jolpica_api.settings"
 extend-exclude = ["**/migrations"]
 line-length = 120
 src = ["jolpica", "jolpica_api"]
-target-version = "py310"
+target-version = "py312"
 
 [tool.ruff.lint]
 ignore = ["TRY300", "TRY003", "RUF012"]
