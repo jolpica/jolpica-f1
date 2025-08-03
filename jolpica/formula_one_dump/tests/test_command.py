@@ -255,6 +255,43 @@ class TestCommandUtilityMethods(TestCase):
         finally:
             temp_path.unlink(missing_ok=True)
 
+    def test_validate_db_param_valid_values(self):
+        """Test database parameter validation with valid values"""
+        # Test various valid database parameter formats
+        valid_params = [
+            "localhost",
+            "db-server.example.com",
+            "postgres_user",
+            "my-database",
+            "user123",
+            "db.local",
+            "test_db_2024",
+        ]
+
+        for param in valid_params:
+            result = self.command._validate_db_param(param, "TEST")
+            assert result == param
+
+    def test_validate_db_param_invalid_values(self):
+        """Test database parameter validation with invalid values"""
+        # Test various invalid database parameter formats
+        invalid_params = [
+            "db; DROP TABLE users;",  # SQL injection attempt
+            "db && rm -rf /",  # Command injection attempt
+            "db|cat /etc/passwd",  # Pipe injection
+            "db`whoami`",  # Command substitution
+            "db$(whoami)",  # Command substitution
+            "db/path/to/something",  # Slashes not allowed
+            "db:5432",  # Colons not allowed
+            "db server",  # Spaces not allowed
+            "",  # Empty string
+            123,  # Not a string
+        ]
+
+        for param in invalid_params:
+            with pytest.raises(CommandError, match="Unsafe value for DB TEST"):
+                self.command._validate_db_param(param, "TEST")
+
     @pytest.mark.django_db
     def test_has_changes_first_dump(self):
         """Test change detection with no previous dumps"""

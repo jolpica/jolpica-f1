@@ -1,4 +1,5 @@
 import hashlib
+import re
 import subprocess
 import tempfile
 from pathlib import Path
@@ -61,6 +62,13 @@ class Command(BaseCommand):
         if created:
             self.stdout.write("Created default dump configuration")
         return config
+
+    def _validate_db_param(self, param: str, name: str) -> str:
+        """Validate/sanitize database configuration values before passing to subprocess"""
+        # Allow alphanumerics, underscores, hyphens, dots (for hostnames/usernames/db names)
+        if not isinstance(param, str) or not re.match(r"^[\w\-.]+$", param):
+            raise CommandError(f"Unsafe value for DB {name}: {param!r}")
+        return param
 
     def _generate_latest_dump(self, options: dict[str, Any], config: DumpConfiguration):
         """Generate latest dump for paid users"""
@@ -152,14 +160,19 @@ class Command(BaseCommand):
 
             db_config = settings.DATABASES["default"]
 
+            # Validate/sanitize DB config values before passing to subprocess
+            db_host = self._validate_db_param(db_config.get("HOST", "localhost"), "HOST")
+            db_user = self._validate_db_param(db_config.get("USER", "postgres"), "USER")
+            db_name = self._validate_db_param(db_config.get("NAME", "jolpica"), "NAME")
+
             # ruff: noqa: S607
-            result = subprocess.run(  # noqa: S603 # trusted script with controlled DB params
+            result = subprocess.run(  # noqa: S603 # trusted script with validated DB params
                 [
                     "bash",
                     str(script_path),
-                    db_config.get("HOST", "localhost"),
-                    db_config.get("USER", "postgres"),
-                    db_config.get("NAME", "jolpica"),
+                    db_host,
+                    db_user,
+                    db_name,
                 ],
                 cwd=temp_dir,
                 capture_output=True,
@@ -174,10 +187,10 @@ class Command(BaseCommand):
             if not dump_file.exists():
                 raise CommandError("dump.zip was not created by the script")
 
-            # Move to a permanent temporary location
-            final_path = Path(
-                f"/tmp/jolpica-dump-{int(timezone.now().timestamp())}.zip"  # noqa: S108 # temp file with timestamp suffix is safe for dumps
-            )
+            # Use secure temporary file creation instead of predictable path
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as tmp_file:
+                final_path = Path(tmp_file.name)
+
             dump_file.rename(final_path)
 
             self.stdout.write(f"Dump generated: {final_path} ({final_path.stat().st_size} bytes)")
