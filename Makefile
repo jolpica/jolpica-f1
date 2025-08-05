@@ -1,6 +1,6 @@
 setup:
 	poetry install
-	pre-commit install # Install pre-commit hooks
+	pre-commit install --hook-type pre-push # Install pre-push hooks
 	python manage.py migrate
 
 format:
