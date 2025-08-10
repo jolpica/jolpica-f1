@@ -270,8 +270,8 @@ Output Structure:
     )
 
 
-def build_connection_params(host: str, database: str, username: str, password: str | None = None) -> dict[str, str]:
-    """Build PostgreSQL connection parameters.
+def build_connection_params(host: str, database: str, username: str, password: str | None = None) -> str:
+    """Build PostgreSQL connection string.
 
     Args:
         host: Database host.
@@ -280,16 +280,12 @@ def build_connection_params(host: str, database: str, username: str, password: s
         password: Database password (optional).
 
     Returns:
-        Dictionary of connection parameters.
+        PostgreSQL connection string.
     """
-    conn_params: dict[str, str] = {
-        "host": host,
-        "dbname": database,
-        "user": username,
-    }
+    conn_str = f"host={host} dbname={database} user={username}"
     if password:
-        conn_params["password"] = password
-    return conn_params
+        conn_str += f" password={password}"
+    return conn_str
 
 
 def setup_dump_directory(output_dir: str | Path) -> tuple[Path, Path]:
@@ -380,8 +376,8 @@ def main() -> None:
     # Prepare dump directory structure
     base_dir, csv_dir = setup_dump_directory(args.output)
 
-    # Build connection parameters
-    conn_params = build_connection_params(args.host, args.database, args.username, password)
+    # Build connection string
+    conn_string = build_connection_params(args.host, args.database, args.username, password)
 
     logger.debug(f"Connecting to {args.username}@{args.host}/{args.database}")
     logger.debug(f"Output directory: {args.output}")
@@ -390,7 +386,7 @@ def main() -> None:
 
     try:
         # Connect to database and export tables
-        with psycopg.connect(**conn_params) as conn:
+        with psycopg.connect(conn_string) as conn:
             # Get all formula_one_* tables
             tables = get_formula_one_tables(conn)
 
