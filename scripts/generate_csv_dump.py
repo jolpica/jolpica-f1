@@ -152,8 +152,7 @@ def get_table_columns_stable(conn: Connection[tuple], table_name: str) -> list[s
         columns = [row[0] for row in cur.fetchall()]
 
         if not columns:
-            raise ValueError(
-                f"No columns found for table '{table_name}'. Table may not exist or may be empty.")
+            raise ValueError(f"No columns found for table '{table_name}'. Table may not exist or may be empty.")
 
         return columns
 
@@ -230,10 +229,8 @@ def export_table_to_csv_with_select(conn: Connection[tuple], table_name: str, ou
         columns = get_table_columns_stable(conn, table_name)
 
         # Build explicit column list for stable ordering
-        column_list = sql.SQL(", ").join(
-            [sql.Identifier(col) for col in columns])
-        select_query = sql.SQL("SELECT {} FROM {} ORDER BY id").format(
-            column_list, sql.Identifier(table_name))
+        column_list = sql.SQL(", ").join([sql.Identifier(col) for col in columns])
+        select_query = sql.SQL("SELECT {} FROM {} ORDER BY id").format(column_list, sql.Identifier(table_name))
 
         # Execute query and write to CSV
         cur.execute(select_query)
@@ -253,8 +250,7 @@ def export_table_to_csv_with_select(conn: Connection[tuple], table_name: str, ou
                 # Format each row to match PostgreSQL COPY TO output
                 formatted_rows = []
                 for row in rows:
-                    formatted_row = [format_value_for_postgresql_csv(
-                        value) for value in row]
+                    formatted_row = [format_value_for_postgresql_csv(value) for value in row]
                     formatted_rows.append(formatted_row)
 
                 writer.writerows(formatted_rows)
@@ -297,8 +293,7 @@ def export_table_to_csv(
             columns = get_table_columns_stable(conn, table_name)
 
             # Build explicit column list for stable ordering
-            column_list = sql.SQL(", ").join(
-                [sql.Identifier(col) for col in columns])
+            column_list = sql.SQL(", ").join([sql.Identifier(col) for col in columns])
             copy_query = sql.SQL("COPY (SELECT {} FROM {} ORDER BY id) TO STDOUT WITH CSV HEADER").format(
                 column_list, sql.Identifier(table_name)
             )
@@ -496,8 +491,7 @@ def main() -> None:
         logger.setLevel(logging.DEBUG)
         # Add debug handler with more detail
         for handler in logger.handlers:
-            handler.setFormatter(logging.Formatter(
-                "%(asctime)s - %(levelname)s - %(message)s"))
+            handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
 
     # Get password from environment
     password = os.environ.get("PGPASSWORD")
@@ -510,8 +504,7 @@ def main() -> None:
     base_dir, csv_dir = setup_dump_directory(args.output)
 
     # Build connection string
-    conn_string = build_connection_params(
-        args.host, args.database, args.username, password)
+    conn_string = build_connection_params(args.host, args.database, args.username, password)
 
     logger.debug(f"Connecting to {args.username}@{args.host}/{args.database}")
     logger.debug(f"Output directory: {args.output}")
