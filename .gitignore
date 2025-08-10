@@ -176,3 +176,5 @@ cython_debug/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 repomix*
+.claude
+*.local.*
