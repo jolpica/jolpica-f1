@@ -5,6 +5,8 @@ Jolpica F1 is maintained by a small group of volunteers. Our hosting costs are a
 
 The Ergast compatible API can be found here: http://api.jolpi.ca/ergast/f1/
 
+By using the jolpica-f1 API, you agree to our [Terms of Use](TERMS.md).
+
 # Documentation
 Our documentation can be [found here](/docs/README.md).
 
