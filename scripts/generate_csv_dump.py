@@ -9,6 +9,13 @@
 This script exports all tables with the 'formula_one_' prefix from a PostgreSQL
 database to CSV files, then creates a zip archive of the exported data.
 
+Export Methods:
+    The script supports two export methods:
+    1. COPY TO (default): Fast PostgreSQL native export using COPY TO command
+    2. SELECT queries (--avoid-copy-to): Compatible fallback for restricted databases
+
+    Method 2 aims to produce identical CSV output with proper data type formatting.
+
 Output Structure:
     The script creates the following structure in the output directory:
     dump/
@@ -27,6 +34,7 @@ IMPORTANT:
     - New columns will appear alphabetically, not at the end of the CSV
     - Scripts reading these CSVs should reference columns by name (using headers),
       not by position, to handle schema changes gracefully
+    - Use --avoid-copy-to for databases that restrict COPY TO (e.g. some cloud services)
 
 Usage:
     python generate_csv_dump.py [OPTIONS]
@@ -38,6 +46,7 @@ Options:
     -o, --output DIR      Output directory for all files (default: dump)
     -q, --quiet           Suppress informational output
     -v, --verbose         Enable verbose output
+    --avoid-copy-to       Use SELECT queries instead of COPY TO (for restricted databases)
     -h, --help            Show help message
 
 Environment:
@@ -47,13 +56,16 @@ Environment:
 from __future__ import annotations
 
 import argparse
+import csv
 import logging
 import os
+import re
 import sys
 import zipfile
 from dataclasses import dataclass
+from datetime import datetime, time, timedelta
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import psycopg
 from psycopg import sql
@@ -84,6 +96,7 @@ class ScriptArguments:
     output: str
     quiet: bool
     verbose: bool
+    avoid_copy_to: bool
 
 
 def get_formula_one_tables(conn: Connection[tuple]) -> list[str]:
@@ -144,12 +157,113 @@ def get_table_columns_stable(conn: Connection[tuple], table_name: str) -> list[s
         return columns
 
 
-def export_table_to_csv(conn: Connection[tuple], table_name: str, output_path: Path) -> None:
-    """Export a single table to CSV format using PostgreSQL COPY command.
+def format_value_for_postgresql_csv(value: Any) -> str:
+    """Format a Python value to match PostgreSQL's COPY TO CSV output (for avoid_copy_to mode).
 
-    This uses PostgreSQL's COPY TO command with explicit column ordering
-    to ensure stable, reproducible dumps across different databases.
-    Columns are ordered with 'id' first, then alphabetically.
+    This function converts Python data types to match the exact formatting
+    that PostgreSQL uses when exporting via COPY TO CSV, ensuring
+    identical output between SELECT and COPY TO methods.
+
+    Args:
+        value: The Python value to format.
+
+    Returns:
+        String representation matching PostgreSQL CSV format.
+    """
+    if value is None:
+        return ""
+
+    # Handle boolean values: True/False -> t/f
+    if isinstance(value, bool):
+        return "t" if value else "f"
+
+    # No trailing .0 for float values that are integers
+    if isinstance(value, float) and value == int(value):
+        return str(int(value))
+
+    if isinstance(value, timedelta):
+        # Convert timedelta to PostgreSQL format: HH:MM:SS.mmm
+        total_seconds = int(value.total_seconds())
+        hours = total_seconds // 3600
+        minutes = (total_seconds % 3600) // 60
+        seconds = total_seconds % 60
+        microseconds = value.microseconds
+
+        if microseconds > 0:
+            microseconds_str = f"{microseconds:06d}".rstrip("0")
+            if not microseconds_str:
+                microseconds_str = "0"
+            return f"{hours:02d}:{minutes:02d}:{seconds:02d}.{microseconds_str}"
+        else:
+            return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+    # Handle time-related values
+    if isinstance(value, datetime | time):
+        str_value = str(value)
+        str_value = re.sub(r"(\.\d*?)0+$", r"\1", str_value)
+        str_value = re.sub(r"\.$", "", str_value)
+        return str_value
+
+    return str(value)
+
+
+def export_table_to_csv_with_select(conn: Connection[tuple], table_name: str, output_path: Path) -> None:
+    """Export a table to CSV using SELECT queries (fallback method).
+
+    This method uses regular SELECT queries instead of COPY TO, making it
+    compatible with databases that restrict COPY TO commands. It's slower
+    but works with more services.
+
+    Args:
+        conn: PostgreSQL database connection.
+        table_name: Name of the table to export.
+        output_path: Path where the CSV file will be written.
+
+    Raises:
+        psycopg.Error: If there's an error executing queries.
+        OSError: If there's an error writing the file.
+        ValueError: If no columns are found for the table.
+    """
+    with conn.cursor() as cur:
+        # Get columns in stable order (id first, then alphabetical)
+        columns = get_table_columns_stable(conn, table_name)
+
+        # Build explicit column list for stable ordering
+        column_list = sql.SQL(", ").join([sql.Identifier(col) for col in columns])
+        select_query = sql.SQL("SELECT {} FROM {} ORDER BY id").format(column_list, sql.Identifier(table_name))
+
+        # Execute query and write to CSV
+        cur.execute(select_query)
+
+        with open(output_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.writer(f)
+
+            # Write header row
+            writer.writerow(columns)
+
+            # Write data rows in chunks to avoid memory issues
+            while True:
+                rows = cur.fetchmany(size=1000)
+                if not rows:
+                    break
+
+                # Format each row to match PostgreSQL COPY TO output
+                formatted_rows = []
+                for row in rows:
+                    formatted_row = [format_value_for_postgresql_csv(value) for value in row]
+                    formatted_rows.append(formatted_row)
+
+                writer.writerows(formatted_rows)
+
+
+def export_table_to_csv(
+    conn: Connection[tuple], table_name: str, output_path: Path, avoid_copy_to: bool = False
+) -> None:
+    """Export a single table to CSV format.
+
+    Chooses between COPY TO (fast, default) and SELECT queries (fallback)
+    based on the avoid_copy_to parameter. Both methods ensure stable,
+    reproducible dumps with identical column ordering.
 
     Column ordering guarantees:
     - 'id' column always appears first (if present)
@@ -161,28 +275,34 @@ def export_table_to_csv(conn: Connection[tuple], table_name: str, output_path: P
         conn: PostgreSQL database connection.
         table_name: Name of the table to export.
         output_path: Path where the CSV file will be written.
+        avoid_copy_to: If True, use SELECT queries instead of COPY TO.
 
     Raises:
-        psycopg.Error: If there's an error executing the COPY command.
+        psycopg.Error: If there's an error executing database commands.
         OSError: If there's an error writing the file.
         ValueError: If no columns are found for the table.
     """
-    with conn.cursor() as cur:
-        # Get columns in stable order (id first, then alphabetical)
-        # This will raise ValueError if no columns found
-        columns = get_table_columns_stable(conn, table_name)
+    if avoid_copy_to:
+        # Use SELECT queries for restricted databases
+        export_table_to_csv_with_select(conn, table_name, output_path)
+    else:
+        # Use COPY TO for better performance
+        with conn.cursor() as cur:
+            # Get columns in stable order (id first, then alphabetical)
+            # This will raise ValueError if no columns found
+            columns = get_table_columns_stable(conn, table_name)
 
-        # Build explicit column list for stable ordering
-        column_list = sql.SQL(", ").join([sql.Identifier(col) for col in columns])
-        copy_query = sql.SQL("COPY (SELECT {} FROM {} ORDER BY id) TO STDOUT WITH CSV HEADER").format(
-            column_list, sql.Identifier(table_name)
-        )
+            # Build explicit column list for stable ordering
+            column_list = sql.SQL(", ").join([sql.Identifier(col) for col in columns])
+            copy_query = sql.SQL("COPY (SELECT {} FROM {} ORDER BY id) TO STDOUT WITH CSV HEADER").format(
+                column_list, sql.Identifier(table_name)
+            )
 
-        # Use COPY TO with CSV format
-        with open(output_path, "wb") as f:
-            with cur.copy(copy_query) as copy:
-                for data in copy:
-                    f.write(data)
+            # Use COPY TO with CSV format
+            with open(output_path, "wb") as f:
+                with cur.copy(copy_query) as copy:
+                    for data in copy:
+                        f.write(data)
 
 
 def create_zip_archive(csv_dir: Path, zip_path: Path) -> None:
@@ -216,8 +336,8 @@ Environment Variables:
 
 Output Structure:
   The script creates:
-    dump/csv/          # CSV files
-    dump/csv_dump.zip  # Zip archive
+    dump/csv/          # CSV files with stable column ordering
+    dump/csv_dump.zip  # Zip archive of all CSV files
         """,
     )
 
@@ -257,6 +377,11 @@ Output Structure:
         action="store_true",
         help="Enable verbose output",
     )
+    parser.add_argument(
+        "--avoid-copy-to",
+        action="store_true",
+        help="Use SELECT queries instead of COPY TO (for restricted databases)",
+    )
 
     args = parser.parse_args()
 
@@ -267,6 +392,7 @@ Output Structure:
         output=args.output,
         quiet=args.quiet,
         verbose=args.verbose,
+        avoid_copy_to=args.avoid_copy_to,
     )
 
 
@@ -324,13 +450,14 @@ def setup_dump_directory(output_dir: str | Path) -> tuple[Path, Path]:
     return base_dir, csv_dir
 
 
-def export_all_tables(conn: Connection[tuple], tables: list[str], csv_dir: Path) -> None:
+def export_all_tables(conn: Connection[tuple], tables: list[str], csv_dir: Path, avoid_copy_to: bool = False) -> None:
     """Export all specified tables to CSV files.
 
     Args:
         conn: PostgreSQL database connection.
         tables: List of table names to export.
         csv_dir: Directory where CSV files will be written.
+        avoid_copy_to: If True, use SELECT queries instead of COPY TO.
 
     Raises:
         psycopg.Error: If there's an error exporting a table.
@@ -338,7 +465,7 @@ def export_all_tables(conn: Connection[tuple], tables: list[str], csv_dir: Path)
     for table in tables:
         csv_path = csv_dir / f"{table}.csv"
         try:
-            export_table_to_csv(conn, table, csv_path)
+            export_table_to_csv(conn, table, csv_path, avoid_copy_to)
             logger.info(f"Dumped {table}.csv")
         except Exception:
             logger.exception(f"Failed to dump {table}")
@@ -395,7 +522,7 @@ def main() -> None:
                 return
 
             # Export each table to csv/ subdirectory
-            export_all_tables(conn, tables, csv_dir)
+            export_all_tables(conn, tables, csv_dir, args.avoid_copy_to)
 
         # Create zip archive in the base directory
         zip_path = base_dir / "csv_dump.zip"
