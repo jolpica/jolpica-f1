@@ -22,24 +22,29 @@ def get_linux_ec2_private_ip() -> None | str:
     try:
         token = get_ec2_token()
     except Exception:
-        return None
+        return
 
     headers = {"X-aws-ec2-metadata-token": f"{token}"}
 
     try:
         response = requests.get("http://169.254.169.254/latest/meta-data/local-ipv4", headers=headers, timeout=2)
         return response.text
-    except Exception:
-        return None
+    except Exception as ex:
+        ex.add_note("while getting private IP address from EC2 metadata")
+        raise ex
 
 
-def client_ip_middleware(get_response):
+def client_ip_middleware(
+    get_response,
+):
     """Set the client ip (REMOTE_ADDR) value to the ip sent to the load balancer.
 
     If developing locally and there is no HTTP_X_FORWARDED_FOR, default to existing value.
     """
 
-    def process_request(request):
+    def process_request(
+        request,
+    ):
         ips = request.META.get(
             "HTTP_X_FORWARDED_FOR",
             request.META["REMOTE_ADDR"],
@@ -50,10 +55,14 @@ def client_ip_middleware(get_response):
     return process_request
 
 
-def ip_blocks_middleware(get_response):
+def ip_blocks_middleware(
+    get_response,
+):
     """Block IP addresses from accessing the API."""
 
-    def process_request(request: HttpRequest):
+    def process_request(
+        request: HttpRequest,
+    ):
         if request.META["REMOTE_ADDR"] in {"45.61.185.154"}:
             # IP of http://allorigins.win
             return HttpResponseForbidden("Too many requests from this IP. Please avoid proxy services.")
@@ -62,10 +71,14 @@ def ip_blocks_middleware(get_response):
     return process_request
 
 
-def queryparam_blocks_middleware(get_response):
+def queryparam_blocks_middleware(
+    get_response,
+):
     """Block IP addresses from accessing the API."""
 
-    def process_request(request: HttpRequest):
+    def process_request(
+        request: HttpRequest,
+    ):
         for key in request.GET.keys():
             if "cache" in key.lower():
                 return HttpResponseForbidden("Please be considerate of other API users and do not avoid caches.")
