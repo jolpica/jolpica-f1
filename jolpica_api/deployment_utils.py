@@ -22,7 +22,7 @@ def get_linux_ec2_private_ip() -> None | str:
     try:
         token = get_ec2_token()
     except Exception:
-        return
+        return None
 
     headers = {"X-aws-ec2-metadata-token": f"{token}"}
 
@@ -31,12 +31,10 @@ def get_linux_ec2_private_ip() -> None | str:
         return response.text
     except Exception as ex:
         ex.add_note("while getting private IP address from EC2 metadata")
-        raise ex
+        raise
 
 
-def client_ip_middleware(
-    get_response,
-):
+def client_ip_middleware(get_response):
     """Set the client ip (REMOTE_ADDR) value to the ip sent to the load balancer.
 
     If developing locally and there is no HTTP_X_FORWARDED_FOR, default to existing value.
@@ -55,9 +53,7 @@ def client_ip_middleware(
     return process_request
 
 
-def ip_blocks_middleware(
-    get_response,
-):
+def ip_blocks_middleware(get_response):
     """Block IP addresses from accessing the API."""
 
     def process_request(
@@ -71,9 +67,7 @@ def ip_blocks_middleware(
     return process_request
 
 
-def queryparam_blocks_middleware(
-    get_response,
-):
+def queryparam_blocks_middleware(get_response):
     """Block IP addresses from accessing the API."""
 
     def process_request(
