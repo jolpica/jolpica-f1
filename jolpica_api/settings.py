@@ -253,4 +253,7 @@ SPECTACULAR_SETTINGS = {
     # ],
 }
 
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME", default="eu-west-1")
+AWS_DUMPS_S3_BUCKET = env("AWS_DUMPS_S3_BUCKET", default="jolpica-f1-database-dumps")
+
 LOGGING = LOG_CONFIG if DEPLOYMENT_ENV != "LOCAL" else None

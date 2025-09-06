@@ -1,14 +1,10 @@
 from __future__ import annotations
 
-from django.urls import include, path
-from rest_framework.routers import DefaultRouter
+from django.urls import path
 
-from .views import ConfirmDumpViewSet, UploadDumpViewSet
-
-router = DefaultRouter()
-router.register(r"upload", UploadDumpViewSet, basename="dump-upload")
-router.register(r"confirm", ConfirmDumpViewSet, basename="dump-confirm")
+from .views import DumpUploadCompleteView, DumpUploadStartView
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path("upload/start/", DumpUploadStartView.as_view(), name="dump-upload-start"),
+    path("upload/complete/", DumpUploadCompleteView.as_view(), name="dump-upload-complete"),
 ]
