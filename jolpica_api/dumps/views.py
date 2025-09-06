@@ -102,7 +102,7 @@ class DumpUploadStartView(APIView):
                     {
                         "exists": False,
                         "upload_url": upload_url,
-                        "s3_key": s3_key,
+                        "key": s3_key,
                         "dump_id": dump.id,
                     }
                 ).data
