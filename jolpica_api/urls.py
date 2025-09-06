@@ -18,7 +18,8 @@ open_api_docs_urlpatterns = [
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("ergast/", include("jolpica_api.ergastapi.urls")),
-    path("data/", include("jolpica_api.data_import.urls")),
+    path("data/import/", include("jolpica_api.data_import.urls")),
+    path("data/dumps/", include("jolpica_api.dumps.urls")),
     path("auth/", include("jolpica_api.authentication.urls")),
     path("f1/", include("jolpica_api.f1_api.urls")),
     path("docs/", include(open_api_docs_urlpatterns)),

@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "knox",
     "drf_spectacular",
     "jolpica.formula_one",
+    "jolpica_api.dumps",
     "jolpica_api.authentication",
     "jolpica_api.ergastapi",
     "jolpica_api.data_import",
