@@ -279,7 +279,16 @@ class DumpDownloadLatestView(DumpDownloadDelayedView):
     responses={200: DumpsOverviewResponseSerializer},
 )
 class DumpsOverviewView(APIView):
-    """API endpoint for getting an overview of available dumps."""
+    """API endpoint for getting an overview of available dumps.
+
+    This endpoint provides information about database dump availability and access:
+
+    - **Delayed dumps** (14+ days old): Always free and publicly accessible
+    - **Latest dumps**: Available to contributors or for monetary supporters.
+
+    This fee structure helps us keep the API running, and encourages commercial
+    users to contribute to the project's maintenance costs while keeping historical
+    data (and the rest of the API) freely available."""
 
     permission_classes = []  # Public endpoint
 
