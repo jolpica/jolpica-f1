@@ -306,7 +306,10 @@ def export_table_to_csv(
 
 
 def create_zip_archive(csv_dir: Path, zip_path: Path) -> None:
-    """Create a zip file from CSV files with flat structure.
+    """Create a reproducible zip file from CSV files with flat structure.
+
+    Uses fixed timestamps to ensure identical content produces identical
+    zip files with the same SHA256 hash across different runs.
 
     Args:
         csv_dir: Directory containing CSV files to archive.
@@ -315,10 +318,17 @@ def create_zip_archive(csv_dir: Path, zip_path: Path) -> None:
     Raises:
         OSError: If there's an error creating the zip file.
     """
+    # Use a fixed timestamp for reproducible zips
+    fixed_timestamp = (1999, 1, 1, 0, 0, 0)
+
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
         for csv_file in sorted(csv_dir.glob("*.csv")):
-            # Add files with just their name, no directory structure
-            zipf.write(csv_file, csv_file.name)
+            zip_info = zipfile.ZipInfo(filename=csv_file.name)
+            zip_info.date_time = fixed_timestamp
+            zip_info.compress_type = zipfile.ZIP_DEFLATED
+
+            with open(csv_file, "rb") as f:
+                zipf.writestr(zip_info, f.read())
 
 
 def parse_arguments() -> ScriptArguments:
