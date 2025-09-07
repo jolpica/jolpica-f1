@@ -595,3 +595,8 @@ class TestDumpsOverviewView(BaseViewTestMixin):
         delayed_csv = response.data["delayed_dumps"]["csv"]
         assert delayed_csv["file_hash"] == old_dump.file_hash
         assert delayed_csv["download_url"] == "http://testserver/data/dumps/download/delayed/?dump_type=csv"
+
+        # Check delay_days is included
+        from jolpica_api.dumps.views import DUMP_DOWNLOAD_DELAY_DAYS
+
+        assert response.data["delay_days"] == DUMP_DOWNLOAD_DELAY_DAYS

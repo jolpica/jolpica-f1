@@ -88,6 +88,9 @@ class DumpsOverviewResponseSerializer(serializers.Serializer):
     )
     latest_dumps = serializers.DictField(help_text="Latest dump for each available type")
     delayed_dumps = serializers.DictField(
-        help_text="Latest delayed dump (older than 14 days) for each available type",
+        help_text="Latest delayed dump (older than configured delay) for each available type",
         required=False,
+    )
+    delay_days = serializers.IntegerField(
+        help_text="Number of days a dump must be old to be available for delayed download"
     )
