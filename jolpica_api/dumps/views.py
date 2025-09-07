@@ -57,11 +57,6 @@ class DumpUploadStartView(APIView):
         Returns:
             Response with upload URL or exists=True if duplicate
         """
-        if request.user.is_anonymous:
-            return response.Response(
-                {"detail": "Authentication credentials were not provided."}, status=status.HTTP_401_UNAUTHORIZED
-            )
-
         serializer = DumpUploadStartRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -143,11 +138,6 @@ class DumpUploadCompleteView(APIView):
 
         Marks the dump record as completed and sets the upload timestamp.
         """
-        if request.user.is_anonymous:
-            return response.Response(
-                {"detail": "Authentication credentials were not provided."}, status=status.HTTP_401_UNAUTHORIZED
-            )
-
         serializer = DumpUploadCompleteRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -248,11 +238,6 @@ class DumpDownloadLatestView(DumpDownloadDelayedView):
     delay_days = 0  # Latest dump - no delay
 
     def get(self, request) -> HttpResponse:
-        if request.user.is_anonymous:
-            return response.Response(
-                {"detail": "Authentication credentials were not provided."}, status=status.HTTP_401_UNAUTHORIZED
-            )
-
         # Extract dump_type from query parameters for latest view
         return super().get(request)
 
