@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 
 from django.http import HttpResponse, HttpResponseRedirect
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 from rest_framework import response, status
 from rest_framework.views import APIView
 
@@ -33,6 +33,7 @@ logger = logging.getLogger(__name__)
 
 
 @extend_schema(
+    tags=["dumps"],
     summary="Request dump upload URL",
     description=(
         "Request to upload a new database dump. "
@@ -119,6 +120,7 @@ class DumpUploadStartView(APIView):
 
 
 @extend_schema(
+    tags=["dumps"],
     summary="Confirm dump upload completion",
     description=(
         "Confirm that a dump file has been successfully uploaded to S3. "
@@ -178,13 +180,24 @@ class DumpUploadCompleteView(APIView):
 
 
 @extend_schema(
+    tags=["dumps"],
     summary="Download delayed database dump",
     description=(
         f"Automatically redirects to download a database dump that is at least {DUMP_DOWNLOAD_DELAY_DAYS} days old. "
         "This endpoint is public and requires no authentication. "
-        "Optionally specify dump_type in URL path to get the latest delayed dump of a specific type."
+        f"If no dumps older than {DUMP_DOWNLOAD_DELAY_DAYS} days exist, "
+        "returns the oldest available dump of the specified type."
     ),
-    responses={302: "Redirect to S3 download URL"},
+    parameters=[
+        OpenApiParameter(
+            name="dump_type",
+            description="Type of database dump to download (e.g., 'csv', 'sql'). Defaults to 'csv'.",
+            required=False,
+            type=str,
+            location=OpenApiParameter.QUERY,
+        ),
+    ],
+    responses={302: "Redirect to S3 download URL", 404: "No dumps available"},
 )
 class DumpDownloadDelayedView(APIView):
     """API endpoint for downloading delayed database dumps (public access)."""
@@ -223,13 +236,26 @@ class DumpDownloadDelayedView(APIView):
 
 
 @extend_schema(
+    tags=["dumps"],
     summary="Download latest database dump",
     description=(
         "Automatically redirects to download the most recent completed database dump. "
         "Requires authentication and 'can_download_latest_dump' permission. "
         "Optionally specify dump_type to get the latest dump of a specific type."
     ),
-    responses={302: "Redirect to S3 download URL"},
+    parameters=[
+        OpenApiParameter(
+            name="dump_type",
+            description=(
+                "Type of database dump to download (e.g., 'csv', 'sql'). "
+                "If not specified, returns the latest dump of any type."
+            ),
+            required=False,
+            type=str,
+            location=OpenApiParameter.QUERY,
+        ),
+    ],
+    responses={302: "Redirect to S3 download URL", 404: "No dumps available"},
 )
 class DumpDownloadLatestView(DumpDownloadDelayedView):
     """API endpoint for downloading the latest database dump."""
@@ -243,10 +269,12 @@ class DumpDownloadLatestView(DumpDownloadDelayedView):
 
 
 @extend_schema(
+    tags=["dumps"],
     summary="Get dumps overview",
     description=(
-        "Get an overview of available database dumps including available types "
-        "and the latest dump for each type. This endpoint is public."
+        "Get an overview of available database dumps including available types, "
+        "the latest dump for each type, delayed dumps, and delay configuration. "
+        "This endpoint is public and requires no authentication."
     ),
     responses={200: DumpsOverviewResponseSerializer},
 )
