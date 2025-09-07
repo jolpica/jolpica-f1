@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import timedelta
 from unittest.mock import patch
 
 import pytest
@@ -11,7 +12,10 @@ from jolpica_api.dumps.services import (
     confirm_dump_upload,
     create_or_update_dump,
     generate_s3_key,
+    get_available_dump_types,
+    get_latest_delayed_dump,
 )
+from jolpica_api.dumps.views import DUMP_DOWNLOAD_DELAY_DAYS
 
 
 @pytest.fixture
@@ -142,3 +146,106 @@ def test_confirm_dump_upload(sample_hash, has_pending_dump, expected_success):
     else:
         assert "No pending dump found" in message
         assert dump is None
+
+
+# New download service tests
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    ["delay_days", "dump_type", "create_old_dump", "create_recent_dump", "expected_dump_type", "expected_hash"],
+    [
+        # No dumps case
+        (DUMP_DOWNLOAD_DELAY_DAYS, None, False, False, None, None),
+        # Zero delay - should return recent dump (used by get_latest_completed_dump)
+        (0, None, False, True, "csv", "recent123456789012345678901234567890123456789012345abcd"),
+        # CSV type filtering
+        (
+            DUMP_DOWNLOAD_DELAY_DAYS,
+            "csv",
+            True,
+            False,
+            "csv",
+            "old123456789012345678901234567890123456789012345678abcd",
+        ),
+    ],
+)
+def test_get_latest_delayed_dump(
+    delay_days, dump_type, create_old_dump, create_recent_dump, expected_dump_type, expected_hash
+):
+    if create_old_dump:
+        old_date = timezone.now() - timedelta(days=DUMP_DOWNLOAD_DELAY_DAYS + 1)
+        Dump.objects.create(
+            dump_type="csv",
+            file_hash="old123456789012345678901234567890123456789012345678abcd",
+            key="dumps/2024-01-01/csv_old12345/jolpica-f1-csv.zip",
+            file_size=1000,
+            upload_status="completed",
+            uploaded_at=old_date,
+        )
+
+    if create_recent_dump:
+        Dump.objects.create(
+            dump_type="csv",
+            file_hash="recent123456789012345678901234567890123456789012345abcd",
+            key="dumps/2024-01-15/csv_recent12/jolpica-f1-csv.zip",
+            file_size=2000,
+            upload_status="completed",
+            uploaded_at=timezone.now(),
+        )
+
+    result = get_latest_delayed_dump(delay_days, dump_type)
+
+    if expected_dump_type is None:
+        assert result is None
+    else:
+        assert result is not None
+        assert result.dump_type == expected_dump_type
+        assert result.file_hash == expected_hash
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    ["create_recent_csv", "create_sql", "create_pending", "expected_types"],
+    [
+        # No dumps case
+        (False, False, False, []),
+        # Completed dumps of different types
+        (True, True, False, ["csv", "sql"]),
+        # Only pending dumps - should return empty
+        (False, False, True, []),
+    ],
+)
+def test_get_available_dump_types(create_recent_csv, create_sql, create_pending, expected_types):
+    if create_recent_csv:
+        Dump.objects.create(
+            dump_type="csv",
+            file_hash="recent123456789012345678901234567890123456789012345abcd",
+            key="dumps/2024-01-15/csv_recent12/jolpica-f1-csv.zip",
+            file_size=2000,
+            upload_status="completed",
+            uploaded_at=timezone.now(),
+        )
+
+    if create_sql:
+        Dump.objects.create(
+            dump_type="sql",
+            file_hash="sql123456789012345678901234567890123456789012345678abcd",
+            key="dumps/2024-01-10/sql_sql12345/jolpica-f1-sql.zip",
+            file_size=3000,
+            upload_status="completed",
+            uploaded_at=timezone.now(),
+        )
+
+    if create_pending:
+        Dump.objects.create(
+            dump_type="csv",
+            file_hash="pending12345678901234567890123456789012345678abcd",
+            key="dumps/2024-01-01/csv_pending/jolpica-f1-csv.zip",
+            file_size=1000,
+            upload_status="pending",
+        )
+
+    result = get_available_dump_types()
+    assert set(result) == set(expected_types)
+    assert result == sorted(result)  # Should be sorted
