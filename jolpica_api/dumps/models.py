@@ -44,6 +44,7 @@ class Dump(models.Model):
         ]
         permissions = [
             ("can_upload_dumps", "Can upload database dumps"),
+            ("can_download_latest_dump", "Can download latest database dump"),
         ]
 
     def __str__(self) -> str:

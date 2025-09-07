@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from django.urls import reverse
 from rest_framework import serializers
 
 from .models import Dump
@@ -50,3 +51,43 @@ class DumpUploadCompleteResponseSerializer(serializers.Serializer):
     success = serializers.BooleanField(help_text="Whether the confirmation was successful")
     message = serializers.CharField(help_text="Status message")
     dump_id = serializers.IntegerField(required=False, help_text="ID of the confirmed dump record")
+
+
+class DumpOverviewInfoSerializer(serializers.ModelSerializer):
+    """Serializer for dump information in overview with download link."""
+
+    download_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Dump
+        fields = ["dump_type", "file_hash", "file_size", "uploaded_at", "download_url"]
+
+    def get_download_url(self, obj) -> str:
+        dump_type = obj.dump_type
+        context = self.context.get("dump_category", "latest")
+        request = self.context.get("request")
+
+        if context == "latest":
+            url = reverse("dump-download-latest")
+        else:  # delayed
+            url = reverse("dump-download-delayed")
+        full_url = f"{url}?dump_type={dump_type}"
+
+        # Build full URL with domain if request is available
+        if request:
+            return request.build_absolute_uri(full_url)
+        else:
+            return full_url
+
+
+class DumpsOverviewResponseSerializer(serializers.Serializer):
+    """Serializer for dumps overview response."""
+
+    available_types = serializers.ListField(
+        child=serializers.CharField(), help_text="List of available dump types with completed uploads"
+    )
+    latest_dumps = serializers.DictField(help_text="Latest dump for each available type")
+    delayed_dumps = serializers.DictField(
+        help_text="Latest delayed dump (older than 14 days) for each available type",
+        required=False,
+    )
