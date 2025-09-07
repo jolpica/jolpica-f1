@@ -12,5 +12,6 @@ notebook.ipynb
 **/__pycache__/
 Dockerfile
 LICENSE
+TERMS.md
 CONTRIBUTING.md
 README.md
