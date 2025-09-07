@@ -283,6 +283,7 @@ class DumpsOverviewView(APIView):
                         "available_types": available_types,
                         "latest_dumps": latest_dumps,
                         "delayed_dumps": delayed_dumps,
+                        "delay_days": DUMP_DOWNLOAD_DELAY_DAYS,
                     }
                 ).data
             )
