@@ -77,8 +77,24 @@ def get_latest_delayed_dump(delay_days: int, dump_type: str | None = None) -> Du
 
     if delay_days > 0:
         cutoff_date = timezone.now() - timedelta(days=delay_days)
-        queryset = queryset.filter(uploaded_at__lt=cutoff_date)
+        delayed_queryset = queryset.filter(uploaded_at__lt=cutoff_date)
 
+        if dump_type:
+            delayed_queryset = delayed_queryset.filter(dump_type=dump_type)
+
+        # Try to get a delayed dump first
+        delayed_dump = delayed_queryset.order_by("-uploaded_at").first()
+        if delayed_dump:
+            return delayed_dump
+
+        # If no delayed dump available, fallback to oldest dump for the type
+        if dump_type:
+            oldest_queryset = queryset.filter(dump_type=dump_type)
+            return oldest_queryset.order_by("uploaded_at").first()
+
+        return None
+
+    # For delay_days = 0 (latest dump), original logic
     if dump_type:
         queryset = queryset.filter(dump_type=dump_type)
 

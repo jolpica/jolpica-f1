@@ -159,7 +159,7 @@ def test_confirm_dump_upload(sample_hash, has_pending_dump, expected_success):
         (DUMP_DOWNLOAD_DELAY_DAYS, None, False, False, None, None),
         # Zero delay - should return recent dump (used by get_latest_completed_dump)
         (0, None, False, True, "csv", "recent123456789012345678901234567890123456789012345abcd"),
-        # CSV type filtering
+        # CSV type filtering - has old dump
         (
             DUMP_DOWNLOAD_DELAY_DAYS,
             "csv",
@@ -168,6 +168,17 @@ def test_confirm_dump_upload(sample_hash, has_pending_dump, expected_success):
             "csv",
             "old123456789012345678901234567890123456789012345678abcd",
         ),
+        # Fallback case: only recent dump exists, should return oldest (which is the recent one)
+        (
+            DUMP_DOWNLOAD_DELAY_DAYS,
+            "csv",
+            False,
+            True,
+            "csv",
+            "recent123456789012345678901234567890123456789012345abcd",
+        ),
+        # No fallback without dump_type specified
+        (DUMP_DOWNLOAD_DELAY_DAYS, None, False, True, None, None),
     ],
 )
 def test_get_latest_delayed_dump(
@@ -202,6 +213,49 @@ def test_get_latest_delayed_dump(
         assert result is not None
         assert result.dump_type == expected_dump_type
         assert result.file_hash == expected_hash
+
+
+@pytest.mark.django_db
+def test_get_latest_delayed_dump_fallback_behavior():
+    """Test fallback to oldest dump when no delayed dumps are available."""
+    base_time = timezone.now()
+
+    # Oldest dump (5 days ago)
+    oldest_dump = Dump.objects.create(
+        dump_type="csv",
+        file_hash="oldest123456789012345678901234567890123456789012345abcd",
+        key="oldest.zip",
+        file_size=1000,
+        upload_status="completed",
+        uploaded_at=base_time - timedelta(days=5),
+    )
+
+    # Middle dump (3 days ago)
+    Dump.objects.create(
+        dump_type="csv",
+        file_hash="middle123456789012345678901234567890123456789012345abcd",
+        key="middle.zip",
+        file_size=1000,
+        upload_status="completed",
+        uploaded_at=base_time - timedelta(days=3),
+    )
+
+    # Most recent dump (1 day ago)
+    Dump.objects.create(
+        dump_type="csv",
+        file_hash="recent123456789012345678901234567890123456789012345abcd",
+        key="recent.zip",
+        file_size=1000,
+        upload_status="completed",
+        uploaded_at=base_time - timedelta(days=1),
+    )
+
+    # Test with 14 day delay - no dumps are old enough, should return oldest
+    result = get_latest_delayed_dump(DUMP_DOWNLOAD_DELAY_DAYS, "csv")
+
+    assert result is not None
+    assert result.file_hash == oldest_dump.file_hash
+    assert result.key == "oldest.zip"
 
 
 @pytest.mark.django_db

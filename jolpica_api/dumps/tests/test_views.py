@@ -354,8 +354,8 @@ class TestDumpDownloadDelayedView(BaseViewTestMixin):
             mock_url.assert_called_with(expected_key)
 
     @pytest.mark.django_db
-    def test_no_delayed_dumps_available(self):
-        """Test that delayed view returns 404 when no old dumps exist."""
+    def test_no_delayed_dumps_available_fallback_to_oldest(self):
+        """Test that delayed view returns oldest dump when no delayed dumps exist."""
         client = APIClient()
 
         # Create only recent dump (not old enough for delayed download)
@@ -368,12 +368,26 @@ class TestDumpDownloadDelayedView(BaseViewTestMixin):
             uploaded_at=timezone.now(),
         )
 
-        response = client.get("/data/dumps/download/delayed/")
+        with patch("jolpica_api.dumps.views.generate_download_presigned_url") as mock_url:
+            mock_url.return_value = "https://s3-fallback-url.com"
+
+            response = client.get("/data/dumps/download/delayed/?dump_type=csv")
+
+            # Should now succeed by returning the recent dump (fallback behavior)
+            assert response.status_code == status.HTTP_302_FOUND
+            mock_url.assert_called_with("recent.zip")
+
+    @pytest.mark.django_db
+    def test_no_dumps_exist_returns_404(self):
+        """Test that delayed view returns 404 when no dumps exist at all."""
+        client = APIClient()
+
+        response = client.get("/data/dumps/download/delayed/?dump_type=csv")
 
         assert response.status_code == status.HTTP_404_NOT_FOUND
         from jolpica_api.dumps.views import DUMP_DOWNLOAD_DELAY_DAYS
 
-        assert f"No dumps found older than {DUMP_DOWNLOAD_DELAY_DAYS} days" in response.data["error"]
+        assert f"No dumps found older than {DUMP_DOWNLOAD_DELAY_DAYS} days of type 'csv'" in response.data["error"]
 
     @pytest.mark.django_db
     def test_delay_logic_verification(self):
@@ -496,8 +510,8 @@ class TestDumpsOverviewView(BaseViewTestMixin):
             ("none", 0, 0, 0),
             # Only pending dumps - should return empty
             ("pending_only", 0, 0, 0),
-            # Multiple dump types
-            ("multiple_types", 2, 2, 0),
+            # Multiple dump types - with fallback, recent dumps are returned as delayed too
+            ("multiple_types", 2, 2, 2),
         ],
     )
     def test_overview_scenarios(self, dump_setup, expected_types_count, expected_latest_count, expected_delayed_count):
