@@ -87,6 +87,6 @@ def drf_spectacular_filter_preprocess(
     """Filter the OpenAPI schema to remove unwanted endpoints."""
     filtered = []
     for path, path_regex, method, callback in endpoints:
-        if path.startswith("/f1"):
+        if path.startswith("/f1") or path.startswith("/data/dumps/download"):
             filtered.append((path, path_regex, method, callback))
     return filtered
