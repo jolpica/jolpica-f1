@@ -20,7 +20,6 @@ from pathlib import Path
 import psycopg
 from generate_csv_dump import get_formula_one_tables
 
-
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
