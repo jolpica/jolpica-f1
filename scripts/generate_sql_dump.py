@@ -16,13 +16,10 @@ import sys
 import zipfile
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING
 
 import psycopg
 from generate_csv_dump import get_formula_one_tables
 
-if TYPE_CHECKING:
-    from psycopg import Connection
 
 # Configure logging
 logging.basicConfig(
@@ -121,7 +118,7 @@ def export_table_to_sql(
         env["PGPASSWORD"] = password
 
     try:
-        result = subprocess.run(
+        result = subprocess.run(  # noqa: S603
             cmd,
             env=env,
             capture_output=True,
@@ -396,8 +393,8 @@ def main() -> None:
     except psycopg.Error:
         logger.exception("Database error during table discovery")
         sys.exit(1)
-    except FileNotFoundError as e:
-        logger.error(str(e))
+    except FileNotFoundError:
+        logger.exception('pg_dump not found in PATH')
         sys.exit(1)
     except subprocess.CalledProcessError:
         logger.exception("pg_dump error")
