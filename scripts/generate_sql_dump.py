@@ -393,7 +393,7 @@ def main() -> None:
         logger.exception("Database error during table discovery")
         sys.exit(1)
     except FileNotFoundError:
-        logger.exception('pg_dump not found in PATH')
+        logger.exception("pg_dump not found in PATH")
         sys.exit(1)
     except subprocess.CalledProcessError:
         logger.exception("pg_dump error")
