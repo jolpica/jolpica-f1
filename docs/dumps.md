@@ -64,7 +64,7 @@ Returns information about database dumps that are available for download.
 
 ## Example
 
-### Get list of all circuits in F1 history
+### Get information about the currently available database dumps
 
 `https://api.jolpi.ca/data/dumps/download/`
 
