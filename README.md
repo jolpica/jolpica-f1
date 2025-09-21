@@ -21,6 +21,8 @@ Check out our database docs [here](https://dbdocs.io/jolpica/jolpica-f1?view=rel
 [![Database Scheme for jolpica-f1](docs/database.svg)](https://dbdocs.io/jolpica/jolpica-f1?view=relationships)
 Many Enumerations are used in the database, the mappings of these values are defined in their respective model files. For example you can find the enumerations for the PointSystem table [here](jolpica/formula_one/models/point_scheme.py)
 
+Database dumps can be dowloaded via the API. This is documented [here](/docs/dumps.md)
+
 ## Reporting Bugs / Contributing
 
 For information on contributing to this project please read the [contributing guidelines](CONTRIBUTING.md).
