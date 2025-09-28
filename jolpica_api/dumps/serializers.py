@@ -13,7 +13,9 @@ class DumpUploadStartRequestSerializer(serializers.Serializer):
     file_hash = serializers.CharField(
         max_length=64, min_length=64, help_text="SHA256 hash of the dump file (64 hex characters)"
     )
-    file_size = serializers.IntegerField(min_value=1, help_text="Size of the dump file in bytes")
+    file_size = serializers.IntegerField(
+        min_value=1, max_value=20 * 1024 * 1024, help_text="Size of the dump file in bytes (max 20MB)"
+    )
     metadata = serializers.JSONField(required=False, default=dict, help_text="Optional metadata about the dump")
 
     def validate_file_hash(self, value: str) -> str:

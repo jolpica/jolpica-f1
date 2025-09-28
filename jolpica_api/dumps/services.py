@@ -137,8 +137,12 @@ def _get_authenticated_s3_client():
         )
 
 
-def generate_upload_presigned_url(s3_key: str) -> str:
+def generate_upload_presigned_url(s3_key: str, file_size: int) -> str:
     """Generate a pre-signed URL for S3 upload.
+
+    Args:
+        s3_key: The S3 key for the object
+        file_size: The expected size of the file in bytes
 
     Raises:
         Exception: If AWS credentials or settings are missing
@@ -152,6 +156,7 @@ def generate_upload_presigned_url(s3_key: str) -> str:
             "Bucket": bucket_name,
             "Key": s3_key,
             "ContentType": "application/octet-stream",
+            "ContentLength": file_size,
         },
         ExpiresIn=5 * 60,  # 5 minutes
     )

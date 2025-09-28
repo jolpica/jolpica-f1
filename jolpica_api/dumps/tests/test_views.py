@@ -211,6 +211,42 @@ class TestDumpUploadStartView(BaseViewTestMixin):
         assert "key" in response.data
         assert response.data["upload_url"] == "https://test-upload-url.com"
 
+    @pytest.mark.django_db
+    def test_file_size_validation_exceeds_20mb(self, client_with_permission, sample_hash):
+        """Test that files larger than 20MB are rejected."""
+        client, user = client_with_permission
+
+        # Test file size just over 20MB (20 * 1024 * 1024 + 1)
+        data = {
+            "dump_type": "csv",
+            "file_hash": sample_hash,
+            "file_size": 20 * 1024 * 1024 + 1,
+        }
+
+        response = client.post("/data/dumps/upload/start/", data, format="json")
+
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+        assert "file_size" in response.data
+
+    @pytest.mark.django_db
+    def test_file_size_validation_exactly_20mb(self, client_with_permission, sample_hash):
+        """Test that files exactly 20MB are accepted."""
+        client, user = client_with_permission
+
+        # Test file size exactly 20MB
+        data = {
+            "dump_type": "csv",
+            "file_hash": sample_hash,
+            "file_size": 20 * 1024 * 1024,
+        }
+
+        with patch("jolpica_api.dumps.views.generate_upload_presigned_url") as mock_url:
+            mock_url.return_value = "https://test-upload-url.com"
+            response = client.post("/data/dumps/upload/start/", data, format="json")
+
+        assert response.status_code == status.HTTP_200_OK
+        assert not response.data["exists"]
+
 
 class TestDumpUploadCompleteView(BaseViewTestMixin):
     http_methods = ["POST"]

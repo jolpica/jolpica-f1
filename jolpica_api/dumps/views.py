@@ -97,7 +97,7 @@ class DumpUploadStartView(APIView):
                 existing_dump=existing_dump,
             )
 
-            upload_url = generate_upload_presigned_url(s3_key)
+            upload_url = generate_upload_presigned_url(s3_key, file_size)
 
             logger.info(f"Generated upload URL for dump {dump.id}: {s3_key}")
 
