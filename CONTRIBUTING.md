@@ -66,10 +66,10 @@ Current requirements are:
   python manage.py migrate
   ```
 
-- Download a csv dump from our Ko-fi (it's free).  
-  They are currently in Alpha and not regularly updated but are good enough for development.
+- Download a [csv dump here](https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv) (See the metadata for the latest delayed dumps [here](https://api.jolpi.ca/data/dumps/download/)).  
+  This dump should be delayed by 14 days or less, so should be good for most development.
 
-- Place the csv dump in the root of the project (next to the README.md), and rename it to dump.zip
+- Place the csv dump in the root of the project (next to the README.md), and rename it to jolpica-f1-csv.zip
 
 - Run the data import:
   ```

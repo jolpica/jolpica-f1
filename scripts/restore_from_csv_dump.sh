@@ -8,7 +8,7 @@ DATABASE_USERNAME=${3:-postgres}
 echo "Restoring database from dump.zip to $DATABASE_HOST"
 
 # Unzip the dump
-unzip -o dump.zip
+unzip -o jolpica-f1-csv.zip -d dump/
 
 # Define the table order based on dependencies
 FOREIGN_KEY_TABLE_ORDER=(
