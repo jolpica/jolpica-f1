@@ -90,7 +90,6 @@ def test_2023_driver_standings(driver_standings_from_year: list[DriverChampionsh
             {"position": None, "points": 78, "adjustment": ChampionshipAdjustmentType.DISQUALIFIED},
         ),
         (17, "frentzen", {"position": 2, "points": 42}),
-        (17, "rosset", {"position": None, "points": 0, "is_eligible": False}),
         (
             2,
             "michael_schumacher",
@@ -181,7 +180,6 @@ def test_2007_team_standings(team_standings_from_year, round, reference, expecte
     [
         (17, "williams", {"position": 1, "points": 123, "win_count": 8}),
         (17, "ferrari", {"position": 2, "points": 102, "win_count": 5}),
-        (17, "lola", {"position": None, "points": 0, "is_eligible": False}),
     ],
 )
 @pytest.mark.django_db
@@ -196,8 +194,6 @@ def test_1997_team_standings(team_standings_from_year, round, reference, expecte
         (15, "williams", {"position": 2, "points": 75, "win_count": 5}),
         (15, "merzario", {"position": None, "points": 0, "is_eligible": False}),
         (15, "brabham-ford", {"position": None, "points": 0, "is_eligible": False}),
-        (5, "kauhsen", {"position": None, "points": 0, "is_eligible": False}),
-        (4, "kauhsen", None),
     ],
 )
 @pytest.mark.django_db

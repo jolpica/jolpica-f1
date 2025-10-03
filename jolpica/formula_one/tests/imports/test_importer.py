@@ -139,7 +139,7 @@ def test_deserialise_monaco_data(importer: JSONModelImporter):
 
 @pytest.mark.django_db
 def test_import_new_pit_stops(importer: JSONModelImporter):
-    season = f1.Season.objects.create(id=1000, year=2025, championship_system_id=1)
+    season = f1.Season.objects.create(id=1000, year=2125, championship_system_id=1)
     round = f1.Round.objects.create(season=season, id=999999, number=1, circuit_id=1)
     f1.Session.objects.create(id=99999, round=round, number=7, type="R")
     with open(Path("jolpica/formula_one/tests/fixtures/2025_01_pit_stops.json")) as f:
