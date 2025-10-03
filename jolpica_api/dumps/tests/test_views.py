@@ -95,11 +95,11 @@ class BaseViewTestMixin:
         if client_type == "anonymous":
             client = APIClient()
         elif client_type == "authenticated_no_permission":
-            client, user = request.getfixturevalue("authenticated_client")
+            client, _ = request.getfixturevalue("authenticated_client")
         elif client_type == "authenticated_with_permission":
-            client, user = request.getfixturevalue(self.permission_fixture)
+            client, _ = request.getfixturevalue(self.permission_fixture)
         elif client_type == "superuser":
-            client, user = request.getfixturevalue("superuser_client")
+            client, _ = request.getfixturevalue("superuser_client")
 
         data = self.get_auth_test_data(sample_hash)
 
@@ -142,7 +142,7 @@ class TestDumpUploadStartView(BaseViewTestMixin):
 
     @pytest.mark.django_db
     def test_duplicate_detection_completed_dump(self, client_with_permission, sample_hash):
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         # Create completed dump
         Dump.objects.create(
@@ -167,7 +167,7 @@ class TestDumpUploadStartView(BaseViewTestMixin):
 
     @pytest.mark.django_db
     def test_pending_dump_type_mismatch(self, client_with_permission, sample_hash):
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         # Create pending dump with different type
         Dump.objects.create(
@@ -191,7 +191,7 @@ class TestDumpUploadStartView(BaseViewTestMixin):
 
     @pytest.mark.django_db
     def test_successful_new_upload(self, client_with_permission, sample_hash):
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         data = {
             "dump_type": "csv",
@@ -214,7 +214,7 @@ class TestDumpUploadStartView(BaseViewTestMixin):
     @pytest.mark.django_db
     def test_file_size_validation_exceeds_20mb(self, client_with_permission, sample_hash):
         """Test that files larger than 20MB are rejected."""
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         # Test file size just over 20MB (20 * 1024 * 1024 + 1)
         data = {
@@ -231,7 +231,7 @@ class TestDumpUploadStartView(BaseViewTestMixin):
     @pytest.mark.django_db
     def test_file_size_validation_exactly_20mb(self, client_with_permission, sample_hash):
         """Test that files exactly 20MB are accepted."""
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         # Test file size exactly 20MB
         data = {
@@ -263,7 +263,7 @@ class TestDumpUploadCompleteView(BaseViewTestMixin):
 
     @pytest.mark.django_db
     def test_successful_confirmation(self, client_with_permission, sample_hash):
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         # Create pending dump
         dump = Dump.objects.create(
@@ -293,7 +293,7 @@ class TestDumpUploadCompleteView(BaseViewTestMixin):
 
     @pytest.mark.django_db
     def test_no_pending_dump_found(self, client_with_permission, sample_hash):
-        client, user = client_with_permission
+        client, _user = client_with_permission
 
         data = {
             "dump_type": "csv",
@@ -489,7 +489,7 @@ class TestDumpDownloadLatestView(BaseViewTestMixin):
 
         from jolpica_api.dumps.views import DUMP_DOWNLOAD_DELAY_DAYS
 
-        client, user = download_client_with_permission
+        client, _user = download_client_with_permission
 
         # Create old dump (would be returned by delayed view)
         old_date = timezone.now() - timedelta(days=DUMP_DOWNLOAD_DELAY_DAYS + 1)
