@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
+from ..utils import generate_api_id
+
 if TYPE_CHECKING:
     from . import Session, SessionEntry
     from .managed_views import DriverChampionship, TeamChampionship
@@ -11,6 +13,8 @@ if TYPE_CHECKING:
 
 class Round(models.Model):
     """Race event information relevent to all sessions"""
+
+    ID_PREFIX = "round"
 
     id = models.BigAutoField(primary_key=True)
     season = models.ForeignKey("Season", on_delete=models.CASCADE, related_name="rounds")
@@ -23,6 +27,7 @@ class Round(models.Model):
     driver_championships: models.QuerySet[DriverChampionship]
     team_championships: models.QuerySet[TeamChampionship]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
@@ -35,6 +40,11 @@ class Round(models.Model):
             models.UniqueConstraint(fields=["season", "number"], name="round_unique_season_number")
         ]
 
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
+
     def __str__(self) -> str:
         return f"{self.season.year} {self.name}"
 
@@ -42,18 +52,26 @@ class Round(models.Model):
 class RoundEntry(models.Model):
     """All data relating to a driver racing for a specific team for a race"""
 
+    ID_PREFIX = "roundentry"
+
     id = models.BigAutoField(primary_key=True)
     round = models.ForeignKey("Round", on_delete=models.CASCADE, related_name="round_entries")
     team_driver = models.ForeignKey("TeamDriver", on_delete=models.CASCADE, related_name="round_entries")
     sessions: models.QuerySet[Session]
     session_entries: models.QuerySet[SessionEntry]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     car_number = models.PositiveSmallIntegerField(null=True, blank=True)
 
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["round", "team_driver", "car_number"], name="round_entry_unique")
         ]
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.team_driver} - {self.round}"

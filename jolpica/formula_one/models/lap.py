@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
-from ..utils import format_timedelta
+from ..utils import format_timedelta, generate_api_id
 
 if TYPE_CHECKING:
     from . import PitStop
@@ -11,10 +11,13 @@ if TYPE_CHECKING:
 class Lap(models.Model):
     """Information on a driven Lap of Race, Qualifying, or any other session for a driver"""
 
+    ID_PREFIX = "lap"
+
     id = models.BigAutoField(primary_key=True)
     session_entry = models.ForeignKey("SessionEntry", on_delete=models.CASCADE, related_name="laps")
     pit_stop: "PitStop | None"
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
@@ -31,6 +34,11 @@ class Lap(models.Model):
                 name="lap_unique_fastest_lap",
             ),
         ]
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         lap_number_string = f"{self.number}" if self.number else "?"
