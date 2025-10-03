@@ -170,14 +170,13 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
 
     client.force_authenticate(user=User.objects.get(username="test_user"))
 
-    assert (
-        f1.Lap.objects.filter(
-            session_entry__round_entry__round__season__year=2023,
-            session_entry__round_entry__round__number=18,
-            session_entry__session__type__contains="Q",
-        ).count()
-        == 45
+    laps_qs = f1.Lap.objects.filter(
+        session_entry__round_entry__round__season__year=2023,
+        session_entry__round_entry__round__number=18,
+        session_entry__session__type__startswith="Q",
     )
+    laps_qs.filter(is_entry_fastest_lap=False).delete()
+    assert laps_qs.count() == 45
 
     # Dry Run
     response = client.put("/data/import/", {"dry_run": True, "legacy_import": False, "data": input_data}, format="json")
@@ -187,7 +186,7 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
         f1.Lap.objects.filter(
             session_entry__round_entry__round__season__year=2023,
             session_entry__round_entry__round__number=18,
-            session_entry__session__type__contains="Q",
+            session_entry__session__type__startswith="Q",
         ).count()
         == 45
     )
@@ -202,7 +201,7 @@ def test_data_import_2023_18_models_are_imported(client: APIClient):
         f1.Lap.objects.filter(
             session_entry__round_entry__round__season__year=2023,
             session_entry__round_entry__round__number=18,
-            session_entry__session__type__contains="Q",
+            session_entry__session__type__startswith="Q",
         ).count()
         > 45
     )

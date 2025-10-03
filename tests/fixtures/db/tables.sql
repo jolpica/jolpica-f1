@@ -2,8 +2,10 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 16.3 (Debian 16.3-1.pgdg110+1)
--- Dumped by pg_dump version 16.8 (Debian 16.8-1.pgdg110+1)
+\restrict IzS8VJIjOxrqkjnw9Dpc398n7UpP9DIIh5pOdtakkkcLKcpcUJxRfjKH08Vc0nT
+
+-- Dumped from database version 16.9 (Debian 16.9-1.pgdg120+1)
+-- Dumped by pg_dump version 16.10 (Debian 16.10-1.pgdg11+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,153 +17,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Data for Name: ergast_status; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.ergast_status ("statusId", status) FROM stdin;
-1	Finished
-2	Disqualified
-3	Accident
-4	Collision
-5	Engine
-6	Gearbox
-7	Transmission
-8	Clutch
-9	Hydraulics
-10	Electrical
-11	+1 Lap
-12	+2 Laps
-13	+3 Laps
-14	+4 Laps
-15	+5 Laps
-16	+6 Laps
-17	+7 Laps
-18	+8 Laps
-19	+9 Laps
-20	Spun off
-21	Radiator
-22	Suspension
-23	Brakes
-24	Differential
-25	Overheating
-26	Mechanical
-27	Tyre
-28	Driver Seat
-29	Puncture
-30	Driveshaft
-31	Retired
-32	Fuel pressure
-33	Front wing
-34	Water pressure
-35	Refuelling
-36	Wheel
-37	Throttle
-38	Steering
-39	Technical
-40	Electronics
-41	Broken wing
-43	Exhaust
-126	Supercharger
-127	+20 Laps
-130	Collision damage
-131	Power Unit
-132	ERS
-133	+49 Laps
-134	+38 Laps
-135	Brake duct
-136	Seat
-137	Damage
-138	Debris
-139	Illness
-140	Undertray
-141	Cooling system
-42	Heat shield fire
-44	Oil leak
-45	+11 Laps
-46	Wheel rim
-47	Water leak
-48	Fuel pump
-49	Track rod
-50	+17 Laps
-51	Oil pressure
-128	+42 Laps
-53	+13 Laps
-54	Withdrew
-55	+12 Laps
-56	Engine fire
-129	Engine misfire
-58	+26 Laps
-59	Tyre puncture
-60	Out of fuel
-61	Wheel nut
-62	Not classified
-63	Pneumatics
-64	Handling
-65	Rear wing
-66	Fire
-67	Wheel bearing
-68	Physical
-69	Fuel system
-70	Oil line
-71	Fuel rig
-72	Launch control
-73	Injured
-74	Fuel
-75	Power loss
-76	Vibrations
-77	107% Rule
-78	Safety
-79	Drivetrain
-80	Ignition
-81	Did not qualify
-82	Injury
-83	Chassis
-84	Battery
-85	Stalled
-86	Halfshaft
-87	Crankshaft
-88	+10 Laps
-89	Safety concerns
-90	Not restarted
-91	Alternator
-92	Underweight
-93	Safety belt
-94	Oil pump
-95	Fuel leak
-96	Excluded
-97	Did not prequalify
-98	Injection
-99	Distributor
-100	Driver unwell
-101	Turbo
-102	CV joint
-103	Water pump
-104	Fatal accident
-105	Spark plugs
-106	Fuel pipe
-107	Eye injury
-108	Oil pipe
-109	Axle
-110	Water pipe
-111	+14 Laps
-112	+15 Laps
-113	+25 Laps
-114	+18 Laps
-115	+22 Laps
-116	+16 Laps
-117	+24 Laps
-118	+29 Laps
-119	+23 Laps
-120	+21 Laps
-121	Magneto
-122	+44 Laps
-123	+30 Laps
-124	+19 Laps
-125	+46 Laps
-\.
-
 
 --
 -- Data for Name: formula_one_baseteam; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -176,16 +31,16 @@ COPY public.formula_one_baseteam (id, name) FROM stdin;
 --
 
 COPY public.formula_one_championshipsystem (id, reference, name, eligibility, driver_season_split, driver_best_results, team_season_split, team_best_results, team_points_per_session) FROM stdin;
+1	s1950	1950 - 1953 Championship	1	0	4	0	0	0
+2	s1954	1954 - 1957 Championship	1	0	5	0	0	0
+3	s1958	1958, 1960, 1963-1965\tChampionship	1	0	6	0	6	1
+4	s1959	1959, 1961, 1962, 1966 Championship	1	0	5	0	5	1
+5	s1967	1967 - 1978 Championship	1	2	-2	2	-2	1
 6	s1979	1979 Championship	1	3	4	0	-1	0
 7	s1980	1980 Championship	1	3	5	0	-1	0
 8	s1981	1981-1990 Championship	1	0	11	0	-1	0
 9	s1991	1991 - 2001 Championship	1	0	-1	0	-1	0
 10	s2002	2002 - Present Championship	2	0	-1	0	-1	0
-2	s1954	1954 - 1957 Championship	1	0	5	0	0	0
-1	s1950	1950 - 1953 Championship	1	0	4	0	0	0
-3	s1958	1958, 1960, 1963-1965\tChampionship	1	0	6	0	6	1
-4	s1959	1959, 1961, 1962, 1966 Championship	1	0	5	0	5	1
-5	s1967	1967 - 1978 Championship	1	2	-2	2	-2	1
 \.
 
 
@@ -193,867 +48,871 @@ COPY public.formula_one_championshipsystem (id, reference, name, eligibility, dr
 -- Data for Name: formula_one_driver; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.formula_one_driver (id, reference, forename, surname, abbreviation, nationality, permanent_car_number, date_of_birth, wikipedia) FROM stdin;
-1	farina	Nino	Farina	\N	Italian	\N	1906-10-30	http://en.wikipedia.org/wiki/Nino_Farina
-2	fagioli	Luigi	Fagioli	\N	Italian	\N	1898-06-09	http://en.wikipedia.org/wiki/Luigi_Fagioli
-3	reg_parnell	Reg	Parnell	\N	British	\N	1911-07-02	http://en.wikipedia.org/wiki/Reg_Parnell
-4	cabantous	Yves	Cabantous	\N	French	\N	1904-10-08	http://en.wikipedia.org/wiki/Yves_Giraud_Cabantous
-5	rosier	Louis	Rosier	\N	French	\N	1905-11-05	http://en.wikipedia.org/wiki/Louis_Rosier
-6	gerard	Bob	Gerard	\N	British	\N	1914-01-19	http://en.wikipedia.org/wiki/Bob_Gerard
-7	harrison	Cuth	Harrison	\N	British	\N	1906-07-06	http://en.wikipedia.org/wiki/Cuth_Harrison
-8	etancelin	Philippe	Étancelin	\N	French	\N	1896-12-28	http://en.wikipedia.org/wiki/Philippe_%C3%89tancelin
-9	hampshire	David	Hampshire	\N	British	\N	1917-12-29	http://en.wikipedia.org/wiki/David_Hampshire
-10	shawe_taylor	Brian	Shawe Taylor	\N	British	\N	1915-01-28	http://en.wikipedia.org/wiki/Brian_Shawe_Taylor
-11	fry	Joe	Fry	\N	British	\N	1915-10-26	http://en.wikipedia.org/wiki/Joe_Fry
-12	claes	Johnny	Claes	\N	Belgian	\N	1916-08-11	http://en.wikipedia.org/wiki/Johnny_Claes
-13	fangio	Juan	Fangio	\N	Argentine	\N	1911-06-24	http://en.wikipedia.org/wiki/Juan_Manuel_Fangio
-14	kelly	Joe	Kelly	\N	Irish	\N	1913-03-13	http://en.wikipedia.org/wiki/Joe_Kelly_(Formula_One)
-15	bira	Prince	Bira	\N	Thai	\N	1914-07-15	http://en.wikipedia.org/wiki/Prince_Bira
-16	murray	David	Murray	\N	British	\N	1909-12-28	http://en.wikipedia.org/wiki/David_Murray_(driver)
-17	crossley	Geoff	Crossley	\N	British	\N	1921-05-11	http://en.wikipedia.org/wiki/Geoff_Crossley
-18	graffenried	Toulo	de Graffenried	\N	Swiss	\N	1914-05-18	http://en.wikipedia.org/wiki/Toulo_de_Graffenried
-19	chiron	Louis	Chiron	\N	Monegasque	\N	1899-08-03	http://en.wikipedia.org/wiki/Louis_Chiron
-20	martin	Eugène	Martin	\N	French	\N	1915-03-24	http://en.wikipedia.org/wiki/Eug%C3%A8ne_Martin
-21	peter_walker	Peter	Walker	\N	British	\N	1912-10-07	http://en.wikipedia.org/wiki/Peter_Walker_(driver)
-22	rolt	Tony	Rolt	\N	British	\N	1918-10-16	http://en.wikipedia.org/wiki/Tony_Rolt
-23	leslie_johnson	Leslie	Johnson	\N	British	\N	1912-03-22	http://en.wikipedia.org/wiki/Leslie_Johnson_(racing_driver)
-24	ascari	Alberto	Ascari	\N	Italian	\N	1918-07-13	http://en.wikipedia.org/wiki/Alberto_Ascari
-25	sommer	Raymond	Sommer	\N	French	\N	1906-08-31	http://en.wikipedia.org/wiki/Raymond_Sommer
-26	villoresi	Luigi	Villoresi	\N	Italian	\N	1909-05-16	http://en.wikipedia.org/wiki/Luigi_Villoresi
-27	gonzalez	José Froilán	González	\N	Argentine	\N	1922-10-05	http://en.wikipedia.org/wiki/Jos%C3%A9_Froil%C3%A1n_Gonz%C3%A1lez
-28	manzon	Robert	Manzon	\N	French	\N	1917-04-12	http://en.wikipedia.org/wiki/Robert_Manzon
-29	trintignant	Maurice	Trintignant	\N	French	\N	1917-10-30	http://en.wikipedia.org/wiki/Maurice_Trintignant
-30	rol	Franco	Rol	\N	Italian	\N	1908-06-05	http://en.wikipedia.org/wiki/Franco_Rol
-31	schell	Harry	Schell	\N	American	\N	1921-06-29	http://en.wikipedia.org/wiki/Harry_Schell
-32	whitehead	Peter	Whitehead	\N	British	\N	1914-11-12	http://en.wikipedia.org/wiki/Peter_Whitehead_(racing_driver)
-33	pian	Alfredo	Pián	\N	Argentine	\N	1912-10-21	http://en.wikipedia.org/wiki/Alfredo_Pi%C3%A0n
-34	parsons	Johnnie	Parsons	\N	American	\N	1918-07-04	http://en.wikipedia.org/wiki/Johnnie_Parsons
-35	holland	Bill	Holland	\N	American	\N	1907-12-18	http://en.wikipedia.org/wiki/Bill_Holland
-36	rose	Mauri	Rose	\N	American	\N	1906-05-26	http://en.wikipedia.org/wiki/Mauri_Rose
-37	green	Cecil	Green	\N	American	\N	1919-09-30	http://en.wikipedia.org/wiki/Cecil_Green
-38	bettenhausen	Tony	Bettenhausen	\N	American	\N	1916-09-12	http://en.wikipedia.org/wiki/Tony_Bettenhausen
-39	chitwood	Joie	Chitwood	\N	American	\N	1912-04-14	http://en.wikipedia.org/wiki/Joie_Chitwood
-40	wallard	Lee	Wallard	\N	American	\N	1910-09-07	http://en.wikipedia.org/wiki/Lee_Wallard
-41	faulkner	Walt	Faulkner	\N	American	\N	1920-02-16	http://en.wikipedia.org/wiki/Walt_Faulkner
-42	george_connor	George	Connor	\N	American	\N	1906-08-16	http://en.wikipedia.org/wiki/George_Connor_(driver)
-43	paul_russo	Paul	Russo	\N	American	\N	1914-04-10	http://en.wikipedia.org/wiki/Paul_Russo
-44	flaherty	Pat	Flaherty	\N	American	\N	1926-01-06	http://en.wikipedia.org/wiki/Pat_Flaherty_(racing_driver)
-45	fohr	Myron	Fohr	\N	American	\N	1912-06-17	http://en.wikipedia.org/wiki/Myron_Fohr
-46	darter	Duane	Carter	\N	American	\N	1913-05-05	http://en.wikipedia.org/wiki/Duane_Carter
-47	hellings	Mack	Hellings	\N	American	\N	1915-09-14	http://en.wikipedia.org/wiki/Mack_Hellings
-48	mcgrath	Jack	McGrath	\N	American	\N	1919-10-08	http://en.wikipedia.org/wiki/Jack_McGrath_(racing_driver)
-49	ruttman	Troy	Ruttman	\N	American	\N	1930-03-11	http://en.wikipedia.org/wiki/Troy_Ruttman
-50	hartley	Gene	Hartley	\N	American	\N	1926-01-28	http://en.wikipedia.org/wiki/Gene_Hartley
-51	davies	Jimmy	Davies	\N	American	\N	1929-08-08	http://en.wikipedia.org/wiki/Jimmy_Davies
-52	mcdowell	Johnny	McDowell	\N	American	\N	1915-01-29	http://en.wikipedia.org/wiki/Johnny_McDowell
-53	walt_brown	Walt	Brown	\N	American	\N	1911-12-30	http://en.wikipedia.org/wiki/Walt_Brown_(auto_racer)
-54	webb	Travis	Webb	\N	American	\N	1910-10-08	http://en.wikipedia.org/wiki/Travis_Webb
-55	hoyt	Jerry	Hoyt	\N	American	\N	1929-01-29	http://en.wikipedia.org/wiki/Jerry_Hoyt
-56	ader	Walt	Ader	\N	American	\N	1913-12-15	http://en.wikipedia.org/wiki/Walt_Ader
-57	holmes	Jackie	Holmes	\N	American	\N	1920-09-04	http://en.wikipedia.org/wiki/Jackie_Holmes
-58	rathmann	Jim	Rathmann	\N	American	\N	1928-07-16	http://en.wikipedia.org/wiki/Jim_Rathmann
-59	banks	Henry	Banks	\N	American	\N	1913-06-14	http://en.wikipedia.org/wiki/Henry_Banks
-60	schindler	Bill	Schindler	\N	American	\N	1909-03-06	http://en.wikipedia.org/wiki/Bill_Schindler
-61	levrett	Bayliss	Levrett	\N	American	\N	1914-02-14	http://en.wikipedia.org/wiki/Bayliss_Levrett
-62	cantrell	Bill	Cantrell	\N	American	\N	1908-01-31	http://en.wikipedia.org/wiki/William_Cantrell
-63	agabashian	Fred	Agabashian	\N	American	\N	1913-08-21	http://en.wikipedia.org/wiki/Fred_Agabashian
-64	jackson	Jimmy	Jackson	\N	American	\N	1910-07-25	http://en.wikipedia.org/wiki/Jimmy_Jackson_(driver)
-65	hanks	Sam	Hanks	\N	American	\N	1914-07-13	http://en.wikipedia.org/wiki/Sam_Hanks
-66	dick_rathmann	Dick	Rathmann	\N	American	\N	1924-01-06	http://en.wikipedia.org/wiki/Dick_Rathmann
-67	dinsmore	Duke	Dinsmore	\N	American	\N	1913-04-10	http://en.wikipedia.org/wiki/Duke_Dinsmore
-68	bonetto	Felice	Bonetto	\N	Italian	\N	1903-06-09	http://en.wikipedia.org/wiki/Felice_Bonetto
-69	pagani	Nello	Pagani	\N	Italian	\N	1911-10-11	http://en.wikipedia.org/wiki/Nello_Pagani
-70	branca	Toni	Branca	\N	Swiss	\N	1916-09-15	http://en.wikipedia.org/wiki/Toni_Branca
-71	levegh	Pierre	Levegh	\N	French	\N	1905-12-22	http://en.wikipedia.org/wiki/Pierre_Levegh
-72	chaboud	Eugène	Chaboud	\N	French	\N	1907-04-12	http://en.wikipedia.org/wiki/Eug%C3%A8ne_Chaboud
-73	pozzi	Charles	Pozzi	\N	French	\N	1909-08-27	http://en.wikipedia.org/wiki/Charles_Pozzi
-74	serafini	Dorino	Serafini	\N	Italian	\N	1909-07-22	http://en.wikipedia.org/wiki/Dorino_Serafini
-75	guy_mairesse	Guy	Mairesse	\N	French	\N	1910-08-10	http://en.wikipedia.org/wiki/Guy_Mairesse
-76	taruffi	Piero	Taruffi	\N	Italian	\N	1906-10-12	http://en.wikipedia.org/wiki/Piero_Taruffi
-77	biondetti	Clemente	Biondetti	\N	Italian	\N	1898-08-18	http://en.wikipedia.org/wiki/Clemente_Biondetti
-78	louveau	Henri	Louveau	\N	French	\N	1910-01-25	http://en.wikipedia.org/wiki/Henri_Louveau
-79	comotti	Franco	Comotti	\N	Italian	\N	1906-07-24	http://en.wikipedia.org/wiki/Franco_Comotti
-80	sanesi	Consalvo	Sanesi	\N	Italian	\N	1911-03-28	http://en.wikipedia.org/wiki/Consalvo_Sanesi
-81	pietsch	Paul	Pietsch	\N	German	\N	1911-06-20	http://en.wikipedia.org/wiki/Paul_Pietsch
-82	moss	Stirling	Moss	\N	British	\N	1929-09-17	http://en.wikipedia.org/wiki/Stirling_Moss
-83	fischer	Rudi	Fischer	\N	Swiss	\N	1912-04-19	http://en.wikipedia.org/wiki/Rudi_Fischer
-84	abecassis	George	Abecassis	\N	British	\N	1913-03-21	http://en.wikipedia.org/wiki/George_Abecassis
-85	hirt	Peter	Hirt	\N	Swiss	\N	1910-03-30	http://en.wikipedia.org/wiki/Peter_Hirt
-86	nazaruk	Mike	Nazaruk	\N	American	\N	1921-10-02	http://en.wikipedia.org/wiki/Mike_Nazaruk
-87	ayulo	Manny	Ayulo	\N	American	\N	1921-10-20	http://en.wikipedia.org/wiki/Manny_Ayulo
-88	linden	Andy	Linden	\N	American	\N	1922-04-05	http://en.wikipedia.org/wiki/Andy_Linden_(racing_driver)
-89	ball	Bobby	Ball	\N	American	\N	1925-08-26	http://en.wikipedia.org/wiki/Bobby_Ball_(auto_racer)
-90	forberg	Carl	Forberg	\N	American	\N	1911-03-04	http://en.wikipedia.org/wiki/Carl_Forberg
-91	nalon	Duke	Nalon	\N	American	\N	1913-03-02	http://en.wikipedia.org/wiki/Duke_Nalon
-92	force	Gene	Force	\N	American	\N	1916-06-15	http://en.wikipedia.org/wiki/Gene_Force
-93	scarborough	Carl	Scarborough	\N	American	\N	1914-07-03	http://en.wikipedia.org/wiki/Carl_Scarborough
-94	mackey	Bill	Mackey	\N	American	\N	1927-12-15	http://en.wikipedia.org/wiki/Bill_Mackey
-95	stevenson	Chuck	Stevenson	\N	American	\N	1919-10-15	http://en.wikipedia.org/wiki/Chuck_Stevenson
-96	miller	Chet	Miller	\N	American	\N	1902-07-19	http://en.wikipedia.org/wiki/Chet_Miller
-97	ward	Rodger	Ward	\N	American	\N	1921-01-10	http://en.wikipedia.org/wiki/Rodger_Ward
-98	griffith	Cliff	Griffith	\N	American	\N	1916-02-06	http://en.wikipedia.org/wiki/Cliff_Griffith
-99	vukovich	Bill	Vukovich	\N	American	\N	1918-12-13	http://en.wikipedia.org/wiki/Bill_Vukovich
-100	james	Joe	James	\N	American	\N	1925-05-23	http://en.wikipedia.org/wiki/Joe_James_(racing_driver)
-101	andre_pilette	André	Pilette	\N	Belgian	\N	1918-10-06	http://en.wikipedia.org/wiki/Andr%C3%A9_Pilette
-102	gordini	Aldo	Gordini	\N	French	\N	1921-05-20	http://en.wikipedia.org/wiki/Aldo_Gordini
-103	simon	André	Simon	\N	French	\N	1920-01-05	http://en.wikipedia.org/wiki/Andr%C3%A9_Simon_(racing_driver)
-104	marimon	Onofre	Marimón	\N	Argentine	\N	1923-12-19	http://en.wikipedia.org/wiki/Onofre_Marim%C3%B3n
-105	duncan_hamilton	Duncan	Hamilton	\N	British	\N	1920-04-30	http://en.wikipedia.org/wiki/Duncan_Hamilton_(racing_driver)
-106	parker	Philip	Fotheringham-Parker	\N	British	\N	1907-09-22	http://en.wikipedia.org/wiki/Philip_Fotheringham-Parker
-107	john_james	John	James	\N	British	\N	1914-05-10	http://en.wikipedia.org/wiki/John_James_(auto_racer)
-108	swaters	Jacques	Swaters	\N	American	\N	1926-10-30	http://en.wikipedia.org/wiki/Jacques_Swaters
-109	landi	Chico	Landi	\N	Brazilian	\N	1907-07-14	http://en.wikipedia.org/wiki/Chico_Landi
-110	richardson	Ken	Richardson	\N	British	\N	1911-08-21	http://en.wikipedia.org/wiki/Ken_Richardson_(race_car_driver)
-111	godia	Paco	Godia	\N	Spanish	\N	1921-03-21	http://en.wikipedia.org/wiki/Paco_Godia
-112	grignard	Georges	Grignard	\N	French	\N	1905-07-25	http://en.wikipedia.org/wiki/Georges_Grignard
-113	jover	Juan	Jover	\N	Spanish	\N	1903-11-23	http://en.wikipedia.org/wiki/Juan_Jover
-114	behra	Jean	Behra	\N	French	\N	1921-02-16	http://en.wikipedia.org/wiki/Jean_Behra
-115	wharton	Ken	Wharton	\N	British	\N	1916-03-21	http://en.wikipedia.org/wiki/Ken_Wharton
-116	alan_brown	Alan	Brown	\N	British	\N	1919-11-20	http://en.wikipedia.org/wiki/Alan_Brown_(racing_driver)
-117	brandon	Eric	Brandon	\N	British	\N	1920-07-18	http://en.wikipedia.org/wiki/Eric_Brandon
-118	macklin	Lance	Macklin	\N	British	\N	1919-09-02	http://en.wikipedia.org/wiki/Lance_Macklin
-119	collins	Peter	Collins	\N	British	\N	1931-11-06	http://en.wikipedia.org/wiki/Peter_Collins_(racing_driver)
-120	hans_stuck	Hans	von Stuck	\N	German	\N	1900-12-27	http://en.wikipedia.org/wiki/Hans_Von_Stuck
-121	ulmen	Toni	Ulmen	\N	German	\N	1906-01-25	http://en.wikipedia.org/wiki/Toni_Ulmen
-122	terra	Max	de Terra	\N	Swiss	\N	1918-10-06	http://en.wikipedia.org/wiki/Max_de_Terra
-123	cross	Art	Cross	\N	American	\N	1918-01-24	http://en.wikipedia.org/wiki/Art_Cross
-124	bryan	Jimmy	Bryan	\N	American	\N	1926-01-28	http://en.wikipedia.org/wiki/Jimmy_Bryan
-125	reece	Jimmy	Reece	\N	American	\N	1929-11-17	http://en.wikipedia.org/wiki/Jimmy_Reece
-126	rigsby	Jim	Rigsby	\N	American	\N	1923-06-06	http://en.wikipedia.org/wiki/Jim_Rigsby
-127	fonder	George	Fonder	\N	American	\N	1917-06-22	http://en.wikipedia.org/wiki/George_Fonder
-128	johnson	Eddie	Johnson	\N	American	\N	1919-02-10	http://en.wikipedia.org/wiki/Eddie_Johnson_(auto_racer)
-129	sweikert	Bob	Sweikert	\N	American	\N	1926-05-20	http://en.wikipedia.org/wiki/Bob_Sweikert
-130	bob_scott	Bob	Scott	\N	American	\N	1928-10-04	http://en.wikipedia.org/wiki/Bob_Scott_(auto_racer)
-131	hawthorn	Mike	Hawthorn	\N	British	\N	1929-04-10	http://en.wikipedia.org/wiki/Mike_Hawthorn
-132	frere	Paul	Frère	\N	Belgian	\N	1917-01-30	http://en.wikipedia.org/wiki/Paul_Fr%C3%A8re
-133	tornaco	Charles	de Tornaco	\N	Belgian	\N	1927-06-07	http://en.wikipedia.org/wiki/Charles_de_Tornaco
-134	laurent	Roger	Laurent	\N	Belgian	\N	1913-02-21	http://en.wikipedia.org/wiki/Roger_Laurent
-135	legat	Arthur	Legat	\N	Belgian	\N	1898-11-01	http://en.wikipedia.org/wiki/Arthur_Legat
-136	obrien	Robert	O'Brien	\N	American	\N	1908-04-11	http://en.wikipedia.org/wiki/Robert_O%27Brien_(auto_racer)
-137	gaze	Tony	Gaze	\N	Australian	\N	1920-02-03	http://en.wikipedia.org/wiki/Tony_Gaze
-138	charrington	Robin	Montgomerie-Charrington	\N	British	\N	1915-06-23	http://en.wikipedia.org/wiki/Robin_Montgomerie-Charrington
-139	carini	Piero	Carini	\N	Italian	\N	1921-03-06	http://en.wikipedia.org/wiki/Piero_Carini
-140	poore	Dennis	Poore	\N	British	\N	1916-08-19	http://en.wikipedia.org/wiki/Dennis_Poore
-141	thompson	Eric	Thompson	\N	British	\N	1919-11-04	http://en.wikipedia.org/wiki/Eric_Thompson_(racing_driver)
-142	salvadori	Roy	Salvadori	\N	British	\N	1922-05-12	http://en.wikipedia.org/wiki/Roy_Salvadori
-143	downing	Ken	Downing	\N	British	\N	1917-12-05	http://en.wikipedia.org/wiki/Ken_Downing
-144	graham_whitehead	Graham	Whitehead	\N	British	\N	1922-04-15	http://en.wikipedia.org/wiki/Graham_Whitehead
-145	mcalpine	Kenneth	McAlpine	\N	British	\N	1920-09-21	http://en.wikipedia.org/wiki/Kenneth_McAlpine
-146	bianco	Gino	Bianco	\N	Brazilian	\N	1916-07-22	http://en.wikipedia.org/wiki/Gino_Bianco
-147	crook	Tony	Crook	\N	British	\N	1920-02-16	http://en.wikipedia.org/wiki/Tony_Crook
-148	cantoni	Eitel	Cantoni	\N	Uruguayan	\N	1906-10-04	http://en.wikipedia.org/wiki/Eitel_Cantoni
-149	aston	Bill	Aston	\N	British	\N	1900-03-29	http://en.wikipedia.org/wiki/Bill_Aston
-150	riess	Fritz	Riess	\N	German	\N	1922-07-11	http://en.wikipedia.org/wiki/Fritz_Riess
-151	niedermayr	Helmut	Niedermayr	\N	German	\N	1915-11-29	http://en.wikipedia.org/wiki/Helmut_Niedermayr
-152	klenk	Hans	Klenk	\N	German	\N	1919-10-28	http://en.wikipedia.org/wiki/Hans_Klenk
-153	klodwig	Ernst	Klodwig	\N	East German	\N	1903-05-23	http://en.wikipedia.org/wiki/Ernst_Klodwig
-154	heeks	Willi	Heeks	\N	German	\N	1922-02-13	http://en.wikipedia.org/wiki/Willi_Heeks
-155	brudes	Adolf	Brudes	\N	German	\N	1899-10-15	http://en.wikipedia.org/wiki/Adolf_Brudes
-156	balsa	Marcel	Balsa	\N	French	\N	1909-01-01	http://en.wikipedia.org/wiki/Marcel_Balsa
-157	bechem	Günther	Bechem	\N	German	\N	1921-12-21	http://en.wikipedia.org/wiki/G%C3%BCnther_Bechem
-158	krause	Rudolf	Krause	\N	East German	\N	1907-03-30	http://en.wikipedia.org/wiki/Rudolf_Krause
-159	schoeller	Rudolf	Schoeller	\N	Swiss	\N	1902-04-27	http://en.wikipedia.org/wiki/Rudolf_Schoeller
-160	helfrich	Theo	Helfrich	\N	German	\N	1913-05-13	http://en.wikipedia.org/wiki/Theo_Helfrich
-161	peters	Josef	Peters	\N	German	\N	1914-09-16	http://en.wikipedia.org/wiki/Josef_Peters_(driver)
-162	flinterman	Jan	Flinterman	\N	Dutch	\N	1919-10-02	http://en.wikipedia.org/wiki/Jan_Flinterman
-163	lof	Dries	van der Lof	\N	Dutch	\N	1919-08-23	http://en.wikipedia.org/wiki/Dries_van_der_Lof
-164	bayol	Élie	Bayol	\N	French	\N	1914-02-28	http://en.wikipedia.org/wiki/%C3%89lie_Bayol
-165	crespo	Alberto	Crespo	\N	Argentine	\N	1920-01-16	http://en.wikipedia.org/wiki/Alberto_Crespo
-166	dusio	Piero	Dusio	\N	Italian	\N	1899-10-13	http://en.wikipedia.org/wiki/Piero_Dusio
-167	galvez	Oscar	Gálvez	\N	Argentine	\N	1913-08-17	http://en.wikipedia.org/wiki/%C3%93scar_Alfredo_G%C3%A1lvez
-168	john_barber	John	Barber	\N	British	\N	1929-07-22	http://en.wikipedia.org/wiki/John_Barber_(racing_driver)
-169	menditeguy	Carlos	Menditeguy	\N	Argentine	\N	1914-08-10	http://en.wikipedia.org/wiki/Carlos_Menditeguy
-170	birger	Pablo	Birger	\N	Argentine	\N	1924-01-07	http://en.wikipedia.org/wiki/Pablo_Birger
-171	cruz	Adolfo	Cruz	\N	Argentine	\N	1923-06-28	http://en.wikipedia.org/wiki/Adolfo_Schewelm_Cruz
-172	daywalt	Jimmy	Daywalt	\N	American	\N	1924-08-28	http://en.wikipedia.org/wiki/Jimmy_Daywalt
-173	mccoy	Ernie	McCoy	\N	American	\N	1921-02-19	http://en.wikipedia.org/wiki/Ernie_McCoy
-174	mantz	Johnny	Mantz	\N	American	\N	1918-09-18	http://en.wikipedia.org/wiki/Johnny_Mantz
-175	teague	Marshall	Teague	\N	American	\N	1921-02-22	http://en.wikipedia.org/wiki/Marshall_Teague_(racing_driver)
-176	thomson	Johnny	Thomson	\N	American	\N	1922-04-09	http://en.wikipedia.org/wiki/Johnny_Thomson
-177	freeland	Don	Freeland	\N	American	\N	1925-03-25	http://en.wikipedia.org/wiki/Don_Freeland
-178	niday	Cal	Niday	\N	American	\N	1914-04-29	http://en.wikipedia.org/wiki/Cal_Niday
-179	mieres	Roberto	Mieres	\N	Argentine	\N	1924-12-03	http://en.wikipedia.org/wiki/Roberto_Mieres
-180	wacker	Fred	Wacker	\N	American	\N	1918-07-10	http://en.wikipedia.org/wiki/Fred_Wacker
-181	georges_berger	Georges	Berger	\N	Belgian	\N	1918-09-14	http://en.wikipedia.org/wiki/Georges_Berger
-182	jimmy_stewart	Jimmy	Stewart	\N	British	\N	1931-03-06	http://en.wikipedia.org/wiki/Jimmy_Stewart_(racing_driver)
-183	fairman	Jack	Fairman	\N	British	\N	1913-03-15	http://en.wikipedia.org/wiki/Jack_Fairman
-184	ian_stewart	Ian	Stewart	\N	British	\N	1929-07-15	http://en.wikipedia.org/wiki/Ian_Stewart_(racing_driver)
-185	herrmann	Hans	Herrmann	\N	German	\N	1928-02-23	http://en.wikipedia.org/wiki/Hans_Herrmann
-186	nuckey	Rodney	Nuckey	\N	British	\N	1929-06-26	http://en.wikipedia.org/wiki/Rodney_Nuckey
-187	seidel	Wolfgang	Seidel	\N	German	\N	1926-07-04	http://en.wikipedia.org/wiki/Wolfgang_Seidel
-188	barth	Edgar	Barth	\N	German	\N	1917-01-26	http://en.wikipedia.org/wiki/Edgar_Barth
-189	karch	Oswald	Karch	\N	German	\N	1917-03-06	http://en.wikipedia.org/wiki/Oswald_Karch
-190	fitzau	Theo	Fitzau	\N	East German	\N	1923-02-10	http://en.wikipedia.org/wiki/Theo_Fitzau
-191	adolff	Kurt	Adolff	\N	German	\N	1921-11-05	http://en.wikipedia.org/wiki/Kurt_Adolff
-192	bauer	Erwin	Bauer	\N	German	\N	1912-07-17	http://en.wikipedia.org/wiki/Erwin_Bauer
-193	loof	Ernst	Loof	\N	German	\N	1907-07-04	http://en.wikipedia.org/wiki/Ernst_Loof
-194	lang	Hermann	Lang	\N	German	\N	1909-04-06	http://en.wikipedia.org/wiki/Hermann_Lang
-195	scherrer	Albert	Scherrer	\N	Swiss	\N	1908-02-28	http://en.wikipedia.org/wiki/Albert_Scherrer
-196	musso	Luigi	Musso	\N	Italian	\N	1924-07-28	http://en.wikipedia.org/wiki/Luigi_Musso
-197	mantovani	Sergio	Mantovani	\N	Italian	\N	1929-05-22	http://en.wikipedia.org/wiki/Sergio_Mantovani
-198	maglioli	Umberto	Maglioli	\N	Italian	\N	1928-06-05	http://en.wikipedia.org/wiki/Umberto_Maglioli
-199	fitch	John	Fitch	\N	American	\N	1917-08-04	http://en.wikipedia.org/wiki/John_Fitch_(driver)
-200	loyer	Roger	Loyer	\N	French	\N	1907-08-05	http://en.wikipedia.org/wiki/Roger_Loyer
-201	daponte	Jorge	Daponte	\N	Argentine	\N	1923-06-05	http://en.wikipedia.org/wiki/Jorge_Daponte
-202	crockett	Larry	Crockett	\N	American	\N	1926-10-23	http://en.wikipedia.org/wiki/Larry_Crockett
-203	elisian	Ed	Elisian	\N	American	\N	1926-12-09	http://en.wikipedia.org/wiki/Ed_Elisian
-204	armi	Frank	Armi	\N	American	\N	1918-10-12	http://en.wikipedia.org/wiki/Frank_Armi
-205	connor	Pat	O'Connor	\N	American	\N	1928-10-09	http://en.wikipedia.org/wiki/Pat_O%27Connor_(auto_racer)
-206	kladis	Danny	Kladis	\N	American	\N	1917-02-10	http://en.wikipedia.org/wiki/Danny_Kladis
-207	duncan	Len	Duncan	\N	American	\N	1911-07-25	http://en.wikipedia.org/wiki/Len_Duncan
-208	homeier	Bill	Homeier	\N	American	\N	1918-08-31	http://en.wikipedia.org/wiki/Bill_Homeier
-209	kling	Karl	Kling	\N	German	\N	1910-09-16	http://en.wikipedia.org/wiki/Karl_Kling
-210	pollet	Jacques	Pollet	\N	French	\N	1922-07-02	http://en.wikipedia.org/wiki/Jacques_Pollet
-211	beauman	Don	Beauman	\N	British	\N	1928-07-26	http://en.wikipedia.org/wiki/Don_Beauman
-212	marr	Leslie	Marr	\N	British	\N	1922-08-14	http://en.wikipedia.org/wiki/Leslie_Marr
-213	thorne	Leslie	Thorne	\N	British	\N	1916-06-23	http://en.wikipedia.org/wiki/Leslie_Thorne
-214	gould	Horace	Gould	\N	British	\N	1918-09-20	http://en.wikipedia.org/wiki/Horace_Gould
-215	whitehouse	Bill	Whitehouse	\N	British	\N	1909-04-01	http://en.wikipedia.org/wiki/Bill_Whitehouse
-216	flockhart	Ron	Flockhart	\N	British	\N	1923-06-16	http://en.wikipedia.org/wiki/Ron_Flockhart_(auto_racing)
-217	riseley_prichard	John	Riseley-Prichard	\N	British	\N	1924-01-17	http://en.wikipedia.org/wiki/John_Riseley-Prichard
-218	bucci	Clemar	Bucci	\N	Argentine	\N	1920-09-04	http://en.wikipedia.org/wiki/Clemar_Bucci
-219	riu	Giovanni	de Riu	\N	Italian	\N	1925-03-10	http://en.wikipedia.org/wiki/Giovanni_de_Riu
-220	volonterio	Ottorino	Volonterio	\N	Swiss	\N	1917-12-07	http://en.wikipedia.org/wiki/Ottorino_Volonterio
-221	iglesias	Jesús	Iglesias	\N	Argentine	\N	1922-02-22	http://en.wikipedia.org/wiki/Jes%C3%BAs_Iglesias
-222	castellotti	Eugenio	Castellotti	\N	Italian	\N	1930-10-10	http://en.wikipedia.org/wiki/Eugenio_Castellotti
-223	uria	Alberto	Uria	\N	Uruguayan	\N	1924-07-11	http://en.wikipedia.org/wiki/Alberto_Uria
-224	perdisa	Cesare	Perdisa	\N	Italian	\N	1932-10-21	http://en.wikipedia.org/wiki/Cesare_Perdisa
-225	whiteaway	Ted	Whiteaway	\N	British	\N	1928-11-01	http://en.wikipedia.org/wiki/Ted_Whiteaway
-226	herman	Al	Herman	\N	American	\N	1927-03-15	http://en.wikipedia.org/wiki/Al_Herman
-227	weyant	Chuck	Weyant	\N	American	\N	1923-04-03	http://en.wikipedia.org/wiki/Chuck_Weyant
-228	templeman	Shorty	Templeman	\N	American	\N	1919-08-12	http://en.wikipedia.org/wiki/Shorty_Templeman
-229	andrews	Keith	Andrews	\N	American	\N	1920-06-15	http://en.wikipedia.org/wiki/Keith_Andrews_(driver)
-230	russo	Eddie	Russo	\N	American	\N	1925-11-19	http://en.wikipedia.org/wiki/Eddie_Russo
-231	ray_crawford	Ray	Crawford	\N	American	\N	1915-10-26	http://en.wikipedia.org/wiki/Ray_Crawford
-232	keller	Al	Keller	\N	American	\N	1920-04-11	http://en.wikipedia.org/wiki/Al_Keller
-233	boyd	Johnny	Boyd	\N	American	\N	1926-08-19	http://en.wikipedia.org/wiki/Johnny_Boyd
-234	ramos	Hernando	da Silva Ramos	\N	Brazilian	\N	1925-12-07	http://en.wikipedia.org/wiki/Hernando_da_Silva_Ramos
-235	sparken	Mike	Sparken	\N	French	\N	1930-06-16	http://en.wikipedia.org/wiki/Mike_Sparken
-236	jack_brabham	Jack	Brabham	\N	Australian	\N	1926-04-02	http://en.wikipedia.org/wiki/Jack_Brabham
-237	lucas	Jean	Lucas	\N	French	\N	1917-04-25	http://en.wikipedia.org/wiki/Jean_Lucas
-238	piotti	Luigi	Piotti	\N	Italian	\N	1913-10-27	http://en.wikipedia.org/wiki/Luigi_Piotti
-239	gerini	Gerino	Gerini	\N	Italian	\N	1928-08-10	http://en.wikipedia.org/wiki/Gerino_Gerini_(racing_driver)
-240	gendebien	Olivier	Gendebien	\N	Belgian	\N	1924-01-12	http://en.wikipedia.org/wiki/Olivier_Gendebien
-241	oscar_gonzalez	Óscar	González	\N	Uruguayan	\N	1923-11-10	http://en.wikipedia.org/wiki/%C3%93scar_Gonz%C3%A1lez_(racing_driver)
-242	scarlatti	Giorgio	Scarlatti	\N	Italian	\N	1921-10-02	http://en.wikipedia.org/wiki/Giorgio_Scarlatti
-243	brooks	Tony	Brooks	\N	British	\N	1932-02-25	http://en.wikipedia.org/wiki/Tony_Brooks
-244	veith	Bob	Veith	\N	American	\N	1926-11-01	http://en.wikipedia.org/wiki/Bob_Veith
-245	christie	Bob	Christie	\N	American	\N	1924-04-04	http://en.wikipedia.org/wiki/Bob_Christie_(racing_driver)
-246	garrett	Billy	Garrett	\N	American	\N	1933-04-24	http://en.wikipedia.org/wiki/Billy_Garrett
-247	tolan	Johnnie	Tolan	\N	American	\N	1917-10-22	http://en.wikipedia.org/wiki/Johnnie_Tolan
-248	turner	Jack	Turner	\N	American	\N	1920-02-12	http://en.wikipedia.org/wiki/Jack_Turner_(driver)
-249	scotti	Piero	Scotti	\N	Italian	\N	1909-11-11	http://en.wikipedia.org/wiki/Piero_Scotti
-250	portago	Alfonso	de Portago	\N	Spanish	\N	1928-10-11	http://en.wikipedia.org/wiki/Alfonso_de_Portago
-251	chapman	Colin	Chapman	\N	British	\N	1928-05-19	http://en.wikipedia.org/wiki/Colin_Chapman
-252	titterington	Desmond	Titterington	\N	British	\N	1928-05-01	http://en.wikipedia.org/wiki/Desmond_Titterington
-253	halford	Bruce	Halford	\N	British	\N	1931-05-18	http://en.wikipedia.org/wiki/Bruce_Halford
-254	scott_Brown	Archie	Scott Brown	\N	British	\N	1927-05-13	http://en.wikipedia.org/wiki/Archie_Scott_Brown
-255	emery	Paul	Emery	\N	British	\N	1916-11-12	http://en.wikipedia.org/wiki/Paul_Emery
-256	milhoux	André	Milhoux	\N	Belgian	\N	1928-12-09	http://en.wikipedia.org/wiki/Andr%C3%A9_Milhoux
-257	bonnier	Jo	Bonnier	\N	Swedish	\N	1930-01-31	http://en.wikipedia.org/wiki/Joakim_Bonnier
-258	leston	Les	Leston	\N	British	\N	1920-12-16	http://en.wikipedia.org/wiki/Les_Leston
-259	trips	Wolfgang	von Trips	\N	German	\N	1928-05-04	http://en.wikipedia.org/wiki/Wolfgang_Graf_Berghe_von_Trips
-260	tomaso	Alessandro	de Tomaso	\N	Argentine-Italian	\N	1928-07-10	http://en.wikipedia.org/wiki/Alessandro_de_Tomaso
-261	gregory	Masten	Gregory	\N	American	\N	1932-02-29	http://en.wikipedia.org/wiki/Masten_Gregory
-262	lewis-evans	Stuart	Lewis-Evans	\N	British	\N	1930-04-20	http://en.wikipedia.org/wiki/Stuart_Lewis-Evans
-263	bueb	Ivor	Bueb	\N	British	\N	1923-06-06	http://en.wikipedia.org/wiki/Ivor_Bueb
-264	edmunds	Don	Edmunds	\N	American	\N	1930-09-23	http://en.wikipedia.org/wiki/Don_Edmunds
-265	sachs	Eddie	Sachs	\N	American	\N	1927-05-28	http://en.wikipedia.org/wiki/Eddie_Sachs
-266	magill	Mike	Magill	\N	American	\N	1920-02-08	http://en.wikipedia.org/wiki/Mike_Magill
-267	cheesbourg	Bill	Cheesbourg	\N	American	\N	1927-06-12	http://en.wikipedia.org/wiki/Bill_Cheesbourg
-268	george	Elmer	George	\N	American	\N	1928-07-15	http://en.wikipedia.org/wiki/Elmer_George
-269	macdowel	Mike	MacDowel	\N	British	\N	1932-09-13	http://en.wikipedia.org/wiki/Mike_MacDowel
-270	mackay-fraser	Herbert	MacKay-Fraser	\N	American	\N	1927-06-23	http://en.wikipedia.org/wiki/Herbert_MacKay-Fraser
-271	naylor	Brian	Naylor	\N	British	\N	1923-03-24	http://en.wikipedia.org/wiki/Brian_Naylor
-272	beaufort	Carel Godin	de Beaufort	\N	Dutch	\N	1934-04-10	http://en.wikipedia.org/wiki/Carel_Godin_de_Beaufort
-273	marsh	Tony	Marsh	\N	British	\N	1931-07-20	http://en.wikipedia.org/wiki/Tony_Marsh_(racing_driver)
-274	england	Paul	England	\N	Australian	\N	1929-03-28	http://en.wikipedia.org/wiki/Paul_England
-275	gibson	Dick	Gibson	\N	British	\N	1918-04-16	http://en.wikipedia.org/wiki/Dick_Gibson
-276	allison	Cliff	Allison	\N	British	\N	1932-02-08	http://en.wikipedia.org/wiki/Cliff_Allison
-277	hill	Graham	Hill	\N	British	\N	1929-02-15	http://en.wikipedia.org/wiki/Graham_Hill
-278	kavanagh	Ken	Kavanagh	\N	Australian	\N	1923-12-12	http://en.wikipedia.org/wiki/Ken_Kavanagh
-279	kessler	Bruce	Kessler	\N	American	\N	1936-03-23	http://en.wikipedia.org/wiki/Bruce_Kessler
-280	filippis	Maria	de Filippis	\N	Italian	\N	1926-11-11	http://en.wikipedia.org/wiki/Maria_Teresa_de_Filippis
-281	testut	André	Testut	\N	Monegasque	\N	1926-04-13	http://en.wikipedia.org/wiki/Andr%C3%A9_Testut
-282	cabianca	Giulio	Cabianca	\N	Italian	\N	1923-02-19	http://en.wikipedia.org/wiki/Giulio_Cabianca
-283	ecclestone	Bernie	Ecclestone	\N	British	\N	1930-10-28	http://en.wikipedia.org/wiki/Bernie_Ecclestone
-284	taramazzo	Luigi	Taramazzo	\N	Italian	\N	1932-05-05	http://en.wikipedia.org/wiki/Luigi_Taramazzo
-285	george_amick	George	Amick	\N	American	\N	1924-10-24	http://en.wikipedia.org/wiki/George_Amick
-286	larson	Jud	Larson	\N	American	\N	1923-01-21	http://en.wikipedia.org/wiki/Jud_Larson
-287	dempsey_wilson	Dempsey	Wilson	\N	American	\N	1927-03-11	http://en.wikipedia.org/wiki/Dempsey_Wilson
-288	foyt	Anthony	Foyt	\N	American	\N	1935-01-16	http://en.wikipedia.org/wiki/A.J._Foyt
-289	goldsmith	Paul	Goldsmith	\N	American	\N	1925-10-02	http://en.wikipedia.org/wiki/Paul_Goldsmith
-290	jerry_unser	Jerry	Unser	\N	American	\N	1932-11-15	http://en.wikipedia.org/wiki/Jerry_Unser
-291	sutton	Len	Sutton	\N	American	\N	1925-08-09	http://en.wikipedia.org/wiki/Len_Sutton
-292	bisch	Art	Bisch	\N	American	\N	1926-11-10	http://en.wikipedia.org/wiki/Art_Bisch
-293	phil_hill	Phil	Hill	\N	American	\N	1927-04-20	http://en.wikipedia.org/wiki/Phil_Hill
-294	shelby	Carroll	Shelby	\N	American	\N	1923-01-11	http://en.wikipedia.org/wiki/Carroll_Shelby
-295	burgess	Ian	Burgess	\N	British	\N	1930-07-06	http://en.wikipedia.org/wiki/Ian_Burgess
-296	stacey	Alan	Stacey	\N	British	\N	1933-08-29	http://en.wikipedia.org/wiki/Alan_Stacey
-297	mclaren	Bruce	McLaren	\N	New Zealander	\N	1937-08-30	http://en.wikipedia.org/wiki/Bruce_McLaren
-298	goethals	Christian	Goethals	\N	Belgian	\N	1928-08-04	http://en.wikipedia.org/wiki/Christian_Goethals
-299	la_caze	Robert	La Caze	\N	French	\N	1917-02-26	http://en.wikipedia.org/wiki/Robert_La_Caze
-300	guelfi	André	Guelfi	\N	French	\N	1919-05-06	http://en.wikipedia.org/wiki/Andr%C3%A9_Guelfi
-301	picard	François	Picard	\N	French	\N	1921-04-26	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Picard
-302	bridger	Tom	Bridger	\N	British	\N	1934-06-24	http://en.wikipedia.org/wiki/Tom_Bridger
-303	Changy	Alain	de Changy	\N	Belgian	\N	1922-02-05	http://en.wikipedia.org/wiki/Alain_de_Changy
-304	bianchi	Lucien	Bianchi	BIA	Belgian	\N	1934-11-10	http://en.wikipedia.org/wiki/Lucien_Bianchi
-305	lovely	Pete	Lovely	\N	American	\N	1926-04-11	http://en.wikipedia.org/wiki/Pete_Lovely
-306	lucienbonnet	Jean	Lucienbonnet	\N	French	\N	1923-01-07	http://en.wikipedia.org/wiki/Jean_Lucienbonnet
-307	arnold	Chuck	Arnold	\N	American	\N	1926-05-30	http://en.wikipedia.org/wiki/Chuck_Arnold
-308	mcwithey	Jim	McWithey	\N	American	\N	1927-07-04	http://en.wikipedia.org/wiki/Jim_McWithey
-309	branson	Don	Branson	\N	American	\N	1920-06-02	http://en.wikipedia.org/wiki/Don_Branson
-310	grim	Bobby	Grim	\N	American	\N	1924-09-04	http://en.wikipedia.org/wiki/Bobby_Grim
-311	amick	Red	Amick	\N	American	\N	1929-01-19	http://en.wikipedia.org/wiki/Red_Amick
-312	ireland	Innes	Ireland	\N	British	\N	1930-06-12	http://en.wikipedia.org/wiki/Innes_Ireland
-313	orey	Fritz	d'Orey	\N	Brazilian	\N	1938-03-25	http://en.wikipedia.org/wiki/Fritz_d%27Orey
-314	gurney	Dan	Gurney	\N	American	\N	1931-04-13	http://en.wikipedia.org/wiki/Dan_Gurney
-315	davis	Colin	Davis	\N	British	\N	1933-07-29	http://en.wikipedia.org/wiki/Colin_Davis_(driver)
-316	fontes	Azdrubal	Fontes	\N	Uruguayan	\N	1922-12-26	http://en.wikipedia.org/wiki/Azdrubal_Fontes
-317	bristow	Chris	Bristow	\N	British	\N	1937-12-02	http://en.wikipedia.org/wiki/Chris_Bristow
-318	henry_taylor	Henry	Taylor	\N	British	\N	1932-12-16	http://en.wikipedia.org/wiki/Henry_Taylor_(racing_driver)
-319	ashdown	Peter	Ashdown	\N	British	\N	1934-10-16	http://en.wikipedia.org/wiki/Peter_Ashdown
-320	piper	David	Piper	\N	British	\N	1930-12-02	http://en.wikipedia.org/wiki/David_Piper
-321	mike_taylor	Mike	Taylor	\N	British	\N	1934-04-24	http://en.wikipedia.org/wiki/Mike_Taylor_(driver)
-322	greene	Keith	Greene	\N	British	\N	1938-01-05	http://en.wikipedia.org/wiki/Keith_Greene
-323	bill_moss	Bill	Moss	\N	British	\N	1933-09-04	http://en.wikipedia.org/wiki/Bill_Moss_(racing_driver)
-324	parkes	Mike	Parkes	\N	British	\N	1931-09-24	http://en.wikipedia.org/wiki/Mike_Parkes
-325	dennis_taylor	Dennis	Taylor	\N	British	\N	1921-06-12	http://en.wikipedia.org/wiki/Dennis_Taylor_(racing_driver)
-326	trevor_taylor	Trevor	Taylor	\N	British	\N	1936-12-26	http://en.wikipedia.org/wiki/Trevor_Taylor
-327	parnell	Tim	Parnell	\N	British	\N	1932-06-25	http://en.wikipedia.org/wiki/Tim_Parnell
-328	cabral	Mário de Araújo	Cabral	\N	Portuguese	\N	1934-01-15	http://en.wikipedia.org/wiki/Mario_de_Araujo_Cabral
-329	blanchard	Harry	Blanchard	\N	American	\N	1929-06-13	http://en.wikipedia.org/wiki/Harry_Blanchard
-330	constantine	George	Constantine	\N	American	\N	1918-02-22	http://en.wikipedia.org/wiki/George_Constantine
-331	said	Bob	Said	\N	American	\N	1932-05-05	http://en.wikipedia.org/wiki/Bob_Said
-332	cade	Phil	Cade	\N	American	\N	1916-06-12	http://en.wikipedia.org/wiki/Phil_Cade
-333	larreta	Alberto Rodriguez	Larreta	\N	Argentine	\N	1934-01-14	http://en.wikipedia.org/wiki/Alberto_Rodriguez_Larreta
-334	bonomi	Roberto	Bonomi	\N	Argentine	\N	1919-09-30	http://en.wikipedia.org/wiki/Roberto_Bonomi
-335	munaron	Gino	Munaron	\N	Italian	\N	1928-04-02	http://en.wikipedia.org/wiki/Gino_Munaron
-336	estefano	Nasif	Estéfano	\N	Argentine	\N	1932-11-18	http://en.wikipedia.org/wiki/Nasif_Est%C3%A9fano
-337	chimeri	Ettore	Chimeri	\N	Venezuelan	\N	1921-06-04	http://en.wikipedia.org/wiki/Ettore_Chimeri
-338	creus	Antonio	Creus	\N	Spanish	\N	1924-10-28	http://en.wikipedia.org/wiki/Antonio_Creus
-339	ginther	Richie	Ginther	\N	American	\N	1930-08-05	http://en.wikipedia.org/wiki/Richie_Ginther
-340	surtees	John	Surtees	\N	British	\N	1934-02-11	http://en.wikipedia.org/wiki/John_Surtees
-341	daigh	Chuck	Daigh	\N	American	\N	1923-11-29	http://en.wikipedia.org/wiki/Chuck_Daigh
-342	reventlow	Lance	Reventlow	\N	American	\N	1936-02-24	http://en.wikipedia.org/wiki/Lance_Reventlow
-343	ruby	Lloyd	Ruby	\N	American	\N	1928-01-12	http://en.wikipedia.org/wiki/Lloyd_Ruby
-344	tingelstad	Bud	Tingelstad	\N	American	\N	1928-04-04	http://en.wikipedia.org/wiki/Bud_Tingelstad
-345	hurtubise	Jim	Hurtubise	\N	American	\N	1932-12-05	http://en.wikipedia.org/wiki/Jim_Hurtubise
-346	weiler	Wayne	Weiler	\N	American	\N	1934-12-09	http://en.wikipedia.org/wiki/Wayne_Weiler
-347	clark	Jim	Clark	\N	British	\N	1936-03-04	http://en.wikipedia.org/wiki/Jim_Clark
-348	mairesse	Willy	Mairesse	\N	Belgian	\N	1928-10-01	http://en.wikipedia.org/wiki/Willy_Mairesse
-349	drogo	Piero	Drogo	\N	Italian	\N	1926-08-08	http://en.wikipedia.org/wiki/Piero_Drogo
-350	gamble	Fred	Gamble	\N	American	\N	1932-03-17	http://en.wikipedia.org/wiki/Fred_Gamble_(racing_driver)
-351	thiele	Alfonso	Thiele	\N	American-Italian	\N	1920-04-05	http://en.wikipedia.org/wiki/Alfonso_Thiele
-352	vic_wilson	Vic	Wilson	\N	British	\N	1931-04-14	http://en.wikipedia.org/wiki/Vic_Wilson_(motor_racing_driver)
-353	owen	Arthur	Owen	\N	British	\N	1915-03-23	http://en.wikipedia.org/wiki/Arthur_Owen
-354	hall	Jim	Hall	\N	American	\N	1935-07-23	http://en.wikipedia.org/wiki/Jim_Hall_(race_car_driver)
-355	drake	Bob	Drake	\N	American	\N	1919-12-14	http://en.wikipedia.org/wiki/Bob_Drake_(Formula_One)
-356	may	Michael	May	\N	Swiss	\N	1934-08-18	http://en.wikipedia.org/wiki/Michael_May_(racing_driver)
-357	lewis	Jackie	Lewis	\N	British	\N	1936-11-01	http://en.wikipedia.org/wiki/Jackie_Lewis
-358	bandini	Lorenzo	Bandini	\N	Italian	\N	1935-12-21	http://en.wikipedia.org/wiki/Lorenzo_Bandini
-359	baghetti	Giancarlo	Baghetti	\N	Italian	\N	1934-12-25	http://en.wikipedia.org/wiki/Giancarlo_Baghetti
-360	collomb	Bernard	Collomb	\N	French	\N	1930-10-07	http://en.wikipedia.org/wiki/Bernard_Collomb
-361	bordeu	Juan Manuel	Bordeu	\N	Argentine	\N	1934-01-28	http://en.wikipedia.org/wiki/Juan_Manuel_Bordeu
-362	maggs	Tony	Maggs	\N	South African	\N	1937-02-09	http://en.wikipedia.org/wiki/Tony_Maggs
-363	ashmore	Gerry	Ashmore	\N	British	\N	1936-07-25	http://en.wikipedia.org/wiki/Gerry_Ashmore
-364	natili	Massimo	Natili	\N	Italian	\N	1935-07-28	http://en.wikipedia.org/wiki/Massimo_Natili
-365	monteverdi	Peter	Monteverdi	\N	Swiss	\N	1934-06-07	http://en.wikipedia.org/wiki/Peter_Monteverdi
-366	pirocchi	Renato	Pirocchi	\N	Italian	\N	1933-03-26	http://en.wikipedia.org/wiki/Renato_Pirocchi
-367	duke	Geoff	Duke	\N	British	\N	1923-03-29	http://en.wikipedia.org/wiki/Geoff_Duke
-368	campbell-jones	John	Campbell-Jones	\N	British	\N	1930-01-21	http://en.wikipedia.org/wiki/John_Campbell-Jones
-369	starrabba	Gaetano	Starrabba	\N	Italian	\N	1932-12-03	http://en.wikipedia.org/wiki/Gaetano_Starrabba
-370	ricardo_rodriguez	Ricardo	Rodríguez	\N	Mexican	\N	1942-02-14	http://en.wikipedia.org/wiki/Ricardo_Rodr%C3%ADguez_(Formula_One)
-371	vaccarella	Nino	Vaccarella	\N	Italian	\N	1933-03-04	http://en.wikipedia.org/wiki/Nino_Vaccarella
-372	bussinello	Roberto	Bussinello	\N	Italian	\N	1927-10-04	http://en.wikipedia.org/wiki/Roberto_Bussinello
-373	lippi	Roberto	Lippi	\N	Italian	\N	1926-10-17	http://en.wikipedia.org/wiki/Roberto_Lippi
-374	prinoth	Ernesto	Prinoth	\N	Italian	\N	1923-04-15	http://en.wikipedia.org/wiki/Ernesto_Prinoth
-375	boffa	Menato	Boffa	\N	Italian	\N	1930-01-04	http://en.wikipedia.org/wiki/Menato_Boffa
-376	penske	Roger	Penske	\N	American	\N	1937-02-20	http://en.wikipedia.org/wiki/Roger_Penske
-377	ryan	Peter	Ryan	\N	Canadian	\N	1940-06-10	http://en.wikipedia.org/wiki/Peter_Ryan_(driver)
-378	sharp	Hap	Sharp	\N	American	\N	1928-01-01	http://en.wikipedia.org/wiki/Hap_Sharp
-379	hansgen	Walt	Hansgen	\N	American	\N	1919-10-28	http://en.wikipedia.org/wiki/Walt_Hansgen
-380	ken_miles	Ken	Miles	\N	British	\N	1918-11-01	http://en.wikipedia.org/wiki/Ken_Miles
-381	pon	Ben	Pon	\N	Dutch	\N	1936-12-09	http://en.wikipedia.org/wiki/Ben_Pon
-382	slotemaker	Rob	Slotemaker	\N	Dutch	\N	1929-06-13	http://en.wikipedia.org/wiki/Rob_Slotemaker
-383	siffert	Jo	Siffert	\N	Swiss	\N	1936-07-07	http://en.wikipedia.org/wiki/Jo_Siffert
-384	schiller	Heinz	Schiller	\N	Swiss	\N	1930-01-25	http://en.wikipedia.org/wiki/Heinz_Schiller
-385	arundell	Peter	Arundell	\N	British	\N	1933-11-08	http://en.wikipedia.org/wiki/Peter_Arundell
-386	abate	Carlo	Abate	\N	Italian	\N	1932-07-10	http://en.wikipedia.org/wiki/Carlo_Mario_Abate
-387	settember	Tony	Settember	\N	American	\N	1926-07-10	http://en.wikipedia.org/wiki/Tony_Settember
-388	chamberlain	Jay	Chamberlain	\N	American	\N	1925-12-29	http://en.wikipedia.org/wiki/Jay_Chamberlain
-389	shelly	Tony	Shelly	\N	New Zealander	\N	1937-02-02	http://en.wikipedia.org/wiki/Tony_Shelly
-390	walter	Heini	Walter	\N	Swiss	\N	1927-07-28	http://en.wikipedia.org/wiki/Heini_Walter
-391	seiffert	Günther	Seiffert	\N	German	\N	1937-10-18	http://en.wikipedia.org/wiki/G%C3%BCnther_Seiffert
-392	kuhnke	Kurt	Kuhnke	\N	German	\N	1910-04-30	http://en.wikipedia.org/wiki/Kurt_Kuhnke
-393	schroeder	Rob	Schroeder	\N	British	\N	1926-05-11	http://en.wikipedia.org/wiki/Rob_Schroeder
-394	mayer	Timmy	Mayer	\N	American	\N	1938-02-22	http://en.wikipedia.org/wiki/Timmy_Mayer
-395	lederle	Neville	Lederle	\N	South African	\N	1938-09-25	http://en.wikipedia.org/wiki/Neville_Lederle
-396	love	John	Love	\N	Rhodesian	\N	1924-12-07	http://en.wikipedia.org/wiki/John_Love_(racing_driver)
-397	johnstone	Bruce	Johnstone	\N	South African	\N	1937-01-30	http://en.wikipedia.org/wiki/Bruce_Johnstone_(racing_driver)
-398	pieterse	Ernie	Pieterse	\N	South African	\N	1938-07-04	http://en.wikipedia.org/wiki/Ernie_Pieterse
-399	serrurier	Doug	Serrurier	\N	South African	\N	1920-12-09	http://en.wikipedia.org/wiki/Doug_Serrurier
-400	harris	Mike	Harris	\N	South African	\N	1939-05-25	http://en.wikipedia.org/wiki/Mike_Harris_(race_car_driver)
-401	hocking	Gary	Hocking	\N	Rhodesian	\N	1937-09-30	http://en.wikipedia.org/wiki/Gary_Hocking
-402	vyver	Syd	van der Vyver	\N	South African	\N	1920-06-01	http://en.wikipedia.org/wiki/Syd_van_der_Vyver
-403	tingle	Sam	Tingle	\N	Rhodesian	\N	1921-08-24	http://en.wikipedia.org/wiki/Sam_Tingle
-404	amon	Chris	Amon	\N	New Zealander	\N	1943-07-20	http://en.wikipedia.org/wiki/Chris_Amon
-405	scarfiotti	Ludovico	Scarfiotti	\N	Italian	\N	1933-10-18	http://en.wikipedia.org/wiki/Ludovico_Scarfiotti
-406	mitter	Gerhard	Mitter	\N	German	\N	1935-08-30	http://en.wikipedia.org/wiki/Gerhard_Mitter
-407	hailwood	Mike	Hailwood	\N	British	\N	1940-04-02	http://en.wikipedia.org/wiki/Mike_Hailwood
-408	anderson	Bob	Anderson	\N	British	\N	1931-05-19	http://en.wikipedia.org/wiki/Bob_Anderson_(racing_driver)
-409	raby	Ian	Raby	\N	British	\N	1921-09-22	http://en.wikipedia.org/wiki/Ian_Raby
-410	spence	Mike	Spence	\N	British	\N	1936-12-30	http://en.wikipedia.org/wiki/Mike_Spence
-411	ernesto_brambilla	Ernesto	Brambilla	\N	Italian	\N	1934-01-31	http://en.wikipedia.org/wiki/Ernesto_Brambilla
-412	broeker	Peter	Broeker	\N	Canadian	\N	1926-05-15	http://en.wikipedia.org/wiki/Peter_Broeker
-413	rodriguez	Pedro	Rodríguez	\N	Mexican	\N	1940-01-18	http://en.wikipedia.org/wiki/Pedro_Rodr%C3%ADguez_(racing_driver)
-414	vos	Ernie	de Vos	\N	Dutch	\N	1941-07-01	http://en.wikipedia.org/wiki/Ernie_de_Vos
-415	solana	Moisés	Solana	\N	Mexican	\N	1935-12-26	http://en.wikipedia.org/wiki/Mois%C3%A9s_Solana
-416	dochnal	Frank	Dochnal	\N	American	\N	1920-10-08	http://en.wikipedia.org/wiki/Frank_Dochnal
-417	monarch	Thomas	Monarch	\N	American	\N	1945-09-03	http://en.wikipedia.org/wiki/Talk:1963_Mexican_Grand_Prix#Who_was_Thomas_Monarch.3F
-418	blokdyk	Trevor	Blokdyk	\N	South African	\N	1935-11-30	http://en.wikipedia.org/wiki/Trevor_Blokdyk
-419	niemann	Brausch	Niemann	\N	South African	\N	1939-01-07	http://en.wikipedia.org/wiki/Brausch_Niemann
-420	klerk	Peter	de Klerk	\N	South African	\N	1935-03-16	http://en.wikipedia.org/wiki/Peter_de_Klerk
-421	prophet	David	Prophet	\N	British	\N	1937-10-09	http://en.wikipedia.org/wiki/David_Prophet
-422	driver	Paddy	Driver	\N	South African	\N	1934-05-13	http://en.wikipedia.org/wiki/Paddy_Driver
-423	revson	Peter	Revson	\N	American	\N	1939-02-27	http://en.wikipedia.org/wiki/Peter_Revson
-424	taylor	John	Taylor	\N	British	\N	1933-03-23	http://en.wikipedia.org/wiki/John_Taylor_(racer)
-425	gardner	Frank	Gardner	\N	Australian	\N	1930-10-01	http://en.wikipedia.org/wiki/Frank_Gardner_(driver)
-426	attwood	Richard	Attwood	\N	British	\N	1940-04-04	http://en.wikipedia.org/wiki/Richard_Attwood
-427	bucknum	Ronnie	Bucknum	\N	American	\N	1936-04-05	http://en.wikipedia.org/wiki/Ronnie_Bucknum
-428	rindt	Jochen	Rindt	\N	Austrian	\N	1942-04-18	http://en.wikipedia.org/wiki/Jochen_Rindt
-429	geki	Giacomo	Russo	\N	Italian	\N	1937-10-23	http://en.wikipedia.org/wiki/Geki_(driver)
-430	stewart	Jackie	Stewart	\N	British	\N	1939-06-11	http://en.wikipedia.org/wiki/Jackie_Stewart
-431	hawkins	Paul	Hawkins	\N	Australian	\N	1937-10-12	http://en.wikipedia.org/wiki/Paul_Hawkins_(racing_driver)
-432	puzey	Clive	Puzey	\N	Rhodesian	\N	1941-07-11	http://en.wikipedia.org/wiki/Clive_Puzey
-433	pretorius	Jackie	Pretorius	\N	South African	\N	1934-11-22	http://en.wikipedia.org/wiki/Jackie_Pretorius
-434	charlton	Dave	Charlton	\N	South African	\N	1936-10-27	http://en.wikipedia.org/wiki/Dave_Charlton
-435	reed	Ray	Reed	\N	South African	\N	1932-04-30	http://en.wikipedia.org/wiki/Ray_Reed
-436	clapham	David	Clapham	\N	South African	\N	1931-05-18	http://en.wikipedia.org/wiki/David_Clapham
-437	blignaut	Alex	Blignaut	\N	South African	\N	1932-11-30	http://en.wikipedia.org/wiki/Alex_Blignaut
-438	hulme	Denny	Hulme	\N	New Zealander	\N	1936-06-18	http://en.wikipedia.org/wiki/Denny_Hulme
-439	rhodes	John	Rhodes	\N	British	\N	1927-08-18	http://en.wikipedia.org/wiki/John_Rhodes_(driver)
-440	rollinson	Alan	Rollinson	\N	British	\N	1943-05-15	http://en.wikipedia.org/wiki/Alan_Rollinson
-441	gubby	Brian	Gubby	\N	British	\N	1934-04-17	http://en.wikipedia.org/wiki/Brian_Gubby
-442	bassi	Giorgio	Bassi	\N	Italian	\N	1934-01-20	http://en.wikipedia.org/wiki/Giorgio_Bassi
-443	bondurant	Bob	Bondurant	\N	American	\N	1933-04-27	http://en.wikipedia.org/wiki/Bob_Bondurant
-444	ligier	Guy	Ligier	\N	French	\N	1930-07-12	http://en.wikipedia.org/wiki/Guy_Ligier
-445	irwin	Chris	Irwin	\N	British	\N	1942-06-27	http://en.wikipedia.org/wiki/Chris_Irwin
-446	lawrence	Chris	Lawrence	\N	British	\N	1933-07-27	http://en.wikipedia.org/wiki/Chris_Lawrence_(racing_driver)
-447	botha	Luki	Botha	\N	South African	\N	1930-01-16	http://en.wikipedia.org/wiki/Luki_Botha
-448	courage	Piers	Courage	\N	British	\N	1942-05-27	http://en.wikipedia.org/wiki/Piers_Courage
-449	gavin	Johnny	Servoz-Gavin	\N	French	\N	1942-01-18	http://en.wikipedia.org/wiki/Johnny_Servoz-Gavin
-450	beltoise	Jean-Pierre	Beltoise	\N	French	\N	1937-04-26	http://en.wikipedia.org/wiki/Jean-Pierre_Beltoise
-451	hobbs	David	Hobbs	\N	British	\N	1939-06-09	http://en.wikipedia.org/wiki/David_Hobbs_(racing_driver)
-452	rees	Alan	Rees	\N	British	\N	1938-01-12	http://en.wikipedia.org/wiki/Alan_Rees_(racing_driver)
-453	moser	Silvio	Moser	\N	Swiss	\N	1941-04-24	http://en.wikipedia.org/wiki/Silvio_Moser
-454	oliver	Jackie	Oliver	\N	British	\N	1942-08-14	http://en.wikipedia.org/wiki/Jackie_Oliver
-455	ickx	Jacky	Ickx	\N	Belgian	\N	1945-01-01	http://en.wikipedia.org/wiki/Jacky_Ickx
-456	hart	Brian	Hart	\N	British	\N	1936-09-07	http://en.wikipedia.org/wiki/Brian_Hart
-457	hahne	Hubert	Hahne	\N	German	\N	1935-03-28	http://en.wikipedia.org/wiki/Hubert_Hahne
-458	ahrens	Kurt	Ahrens	\N	German	\N	1940-04-19	http://en.wikipedia.org/wiki/Kurt_Ahrens,_Jr.
-459	jo_schlesser	Jo	Schlesser	\N	French	\N	1928-05-18	http://en.wikipedia.org/wiki/Jo_Schlesser
-460	fisher	Mike	Fisher	\N	American	\N	1943-03-13	http://en.wikipedia.org/wiki/Mike_Fisher_(driver)
-461	wietzes	Eppie	Wietzes	\N	Canadian	\N	1938-05-28	http://en.wikipedia.org/wiki/Eppie_Wietzes
-462	pease	Al	Pease	\N	Canadian	\N	1921-10-15	http://en.wikipedia.org/wiki/Al_Pease
-463	tom_jones	Tom	Jones	\N	American	\N	1943-04-26	http://en.wikipedia.org/wiki/Tom_Jones_(auto_racer)
-464	williams	Jonathan	Williams	\N	British	\N	1942-10-26	http://en.wikipedia.org/wiki/Jonathan_Williams_(racing_driver)
-465	rooyen	Basil	van Rooyen	\N	South African	\N	1939-04-19	http://en.wikipedia.org/wiki/Basil_van_Rooyen
-466	adamich	Andrea	de Adamich	\N	Italian	\N	1941-10-03	http://en.wikipedia.org/wiki/Andrea_de_Adamich
-467	redman	Brian	Redman	\N	British	\N	1937-03-09	http://en.wikipedia.org/wiki/Brian_Redman
-468	elford	Vic	Elford	\N	British	\N	1935-06-10	http://en.wikipedia.org/wiki/Vic_Elford
-469	widdows	Robin	Widdows	\N	British	\N	1942-05-27	http://en.wikipedia.org/wiki/Robin_Widdows
-470	bell	Derek	Bell	\N	British	\N	1941-10-31	http://en.wikipedia.org/wiki/Derek_Bell_(auto_racer)
-471	pescarolo	Henri	Pescarolo	\N	French	\N	1942-09-25	http://en.wikipedia.org/wiki/Henri_Pescarolo
-472	brack	Bill	Brack	\N	Canadian	\N	1935-12-26	http://en.wikipedia.org/wiki/Bill_Brack
-473	unser	Bobby	Unser	\N	American	\N	1934-02-20	http://en.wikipedia.org/wiki/Bobby_Unser
-474	mario_andretti	Mario	Andretti	\N	American	\N	1940-02-28	http://en.wikipedia.org/wiki/Mario_Andretti
-475	miles	John	Miles	\N	British	\N	1943-06-14	http://en.wikipedia.org/wiki/John_Miles_(auto_racer)
-476	cordts	John	Cordts	\N	Canadian	\N	1935-07-23	http://en.wikipedia.org/wiki/John_Cordts
-477	eaton	George	Eaton	\N	Canadian	\N	1945-11-12	http://en.wikipedia.org/wiki/George_Eaton
-478	stommelen	Rolf	Stommelen	\N	German	\N	1943-07-11	http://en.wikipedia.org/wiki/Rolf_Stommelen
-479	roig	Alex	Soler-Roig	\N	Spanish	\N	1932-10-29	http://en.wikipedia.org/wiki/Alex_Soler-Roig
-480	peterson	Ronnie	Peterson	\N	Swedish	\N	1944-02-14	http://en.wikipedia.org/wiki/Ronnie_Peterson
-481	giunti	Ignazio	Giunti	\N	Italian	\N	1941-08-30	http://en.wikipedia.org/wiki/Ignazio_Giunti
-482	regazzoni	Clay	Regazzoni	\N	Swiss	\N	1939-09-05	http://en.wikipedia.org/wiki/Clay_Regazzoni
-483	cevert	François	Cevert	\N	French	\N	1944-02-25	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Cevert
-484	gethin	Peter	Gethin	\N	British	\N	1940-02-21	http://en.wikipedia.org/wiki/Peter_Gethin
-485	emerson_fittipaldi	Emerson	Fittipaldi	\N	Brazilian	\N	1946-12-12	http://en.wikipedia.org/wiki/Emerson_Fittipaldi
-486	schenken	Tim	Schenken	\N	Australian	\N	1943-09-26	http://en.wikipedia.org/wiki/Tim_Schenken
-487	galli	Nanni	Galli	\N	Italian	\N	1940-10-02	http://en.wikipedia.org/wiki/Nanni_Galli
-488	wisell	Reine	Wisell	\N	Swedish	\N	1941-09-30	http://en.wikipedia.org/wiki/Reine_Wisell
-489	hutchison	Gus	Hutchison	\N	American	\N	1937-04-26	http://en.wikipedia.org/wiki/Gus_Hutchison
-490	westbury	Peter	Westbury	\N	British	\N	1938-05-26	http://en.wikipedia.org/wiki/Peter_Westbury
-491	ganley	Howden	Ganley	\N	New Zealander	\N	1941-12-24	http://en.wikipedia.org/wiki/Howden_Ganley
-492	barber	Skip	Barber	\N	American	\N	1936-11-16	http://en.wikipedia.org/wiki/Skip_Barber
-493	lennep	Gijs	van Lennep	\N	Dutch	\N	1942-03-16	http://en.wikipedia.org/wiki/Gijs_Van_Lennep
-494	walker	David	Walker	\N	Australian	\N	1941-06-10	http://en.wikipedia.org/wiki/David_Walker_(racing_driver)
-495	mazet	François	Mazet	\N	French	\N	1943-02-24	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Mazet
-496	jean	Max	Jean	\N	French	\N	1943-07-27	http://en.wikipedia.org/wiki/Max_Jean
-497	beuttler	Mike	Beuttler	\N	British	\N	1940-04-13	http://en.wikipedia.org/wiki/Mike_Beuttler
-498	marko	Helmut	Marko	\N	Austrian	\N	1943-04-27	http://en.wikipedia.org/wiki/Helmut_Marko
-499	lauda	Niki	Lauda	\N	Austrian	\N	1949-02-22	http://en.wikipedia.org/wiki/Niki_Lauda
-500	jarier	Jean-Pierre	Jarier	\N	French	\N	1946-07-10	http://en.wikipedia.org/wiki/Jean-Pierre_Jarier
-501	donohue	Mark	Donohue	\N	American	\N	1937-03-18	http://en.wikipedia.org/wiki/Mark_Donohue
-502	craft	Chris	Craft	\N	British	\N	1939-11-17	http://en.wikipedia.org/wiki/Chris_Craft_(racing_driver)
-503	Cannoc	John	Cannon	\N	Canadian	\N	1933-06-21	http://en.wikipedia.org/wiki/John_Cannon_(auto_racer)
-504	posey	Sam	Posey	\N	American	\N	1944-05-26	http://en.wikipedia.org/wiki/Sam_Posey
-505	reutemann	Carlos	Reutemann	\N	Argentine	\N	1942-04-12	http://en.wikipedia.org/wiki/Carlos_Reutemann
-506	pace	Carlos	Pace	\N	Brazilian	\N	1944-10-06	http://en.wikipedia.org/wiki/Carlos_Pace
-507	wilson_fittipaldi	Wilson	Fittipaldi	\N	Brazilian	\N	1943-12-25	http://en.wikipedia.org/wiki/Wilson_Fittipaldi
-508	depailler	Patrick	Depailler	\N	French	\N	1944-08-09	http://en.wikipedia.org/wiki/Patrick_Depailler
-509	merzario	Arturo	Merzario	\N	Italian	\N	1943-03-11	http://en.wikipedia.org/wiki/Arturo_Merzario
-510	migault	François	Migault	\N	French	\N	1944-12-04	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Migault
-511	scheckter	Jody	Scheckter	\N	South African	\N	1950-01-29	http://en.wikipedia.org/wiki/Jody_Scheckter
-512	bueno	Luiz	Bueno	\N	Brazilian	\N	1937-01-16	http://en.wikipedia.org/wiki/Luiz_Bueno
-513	follmer	George	Follmer	\N	American	\N	1934-01-27	http://en.wikipedia.org/wiki/George_Follmer
-514	keizan	Eddie	Keizan	\N	South African	\N	1944-09-12	http://en.wikipedia.org/wiki/Eddie_Keizan
-515	hunt	James	Hunt	\N	British	\N	1947-08-29	http://en.wikipedia.org/wiki/James_Hunt
-516	purley	David	Purley	\N	British	\N	1945-01-26	http://en.wikipedia.org/wiki/David_Purley
-517	opel	Rikky	von Opel	\N	Liechtensteiner	\N	1947-10-14	http://en.wikipedia.org/wiki/Rikky_von_Opel
-518	watson	John	Watson	\N	British	\N	1946-05-04	http://en.wikipedia.org/wiki/John_Watson_(racing_driver)
-519	mass	Jochen	Mass	\N	German	\N	1946-09-30	http://en.wikipedia.org/wiki/Jochen_Mass
-520	williamson	Roger	Williamson	\N	British	\N	1948-02-02	http://en.wikipedia.org/wiki/Roger_Williamson
-521	mcrae	Graham	McRae	\N	New Zealander	\N	1940-03-05	http://en.wikipedia.org/wiki/Graham_McRae
-522	edwards	Guy	Edwards	\N	British	\N	1942-12-30	http://en.wikipedia.org/wiki/Guy_Edwards
-523	robarts	Richard	Robarts	\N	British	\N	1944-09-22	http://en.wikipedia.org/wiki/Richard_Robarts
-524	stuck	Hans-Joachim	Stuck	\N	German	\N	1951-01-01	http://en.wikipedia.org/wiki/Hans_Joachim_Stuck
-525	brambilla	Vittorio	Brambilla	\N	Italian	\N	1937-11-11	http://en.wikipedia.org/wiki/Vittorio_Brambilla
-526	ian_scheckter	Ian	Scheckter	\N	South African	\N	1947-08-22	http://en.wikipedia.org/wiki/Ian_Scheckter
-527	belso	Tom	Belsø	\N	Danish	\N	1942-08-27	http://en.wikipedia.org/wiki/Tom_Bels%C3%B8
-528	schuppan	Vern	Schuppan	\N	Australian	\N	1943-03-19	http://en.wikipedia.org/wiki/Vern_Schuppan
-529	pilette	Teddy	Pilette	\N	Belgian	\N	1942-07-26	http://en.wikipedia.org/wiki/Teddy_Pilette
-530	pryce	Tom	Pryce	\N	British	\N	1949-06-11	http://en.wikipedia.org/wiki/Tom_Pryce
-531	larrousse	Gérard	Larrousse	\N	French	\N	1940-05-23	http://en.wikipedia.org/wiki/G%C3%A9rard_Larrousse
-532	kinnunen	Leo	Kinnunen	\N	Finnish	\N	1943-08-05	http://en.wikipedia.org/wiki/Leo_Kinnunen
-533	roos	Bertil	Roos	\N	Swedish	\N	1943-10-12	http://en.wikipedia.org/wiki/Bertil_Roos
-534	jabouille	Jean-Pierre	Jabouille	\N	French	\N	1942-10-01	http://en.wikipedia.org/wiki/Jean-Pierre_Jabouille
-535	dolhem	José	Dolhem	\N	French	\N	1944-04-26	http://en.wikipedia.org/wiki/Jos%C3%A9_Dolhem
-536	lombardi	Lella	Lombardi	\N	Italian	\N	1941-03-26	http://en.wikipedia.org/wiki/Lella_Lombardi
-537	nicholson	John	Nicholson	\N	New Zealander	\N	1941-10-06	http://en.wikipedia.org/wiki/John_Nicholson_(racing_driver)
-538	wilds	Mike	Wilds	\N	British	\N	1946-01-07	http://en.wikipedia.org/wiki/Mike_Wilds
-539	ashley	Ian	Ashley	\N	British	\N	1947-10-26	http://en.wikipedia.org/wiki/Ian_Ashley
-540	laffite	Jacques	Laffite	\N	French	\N	1943-11-21	http://en.wikipedia.org/wiki/Jacques_Laffite
-541	perkins	Larry	Perkins	\N	Australian	\N	1950-03-18	http://en.wikipedia.org/wiki/Larry_Perkins
-542	quester	Dieter	Quester	\N	Austrian	\N	1939-05-30	http://en.wikipedia.org/wiki/Dieter_Quester
-543	koinigg	Helmuth	Koinigg	\N	Austrian	\N	1948-11-03	http://en.wikipedia.org/wiki/Helmuth_Koinigg
-544	facetti	Carlo	Facetti	\N	Italian	\N	1935-06-26	http://en.wikipedia.org/wiki/Carlo_Facetti
-545	tunmer	Guy	Tunmer	\N	South African	\N	1948-12-01	http://en.wikipedia.org/wiki/Guy_Tunmer
-546	evans	Bob	Evans	\N	British	\N	1947-06-11	http://en.wikipedia.org/wiki/Bob_Evans_(race_driver)
-547	brise	Tony	Brise	\N	British	\N	1952-03-28	http://en.wikipedia.org/wiki/Tony_Brise
-548	wunderink	Roelof	Wunderink	\N	Dutch	\N	1948-12-12	http://en.wikipedia.org/wiki/Roelof_Wunderink
-549	jones	Alan	Jones	\N	Australian	\N	1946-11-02	http://en.wikipedia.org/wiki/Alan_Jones_(Formula_1)
-550	palm	Torsten	Palm	\N	Swedish	\N	1947-07-23	http://en.wikipedia.org/wiki/Torsten_Palm
-551	magee	Damien	Magee	\N	British	\N	1945-11-17	http://en.wikipedia.org/wiki/Damien_Magee
-552	fushida	Hiroshi	Fushida	\N	Japanese	\N	1946-03-10	http://en.wikipedia.org/wiki/Hiroshi_Fushida
-553	henton	Brian	Henton	\N	British	\N	1946-09-19	http://en.wikipedia.org/wiki/Brian_Henton
-554	morgan	Dave	Morgan	\N	British	\N	1944-08-07	http://en.wikipedia.org/wiki/Dave_Morgan_(racing_driver)
-555	crawford	Jim	Crawford	\N	British	\N	1948-02-13	http://en.wikipedia.org/wiki/Jim_Crawford_(driver)
-556	ertl	Harald	Ertl	\N	Austrian	\N	1948-08-31	http://en.wikipedia.org/wiki/Harald_Ertl
-557	trimmer	Tony	Trimmer	\N	British	\N	1943-01-24	http://en.wikipedia.org/wiki/Tony_Trimmer
-558	lunger	Brett	Lunger	\N	American	\N	1945-11-14	http://en.wikipedia.org/wiki/Brett_Lunger
-559	vonlanthen	Jo	Vonlanthen	\N	Swiss	\N	1942-05-31	http://en.wikipedia.org/wiki/Jo_Vonlanthen
-560	zorzi	Renzo	Zorzi	\N	Italian	\N	1946-12-12	http://en.wikipedia.org/wiki/Renzo_Zorzi
-561	leclere	Michel	Leclère	\N	French	\N	1946-03-18	http://en.wikipedia.org/wiki/Michel_Lecl%C3%A8re
-562	hoffmann	Ingo	Hoffmann	\N	Brazilian	\N	1953-02-28	http://en.wikipedia.org/wiki/Ingo_Hoffmann
-563	nilsson	Gunnar	Nilsson	\N	Swedish	\N	1948-11-20	http://en.wikipedia.org/wiki/Gunnar_Nilsson
-564	kessel	Loris	Kessel	\N	Swiss	\N	1950-04-01	http://en.wikipedia.org/wiki/Loris_Kessel
-565	zapico	Emilio	Zapico	\N	Spanish	\N	1944-05-27	http://en.wikipedia.org/wiki/Emilio_Zapico
-566	villota	Emilio	de Villota	\N	Spanish	\N	1946-07-26	http://en.wikipedia.org/wiki/Emilio_de_Villota
-567	neve	Patrick	Nève	\N	Belgian	\N	1949-10-13	http://en.wikipedia.org/wiki/Patrick_Neve
-568	nelleman	Jac	Nelleman	\N	Danish	\N	1944-04-19	http://en.wikipedia.org/wiki/Jac_Nelleman
-569	galica	Divina	Galica	\N	British	\N	1944-08-13	http://en.wikipedia.org/wiki/Divina_Galica
-570	pesenti_rossi	Alessandro	Pesenti-Rossi	\N	Italian	\N	1942-08-31	http://en.wikipedia.org/wiki/Alessandro_Pesenti-Rossi
-571	binder	Hans	Binder	\N	Austrian	\N	1948-06-12	http://en.wikipedia.org/wiki/Hans_Binder
-572	hayje	Boy	Lunger	\N	Dutch	\N	1949-05-03	http://en.wikipedia.org/wiki/Boy_Hayje
-573	andersson	Conny	Andersson	\N	Swedish	\N	1939-12-28	http://en.wikipedia.org/wiki/Conny_Andersson_(racing_driver)
-574	stuppacher	Otto	Stuppacher	\N	Austrian	\N	1947-03-03	http://en.wikipedia.org/wiki/Otto_Stuppacher
-575	ribeiro	Alex	Ribeiro	\N	Brazilian	\N	1948-11-07	http://en.wikipedia.org/wiki/Alex_Ribeiro
-576	brown	Warwick	Brown	\N	Australian	\N	1949-12-24	http://en.wikipedia.org/wiki/Warwick_Brown
-577	takahara	Noritake	Takahara	\N	Japanese	\N	1951-06-06	http://en.wikipedia.org/wiki/Noritake_Takahara
-578	hasemi	Masahiro	Hasemi	\N	Japanese	\N	1945-11-13	http://en.wikipedia.org/wiki/Masahiro_Hasemi
-579	hoshino	Kazuyoshi	Hoshino	\N	Japanese	\N	1947-07-01	http://en.wikipedia.org/wiki/Kazuyoshi_Hoshino
-580	keegan	Rupert	Keegan	\N	British	\N	1955-02-26	http://en.wikipedia.org/wiki/Rupert_Keegan
-581	patrese	Riccardo	Patrese	\N	Italian	\N	1954-04-17	http://en.wikipedia.org/wiki/Riccardo_Patrese
-582	dryver	Bernard	de Dryver	\N	Belgian	\N	1952-09-19	http://en.wikipedia.org/wiki/Bernard_de_Dryver
-583	rebaque	Hector	Rebaque	\N	Mexican	\N	1956-02-05	http://en.wikipedia.org/wiki/Hector_Rebaque
-584	kozarowitzky	Mikko	Kozarowitzky	\N	Finnish	\N	1948-05-17	http://en.wikipedia.org/wiki/Mikko_Kozarowitzky
-585	tambay	Patrick	Tambay	\N	French	\N	1949-06-25	http://en.wikipedia.org/wiki/Patrick_Tambay
-586	gilles_villeneuve	Gilles	Villeneuve	\N	Canadian	\N	1950-01-18	http://en.wikipedia.org/wiki/Gilles_Villeneuve
-587	sutcliffe	Andy	Sutcliffe	\N	British	\N	1947-05-09	http://en.wikipedia.org/wiki/Andy_Sutcliffe
-588	mcguire	Brian	McGuire	\N	Australian	\N	1945-12-13	http://en.wikipedia.org/wiki/Brian_McGuire
-589	heyer	Hans	Heyer	\N	German	\N	1943-03-16	http://en.wikipedia.org/wiki/Hans_Heyer
-590	bleekemolen	Michael	Bleekemolen	\N	Dutch	\N	1949-10-02	http://en.wikipedia.org/wiki/Michael_Bleekemolen
-591	giacomelli	Bruno	Giacomelli	\N	Italian	\N	1952-09-10	http://en.wikipedia.org/wiki/Bruno_Giacomelli
-592	leoni	Lamberto	Leoni	\N	Italian	\N	1953-05-24	http://en.wikipedia.org/wiki/Lamberto_Leoni
-593	francia	Giorgio	Francia	\N	Italian	\N	1947-11-08	http://en.wikipedia.org/wiki/Giorgio_Francia
-594	ongais	Danny	Ongais	\N	American	\N	1942-05-21	http://en.wikipedia.org/wiki/Danny_Ongais
-595	takahashi	Kunimitsu	Takahashi	\N	Japanese	\N	1940-01-29	http://en.wikipedia.org/wiki/Kunimitsu_Takahashi
-596	pironi	Didier	Pironi	\N	French	\N	1952-03-26	http://en.wikipedia.org/wiki/Didier_Pironi
-597	cheever	Eddie	Cheever	\N	American	\N	1958-01-10	http://en.wikipedia.org/wiki/Eddie_Cheever
-598	keke_rosberg	Keke	Rosberg	\N	Finnish	\N	1948-12-06	http://en.wikipedia.org/wiki/Keke_Rosberg
-599	arnoux	René	Arnoux	\N	French	\N	1948-07-04	http://en.wikipedia.org/wiki/Ren%C3%A9_Arnoux
-600	daly	Derek	Daly	\N	Irish	\N	1953-03-11	http://en.wikipedia.org/wiki/Derek_Daly
-601	colombo	Alberto	Colombo	\N	Italian	\N	1946-02-23	http://en.wikipedia.org/wiki/Alberto_Colombo
-602	lees	Geoff	Lees	\N	British	\N	1951-05-01	http://en.wikipedia.org/wiki/Geoff_Lees
-603	piquet	Nelson	Piquet	\N	Brazilian	\N	1952-08-17	http://en.wikipedia.org/wiki/Nelson_Piquet
-604	gimax	Carlo	Franchi	\N	Italian	\N	1938-01-01	http://en.wikipedia.org/wiki/Gimax
-605	rahal	Bobby	Rahal	\N	American	\N	1953-01-10	http://en.wikipedia.org/wiki/Bobby_Rahal
-606	gabbiani	Beppe	Gabbiani	\N	Italian	\N	1957-01-02	http://en.wikipedia.org/wiki/Beppe_Gabbiani
-607	angelis	Elio	de Angelis	\N	Italian	\N	1958-03-26	http://en.wikipedia.org/wiki/Elio_de_Angelis
-608	lammers	Jan	Lammers	\N	Dutch	\N	1956-06-02	http://en.wikipedia.org/wiki/Jan_Lammers
-609	brancatelli	Gianfranco	Brancatelli	\N	Italian	\N	1950-01-18	http://en.wikipedia.org/wiki/Gianfranco_Brancatelli
-610	gaillard	Patrick	Gaillard	\N	French	\N	1952-02-12	http://en.wikipedia.org/wiki/Patrick_Gaillard
-611	surer	Marc	Surer	\N	Swiss	\N	1951-09-18	http://en.wikipedia.org/wiki/Marc_Surer
-612	zunino	Ricardo	Zunino	\N	Argentine	\N	1949-04-13	http://en.wikipedia.org/wiki/Ricardo_Zunino
-613	prost	Alain	Prost	\N	French	\N	1955-02-24	http://en.wikipedia.org/wiki/Alain_Prost
-614	kennedy	Dave	Kennedy	\N	Irish	\N	1953-01-15	http://en.wikipedia.org/wiki/David_Kennedy_(racing_driver)
-615	johansson	Stefan	Johansson	\N	Swedish	\N	1956-09-08	http://en.wikipedia.org/wiki/Stefan_Johansson
-616	south	Stephen	South	\N	British	\N	1952-02-19	http://en.wikipedia.org/wiki/Stephen_South
-617	needell	Tiff	Needell	\N	British	\N	1951-10-29	http://en.wikipedia.org/wiki/Tiff_Needell
-618	desire_wilson	Desiré	Wilson	\N	South African	\N	1953-11-26	http://en.wikipedia.org/wiki/Desir%C3%A9_Wilson
-619	mansell	Nigel	Mansell	\N	British	\N	1953-08-08	http://en.wikipedia.org/wiki/Nigel_Mansell
-620	thackwell	Mike	Thackwell	\N	New Zealander	\N	1961-03-30	http://en.wikipedia.org/wiki/Mike_Thackwell
-621	manfred_winkelhock	Manfred	Winkelhock	\N	German	\N	1951-10-06	http://en.wikipedia.org/wiki/Manfred_Winkelhock
-622	cesaris	Andrea	de Cesaris	\N	Italian	\N	1959-05-31	http://en.wikipedia.org/wiki/Andrea_de_Cesaris
-623	cogan	Kevin	Cogan	\N	American	\N	1956-03-31	http://en.wikipedia.org/wiki/Kevin_Cogan
-624	serra	Chico	Serra	\N	Brazilian	\N	1957-02-03	http://en.wikipedia.org/wiki/Chico_Serra
-625	guerra	Miguel Ángel	Guerra	\N	Argentine	\N	1953-08-31	http://en.wikipedia.org/wiki/Miguel_Angel_Guerra
-626	stohr	Siegfried	Stohr	\N	Italian	\N	1952-10-10	http://en.wikipedia.org/wiki/Siegfried_Stohr
-627	salazar	Eliseo	Salazar	\N	Chilean	\N	1954-11-14	http://en.wikipedia.org/wiki/Eliseo_Salazar
-628	londono	Ricardo	Londoño	\N	Colombian	\N	1949-08-08	http://en.wikipedia.org/wiki/Ricardo_Londo%C3%B1o
-629	borgudd	Slim	Borgudd	\N	Swedish	\N	1946-11-25	http://en.wikipedia.org/wiki/Slim_Borgudd
-630	alboreto	Michele	Alboreto	\N	Italian	\N	1956-12-23	http://en.wikipedia.org/wiki/Michele_Alboreto
-631	warwick	Derek	Warwick	\N	British	\N	1954-08-27	http://en.wikipedia.org/wiki/Derek_Warwick
-632	ghinzani	Piercarlo	Ghinzani	\N	Italian	\N	1952-01-16	http://en.wikipedia.org/wiki/Piercarlo_Ghinzani
-633	villeneuve_sr	Jacques	Villeneuve Sr.	\N	Canadian	\N	1953-11-04	http://en.wikipedia.org/wiki/Jacques_Villeneuve_(elder)
-634	boesel	Raul	Boesel	\N	Brazilian	\N	1957-12-04	http://en.wikipedia.org/wiki/Raul_Boesel
-635	baldi	Mauro	Baldi	\N	Italian	\N	1954-01-31	http://en.wikipedia.org/wiki/Mauro_Baldi
-636	paletti	Riccardo	Paletti	\N	Italian	\N	1958-06-15	http://en.wikipedia.org/wiki/Riccardo_Paletti
-637	guerrero	Roberto	Guerrero	\N	Colombian	\N	1958-11-16	http://en.wikipedia.org/wiki/Roberto_Guerrero
-638	fabi	Teo	Fabi	\N	Italian	\N	1955-03-09	http://en.wikipedia.org/wiki/Teo_Fabi
-639	moreno	Roberto	Moreno	\N	Brazilian	\N	1959-02-11	http://en.wikipedia.org/wiki/Roberto_Moreno
-640	byrne	Tommy	Byrne	\N	Irish	\N	1958-05-06	http://en.wikipedia.org/wiki/Tommy_Byrne_%28racing_driver%29
-641	sullivan	Danny	Sullivan	\N	American	\N	1950-03-09	http://en.wikipedia.org/wiki/Danny_Sullivan
-642	cecotto	Johnny	Cecotto	\N	Venezuelan	\N	1956-01-25	http://en.wikipedia.org/wiki/Johnny_Cecotto
-643	corrado_fabi	Corrado	Fabi	\N	Italian	\N	1961-04-12	http://en.wikipedia.org/wiki/Corrado_Fabi
-644	schlesser	Jean-Louis	Schlesser	\N	French	\N	1948-09-12	http://en.wikipedia.org/wiki/Jean-Louis_Schlesser
-645	boutsen	Thierry	Boutsen	\N	Belgian	\N	1957-07-13	http://en.wikipedia.org/wiki/Thierry_Boutsen
-646	acheson	Kenny	Acheson	\N	British	\N	1957-11-27	http://en.wikipedia.org/wiki/Kenny_Acheson
-647	palmer	Jonathan	Palmer	\N	British	\N	1956-11-07	http://en.wikipedia.org/wiki/Jonathan_Palmer
-648	brundle	Martin	Brundle	\N	British	\N	1959-06-01	http://en.wikipedia.org/wiki/Martin_Brundle
-649	hesnault	François	Hesnault	\N	French	\N	1956-12-30	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Hesnault
-650	alliot	Philippe	Alliot	\N	French	\N	1954-07-27	http://en.wikipedia.org/wiki/Philippe_Alliot
-651	bellof	Stefan	Bellof	\N	German	\N	1957-11-20	http://en.wikipedia.org/wiki/Stefan_Bellof
-652	senna	Ayrton	Senna	\N	Brazilian	\N	1960-03-21	http://en.wikipedia.org/wiki/Ayrton_Senna
-653	gartner	Jo	Gartner	\N	Austrian	\N	1954-01-24	http://en.wikipedia.org/wiki/Jo_Gartner
-654	rothengatter	Huub	Rothengatter	\N	Dutch	\N	1954-10-08	http://en.wikipedia.org/wiki/Huub_Rothengatter
-655	berger	Gerhard	Berger	\N	Austrian	\N	1959-08-27	http://en.wikipedia.org/wiki/Gerhard_Berger
-656	martini	Pierluigi	Martini	\N	Italian	\N	1961-04-23	http://en.wikipedia.org/wiki/Pierluigi_Martini
-657	streiff	Philippe	Streiff	\N	French	\N	1955-06-26	http://en.wikipedia.org/wiki/Philippe_Streiff
-658	danner	Christian	Danner	\N	German	\N	1958-04-04	http://en.wikipedia.org/wiki/Christian_Danner
-659	capelli	Ivan	Capelli	\N	Italian	\N	1963-05-24	http://en.wikipedia.org/wiki/Ivan_Capelli
-660	dumfries	Johnny	Dumfries	\N	British	\N	1958-04-26	http://en.wikipedia.org/wiki/Johnny_Dumfries
-661	nannini	Alessandro	Nannini	\N	Italian	\N	1959-07-07	http://en.wikipedia.org/wiki/Alessandro_Nannini
-662	berg	Allen	Berg	\N	Canadian	\N	1961-08-01	http://en.wikipedia.org/wiki/Allen_Berg
-663	caffi	Alex	Caffi	\N	Italian	\N	1964-03-18	http://en.wikipedia.org/wiki/Alex_Caffi
-664	satoru_nakajima	Satoru	Nakajima	\N	Japanese	\N	1953-02-23	http://en.wikipedia.org/wiki/Satoru_Nakajima
-665	fabre	Pascal	Fabre	\N	French	\N	1960-01-09	http://en.wikipedia.org/wiki/Pascal_Fabre
-666	campos	Adrián	Campos	\N	Spanish	\N	1960-06-17	http://en.wikipedia.org/wiki/Adri%C3%A1n_Campos
-667	tarquini	Gabriele	Tarquini	\N	Italian	\N	1962-03-02	http://en.wikipedia.org/wiki/Gabriele_Tarquini
-668	forini	Franco	Forini	\N	Swiss	\N	1958-09-22	http://en.wikipedia.org/wiki/Franco_Forini
-669	larini	Nicola	Larini	\N	Italian	\N	1964-03-19	http://en.wikipedia.org/wiki/Nicola_Larini
-670	dalmas	Yannick	Dalmas	\N	French	\N	1961-07-28	http://en.wikipedia.org/wiki/Yannick_Dalmas
-671	modena	Stefano	Modena	\N	Italian	\N	1963-05-12	http://en.wikipedia.org/wiki/Stefano_Modena
-672	sala	Luis	Pérez-Sala	\N	Spanish	\N	1959-05-15	http://en.wikipedia.org/wiki/Luis_Perez-Sala
-673	gugelmin	Maurício	Gugelmin	\N	Brazilian	\N	1963-04-20	http://en.wikipedia.org/wiki/Maur%C3%ADcio_Gugelmin
-674	larrauri	Oscar	Larrauri	\N	Argentine	\N	1954-08-19	http://en.wikipedia.org/wiki/Oscar_Larrauri
-675	bailey	Julian	Bailey	\N	British	\N	1961-10-09	http://en.wikipedia.org/wiki/Julian_Bailey
-676	schneider	Bernd	Schneider	\N	German	\N	1964-07-20	http://en.wikipedia.org/wiki/Bernd_Schneider_(racecar_driver)
-677	suzuki	Aguri	Suzuki	\N	Japanese	\N	1960-09-08	http://en.wikipedia.org/wiki/Aguri_Suzuki
-678	raphanel	Pierre-Henri	Raphanel	\N	French	\N	1961-05-27	http://en.wikipedia.org/wiki/Pierre-Henri_Raphanel
-679	herbert	Johnny	Herbert	\N	British	\N	1964-06-25	http://en.wikipedia.org/wiki/Johnny_Herbert
-680	grouillard	Olivier	Grouillard	\N	French	\N	1958-09-02	http://en.wikipedia.org/wiki/Olivier_Grouillard
-681	foitek	Gregor	Foitek	\N	Swiss	\N	1965-03-27	http://en.wikipedia.org/wiki/Gregor_Foitek
-682	weidler	Volker	Weidler	\N	German	\N	1962-03-18	http://en.wikipedia.org/wiki/Volker_Weidler
-683	joachim_winkelhock	Joachim	Winkelhock	\N	German	\N	1960-10-24	http://en.wikipedia.org/wiki/Joachim_Winkelhock
-684	gachot	Bertrand	Gachot	\N	Belgian	\N	1962-12-23	http://en.wikipedia.org/wiki/Bertrand_Gachot
-685	alesi	Jean	Alesi	\N	French	\N	1964-06-11	http://en.wikipedia.org/wiki/Jean_Alesi
-686	pirro	Emanuele	Pirro	\N	Italian	\N	1962-01-12	http://en.wikipedia.org/wiki/Emanuele_Pirro
-687	bernard	Éric	Bernard	\N	French	\N	1964-08-24	http://en.wikipedia.org/wiki/%C3%89ric_Bernard
-688	donnelly	Martin	Donnelly	\N	British	\N	1964-03-26	http://en.wikipedia.org/wiki/Martin_Donnelly_(racing_driver)
-689	bertaggia	Enrico	Bertaggia	\N	Italian	\N	1964-09-19	http://en.wikipedia.org/wiki/Enrico_Bertaggia
-690	lehto	Jyrki	Järvilehto	\N	Finnish	\N	1966-01-31	http://en.wikipedia.org/wiki/Jyrki_J%C3%A4rvilehto
-691	barilla	Paolo	Barilla	\N	Italian	\N	1961-04-20	http://en.wikipedia.org/wiki/Paolo_Barilla
-692	morbidelli	Gianni	Morbidelli	\N	Italian	\N	1968-01-13	http://en.wikipedia.org/wiki/Gianni_Morbidelli
-693	langes	Claudio	Langes	\N	Italian	\N	1960-07-20	http://en.wikipedia.org/wiki/Claudio_Langes
-694	gary_brabham	Gary	Brabham	\N	Australian	\N	1961-03-29	http://en.wikipedia.org/wiki/Gary_Brabham
-695	brabham	David	Brabham	\N	Australian	\N	1965-09-05	http://en.wikipedia.org/wiki/David_Brabham
-696	hakkinen	Mika	Häkkinen	\N	Finnish	\N	1968-09-28	http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen
-697	blundell	Mark	Blundell	\N	British	\N	1966-04-08	http://en.wikipedia.org/wiki/Mark_Blundell
-698	comas	Érik	Comas	\N	French	\N	1963-09-28	http://en.wikipedia.org/wiki/%C3%89rik_Comas
-699	chaves	Pedro	Chaves	\N	Portuguese	\N	1965-02-27	http://en.wikipedia.org/wiki/Pedro_Chaves
-700	poele	Eric	van de Poele	\N	Belgian	\N	1961-09-30	http://en.wikipedia.org/wiki/Eric_van_de_Poele
-701	barbazza	Fabrizio	Barbazza	\N	Italian	\N	1963-04-02	http://en.wikipedia.org/wiki/Fabrizio_Barbazza
-702	bartels	Michael	Bartels	\N	German	\N	1968-03-08	http://en.wikipedia.org/wiki/Michael_Bartels
-703	michael_schumacher	Michael	Schumacher	MSC	German	\N	1969-01-03	http://en.wikipedia.org/wiki/Michael_Schumacher
-704	zanardi	Alessandro	Zanardi	\N	Italian	\N	1966-10-23	http://en.wikipedia.org/wiki/Alex_Zanardi
-705	wendlinger	Karl	Wendlinger	\N	Austrian	\N	1968-12-20	http://en.wikipedia.org/wiki/Karl_Wendlinger
-706	hattori	Naoki	Hattori	\N	Japanese	\N	1966-06-13	http://en.wikipedia.org/wiki/Naoki_Hattori
-707	katayama	Ukyo	Katayama	\N	Japanese	\N	1963-05-29	http://en.wikipedia.org/wiki/Ukyo_Katayama
-708	fittipaldi	Christian	Fittipaldi	\N	Brazilian	\N	1971-01-18	http://en.wikipedia.org/wiki/Christian_Fittipaldi
-709	belmondo	Paul	Belmondo	\N	French	\N	1963-04-23	http://en.wikipedia.org/wiki/Paul_Belmondo
-710	chiesa	Andrea	Chiesa	\N	Swiss	\N	1964-05-06	http://en.wikipedia.org/wiki/Andrea_Chiesa
-711	amati	Giovanna	Amati	\N	Italian	\N	1959-07-20	http://en.wikipedia.org/wiki/Giovanna_Amati
-712	damon_hill	Damon	Hill	\N	British	\N	1960-09-17	http://en.wikipedia.org/wiki/Damon_Hill
-713	mccarthy	Perry	McCarthy	\N	British	\N	1961-03-03	http://en.wikipedia.org/wiki/Perry_McCarthy
-714	naspetti	Emanuele	Naspetti	\N	Italian	\N	1968-02-24	http://en.wikipedia.org/wiki/Emanuele_Naspetti
-715	barrichello	Rubens	Barrichello	BAR	Brazilian	\N	1972-05-23	http://en.wikipedia.org/wiki/Rubens_Barrichello
-716	badoer	Luca	Badoer	BAD	Italian	\N	1971-01-25	http://en.wikipedia.org/wiki/Luca_Badoer
-717	andretti	Michael	Andretti	\N	American	\N	1962-10-05	http://en.wikipedia.org/wiki/Michael_Andretti
-718	lamy	Pedro	Lamy	\N	Portuguese	\N	1972-03-20	http://en.wikipedia.org/wiki/Pedro_Lamy
-719	apicella	Marco	Apicella	\N	Italian	\N	1965-10-07	http://en.wikipedia.org/wiki/Marco_Apicella
-720	irvine	Eddie	Irvine	\N	British	\N	1965-11-10	http://en.wikipedia.org/wiki/Eddie_Irvine
-721	toshio_suzuki	Toshio	Suzuki	\N	Japanese	\N	1955-03-10	http://en.wikipedia.org/wiki/Toshio_Suzuki_(driver)
-722	gounon	Jean-Marc	Gounon	\N	French	\N	1963-01-01	http://en.wikipedia.org/wiki/Jean-Marc_Gounon
-723	panis	Olivier	Panis	\N	French	\N	1966-09-02	http://en.wikipedia.org/wiki/Olivier_Panis
-724	verstappen	Jos	Verstappen	\N	Dutch	\N	1972-03-04	http://en.wikipedia.org/wiki/Jos_Verstappen
-725	frentzen	Heinz-Harald	Frentzen	\N	German	\N	1967-05-18	http://en.wikipedia.org/wiki/Heinz-Harald_Frentzen
-726	beretta	Olivier	Beretta	\N	Monegasque	\N	1969-11-23	http://en.wikipedia.org/wiki/Olivier_Beretta
-727	ratzenberger	Roland	Ratzenberger	\N	Austrian	\N	1960-07-04	http://en.wikipedia.org/wiki/Roland_Ratzenberger
-728	coulthard	David	Coulthard	COU	British	\N	1971-03-27	http://en.wikipedia.org/wiki/David_Coulthard
-729	montermini	Andrea	Montermini	\N	Italian	\N	1964-05-30	http://en.wikipedia.org/wiki/Andrea_Montermini
-730	adams	Philippe	Adams	\N	Belgian	\N	1969-11-19	http://en.wikipedia.org/wiki/Philippe_Adams
-731	schiattarella	Domenico	Schiattarella	\N	Italian	\N	1967-11-17	http://en.wikipedia.org/wiki/Domenico_Schiattarella
-732	noda	Hideki	Noda	\N	Japanese	\N	1969-03-07	http://en.wikipedia.org/wiki/Hideki_Noda
-733	salo	Mika	Salo	\N	Finnish	\N	1966-11-30	http://en.wikipedia.org/wiki/Mika_Salo
-734	lagorce	Franck	Lagorce	\N	French	\N	1968-09-01	http://en.wikipedia.org/wiki/Franck_Lagorce
-735	inoue	Taki	Inoue	\N	Japanese	\N	1963-09-05	http://en.wikipedia.org/wiki/Taki_Inoue
-736	deletraz	Jean-Denis	Délétraz	\N	Swiss	\N	1963-10-01	http://en.wikipedia.org/wiki/Jean-Denis_Deletraz
-737	diniz	Pedro	Diniz	\N	Brazilian	\N	1970-05-22	http://en.wikipedia.org/wiki/Pedro_Diniz
-738	boullion	Jean-Christophe	Boullion	\N	French	\N	1969-12-27	http://en.wikipedia.org/wiki/Jean-Christophe_Boullion
-739	papis	Massimiliano	Papis	\N	Italian	\N	1969-10-03	http://en.wikipedia.org/wiki/Massimiliano_Papis
-740	lavaggi	Giovanni	Lavaggi	\N	Italian	\N	1958-02-18	http://en.wikipedia.org/wiki/Giovanni_Lavaggi
-741	magnussen	Jan	Magnussen	MAG	Danish	\N	1973-07-04	http://en.wikipedia.org/wiki/Jan_Magnussen
-742	villeneuve	Jacques	Villeneuve	VIL	Canadian	\N	1971-04-09	http://en.wikipedia.org/wiki/Jacques_Villeneuve
-743	rosset	Ricardo	Rosset	\N	Brazilian	\N	1968-07-27	http://en.wikipedia.org/wiki/Ricardo_Rosset
-744	fisichella	Giancarlo	Fisichella	FIS	Italian	\N	1973-01-14	http://en.wikipedia.org/wiki/Giancarlo_Fisichella
-745	marques	Tarso	Marques	\N	Brazilian	\N	1976-01-19	http://en.wikipedia.org/wiki/Tarso_Marques
-746	nakano	Shinji	Nakano	\N	Japanese	\N	1971-04-01	http://en.wikipedia.org/wiki/Shinji_Nakano
-747	trulli	Jarno	Trulli	TRU	Italian	\N	1974-07-13	http://en.wikipedia.org/wiki/Jarno_Trulli
-748	ralf_schumacher	Ralf	Schumacher	SCH	German	\N	1975-06-30	http://en.wikipedia.org/wiki/Ralf_Schumacher
-749	sospiri	Vincenzo	Sospiri	\N	Italian	\N	1966-10-07	http://en.wikipedia.org/wiki/Vincenzo_Sospiri
-750	wurz	Alexander	Wurz	WUR	Austrian	\N	1974-02-15	http://en.wikipedia.org/wiki/Alexander_Wurz
-751	fontana	Norberto	Fontana	\N	Argentine	\N	1975-01-20	http://en.wikipedia.org/wiki/Norberto_Fontana
-752	tuero	Esteban	Tuero	\N	Argentine	\N	1978-04-22	http://en.wikipedia.org/wiki/Esteban_Tuero
-753	takagi	Toranosuke	Takagi	\N	Japanese	\N	1974-02-12	http://en.wikipedia.org/wiki/Toranosuke_Takagi
-754	rosa	Pedro	de la Rosa	DLR	Spanish	\N	1971-02-24	http://en.wikipedia.org/wiki/Pedro_de_la_Rosa
-755	zonta	Ricardo	Zonta	ZON	Brazilian	\N	1976-03-23	http://en.wikipedia.org/wiki/Ricardo_Zonta
-756	gene	Marc	Gené	\N	Spanish	\N	1974-03-29	http://en.wikipedia.org/wiki/Marc_Gen%C3%A9
-757	sarrazin	Stéphane	Sarrazin	\N	French	\N	1975-11-02	http://en.wikipedia.org/wiki/St%C3%A9phane_Sarrazin
-758	heidfeld	Nick	Heidfeld	HEI	German	\N	1977-05-10	http://en.wikipedia.org/wiki/Nick_Heidfeld
-759	button	Jenson	Button	BUT	British	22	1980-01-19	http://en.wikipedia.org/wiki/Jenson_Button
-760	mazzacane	Gastón	Mazzacane	\N	Argentine	\N	1975-05-08	http://en.wikipedia.org/wiki/Gast%C3%B3n_Mazzacane
-761	burti	Luciano	Burti	\N	Brazilian	\N	1975-03-05	http://en.wikipedia.org/wiki/Luciano_Burti
-762	raikkonen	Kimi	Räikkönen	RAI	Finnish	7	1979-10-17	http://en.wikipedia.org/wiki/Kimi_R%C3%A4ikk%C3%B6nen
-763	alonso	Fernando	Alonso	ALO	Spanish	14	1981-07-29	http://en.wikipedia.org/wiki/Fernando_Alonso
-764	montoya	Juan	Pablo Montoya	MON	Colombian	\N	1975-09-20	http://en.wikipedia.org/wiki/Juan_Pablo_Montoya
-765	bernoldi	Enrique	Bernoldi	\N	Brazilian	\N	1978-10-19	http://en.wikipedia.org/wiki/Enrique_Bernoldi
-766	enge	Tomáš	Enge	\N	Czech	\N	1976-09-11	http://en.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Enge
-767	yoong	Alex	Yoong	\N	Malaysian	\N	1976-07-20	http://en.wikipedia.org/wiki/Alex_Yoong
-768	webber	Mark	Webber	WEB	Australian	\N	1976-08-27	http://en.wikipedia.org/wiki/Mark_Webber_(racing_driver)
-769	sato	Takuma	Sato	SAT	Japanese	\N	1977-01-28	http://en.wikipedia.org/wiki/Takuma_Sato
-770	massa	Felipe	Massa	MAS	Brazilian	19	1981-04-25	http://en.wikipedia.org/wiki/Felipe_Massa
-771	mcnish	Allan	McNish	\N	British	\N	1969-12-29	http://en.wikipedia.org/wiki/Allan_McNish
-772	davidson	Anthony	Davidson	DAV	British	\N	1979-04-18	http://en.wikipedia.org/wiki/Anthony_Davidson
-773	pizzonia	Antônio	Pizzonia	PIZ	Brazilian	\N	1980-09-11	http://en.wikipedia.org/wiki/Ant%C3%B4nio_Pizzonia
-774	wilson	Justin	Wilson	\N	British	\N	1978-07-31	http://en.wikipedia.org/wiki/Justin_Wilson_(racing_driver)
-775	matta	Cristiano	da Matta	\N	Brazilian	\N	1973-09-19	http://en.wikipedia.org/wiki/Cristiano_da_Matta
-776	firman	Ralph	Firman	\N	Irish	\N	1975-05-20	http://en.wikipedia.org/wiki/Ralph_Firman
-777	kiesa	Nicolas	Kiesa	\N	Danish	\N	1978-03-03	http://en.wikipedia.org/wiki/Nicolas_Kiesa
-778	baumgartner	Zsolt	Baumgartner	\N	Hungarian	\N	1981-01-01	http://en.wikipedia.org/wiki/Zsolt_Baumgartner
-779	klien	Christian	Klien	KLI	Austrian	\N	1983-02-07	http://en.wikipedia.org/wiki/Christian_Klien
-780	pantano	Giorgio	Pantano	\N	Italian	\N	1979-02-04	http://en.wikipedia.org/wiki/Giorgio_Pantano
-781	bruni	Gianmaria	Bruni	\N	Italian	\N	1981-05-30	http://en.wikipedia.org/wiki/Gianmaria_Bruni
-782	glock	Timo	Glock	GLO	German	\N	1982-03-18	http://en.wikipedia.org/wiki/Timo_Glock
-783	karthikeyan	Narain	Karthikeyan	KAR	Indian	\N	1977-01-14	http://en.wikipedia.org/wiki/Narain_Karthikeyan
-784	monteiro	Tiago	Monteiro	TMO	Portuguese	\N	1976-07-24	http://en.wikipedia.org/wiki/Tiago_Monteiro
-785	friesacher	Patrick	Friesacher	FRI	Austrian	\N	1980-09-26	http://en.wikipedia.org/wiki/Patrick_Friesacher
-786	albers	Christijan	Albers	ALB	Dutch	\N	1979-04-16	http://en.wikipedia.org/wiki/Christijan_Albers
-787	liuzzi	Vitantonio	Liuzzi	LIU	Italian	\N	1980-08-06	http://en.wikipedia.org/wiki/Vitantonio_Liuzzi
-788	doornbos	Robert	Doornbos	DOO	Dutch	\N	1981-09-23	http://en.wikipedia.org/wiki/Robert_Doornbos
-789	rosberg	Nico	Rosberg	ROS	German	6	1985-06-27	http://en.wikipedia.org/wiki/Nico_Rosberg
-790	speed	Scott	Speed	SPE	American	\N	1983-01-24	http://en.wikipedia.org/wiki/Scott_Speed
-791	ide	Yuji	Ide	IDE	Japanese	\N	1975-01-21	http://en.wikipedia.org/wiki/Yuji_Ide
-792	montagny	Franck	Montagny	FMO	French	\N	1978-01-05	http://en.wikipedia.org/wiki/Franck_Montagny
-793	yamamoto	Sakon	Yamamoto	YAM	Japanese	\N	1982-07-09	http://en.wikipedia.org/wiki/Sakon_Yamamoto
-794	kubica	Robert	Kubica	KUB	Polish	88	1984-12-07	http://en.wikipedia.org/wiki/Robert_Kubica
-795	hamilton	Lewis	Hamilton	HAM	British	44	1985-01-07	http://en.wikipedia.org/wiki/Lewis_Hamilton
-796	kovalainen	Heikki	Kovalainen	KOV	Finnish	\N	1981-10-19	http://en.wikipedia.org/wiki/Heikki_Kovalainen
-797	sutil	Adrian	Sutil	SUT	German	99	1983-01-11	http://en.wikipedia.org/wiki/Adrian_Sutil
-798	vettel	Sebastian	Vettel	VET	German	5	1987-07-03	http://en.wikipedia.org/wiki/Sebastian_Vettel
-799	markus_winkelhock	Markus	Winkelhock	WIN	German	\N	1980-06-13	http://en.wikipedia.org/wiki/Markus_Winkelhock
-800	nakajima	Kazuki	Nakajima	NAK	Japanese	\N	1985-01-11	http://en.wikipedia.org/wiki/Kazuki_Nakajima
-801	bourdais	Sébastien	Bourdais	BOU	French	\N	1979-02-28	http://en.wikipedia.org/wiki/S%C3%A9bastien_Bourdais
-802	piquet_jr	Nelson	Piquet Jr.	PIQ	Brazilian	\N	1985-07-25	http://en.wikipedia.org/wiki/Nelson_Piquet,_Jr.
-803	buemi	Sébastien	Buemi	BUE	Swiss	\N	1988-10-31	http://en.wikipedia.org/wiki/S%C3%A9bastien_Buemi
-804	alguersuari	Jaime	Alguersuari	ALG	Spanish	\N	1990-03-23	http://en.wikipedia.org/wiki/Jaime_Alguersuari
-805	grosjean	Romain	Grosjean	GRO	French	8	1986-04-17	http://en.wikipedia.org/wiki/Romain_Grosjean
-806	kobayashi	Kamui	Kobayashi	KOB	Japanese	10	1986-09-13	http://en.wikipedia.org/wiki/Kamui_Kobayashi
-807	hulkenberg	Nico	Hülkenberg	HUL	German	27	1987-08-19	http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg
-808	bruno_senna	Bruno	Senna	SEN	Brazilian	\N	1983-10-15	http://en.wikipedia.org/wiki/Bruno_Senna
-809	petrov	Vitaly	Petrov	PET	Russian	\N	1984-09-08	http://en.wikipedia.org/wiki/Vitaly_Petrov
-810	grassi	Lucas	di Grassi	DIG	Brazilian	\N	1984-08-11	http://en.wikipedia.org/wiki/Lucas_di_Grassi
-811	chandhok	Karun	Chandhok	CHA	Indian	\N	1984-01-19	http://en.wikipedia.org/wiki/Karun_Chandhok
-812	resta	Paul	di Resta	DIR	British	40	1986-04-16	http://en.wikipedia.org/wiki/Paul_di_Resta
-813	ambrosio	Jérôme	d'Ambrosio	DAM	Belgian	\N	1985-12-27	http://en.wikipedia.org/wiki/J%C3%A9r%C3%B4me_d%27Ambrosio
-814	maldonado	Pastor	Maldonado	MAL	Venezuelan	13	1985-03-09	http://en.wikipedia.org/wiki/Pastor_Maldonado
-815	perez	Sergio	Pérez	PER	Mexican	11	1990-01-26	http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez
-816	ricciardo	Daniel	Ricciardo	RIC	Australian	3	1989-07-01	http://en.wikipedia.org/wiki/Daniel_Ricciardo
-817	vergne	Jean-Éric	Vergne	VER	French	25	1990-04-25	http://en.wikipedia.org/wiki/Jean-%C3%89ric_Vergne
-818	pic	Charles	Pic	PIC	French	\N	1990-02-15	http://en.wikipedia.org/wiki/Charles_Pic
-819	gutierrez	Esteban	Gutiérrez	GUT	Mexican	21	1991-08-05	http://en.wikipedia.org/wiki/Esteban_Guti%C3%A9rrez
-820	bottas	Valtteri	Bottas	BOT	Finnish	77	1989-08-28	http://en.wikipedia.org/wiki/Valtteri_Bottas
-821	jules_bianchi	Jules	Bianchi	BIA	French	17	1989-08-03	http://en.wikipedia.org/wiki/Jules_Bianchi
-822	chilton	Max	Chilton	CHI	British	4	1991-04-21	http://en.wikipedia.org/wiki/Max_Chilton
-823	garde	Giedo	van der Garde	VDG	Dutch	\N	1985-04-25	http://en.wikipedia.org/wiki/Giedo_van_der_Garde
-824	kevin_magnussen	Kevin	Magnussen	MAG	Danish	20	1992-10-05	http://en.wikipedia.org/wiki/Kevin_Magnussen
-825	kvyat	Daniil	Kvyat	KVY	Russian	26	1994-04-26	http://en.wikipedia.org/wiki/Daniil_Kvyat
-826	ericsson	Marcus	Ericsson	ERI	Swedish	9	1990-09-02	http://en.wikipedia.org/wiki/Marcus_Ericsson
-827	lotterer	André	Lotterer	LOT	German	45	1981-11-19	http://en.wikipedia.org/wiki/Andr%C3%A9_Lotterer
-828	stevens	Will	Stevens	STE	British	28	1991-06-28	http://en.wikipedia.org/wiki/Will_Stevens
-829	nasr	Felipe	Nasr	NAS	Brazilian	12	1992-08-21	http://en.wikipedia.org/wiki/Felipe_Nasr
-830	sainz	Carlos	Sainz	SAI	Spanish	55	1994-09-01	http://en.wikipedia.org/wiki/Carlos_Sainz_Jr.
-831	max_verstappen	Max	Verstappen	VER	Dutch	33	1997-09-30	http://en.wikipedia.org/wiki/Max_Verstappen
-832	merhi	Roberto	Merhi	MER	Spanish	98	1991-03-22	http://en.wikipedia.org/wiki/Roberto_Merhi
-833	rossi	Alexander	Rossi	RSS	American	53	1991-09-25	http://en.wikipedia.org/wiki/Alexander_Rossi_%28racing_driver%29
-834	jolyon_palmer	Jolyon	Palmer	PAL	British	30	1991-01-20	http://en.wikipedia.org/wiki/Jolyon_Palmer
-835	wehrlein	Pascal	Wehrlein	WEH	German	94	1994-10-18	http://en.wikipedia.org/wiki/Pascal_Wehrlein
-836	haryanto	Rio	Haryanto	HAR	Indonesian	88	1993-01-22	http://en.wikipedia.org/wiki/Rio_Haryanto
-837	vandoorne	Stoffel	Vandoorne	VAN	Belgian	2	1992-03-26	http://en.wikipedia.org/wiki/Stoffel_Vandoorne
-838	ocon	Esteban	Ocon	OCO	French	31	1996-09-17	http://en.wikipedia.org/wiki/Esteban_Ocon
-839	giovinazzi	Antonio	Giovinazzi	GIO	Italian	99	1993-12-14	http://en.wikipedia.org/wiki/Antonio_Giovinazzi
-840	stroll	Lance	Stroll	STR	Canadian	18	1998-10-29	http://en.wikipedia.org/wiki/Lance_Stroll
-841	gasly	Pierre	Gasly	GAS	French	10	1996-02-07	http://en.wikipedia.org/wiki/Pierre_Gasly
-842	brendon_hartley	Brendon	Hartley	HAR	New Zealander	28	1989-11-10	http://en.wikipedia.org/wiki/Brendon_Hartley
-843	leclerc	Charles	Leclerc	LEC	Monegasque	16	1997-10-16	http://en.wikipedia.org/wiki/Charles_Leclerc
-844	sirotkin	Sergey	Sirotkin	SIR	Russian	35	1995-08-27	http://en.wikipedia.org/wiki/Sergey_Sirotkin_(racing_driver)
-845	norris	Lando	Norris	NOR	British	4	1999-11-13	http://en.wikipedia.org/wiki/Lando_Norris
-846	albon	Alexander	Albon	ALB	Thai	23	1996-03-23	http://en.wikipedia.org/wiki/Alexander_Albon
-847	russell	George	Russell	RUS	British	63	1998-02-15	http://en.wikipedia.org/wiki/George_Russell_(racing_driver)
-848	latifi	Nicholas	Latifi	LAT	Canadian	6	1995-06-29	http://en.wikipedia.org/wiki/Nicholas_Latifi
-849	aitken	Jack	Aitken	AIT	British	89	1995-09-23	http://en.wikipedia.org/wiki/Jack_Aitken
-850	pietro_fittipaldi	Pietro	Fittipaldi	FIT	Brazilian	51	1996-06-25	http://en.wikipedia.org/wiki/Pietro_Fittipaldi
-851	tsunoda	Yuki	Tsunoda	TSU	Japanese	22	2000-05-11	http://en.wikipedia.org/wiki/Yuki_Tsunoda
-852	mick_schumacher	Mick	Schumacher	MSC	German	47	1999-03-22	http://en.wikipedia.org/wiki/Mick_Schumacher
-853	mazepin	Nikita	Mazepin	MAZ	Russian	9	1999-03-02	http://en.wikipedia.org/wiki/Nikita_Mazepin
-854	zhou	Guanyu	Zhou	ZHO	Chinese	24	1999-05-30	http://en.wikipedia.org/wiki/Zhou_Guanyu
-855	de_vries	Nyck	de Vries	DEV	Dutch	21	1995-02-06	http://en.wikipedia.org/wiki/Nyck_de_Vries
-856	sargeant	Logan	Sargeant	SAR	American	2	2000-12-31	http://en.wikipedia.org/wiki/Logan_Sargeant
-857	piastri	Oscar	Piastri	PIA	Australian	81	2001-04-06	http://en.wikipedia.org/wiki/Oscar_Piastri
-858	lawson	Liam	Lawson	LAW	New Zealander	40	2002-02-11	http://en.wikipedia.org/wiki/Liam_Lawson
-859	bearman	Oliver	Bearman	BEA	British	38	2005-05-08	http://en.wikipedia.org/wiki/Oliver_Bearman
-860	colapinto	Franco	Colapinto	COL	Argentinian	43	2003-05-27	http://en.wikipedia.org/wiki/Franco_Colapinto
+COPY public.formula_one_driver (id, reference, forename, surname, abbreviation, nationality, permanent_car_number, date_of_birth, wikipedia, country_code) FROM stdin;
+1	farina	Nino	Farina	\N	Italian	\N	1906-10-30	http://en.wikipedia.org/wiki/Nino_Farina	ITA
+2	fagioli	Luigi	Fagioli	\N	Italian	\N	1898-06-09	http://en.wikipedia.org/wiki/Luigi_Fagioli	ITA
+3	reg_parnell	Reg	Parnell	\N	British	\N	1911-07-02	http://en.wikipedia.org/wiki/Reg_Parnell	GBR
+4	cabantous	Yves	Cabantous	\N	French	\N	1904-10-08	http://en.wikipedia.org/wiki/Yves_Giraud_Cabantous	FRA
+5	rosier	Louis	Rosier	\N	French	\N	1905-11-05	http://en.wikipedia.org/wiki/Louis_Rosier	FRA
+6	gerard	Bob	Gerard	\N	British	\N	1914-01-19	http://en.wikipedia.org/wiki/Bob_Gerard	GBR
+7	harrison	Cuth	Harrison	\N	British	\N	1906-07-06	http://en.wikipedia.org/wiki/Cuth_Harrison	GBR
+8	etancelin	Philippe	Étancelin	\N	French	\N	1896-12-28	http://en.wikipedia.org/wiki/Philippe_%C3%89tancelin	FRA
+9	hampshire	David	Hampshire	\N	British	\N	1917-12-29	http://en.wikipedia.org/wiki/David_Hampshire	GBR
+10	shawe_taylor	Brian	Shawe Taylor	\N	British	\N	1915-01-28	http://en.wikipedia.org/wiki/Brian_Shawe_Taylor	GBR
+11	fry	Joe	Fry	\N	British	\N	1915-10-26	http://en.wikipedia.org/wiki/Joe_Fry	GBR
+12	claes	Johnny	Claes	\N	Belgian	\N	1916-08-11	http://en.wikipedia.org/wiki/Johnny_Claes	BEL
+13	fangio	Juan	Fangio	\N	Argentine	\N	1911-06-24	http://en.wikipedia.org/wiki/Juan_Manuel_Fangio	ARG
+14	kelly	Joe	Kelly	\N	Irish	\N	1913-03-13	http://en.wikipedia.org/wiki/Joe_Kelly_(Formula_One)	IRL
+15	bira	Prince	Bira	\N	Thai	\N	1914-07-15	http://en.wikipedia.org/wiki/Prince_Bira	THA
+16	murray	David	Murray	\N	British	\N	1909-12-28	http://en.wikipedia.org/wiki/David_Murray_(driver)	GBR
+17	crossley	Geoff	Crossley	\N	British	\N	1921-05-11	http://en.wikipedia.org/wiki/Geoff_Crossley	GBR
+18	graffenried	Toulo	de Graffenried	\N	Swiss	\N	1914-05-18	http://en.wikipedia.org/wiki/Toulo_de_Graffenried	CHE
+19	chiron	Louis	Chiron	\N	Monegasque	\N	1899-08-03	http://en.wikipedia.org/wiki/Louis_Chiron	MCO
+20	martin	Eugène	Martin	\N	French	\N	1915-03-24	http://en.wikipedia.org/wiki/Eug%C3%A8ne_Martin	FRA
+21	peter_walker	Peter	Walker	\N	British	\N	1912-10-07	http://en.wikipedia.org/wiki/Peter_Walker_(driver)	GBR
+22	rolt	Tony	Rolt	\N	British	\N	1918-10-16	http://en.wikipedia.org/wiki/Tony_Rolt	GBR
+23	leslie_johnson	Leslie	Johnson	\N	British	\N	1912-03-22	http://en.wikipedia.org/wiki/Leslie_Johnson_(racing_driver)	GBR
+24	ascari	Alberto	Ascari	\N	Italian	\N	1918-07-13	http://en.wikipedia.org/wiki/Alberto_Ascari	ITA
+25	sommer	Raymond	Sommer	\N	French	\N	1906-08-31	http://en.wikipedia.org/wiki/Raymond_Sommer	FRA
+26	villoresi	Luigi	Villoresi	\N	Italian	\N	1909-05-16	http://en.wikipedia.org/wiki/Luigi_Villoresi	ITA
+27	gonzalez	José Froilán	González	\N	Argentine	\N	1922-10-05	http://en.wikipedia.org/wiki/Jos%C3%A9_Froil%C3%A1n_Gonz%C3%A1lez	ARG
+28	manzon	Robert	Manzon	\N	French	\N	1917-04-12	http://en.wikipedia.org/wiki/Robert_Manzon	FRA
+29	trintignant	Maurice	Trintignant	\N	French	\N	1917-10-30	http://en.wikipedia.org/wiki/Maurice_Trintignant	FRA
+30	rol	Franco	Rol	\N	Italian	\N	1908-06-05	http://en.wikipedia.org/wiki/Franco_Rol	ITA
+31	schell	Harry	Schell	\N	American	\N	1921-06-29	http://en.wikipedia.org/wiki/Harry_Schell	USA
+32	whitehead	Peter	Whitehead	\N	British	\N	1914-11-12	http://en.wikipedia.org/wiki/Peter_Whitehead_(racing_driver)	GBR
+33	pian	Alfredo	Pián	\N	Argentine	\N	1912-10-21	http://en.wikipedia.org/wiki/Alfredo_Pi%C3%A0n	ARG
+34	parsons	Johnnie	Parsons	\N	American	\N	1918-07-04	http://en.wikipedia.org/wiki/Johnnie_Parsons	USA
+35	holland	Bill	Holland	\N	American	\N	1907-12-18	http://en.wikipedia.org/wiki/Bill_Holland	USA
+36	rose	Mauri	Rose	\N	American	\N	1906-05-26	http://en.wikipedia.org/wiki/Mauri_Rose	USA
+37	green	Cecil	Green	\N	American	\N	1919-09-30	http://en.wikipedia.org/wiki/Cecil_Green	USA
+38	bettenhausen	Tony	Bettenhausen	\N	American	\N	1916-09-12	http://en.wikipedia.org/wiki/Tony_Bettenhausen	USA
+39	chitwood	Joie	Chitwood	\N	American	\N	1912-04-14	http://en.wikipedia.org/wiki/Joie_Chitwood	USA
+40	wallard	Lee	Wallard	\N	American	\N	1910-09-07	http://en.wikipedia.org/wiki/Lee_Wallard	USA
+41	faulkner	Walt	Faulkner	\N	American	\N	1920-02-16	http://en.wikipedia.org/wiki/Walt_Faulkner	USA
+42	george_connor	George	Connor	\N	American	\N	1906-08-16	http://en.wikipedia.org/wiki/George_Connor_(driver)	USA
+43	paul_russo	Paul	Russo	\N	American	\N	1914-04-10	http://en.wikipedia.org/wiki/Paul_Russo	USA
+44	flaherty	Pat	Flaherty	\N	American	\N	1926-01-06	http://en.wikipedia.org/wiki/Pat_Flaherty_(racing_driver)	USA
+45	fohr	Myron	Fohr	\N	American	\N	1912-06-17	http://en.wikipedia.org/wiki/Myron_Fohr	USA
+46	darter	Duane	Carter	\N	American	\N	1913-05-05	http://en.wikipedia.org/wiki/Duane_Carter	USA
+47	hellings	Mack	Hellings	\N	American	\N	1915-09-14	http://en.wikipedia.org/wiki/Mack_Hellings	USA
+48	mcgrath	Jack	McGrath	\N	American	\N	1919-10-08	http://en.wikipedia.org/wiki/Jack_McGrath_(racing_driver)	USA
+49	ruttman	Troy	Ruttman	\N	American	\N	1930-03-11	http://en.wikipedia.org/wiki/Troy_Ruttman	USA
+50	hartley	Gene	Hartley	\N	American	\N	1926-01-28	http://en.wikipedia.org/wiki/Gene_Hartley	USA
+51	davies	Jimmy	Davies	\N	American	\N	1929-08-08	http://en.wikipedia.org/wiki/Jimmy_Davies	USA
+52	mcdowell	Johnny	McDowell	\N	American	\N	1915-01-29	http://en.wikipedia.org/wiki/Johnny_McDowell	USA
+53	walt_brown	Walt	Brown	\N	American	\N	1911-12-30	http://en.wikipedia.org/wiki/Walt_Brown_(auto_racer)	USA
+54	webb	Travis	Webb	\N	American	\N	1910-10-08	http://en.wikipedia.org/wiki/Travis_Webb	USA
+55	hoyt	Jerry	Hoyt	\N	American	\N	1929-01-29	http://en.wikipedia.org/wiki/Jerry_Hoyt	USA
+56	ader	Walt	Ader	\N	American	\N	1913-12-15	http://en.wikipedia.org/wiki/Walt_Ader	USA
+57	holmes	Jackie	Holmes	\N	American	\N	1920-09-04	http://en.wikipedia.org/wiki/Jackie_Holmes	USA
+58	rathmann	Jim	Rathmann	\N	American	\N	1928-07-16	http://en.wikipedia.org/wiki/Jim_Rathmann	USA
+59	banks	Henry	Banks	\N	American	\N	1913-06-14	http://en.wikipedia.org/wiki/Henry_Banks	USA
+60	schindler	Bill	Schindler	\N	American	\N	1909-03-06	http://en.wikipedia.org/wiki/Bill_Schindler	USA
+61	levrett	Bayliss	Levrett	\N	American	\N	1914-02-14	http://en.wikipedia.org/wiki/Bayliss_Levrett	USA
+62	cantrell	Bill	Cantrell	\N	American	\N	1908-01-31	http://en.wikipedia.org/wiki/William_Cantrell	USA
+63	agabashian	Fred	Agabashian	\N	American	\N	1913-08-21	http://en.wikipedia.org/wiki/Fred_Agabashian	USA
+64	jackson	Jimmy	Jackson	\N	American	\N	1910-07-25	http://en.wikipedia.org/wiki/Jimmy_Jackson_(driver)	USA
+65	hanks	Sam	Hanks	\N	American	\N	1914-07-13	http://en.wikipedia.org/wiki/Sam_Hanks	USA
+66	dick_rathmann	Dick	Rathmann	\N	American	\N	1924-01-06	http://en.wikipedia.org/wiki/Dick_Rathmann	USA
+67	dinsmore	Duke	Dinsmore	\N	American	\N	1913-04-10	http://en.wikipedia.org/wiki/Duke_Dinsmore	USA
+68	bonetto	Felice	Bonetto	\N	Italian	\N	1903-06-09	http://en.wikipedia.org/wiki/Felice_Bonetto	ITA
+69	pagani	Nello	Pagani	\N	Italian	\N	1911-10-11	http://en.wikipedia.org/wiki/Nello_Pagani	ITA
+70	branca	Toni	Branca	\N	Swiss	\N	1916-09-15	http://en.wikipedia.org/wiki/Toni_Branca	CHE
+71	levegh	Pierre	Levegh	\N	French	\N	1905-12-22	http://en.wikipedia.org/wiki/Pierre_Levegh	FRA
+72	chaboud	Eugène	Chaboud	\N	French	\N	1907-04-12	http://en.wikipedia.org/wiki/Eug%C3%A8ne_Chaboud	FRA
+73	pozzi	Charles	Pozzi	\N	French	\N	1909-08-27	http://en.wikipedia.org/wiki/Charles_Pozzi	FRA
+74	serafini	Dorino	Serafini	\N	Italian	\N	1909-07-22	http://en.wikipedia.org/wiki/Dorino_Serafini	ITA
+75	guy_mairesse	Guy	Mairesse	\N	French	\N	1910-08-10	http://en.wikipedia.org/wiki/Guy_Mairesse	FRA
+76	taruffi	Piero	Taruffi	\N	Italian	\N	1906-10-12	http://en.wikipedia.org/wiki/Piero_Taruffi	ITA
+77	biondetti	Clemente	Biondetti	\N	Italian	\N	1898-08-18	http://en.wikipedia.org/wiki/Clemente_Biondetti	ITA
+78	louveau	Henri	Louveau	\N	French	\N	1910-01-25	http://en.wikipedia.org/wiki/Henri_Louveau	FRA
+79	comotti	Franco	Comotti	\N	Italian	\N	1906-07-24	http://en.wikipedia.org/wiki/Franco_Comotti	ITA
+80	sanesi	Consalvo	Sanesi	\N	Italian	\N	1911-03-28	http://en.wikipedia.org/wiki/Consalvo_Sanesi	ITA
+81	pietsch	Paul	Pietsch	\N	German	\N	1911-06-20	http://en.wikipedia.org/wiki/Paul_Pietsch	DEU
+82	moss	Stirling	Moss	\N	British	\N	1929-09-17	http://en.wikipedia.org/wiki/Stirling_Moss	GBR
+83	fischer	Rudi	Fischer	\N	Swiss	\N	1912-04-19	http://en.wikipedia.org/wiki/Rudi_Fischer	CHE
+84	abecassis	George	Abecassis	\N	British	\N	1913-03-21	http://en.wikipedia.org/wiki/George_Abecassis	GBR
+85	hirt	Peter	Hirt	\N	Swiss	\N	1910-03-30	http://en.wikipedia.org/wiki/Peter_Hirt	CHE
+86	nazaruk	Mike	Nazaruk	\N	American	\N	1921-10-02	http://en.wikipedia.org/wiki/Mike_Nazaruk	USA
+87	ayulo	Manny	Ayulo	\N	American	\N	1921-10-20	http://en.wikipedia.org/wiki/Manny_Ayulo	USA
+88	linden	Andy	Linden	\N	American	\N	1922-04-05	http://en.wikipedia.org/wiki/Andy_Linden_(racing_driver)	USA
+89	ball	Bobby	Ball	\N	American	\N	1925-08-26	http://en.wikipedia.org/wiki/Bobby_Ball_(auto_racer)	USA
+90	forberg	Carl	Forberg	\N	American	\N	1911-03-04	http://en.wikipedia.org/wiki/Carl_Forberg	USA
+91	nalon	Duke	Nalon	\N	American	\N	1913-03-02	http://en.wikipedia.org/wiki/Duke_Nalon	USA
+92	force	Gene	Force	\N	American	\N	1916-06-15	http://en.wikipedia.org/wiki/Gene_Force	USA
+93	scarborough	Carl	Scarborough	\N	American	\N	1914-07-03	http://en.wikipedia.org/wiki/Carl_Scarborough	USA
+94	mackey	Bill	Mackey	\N	American	\N	1927-12-15	http://en.wikipedia.org/wiki/Bill_Mackey	USA
+95	stevenson	Chuck	Stevenson	\N	American	\N	1919-10-15	http://en.wikipedia.org/wiki/Chuck_Stevenson	USA
+96	miller	Chet	Miller	\N	American	\N	1902-07-19	http://en.wikipedia.org/wiki/Chet_Miller	USA
+97	ward	Rodger	Ward	\N	American	\N	1921-01-10	http://en.wikipedia.org/wiki/Rodger_Ward	USA
+98	griffith	Cliff	Griffith	\N	American	\N	1916-02-06	http://en.wikipedia.org/wiki/Cliff_Griffith	USA
+99	vukovich	Bill	Vukovich	\N	American	\N	1918-12-13	http://en.wikipedia.org/wiki/Bill_Vukovich	USA
+100	james	Joe	James	\N	American	\N	1925-05-23	http://en.wikipedia.org/wiki/Joe_James_(racing_driver)	USA
+101	andre_pilette	André	Pilette	\N	Belgian	\N	1918-10-06	http://en.wikipedia.org/wiki/Andr%C3%A9_Pilette	BEL
+102	gordini	Aldo	Gordini	\N	French	\N	1921-05-20	http://en.wikipedia.org/wiki/Aldo_Gordini	FRA
+103	simon	André	Simon	\N	French	\N	1920-01-05	http://en.wikipedia.org/wiki/Andr%C3%A9_Simon_(racing_driver)	FRA
+104	marimon	Onofre	Marimón	\N	Argentine	\N	1923-12-19	http://en.wikipedia.org/wiki/Onofre_Marim%C3%B3n	ARG
+105	duncan_hamilton	Duncan	Hamilton	\N	British	\N	1920-04-30	http://en.wikipedia.org/wiki/Duncan_Hamilton_(racing_driver)	GBR
+106	parker	Philip	Fotheringham-Parker	\N	British	\N	1907-09-22	http://en.wikipedia.org/wiki/Philip_Fotheringham-Parker	GBR
+107	john_james	John	James	\N	British	\N	1914-05-10	http://en.wikipedia.org/wiki/John_James_(auto_racer)	GBR
+108	swaters	Jacques	Swaters	\N	American	\N	1926-10-30	http://en.wikipedia.org/wiki/Jacques_Swaters	USA
+109	landi	Chico	Landi	\N	Brazilian	\N	1907-07-14	http://en.wikipedia.org/wiki/Chico_Landi	BRA
+110	richardson	Ken	Richardson	\N	British	\N	1911-08-21	http://en.wikipedia.org/wiki/Ken_Richardson_(race_car_driver)	GBR
+111	godia	Paco	Godia	\N	Spanish	\N	1921-03-21	http://en.wikipedia.org/wiki/Paco_Godia	ESP
+112	grignard	Georges	Grignard	\N	French	\N	1905-07-25	http://en.wikipedia.org/wiki/Georges_Grignard	FRA
+113	jover	Juan	Jover	\N	Spanish	\N	1903-11-23	http://en.wikipedia.org/wiki/Juan_Jover	ESP
+114	behra	Jean	Behra	\N	French	\N	1921-02-16	http://en.wikipedia.org/wiki/Jean_Behra	FRA
+115	wharton	Ken	Wharton	\N	British	\N	1916-03-21	http://en.wikipedia.org/wiki/Ken_Wharton	GBR
+116	alan_brown	Alan	Brown	\N	British	\N	1919-11-20	http://en.wikipedia.org/wiki/Alan_Brown_(racing_driver)	GBR
+117	brandon	Eric	Brandon	\N	British	\N	1920-07-18	http://en.wikipedia.org/wiki/Eric_Brandon	GBR
+118	macklin	Lance	Macklin	\N	British	\N	1919-09-02	http://en.wikipedia.org/wiki/Lance_Macklin	GBR
+119	collins	Peter	Collins	\N	British	\N	1931-11-06	http://en.wikipedia.org/wiki/Peter_Collins_(racing_driver)	GBR
+120	hans_stuck	Hans	von Stuck	\N	German	\N	1900-12-27	http://en.wikipedia.org/wiki/Hans_Von_Stuck	DEU
+121	ulmen	Toni	Ulmen	\N	German	\N	1906-01-25	http://en.wikipedia.org/wiki/Toni_Ulmen	DEU
+122	terra	Max	de Terra	\N	Swiss	\N	1918-10-06	http://en.wikipedia.org/wiki/Max_de_Terra	CHE
+123	cross	Art	Cross	\N	American	\N	1918-01-24	http://en.wikipedia.org/wiki/Art_Cross	USA
+124	bryan	Jimmy	Bryan	\N	American	\N	1926-01-28	http://en.wikipedia.org/wiki/Jimmy_Bryan	USA
+125	reece	Jimmy	Reece	\N	American	\N	1929-11-17	http://en.wikipedia.org/wiki/Jimmy_Reece	USA
+126	rigsby	Jim	Rigsby	\N	American	\N	1923-06-06	http://en.wikipedia.org/wiki/Jim_Rigsby	USA
+127	fonder	George	Fonder	\N	American	\N	1917-06-22	http://en.wikipedia.org/wiki/George_Fonder	USA
+128	johnson	Eddie	Johnson	\N	American	\N	1919-02-10	http://en.wikipedia.org/wiki/Eddie_Johnson_(auto_racer)	USA
+129	sweikert	Bob	Sweikert	\N	American	\N	1926-05-20	http://en.wikipedia.org/wiki/Bob_Sweikert	USA
+130	bob_scott	Bob	Scott	\N	American	\N	1928-10-04	http://en.wikipedia.org/wiki/Bob_Scott_(auto_racer)	USA
+131	hawthorn	Mike	Hawthorn	\N	British	\N	1929-04-10	http://en.wikipedia.org/wiki/Mike_Hawthorn	GBR
+132	frere	Paul	Frère	\N	Belgian	\N	1917-01-30	http://en.wikipedia.org/wiki/Paul_Fr%C3%A8re	BEL
+133	tornaco	Charles	de Tornaco	\N	Belgian	\N	1927-06-07	http://en.wikipedia.org/wiki/Charles_de_Tornaco	BEL
+134	laurent	Roger	Laurent	\N	Belgian	\N	1913-02-21	http://en.wikipedia.org/wiki/Roger_Laurent	BEL
+135	legat	Arthur	Legat	\N	Belgian	\N	1898-11-01	http://en.wikipedia.org/wiki/Arthur_Legat	BEL
+136	obrien	Robert	O'Brien	\N	American	\N	1908-04-11	http://en.wikipedia.org/wiki/Robert_O%27Brien_(auto_racer)	USA
+137	gaze	Tony	Gaze	\N	Australian	\N	1920-02-03	http://en.wikipedia.org/wiki/Tony_Gaze	AUS
+138	charrington	Robin	Montgomerie-Charrington	\N	British	\N	1915-06-23	http://en.wikipedia.org/wiki/Robin_Montgomerie-Charrington	GBR
+139	carini	Piero	Carini	\N	Italian	\N	1921-03-06	http://en.wikipedia.org/wiki/Piero_Carini	ITA
+140	poore	Dennis	Poore	\N	British	\N	1916-08-19	http://en.wikipedia.org/wiki/Dennis_Poore	GBR
+141	thompson	Eric	Thompson	\N	British	\N	1919-11-04	http://en.wikipedia.org/wiki/Eric_Thompson_(racing_driver)	GBR
+142	salvadori	Roy	Salvadori	\N	British	\N	1922-05-12	http://en.wikipedia.org/wiki/Roy_Salvadori	GBR
+143	downing	Ken	Downing	\N	British	\N	1917-12-05	http://en.wikipedia.org/wiki/Ken_Downing	GBR
+144	graham_whitehead	Graham	Whitehead	\N	British	\N	1922-04-15	http://en.wikipedia.org/wiki/Graham_Whitehead	GBR
+145	mcalpine	Kenneth	McAlpine	\N	British	\N	1920-09-21	http://en.wikipedia.org/wiki/Kenneth_McAlpine	GBR
+146	bianco	Gino	Bianco	\N	Brazilian	\N	1916-07-22	http://en.wikipedia.org/wiki/Gino_Bianco	BRA
+147	crook	Tony	Crook	\N	British	\N	1920-02-16	http://en.wikipedia.org/wiki/Tony_Crook	GBR
+148	cantoni	Eitel	Cantoni	\N	Uruguayan	\N	1906-10-04	http://en.wikipedia.org/wiki/Eitel_Cantoni	URY
+149	aston	Bill	Aston	\N	British	\N	1900-03-29	http://en.wikipedia.org/wiki/Bill_Aston	GBR
+150	riess	Fritz	Riess	\N	German	\N	1922-07-11	http://en.wikipedia.org/wiki/Fritz_Riess	DEU
+151	niedermayr	Helmut	Niedermayr	\N	German	\N	1915-11-29	http://en.wikipedia.org/wiki/Helmut_Niedermayr	DEU
+152	klenk	Hans	Klenk	\N	German	\N	1919-10-28	http://en.wikipedia.org/wiki/Hans_Klenk	DEU
+153	klodwig	Ernst	Klodwig	\N	East German	\N	1903-05-23	http://en.wikipedia.org/wiki/Ernst_Klodwig	DEU
+154	heeks	Willi	Heeks	\N	German	\N	1922-02-13	http://en.wikipedia.org/wiki/Willi_Heeks	DEU
+155	brudes	Adolf	Brudes	\N	German	\N	1899-10-15	http://en.wikipedia.org/wiki/Adolf_Brudes	DEU
+156	balsa	Marcel	Balsa	\N	French	\N	1909-01-01	http://en.wikipedia.org/wiki/Marcel_Balsa	FRA
+157	bechem	Günther	Bechem	\N	German	\N	1921-12-21	http://en.wikipedia.org/wiki/G%C3%BCnther_Bechem	DEU
+158	krause	Rudolf	Krause	\N	East German	\N	1907-03-30	http://en.wikipedia.org/wiki/Rudolf_Krause	DEU
+159	schoeller	Rudolf	Schoeller	\N	Swiss	\N	1902-04-27	http://en.wikipedia.org/wiki/Rudolf_Schoeller	CHE
+160	helfrich	Theo	Helfrich	\N	German	\N	1913-05-13	http://en.wikipedia.org/wiki/Theo_Helfrich	DEU
+161	peters	Josef	Peters	\N	German	\N	1914-09-16	http://en.wikipedia.org/wiki/Josef_Peters_(driver)	DEU
+162	flinterman	Jan	Flinterman	\N	Dutch	\N	1919-10-02	http://en.wikipedia.org/wiki/Jan_Flinterman	NLD
+163	lof	Dries	van der Lof	\N	Dutch	\N	1919-08-23	http://en.wikipedia.org/wiki/Dries_van_der_Lof	NLD
+164	bayol	Élie	Bayol	\N	French	\N	1914-02-28	http://en.wikipedia.org/wiki/%C3%89lie_Bayol	FRA
+165	crespo	Alberto	Crespo	\N	Argentine	\N	1920-01-16	http://en.wikipedia.org/wiki/Alberto_Crespo	ARG
+166	dusio	Piero	Dusio	\N	Italian	\N	1899-10-13	http://en.wikipedia.org/wiki/Piero_Dusio	ITA
+167	galvez	Oscar	Gálvez	\N	Argentine	\N	1913-08-17	http://en.wikipedia.org/wiki/%C3%93scar_Alfredo_G%C3%A1lvez	ARG
+168	john_barber	John	Barber	\N	British	\N	1929-07-22	http://en.wikipedia.org/wiki/John_Barber_(racing_driver)	GBR
+169	menditeguy	Carlos	Menditeguy	\N	Argentine	\N	1914-08-10	http://en.wikipedia.org/wiki/Carlos_Menditeguy	ARG
+170	birger	Pablo	Birger	\N	Argentine	\N	1924-01-07	http://en.wikipedia.org/wiki/Pablo_Birger	ARG
+171	cruz	Adolfo	Cruz	\N	Argentine	\N	1923-06-28	http://en.wikipedia.org/wiki/Adolfo_Schewelm_Cruz	ARG
+172	daywalt	Jimmy	Daywalt	\N	American	\N	1924-08-28	http://en.wikipedia.org/wiki/Jimmy_Daywalt	USA
+173	mccoy	Ernie	McCoy	\N	American	\N	1921-02-19	http://en.wikipedia.org/wiki/Ernie_McCoy	USA
+174	mantz	Johnny	Mantz	\N	American	\N	1918-09-18	http://en.wikipedia.org/wiki/Johnny_Mantz	USA
+175	teague	Marshall	Teague	\N	American	\N	1921-02-22	http://en.wikipedia.org/wiki/Marshall_Teague_(racing_driver)	USA
+176	thomson	Johnny	Thomson	\N	American	\N	1922-04-09	http://en.wikipedia.org/wiki/Johnny_Thomson	USA
+177	freeland	Don	Freeland	\N	American	\N	1925-03-25	http://en.wikipedia.org/wiki/Don_Freeland	USA
+178	niday	Cal	Niday	\N	American	\N	1914-04-29	http://en.wikipedia.org/wiki/Cal_Niday	USA
+179	mieres	Roberto	Mieres	\N	Argentine	\N	1924-12-03	http://en.wikipedia.org/wiki/Roberto_Mieres	ARG
+180	wacker	Fred	Wacker	\N	American	\N	1918-07-10	http://en.wikipedia.org/wiki/Fred_Wacker	USA
+181	georges_berger	Georges	Berger	\N	Belgian	\N	1918-09-14	http://en.wikipedia.org/wiki/Georges_Berger	BEL
+182	jimmy_stewart	Jimmy	Stewart	\N	British	\N	1931-03-06	http://en.wikipedia.org/wiki/Jimmy_Stewart_(racing_driver)	GBR
+183	fairman	Jack	Fairman	\N	British	\N	1913-03-15	http://en.wikipedia.org/wiki/Jack_Fairman	GBR
+184	ian_stewart	Ian	Stewart	\N	British	\N	1929-07-15	http://en.wikipedia.org/wiki/Ian_Stewart_(racing_driver)	GBR
+185	herrmann	Hans	Herrmann	\N	German	\N	1928-02-23	http://en.wikipedia.org/wiki/Hans_Herrmann	DEU
+186	nuckey	Rodney	Nuckey	\N	British	\N	1929-06-26	http://en.wikipedia.org/wiki/Rodney_Nuckey	GBR
+187	seidel	Wolfgang	Seidel	\N	German	\N	1926-07-04	http://en.wikipedia.org/wiki/Wolfgang_Seidel	DEU
+188	barth	Edgar	Barth	\N	German	\N	1917-01-26	http://en.wikipedia.org/wiki/Edgar_Barth	DEU
+189	karch	Oswald	Karch	\N	German	\N	1917-03-06	http://en.wikipedia.org/wiki/Oswald_Karch	DEU
+190	fitzau	Theo	Fitzau	\N	East German	\N	1923-02-10	http://en.wikipedia.org/wiki/Theo_Fitzau	DEU
+191	adolff	Kurt	Adolff	\N	German	\N	1921-11-05	http://en.wikipedia.org/wiki/Kurt_Adolff	DEU
+192	bauer	Erwin	Bauer	\N	German	\N	1912-07-17	http://en.wikipedia.org/wiki/Erwin_Bauer	DEU
+193	loof	Ernst	Loof	\N	German	\N	1907-07-04	http://en.wikipedia.org/wiki/Ernst_Loof	DEU
+194	lang	Hermann	Lang	\N	German	\N	1909-04-06	http://en.wikipedia.org/wiki/Hermann_Lang	DEU
+195	scherrer	Albert	Scherrer	\N	Swiss	\N	1908-02-28	http://en.wikipedia.org/wiki/Albert_Scherrer	CHE
+196	musso	Luigi	Musso	\N	Italian	\N	1924-07-28	http://en.wikipedia.org/wiki/Luigi_Musso	ITA
+197	mantovani	Sergio	Mantovani	\N	Italian	\N	1929-05-22	http://en.wikipedia.org/wiki/Sergio_Mantovani	ITA
+198	maglioli	Umberto	Maglioli	\N	Italian	\N	1928-06-05	http://en.wikipedia.org/wiki/Umberto_Maglioli	ITA
+199	fitch	John	Fitch	\N	American	\N	1917-08-04	http://en.wikipedia.org/wiki/John_Fitch_(driver)	USA
+200	loyer	Roger	Loyer	\N	French	\N	1907-08-05	http://en.wikipedia.org/wiki/Roger_Loyer	FRA
+201	daponte	Jorge	Daponte	\N	Argentine	\N	1923-06-05	http://en.wikipedia.org/wiki/Jorge_Daponte	ARG
+202	crockett	Larry	Crockett	\N	American	\N	1926-10-23	http://en.wikipedia.org/wiki/Larry_Crockett	USA
+203	elisian	Ed	Elisian	\N	American	\N	1926-12-09	http://en.wikipedia.org/wiki/Ed_Elisian	USA
+204	armi	Frank	Armi	\N	American	\N	1918-10-12	http://en.wikipedia.org/wiki/Frank_Armi	USA
+205	connor	Pat	O'Connor	\N	American	\N	1928-10-09	http://en.wikipedia.org/wiki/Pat_O%27Connor_(auto_racer)	USA
+206	kladis	Danny	Kladis	\N	American	\N	1917-02-10	http://en.wikipedia.org/wiki/Danny_Kladis	USA
+207	duncan	Len	Duncan	\N	American	\N	1911-07-25	http://en.wikipedia.org/wiki/Len_Duncan	USA
+208	homeier	Bill	Homeier	\N	American	\N	1918-08-31	http://en.wikipedia.org/wiki/Bill_Homeier	USA
+209	kling	Karl	Kling	\N	German	\N	1910-09-16	http://en.wikipedia.org/wiki/Karl_Kling	DEU
+210	pollet	Jacques	Pollet	\N	French	\N	1922-07-02	http://en.wikipedia.org/wiki/Jacques_Pollet	FRA
+211	beauman	Don	Beauman	\N	British	\N	1928-07-26	http://en.wikipedia.org/wiki/Don_Beauman	GBR
+212	marr	Leslie	Marr	\N	British	\N	1922-08-14	http://en.wikipedia.org/wiki/Leslie_Marr	GBR
+213	thorne	Leslie	Thorne	\N	British	\N	1916-06-23	http://en.wikipedia.org/wiki/Leslie_Thorne	GBR
+214	gould	Horace	Gould	\N	British	\N	1918-09-20	http://en.wikipedia.org/wiki/Horace_Gould	GBR
+215	whitehouse	Bill	Whitehouse	\N	British	\N	1909-04-01	http://en.wikipedia.org/wiki/Bill_Whitehouse	GBR
+216	flockhart	Ron	Flockhart	\N	British	\N	1923-06-16	http://en.wikipedia.org/wiki/Ron_Flockhart_(auto_racing)	GBR
+217	riseley_prichard	John	Riseley-Prichard	\N	British	\N	1924-01-17	http://en.wikipedia.org/wiki/John_Riseley-Prichard	GBR
+218	bucci	Clemar	Bucci	\N	Argentine	\N	1920-09-04	http://en.wikipedia.org/wiki/Clemar_Bucci	ARG
+219	riu	Giovanni	de Riu	\N	Italian	\N	1925-03-10	http://en.wikipedia.org/wiki/Giovanni_de_Riu	ITA
+220	volonterio	Ottorino	Volonterio	\N	Swiss	\N	1917-12-07	http://en.wikipedia.org/wiki/Ottorino_Volonterio	CHE
+221	iglesias	Jesús	Iglesias	\N	Argentine	\N	1922-02-22	http://en.wikipedia.org/wiki/Jes%C3%BAs_Iglesias	ARG
+222	castellotti	Eugenio	Castellotti	\N	Italian	\N	1930-10-10	http://en.wikipedia.org/wiki/Eugenio_Castellotti	ITA
+223	uria	Alberto	Uria	\N	Uruguayan	\N	1924-07-11	http://en.wikipedia.org/wiki/Alberto_Uria	URY
+224	perdisa	Cesare	Perdisa	\N	Italian	\N	1932-10-21	http://en.wikipedia.org/wiki/Cesare_Perdisa	ITA
+225	whiteaway	Ted	Whiteaway	\N	British	\N	1928-11-01	http://en.wikipedia.org/wiki/Ted_Whiteaway	GBR
+226	herman	Al	Herman	\N	American	\N	1927-03-15	http://en.wikipedia.org/wiki/Al_Herman	USA
+227	weyant	Chuck	Weyant	\N	American	\N	1923-04-03	http://en.wikipedia.org/wiki/Chuck_Weyant	USA
+228	templeman	Shorty	Templeman	\N	American	\N	1919-08-12	http://en.wikipedia.org/wiki/Shorty_Templeman	USA
+229	andrews	Keith	Andrews	\N	American	\N	1920-06-15	http://en.wikipedia.org/wiki/Keith_Andrews_(driver)	USA
+230	russo	Eddie	Russo	\N	American	\N	1925-11-19	http://en.wikipedia.org/wiki/Eddie_Russo	USA
+231	ray_crawford	Ray	Crawford	\N	American	\N	1915-10-26	http://en.wikipedia.org/wiki/Ray_Crawford	USA
+232	keller	Al	Keller	\N	American	\N	1920-04-11	http://en.wikipedia.org/wiki/Al_Keller	USA
+233	boyd	Johnny	Boyd	\N	American	\N	1926-08-19	http://en.wikipedia.org/wiki/Johnny_Boyd	USA
+234	ramos	Hernando	da Silva Ramos	\N	Brazilian	\N	1925-12-07	http://en.wikipedia.org/wiki/Hernando_da_Silva_Ramos	BRA
+235	sparken	Mike	Sparken	\N	French	\N	1930-06-16	http://en.wikipedia.org/wiki/Mike_Sparken	FRA
+236	jack_brabham	Jack	Brabham	\N	Australian	\N	1926-04-02	http://en.wikipedia.org/wiki/Jack_Brabham	AUS
+237	lucas	Jean	Lucas	\N	French	\N	1917-04-25	http://en.wikipedia.org/wiki/Jean_Lucas	FRA
+238	piotti	Luigi	Piotti	\N	Italian	\N	1913-10-27	http://en.wikipedia.org/wiki/Luigi_Piotti	ITA
+239	gerini	Gerino	Gerini	\N	Italian	\N	1928-08-10	http://en.wikipedia.org/wiki/Gerino_Gerini_(racing_driver)	ITA
+240	gendebien	Olivier	Gendebien	\N	Belgian	\N	1924-01-12	http://en.wikipedia.org/wiki/Olivier_Gendebien	BEL
+241	oscar_gonzalez	Óscar	González	\N	Uruguayan	\N	1923-11-10	http://en.wikipedia.org/wiki/%C3%93scar_Gonz%C3%A1lez_(racing_driver)	URY
+242	scarlatti	Giorgio	Scarlatti	\N	Italian	\N	1921-10-02	http://en.wikipedia.org/wiki/Giorgio_Scarlatti	ITA
+243	brooks	Tony	Brooks	\N	British	\N	1932-02-25	http://en.wikipedia.org/wiki/Tony_Brooks	GBR
+244	veith	Bob	Veith	\N	American	\N	1926-11-01	http://en.wikipedia.org/wiki/Bob_Veith	USA
+245	christie	Bob	Christie	\N	American	\N	1924-04-04	http://en.wikipedia.org/wiki/Bob_Christie_(racing_driver)	USA
+246	garrett	Billy	Garrett	\N	American	\N	1933-04-24	http://en.wikipedia.org/wiki/Billy_Garrett	USA
+247	tolan	Johnnie	Tolan	\N	American	\N	1917-10-22	http://en.wikipedia.org/wiki/Johnnie_Tolan	USA
+248	turner	Jack	Turner	\N	American	\N	1920-02-12	http://en.wikipedia.org/wiki/Jack_Turner_(driver)	USA
+249	scotti	Piero	Scotti	\N	Italian	\N	1909-11-11	http://en.wikipedia.org/wiki/Piero_Scotti	ITA
+250	portago	Alfonso	de Portago	\N	Spanish	\N	1928-10-11	http://en.wikipedia.org/wiki/Alfonso_de_Portago	ESP
+251	chapman	Colin	Chapman	\N	British	\N	1928-05-19	http://en.wikipedia.org/wiki/Colin_Chapman	GBR
+252	titterington	Desmond	Titterington	\N	British	\N	1928-05-01	http://en.wikipedia.org/wiki/Desmond_Titterington	GBR
+253	halford	Bruce	Halford	\N	British	\N	1931-05-18	http://en.wikipedia.org/wiki/Bruce_Halford	GBR
+254	scott_Brown	Archie	Scott Brown	\N	British	\N	1927-05-13	http://en.wikipedia.org/wiki/Archie_Scott_Brown	GBR
+255	emery	Paul	Emery	\N	British	\N	1916-11-12	http://en.wikipedia.org/wiki/Paul_Emery	GBR
+256	milhoux	André	Milhoux	\N	Belgian	\N	1928-12-09	http://en.wikipedia.org/wiki/Andr%C3%A9_Milhoux	BEL
+257	bonnier	Jo	Bonnier	\N	Swedish	\N	1930-01-31	http://en.wikipedia.org/wiki/Joakim_Bonnier	SWE
+258	leston	Les	Leston	\N	British	\N	1920-12-16	http://en.wikipedia.org/wiki/Les_Leston	GBR
+259	trips	Wolfgang	von Trips	\N	German	\N	1928-05-04	http://en.wikipedia.org/wiki/Wolfgang_Graf_Berghe_von_Trips	DEU
+260	tomaso	Alessandro	de Tomaso	\N	Argentine	\N	1928-07-10	http://en.wikipedia.org/wiki/Alessandro_de_Tomaso	ARG
+261	gregory	Masten	Gregory	\N	American	\N	1932-02-29	http://en.wikipedia.org/wiki/Masten_Gregory	USA
+262	lewis-evans	Stuart	Lewis-Evans	\N	British	\N	1930-04-20	http://en.wikipedia.org/wiki/Stuart_Lewis-Evans	GBR
+263	bueb	Ivor	Bueb	\N	British	\N	1923-06-06	http://en.wikipedia.org/wiki/Ivor_Bueb	GBR
+264	edmunds	Don	Edmunds	\N	American	\N	1930-09-23	http://en.wikipedia.org/wiki/Don_Edmunds	USA
+265	sachs	Eddie	Sachs	\N	American	\N	1927-05-28	http://en.wikipedia.org/wiki/Eddie_Sachs	USA
+266	magill	Mike	Magill	\N	American	\N	1920-02-08	http://en.wikipedia.org/wiki/Mike_Magill	USA
+267	cheesbourg	Bill	Cheesbourg	\N	American	\N	1927-06-12	http://en.wikipedia.org/wiki/Bill_Cheesbourg	USA
+268	george	Elmer	George	\N	American	\N	1928-07-15	http://en.wikipedia.org/wiki/Elmer_George	USA
+269	macdowel	Mike	MacDowel	\N	British	\N	1932-09-13	http://en.wikipedia.org/wiki/Mike_MacDowel	GBR
+270	mackay-fraser	Herbert	MacKay-Fraser	\N	American	\N	1927-06-23	http://en.wikipedia.org/wiki/Herbert_MacKay-Fraser	USA
+271	naylor	Brian	Naylor	\N	British	\N	1923-03-24	http://en.wikipedia.org/wiki/Brian_Naylor	GBR
+272	beaufort	Carel Godin	de Beaufort	\N	Dutch	\N	1934-04-10	http://en.wikipedia.org/wiki/Carel_Godin_de_Beaufort	NLD
+273	marsh	Tony	Marsh	\N	British	\N	1931-07-20	http://en.wikipedia.org/wiki/Tony_Marsh_(racing_driver)	GBR
+274	england	Paul	England	\N	Australian	\N	1929-03-28	http://en.wikipedia.org/wiki/Paul_England	AUS
+275	gibson	Dick	Gibson	\N	British	\N	1918-04-16	http://en.wikipedia.org/wiki/Dick_Gibson	GBR
+276	allison	Cliff	Allison	\N	British	\N	1932-02-08	http://en.wikipedia.org/wiki/Cliff_Allison	GBR
+277	hill	Graham	Hill	\N	British	\N	1929-02-15	http://en.wikipedia.org/wiki/Graham_Hill	GBR
+278	kavanagh	Ken	Kavanagh	\N	Australian	\N	1923-12-12	http://en.wikipedia.org/wiki/Ken_Kavanagh	AUS
+279	kessler	Bruce	Kessler	\N	American	\N	1936-03-23	http://en.wikipedia.org/wiki/Bruce_Kessler	USA
+280	filippis	Maria	de Filippis	\N	Italian	\N	1926-11-11	http://en.wikipedia.org/wiki/Maria_Teresa_de_Filippis	ITA
+281	testut	André	Testut	\N	Monegasque	\N	1926-04-13	http://en.wikipedia.org/wiki/Andr%C3%A9_Testut	MCO
+282	cabianca	Giulio	Cabianca	\N	Italian	\N	1923-02-19	http://en.wikipedia.org/wiki/Giulio_Cabianca	ITA
+283	ecclestone	Bernie	Ecclestone	\N	British	\N	1930-10-28	http://en.wikipedia.org/wiki/Bernie_Ecclestone	GBR
+284	taramazzo	Luigi	Taramazzo	\N	Italian	\N	1932-05-05	http://en.wikipedia.org/wiki/Luigi_Taramazzo	ITA
+285	george_amick	George	Amick	\N	American	\N	1924-10-24	http://en.wikipedia.org/wiki/George_Amick	USA
+286	larson	Jud	Larson	\N	American	\N	1923-01-21	http://en.wikipedia.org/wiki/Jud_Larson	USA
+287	dempsey_wilson	Dempsey	Wilson	\N	American	\N	1927-03-11	http://en.wikipedia.org/wiki/Dempsey_Wilson	USA
+288	foyt	Anthony	Foyt	\N	American	\N	1935-01-16	http://en.wikipedia.org/wiki/A.J._Foyt	USA
+289	goldsmith	Paul	Goldsmith	\N	American	\N	1925-10-02	http://en.wikipedia.org/wiki/Paul_Goldsmith	USA
+290	jerry_unser	Jerry	Unser	\N	American	\N	1932-11-15	http://en.wikipedia.org/wiki/Jerry_Unser	USA
+291	sutton	Len	Sutton	\N	American	\N	1925-08-09	http://en.wikipedia.org/wiki/Len_Sutton	USA
+292	bisch	Art	Bisch	\N	American	\N	1926-11-10	http://en.wikipedia.org/wiki/Art_Bisch	USA
+293	phil_hill	Phil	Hill	\N	American	\N	1927-04-20	http://en.wikipedia.org/wiki/Phil_Hill	USA
+294	shelby	Carroll	Shelby	\N	American	\N	1923-01-11	http://en.wikipedia.org/wiki/Carroll_Shelby	USA
+295	burgess	Ian	Burgess	\N	British	\N	1930-07-06	http://en.wikipedia.org/wiki/Ian_Burgess	GBR
+296	stacey	Alan	Stacey	\N	British	\N	1933-08-29	http://en.wikipedia.org/wiki/Alan_Stacey	GBR
+297	mclaren	Bruce	McLaren	\N	New Zealander	\N	1937-08-30	http://en.wikipedia.org/wiki/Bruce_McLaren	NZL
+298	goethals	Christian	Goethals	\N	Belgian	\N	1928-08-04	http://en.wikipedia.org/wiki/Christian_Goethals	BEL
+299	la_caze	Robert	La Caze	\N	French	\N	1917-02-26	http://en.wikipedia.org/wiki/Robert_La_Caze	FRA
+300	guelfi	André	Guelfi	\N	French	\N	1919-05-06	http://en.wikipedia.org/wiki/Andr%C3%A9_Guelfi	FRA
+301	picard	François	Picard	\N	French	\N	1921-04-26	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Picard	FRA
+302	bridger	Tom	Bridger	\N	British	\N	1934-06-24	http://en.wikipedia.org/wiki/Tom_Bridger	GBR
+303	Changy	Alain	de Changy	\N	Belgian	\N	1922-02-05	http://en.wikipedia.org/wiki/Alain_de_Changy	BEL
+304	bianchi	Lucien	Bianchi	BIA	Belgian	\N	1934-11-10	http://en.wikipedia.org/wiki/Lucien_Bianchi	BEL
+305	lovely	Pete	Lovely	\N	American	\N	1926-04-11	http://en.wikipedia.org/wiki/Pete_Lovely	USA
+306	lucienbonnet	Jean	Lucienbonnet	\N	French	\N	1923-01-07	http://en.wikipedia.org/wiki/Jean_Lucienbonnet	FRA
+307	arnold	Chuck	Arnold	\N	American	\N	1926-05-30	http://en.wikipedia.org/wiki/Chuck_Arnold	USA
+308	mcwithey	Jim	McWithey	\N	American	\N	1927-07-04	http://en.wikipedia.org/wiki/Jim_McWithey	USA
+309	branson	Don	Branson	\N	American	\N	1920-06-02	http://en.wikipedia.org/wiki/Don_Branson	USA
+310	grim	Bobby	Grim	\N	American	\N	1924-09-04	http://en.wikipedia.org/wiki/Bobby_Grim	USA
+311	amick	Red	Amick	\N	American	\N	1929-01-19	http://en.wikipedia.org/wiki/Red_Amick	USA
+312	ireland	Innes	Ireland	\N	British	\N	1930-06-12	http://en.wikipedia.org/wiki/Innes_Ireland	GBR
+313	orey	Fritz	d'Orey	\N	Brazilian	\N	1938-03-25	http://en.wikipedia.org/wiki/Fritz_d%27Orey	BRA
+314	gurney	Dan	Gurney	\N	American	\N	1931-04-13	http://en.wikipedia.org/wiki/Dan_Gurney	USA
+315	davis	Colin	Davis	\N	British	\N	1933-07-29	http://en.wikipedia.org/wiki/Colin_Davis_(driver)	GBR
+316	fontes	Azdrubal	Fontes	\N	Uruguayan	\N	1922-12-26	http://en.wikipedia.org/wiki/Azdrubal_Fontes	URY
+317	bristow	Chris	Bristow	\N	British	\N	1937-12-02	http://en.wikipedia.org/wiki/Chris_Bristow	GBR
+318	henry_taylor	Henry	Taylor	\N	British	\N	1932-12-16	http://en.wikipedia.org/wiki/Henry_Taylor_(racing_driver)	GBR
+319	ashdown	Peter	Ashdown	\N	British	\N	1934-10-16	http://en.wikipedia.org/wiki/Peter_Ashdown	GBR
+320	piper	David	Piper	\N	British	\N	1930-12-02	http://en.wikipedia.org/wiki/David_Piper	GBR
+321	mike_taylor	Mike	Taylor	\N	British	\N	1934-04-24	http://en.wikipedia.org/wiki/Mike_Taylor_(driver)	GBR
+322	greene	Keith	Greene	\N	British	\N	1938-01-05	http://en.wikipedia.org/wiki/Keith_Greene	GBR
+323	bill_moss	Bill	Moss	\N	British	\N	1933-09-04	http://en.wikipedia.org/wiki/Bill_Moss_(racing_driver)	GBR
+324	parkes	Mike	Parkes	\N	British	\N	1931-09-24	http://en.wikipedia.org/wiki/Mike_Parkes	GBR
+325	dennis_taylor	Dennis	Taylor	\N	British	\N	1921-06-12	http://en.wikipedia.org/wiki/Dennis_Taylor_(racing_driver)	GBR
+326	trevor_taylor	Trevor	Taylor	\N	British	\N	1936-12-26	http://en.wikipedia.org/wiki/Trevor_Taylor	GBR
+327	parnell	Tim	Parnell	\N	British	\N	1932-06-25	http://en.wikipedia.org/wiki/Tim_Parnell	GBR
+328	cabral	Mário de Araújo	Cabral	\N	Portuguese	\N	1934-01-15	http://en.wikipedia.org/wiki/Mario_de_Araujo_Cabral	PRT
+329	blanchard	Harry	Blanchard	\N	American	\N	1929-06-13	http://en.wikipedia.org/wiki/Harry_Blanchard	USA
+330	constantine	George	Constantine	\N	American	\N	1918-02-22	http://en.wikipedia.org/wiki/George_Constantine	USA
+331	said	Bob	Said	\N	American	\N	1932-05-05	http://en.wikipedia.org/wiki/Bob_Said	USA
+332	cade	Phil	Cade	\N	American	\N	1916-06-12	http://en.wikipedia.org/wiki/Phil_Cade	USA
+333	larreta	Alberto Rodriguez	Larreta	\N	Argentine	\N	1934-01-14	http://en.wikipedia.org/wiki/Alberto_Rodriguez_Larreta	ARG
+334	bonomi	Roberto	Bonomi	\N	Argentine	\N	1919-09-30	http://en.wikipedia.org/wiki/Roberto_Bonomi	ARG
+335	munaron	Gino	Munaron	\N	Italian	\N	1928-04-02	http://en.wikipedia.org/wiki/Gino_Munaron	ITA
+336	estefano	Nasif	Estéfano	\N	Argentine	\N	1932-11-18	http://en.wikipedia.org/wiki/Nasif_Est%C3%A9fano	ARG
+337	chimeri	Ettore	Chimeri	\N	Venezuelan	\N	1921-06-04	http://en.wikipedia.org/wiki/Ettore_Chimeri	VEN
+338	creus	Antonio	Creus	\N	Spanish	\N	1924-10-28	http://en.wikipedia.org/wiki/Antonio_Creus	ESP
+339	ginther	Richie	Ginther	\N	American	\N	1930-08-05	http://en.wikipedia.org/wiki/Richie_Ginther	USA
+340	surtees	John	Surtees	\N	British	\N	1934-02-11	http://en.wikipedia.org/wiki/John_Surtees	GBR
+341	daigh	Chuck	Daigh	\N	American	\N	1923-11-29	http://en.wikipedia.org/wiki/Chuck_Daigh	USA
+342	reventlow	Lance	Reventlow	\N	American	\N	1936-02-24	http://en.wikipedia.org/wiki/Lance_Reventlow	USA
+343	ruby	Lloyd	Ruby	\N	American	\N	1928-01-12	http://en.wikipedia.org/wiki/Lloyd_Ruby	USA
+344	tingelstad	Bud	Tingelstad	\N	American	\N	1928-04-04	http://en.wikipedia.org/wiki/Bud_Tingelstad	USA
+345	hurtubise	Jim	Hurtubise	\N	American	\N	1932-12-05	http://en.wikipedia.org/wiki/Jim_Hurtubise	USA
+346	weiler	Wayne	Weiler	\N	American	\N	1934-12-09	http://en.wikipedia.org/wiki/Wayne_Weiler	USA
+347	clark	Jim	Clark	\N	British	\N	1936-03-04	http://en.wikipedia.org/wiki/Jim_Clark	GBR
+348	mairesse	Willy	Mairesse	\N	Belgian	\N	1928-10-01	http://en.wikipedia.org/wiki/Willy_Mairesse	BEL
+349	drogo	Piero	Drogo	\N	Italian	\N	1926-08-08	http://en.wikipedia.org/wiki/Piero_Drogo	ITA
+350	gamble	Fred	Gamble	\N	American	\N	1932-03-17	http://en.wikipedia.org/wiki/Fred_Gamble_(racing_driver)	USA
+351	thiele	Alfonso	Thiele	\N	Italian	\N	1920-04-05	http://en.wikipedia.org/wiki/Alfonso_Thiele	ITA
+352	vic_wilson	Vic	Wilson	\N	British	\N	1931-04-14	http://en.wikipedia.org/wiki/Vic_Wilson_(motor_racing_driver)	GBR
+353	owen	Arthur	Owen	\N	British	\N	1915-03-23	http://en.wikipedia.org/wiki/Arthur_Owen	GBR
+354	hall	Jim	Hall	\N	American	\N	1935-07-23	http://en.wikipedia.org/wiki/Jim_Hall_(race_car_driver)	USA
+355	drake	Bob	Drake	\N	American	\N	1919-12-14	http://en.wikipedia.org/wiki/Bob_Drake_(Formula_One)	USA
+356	may	Michael	May	\N	Swiss	\N	1934-08-18	http://en.wikipedia.org/wiki/Michael_May_(racing_driver)	CHE
+357	lewis	Jackie	Lewis	\N	British	\N	1936-11-01	http://en.wikipedia.org/wiki/Jackie_Lewis	GBR
+358	bandini	Lorenzo	Bandini	\N	Italian	\N	1935-12-21	http://en.wikipedia.org/wiki/Lorenzo_Bandini	ITA
+359	baghetti	Giancarlo	Baghetti	\N	Italian	\N	1934-12-25	http://en.wikipedia.org/wiki/Giancarlo_Baghetti	ITA
+360	collomb	Bernard	Collomb	\N	French	\N	1930-10-07	http://en.wikipedia.org/wiki/Bernard_Collomb	FRA
+361	bordeu	Juan Manuel	Bordeu	\N	Argentine	\N	1934-01-28	http://en.wikipedia.org/wiki/Juan_Manuel_Bordeu	ARG
+362	maggs	Tony	Maggs	\N	South African	\N	1937-02-09	http://en.wikipedia.org/wiki/Tony_Maggs	ZAF
+363	ashmore	Gerry	Ashmore	\N	British	\N	1936-07-25	http://en.wikipedia.org/wiki/Gerry_Ashmore	GBR
+364	natili	Massimo	Natili	\N	Italian	\N	1935-07-28	http://en.wikipedia.org/wiki/Massimo_Natili	ITA
+365	monteverdi	Peter	Monteverdi	\N	Swiss	\N	1934-06-07	http://en.wikipedia.org/wiki/Peter_Monteverdi	CHE
+366	pirocchi	Renato	Pirocchi	\N	Italian	\N	1933-03-26	http://en.wikipedia.org/wiki/Renato_Pirocchi	ITA
+367	duke	Geoff	Duke	\N	British	\N	1923-03-29	http://en.wikipedia.org/wiki/Geoff_Duke	GBR
+368	campbell-jones	John	Campbell-Jones	\N	British	\N	1930-01-21	http://en.wikipedia.org/wiki/John_Campbell-Jones	GBR
+369	starrabba	Gaetano	Starrabba	\N	Italian	\N	1932-12-03	http://en.wikipedia.org/wiki/Gaetano_Starrabba	ITA
+370	ricardo_rodriguez	Ricardo	Rodríguez	\N	Mexican	\N	1942-02-14	http://en.wikipedia.org/wiki/Ricardo_Rodr%C3%ADguez_(Formula_One)	MEX
+371	vaccarella	Nino	Vaccarella	\N	Italian	\N	1933-03-04	http://en.wikipedia.org/wiki/Nino_Vaccarella	ITA
+372	bussinello	Roberto	Bussinello	\N	Italian	\N	1927-10-04	http://en.wikipedia.org/wiki/Roberto_Bussinello	ITA
+373	lippi	Roberto	Lippi	\N	Italian	\N	1926-10-17	http://en.wikipedia.org/wiki/Roberto_Lippi	ITA
+374	prinoth	Ernesto	Prinoth	\N	Italian	\N	1923-04-15	http://en.wikipedia.org/wiki/Ernesto_Prinoth	ITA
+375	boffa	Menato	Boffa	\N	Italian	\N	1930-01-04	http://en.wikipedia.org/wiki/Menato_Boffa	ITA
+376	penske	Roger	Penske	\N	American	\N	1937-02-20	http://en.wikipedia.org/wiki/Roger_Penske	USA
+377	ryan	Peter	Ryan	\N	Canadian	\N	1940-06-10	http://en.wikipedia.org/wiki/Peter_Ryan_(driver)	CAN
+378	sharp	Hap	Sharp	\N	American	\N	1928-01-01	http://en.wikipedia.org/wiki/Hap_Sharp	USA
+379	hansgen	Walt	Hansgen	\N	American	\N	1919-10-28	http://en.wikipedia.org/wiki/Walt_Hansgen	USA
+380	ken_miles	Ken	Miles	\N	British	\N	1918-11-01	http://en.wikipedia.org/wiki/Ken_Miles	GBR
+381	pon	Ben	Pon	\N	Dutch	\N	1936-12-09	http://en.wikipedia.org/wiki/Ben_Pon	NLD
+382	slotemaker	Rob	Slotemaker	\N	Dutch	\N	1929-06-13	http://en.wikipedia.org/wiki/Rob_Slotemaker	NLD
+383	siffert	Jo	Siffert	\N	Swiss	\N	1936-07-07	http://en.wikipedia.org/wiki/Jo_Siffert	CHE
+384	schiller	Heinz	Schiller	\N	Swiss	\N	1930-01-25	http://en.wikipedia.org/wiki/Heinz_Schiller	CHE
+385	arundell	Peter	Arundell	\N	British	\N	1933-11-08	http://en.wikipedia.org/wiki/Peter_Arundell	GBR
+386	abate	Carlo	Abate	\N	Italian	\N	1932-07-10	http://en.wikipedia.org/wiki/Carlo_Mario_Abate	ITA
+387	settember	Tony	Settember	\N	American	\N	1926-07-10	http://en.wikipedia.org/wiki/Tony_Settember	USA
+388	chamberlain	Jay	Chamberlain	\N	American	\N	1925-12-29	http://en.wikipedia.org/wiki/Jay_Chamberlain	USA
+389	shelly	Tony	Shelly	\N	New Zealander	\N	1937-02-02	http://en.wikipedia.org/wiki/Tony_Shelly	NZL
+390	walter	Heini	Walter	\N	Swiss	\N	1927-07-28	http://en.wikipedia.org/wiki/Heini_Walter	CHE
+391	seiffert	Günther	Seiffert	\N	German	\N	1937-10-18	http://en.wikipedia.org/wiki/G%C3%BCnther_Seiffert	DEU
+392	kuhnke	Kurt	Kuhnke	\N	German	\N	1910-04-30	http://en.wikipedia.org/wiki/Kurt_Kuhnke	DEU
+393	schroeder	Rob	Schroeder	\N	British	\N	1926-05-11	http://en.wikipedia.org/wiki/Rob_Schroeder	GBR
+394	mayer	Timmy	Mayer	\N	American	\N	1938-02-22	http://en.wikipedia.org/wiki/Timmy_Mayer	USA
+395	lederle	Neville	Lederle	\N	South African	\N	1938-09-25	http://en.wikipedia.org/wiki/Neville_Lederle	ZAF
+396	love	John	Love	\N	Rhodesian	\N	1924-12-07	http://en.wikipedia.org/wiki/John_Love_(racing_driver)	RSR
+397	johnstone	Bruce	Johnstone	\N	South African	\N	1937-01-30	http://en.wikipedia.org/wiki/Bruce_Johnstone_(racing_driver)	ZAF
+398	pieterse	Ernie	Pieterse	\N	South African	\N	1938-07-04	http://en.wikipedia.org/wiki/Ernie_Pieterse	ZAF
+399	serrurier	Doug	Serrurier	\N	South African	\N	1920-12-09	http://en.wikipedia.org/wiki/Doug_Serrurier	ZAF
+400	harris	Mike	Harris	\N	South African	\N	1939-05-25	http://en.wikipedia.org/wiki/Mike_Harris_(race_car_driver)	ZAF
+401	hocking	Gary	Hocking	\N	Rhodesian	\N	1937-09-30	http://en.wikipedia.org/wiki/Gary_Hocking	RSR
+402	vyver	Syd	van der Vyver	\N	South African	\N	1920-06-01	http://en.wikipedia.org/wiki/Syd_van_der_Vyver	ZAF
+403	tingle	Sam	Tingle	\N	Rhodesian	\N	1921-08-24	http://en.wikipedia.org/wiki/Sam_Tingle	RSR
+404	amon	Chris	Amon	\N	New Zealander	\N	1943-07-20	http://en.wikipedia.org/wiki/Chris_Amon	NZL
+405	scarfiotti	Ludovico	Scarfiotti	\N	Italian	\N	1933-10-18	http://en.wikipedia.org/wiki/Ludovico_Scarfiotti	ITA
+406	mitter	Gerhard	Mitter	\N	German	\N	1935-08-30	http://en.wikipedia.org/wiki/Gerhard_Mitter	DEU
+407	hailwood	Mike	Hailwood	\N	British	\N	1940-04-02	http://en.wikipedia.org/wiki/Mike_Hailwood	GBR
+408	anderson	Bob	Anderson	\N	British	\N	1931-05-19	http://en.wikipedia.org/wiki/Bob_Anderson_(racing_driver)	GBR
+409	raby	Ian	Raby	\N	British	\N	1921-09-22	http://en.wikipedia.org/wiki/Ian_Raby	GBR
+410	spence	Mike	Spence	\N	British	\N	1936-12-30	http://en.wikipedia.org/wiki/Mike_Spence	GBR
+411	ernesto_brambilla	Ernesto	Brambilla	\N	Italian	\N	1934-01-31	http://en.wikipedia.org/wiki/Ernesto_Brambilla	ITA
+412	broeker	Peter	Broeker	\N	Canadian	\N	1926-05-15	http://en.wikipedia.org/wiki/Peter_Broeker	CAN
+413	rodriguez	Pedro	Rodríguez	\N	Mexican	\N	1940-01-18	http://en.wikipedia.org/wiki/Pedro_Rodr%C3%ADguez_(racing_driver)	MEX
+414	vos	Ernie	de Vos	\N	Dutch	\N	1941-07-01	http://en.wikipedia.org/wiki/Ernie_de_Vos	NLD
+415	solana	Moisés	Solana	\N	Mexican	\N	1935-12-26	http://en.wikipedia.org/wiki/Mois%C3%A9s_Solana	MEX
+416	dochnal	Frank	Dochnal	\N	American	\N	1920-10-08	http://en.wikipedia.org/wiki/Frank_Dochnal	USA
+417	monarch	Thomas	Monarch	\N	American	\N	1945-09-03	http://en.wikipedia.org/wiki/Talk:1963_Mexican_Grand_Prix#Who_was_Thomas_Monarch.3F	USA
+418	blokdyk	Trevor	Blokdyk	\N	South African	\N	1935-11-30	http://en.wikipedia.org/wiki/Trevor_Blokdyk	ZAF
+419	niemann	Brausch	Niemann	\N	South African	\N	1939-01-07	http://en.wikipedia.org/wiki/Brausch_Niemann	ZAF
+420	klerk	Peter	de Klerk	\N	South African	\N	1935-03-16	http://en.wikipedia.org/wiki/Peter_de_Klerk	ZAF
+421	prophet	David	Prophet	\N	British	\N	1937-10-09	http://en.wikipedia.org/wiki/David_Prophet	GBR
+422	driver	Paddy	Driver	\N	South African	\N	1934-05-13	http://en.wikipedia.org/wiki/Paddy_Driver	ZAF
+423	revson	Peter	Revson	\N	American	\N	1939-02-27	http://en.wikipedia.org/wiki/Peter_Revson	USA
+424	taylor	John	Taylor	\N	British	\N	1933-03-23	http://en.wikipedia.org/wiki/John_Taylor_(racer)	GBR
+425	gardner	Frank	Gardner	\N	Australian	\N	1930-10-01	http://en.wikipedia.org/wiki/Frank_Gardner_(driver)	AUS
+426	attwood	Richard	Attwood	\N	British	\N	1940-04-04	http://en.wikipedia.org/wiki/Richard_Attwood	GBR
+427	bucknum	Ronnie	Bucknum	\N	American	\N	1936-04-05	http://en.wikipedia.org/wiki/Ronnie_Bucknum	USA
+428	rindt	Jochen	Rindt	\N	Austrian	\N	1942-04-18	http://en.wikipedia.org/wiki/Jochen_Rindt	AUT
+429	geki	Giacomo	Russo	\N	Italian	\N	1937-10-23	http://en.wikipedia.org/wiki/Geki_(driver)	ITA
+430	stewart	Jackie	Stewart	\N	British	\N	1939-06-11	http://en.wikipedia.org/wiki/Jackie_Stewart	GBR
+431	hawkins	Paul	Hawkins	\N	Australian	\N	1937-10-12	http://en.wikipedia.org/wiki/Paul_Hawkins_(racing_driver)	AUS
+432	puzey	Clive	Puzey	\N	Rhodesian	\N	1941-07-11	http://en.wikipedia.org/wiki/Clive_Puzey	RSR
+433	pretorius	Jackie	Pretorius	\N	South African	\N	1934-11-22	http://en.wikipedia.org/wiki/Jackie_Pretorius	ZAF
+434	charlton	Dave	Charlton	\N	South African	\N	1936-10-27	http://en.wikipedia.org/wiki/Dave_Charlton	ZAF
+435	reed	Ray	Reed	\N	South African	\N	1932-04-30	http://en.wikipedia.org/wiki/Ray_Reed	ZAF
+436	clapham	David	Clapham	\N	South African	\N	1931-05-18	http://en.wikipedia.org/wiki/David_Clapham	ZAF
+437	blignaut	Alex	Blignaut	\N	South African	\N	1932-11-30	http://en.wikipedia.org/wiki/Alex_Blignaut	ZAF
+438	hulme	Denny	Hulme	\N	New Zealander	\N	1936-06-18	http://en.wikipedia.org/wiki/Denny_Hulme	NZL
+439	rhodes	John	Rhodes	\N	British	\N	1927-08-18	http://en.wikipedia.org/wiki/John_Rhodes_(driver)	GBR
+440	rollinson	Alan	Rollinson	\N	British	\N	1943-05-15	http://en.wikipedia.org/wiki/Alan_Rollinson	GBR
+441	gubby	Brian	Gubby	\N	British	\N	1934-04-17	http://en.wikipedia.org/wiki/Brian_Gubby	GBR
+442	bassi	Giorgio	Bassi	\N	Italian	\N	1934-01-20	http://en.wikipedia.org/wiki/Giorgio_Bassi	ITA
+443	bondurant	Bob	Bondurant	\N	American	\N	1933-04-27	http://en.wikipedia.org/wiki/Bob_Bondurant	USA
+444	ligier	Guy	Ligier	\N	French	\N	1930-07-12	http://en.wikipedia.org/wiki/Guy_Ligier	FRA
+445	irwin	Chris	Irwin	\N	British	\N	1942-06-27	http://en.wikipedia.org/wiki/Chris_Irwin	GBR
+446	lawrence	Chris	Lawrence	\N	British	\N	1933-07-27	http://en.wikipedia.org/wiki/Chris_Lawrence_(racing_driver)	GBR
+447	botha	Luki	Botha	\N	South African	\N	1930-01-16	http://en.wikipedia.org/wiki/Luki_Botha	ZAF
+448	courage	Piers	Courage	\N	British	\N	1942-05-27	http://en.wikipedia.org/wiki/Piers_Courage	GBR
+449	gavin	Johnny	Servoz-Gavin	\N	French	\N	1942-01-18	http://en.wikipedia.org/wiki/Johnny_Servoz-Gavin	FRA
+450	beltoise	Jean-Pierre	Beltoise	\N	French	\N	1937-04-26	http://en.wikipedia.org/wiki/Jean-Pierre_Beltoise	FRA
+451	hobbs	David	Hobbs	\N	British	\N	1939-06-09	http://en.wikipedia.org/wiki/David_Hobbs_(racing_driver)	GBR
+452	rees	Alan	Rees	\N	British	\N	1938-01-12	http://en.wikipedia.org/wiki/Alan_Rees_(racing_driver)	GBR
+453	moser	Silvio	Moser	\N	Swiss	\N	1941-04-24	http://en.wikipedia.org/wiki/Silvio_Moser	CHE
+454	oliver	Jackie	Oliver	\N	British	\N	1942-08-14	http://en.wikipedia.org/wiki/Jackie_Oliver	GBR
+455	ickx	Jacky	Ickx	\N	Belgian	\N	1945-01-01	http://en.wikipedia.org/wiki/Jacky_Ickx	BEL
+456	hart	Brian	Hart	\N	British	\N	1936-09-07	http://en.wikipedia.org/wiki/Brian_Hart	GBR
+457	hahne	Hubert	Hahne	\N	German	\N	1935-03-28	http://en.wikipedia.org/wiki/Hubert_Hahne	DEU
+458	ahrens	Kurt	Ahrens	\N	German	\N	1940-04-19	http://en.wikipedia.org/wiki/Kurt_Ahrens,_Jr.	DEU
+459	jo_schlesser	Jo	Schlesser	\N	French	\N	1928-05-18	http://en.wikipedia.org/wiki/Jo_Schlesser	FRA
+460	fisher	Mike	Fisher	\N	American	\N	1943-03-13	http://en.wikipedia.org/wiki/Mike_Fisher_(driver)	USA
+461	wietzes	Eppie	Wietzes	\N	Canadian	\N	1938-05-28	http://en.wikipedia.org/wiki/Eppie_Wietzes	CAN
+462	pease	Al	Pease	\N	Canadian	\N	1921-10-15	http://en.wikipedia.org/wiki/Al_Pease	CAN
+463	tom_jones	Tom	Jones	\N	American	\N	1943-04-26	http://en.wikipedia.org/wiki/Tom_Jones_(auto_racer)	USA
+464	williams	Jonathan	Williams	\N	British	\N	1942-10-26	http://en.wikipedia.org/wiki/Jonathan_Williams_(racing_driver)	GBR
+465	rooyen	Basil	van Rooyen	\N	South African	\N	1939-04-19	http://en.wikipedia.org/wiki/Basil_van_Rooyen	ZAF
+466	adamich	Andrea	de Adamich	\N	Italian	\N	1941-10-03	http://en.wikipedia.org/wiki/Andrea_de_Adamich	ITA
+467	redman	Brian	Redman	\N	British	\N	1937-03-09	http://en.wikipedia.org/wiki/Brian_Redman	GBR
+468	elford	Vic	Elford	\N	British	\N	1935-06-10	http://en.wikipedia.org/wiki/Vic_Elford	GBR
+469	widdows	Robin	Widdows	\N	British	\N	1942-05-27	http://en.wikipedia.org/wiki/Robin_Widdows	GBR
+470	bell	Derek	Bell	\N	British	\N	1941-10-31	http://en.wikipedia.org/wiki/Derek_Bell_(auto_racer)	GBR
+471	pescarolo	Henri	Pescarolo	\N	French	\N	1942-09-25	http://en.wikipedia.org/wiki/Henri_Pescarolo	FRA
+472	brack	Bill	Brack	\N	Canadian	\N	1935-12-26	http://en.wikipedia.org/wiki/Bill_Brack	CAN
+473	unser	Bobby	Unser	\N	American	\N	1934-02-20	http://en.wikipedia.org/wiki/Bobby_Unser	USA
+474	mario_andretti	Mario	Andretti	\N	American	\N	1940-02-28	http://en.wikipedia.org/wiki/Mario_Andretti	USA
+475	miles	John	Miles	\N	British	\N	1943-06-14	http://en.wikipedia.org/wiki/John_Miles_(auto_racer)	GBR
+476	cordts	John	Cordts	\N	Canadian	\N	1935-07-23	http://en.wikipedia.org/wiki/John_Cordts	CAN
+477	eaton	George	Eaton	\N	Canadian	\N	1945-11-12	http://en.wikipedia.org/wiki/George_Eaton	CAN
+478	stommelen	Rolf	Stommelen	\N	German	\N	1943-07-11	http://en.wikipedia.org/wiki/Rolf_Stommelen	DEU
+479	roig	Alex	Soler-Roig	\N	Spanish	\N	1932-10-29	http://en.wikipedia.org/wiki/Alex_Soler-Roig	ESP
+480	peterson	Ronnie	Peterson	\N	Swedish	\N	1944-02-14	http://en.wikipedia.org/wiki/Ronnie_Peterson	SWE
+481	giunti	Ignazio	Giunti	\N	Italian	\N	1941-08-30	http://en.wikipedia.org/wiki/Ignazio_Giunti	ITA
+482	regazzoni	Clay	Regazzoni	\N	Swiss	\N	1939-09-05	http://en.wikipedia.org/wiki/Clay_Regazzoni	CHE
+483	cevert	François	Cevert	\N	French	\N	1944-02-25	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Cevert	FRA
+484	gethin	Peter	Gethin	\N	British	\N	1940-02-21	http://en.wikipedia.org/wiki/Peter_Gethin	GBR
+485	emerson_fittipaldi	Emerson	Fittipaldi	\N	Brazilian	\N	1946-12-12	http://en.wikipedia.org/wiki/Emerson_Fittipaldi	BRA
+486	schenken	Tim	Schenken	\N	Australian	\N	1943-09-26	http://en.wikipedia.org/wiki/Tim_Schenken	AUS
+487	galli	Nanni	Galli	\N	Italian	\N	1940-10-02	http://en.wikipedia.org/wiki/Nanni_Galli	ITA
+488	wisell	Reine	Wisell	\N	Swedish	\N	1941-09-30	http://en.wikipedia.org/wiki/Reine_Wisell	SWE
+489	hutchison	Gus	Hutchison	\N	American	\N	1937-04-26	http://en.wikipedia.org/wiki/Gus_Hutchison	USA
+490	westbury	Peter	Westbury	\N	British	\N	1938-05-26	http://en.wikipedia.org/wiki/Peter_Westbury	GBR
+491	ganley	Howden	Ganley	\N	New Zealander	\N	1941-12-24	http://en.wikipedia.org/wiki/Howden_Ganley	NZL
+492	barber	Skip	Barber	\N	American	\N	1936-11-16	http://en.wikipedia.org/wiki/Skip_Barber	USA
+493	lennep	Gijs	van Lennep	\N	Dutch	\N	1942-03-16	http://en.wikipedia.org/wiki/Gijs_Van_Lennep	NLD
+494	walker	David	Walker	\N	Australian	\N	1941-06-10	http://en.wikipedia.org/wiki/David_Walker_(racing_driver)	AUS
+495	mazet	François	Mazet	\N	French	\N	1943-02-24	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Mazet	FRA
+496	jean	Max	Jean	\N	French	\N	1943-07-27	http://en.wikipedia.org/wiki/Max_Jean	FRA
+497	beuttler	Mike	Beuttler	\N	British	\N	1940-04-13	http://en.wikipedia.org/wiki/Mike_Beuttler	GBR
+498	marko	Helmut	Marko	\N	Austrian	\N	1943-04-27	http://en.wikipedia.org/wiki/Helmut_Marko	AUT
+499	lauda	Niki	Lauda	\N	Austrian	\N	1949-02-22	http://en.wikipedia.org/wiki/Niki_Lauda	AUT
+500	jarier	Jean-Pierre	Jarier	\N	French	\N	1946-07-10	http://en.wikipedia.org/wiki/Jean-Pierre_Jarier	FRA
+501	donohue	Mark	Donohue	\N	American	\N	1937-03-18	http://en.wikipedia.org/wiki/Mark_Donohue	USA
+502	craft	Chris	Craft	\N	British	\N	1939-11-17	http://en.wikipedia.org/wiki/Chris_Craft_(racing_driver)	GBR
+503	Cannoc	John	Cannon	\N	Canadian	\N	1933-06-21	http://en.wikipedia.org/wiki/John_Cannon_(auto_racer)	CAN
+504	posey	Sam	Posey	\N	American	\N	1944-05-26	http://en.wikipedia.org/wiki/Sam_Posey	USA
+505	reutemann	Carlos	Reutemann	\N	Argentine	\N	1942-04-12	http://en.wikipedia.org/wiki/Carlos_Reutemann	ARG
+506	pace	Carlos	Pace	\N	Brazilian	\N	1944-10-06	http://en.wikipedia.org/wiki/Carlos_Pace	BRA
+507	wilson_fittipaldi	Wilson	Fittipaldi	\N	Brazilian	\N	1943-12-25	http://en.wikipedia.org/wiki/Wilson_Fittipaldi	BRA
+508	depailler	Patrick	Depailler	\N	French	\N	1944-08-09	http://en.wikipedia.org/wiki/Patrick_Depailler	FRA
+509	merzario	Arturo	Merzario	\N	Italian	\N	1943-03-11	http://en.wikipedia.org/wiki/Arturo_Merzario	ITA
+510	migault	François	Migault	\N	French	\N	1944-12-04	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Migault	FRA
+511	scheckter	Jody	Scheckter	\N	South African	\N	1950-01-29	http://en.wikipedia.org/wiki/Jody_Scheckter	ZAF
+512	bueno	Luiz	Bueno	\N	Brazilian	\N	1937-01-16	http://en.wikipedia.org/wiki/Luiz_Bueno	BRA
+513	follmer	George	Follmer	\N	American	\N	1934-01-27	http://en.wikipedia.org/wiki/George_Follmer	USA
+514	keizan	Eddie	Keizan	\N	South African	\N	1944-09-12	http://en.wikipedia.org/wiki/Eddie_Keizan	ZAF
+515	hunt	James	Hunt	\N	British	\N	1947-08-29	http://en.wikipedia.org/wiki/James_Hunt	GBR
+516	purley	David	Purley	\N	British	\N	1945-01-26	http://en.wikipedia.org/wiki/David_Purley	GBR
+517	opel	Rikky	von Opel	\N	Liechtensteiner	\N	1947-10-14	http://en.wikipedia.org/wiki/Rikky_von_Opel	LIE
+518	watson	John	Watson	\N	British	\N	1946-05-04	http://en.wikipedia.org/wiki/John_Watson_(racing_driver)	GBR
+519	mass	Jochen	Mass	\N	German	\N	1946-09-30	http://en.wikipedia.org/wiki/Jochen_Mass	DEU
+520	williamson	Roger	Williamson	\N	British	\N	1948-02-02	http://en.wikipedia.org/wiki/Roger_Williamson	GBR
+521	mcrae	Graham	McRae	\N	New Zealander	\N	1940-03-05	http://en.wikipedia.org/wiki/Graham_McRae	NZL
+522	edwards	Guy	Edwards	\N	British	\N	1942-12-30	http://en.wikipedia.org/wiki/Guy_Edwards	GBR
+523	robarts	Richard	Robarts	\N	British	\N	1944-09-22	http://en.wikipedia.org/wiki/Richard_Robarts	GBR
+524	stuck	Hans-Joachim	Stuck	\N	German	\N	1951-01-01	http://en.wikipedia.org/wiki/Hans_Joachim_Stuck	DEU
+525	brambilla	Vittorio	Brambilla	\N	Italian	\N	1937-11-11	http://en.wikipedia.org/wiki/Vittorio_Brambilla	ITA
+526	ian_scheckter	Ian	Scheckter	\N	South African	\N	1947-08-22	http://en.wikipedia.org/wiki/Ian_Scheckter	ZAF
+527	belso	Tom	Belsø	\N	Danish	\N	1942-08-27	http://en.wikipedia.org/wiki/Tom_Bels%C3%B8	DNK
+528	schuppan	Vern	Schuppan	\N	Australian	\N	1943-03-19	http://en.wikipedia.org/wiki/Vern_Schuppan	AUS
+529	pilette	Teddy	Pilette	\N	Belgian	\N	1942-07-26	http://en.wikipedia.org/wiki/Teddy_Pilette	BEL
+530	pryce	Tom	Pryce	\N	British	\N	1949-06-11	http://en.wikipedia.org/wiki/Tom_Pryce	GBR
+531	larrousse	Gérard	Larrousse	\N	French	\N	1940-05-23	http://en.wikipedia.org/wiki/G%C3%A9rard_Larrousse	FRA
+532	kinnunen	Leo	Kinnunen	\N	Finnish	\N	1943-08-05	http://en.wikipedia.org/wiki/Leo_Kinnunen	FIN
+533	roos	Bertil	Roos	\N	Swedish	\N	1943-10-12	http://en.wikipedia.org/wiki/Bertil_Roos	SWE
+534	jabouille	Jean-Pierre	Jabouille	\N	French	\N	1942-10-01	http://en.wikipedia.org/wiki/Jean-Pierre_Jabouille	FRA
+535	dolhem	José	Dolhem	\N	French	\N	1944-04-26	http://en.wikipedia.org/wiki/Jos%C3%A9_Dolhem	FRA
+536	lombardi	Lella	Lombardi	\N	Italian	\N	1941-03-26	http://en.wikipedia.org/wiki/Lella_Lombardi	ITA
+537	nicholson	John	Nicholson	\N	New Zealander	\N	1941-10-06	http://en.wikipedia.org/wiki/John_Nicholson_(racing_driver)	NZL
+538	wilds	Mike	Wilds	\N	British	\N	1946-01-07	http://en.wikipedia.org/wiki/Mike_Wilds	GBR
+539	ashley	Ian	Ashley	\N	British	\N	1947-10-26	http://en.wikipedia.org/wiki/Ian_Ashley	GBR
+540	laffite	Jacques	Laffite	\N	French	\N	1943-11-21	http://en.wikipedia.org/wiki/Jacques_Laffite	FRA
+541	perkins	Larry	Perkins	\N	Australian	\N	1950-03-18	http://en.wikipedia.org/wiki/Larry_Perkins	AUS
+542	quester	Dieter	Quester	\N	Austrian	\N	1939-05-30	http://en.wikipedia.org/wiki/Dieter_Quester	AUT
+543	koinigg	Helmuth	Koinigg	\N	Austrian	\N	1948-11-03	http://en.wikipedia.org/wiki/Helmuth_Koinigg	AUT
+544	facetti	Carlo	Facetti	\N	Italian	\N	1935-06-26	http://en.wikipedia.org/wiki/Carlo_Facetti	ITA
+545	tunmer	Guy	Tunmer	\N	South African	\N	1948-12-01	http://en.wikipedia.org/wiki/Guy_Tunmer	ZAF
+546	evans	Bob	Evans	\N	British	\N	1947-06-11	http://en.wikipedia.org/wiki/Bob_Evans_(race_driver)	GBR
+547	brise	Tony	Brise	\N	British	\N	1952-03-28	http://en.wikipedia.org/wiki/Tony_Brise	GBR
+548	wunderink	Roelof	Wunderink	\N	Dutch	\N	1948-12-12	http://en.wikipedia.org/wiki/Roelof_Wunderink	NLD
+549	jones	Alan	Jones	\N	Australian	\N	1946-11-02	http://en.wikipedia.org/wiki/Alan_Jones_(Formula_1)	AUS
+550	palm	Torsten	Palm	\N	Swedish	\N	1947-07-23	http://en.wikipedia.org/wiki/Torsten_Palm	SWE
+551	magee	Damien	Magee	\N	British	\N	1945-11-17	http://en.wikipedia.org/wiki/Damien_Magee	GBR
+552	fushida	Hiroshi	Fushida	\N	Japanese	\N	1946-03-10	http://en.wikipedia.org/wiki/Hiroshi_Fushida	JPN
+553	henton	Brian	Henton	\N	British	\N	1946-09-19	http://en.wikipedia.org/wiki/Brian_Henton	GBR
+554	morgan	Dave	Morgan	\N	British	\N	1944-08-07	http://en.wikipedia.org/wiki/Dave_Morgan_(racing_driver)	GBR
+555	crawford	Jim	Crawford	\N	British	\N	1948-02-13	http://en.wikipedia.org/wiki/Jim_Crawford_(driver)	GBR
+556	ertl	Harald	Ertl	\N	Austrian	\N	1948-08-31	http://en.wikipedia.org/wiki/Harald_Ertl	AUT
+557	trimmer	Tony	Trimmer	\N	British	\N	1943-01-24	http://en.wikipedia.org/wiki/Tony_Trimmer	GBR
+558	lunger	Brett	Lunger	\N	American	\N	1945-11-14	http://en.wikipedia.org/wiki/Brett_Lunger	USA
+559	vonlanthen	Jo	Vonlanthen	\N	Swiss	\N	1942-05-31	http://en.wikipedia.org/wiki/Jo_Vonlanthen	CHE
+560	zorzi	Renzo	Zorzi	\N	Italian	\N	1946-12-12	http://en.wikipedia.org/wiki/Renzo_Zorzi	ITA
+561	leclere	Michel	Leclère	\N	French	\N	1946-03-18	http://en.wikipedia.org/wiki/Michel_Lecl%C3%A8re	FRA
+562	hoffmann	Ingo	Hoffmann	\N	Brazilian	\N	1953-02-28	http://en.wikipedia.org/wiki/Ingo_Hoffmann	BRA
+563	nilsson	Gunnar	Nilsson	\N	Swedish	\N	1948-11-20	http://en.wikipedia.org/wiki/Gunnar_Nilsson	SWE
+564	kessel	Loris	Kessel	\N	Swiss	\N	1950-04-01	http://en.wikipedia.org/wiki/Loris_Kessel	CHE
+565	zapico	Emilio	Zapico	\N	Spanish	\N	1944-05-27	http://en.wikipedia.org/wiki/Emilio_Zapico	ESP
+566	villota	Emilio	de Villota	\N	Spanish	\N	1946-07-26	http://en.wikipedia.org/wiki/Emilio_de_Villota	ESP
+567	neve	Patrick	Nève	\N	Belgian	\N	1949-10-13	http://en.wikipedia.org/wiki/Patrick_Neve	BEL
+568	nelleman	Jac	Nelleman	\N	Danish	\N	1944-04-19	http://en.wikipedia.org/wiki/Jac_Nelleman	DNK
+569	galica	Divina	Galica	\N	British	\N	1944-08-13	http://en.wikipedia.org/wiki/Divina_Galica	GBR
+570	pesenti_rossi	Alessandro	Pesenti-Rossi	\N	Italian	\N	1942-08-31	http://en.wikipedia.org/wiki/Alessandro_Pesenti-Rossi	ITA
+571	binder	Hans	Binder	\N	Austrian	\N	1948-06-12	http://en.wikipedia.org/wiki/Hans_Binder	AUT
+572	hayje	Boy	Lunger	\N	Dutch	\N	1949-05-03	http://en.wikipedia.org/wiki/Boy_Hayje	NLD
+573	andersson	Conny	Andersson	\N	Swedish	\N	1939-12-28	http://en.wikipedia.org/wiki/Conny_Andersson_(racing_driver)	SWE
+574	stuppacher	Otto	Stuppacher	\N	Austrian	\N	1947-03-03	http://en.wikipedia.org/wiki/Otto_Stuppacher	AUT
+575	ribeiro	Alex	Ribeiro	\N	Brazilian	\N	1948-11-07	http://en.wikipedia.org/wiki/Alex_Ribeiro	BRA
+576	brown	Warwick	Brown	\N	Australian	\N	1949-12-24	http://en.wikipedia.org/wiki/Warwick_Brown	AUS
+577	takahara	Noritake	Takahara	\N	Japanese	\N	1951-06-06	http://en.wikipedia.org/wiki/Noritake_Takahara	JPN
+578	hasemi	Masahiro	Hasemi	\N	Japanese	\N	1945-11-13	http://en.wikipedia.org/wiki/Masahiro_Hasemi	JPN
+579	hoshino	Kazuyoshi	Hoshino	\N	Japanese	\N	1947-07-01	http://en.wikipedia.org/wiki/Kazuyoshi_Hoshino	JPN
+580	keegan	Rupert	Keegan	\N	British	\N	1955-02-26	http://en.wikipedia.org/wiki/Rupert_Keegan	GBR
+581	patrese	Riccardo	Patrese	\N	Italian	\N	1954-04-17	http://en.wikipedia.org/wiki/Riccardo_Patrese	ITA
+582	dryver	Bernard	de Dryver	\N	Belgian	\N	1952-09-19	http://en.wikipedia.org/wiki/Bernard_de_Dryver	BEL
+583	rebaque	Hector	Rebaque	\N	Mexican	\N	1956-02-05	http://en.wikipedia.org/wiki/Hector_Rebaque	MEX
+584	kozarowitzky	Mikko	Kozarowitzky	\N	Finnish	\N	1948-05-17	http://en.wikipedia.org/wiki/Mikko_Kozarowitzky	FIN
+585	tambay	Patrick	Tambay	\N	French	\N	1949-06-25	http://en.wikipedia.org/wiki/Patrick_Tambay	FRA
+586	gilles_villeneuve	Gilles	Villeneuve	\N	Canadian	\N	1950-01-18	http://en.wikipedia.org/wiki/Gilles_Villeneuve	CAN
+587	sutcliffe	Andy	Sutcliffe	\N	British	\N	1947-05-09	http://en.wikipedia.org/wiki/Andy_Sutcliffe	GBR
+588	mcguire	Brian	McGuire	\N	Australian	\N	1945-12-13	http://en.wikipedia.org/wiki/Brian_McGuire	AUS
+589	heyer	Hans	Heyer	\N	German	\N	1943-03-16	http://en.wikipedia.org/wiki/Hans_Heyer	DEU
+590	bleekemolen	Michael	Bleekemolen	\N	Dutch	\N	1949-10-02	http://en.wikipedia.org/wiki/Michael_Bleekemolen	NLD
+591	giacomelli	Bruno	Giacomelli	\N	Italian	\N	1952-09-10	http://en.wikipedia.org/wiki/Bruno_Giacomelli	ITA
+592	leoni	Lamberto	Leoni	\N	Italian	\N	1953-05-24	http://en.wikipedia.org/wiki/Lamberto_Leoni	ITA
+593	francia	Giorgio	Francia	\N	Italian	\N	1947-11-08	http://en.wikipedia.org/wiki/Giorgio_Francia	ITA
+594	ongais	Danny	Ongais	\N	American	\N	1942-05-21	http://en.wikipedia.org/wiki/Danny_Ongais	USA
+595	takahashi	Kunimitsu	Takahashi	\N	Japanese	\N	1940-01-29	http://en.wikipedia.org/wiki/Kunimitsu_Takahashi	JPN
+596	pironi	Didier	Pironi	\N	French	\N	1952-03-26	http://en.wikipedia.org/wiki/Didier_Pironi	FRA
+597	cheever	Eddie	Cheever	\N	American	\N	1958-01-10	http://en.wikipedia.org/wiki/Eddie_Cheever	USA
+598	keke_rosberg	Keke	Rosberg	\N	Finnish	\N	1948-12-06	http://en.wikipedia.org/wiki/Keke_Rosberg	FIN
+599	arnoux	René	Arnoux	\N	French	\N	1948-07-04	http://en.wikipedia.org/wiki/Ren%C3%A9_Arnoux	FRA
+600	daly	Derek	Daly	\N	Irish	\N	1953-03-11	http://en.wikipedia.org/wiki/Derek_Daly	IRL
+601	colombo	Alberto	Colombo	\N	Italian	\N	1946-02-23	http://en.wikipedia.org/wiki/Alberto_Colombo	ITA
+602	lees	Geoff	Lees	\N	British	\N	1951-05-01	http://en.wikipedia.org/wiki/Geoff_Lees	GBR
+603	piquet	Nelson	Piquet	\N	Brazilian	\N	1952-08-17	http://en.wikipedia.org/wiki/Nelson_Piquet	BRA
+604	gimax	Carlo	Franchi	\N	Italian	\N	1938-01-01	http://en.wikipedia.org/wiki/Gimax	ITA
+605	rahal	Bobby	Rahal	\N	American	\N	1953-01-10	http://en.wikipedia.org/wiki/Bobby_Rahal	USA
+606	gabbiani	Beppe	Gabbiani	\N	Italian	\N	1957-01-02	http://en.wikipedia.org/wiki/Beppe_Gabbiani	ITA
+607	angelis	Elio	de Angelis	\N	Italian	\N	1958-03-26	http://en.wikipedia.org/wiki/Elio_de_Angelis	ITA
+608	lammers	Jan	Lammers	\N	Dutch	\N	1956-06-02	http://en.wikipedia.org/wiki/Jan_Lammers	NLD
+609	brancatelli	Gianfranco	Brancatelli	\N	Italian	\N	1950-01-18	http://en.wikipedia.org/wiki/Gianfranco_Brancatelli	ITA
+610	gaillard	Patrick	Gaillard	\N	French	\N	1952-02-12	http://en.wikipedia.org/wiki/Patrick_Gaillard	FRA
+611	surer	Marc	Surer	\N	Swiss	\N	1951-09-18	http://en.wikipedia.org/wiki/Marc_Surer	CHE
+612	zunino	Ricardo	Zunino	\N	Argentine	\N	1949-04-13	http://en.wikipedia.org/wiki/Ricardo_Zunino	ARG
+613	prost	Alain	Prost	\N	French	\N	1955-02-24	http://en.wikipedia.org/wiki/Alain_Prost	FRA
+614	kennedy	Dave	Kennedy	\N	Irish	\N	1953-01-15	http://en.wikipedia.org/wiki/David_Kennedy_(racing_driver)	IRL
+615	johansson	Stefan	Johansson	\N	Swedish	\N	1956-09-08	http://en.wikipedia.org/wiki/Stefan_Johansson	SWE
+616	south	Stephen	South	\N	British	\N	1952-02-19	http://en.wikipedia.org/wiki/Stephen_South	GBR
+617	needell	Tiff	Needell	\N	British	\N	1951-10-29	http://en.wikipedia.org/wiki/Tiff_Needell	GBR
+618	desire_wilson	Desiré	Wilson	\N	South African	\N	1953-11-26	http://en.wikipedia.org/wiki/Desir%C3%A9_Wilson	ZAF
+619	mansell	Nigel	Mansell	\N	British	\N	1953-08-08	http://en.wikipedia.org/wiki/Nigel_Mansell	GBR
+620	thackwell	Mike	Thackwell	\N	New Zealander	\N	1961-03-30	http://en.wikipedia.org/wiki/Mike_Thackwell	NZL
+621	manfred_winkelhock	Manfred	Winkelhock	\N	German	\N	1951-10-06	http://en.wikipedia.org/wiki/Manfred_Winkelhock	DEU
+622	cesaris	Andrea	de Cesaris	\N	Italian	\N	1959-05-31	http://en.wikipedia.org/wiki/Andrea_de_Cesaris	ITA
+623	cogan	Kevin	Cogan	\N	American	\N	1956-03-31	http://en.wikipedia.org/wiki/Kevin_Cogan	USA
+624	serra	Chico	Serra	\N	Brazilian	\N	1957-02-03	http://en.wikipedia.org/wiki/Chico_Serra	BRA
+625	guerra	Miguel Ángel	Guerra	\N	Argentine	\N	1953-08-31	http://en.wikipedia.org/wiki/Miguel_Angel_Guerra	ARG
+626	stohr	Siegfried	Stohr	\N	Italian	\N	1952-10-10	http://en.wikipedia.org/wiki/Siegfried_Stohr	ITA
+627	salazar	Eliseo	Salazar	\N	Chilean	\N	1954-11-14	http://en.wikipedia.org/wiki/Eliseo_Salazar	CHL
+628	londono	Ricardo	Londoño	\N	Colombian	\N	1949-08-08	http://en.wikipedia.org/wiki/Ricardo_Londo%C3%B1o	COL
+629	borgudd	Slim	Borgudd	\N	Swedish	\N	1946-11-25	http://en.wikipedia.org/wiki/Slim_Borgudd	SWE
+630	alboreto	Michele	Alboreto	\N	Italian	\N	1956-12-23	http://en.wikipedia.org/wiki/Michele_Alboreto	ITA
+631	warwick	Derek	Warwick	\N	British	\N	1954-08-27	http://en.wikipedia.org/wiki/Derek_Warwick	GBR
+632	ghinzani	Piercarlo	Ghinzani	\N	Italian	\N	1952-01-16	http://en.wikipedia.org/wiki/Piercarlo_Ghinzani	ITA
+633	villeneuve_sr	Jacques	Villeneuve Sr.	\N	Canadian	\N	1953-11-04	http://en.wikipedia.org/wiki/Jacques_Villeneuve_(elder)	CAN
+634	boesel	Raul	Boesel	\N	Brazilian	\N	1957-12-04	http://en.wikipedia.org/wiki/Raul_Boesel	BRA
+635	baldi	Mauro	Baldi	\N	Italian	\N	1954-01-31	http://en.wikipedia.org/wiki/Mauro_Baldi	ITA
+636	paletti	Riccardo	Paletti	\N	Italian	\N	1958-06-15	http://en.wikipedia.org/wiki/Riccardo_Paletti	ITA
+637	guerrero	Roberto	Guerrero	\N	Colombian	\N	1958-11-16	http://en.wikipedia.org/wiki/Roberto_Guerrero	COL
+638	fabi	Teo	Fabi	\N	Italian	\N	1955-03-09	http://en.wikipedia.org/wiki/Teo_Fabi	ITA
+639	moreno	Roberto	Moreno	\N	Brazilian	\N	1959-02-11	http://en.wikipedia.org/wiki/Roberto_Moreno	BRA
+640	byrne	Tommy	Byrne	\N	Irish	\N	1958-05-06	http://en.wikipedia.org/wiki/Tommy_Byrne_%28racing_driver%29	IRL
+641	sullivan	Danny	Sullivan	\N	American	\N	1950-03-09	http://en.wikipedia.org/wiki/Danny_Sullivan	USA
+642	cecotto	Johnny	Cecotto	\N	Venezuelan	\N	1956-01-25	http://en.wikipedia.org/wiki/Johnny_Cecotto	VEN
+643	corrado_fabi	Corrado	Fabi	\N	Italian	\N	1961-04-12	http://en.wikipedia.org/wiki/Corrado_Fabi	ITA
+644	schlesser	Jean-Louis	Schlesser	\N	French	\N	1948-09-12	http://en.wikipedia.org/wiki/Jean-Louis_Schlesser	FRA
+645	boutsen	Thierry	Boutsen	\N	Belgian	\N	1957-07-13	http://en.wikipedia.org/wiki/Thierry_Boutsen	BEL
+646	acheson	Kenny	Acheson	\N	British	\N	1957-11-27	http://en.wikipedia.org/wiki/Kenny_Acheson	GBR
+647	palmer	Jonathan	Palmer	\N	British	\N	1956-11-07	http://en.wikipedia.org/wiki/Jonathan_Palmer	GBR
+648	brundle	Martin	Brundle	\N	British	\N	1959-06-01	http://en.wikipedia.org/wiki/Martin_Brundle	GBR
+649	hesnault	François	Hesnault	\N	French	\N	1956-12-30	http://en.wikipedia.org/wiki/Fran%C3%A7ois_Hesnault	FRA
+650	alliot	Philippe	Alliot	\N	French	\N	1954-07-27	http://en.wikipedia.org/wiki/Philippe_Alliot	FRA
+651	bellof	Stefan	Bellof	\N	German	\N	1957-11-20	http://en.wikipedia.org/wiki/Stefan_Bellof	DEU
+652	senna	Ayrton	Senna	\N	Brazilian	\N	1960-03-21	http://en.wikipedia.org/wiki/Ayrton_Senna	BRA
+653	gartner	Jo	Gartner	\N	Austrian	\N	1954-01-24	http://en.wikipedia.org/wiki/Jo_Gartner	AUT
+654	rothengatter	Huub	Rothengatter	\N	Dutch	\N	1954-10-08	http://en.wikipedia.org/wiki/Huub_Rothengatter	NLD
+655	berger	Gerhard	Berger	\N	Austrian	\N	1959-08-27	http://en.wikipedia.org/wiki/Gerhard_Berger	AUT
+656	martini	Pierluigi	Martini	\N	Italian	\N	1961-04-23	http://en.wikipedia.org/wiki/Pierluigi_Martini	ITA
+657	streiff	Philippe	Streiff	\N	French	\N	1955-06-26	http://en.wikipedia.org/wiki/Philippe_Streiff	FRA
+658	danner	Christian	Danner	\N	German	\N	1958-04-04	http://en.wikipedia.org/wiki/Christian_Danner	DEU
+659	capelli	Ivan	Capelli	\N	Italian	\N	1963-05-24	http://en.wikipedia.org/wiki/Ivan_Capelli	ITA
+660	dumfries	Johnny	Dumfries	\N	British	\N	1958-04-26	http://en.wikipedia.org/wiki/Johnny_Dumfries	GBR
+661	nannini	Alessandro	Nannini	\N	Italian	\N	1959-07-07	http://en.wikipedia.org/wiki/Alessandro_Nannini	ITA
+662	berg	Allen	Berg	\N	Canadian	\N	1961-08-01	http://en.wikipedia.org/wiki/Allen_Berg	CAN
+663	caffi	Alex	Caffi	\N	Italian	\N	1964-03-18	http://en.wikipedia.org/wiki/Alex_Caffi	ITA
+664	satoru_nakajima	Satoru	Nakajima	\N	Japanese	\N	1953-02-23	http://en.wikipedia.org/wiki/Satoru_Nakajima	JPN
+665	fabre	Pascal	Fabre	\N	French	\N	1960-01-09	http://en.wikipedia.org/wiki/Pascal_Fabre	FRA
+666	campos	Adrián	Campos	\N	Spanish	\N	1960-06-17	http://en.wikipedia.org/wiki/Adri%C3%A1n_Campos	ESP
+667	tarquini	Gabriele	Tarquini	\N	Italian	\N	1962-03-02	http://en.wikipedia.org/wiki/Gabriele_Tarquini	ITA
+668	forini	Franco	Forini	\N	Swiss	\N	1958-09-22	http://en.wikipedia.org/wiki/Franco_Forini	CHE
+669	larini	Nicola	Larini	\N	Italian	\N	1964-03-19	http://en.wikipedia.org/wiki/Nicola_Larini	ITA
+670	dalmas	Yannick	Dalmas	\N	French	\N	1961-07-28	http://en.wikipedia.org/wiki/Yannick_Dalmas	FRA
+671	modena	Stefano	Modena	\N	Italian	\N	1963-05-12	http://en.wikipedia.org/wiki/Stefano_Modena	ITA
+672	sala	Luis	Pérez-Sala	\N	Spanish	\N	1959-05-15	http://en.wikipedia.org/wiki/Luis_Perez-Sala	ESP
+673	gugelmin	Maurício	Gugelmin	\N	Brazilian	\N	1963-04-20	http://en.wikipedia.org/wiki/Maur%C3%ADcio_Gugelmin	BRA
+674	larrauri	Oscar	Larrauri	\N	Argentine	\N	1954-08-19	http://en.wikipedia.org/wiki/Oscar_Larrauri	ARG
+675	bailey	Julian	Bailey	\N	British	\N	1961-10-09	http://en.wikipedia.org/wiki/Julian_Bailey	GBR
+676	schneider	Bernd	Schneider	\N	German	\N	1964-07-20	http://en.wikipedia.org/wiki/Bernd_Schneider_(racecar_driver)	DEU
+677	suzuki	Aguri	Suzuki	\N	Japanese	\N	1960-09-08	http://en.wikipedia.org/wiki/Aguri_Suzuki	JPN
+678	raphanel	Pierre-Henri	Raphanel	\N	French	\N	1961-05-27	http://en.wikipedia.org/wiki/Pierre-Henri_Raphanel	FRA
+679	herbert	Johnny	Herbert	\N	British	\N	1964-06-25	http://en.wikipedia.org/wiki/Johnny_Herbert	GBR
+680	grouillard	Olivier	Grouillard	\N	French	\N	1958-09-02	http://en.wikipedia.org/wiki/Olivier_Grouillard	FRA
+681	foitek	Gregor	Foitek	\N	Swiss	\N	1965-03-27	http://en.wikipedia.org/wiki/Gregor_Foitek	CHE
+682	weidler	Volker	Weidler	\N	German	\N	1962-03-18	http://en.wikipedia.org/wiki/Volker_Weidler	DEU
+683	joachim_winkelhock	Joachim	Winkelhock	\N	German	\N	1960-10-24	http://en.wikipedia.org/wiki/Joachim_Winkelhock	DEU
+684	gachot	Bertrand	Gachot	\N	Belgian	\N	1962-12-23	http://en.wikipedia.org/wiki/Bertrand_Gachot	BEL
+685	alesi	Jean	Alesi	\N	French	\N	1964-06-11	http://en.wikipedia.org/wiki/Jean_Alesi	FRA
+686	pirro	Emanuele	Pirro	\N	Italian	\N	1962-01-12	http://en.wikipedia.org/wiki/Emanuele_Pirro	ITA
+687	bernard	Éric	Bernard	\N	French	\N	1964-08-24	http://en.wikipedia.org/wiki/%C3%89ric_Bernard	FRA
+688	donnelly	Martin	Donnelly	\N	British	\N	1964-03-26	http://en.wikipedia.org/wiki/Martin_Donnelly_(racing_driver)	GBR
+689	bertaggia	Enrico	Bertaggia	\N	Italian	\N	1964-09-19	http://en.wikipedia.org/wiki/Enrico_Bertaggia	ITA
+690	lehto	Jyrki	Järvilehto	\N	Finnish	\N	1966-01-31	http://en.wikipedia.org/wiki/Jyrki_J%C3%A4rvilehto	FIN
+691	barilla	Paolo	Barilla	\N	Italian	\N	1961-04-20	http://en.wikipedia.org/wiki/Paolo_Barilla	ITA
+692	morbidelli	Gianni	Morbidelli	\N	Italian	\N	1968-01-13	http://en.wikipedia.org/wiki/Gianni_Morbidelli	ITA
+693	langes	Claudio	Langes	\N	Italian	\N	1960-07-20	http://en.wikipedia.org/wiki/Claudio_Langes	ITA
+694	gary_brabham	Gary	Brabham	\N	Australian	\N	1961-03-29	http://en.wikipedia.org/wiki/Gary_Brabham	AUS
+695	brabham	David	Brabham	\N	Australian	\N	1965-09-05	http://en.wikipedia.org/wiki/David_Brabham	AUS
+696	hakkinen	Mika	Häkkinen	\N	Finnish	\N	1968-09-28	http://en.wikipedia.org/wiki/Mika_H%C3%A4kkinen	FIN
+697	blundell	Mark	Blundell	\N	British	\N	1966-04-08	http://en.wikipedia.org/wiki/Mark_Blundell	GBR
+698	comas	Érik	Comas	\N	French	\N	1963-09-28	http://en.wikipedia.org/wiki/%C3%89rik_Comas	FRA
+699	chaves	Pedro	Chaves	\N	Portuguese	\N	1965-02-27	http://en.wikipedia.org/wiki/Pedro_Chaves	PRT
+700	poele	Eric	van de Poele	\N	Belgian	\N	1961-09-30	http://en.wikipedia.org/wiki/Eric_van_de_Poele	BEL
+701	barbazza	Fabrizio	Barbazza	\N	Italian	\N	1963-04-02	http://en.wikipedia.org/wiki/Fabrizio_Barbazza	ITA
+702	bartels	Michael	Bartels	\N	German	\N	1968-03-08	http://en.wikipedia.org/wiki/Michael_Bartels	DEU
+703	michael_schumacher	Michael	Schumacher	MSC	German	\N	1969-01-03	http://en.wikipedia.org/wiki/Michael_Schumacher	DEU
+704	zanardi	Alessandro	Zanardi	\N	Italian	\N	1966-10-23	http://en.wikipedia.org/wiki/Alex_Zanardi	ITA
+705	wendlinger	Karl	Wendlinger	\N	Austrian	\N	1968-12-20	http://en.wikipedia.org/wiki/Karl_Wendlinger	AUT
+706	hattori	Naoki	Hattori	\N	Japanese	\N	1966-06-13	http://en.wikipedia.org/wiki/Naoki_Hattori	JPN
+707	katayama	Ukyo	Katayama	\N	Japanese	\N	1963-05-29	http://en.wikipedia.org/wiki/Ukyo_Katayama	JPN
+708	fittipaldi	Christian	Fittipaldi	\N	Brazilian	\N	1971-01-18	http://en.wikipedia.org/wiki/Christian_Fittipaldi	BRA
+709	belmondo	Paul	Belmondo	\N	French	\N	1963-04-23	http://en.wikipedia.org/wiki/Paul_Belmondo	FRA
+710	chiesa	Andrea	Chiesa	\N	Swiss	\N	1964-05-06	http://en.wikipedia.org/wiki/Andrea_Chiesa	CHE
+711	amati	Giovanna	Amati	\N	Italian	\N	1959-07-20	http://en.wikipedia.org/wiki/Giovanna_Amati	ITA
+712	damon_hill	Damon	Hill	\N	British	\N	1960-09-17	http://en.wikipedia.org/wiki/Damon_Hill	GBR
+713	mccarthy	Perry	McCarthy	\N	British	\N	1961-03-03	http://en.wikipedia.org/wiki/Perry_McCarthy	GBR
+714	naspetti	Emanuele	Naspetti	\N	Italian	\N	1968-02-24	http://en.wikipedia.org/wiki/Emanuele_Naspetti	ITA
+715	barrichello	Rubens	Barrichello	BAR	Brazilian	\N	1972-05-23	http://en.wikipedia.org/wiki/Rubens_Barrichello	BRA
+716	badoer	Luca	Badoer	BAD	Italian	\N	1971-01-25	http://en.wikipedia.org/wiki/Luca_Badoer	ITA
+717	andretti	Michael	Andretti	\N	American	\N	1962-10-05	http://en.wikipedia.org/wiki/Michael_Andretti	USA
+718	lamy	Pedro	Lamy	\N	Portuguese	\N	1972-03-20	http://en.wikipedia.org/wiki/Pedro_Lamy	PRT
+719	apicella	Marco	Apicella	\N	Italian	\N	1965-10-07	http://en.wikipedia.org/wiki/Marco_Apicella	ITA
+720	irvine	Eddie	Irvine	\N	British	\N	1965-11-10	http://en.wikipedia.org/wiki/Eddie_Irvine	GBR
+721	toshio_suzuki	Toshio	Suzuki	\N	Japanese	\N	1955-03-10	http://en.wikipedia.org/wiki/Toshio_Suzuki_(driver)	JPN
+722	gounon	Jean-Marc	Gounon	\N	French	\N	1963-01-01	http://en.wikipedia.org/wiki/Jean-Marc_Gounon	FRA
+723	panis	Olivier	Panis	\N	French	\N	1966-09-02	http://en.wikipedia.org/wiki/Olivier_Panis	FRA
+724	verstappen	Jos	Verstappen	\N	Dutch	\N	1972-03-04	http://en.wikipedia.org/wiki/Jos_Verstappen	NLD
+725	frentzen	Heinz-Harald	Frentzen	\N	German	\N	1967-05-18	http://en.wikipedia.org/wiki/Heinz-Harald_Frentzen	DEU
+726	beretta	Olivier	Beretta	\N	Monegasque	\N	1969-11-23	http://en.wikipedia.org/wiki/Olivier_Beretta	MCO
+727	ratzenberger	Roland	Ratzenberger	\N	Austrian	\N	1960-07-04	http://en.wikipedia.org/wiki/Roland_Ratzenberger	AUT
+728	coulthard	David	Coulthard	COU	British	\N	1971-03-27	http://en.wikipedia.org/wiki/David_Coulthard	GBR
+729	montermini	Andrea	Montermini	\N	Italian	\N	1964-05-30	http://en.wikipedia.org/wiki/Andrea_Montermini	ITA
+730	adams	Philippe	Adams	\N	Belgian	\N	1969-11-19	http://en.wikipedia.org/wiki/Philippe_Adams	BEL
+731	schiattarella	Domenico	Schiattarella	\N	Italian	\N	1967-11-17	http://en.wikipedia.org/wiki/Domenico_Schiattarella	ITA
+732	noda	Hideki	Noda	\N	Japanese	\N	1969-03-07	http://en.wikipedia.org/wiki/Hideki_Noda	JPN
+733	salo	Mika	Salo	\N	Finnish	\N	1966-11-30	http://en.wikipedia.org/wiki/Mika_Salo	FIN
+734	lagorce	Franck	Lagorce	\N	French	\N	1968-09-01	http://en.wikipedia.org/wiki/Franck_Lagorce	FRA
+735	inoue	Taki	Inoue	\N	Japanese	\N	1963-09-05	http://en.wikipedia.org/wiki/Taki_Inoue	JPN
+736	deletraz	Jean-Denis	Délétraz	\N	Swiss	\N	1963-10-01	http://en.wikipedia.org/wiki/Jean-Denis_Deletraz	CHE
+737	diniz	Pedro	Diniz	\N	Brazilian	\N	1970-05-22	http://en.wikipedia.org/wiki/Pedro_Diniz	BRA
+738	boullion	Jean-Christophe	Boullion	\N	French	\N	1969-12-27	http://en.wikipedia.org/wiki/Jean-Christophe_Boullion	FRA
+739	papis	Massimiliano	Papis	\N	Italian	\N	1969-10-03	http://en.wikipedia.org/wiki/Massimiliano_Papis	ITA
+740	lavaggi	Giovanni	Lavaggi	\N	Italian	\N	1958-02-18	http://en.wikipedia.org/wiki/Giovanni_Lavaggi	ITA
+741	magnussen	Jan	Magnussen	MAG	Danish	\N	1973-07-04	http://en.wikipedia.org/wiki/Jan_Magnussen	DNK
+742	villeneuve	Jacques	Villeneuve	VIL	Canadian	\N	1971-04-09	http://en.wikipedia.org/wiki/Jacques_Villeneuve	CAN
+743	rosset	Ricardo	Rosset	\N	Brazilian	\N	1968-07-27	http://en.wikipedia.org/wiki/Ricardo_Rosset	BRA
+744	fisichella	Giancarlo	Fisichella	FIS	Italian	\N	1973-01-14	http://en.wikipedia.org/wiki/Giancarlo_Fisichella	ITA
+745	marques	Tarso	Marques	\N	Brazilian	\N	1976-01-19	http://en.wikipedia.org/wiki/Tarso_Marques	BRA
+746	nakano	Shinji	Nakano	\N	Japanese	\N	1971-04-01	http://en.wikipedia.org/wiki/Shinji_Nakano	JPN
+747	trulli	Jarno	Trulli	TRU	Italian	\N	1974-07-13	http://en.wikipedia.org/wiki/Jarno_Trulli	ITA
+748	ralf_schumacher	Ralf	Schumacher	SCH	German	\N	1975-06-30	http://en.wikipedia.org/wiki/Ralf_Schumacher	DEU
+749	sospiri	Vincenzo	Sospiri	\N	Italian	\N	1966-10-07	http://en.wikipedia.org/wiki/Vincenzo_Sospiri	ITA
+750	wurz	Alexander	Wurz	WUR	Austrian	\N	1974-02-15	http://en.wikipedia.org/wiki/Alexander_Wurz	AUT
+751	fontana	Norberto	Fontana	\N	Argentine	\N	1975-01-20	http://en.wikipedia.org/wiki/Norberto_Fontana	ARG
+752	tuero	Esteban	Tuero	\N	Argentine	\N	1978-04-22	http://en.wikipedia.org/wiki/Esteban_Tuero	ARG
+753	takagi	Toranosuke	Takagi	\N	Japanese	\N	1974-02-12	http://en.wikipedia.org/wiki/Toranosuke_Takagi	JPN
+754	rosa	Pedro	de la Rosa	DLR	Spanish	\N	1971-02-24	http://en.wikipedia.org/wiki/Pedro_de_la_Rosa	ESP
+755	zonta	Ricardo	Zonta	ZON	Brazilian	\N	1976-03-23	http://en.wikipedia.org/wiki/Ricardo_Zonta	BRA
+756	gene	Marc	Gené	\N	Spanish	\N	1974-03-29	http://en.wikipedia.org/wiki/Marc_Gen%C3%A9	ESP
+757	sarrazin	Stéphane	Sarrazin	\N	French	\N	1975-11-02	http://en.wikipedia.org/wiki/St%C3%A9phane_Sarrazin	FRA
+758	heidfeld	Nick	Heidfeld	HEI	German	\N	1977-05-10	http://en.wikipedia.org/wiki/Nick_Heidfeld	DEU
+759	button	Jenson	Button	BUT	British	22	1980-01-19	http://en.wikipedia.org/wiki/Jenson_Button	GBR
+760	mazzacane	Gastón	Mazzacane	\N	Argentine	\N	1975-05-08	http://en.wikipedia.org/wiki/Gast%C3%B3n_Mazzacane	ARG
+761	burti	Luciano	Burti	\N	Brazilian	\N	1975-03-05	http://en.wikipedia.org/wiki/Luciano_Burti	BRA
+762	raikkonen	Kimi	Räikkönen	RAI	Finnish	7	1979-10-17	http://en.wikipedia.org/wiki/Kimi_R%C3%A4ikk%C3%B6nen	FIN
+763	alonso	Fernando	Alonso	ALO	Spanish	14	1981-07-29	http://en.wikipedia.org/wiki/Fernando_Alonso	ESP
+764	montoya	Juan	Pablo Montoya	MON	Colombian	\N	1975-09-20	http://en.wikipedia.org/wiki/Juan_Pablo_Montoya	COL
+765	bernoldi	Enrique	Bernoldi	\N	Brazilian	\N	1978-10-19	http://en.wikipedia.org/wiki/Enrique_Bernoldi	BRA
+766	enge	Tomáš	Enge	\N	Czech	\N	1976-09-11	http://en.wikipedia.org/wiki/Tom%C3%A1%C5%A1_Enge	CZE
+767	yoong	Alex	Yoong	\N	Malaysian	\N	1976-07-20	http://en.wikipedia.org/wiki/Alex_Yoong	MYS
+768	webber	Mark	Webber	WEB	Australian	\N	1976-08-27	http://en.wikipedia.org/wiki/Mark_Webber_(racing_driver)	AUS
+769	sato	Takuma	Sato	SAT	Japanese	\N	1977-01-28	http://en.wikipedia.org/wiki/Takuma_Sato	JPN
+770	massa	Felipe	Massa	MAS	Brazilian	19	1981-04-25	http://en.wikipedia.org/wiki/Felipe_Massa	BRA
+771	mcnish	Allan	McNish	\N	British	\N	1969-12-29	http://en.wikipedia.org/wiki/Allan_McNish	GBR
+772	davidson	Anthony	Davidson	DAV	British	\N	1979-04-18	http://en.wikipedia.org/wiki/Anthony_Davidson	GBR
+773	pizzonia	Antônio	Pizzonia	PIZ	Brazilian	\N	1980-09-11	http://en.wikipedia.org/wiki/Ant%C3%B4nio_Pizzonia	BRA
+774	wilson	Justin	Wilson	\N	British	\N	1978-07-31	http://en.wikipedia.org/wiki/Justin_Wilson_(racing_driver)	GBR
+775	matta	Cristiano	da Matta	\N	Brazilian	\N	1973-09-19	http://en.wikipedia.org/wiki/Cristiano_da_Matta	BRA
+776	firman	Ralph	Firman	\N	Irish	\N	1975-05-20	http://en.wikipedia.org/wiki/Ralph_Firman	IRL
+777	kiesa	Nicolas	Kiesa	\N	Danish	\N	1978-03-03	http://en.wikipedia.org/wiki/Nicolas_Kiesa	DNK
+778	baumgartner	Zsolt	Baumgartner	\N	Hungarian	\N	1981-01-01	http://en.wikipedia.org/wiki/Zsolt_Baumgartner	HUN
+779	klien	Christian	Klien	KLI	Austrian	\N	1983-02-07	http://en.wikipedia.org/wiki/Christian_Klien	AUT
+780	pantano	Giorgio	Pantano	\N	Italian	\N	1979-02-04	http://en.wikipedia.org/wiki/Giorgio_Pantano	ITA
+781	bruni	Gianmaria	Bruni	\N	Italian	\N	1981-05-30	http://en.wikipedia.org/wiki/Gianmaria_Bruni	ITA
+782	glock	Timo	Glock	GLO	German	\N	1982-03-18	http://en.wikipedia.org/wiki/Timo_Glock	DEU
+783	karthikeyan	Narain	Karthikeyan	KAR	Indian	\N	1977-01-14	http://en.wikipedia.org/wiki/Narain_Karthikeyan	IND
+784	monteiro	Tiago	Monteiro	TMO	Portuguese	\N	1976-07-24	http://en.wikipedia.org/wiki/Tiago_Monteiro	PRT
+785	friesacher	Patrick	Friesacher	FRI	Austrian	\N	1980-09-26	http://en.wikipedia.org/wiki/Patrick_Friesacher	AUT
+786	albers	Christijan	Albers	ALB	Dutch	\N	1979-04-16	http://en.wikipedia.org/wiki/Christijan_Albers	NLD
+787	liuzzi	Vitantonio	Liuzzi	LIU	Italian	\N	1980-08-06	http://en.wikipedia.org/wiki/Vitantonio_Liuzzi	ITA
+788	doornbos	Robert	Doornbos	DOO	Dutch	\N	1981-09-23	http://en.wikipedia.org/wiki/Robert_Doornbos	NLD
+789	rosberg	Nico	Rosberg	ROS	German	6	1985-06-27	http://en.wikipedia.org/wiki/Nico_Rosberg	DEU
+790	speed	Scott	Speed	SPE	American	\N	1983-01-24	http://en.wikipedia.org/wiki/Scott_Speed	USA
+791	ide	Yuji	Ide	IDE	Japanese	\N	1975-01-21	http://en.wikipedia.org/wiki/Yuji_Ide	JPN
+792	montagny	Franck	Montagny	FMO	French	\N	1978-01-05	http://en.wikipedia.org/wiki/Franck_Montagny	FRA
+793	yamamoto	Sakon	Yamamoto	YAM	Japanese	\N	1982-07-09	http://en.wikipedia.org/wiki/Sakon_Yamamoto	JPN
+794	kubica	Robert	Kubica	KUB	Polish	88	1984-12-07	http://en.wikipedia.org/wiki/Robert_Kubica	POL
+795	hamilton	Lewis	Hamilton	HAM	British	44	1985-01-07	http://en.wikipedia.org/wiki/Lewis_Hamilton	GBR
+796	kovalainen	Heikki	Kovalainen	KOV	Finnish	\N	1981-10-19	http://en.wikipedia.org/wiki/Heikki_Kovalainen	FIN
+797	sutil	Adrian	Sutil	SUT	German	99	1983-01-11	http://en.wikipedia.org/wiki/Adrian_Sutil	DEU
+798	vettel	Sebastian	Vettel	VET	German	5	1987-07-03	http://en.wikipedia.org/wiki/Sebastian_Vettel	DEU
+799	markus_winkelhock	Markus	Winkelhock	WIN	German	\N	1980-06-13	http://en.wikipedia.org/wiki/Markus_Winkelhock	DEU
+800	nakajima	Kazuki	Nakajima	NAK	Japanese	\N	1985-01-11	http://en.wikipedia.org/wiki/Kazuki_Nakajima	JPN
+801	bourdais	Sébastien	Bourdais	BOU	French	\N	1979-02-28	http://en.wikipedia.org/wiki/S%C3%A9bastien_Bourdais	FRA
+802	piquet_jr	Nelson	Piquet Jr.	PIQ	Brazilian	\N	1985-07-25	http://en.wikipedia.org/wiki/Nelson_Piquet,_Jr.	BRA
+803	buemi	Sébastien	Buemi	BUE	Swiss	\N	1988-10-31	http://en.wikipedia.org/wiki/S%C3%A9bastien_Buemi	CHE
+804	alguersuari	Jaime	Alguersuari	ALG	Spanish	\N	1990-03-23	http://en.wikipedia.org/wiki/Jaime_Alguersuari	ESP
+805	grosjean	Romain	Grosjean	GRO	French	8	1986-04-17	http://en.wikipedia.org/wiki/Romain_Grosjean	FRA
+806	kobayashi	Kamui	Kobayashi	KOB	Japanese	10	1986-09-13	http://en.wikipedia.org/wiki/Kamui_Kobayashi	JPN
+807	hulkenberg	Nico	Hülkenberg	HUL	German	27	1987-08-19	http://en.wikipedia.org/wiki/Nico_H%C3%BClkenberg	DEU
+808	bruno_senna	Bruno	Senna	SEN	Brazilian	\N	1983-10-15	http://en.wikipedia.org/wiki/Bruno_Senna	BRA
+809	petrov	Vitaly	Petrov	PET	Russian	\N	1984-09-08	http://en.wikipedia.org/wiki/Vitaly_Petrov	RUS
+810	grassi	Lucas	di Grassi	DIG	Brazilian	\N	1984-08-11	http://en.wikipedia.org/wiki/Lucas_di_Grassi	BRA
+811	chandhok	Karun	Chandhok	CHA	Indian	\N	1984-01-19	http://en.wikipedia.org/wiki/Karun_Chandhok	IND
+812	resta	Paul	di Resta	DIR	British	40	1986-04-16	http://en.wikipedia.org/wiki/Paul_di_Resta	GBR
+813	ambrosio	Jérôme	d'Ambrosio	DAM	Belgian	\N	1985-12-27	http://en.wikipedia.org/wiki/J%C3%A9r%C3%B4me_d%27Ambrosio	BEL
+814	maldonado	Pastor	Maldonado	MAL	Venezuelan	13	1985-03-09	http://en.wikipedia.org/wiki/Pastor_Maldonado	VEN
+815	perez	Sergio	Pérez	PER	Mexican	11	1990-01-26	http://en.wikipedia.org/wiki/Sergio_P%C3%A9rez	MEX
+816	ricciardo	Daniel	Ricciardo	RIC	Australian	3	1989-07-01	http://en.wikipedia.org/wiki/Daniel_Ricciardo	AUS
+817	vergne	Jean-Éric	Vergne	VER	French	25	1990-04-25	http://en.wikipedia.org/wiki/Jean-%C3%89ric_Vergne	FRA
+818	pic	Charles	Pic	PIC	French	\N	1990-02-15	http://en.wikipedia.org/wiki/Charles_Pic	FRA
+819	gutierrez	Esteban	Gutiérrez	GUT	Mexican	21	1991-08-05	http://en.wikipedia.org/wiki/Esteban_Guti%C3%A9rrez	MEX
+820	bottas	Valtteri	Bottas	BOT	Finnish	77	1989-08-28	http://en.wikipedia.org/wiki/Valtteri_Bottas	FIN
+821	jules_bianchi	Jules	Bianchi	BIA	French	17	1989-08-03	http://en.wikipedia.org/wiki/Jules_Bianchi	FRA
+822	chilton	Max	Chilton	CHI	British	4	1991-04-21	http://en.wikipedia.org/wiki/Max_Chilton	GBR
+823	garde	Giedo	van der Garde	VDG	Dutch	\N	1985-04-25	http://en.wikipedia.org/wiki/Giedo_van_der_Garde	NLD
+824	kevin_magnussen	Kevin	Magnussen	MAG	Danish	20	1992-10-05	http://en.wikipedia.org/wiki/Kevin_Magnussen	DNK
+825	kvyat	Daniil	Kvyat	KVY	Russian	26	1994-04-26	http://en.wikipedia.org/wiki/Daniil_Kvyat	RUS
+826	ericsson	Marcus	Ericsson	ERI	Swedish	9	1990-09-02	http://en.wikipedia.org/wiki/Marcus_Ericsson	SWE
+827	lotterer	André	Lotterer	LOT	German	45	1981-11-19	http://en.wikipedia.org/wiki/Andr%C3%A9_Lotterer	DEU
+828	stevens	Will	Stevens	STE	British	28	1991-06-28	http://en.wikipedia.org/wiki/Will_Stevens	GBR
+829	nasr	Felipe	Nasr	NAS	Brazilian	12	1992-08-21	http://en.wikipedia.org/wiki/Felipe_Nasr	BRA
+830	sainz	Carlos	Sainz	SAI	Spanish	55	1994-09-01	http://en.wikipedia.org/wiki/Carlos_Sainz_Jr.	ESP
+831	max_verstappen	Max	Verstappen	VER	Dutch	33	1997-09-30	http://en.wikipedia.org/wiki/Max_Verstappen	NLD
+832	merhi	Roberto	Merhi	MER	Spanish	98	1991-03-22	http://en.wikipedia.org/wiki/Roberto_Merhi	ESP
+833	rossi	Alexander	Rossi	RSS	American	53	1991-09-25	http://en.wikipedia.org/wiki/Alexander_Rossi_%28racing_driver%29	USA
+834	jolyon_palmer	Jolyon	Palmer	PAL	British	30	1991-01-20	http://en.wikipedia.org/wiki/Jolyon_Palmer	GBR
+835	wehrlein	Pascal	Wehrlein	WEH	German	94	1994-10-18	http://en.wikipedia.org/wiki/Pascal_Wehrlein	DEU
+836	haryanto	Rio	Haryanto	HAR	Indonesian	88	1993-01-22	http://en.wikipedia.org/wiki/Rio_Haryanto	IDN
+837	vandoorne	Stoffel	Vandoorne	VAN	Belgian	2	1992-03-26	http://en.wikipedia.org/wiki/Stoffel_Vandoorne	BEL
+838	ocon	Esteban	Ocon	OCO	French	31	1996-09-17	http://en.wikipedia.org/wiki/Esteban_Ocon	FRA
+839	giovinazzi	Antonio	Giovinazzi	GIO	Italian	99	1993-12-14	http://en.wikipedia.org/wiki/Antonio_Giovinazzi	ITA
+840	stroll	Lance	Stroll	STR	Canadian	18	1998-10-29	http://en.wikipedia.org/wiki/Lance_Stroll	CAN
+841	gasly	Pierre	Gasly	GAS	French	10	1996-02-07	http://en.wikipedia.org/wiki/Pierre_Gasly	FRA
+842	brendon_hartley	Brendon	Hartley	HAR	New Zealander	28	1989-11-10	http://en.wikipedia.org/wiki/Brendon_Hartley	NZL
+843	leclerc	Charles	Leclerc	LEC	Monegasque	16	1997-10-16	http://en.wikipedia.org/wiki/Charles_Leclerc	MCO
+844	sirotkin	Sergey	Sirotkin	SIR	Russian	35	1995-08-27	http://en.wikipedia.org/wiki/Sergey_Sirotkin_(racing_driver)	RUS
+845	norris	Lando	Norris	NOR	British	4	1999-11-13	http://en.wikipedia.org/wiki/Lando_Norris	GBR
+846	albon	Alexander	Albon	ALB	Thai	23	1996-03-23	http://en.wikipedia.org/wiki/Alexander_Albon	THA
+847	russell	George	Russell	RUS	British	63	1998-02-15	http://en.wikipedia.org/wiki/George_Russell_(racing_driver)	GBR
+848	latifi	Nicholas	Latifi	LAT	Canadian	6	1995-06-29	http://en.wikipedia.org/wiki/Nicholas_Latifi	CAN
+849	aitken	Jack	Aitken	AIT	British	89	1995-09-23	http://en.wikipedia.org/wiki/Jack_Aitken	GBR
+850	pietro_fittipaldi	Pietro	Fittipaldi	FIT	Brazilian	51	1996-06-25	http://en.wikipedia.org/wiki/Pietro_Fittipaldi	BRA
+851	tsunoda	Yuki	Tsunoda	TSU	Japanese	22	2000-05-11	http://en.wikipedia.org/wiki/Yuki_Tsunoda	JPN
+852	mick_schumacher	Mick	Schumacher	MSC	German	47	1999-03-22	http://en.wikipedia.org/wiki/Mick_Schumacher	DEU
+853	mazepin	Nikita	Mazepin	MAZ	Russian	9	1999-03-02	http://en.wikipedia.org/wiki/Nikita_Mazepin	RUS
+854	zhou	Guanyu	Zhou	ZHO	Chinese	24	1999-05-30	http://en.wikipedia.org/wiki/Zhou_Guanyu	CHN
+855	de_vries	Nyck	de Vries	DEV	Dutch	21	1995-02-06	http://en.wikipedia.org/wiki/Nyck_de_Vries	NLD
+856	sargeant	Logan	Sargeant	SAR	American	2	2000-12-31	http://en.wikipedia.org/wiki/Logan_Sargeant	USA
+857	piastri	Oscar	Piastri	PIA	Australian	81	2001-04-06	http://en.wikipedia.org/wiki/Oscar_Piastri	AUS
+858	lawson	Liam	Lawson	LAW	New Zealander	30	2002-02-11	http://en.wikipedia.org/wiki/Liam_Lawson	NZL
+859	bearman	Oliver	Bearman	BEA	British	87	2005-05-08	http://en.wikipedia.org/wiki/Oliver_Bearman	GBR
+860	colapinto	Franco	Colapinto	COL	Argentine	43	2003-05-27	http://en.wikipedia.org/wiki/Franco_Colapinto	ARG
+861	doohan	Jack	Doohan	DOO	Australian	7	2003-01-20	http://en.wikipedia.org/wiki/Jack_Doohan	AUS
+862	bortoleto	Gabriel	Bortoleto	BOR	Brazilian	5	2004-10-14	https://en.wikipedia.org/wiki/Gabriel_Bortoleto	BRA
+863	antonelli	Andrea Kimi	Antonelli	ANT	Italian	12	2006-08-25	https://en.wikipedia.org/wiki/Andrea_Kimi_Antonelli	ITA
+864	hadjar	Isack	Hadjar	HAD	French	6	2004-09-28	https://en.wikipedia.org/wiki/Isack_Hadjar	FRA
 \.
 
 
@@ -1062,81 +921,82 @@ COPY public.formula_one_driver (id, reference, forename, surname, abbreviation, 
 --
 
 COPY public.formula_one_season (id, year, wikipedia, championship_system_id) FROM stdin;
-1	1950	http://en.wikipedia.org/wiki/1950_Formula_One_season	1
-2	1951	http://en.wikipedia.org/wiki/1951_Formula_One_season	1
-3	1952	http://en.wikipedia.org/wiki/1952_Formula_One_season	1
-4	1953	http://en.wikipedia.org/wiki/1953_Formula_One_season	1
-5	1954	http://en.wikipedia.org/wiki/1954_Formula_One_season	2
-6	1955	http://en.wikipedia.org/wiki/1955_Formula_One_season	2
-7	1956	http://en.wikipedia.org/wiki/1956_Formula_One_season	2
-8	1957	http://en.wikipedia.org/wiki/1957_Formula_One_season	2
-9	1958	http://en.wikipedia.org/wiki/1958_Formula_One_season	3
-10	1959	http://en.wikipedia.org/wiki/1959_Formula_One_season	4
-11	1960	http://en.wikipedia.org/wiki/1960_Formula_One_season	3
-12	1961	http://en.wikipedia.org/wiki/1961_Formula_One_season	4
-13	1962	http://en.wikipedia.org/wiki/1962_Formula_One_season	4
-14	1963	http://en.wikipedia.org/wiki/1963_Formula_One_season	3
-15	1964	http://en.wikipedia.org/wiki/1964_Formula_One_season	3
-16	1965	http://en.wikipedia.org/wiki/1965_Formula_One_season	3
-17	1966	http://en.wikipedia.org/wiki/1966_Formula_One_season	4
-18	1967	http://en.wikipedia.org/wiki/1967_Formula_One_season	5
-19	1968	http://en.wikipedia.org/wiki/1968_Formula_One_season	5
-20	1969	http://en.wikipedia.org/wiki/1969_Formula_One_season	5
-21	1970	http://en.wikipedia.org/wiki/1970_Formula_One_season	5
-22	1971	http://en.wikipedia.org/wiki/1971_Formula_One_season	5
-23	1972	http://en.wikipedia.org/wiki/1972_Formula_One_season	5
-24	1973	http://en.wikipedia.org/wiki/1973_Formula_One_season	5
-25	1974	http://en.wikipedia.org/wiki/1974_Formula_One_season	5
-26	1975	http://en.wikipedia.org/wiki/1975_Formula_One_season	5
-27	1976	http://en.wikipedia.org/wiki/1976_Formula_One_season	5
-28	1977	http://en.wikipedia.org/wiki/1977_Formula_One_season	5
-29	1978	http://en.wikipedia.org/wiki/1978_Formula_One_season	5
-30	1979	http://en.wikipedia.org/wiki/1979_Formula_One_season	6
-31	1980	http://en.wikipedia.org/wiki/1980_Formula_One_season	7
-32	1981	http://en.wikipedia.org/wiki/1981_Formula_One_season	8
-33	1982	http://en.wikipedia.org/wiki/1982_Formula_One_season	8
-34	1983	http://en.wikipedia.org/wiki/1983_Formula_One_season	8
-35	1984	http://en.wikipedia.org/wiki/1984_Formula_One_season	8
-36	1985	http://en.wikipedia.org/wiki/1985_Formula_One_season	8
-37	1986	http://en.wikipedia.org/wiki/1986_Formula_One_season	8
-38	1987	http://en.wikipedia.org/wiki/1987_Formula_One_season	8
-39	1988	http://en.wikipedia.org/wiki/1988_Formula_One_season	8
-40	1989	http://en.wikipedia.org/wiki/1989_Formula_One_season	8
-41	1990	http://en.wikipedia.org/wiki/1990_Formula_One_season	8
-42	1991	http://en.wikipedia.org/wiki/1991_Formula_One_season	9
-43	1992	http://en.wikipedia.org/wiki/1992_Formula_One_season	9
-44	1993	http://en.wikipedia.org/wiki/1993_Formula_One_season	9
-45	1994	http://en.wikipedia.org/wiki/1994_Formula_One_season	9
-46	1995	http://en.wikipedia.org/wiki/1995_Formula_One_season	9
-47	1996	http://en.wikipedia.org/wiki/1996_Formula_One_season	9
-48	1997	http://en.wikipedia.org/wiki/1997_Formula_One_season	9
-49	1998	http://en.wikipedia.org/wiki/1998_Formula_One_season	9
-50	1999	http://en.wikipedia.org/wiki/1999_Formula_One_season	9
-51	2000	http://en.wikipedia.org/wiki/2000_Formula_One_season	9
-52	2001	http://en.wikipedia.org/wiki/2001_Formula_One_season	9
-53	2002	http://en.wikipedia.org/wiki/2002_Formula_One_season	10
-54	2003	http://en.wikipedia.org/wiki/2003_Formula_One_season	10
-55	2004	http://en.wikipedia.org/wiki/2004_Formula_One_season	10
-56	2005	http://en.wikipedia.org/wiki/2005_Formula_One_season	10
-57	2006	http://en.wikipedia.org/wiki/2006_Formula_One_season	10
-58	2007	http://en.wikipedia.org/wiki/2007_Formula_One_season	10
-59	2008	http://en.wikipedia.org/wiki/2008_Formula_One_season	10
-60	2009	http://en.wikipedia.org/wiki/2009_Formula_One_season	10
-61	2010	http://en.wikipedia.org/wiki/2010_Formula_One_season	10
-62	2011	http://en.wikipedia.org/wiki/2011_Formula_One_season	10
-63	2012	http://en.wikipedia.org/wiki/2012_Formula_One_season	10
-64	2013	http://en.wikipedia.org/wiki/2013_Formula_One_season	10
-65	2014	http://en.wikipedia.org/wiki/2014_Formula_One_season	10
-66	2015	http://en.wikipedia.org/wiki/2015_Formula_One_season	10
-67	2016	http://en.wikipedia.org/wiki/2016_Formula_One_season	10
-68	2017	http://en.wikipedia.org/wiki/2017_Formula_One_season	10
-69	2018	http://en.wikipedia.org/wiki/2018_Formula_One_World_Championship	10
-70	2019	http://en.wikipedia.org/wiki/2019_Formula_One_World_Championship	10
-71	2020	http://en.wikipedia.org/wiki/2020_Formula_One_World_Championship	10
-72	2021	http://en.wikipedia.org/wiki/2021_Formula_One_World_Championship	10
-73	2022	http://en.wikipedia.org/wiki/2022_Formula_One_World_Championship	10
-74	2023	http://en.wikipedia.org/wiki/2023_Formula_One_World_Championship	10
+1	1950	https://en.wikipedia.org/wiki/1950_Formula_One_season	1
+2	1951	https://en.wikipedia.org/wiki/1951_Formula_One_season	1
+3	1952	https://en.wikipedia.org/wiki/1952_Formula_One_season	1
+4	1953	https://en.wikipedia.org/wiki/1953_Formula_One_season	1
+5	1954	https://en.wikipedia.org/wiki/1954_Formula_One_season	2
+6	1955	https://en.wikipedia.org/wiki/1955_Formula_One_season	2
+7	1956	https://en.wikipedia.org/wiki/1956_Formula_One_season	2
+8	1957	https://en.wikipedia.org/wiki/1957_Formula_One_season	2
+9	1958	https://en.wikipedia.org/wiki/1958_Formula_One_season	3
+10	1959	https://en.wikipedia.org/wiki/1959_Formula_One_season	4
+11	1960	https://en.wikipedia.org/wiki/1960_Formula_One_season	3
+12	1961	https://en.wikipedia.org/wiki/1961_Formula_One_season	4
+13	1962	https://en.wikipedia.org/wiki/1962_Formula_One_season	4
+14	1963	https://en.wikipedia.org/wiki/1963_Formula_One_season	3
+15	1964	https://en.wikipedia.org/wiki/1964_Formula_One_season	3
+16	1965	https://en.wikipedia.org/wiki/1965_Formula_One_season	3
+17	1966	https://en.wikipedia.org/wiki/1966_Formula_One_season	4
+18	1967	https://en.wikipedia.org/wiki/1967_Formula_One_season	5
+19	1968	https://en.wikipedia.org/wiki/1968_Formula_One_season	5
+20	1969	https://en.wikipedia.org/wiki/1969_Formula_One_season	5
+21	1970	https://en.wikipedia.org/wiki/1970_Formula_One_season	5
+22	1971	https://en.wikipedia.org/wiki/1971_Formula_One_season	5
+23	1972	https://en.wikipedia.org/wiki/1972_Formula_One_season	5
+24	1973	https://en.wikipedia.org/wiki/1973_Formula_One_season	5
+25	1974	https://en.wikipedia.org/wiki/1974_Formula_One_season	5
+26	1975	https://en.wikipedia.org/wiki/1975_Formula_One_season	5
+27	1976	https://en.wikipedia.org/wiki/1976_Formula_One_season	5
+28	1977	https://en.wikipedia.org/wiki/1977_Formula_One_season	5
+29	1978	https://en.wikipedia.org/wiki/1978_Formula_One_season	5
+30	1979	https://en.wikipedia.org/wiki/1979_Formula_One_season	6
+31	1980	https://en.wikipedia.org/wiki/1980_Formula_One_season	7
+32	1981	https://en.wikipedia.org/wiki/1981_Formula_One_World_Championship	8
+33	1982	https://en.wikipedia.org/wiki/1982_Formula_One_World_Championship	8
+34	1983	https://en.wikipedia.org/wiki/1983_Formula_One_World_Championship	8
+35	1984	https://en.wikipedia.org/wiki/1984_Formula_One_World_Championship	8
+36	1985	https://en.wikipedia.org/wiki/1985_Formula_One_World_Championship	8
+37	1986	https://en.wikipedia.org/wiki/1986_Formula_One_World_Championship	8
+38	1987	https://en.wikipedia.org/wiki/1987_Formula_One_World_Championship	8
+39	1988	https://en.wikipedia.org/wiki/1988_Formula_One_World_Championship	8
+40	1989	https://en.wikipedia.org/wiki/1989_Formula_One_World_Championship	8
+41	1990	https://en.wikipedia.org/wiki/1990_Formula_One_World_Championship	8
+42	1991	https://en.wikipedia.org/wiki/1991_Formula_One_World_Championship	9
+43	1992	https://en.wikipedia.org/wiki/1992_Formula_One_World_Championship	9
+44	1993	https://en.wikipedia.org/wiki/1993_Formula_One_World_Championship	9
+45	1994	https://en.wikipedia.org/wiki/1994_Formula_One_World_Championship	9
+46	1995	https://en.wikipedia.org/wiki/1995_Formula_One_World_Championship	9
+47	1996	https://en.wikipedia.org/wiki/1996_Formula_One_World_Championship	9
+48	1997	https://en.wikipedia.org/wiki/1997_Formula_One_World_Championship	9
+49	1998	https://en.wikipedia.org/wiki/1998_Formula_One_World_Championship	9
+50	1999	https://en.wikipedia.org/wiki/1999_Formula_One_World_Championship	9
+51	2000	https://en.wikipedia.org/wiki/2000_Formula_One_World_Championship	9
+52	2001	https://en.wikipedia.org/wiki/2001_Formula_One_World_Championship	9
+53	2002	https://en.wikipedia.org/wiki/2002_Formula_One_World_Championship	10
+54	2003	https://en.wikipedia.org/wiki/2003_Formula_One_World_Championship	10
+55	2004	https://en.wikipedia.org/wiki/2004_Formula_One_World_Championship	10
+56	2005	https://en.wikipedia.org/wiki/2005_Formula_One_World_Championship	10
+57	2006	https://en.wikipedia.org/wiki/2006_Formula_One_World_Championship	10
+58	2007	https://en.wikipedia.org/wiki/2007_Formula_One_World_Championship	10
+59	2008	https://en.wikipedia.org/wiki/2008_Formula_One_World_Championship	10
+60	2009	https://en.wikipedia.org/wiki/2009_Formula_One_World_Championship	10
+61	2010	https://en.wikipedia.org/wiki/2010_Formula_One_World_Championship	10
+62	2011	https://en.wikipedia.org/wiki/2011_Formula_One_World_Championship	10
+63	2012	https://en.wikipedia.org/wiki/2012_Formula_One_World_Championship	10
+64	2013	https://en.wikipedia.org/wiki/2013_Formula_One_World_Championship	10
+65	2014	https://en.wikipedia.org/wiki/2014_Formula_One_World_Championship	10
+66	2015	https://en.wikipedia.org/wiki/2015_Formula_One_World_Championship	10
+67	2016	https://en.wikipedia.org/wiki/2016_Formula_One_World_Championship	10
+68	2017	https://en.wikipedia.org/wiki/2017_Formula_One_World_Championship	10
+69	2018	https://en.wikipedia.org/wiki/2018_Formula_One_World_Championship	10
+70	2019	https://en.wikipedia.org/wiki/2019_Formula_One_World_Championship	10
+71	2020	https://en.wikipedia.org/wiki/2020_Formula_One_World_Championship	10
+72	2021	https://en.wikipedia.org/wiki/2021_Formula_One_World_Championship	10
+73	2022	https://en.wikipedia.org/wiki/2022_Formula_One_World_Championship	10
+74	2023	https://en.wikipedia.org/wiki/2023_Formula_One_World_Championship	10
 75	2024	https://en.wikipedia.org/wiki/2024_Formula_One_World_Championship	10
+76	2025	https://en.wikipedia.org/wiki/2025_Formula_One_World_Championship	10
 \.
 
 
@@ -1144,219 +1004,219 @@ COPY public.formula_one_season (id, year, wikipedia, championship_system_id) FRO
 -- Data for Name: formula_one_team; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.formula_one_team (id, reference, name, nationality, wikipedia, base_team_id) FROM stdin;
-1	alfa	Alfa Romeo	Swiss	http://en.wikipedia.org/wiki/Alfa_Romeo_in_Formula_One	\N
-2	maserati	Maserati	Italian	http://en.wikipedia.org/wiki/Maserati	\N
-3	alta	Alta	British	http://en.wikipedia.org/wiki/Alta_auto_racing_team	\N
-4	era	ERA	British	http://en.wikipedia.org/wiki/English_Racing_Automobiles	\N
-5	lago	Talbot-Lago	French	http://en.wikipedia.org/wiki/Talbot-Lago	\N
-6	ferrari	Ferrari	Italian	http://en.wikipedia.org/wiki/Scuderia_Ferrari	\N
-7	cooper	Cooper	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-8	simca	Simca	French	http://en.wikipedia.org/wiki/Simca	\N
-9	watson	Watson	American	http://en.wikipedia.org/wiki/A.J._Watson	\N
-10	kurtis_kraft	Kurtis Kraft	American	http://en.wikipedia.org/wiki/Kurtis_Kraft	\N
-11	deidt	Deidt	American	http://en.wikipedia.org/wiki/Deidt	\N
-12	adams	Adams	American	http://en.wikipedia.org/wiki/Adams_(constructor)	\N
-13	snowberger	Snowberger	American	http://en.wikipedia.org/wiki/Snowberger	\N
-14	wetteroth	Wetteroth	American	http://en.wikipedia.org/wiki/Wetteroth	\N
-15	olson	Olson	American	http://en.wikipedia.org/wiki/Olson_(constructor)	\N
-16	rae	Rae	American	http://en.wikipedia.org/wiki/Rae_(motorsport)	\N
-17	ewing	Ewing	American	http://en.wikipedia.org/wiki/Ewing_(constructor)	\N
-18	langley	Langley	American	http://en.wikipedia.org/wiki/Langley_(constructor)	\N
-19	lesovsky	Lesovsky	American	http://en.wikipedia.org/wiki/Lesovsky	\N
-20	stevens	Stevens	American	http://en.wikipedia.org/wiki/Stevens_(constructor)	\N
-21	marchese	Marchese	American	http://en.wikipedia.org/wiki/Marchese_(constructor)	\N
-22	nichels	Nichels	American	http://en.wikipedia.org/wiki/Nichels	\N
-23	moore	Moore	American	http://en.wikipedia.org/wiki/Moore_(constructor)	\N
-24	milano	Milano	Italian	http://en.wikipedia.org/wiki/Scuderia_Milano	\N
-25	hwm	HWM	British	http://en.wikipedia.org/wiki/Hersham_and_Walton_Motors	\N
-26	veritas	Veritas	German	http://en.wikipedia.org/wiki/Veritas_(constructor)	\N
-27	trevis	Trevis	American	http://en.wikipedia.org/wiki/Trevis	\N
-28	kuzma	Kuzma	American	http://en.wikipedia.org/wiki/Kuzma_(constructor)	\N
-29	schroeder	Schroeder	American	http://en.wikipedia.org/wiki/Schroeder_(constructor)	\N
-30	pawl	Pawl	American	http://en.wikipedia.org/wiki/Pawl_(constructor)	\N
-31	bromme	Bromme	American	http://en.wikipedia.org/wiki/Bromme	\N
-32	hall	Hall	American	http://en.wikipedia.org/wiki/Hall_(constructor)	\N
-33	sherman	Sherman	American	http://en.wikipedia.org/wiki/Sherman_(constructor)	\N
-34	brm	BRM	British	http://en.wikipedia.org/wiki/BRM	\N
-35	osca	OSCA	Italian	http://en.wikipedia.org/wiki/Officine_Specializate_Costruzione_Automobili	\N
-36	gordini	Gordini	French	http://en.wikipedia.org/wiki/Gordini	\N
-37	afm	AFM	German	http://en.wikipedia.org/wiki/Alex_von_Falkenhausen_Motorenbau	\N
-38	frazer_nash	Frazer Nash	British	http://en.wikipedia.org/wiki/Frazer_Nash	\N
-39	butterworth	Aston Butterworth	British	http://en.wikipedia.org/wiki/Aston_Butterworth	\N
-40	connaught	Connaught	British	http://en.wikipedia.org/wiki/Connaught_Engineering	\N
-41	bmw	BMW	German	http://en.wikipedia.org/wiki/BMW	\N
-42	cisitalia	Cisitalia	Italian	http://en.wikipedia.org/wiki/Cisitalia	\N
-43	turner	Turner	American	http://en.wikipedia.org/wiki/Turner_(constructor)	\N
-44	del_roy	Del Roy	American	http://en.wikipedia.org/wiki/Del_Roy	\N
-45	emw	EMW	East German	http://en.wikipedia.org/wiki/Eisenacher_Motorenwerk	\N
-46	pankratz	Pankratz	American	http://en.wikipedia.org/wiki/Pankratz	\N
-47	phillips	Phillips	American	http://en.wikipedia.org/wiki/Phillips_(constructor)	\N
-48	mercedes	Mercedes	German	http://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One	\N
-49	vanwall	Vanwall	British	http://en.wikipedia.org/wiki/Vanwall	\N
-50	klenk	Klenk	German	http://en.wikipedia.org/wiki/Klenk	\N
-51	lancia	Lancia	Italian	http://en.wikipedia.org/wiki/Lancia_in_Formula_One	\N
-52	epperly	Epperly	American	http://en.wikipedia.org/wiki/Epperly	\N
-53	arzani-volpini	Arzani-Volpini	Italian	http://en.wikipedia.org/wiki/Arzani-Volpini	\N
-54	bugatti	Bugatti	French	http://en.wikipedia.org/wiki/Bugatti	\N
-55	emeryson	Emeryson	British	http://en.wikipedia.org/wiki/Emeryson	\N
-56	dunn	Dunn	American	http://en.wikipedia.org/wiki/Dunn_Engineering	\N
-57	porsche	Porsche	German	http://en.wikipedia.org/wiki/Porsche_in_Formula_One	\N
-58	team_lotus	Team Lotus	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-59	cooper-climax	Cooper-Climax	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-60	cooper-maserati	Cooper-Maserati	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-61	vhristensen	Christensen	American	http://en.wikipedia.org/wiki/Christensen_(constructor)	\N
-62	elder	Elder	American	http://en.wikipedia.org/wiki/Elder_(constructor)	\N
-63	sutton	Sutton	American	http://en.wikipedia.org/wiki/Sutton_(constructor)	\N
-64	aston_martin	Aston Martin	British	http://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One	\N
-65	jbw	JBW	British	http://en.wikipedia.org/wiki/JBW	\N
-66	fry	Fry	British	http://en.wikipedia.org/wiki/Fry_(racing_team)	\N
-67	cooper-borgward	Cooper-Borgward	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-68	tec-mec	Tec-Mec	Italian	http://en.wikipedia.org/wiki/Tec-Mec	\N
-69	cooper-osca	Cooper-OSCA	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-70	behra-porsche	Behra-Porsche	Italian	http://en.wikipedia.org/wiki/Behra-Porsche	\N
-71	scarab	Scarab	American	http://en.wikipedia.org/wiki/Scarab_(constructor)	\N
-72	cooper-castellotti	Cooper-Castellotti	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-73	meskowski	Meskowski	American	http://en.wikipedia.org/wiki/Meskowski	\N
-74	lotus-climax	Lotus-Climax	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-75	de_tomaso-osca	De Tomaso-Osca	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N
-76	ferguson	Ferguson	British	http://en.wikipedia.org/wiki/Ferguson_Research_Ltd.	\N
-77	gilby	Gilby	British	http://en.wikipedia.org/wiki/Gilby	\N
-78	mbm	MBM	Swiss	http://en.wikipedia.org/wiki/Monteverdi_Basel_Motors	\N
-79	lotus-maserati	Lotus-Maserati	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-80	de_tomaso-alfa_romeo	De Tomaso-Alfa Romeo	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N
-81	lola	Lola	British	http://en.wikipedia.org/wiki/MasterCard_Lola	\N
-82	lotus-brm	Lotus-BRM	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-83	brabham	Brabham	British	http://en.wikipedia.org/wiki/Brabham	\N
-84	enb	ENB	Belgian	http://en.wikipedia.org/wiki/Ecurie_Nationale_Belge	\N
-85	tomaso	De Tomaso	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N
-86	lotus-borgward	Lotus-Borgward	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-87	lds	LDS	South African	http://en.wikipedia.org/wiki/LDS_(automobile)	\N
-88	cooper-alfa_romeo	Cooper-Alfa Romeo	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-89	ats	ATS	Italian	http://en.wikipedia.org/wiki/ATS_(wheels)	\N
-90	scirocco	Scirocco	British	http://en.wikipedia.org/wiki/Scirocco-Powell	\N
-91	brp	BRP	British	http://en.wikipedia.org/wiki/British_Racing_Partnership	\N
-92	de_tomaso-ferrari	De Tomaso-Ferrari	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N
-93	stebro	Stebro	Canadian	http://en.wikipedia.org/wiki/Stebro	\N
-94	lotus-ford	Lotus-Ford	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-95	brabham-climax	Brabham-Climax	British	http://en.wikipedia.org/wiki/Brabham	\N
-96	brabham-brm	Brabham-BRM	British	http://en.wikipedia.org/wiki/Brabham	\N
-97	brabham-ford	Brabham-Ford	British	http://en.wikipedia.org/wiki/Brabham	\N
-98	honda	Honda	Japanese	http://en.wikipedia.org/wiki/Honda_Racing_F1	\N
-99	derrington	Derrington	British	http://en.wikipedia.org/wiki/Derrington-Francis	\N
-100	re	RE	Rhodesian	http://en.wikipedia.org/wiki/RE_%28automobile%29	\N
-101	lds-climax	LDS-Climax	South African	http://en.wikipedia.org/wiki/LDS_(automobile)	\N
-102	lds-alfa_romeo	LDS-Alfa Romeo	South African	http://en.wikipedia.org/wiki/LDS_(automobile)	\N
-103	cooper-ford	Cooper-Ford	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-104	mclaren-ford	McLaren-Ford	British	http://en.wikipedia.org/wiki/Team_McLaren	\N
-105	brabham-repco	Brabham-Repco	British	http://en.wikipedia.org/wiki/Brabham	\N
-106	mclaren-seren	McLaren-Serenissima	British	http://en.wikipedia.org/wiki/Team_McLaren	\N
-107	eagle-climax	Eagle-Climax	American	http://en.wikipedia.org/wiki/Anglo_American_Racers	\N
-108	shannon	Shannon	British	http://en.wikipedia.org/wiki/Shannon_(Formula_One)	\N
-109	cooper-ferrari	Cooper-Ferrari	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-110	eagle-weslake	Eagle-Weslake	American	http://en.wikipedia.org/wiki/Anglo_American_Racers	\N
-111	matra	Matra	French	http://en.wikipedia.org/wiki/Matra	\N
-112	mclaren-brm	McLaren-BRM	British	http://en.wikipedia.org/wiki/McLaren_(racing)	\N
-113	cooper-ats	Cooper-ATS	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-114	protos	Protos	British	http://en.wikipedia.org/wiki/Protos_(constructor)	\N
-115	cooper-brm	Cooper-BRM	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N
-116	matra-ford	Matra-Ford	French	http://en.wikipedia.org/wiki/Matra	\N
-117	mclaren	McLaren	British	http://en.wikipedia.org/wiki/McLaren	\N
-118	brm-ford	BRM-Ford	British	http://en.wikipedia.org/wiki/BRM	\N
-119	march	March	British	http://en.wikipedia.org/wiki/March_Engineering	\N
-120	mclaren-alfa_romeo	McLaren-Alfa Romeo	British	http://en.wikipedia.org/wiki/McLaren_(racing)	\N
-121	bellasi	Bellasi	Swiss	http://en.wikipedia.org/wiki/Bellasi	\N
-122	surtees	Surtees	British	http://en.wikipedia.org/wiki/Surtees	\N
-123	tyrrell	Tyrrell	British	http://en.wikipedia.org/wiki/Tyrrell_Racing	\N
-124	march-ford	March-Ford	British	http://en.wikipedia.org/wiki/March_Engineering	\N
-125	march-alfa_romeo	March-Alfa Romeo	British	http://en.wikipedia.org/wiki/March_Engineering	\N
-126	lotus-pw	Lotus-Pratt &amp; Whitney	British	http://en.wikipedia.org/wiki/Team_Lotus	\N
-127	tecno	Tecno	Italian	http://en.wikipedia.org/wiki/Tecno	\N
-128	politoys	Politoys	British	http://en.wikipedia.org/wiki/Frank_Williams_Racing_Cars	\N
-129	connew	Connew	British	http://en.wikipedia.org/wiki/Connew	\N
-130	iso_marlboro	Iso Marlboro	British	http://en.wikipedia.org/wiki/Iso_Marlboro	\N
-131	shadow	Shadow	British	http://en.wikipedia.org/wiki/Shadow_Racing_Cars	\N
-132	ensign	Ensign	British	http://en.wikipedia.org/wiki/Ensign_%28racing_team%29	\N
-133	hesketh	Hesketh	British	http://en.wikipedia.org/wiki/Hesketh_Racing	\N
-134	amon	Amon	New Zealander	http://en.wikipedia.org/wiki/Amon_(Formula_One_team)	\N
-135	trojan	Trojan	British	http://en.wikipedia.org/wiki/Trojan_(Racing_team)	\N
-136	token	Token	British	http://en.wikipedia.org/wiki/Token_(Racing_team)	\N
-137	maki	Maki	Japanese	http://en.wikipedia.org/wiki/Maki_(cars)	\N
-138	lyncar	Lyncar	British	http://en.wikipedia.org/wiki/Lyncar	\N
-139	penske	Penske	American	http://en.wikipedia.org/wiki/Penske_Racing	\N
-140	parnelli	Parnelli	American	http://en.wikipedia.org/wiki/Parnelli	\N
-141	williams	Williams	British	http://en.wikipedia.org/wiki/Williams_Grand_Prix_Engineering	\N
-142	fittipaldi	Fittipaldi	Brazilian	http://en.wikipedia.org/wiki/Fittipaldi_%28constructor%29	\N
-143	shadow-ford	Shadow-Ford	British	http://en.wikipedia.org/wiki/Shadow_Racing_Cars	\N
-144	hill	Embassy Hill	British	http://en.wikipedia.org/wiki/Hill_(constructor)	\N
-145	shadow-matra	Shadow-Matra	British	http://en.wikipedia.org/wiki/Shadow_Racing_Cars	\N
-146	ligier	Ligier	French	http://en.wikipedia.org/wiki/Ligier	\N
-147	brabham-alfa_romeo	Brabham-Alfa Romeo	British	http://en.wikipedia.org/wiki/Brabham	\N
-148	wolf	Wolf	Canadian	http://en.wikipedia.org/wiki/Walter_Wolf_Racing	\N
-149	boro	Boro	Dutch	http://en.wikipedia.org/wiki/Boro_(Formula_One)	\N
-150	kojima	Kojima	Japanese	http://en.wikipedia.org/wiki/Kojima_Engineering	\N
-151	lec	LEC	British	http://en.wikipedia.org/wiki/LEC_(Formula_One)	\N
-152	renault	Renault	French	http://en.wikipedia.org/wiki/Renault_in_Formula_One	\N
-153	mcguire	McGuire	Australian	http://en.wikipedia.org/wiki/McGuire_(Formula_One)	\N
-154	apollon	Apollon	Swiss	http://en.wikipedia.org/wiki/Apollon_(Formula_One)	\N
-155	theodore	Theodore	Hong Kong	http://en.wikipedia.org/wiki/Theodore_Racing	\N
-156	merzario	Merzario	Italian	http://en.wikipedia.org/wiki/Merzario	\N
-157	arrows	Arrows	British	http://en.wikipedia.org/wiki/Arrows_Grand_Prix_International	\N
-158	martini	Martini	French	http://en.wikipedia.org/wiki/Martini_(cars)	\N
-159	kauhsen	Kauhsen	German	http://en.wikipedia.org/wiki/Kauhsen	\N
-160	rebaque	Rebaque	Mexican	http://en.wikipedia.org/wiki/Rebaque	\N
-161	osella	Osella	Italian	http://en.wikipedia.org/wiki/Osella	\N
-162	toleman	Toleman	British	http://en.wikipedia.org/wiki/Toleman	\N
-163	ram	RAM	British	http://en.wikipedia.org/wiki/RAM_Racing	\N
-164	spirit	Spirit	British	http://en.wikipedia.org/wiki/Spirit_(racing_team)	\N
-165	minardi	Minardi	Italian	http://en.wikipedia.org/wiki/Minardi	\N
-166	zakspeed	Zakspeed	German	http://en.wikipedia.org/wiki/Zakspeed	\N
-167	benetton	Benetton	Italian	http://en.wikipedia.org/wiki/Benetton_Formula	\N
-168	ags	AGS	French	http://en.wikipedia.org/wiki/Automobiles_Gonfaronnaises_Sportives	\N
-169	larrousse	Larrousse	French	http://en.wikipedia.org/wiki/Larrousse	\N
-170	coloni	Coloni	Italian	http://en.wikipedia.org/wiki/Enzo_Coloni_Racing_Car_Systems	\N
-171	dallara	Dallara	Italian	http://en.wikipedia.org/wiki/Dallara	\N
-172	eurobrun	Euro Brun	Italian	http://en.wikipedia.org/wiki/Euro_Brun	\N
-173	rial	Rial	German	http://en.wikipedia.org/wiki/Rial_%28racing_team%29	\N
-174	onyx	Onyx	British	http://en.wikipedia.org/wiki/Onyx_(racing_team)	\N
-175	leyton	Leyton House	British	http://en.wikipedia.org/wiki/Leyton_House	\N
-176	life	Life	Italian	http://en.wikipedia.org/wiki/Life_(Racing_Team)	\N
-177	jordan	Jordan	Irish	http://en.wikipedia.org/wiki/Jordan_Grand_Prix	\N
-178	footwork	Footwork	British	http://en.wikipedia.org/wiki/Footwork_Arrows	\N
-179	fondmetal	Fondmetal	Italian	http://en.wikipedia.org/wiki/Fondmetal	\N
-180	lambo	Lambo	Italian	http://en.wikipedia.org/wiki/Modena_(racing_team)	\N
-181	moda	Andrea Moda	Italian	http://en.wikipedia.org/wiki/Andrea_Moda_Formula	\N
-182	sauber	Sauber	Swiss	http://en.wikipedia.org/wiki/Sauber_Motorsport	\N
-183	pacific	Pacific	British	http://en.wikipedia.org/wiki/Pacific_Racing	\N
-184	simtek	Simtek	British	http://en.wikipedia.org/wiki/Simtek	\N
-185	forti	Forti	Italian	http://en.wikipedia.org/wiki/Forti	\N
-186	stewart	Stewart	British	http://en.wikipedia.org/wiki/Stewart_Grand_Prix	\N
-187	prost	Prost	French	http://en.wikipedia.org/wiki/Prost_Grand_Prix	\N
-188	bar	BAR	British	http://en.wikipedia.org/wiki/British_American_Racing	\N
-189	jaguar	Jaguar	British	http://en.wikipedia.org/wiki/Jaguar_Racing	\N
-190	toyota	Toyota	Japanese	http://en.wikipedia.org/wiki/Toyota_Racing	\N
-191	red_bull	Red Bull	Austrian	http://en.wikipedia.org/wiki/Red_Bull_Racing	\N
-192	bmw_sauber	BMW Sauber	German	http://en.wikipedia.org/wiki/BMW_Sauber	\N
-193	super_aguri	Super Aguri	Japanese	http://en.wikipedia.org/wiki/Super_Aguri_F1	\N
-194	mf1	MF1	Russian	http://en.wikipedia.org/wiki/Midland_F1_Racing	\N
-195	toro_rosso	Toro Rosso	Italian	http://en.wikipedia.org/wiki/Scuderia_Toro_Rosso	\N
-196	spyker_mf1	Spyker MF1	Dutch	http://en.wikipedia.org/wiki/Midland_F1_Racing	\N
-197	spyker	Spyker	Dutch	http://en.wikipedia.org/wiki/Spyker_F1	\N
-198	force_india	Force India	Indian	http://en.wikipedia.org/wiki/Racing_Point_Force_India	\N
-199	brawn	Brawn	British	http://en.wikipedia.org/wiki/Brawn_GP	\N
-200	hrt	HRT	Spanish	http://en.wikipedia.org/wiki/Hispania_Racing	\N
-201	virgin	Virgin	British	http://en.wikipedia.org/wiki/Virgin_Racing	\N
-202	lotus_racing	Lotus	Malaysian	http://en.wikipedia.org/wiki/Lotus_Racing	\N
-203	caterham	Caterham	Malaysian	http://en.wikipedia.org/wiki/Caterham_F1	\N
-204	lotus_f1	Lotus F1	British	http://en.wikipedia.org/wiki/Lotus_F1	\N
-205	marussia	Marussia	Russian	http://en.wikipedia.org/wiki/Marussia_F1	\N
-206	manor	Manor Marussia	British	http://en.wikipedia.org/wiki/Manor_Motorsport	\N
-207	haas	Haas F1 Team	American	http://en.wikipedia.org/wiki/Haas_F1_Team	\N
-208	racing_point	Racing Point	British	http://en.wikipedia.org/wiki/Racing_Point_F1_Team	\N
-209	alphatauri	AlphaTauri	Italian	http://en.wikipedia.org/wiki/Scuderia_AlphaTauri	\N
-210	alpine	Alpine F1 Team	French	http://en.wikipedia.org/wiki/Alpine_F1_Team	\N
-211	rb	RB F1 Team	Italian	http://en.wikipedia.org/wiki/RB_Formula_One_Team	\N
-212	eagle	Eagle	American	http://en.wikipedia.org/wiki/Anglo_American_Racers	\N
+COPY public.formula_one_team (id, reference, name, nationality, wikipedia, base_team_id, country_code) FROM stdin;
+1	alfa	Alfa Romeo	Swiss	http://en.wikipedia.org/wiki/Alfa_Romeo_in_Formula_One	\N	CHE
+2	maserati	Maserati	Italian	http://en.wikipedia.org/wiki/Maserati	\N	ITA
+3	alta	Alta	British	http://en.wikipedia.org/wiki/Alta_auto_racing_team	\N	GBR
+4	era	ERA	British	http://en.wikipedia.org/wiki/English_Racing_Automobiles	\N	GBR
+5	lago	Talbot-Lago	French	http://en.wikipedia.org/wiki/Talbot-Lago	\N	FRA
+6	ferrari	Ferrari	Italian	http://en.wikipedia.org/wiki/Scuderia_Ferrari	\N	ITA
+7	cooper	Cooper	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+8	simca	Simca	French	http://en.wikipedia.org/wiki/Simca	\N	FRA
+9	watson	Watson	American	http://en.wikipedia.org/wiki/A.J._Watson	\N	USA
+10	kurtis_kraft	Kurtis Kraft	American	http://en.wikipedia.org/wiki/Kurtis_Kraft	\N	USA
+11	deidt	Deidt	American	http://en.wikipedia.org/wiki/Deidt	\N	USA
+12	adams	Adams	American	http://en.wikipedia.org/wiki/Adams_(constructor)	\N	USA
+13	snowberger	Snowberger	American	http://en.wikipedia.org/wiki/Snowberger	\N	USA
+14	wetteroth	Wetteroth	American	http://en.wikipedia.org/wiki/Wetteroth	\N	USA
+15	olson	Olson	American	http://en.wikipedia.org/wiki/Olson_(constructor)	\N	USA
+16	rae	Rae	American	http://en.wikipedia.org/wiki/Rae_(motorsport)	\N	USA
+17	ewing	Ewing	American	http://en.wikipedia.org/wiki/Ewing_(constructor)	\N	USA
+18	langley	Langley	American	http://en.wikipedia.org/wiki/Langley_(constructor)	\N	USA
+19	lesovsky	Lesovsky	American	http://en.wikipedia.org/wiki/Lesovsky	\N	USA
+20	stevens	Stevens	American	http://en.wikipedia.org/wiki/Stevens_(constructor)	\N	USA
+21	marchese	Marchese	American	http://en.wikipedia.org/wiki/Marchese_(constructor)	\N	USA
+22	nichels	Nichels	American	http://en.wikipedia.org/wiki/Nichels	\N	USA
+23	moore	Moore	American	http://en.wikipedia.org/wiki/Moore_(constructor)	\N	USA
+24	milano	Milano	Italian	http://en.wikipedia.org/wiki/Scuderia_Milano	\N	ITA
+25	hwm	HWM	British	http://en.wikipedia.org/wiki/Hersham_and_Walton_Motors	\N	GBR
+26	veritas	Veritas	German	http://en.wikipedia.org/wiki/Veritas_(constructor)	\N	DEU
+27	trevis	Trevis	American	http://en.wikipedia.org/wiki/Trevis	\N	USA
+28	kuzma	Kuzma	American	http://en.wikipedia.org/wiki/Kuzma_(constructor)	\N	USA
+29	schroeder	Schroeder	American	http://en.wikipedia.org/wiki/Schroeder_(constructor)	\N	USA
+30	pawl	Pawl	American	http://en.wikipedia.org/wiki/Pawl_(constructor)	\N	USA
+31	bromme	Bromme	American	http://en.wikipedia.org/wiki/Bromme	\N	USA
+32	hall	Hall	American	http://en.wikipedia.org/wiki/Hall_(constructor)	\N	USA
+33	sherman	Sherman	American	http://en.wikipedia.org/wiki/Sherman_(constructor)	\N	USA
+34	brm	BRM	British	http://en.wikipedia.org/wiki/BRM	\N	GBR
+35	osca	OSCA	Italian	http://en.wikipedia.org/wiki/Officine_Specializate_Costruzione_Automobili	\N	ITA
+36	gordini	Gordini	French	http://en.wikipedia.org/wiki/Gordini	\N	FRA
+37	afm	AFM	German	http://en.wikipedia.org/wiki/Alex_von_Falkenhausen_Motorenbau	\N	DEU
+38	frazer_nash	Frazer Nash	British	http://en.wikipedia.org/wiki/Frazer_Nash	\N	GBR
+39	butterworth	Aston Butterworth	British	http://en.wikipedia.org/wiki/Aston_Butterworth	\N	GBR
+40	connaught	Connaught	British	http://en.wikipedia.org/wiki/Connaught_Engineering	\N	GBR
+41	bmw	BMW	German	http://en.wikipedia.org/wiki/BMW	\N	DEU
+42	cisitalia	Cisitalia	Italian	http://en.wikipedia.org/wiki/Cisitalia	\N	ITA
+43	turner	Turner	American	http://en.wikipedia.org/wiki/Turner_(constructor)	\N	USA
+44	del_roy	Del Roy	American	http://en.wikipedia.org/wiki/Del_Roy	\N	USA
+45	emw	EMW	East German	http://en.wikipedia.org/wiki/Eisenacher_Motorenwerk	\N	DEU
+46	pankratz	Pankratz	American	http://en.wikipedia.org/wiki/Pankratz	\N	USA
+47	phillips	Phillips	American	http://en.wikipedia.org/wiki/Phillips_(constructor)	\N	USA
+48	mercedes	Mercedes	German	http://en.wikipedia.org/wiki/Mercedes-Benz_in_Formula_One	\N	DEU
+49	vanwall	Vanwall	British	http://en.wikipedia.org/wiki/Vanwall	\N	GBR
+50	klenk	Klenk	German	http://en.wikipedia.org/wiki/Klenk	\N	DEU
+51	lancia	Lancia	Italian	http://en.wikipedia.org/wiki/Lancia_in_Formula_One	\N	ITA
+52	epperly	Epperly	American	http://en.wikipedia.org/wiki/Epperly	\N	USA
+53	arzani-volpini	Arzani-Volpini	Italian	http://en.wikipedia.org/wiki/Arzani-Volpini	\N	ITA
+54	bugatti	Bugatti	French	http://en.wikipedia.org/wiki/Bugatti	\N	FRA
+55	emeryson	Emeryson	British	http://en.wikipedia.org/wiki/Emeryson	\N	GBR
+56	dunn	Dunn	American	http://en.wikipedia.org/wiki/Dunn_Engineering	\N	USA
+57	porsche	Porsche	German	http://en.wikipedia.org/wiki/Porsche_in_Formula_One	\N	DEU
+58	team_lotus	Team Lotus	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+59	cooper-climax	Cooper-Climax	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+60	cooper-maserati	Cooper-Maserati	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+61	vhristensen	Christensen	American	http://en.wikipedia.org/wiki/Christensen_(constructor)	\N	USA
+62	elder	Elder	American	http://en.wikipedia.org/wiki/Elder_(constructor)	\N	USA
+63	sutton	Sutton	American	http://en.wikipedia.org/wiki/Sutton_(constructor)	\N	USA
+64	aston_martin	Aston Martin	British	http://en.wikipedia.org/wiki/Aston_Martin_in_Formula_One	\N	GBR
+65	jbw	JBW	British	http://en.wikipedia.org/wiki/JBW	\N	GBR
+66	fry	Fry	British	http://en.wikipedia.org/wiki/Fry_(racing_team)	\N	GBR
+67	cooper-borgward	Cooper-Borgward	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+68	tec-mec	Tec-Mec	Italian	http://en.wikipedia.org/wiki/Tec-Mec	\N	ITA
+69	cooper-osca	Cooper-OSCA	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+70	behra-porsche	Behra-Porsche	Italian	http://en.wikipedia.org/wiki/Behra-Porsche	\N	ITA
+71	scarab	Scarab	American	http://en.wikipedia.org/wiki/Scarab_(constructor)	\N	USA
+72	cooper-castellotti	Cooper-Castellotti	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+73	meskowski	Meskowski	American	http://en.wikipedia.org/wiki/Meskowski	\N	USA
+74	lotus-climax	Lotus-Climax	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+75	de_tomaso-osca	De Tomaso-Osca	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N	ITA
+76	ferguson	Ferguson	British	http://en.wikipedia.org/wiki/Ferguson_Research_Ltd.	\N	GBR
+77	gilby	Gilby	British	http://en.wikipedia.org/wiki/Gilby	\N	GBR
+78	mbm	MBM	Swiss	http://en.wikipedia.org/wiki/Monteverdi_Basel_Motors	\N	CHE
+79	lotus-maserati	Lotus-Maserati	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+80	de_tomaso-alfa_romeo	De Tomaso-Alfa Romeo	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N	ITA
+81	lola	Lola	British	http://en.wikipedia.org/wiki/MasterCard_Lola	\N	GBR
+82	lotus-brm	Lotus-BRM	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+83	brabham	Brabham	British	http://en.wikipedia.org/wiki/Brabham	\N	GBR
+84	enb	ENB	Belgian	http://en.wikipedia.org/wiki/Ecurie_Nationale_Belge	\N	BEL
+85	tomaso	De Tomaso	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N	ITA
+86	lotus-borgward	Lotus-Borgward	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+87	lds	LDS	South African	http://en.wikipedia.org/wiki/LDS_(automobile)	\N	ZAF
+88	cooper-alfa_romeo	Cooper-Alfa Romeo	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+89	ats	ATS	Italian	http://en.wikipedia.org/wiki/ATS_(wheels)	\N	ITA
+90	scirocco	Scirocco	British	http://en.wikipedia.org/wiki/Scirocco-Powell	\N	GBR
+91	brp	BRP	British	http://en.wikipedia.org/wiki/British_Racing_Partnership	\N	GBR
+92	de_tomaso-ferrari	De Tomaso-Ferrari	Italian	http://en.wikipedia.org/wiki/De_Tomaso	\N	ITA
+93	stebro	Stebro	Canadian	http://en.wikipedia.org/wiki/Stebro	\N	CAN
+94	lotus-ford	Lotus-Ford	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+95	brabham-climax	Brabham-Climax	British	http://en.wikipedia.org/wiki/Brabham	\N	GBR
+96	brabham-brm	Brabham-BRM	British	http://en.wikipedia.org/wiki/Brabham	\N	GBR
+97	brabham-ford	Brabham-Ford	British	http://en.wikipedia.org/wiki/Brabham	\N	GBR
+98	honda	Honda	Japanese	http://en.wikipedia.org/wiki/Honda_Racing_F1	\N	JPN
+99	derrington	Derrington	British	http://en.wikipedia.org/wiki/Derrington-Francis	\N	GBR
+100	re	RE	Rhodesian	http://en.wikipedia.org/wiki/RE_%28automobile%29	\N	RSR
+101	lds-climax	LDS-Climax	South African	http://en.wikipedia.org/wiki/LDS_(automobile)	\N	ZAF
+102	lds-alfa_romeo	LDS-Alfa Romeo	South African	http://en.wikipedia.org/wiki/LDS_(automobile)	\N	ZAF
+103	cooper-ford	Cooper-Ford	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+104	mclaren-ford	McLaren-Ford	British	http://en.wikipedia.org/wiki/Team_McLaren	\N	GBR
+105	brabham-repco	Brabham-Repco	British	http://en.wikipedia.org/wiki/Brabham	\N	GBR
+106	mclaren-seren	McLaren-Serenissima	British	http://en.wikipedia.org/wiki/Team_McLaren	\N	GBR
+107	eagle-climax	Eagle-Climax	American	http://en.wikipedia.org/wiki/Anglo_American_Racers	\N	USA
+108	shannon	Shannon	British	http://en.wikipedia.org/wiki/Shannon_(Formula_One)	\N	GBR
+109	cooper-ferrari	Cooper-Ferrari	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+110	eagle-weslake	Eagle-Weslake	American	http://en.wikipedia.org/wiki/Anglo_American_Racers	\N	USA
+111	matra	Matra	French	http://en.wikipedia.org/wiki/Matra	\N	FRA
+112	mclaren-brm	McLaren-BRM	British	http://en.wikipedia.org/wiki/McLaren_(racing)	\N	GBR
+113	cooper-ats	Cooper-ATS	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+114	protos	Protos	British	http://en.wikipedia.org/wiki/Protos_(constructor)	\N	GBR
+115	cooper-brm	Cooper-BRM	British	http://en.wikipedia.org/wiki/Cooper_Car_Company	\N	GBR
+116	matra-ford	Matra-Ford	French	http://en.wikipedia.org/wiki/Matra	\N	FRA
+117	mclaren	McLaren	British	http://en.wikipedia.org/wiki/McLaren	\N	GBR
+118	brm-ford	BRM-Ford	British	http://en.wikipedia.org/wiki/BRM	\N	GBR
+119	march	March	British	http://en.wikipedia.org/wiki/March_Engineering	\N	GBR
+120	mclaren-alfa_romeo	McLaren-Alfa Romeo	British	http://en.wikipedia.org/wiki/McLaren_(racing)	\N	GBR
+121	bellasi	Bellasi	Swiss	http://en.wikipedia.org/wiki/Bellasi	\N	CHE
+122	surtees	Surtees	British	http://en.wikipedia.org/wiki/Surtees	\N	GBR
+123	tyrrell	Tyrrell	British	http://en.wikipedia.org/wiki/Tyrrell_Racing	\N	GBR
+124	march-ford	March-Ford	British	http://en.wikipedia.org/wiki/March_Engineering	\N	GBR
+125	march-alfa_romeo	March-Alfa Romeo	British	http://en.wikipedia.org/wiki/March_Engineering	\N	GBR
+126	lotus-pw	Lotus-Pratt &amp; Whitney	British	http://en.wikipedia.org/wiki/Team_Lotus	\N	GBR
+127	tecno	Tecno	Italian	http://en.wikipedia.org/wiki/Tecno	\N	ITA
+128	politoys	Politoys	British	http://en.wikipedia.org/wiki/Frank_Williams_Racing_Cars	\N	GBR
+129	connew	Connew	British	http://en.wikipedia.org/wiki/Connew	\N	GBR
+130	iso_marlboro	Iso Marlboro	British	http://en.wikipedia.org/wiki/Iso_Marlboro	\N	GBR
+131	shadow	Shadow	British	http://en.wikipedia.org/wiki/Shadow_Racing_Cars	\N	GBR
+132	ensign	Ensign	British	http://en.wikipedia.org/wiki/Ensign_%28racing_team%29	\N	GBR
+133	hesketh	Hesketh	British	http://en.wikipedia.org/wiki/Hesketh_Racing	\N	GBR
+134	amon	Amon	New Zealander	http://en.wikipedia.org/wiki/Amon_(Formula_One_team)	\N	NZL
+135	trojan	Trojan	British	http://en.wikipedia.org/wiki/Trojan_(Racing_team)	\N	GBR
+136	token	Token	British	http://en.wikipedia.org/wiki/Token_(Racing_team)	\N	GBR
+137	maki	Maki	Japanese	http://en.wikipedia.org/wiki/Maki_(cars)	\N	JPN
+138	lyncar	Lyncar	British	http://en.wikipedia.org/wiki/Lyncar	\N	GBR
+139	penske	Penske	American	http://en.wikipedia.org/wiki/Penske_Racing	\N	USA
+140	parnelli	Parnelli	American	http://en.wikipedia.org/wiki/Parnelli	\N	USA
+141	williams	Williams	British	http://en.wikipedia.org/wiki/Williams_Grand_Prix_Engineering	\N	GBR
+142	fittipaldi	Fittipaldi	Brazilian	http://en.wikipedia.org/wiki/Fittipaldi_%28constructor%29	\N	BRA
+143	shadow-ford	Shadow-Ford	British	http://en.wikipedia.org/wiki/Shadow_Racing_Cars	\N	GBR
+144	hill	Embassy Hill	British	http://en.wikipedia.org/wiki/Hill_(constructor)	\N	GBR
+145	shadow-matra	Shadow-Matra	British	http://en.wikipedia.org/wiki/Shadow_Racing_Cars	\N	GBR
+146	ligier	Ligier	French	http://en.wikipedia.org/wiki/Ligier	\N	FRA
+147	brabham-alfa_romeo	Brabham-Alfa Romeo	British	http://en.wikipedia.org/wiki/Brabham	\N	GBR
+148	wolf	Wolf	Canadian	http://en.wikipedia.org/wiki/Walter_Wolf_Racing	\N	CAN
+149	boro	Boro	Dutch	http://en.wikipedia.org/wiki/Boro_(Formula_One)	\N	NLD
+150	kojima	Kojima	Japanese	http://en.wikipedia.org/wiki/Kojima_Engineering	\N	JPN
+151	lec	LEC	British	http://en.wikipedia.org/wiki/LEC_(Formula_One)	\N	GBR
+152	renault	Renault	French	http://en.wikipedia.org/wiki/Renault_in_Formula_One	\N	FRA
+153	mcguire	McGuire	Australian	http://en.wikipedia.org/wiki/McGuire_(Formula_One)	\N	AUS
+154	apollon	Apollon	Swiss	http://en.wikipedia.org/wiki/Apollon_(Formula_One)	\N	CHE
+155	theodore	Theodore	Hong Kong	http://en.wikipedia.org/wiki/Theodore_Racing	\N	HKG
+156	merzario	Merzario	Italian	http://en.wikipedia.org/wiki/Merzario	\N	ITA
+157	arrows	Arrows	British	http://en.wikipedia.org/wiki/Arrows_Grand_Prix_International	\N	GBR
+158	martini	Martini	French	http://en.wikipedia.org/wiki/Martini_(cars)	\N	FRA
+159	kauhsen	Kauhsen	German	http://en.wikipedia.org/wiki/Kauhsen	\N	DEU
+160	rebaque	Rebaque	Mexican	http://en.wikipedia.org/wiki/Rebaque	\N	MEX
+161	osella	Osella	Italian	http://en.wikipedia.org/wiki/Osella	\N	ITA
+162	toleman	Toleman	British	http://en.wikipedia.org/wiki/Toleman	\N	GBR
+163	ram	RAM	British	http://en.wikipedia.org/wiki/RAM_Racing	\N	GBR
+164	spirit	Spirit	British	http://en.wikipedia.org/wiki/Spirit_(racing_team)	\N	GBR
+165	minardi	Minardi	Italian	http://en.wikipedia.org/wiki/Minardi	\N	ITA
+166	zakspeed	Zakspeed	German	http://en.wikipedia.org/wiki/Zakspeed	\N	DEU
+167	benetton	Benetton	Italian	http://en.wikipedia.org/wiki/Benetton_Formula	\N	ITA
+168	ags	AGS	French	http://en.wikipedia.org/wiki/Automobiles_Gonfaronnaises_Sportives	\N	FRA
+169	larrousse	Larrousse	French	http://en.wikipedia.org/wiki/Larrousse	\N	FRA
+170	coloni	Coloni	Italian	http://en.wikipedia.org/wiki/Enzo_Coloni_Racing_Car_Systems	\N	ITA
+171	dallara	Dallara	Italian	http://en.wikipedia.org/wiki/Dallara	\N	ITA
+172	eurobrun	Euro Brun	Italian	http://en.wikipedia.org/wiki/Euro_Brun	\N	ITA
+173	rial	Rial	German	http://en.wikipedia.org/wiki/Rial_%28racing_team%29	\N	DEU
+174	onyx	Onyx	British	http://en.wikipedia.org/wiki/Onyx_(racing_team)	\N	GBR
+175	leyton	Leyton House	British	http://en.wikipedia.org/wiki/Leyton_House	\N	GBR
+176	life	Life	Italian	http://en.wikipedia.org/wiki/Life_(Racing_Team)	\N	ITA
+177	jordan	Jordan	Irish	http://en.wikipedia.org/wiki/Jordan_Grand_Prix	\N	IRL
+178	footwork	Footwork	British	http://en.wikipedia.org/wiki/Footwork_Arrows	\N	GBR
+179	fondmetal	Fondmetal	Italian	http://en.wikipedia.org/wiki/Fondmetal	\N	ITA
+180	lambo	Lambo	Italian	http://en.wikipedia.org/wiki/Modena_(racing_team)	\N	ITA
+181	moda	Andrea Moda	Italian	http://en.wikipedia.org/wiki/Andrea_Moda_Formula	\N	ITA
+182	sauber	Sauber	Swiss	http://en.wikipedia.org/wiki/Sauber_Motorsport	\N	CHE
+183	pacific	Pacific	British	http://en.wikipedia.org/wiki/Pacific_Racing	\N	GBR
+184	simtek	Simtek	British	http://en.wikipedia.org/wiki/Simtek	\N	GBR
+185	forti	Forti	Italian	http://en.wikipedia.org/wiki/Forti	\N	ITA
+186	stewart	Stewart	British	http://en.wikipedia.org/wiki/Stewart_Grand_Prix	\N	GBR
+187	prost	Prost	French	http://en.wikipedia.org/wiki/Prost_Grand_Prix	\N	FRA
+188	bar	BAR	British	http://en.wikipedia.org/wiki/British_American_Racing	\N	GBR
+189	jaguar	Jaguar	British	http://en.wikipedia.org/wiki/Jaguar_Racing	\N	GBR
+190	toyota	Toyota	Japanese	http://en.wikipedia.org/wiki/Toyota_Racing	\N	JPN
+191	red_bull	Red Bull	Austrian	http://en.wikipedia.org/wiki/Red_Bull_Racing	\N	AUT
+192	bmw_sauber	BMW Sauber	German	http://en.wikipedia.org/wiki/BMW_Sauber	\N	DEU
+193	super_aguri	Super Aguri	Japanese	http://en.wikipedia.org/wiki/Super_Aguri_F1	\N	JPN
+194	mf1	MF1	Russian	http://en.wikipedia.org/wiki/Midland_F1_Racing	\N	RUS
+195	toro_rosso	Toro Rosso	Italian	http://en.wikipedia.org/wiki/Scuderia_Toro_Rosso	\N	ITA
+196	spyker_mf1	Spyker MF1	Dutch	http://en.wikipedia.org/wiki/Midland_F1_Racing	\N	NLD
+197	spyker	Spyker	Dutch	http://en.wikipedia.org/wiki/Spyker_F1	\N	NLD
+198	force_india	Force India	Indian	http://en.wikipedia.org/wiki/Racing_Point_Force_India	\N	IND
+199	brawn	Brawn	British	http://en.wikipedia.org/wiki/Brawn_GP	\N	GBR
+200	hrt	HRT	Spanish	http://en.wikipedia.org/wiki/Hispania_Racing	\N	ESP
+201	virgin	Virgin	British	http://en.wikipedia.org/wiki/Virgin_Racing	\N	GBR
+202	lotus_racing	Lotus	Malaysian	http://en.wikipedia.org/wiki/Lotus_Racing	\N	MYS
+203	caterham	Caterham	Malaysian	http://en.wikipedia.org/wiki/Caterham_F1	\N	MYS
+204	lotus_f1	Lotus F1	British	http://en.wikipedia.org/wiki/Lotus_F1	\N	GBR
+205	marussia	Marussia	Russian	http://en.wikipedia.org/wiki/Marussia_F1	\N	RUS
+206	manor	Manor Marussia	British	http://en.wikipedia.org/wiki/Manor_Motorsport	\N	GBR
+207	haas	Haas F1 Team	American	http://en.wikipedia.org/wiki/Haas_F1_Team	\N	USA
+208	racing_point	Racing Point	British	http://en.wikipedia.org/wiki/Racing_Point_F1_Team	\N	GBR
+209	alphatauri	AlphaTauri	Italian	http://en.wikipedia.org/wiki/Scuderia_AlphaTauri	\N	ITA
+210	alpine	Alpine F1 Team	French	http://en.wikipedia.org/wiki/Alpine_F1_Team	\N	FRA
+211	rb	RB F1 Team	Italian	http://en.wikipedia.org/wiki/RB_Formula_One_Team	\N	ITA
+212	eagle	Eagle	American	http://en.wikipedia.org/wiki/Anglo_American_Racers	\N	USA
 \.
 
 
@@ -1375,84 +1235,84 @@ COPY public.formula_one_championshipadjustment (id, adjustment, points, driver_i
 -- Data for Name: formula_one_circuit; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.formula_one_circuit (id, reference, name, locality, country, altitude, wikipedia, country_code, latitude, longitude) FROM stdin;
-10	essarts	Rouen-Les-Essarts	Rouen	France	81	https://en.wikipedia.org/wiki/Rouen-Les-Essarts	FRA	49.3306	1.00458
-38	zolder	Zolder	Heusden-Zolder	Belgium	36	https://en.wikipedia.org/wiki/Circuit_Zolder	BEL	50.9894	5.25694
-52	hungaroring	Hungaroring	Budapest	Hungary	264	https://en.wikipedia.org/wiki/Hungaroring	HUN	47.5789	19.2486
-75	jeddah	Jeddah Corniche Circuit	Jeddah	Saudi Arabia	15	https://en.wikipedia.org/wiki/Jeddah_Corniche_Circuit	SAU	21.6319	39.1044
-60	sepang	Sepang International Circuit	Kuala Lumpur	Malaysia	18	https://en.wikipedia.org/wiki/Sepang_International_Circuit	MYS	2.76083	101.738
-45	imola	Autodromo Enzo e Dino Ferrari	Imola	Italy	37	https://en.wikipedia.org/wiki/Imola_Circuit	ITA	44.3439	11.7167
-74	losail	Losail International Circuit	Al Daayen	Qatar	12	https://en.wikipedia.org/wiki/Lusail_International_Circuit	QAT	25.49	51.4542
-63	istanbul	Istanbul Park	Istanbul	Turkey	130	https://en.wikipedia.org/wiki/Istanbul_Park	TUR	40.9517	29.405
-31	tremblant	Circuit Mont-Tremblant	Quebec	Canada	214	https://en.wikipedia.org/wiki/Circuit_Mont-Tremblant	CAN	46.1877	-74.6099
-61	bahrain	Bahrain International Circuit	Sakhir	Bahrain	7	https://en.wikipedia.org/wiki/Bahrain_International_Circuit	BHR	26.0325	50.5106
-7	monza	Autodromo Nazionale di Monza	Monza	Italy	162	https://en.wikipedia.org/wiki/Monza_Circuit	ITA	45.6156	9.28111
-36	nivelles	Nivelles-Baulers	Brussels	Belgium	139	https://en.wikipedia.org/wiki/Nivelles-Baulers	BEL	50.6211	4.32694
-34	red_bull_ring	Red Bull Ring	Spielberg	Austria	678	https://en.wikipedia.org/wiki/Red_Bull_Ring	AUT	47.2197	14.7647
-29	mosport	Mosport International Raceway	Ontario	Canada	332	https://en.wikipedia.org/wiki/Canadian_Tire_Motorsport_Park	CAN	44.0481	-78.6756
-8	nurburgring	Nürburgring	Nürburg	Germany	578	https://en.wikipedia.org/wiki/N%C3%BCrburgring	DEU	50.3356	6.9475
-32	montjuic	Montjuïc	Barcelona	Spain	79	https://en.wikipedia.org/wiki/Montju%C3%AFc_circuit	ESP	41.3664	2.15167
-66	yas_marina	Yas Marina Circuit	Abu Dhabi	UAE	3	https://en.wikipedia.org/wiki/Yas_Marina_Circuit	ARE	24.4672	54.6031
-54	phoenix	Phoenix street circuit	Phoenix	USA	345	https://en.wikipedia.org/wiki/Phoenix_street_circuit	USA	33.4479	-112.075
-51	jerez	Circuito de Jerez	Jerez de la Frontera	Spain	37	https://en.wikipedia.org/wiki/Circuito_de_Jerez	ESP	36.7083	-6.03417
-28	lemans	Le Mans	Le Mans	France	67	https://en.wikipedia.org/wiki/Circuit_de_la_Sarthe#Bugatti_Circuit	FRA	47.95	0.22423
-4	bremgarten	Circuit Bremgarten	Bern	Switzerland	551	https://en.wikipedia.org/wiki/Circuit_Bremgarten	CHE	46.9589	7.40194
-55	magny_cours	Circuit de Nevers Magny-Cours	Magny Cours	France	228	https://en.wikipedia.org/wiki/Circuit_de_Nevers_Magny-Cours	FRA	46.8642	3.16361
-15	boavista	Circuito da Boavista	Oporto	Portugal	28	https://en.wikipedia.org/wiki/Circuito_da_Boavista	PRT	41.1705	-8.67325
-53	suzuka	Suzuka Circuit	Suzuka	Japan	45	https://en.wikipedia.org/wiki/Suzuka_International_Racing_Course	JPN	34.8431	136.541
-69	americas	Circuit of the Americas	Austin	USA	161	https://en.wikipedia.org/wiki/Circuit_of_the_Americas	USA	30.1328	-97.6411
-35	ricard	Circuit Paul Ricard	Le Castellet	France	432	https://en.wikipedia.org/wiki/Circuit_Paul_Ricard	FRA	43.2506	5.79167
-26	charade	Charade Circuit	Clermont-Ferrand	France	790	https://en.wikipedia.org/wiki/Circuit_de_Charade	FRA	45.7472	3.03889
-76	miami	Miami International Autodrome	Miami	USA	0	https://en.wikipedia.org/wiki/Miami_International_Autodrome	USA	25.9581	-80.2389
-9	pedralbes	Circuit de Pedralbes	Barcelona	Spain	85	https://en.wikipedia.org/wiki/Pedralbes_Circuit	ESP	41.3903	2.11667
-18	monsanto	Monsanto Park Circuit	Lisbon	Portugal	158	https://en.wikipedia.org/wiki/Circuito_de_Monsanto	PRT	38.7197	-9.20306
-27	kyalami	Kyalami	Midrand	South Africa	1460	https://en.wikipedia.org/wiki/Kyalami	ZAF	-25.9894	28.0767
-77	vegas	Las Vegas Strip Street Circuit	Las Vegas	USA	642	https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix#Circuit	USA	36.1147	-115.173
-65	marina_bay	Marina Bay Street Circuit	Marina Bay	Singapore	18	https://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit	SGP	1.2914	103.864
-33	hockenheimring	Hockenheimring	Hockenheim	Germany	103	https://en.wikipedia.org/wiki/Hockenheimring	DEU	49.3278	8.56583
-16	ain-diab	Ain Diab	Casablanca	Morocco	19	https://en.wikipedia.org/wiki/Ain-Diab_Circuit	MAR	33.5786	-7.6875
-50	adelaide	Adelaide Street Circuit	Adelaide	Australia	58	https://en.wikipedia.org/wiki/Adelaide_Street_Circuit	AUS	-34.9272	138.617
-39	anderstorp	Scandinavian Raceway	Anderstorp	Sweden	153	https://en.wikipedia.org/wiki/Anderstorp_Raceway	SWE	57.2653	13.6042
-6	reims	Reims-Gueux	Reims	France	88	https://en.wikipedia.org/wiki/Reims-Gueux	FRA	49.2542	3.93083
-62	shanghai	Shanghai International Circuit	Shanghai	China	5	https://en.wikipedia.org/wiki/Shanghai_International_Circuit	CHN	31.3389	121.22
-44	villeneuve	Circuit Gilles Villeneuve	Montreal	Canada	13	https://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve	CAN	45.5	-73.5228
-25	zeltweg	Zeltweg	Styria	Austria	676	https://en.wikipedia.org/wiki/Zeltweg_Air_Base	AUT	47.2039	14.7478
-11	zandvoort	Circuit Park Zandvoort	Zandvoort	Netherlands	6	https://en.wikipedia.org/wiki/Circuit_Zandvoort	NLD	52.3888	4.54092
-41	long_beach	Long Beach	California	USA	12	https://en.wikipedia.org/wiki/Long_Beach,_California	USA	33.7651	-118.189
-48	dallas	Fair Park	Dallas	USA	139	https://en.wikipedia.org/wiki/Fair_Park	USA	32.7774	-96.7587
-47	detroit	Detroit Street Circuit	Detroit	USA	177	https://en.wikipedia.org/wiki/Detroit_street_circuit	USA	42.3298	-83.0401
-68	buddh	Buddh International Circuit	Uttar Pradesh	India	194	https://en.wikipedia.org/wiki/Buddh_International_Circuit	IND	28.3487	77.5331
-20	riverside	Riverside International Raceway	California	USA	470	https://en.wikipedia.org/wiki/Riverside_International_Raceway	USA	33.937	-117.273
-30	jarama	Jarama	Madrid	Spain	609	https://en.wikipedia.org/wiki/Circuito_del_Jarama	ESP	40.6171	-3.58558
-73	portimao	Autódromo Internacional do Algarve	Portimão	Portugal	108	https://en.wikipedia.org/wiki/Algarve_International_Circuit	PRT	37.227	-8.6267
-59	albert_park	Albert Park Grand Prix Circuit	Melbourne	Australia	10	https://en.wikipedia.org/wiki/Albert_Park_Circuit	AUS	-37.8497	144.968
-21	watkins_glen	Watkins Glen	New York State	USA	485	https://en.wikipedia.org/wiki/Watkins_Glen_International	USA	42.3369	-76.9272
-49	estoril	Autódromo do Estoril	Estoril	Portugal	130	https://en.wikipedia.org/wiki/Circuito_do_Estoril	PRT	38.7506	-9.39417
-67	yeongam	Korean International Circuit	Yeongam County	Korea	0	https://en.wikipedia.org/wiki/Korea_International_Circuit	KOR	34.7333	126.417
-43	jacarepagua	Autódromo Internacional Nelson Piquet	Rio de Janeiro	Brazil	1126	https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_Nelson_Piquet	BRA	-22.9756	-43.395
-72	mugello	Autodromo Internazionale del Mugello	Mugello	Italy	255	https://en.wikipedia.org/wiki/Mugello_Circuit	ITA	43.9975	11.3719
-58	okayama	Okayama International Circuit	Okayama	Japan	266	https://en.wikipedia.org/wiki/Okayama_International_Circuit	JPN	34.915	134.221
-42	fuji	Fuji Speedway	Oyama	Japan	583	https://en.wikipedia.org/wiki/Fuji_Speedway	JPN	35.3717	138.927
-12	galvez	Autódromo Juan y Oscar Gálvez	Buenos Aires	Argentina	8	https://en.wikipedia.org/wiki/Autódromo_Oscar_y_Juan_Gálvez	ARG	-34.6943	-58.4593
-14	pescara	Pescara Circuit	Pescara	Italy	129	https://en.wikipedia.org/wiki/Pescara_Circuit	ITA	42.475	14.1508
-2	monaco	Circuit de Monaco	Monte-Carlo	Monaco	7	https://en.wikipedia.org/wiki/Circuit_de_Monaco	MCO	43.7347	7.42056
-1	silverstone	Silverstone Circuit	Silverstone	UK	153	https://en.wikipedia.org/wiki/Silverstone_Circuit	GBR	52.0786	-1.01694
-5	spa	Circuit de Spa-Francorchamps	Spa	Belgium	401	https://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps	BEL	50.4372	5.97139
-19	sebring	Sebring International Raceway	Florida	USA	18	https://en.wikipedia.org/wiki/Sebring_International_Raceway	USA	27.4547	-81.3483
-37	interlagos	Autódromo José Carlos Pace	São Paulo	Brazil	785	https://en.wikipedia.org/wiki/Interlagos_Circuit	BRA	-23.7036	-46.6997
-23	rodriguez	Autódromo Hermanos Rodríguez	Mexico City	Mexico	2227	https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez	MEX	19.4042	-99.0907
-22	george	Prince George Circuit	Eastern Cape Province	South Africa	15	https://en.wikipedia.org/wiki/Prince_George_Circuit	ZAF	-33.0486	27.8736
-56	catalunya	Circuit de Barcelona-Catalunya	Montmeló	Spain	109	https://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya	ESP	41.57	2.26111
-57	donington	Donington Park	Castle Donington	UK	88	https://en.wikipedia.org/wiki/Donington_Park	GBR	52.8306	-1.37528
-17	avus	AVUS	Berlin	Germany	53	https://en.wikipedia.org/wiki/AVUS	DEU	52.4806	13.2514
-40	dijon	Dijon-Prenois	Dijon	France	484	https://en.wikipedia.org/wiki/Dijon-Prenois	FRA	47.3625	4.89913
-70	sochi	Sochi Autodrom	Sochi	Russia	2	https://en.wikipedia.org/wiki/Sochi_Autodrom	RUS	43.4057	39.9578
-13	aintree	Aintree	Liverpool	UK	20	https://en.wikipedia.org/wiki/Aintree_Motor_Racing_Circuit	GBR	53.4769	-2.94056
-3	indianapolis	Indianapolis Motor Speedway	Indianapolis	USA	223	https://en.wikipedia.org/wiki/Indianapolis_Motor_Speedway	USA	39.795	-86.2347
-46	las_vegas	Las Vegas Street Circuit	Nevada	USA	639	https://en.wikipedia.org/wiki/Las_Vegas_Strip_Circuit	USA	36.1162	-115.174
-64	valencia	Valencia Street Circuit	Valencia	Spain	4	https://en.wikipedia.org/wiki/Valencia_Street_Circuit	ESP	39.4589	-0.331667
-24	brands_hatch	Brands Hatch	Kent	UK	145	https://en.wikipedia.org/wiki/Brands_Hatch	GBR	51.3569	0.26306
-71	baku	Baku City Circuit	Baku	Azerbaijan	-7	https://en.wikipedia.org/wiki/Baku_City_Circuit	AZE	40.3725	49.8533
+COPY public.formula_one_circuit (id, reference, name, locality, country, longitude, latitude, altitude, wikipedia, country_code) FROM stdin;
+1	silverstone	Silverstone Circuit	Silverstone	UK	-1.01694	52.0786	153	https://en.wikipedia.org/wiki/Silverstone_Circuit	GBR
+2	monaco	Circuit de Monaco	Monte-Carlo	Monaco	7.42056	43.7347	7	https://en.wikipedia.org/wiki/Circuit_de_Monaco	MCO
+3	indianapolis	Indianapolis Motor Speedway	Indianapolis	USA	-86.2347	39.795	223	https://en.wikipedia.org/wiki/Indianapolis_Motor_Speedway	USA
+4	bremgarten	Circuit Bremgarten	Bern	Switzerland	7.40194	46.9589	551	https://en.wikipedia.org/wiki/Circuit_Bremgarten	CHE
+5	spa	Circuit de Spa-Francorchamps	Spa	Belgium	5.97139	50.4372	401	https://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps	BEL
+6	reims	Reims-Gueux	Reims	France	3.93083	49.2542	88	https://en.wikipedia.org/wiki/Reims-Gueux	FRA
+7	monza	Autodromo Nazionale di Monza	Monza	Italy	9.28111	45.6156	162	https://en.wikipedia.org/wiki/Monza_Circuit	ITA
+8	nurburgring	Nürburgring	Nürburg	Germany	6.9475	50.3356	578	https://en.wikipedia.org/wiki/N%C3%BCrburgring	DEU
+9	pedralbes	Circuit de Pedralbes	Barcelona	Spain	2.11667	41.3903	85	https://en.wikipedia.org/wiki/Pedralbes_Circuit	ESP
+10	essarts	Rouen-Les-Essarts	Rouen	France	1.00458	49.3306	81	https://en.wikipedia.org/wiki/Rouen-Les-Essarts	FRA
+11	zandvoort	Circuit Park Zandvoort	Zandvoort	Netherlands	4.54092	52.3888	6	https://en.wikipedia.org/wiki/Circuit_Zandvoort	NLD
+12	galvez	Autódromo Juan y Oscar Gálvez	Buenos Aires	Argentina	-58.4593	-34.6943	8	https://en.wikipedia.org/wiki/Autódromo_Oscar_y_Juan_Gálvez	ARG
+13	aintree	Aintree	Liverpool	UK	-2.94056	53.4769	20	https://en.wikipedia.org/wiki/Aintree_Motor_Racing_Circuit	GBR
+14	pescara	Pescara Circuit	Pescara	Italy	14.1508	42.475	129	https://en.wikipedia.org/wiki/Pescara_Circuit	ITA
+15	boavista	Circuito da Boavista	Oporto	Portugal	-8.67325	41.1705	28	https://en.wikipedia.org/wiki/Circuito_da_Boavista	PRT
+16	ain-diab	Ain Diab	Casablanca	Morocco	-7.6875	33.5786	19	https://en.wikipedia.org/wiki/Ain-Diab_Circuit	MAR
+17	avus	AVUS	Berlin	Germany	13.2514	52.4806	53	https://en.wikipedia.org/wiki/AVUS	DEU
+18	monsanto	Monsanto Park Circuit	Lisbon	Portugal	-9.20306	38.7197	158	https://en.wikipedia.org/wiki/Circuito_de_Monsanto	PRT
+19	sebring	Sebring International Raceway	Florida	USA	-81.3483	27.4547	18	https://en.wikipedia.org/wiki/Sebring_International_Raceway	USA
+20	riverside	Riverside International Raceway	California	USA	-117.273	33.937	470	https://en.wikipedia.org/wiki/Riverside_International_Raceway	USA
+21	watkins_glen	Watkins Glen	New York State	USA	-76.9272	42.3369	485	https://en.wikipedia.org/wiki/Watkins_Glen_International	USA
+22	george	Prince George Circuit	Eastern Cape Province	South Africa	27.8736	-33.0486	15	https://en.wikipedia.org/wiki/Prince_George_Circuit	ZAF
+23	rodriguez	Autódromo Hermanos Rodríguez	Mexico City	Mexico	-99.0907	19.4042	2227	https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez	MEX
+24	brands_hatch	Brands Hatch	Kent	UK	0.263056	51.3569	145	https://en.wikipedia.org/wiki/Brands_Hatch	GBR
+25	zeltweg	Zeltweg	Styria	Austria	14.7478	47.2039	676	https://en.wikipedia.org/wiki/Zeltweg_Air_Base	AUT
+26	charade	Charade Circuit	Clermont-Ferrand	France	3.03889	45.7472	790	https://en.wikipedia.org/wiki/Circuit_de_Charade	FRA
+27	kyalami	Kyalami	Midrand	South Africa	28.0767	-25.9894	1460	https://en.wikipedia.org/wiki/Kyalami	ZAF
+28	lemans	Le Mans	Le Mans	France	0.224231	47.95	67	https://en.wikipedia.org/wiki/Circuit_de_la_Sarthe#Bugatti_Circuit	FRA
+29	mosport	Mosport International Raceway	Ontario	Canada	-78.6756	44.0481	332	https://en.wikipedia.org/wiki/Canadian_Tire_Motorsport_Park	CAN
+30	jarama	Jarama	Madrid	Spain	-3.58558	40.6171	609	https://en.wikipedia.org/wiki/Circuito_del_Jarama	ESP
+31	tremblant	Circuit Mont-Tremblant	Quebec	Canada	-74.6099	46.1877	214	https://en.wikipedia.org/wiki/Circuit_Mont-Tremblant	CAN
+32	montjuic	Montjuïc	Barcelona	Spain	2.15167	41.3664	79	https://en.wikipedia.org/wiki/Montju%C3%AFc_circuit	ESP
+33	hockenheimring	Hockenheimring	Hockenheim	Germany	8.56583	49.3278	103	https://en.wikipedia.org/wiki/Hockenheimring	DEU
+34	red_bull_ring	Red Bull Ring	Spielberg	Austria	14.7647	47.2197	678	https://en.wikipedia.org/wiki/Red_Bull_Ring	AUT
+35	ricard	Circuit Paul Ricard	Le Castellet	France	5.79167	43.2506	432	https://en.wikipedia.org/wiki/Circuit_Paul_Ricard	FRA
+36	nivelles	Nivelles-Baulers	Brussels	Belgium	4.32694	50.6211	139	https://en.wikipedia.org/wiki/Nivelles-Baulers	BEL
+37	interlagos	Autódromo José Carlos Pace	São Paulo	Brazil	-46.6997	-23.7036	785	https://en.wikipedia.org/wiki/Interlagos_Circuit	BRA
+38	zolder	Zolder	Heusden-Zolder	Belgium	5.25694	50.9894	36	https://en.wikipedia.org/wiki/Circuit_Zolder	BEL
+39	anderstorp	Scandinavian Raceway	Anderstorp	Sweden	13.6042	57.2653	153	https://en.wikipedia.org/wiki/Anderstorp_Raceway	SWE
+40	dijon	Dijon-Prenois	Dijon	France	4.89913	47.3625	484	https://en.wikipedia.org/wiki/Dijon-Prenois	FRA
+41	long_beach	Long Beach	California	USA	-118.189	33.7651	12	https://en.wikipedia.org/wiki/Long_Beach,_California	USA
+42	fuji	Fuji Speedway	Oyama	Japan	138.927	35.3717	583	https://en.wikipedia.org/wiki/Fuji_Speedway	JPN
+43	jacarepagua	Autódromo Internacional Nelson Piquet	Rio de Janeiro	Brazil	-43.395	-22.9756	1126	https://en.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_Nelson_Piquet	BRA
+44	villeneuve	Circuit Gilles Villeneuve	Montreal	Canada	-73.5228	45.5	13	https://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve	CAN
+45	imola	Autodromo Enzo e Dino Ferrari	Imola	Italy	11.7167	44.3439	37	https://en.wikipedia.org/wiki/Imola_Circuit	ITA
+46	las_vegas	Las Vegas Street Circuit	Nevada	USA	-115.174	36.1162	639	https://en.wikipedia.org/wiki/Las_Vegas_Strip_Circuit	USA
+47	detroit	Detroit Street Circuit	Detroit	USA	-83.0401	42.3298	177	https://en.wikipedia.org/wiki/Detroit_street_circuit	USA
+48	dallas	Fair Park	Dallas	USA	-96.7587	32.7774	139	https://en.wikipedia.org/wiki/Fair_Park	USA
+49	estoril	Autódromo do Estoril	Estoril	Portugal	-9.39417	38.7506	130	https://en.wikipedia.org/wiki/Circuito_do_Estoril	PRT
+50	adelaide	Adelaide Street Circuit	Adelaide	Australia	138.617	-34.9272	58	https://en.wikipedia.org/wiki/Adelaide_Street_Circuit	AUS
+51	jerez	Circuito de Jerez	Jerez de la Frontera	Spain	-6.03417	36.7083	37	https://en.wikipedia.org/wiki/Circuito_de_Jerez	ESP
+52	hungaroring	Hungaroring	Budapest	Hungary	19.2486	47.5789	264	https://en.wikipedia.org/wiki/Hungaroring	HUN
+53	suzuka	Suzuka Circuit	Suzuka	Japan	136.541	34.8431	45	https://en.wikipedia.org/wiki/Suzuka_International_Racing_Course	JPN
+54	phoenix	Phoenix street circuit	Phoenix	USA	-112.075	33.4479	345	https://en.wikipedia.org/wiki/Phoenix_street_circuit	USA
+55	magny_cours	Circuit de Nevers Magny-Cours	Magny Cours	France	3.16361	46.8642	228	https://en.wikipedia.org/wiki/Circuit_de_Nevers_Magny-Cours	FRA
+56	catalunya	Circuit de Barcelona-Catalunya	Montmeló	Spain	2.26111	41.57	109	https://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya	ESP
+57	donington	Donington Park	Castle Donington	UK	-1.37528	52.8306	88	https://en.wikipedia.org/wiki/Donington_Park	GBR
+58	okayama	Okayama International Circuit	Okayama	Japan	134.221	34.915	266	https://en.wikipedia.org/wiki/Okayama_International_Circuit	JPN
+59	albert_park	Albert Park Grand Prix Circuit	Melbourne	Australia	144.968	-37.8497	10	https://en.wikipedia.org/wiki/Albert_Park_Circuit	AUS
+60	sepang	Sepang International Circuit	Kuala Lumpur	Malaysia	101.738	2.76083	18	https://en.wikipedia.org/wiki/Sepang_International_Circuit	MYS
+61	bahrain	Bahrain International Circuit	Sakhir	Bahrain	50.5106	26.0325	7	https://en.wikipedia.org/wiki/Bahrain_International_Circuit	BHR
+62	shanghai	Shanghai International Circuit	Shanghai	China	121.22	31.3389	5	https://en.wikipedia.org/wiki/Shanghai_International_Circuit	CHN
+63	istanbul	Istanbul Park	Istanbul	Turkey	29.405	40.9517	130	https://en.wikipedia.org/wiki/Istanbul_Park	TUR
+64	valencia	Valencia Street Circuit	Valencia	Spain	-0.331667	39.4589	4	https://en.wikipedia.org/wiki/Valencia_Street_Circuit	ESP
+65	marina_bay	Marina Bay Street Circuit	Marina Bay	Singapore	103.864	1.2914	18	https://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit	SGP
+66	yas_marina	Yas Marina Circuit	Abu Dhabi	UAE	54.6031	24.4672	3	https://en.wikipedia.org/wiki/Yas_Marina_Circuit	ARE
+67	yeongam	Korean International Circuit	Yeongam County	Korea	126.417	34.7333	0	https://en.wikipedia.org/wiki/Korea_International_Circuit	KOR
+68	buddh	Buddh International Circuit	Uttar Pradesh	India	77.5331	28.3487	194	https://en.wikipedia.org/wiki/Buddh_International_Circuit	IND
+69	americas	Circuit of the Americas	Austin	USA	-97.6411	30.1328	161	https://en.wikipedia.org/wiki/Circuit_of_the_Americas	USA
+70	sochi	Sochi Autodrom	Sochi	Russia	39.9578	43.4057	2	https://en.wikipedia.org/wiki/Sochi_Autodrom	RUS
+71	baku	Baku City Circuit	Baku	Azerbaijan	49.8533	40.3725	-7	https://en.wikipedia.org/wiki/Baku_City_Circuit	AZE
+72	mugello	Autodromo Internazionale del Mugello	Mugello	Italy	11.3719	43.9975	255	https://en.wikipedia.org/wiki/Mugello_Circuit	ITA
+73	portimao	Autódromo Internacional do Algarve	Portimão	Portugal	-8.6267	37.227	108	https://en.wikipedia.org/wiki/Algarve_International_Circuit	PRT
+74	losail	Losail International Circuit	Al Daayen	Qatar	51.4542	25.49	12	https://en.wikipedia.org/wiki/Lusail_International_Circuit	QAT
+75	jeddah	Jeddah Corniche Circuit	Jeddah	Saudi Arabia	39.1044	21.6319	15	https://en.wikipedia.org/wiki/Jeddah_Corniche_Circuit	SAU
+76	miami	Miami International Autodrome	Miami	USA	-80.2389	25.9581	0	https://en.wikipedia.org/wiki/Miami_International_Autodrome	USA
+77	vegas	Las Vegas Strip Street Circuit	Las Vegas	USA	-115.173	36.1147	642	https://en.wikipedia.org/wiki/Las_Vegas_Grand_Prix#Circuit	USA
 \.
 
 
@@ -1490,8 +1350,9 @@ COPY public.formula_one_pointsystem (id, reference, name, driver_position_points
 19	sprint2021	2021 Sprint Points	21	0	21	0	2	0	f
 20	r2022	2022 Race Points	7	4	7	4	3	0	f
 21	sprint2022	2022 Sprint Points	22	0	22	0	3	0	f
-22	r2023	2023 - Present Race Points	7	4	7	4	4	0	f
+22	r2023	2023 - 2024 Race Points	7	4	7	4	4	0	f
 23	sprint2023	2023 - Present Sprint Points	22	0	22	0	4	0	f
+24	r2025	2025 - Present Race Points	7	0	7	0	4	0	f
 \.
 
 
@@ -1500,1085 +1361,1085 @@ COPY public.formula_one_pointsystem (id, reference, name, driver_position_points
 --
 
 COPY public.formula_one_round (id, number, name, date, race_number, wikipedia, is_cancelled, circuit_id, season_id) FROM stdin;
-1	1	British Grand Prix	1950-05-13	1	http://en.wikipedia.org/wiki/1950_British_Grand_Prix	f	1	1
-2	2	Monaco Grand Prix	1950-05-21	2	http://en.wikipedia.org/wiki/1950_Monaco_Grand_Prix	f	2	1
-3	3	Indianapolis 500	1950-05-30	3	http://en.wikipedia.org/wiki/1950_Indianapolis_500	f	3	1
-4	4	Swiss Grand Prix	1950-06-04	4	http://en.wikipedia.org/wiki/1950_Swiss_Grand_Prix	f	4	1
-5	5	Belgian Grand Prix	1950-06-18	5	http://en.wikipedia.org/wiki/1950_Belgian_Grand_Prix	f	5	1
-6	6	French Grand Prix	1950-07-02	6	http://en.wikipedia.org/wiki/1950_French_Grand_Prix	f	6	1
-7	7	Italian Grand Prix	1950-09-03	7	http://en.wikipedia.org/wiki/1950_Italian_Grand_Prix	f	7	1
-8	1	Swiss Grand Prix	1951-05-27	8	http://en.wikipedia.org/wiki/1951_Swiss_Grand_Prix	f	4	2
-9	2	Indianapolis 500	1951-05-30	9	http://en.wikipedia.org/wiki/1951_Indianapolis_500	f	3	2
-10	3	Belgian Grand Prix	1951-06-17	10	http://en.wikipedia.org/wiki/1951_Belgian_Grand_Prix	f	5	2
-11	4	French Grand Prix	1951-07-01	11	http://en.wikipedia.org/wiki/1951_French_Grand_Prix	f	6	2
-12	5	British Grand Prix	1951-07-14	12	http://en.wikipedia.org/wiki/1951_British_Grand_Prix	f	1	2
-13	6	German Grand Prix	1951-07-29	13	http://en.wikipedia.org/wiki/1951_German_Grand_Prix	f	8	2
-14	7	Italian Grand Prix	1951-09-16	14	http://en.wikipedia.org/wiki/1951_Italian_Grand_Prix	f	7	2
-15	8	Spanish Grand Prix	1951-10-28	15	http://en.wikipedia.org/wiki/1951_Spanish_Grand_Prix	f	9	2
-16	1	Swiss Grand Prix	1952-05-18	16	http://en.wikipedia.org/wiki/1952_Swiss_Grand_Prix	f	4	3
-17	2	Indianapolis 500	1952-05-30	17	http://en.wikipedia.org/wiki/1952_Indianapolis_500	f	3	3
-18	3	Belgian Grand Prix	1952-06-22	18	http://en.wikipedia.org/wiki/1952_Belgian_Grand_Prix	f	5	3
-19	4	French Grand Prix	1952-07-06	19	http://en.wikipedia.org/wiki/1952_French_Grand_Prix	f	10	3
-20	5	British Grand Prix	1952-07-19	20	http://en.wikipedia.org/wiki/1952_British_Grand_Prix	f	1	3
-21	6	German Grand Prix	1952-08-03	21	http://en.wikipedia.org/wiki/1952_German_Grand_Prix	f	8	3
-22	7	Dutch Grand Prix	1952-08-17	22	http://en.wikipedia.org/wiki/1952_Dutch_Grand_Prix	f	11	3
-23	8	Italian Grand Prix	1952-09-07	23	http://en.wikipedia.org/wiki/1952_Italian_Grand_Prix	f	7	3
-24	1	Argentine Grand Prix	1953-01-18	24	http://en.wikipedia.org/wiki/1953_Argentine_Grand_Prix	f	12	4
-25	2	Indianapolis 500	1953-05-30	25	http://en.wikipedia.org/wiki/1953_Indianapolis_500	f	3	4
-26	3	Dutch Grand Prix	1953-06-07	26	http://en.wikipedia.org/wiki/1953_Dutch_Grand_Prix	f	11	4
-27	4	Belgian Grand Prix	1953-06-21	27	http://en.wikipedia.org/wiki/1953_Belgian_Grand_Prix	f	5	4
-28	5	French Grand Prix	1953-07-05	28	http://en.wikipedia.org/wiki/1953_French_Grand_Prix	f	6	4
-29	6	British Grand Prix	1953-07-18	29	http://en.wikipedia.org/wiki/1953_British_Grand_Prix	f	1	4
-30	7	German Grand Prix	1953-08-02	30	http://en.wikipedia.org/wiki/1953_German_Grand_Prix	f	8	4
-31	8	Swiss Grand Prix	1953-08-23	31	http://en.wikipedia.org/wiki/1953_Swiss_Grand_Prix	f	4	4
-32	9	Italian Grand Prix	1953-09-13	32	http://en.wikipedia.org/wiki/1953_Italian_Grand_Prix	f	7	4
-33	1	Argentine Grand Prix	1954-01-17	33	http://en.wikipedia.org/wiki/1954_Argentine_Grand_Prix	f	12	5
-34	2	Indianapolis 500	1954-05-31	34	http://en.wikipedia.org/wiki/1954_Indianapolis_500	f	3	5
-35	3	Belgian Grand Prix	1954-06-20	35	http://en.wikipedia.org/wiki/1954_Belgian_Grand_Prix	f	5	5
-36	4	French Grand Prix	1954-07-04	36	http://en.wikipedia.org/wiki/1954_French_Grand_Prix	f	6	5
-37	5	British Grand Prix	1954-07-17	37	http://en.wikipedia.org/wiki/1954_British_Grand_Prix	f	1	5
-38	6	German Grand Prix	1954-08-01	38	http://en.wikipedia.org/wiki/1954_German_Grand_Prix	f	8	5
-39	7	Swiss Grand Prix	1954-08-22	39	http://en.wikipedia.org/wiki/1954_Swiss_Grand_Prix	f	4	5
-40	8	Italian Grand Prix	1954-09-05	40	http://en.wikipedia.org/wiki/1954_Italian_Grand_Prix	f	7	5
-41	9	Spanish Grand Prix	1954-10-24	41	http://en.wikipedia.org/wiki/1954_Spanish_Grand_Prix	f	9	5
-42	1	Argentine Grand Prix	1955-01-16	42	http://en.wikipedia.org/wiki/1955_Argentine_Grand_Prix	f	12	6
-43	2	Monaco Grand Prix	1955-05-22	43	http://en.wikipedia.org/wiki/1955_Monaco_Grand_Prix	f	2	6
-44	3	Indianapolis 500	1955-05-30	44	http://en.wikipedia.org/wiki/1955_Indianapolis_500	f	3	6
-45	4	Belgian Grand Prix	1955-06-05	45	http://en.wikipedia.org/wiki/1955_Belgian_Grand_Prix	f	5	6
-46	5	Dutch Grand Prix	1955-06-19	46	http://en.wikipedia.org/wiki/1955_Dutch_Grand_Prix	f	11	6
-47	6	British Grand Prix	1955-07-16	47	http://en.wikipedia.org/wiki/1955_British_Grand_Prix	f	13	6
-48	7	Italian Grand Prix	1955-09-11	48	http://en.wikipedia.org/wiki/1955_Italian_Grand_Prix	f	7	6
-49	1	Argentine Grand Prix	1956-01-22	49	http://en.wikipedia.org/wiki/1956_Argentine_Grand_Prix	f	12	7
-50	2	Monaco Grand Prix	1956-05-13	50	http://en.wikipedia.org/wiki/1956_Monaco_Grand_Prix	f	2	7
-51	3	Indianapolis 500	1956-05-30	51	http://en.wikipedia.org/wiki/1956_Indianapolis_500	f	3	7
-52	4	Belgian Grand Prix	1956-06-03	52	http://en.wikipedia.org/wiki/1956_Belgian_Grand_Prix	f	5	7
-53	5	French Grand Prix	1956-07-01	53	http://en.wikipedia.org/wiki/1956_French_Grand_Prix	f	6	7
-54	6	British Grand Prix	1956-07-14	54	http://en.wikipedia.org/wiki/1956_British_Grand_Prix	f	1	7
-55	7	German Grand Prix	1956-08-05	55	http://en.wikipedia.org/wiki/1956_German_Grand_Prix	f	8	7
-56	8	Italian Grand Prix	1956-09-02	56	http://en.wikipedia.org/wiki/1956_Italian_Grand_Prix	f	7	7
-57	1	Argentine Grand Prix	1957-01-13	57	http://en.wikipedia.org/wiki/1957_Argentine_Grand_Prix	f	12	8
-58	2	Monaco Grand Prix	1957-05-19	58	http://en.wikipedia.org/wiki/1957_Monaco_Grand_Prix	f	2	8
-59	3	Indianapolis 500	1957-05-30	59	http://en.wikipedia.org/wiki/1957_Indianapolis_500	f	3	8
-60	4	French Grand Prix	1957-07-07	60	http://en.wikipedia.org/wiki/1957_French_Grand_Prix	f	10	8
-61	5	British Grand Prix	1957-07-20	61	http://en.wikipedia.org/wiki/1957_British_Grand_Prix	f	13	8
-62	6	German Grand Prix	1957-08-04	62	http://en.wikipedia.org/wiki/1957_German_Grand_Prix	f	8	8
-63	7	Pescara Grand Prix	1957-08-18	63	http://en.wikipedia.org/wiki/1957_Pescara_Grand_Prix	f	14	8
-64	8	Italian Grand Prix	1957-09-08	64	http://en.wikipedia.org/wiki/1957_Italian_Grand_Prix	f	7	8
-65	1	Argentine Grand Prix	1958-01-19	65	http://en.wikipedia.org/wiki/1958_Argentine_Grand_Prix	f	12	9
-66	2	Monaco Grand Prix	1958-05-18	66	http://en.wikipedia.org/wiki/1958_Monaco_Grand_Prix	f	2	9
-67	3	Dutch Grand Prix	1958-05-26	67	http://en.wikipedia.org/wiki/1958_Dutch_Grand_Prix	f	11	9
-68	4	Indianapolis 500	1958-05-30	68	http://en.wikipedia.org/wiki/1958_Indianapolis_500	f	3	9
-69	5	Belgian Grand Prix	1958-06-15	69	http://en.wikipedia.org/wiki/1958_Belgian_Grand_Prix	f	5	9
-70	6	French Grand Prix	1958-07-06	70	http://en.wikipedia.org/wiki/1958_French_Grand_Prix	f	6	9
-71	7	British Grand Prix	1958-07-19	71	http://en.wikipedia.org/wiki/1958_British_Grand_Prix	f	1	9
-72	8	German Grand Prix	1958-08-03	72	http://en.wikipedia.org/wiki/1958_German_Grand_Prix	f	8	9
-73	9	Portuguese Grand Prix	1958-08-24	73	http://en.wikipedia.org/wiki/1958_Portuguese_Grand_Prix	f	15	9
-74	10	Italian Grand Prix	1958-09-07	74	http://en.wikipedia.org/wiki/1958_Italian_Grand_Prix	f	7	9
-75	11	Moroccan Grand Prix	1958-10-19	75	http://en.wikipedia.org/wiki/1958_Moroccan_Grand_Prix	f	16	9
-76	1	Monaco Grand Prix	1959-05-10	76	http://en.wikipedia.org/wiki/1959_Monaco_Grand_Prix	f	2	10
-77	2	Indianapolis 500	1959-05-30	77	http://en.wikipedia.org/wiki/1959_Indianapolis_500	f	3	10
-78	3	Dutch Grand Prix	1959-05-31	78	http://en.wikipedia.org/wiki/1959_Dutch_Grand_Prix	f	11	10
-79	4	French Grand Prix	1959-07-05	79	http://en.wikipedia.org/wiki/1959_French_Grand_Prix	f	6	10
-80	5	British Grand Prix	1959-07-18	80	http://en.wikipedia.org/wiki/1959_British_Grand_Prix	f	13	10
-81	6	German Grand Prix	1959-08-02	81	http://en.wikipedia.org/wiki/1959_German_Grand_Prix	f	17	10
-82	7	Portuguese Grand Prix	1959-08-23	82	http://en.wikipedia.org/wiki/1959_Portuguese_Grand_Prix	f	18	10
-83	8	Italian Grand Prix	1959-09-13	83	http://en.wikipedia.org/wiki/1959_Italian_Grand_Prix	f	7	10
-84	9	United States Grand Prix	1959-12-12	84	http://en.wikipedia.org/wiki/1959_United_States_Grand_Prix	f	19	10
-85	1	Argentine Grand Prix	1960-02-07	85	http://en.wikipedia.org/wiki/1960_Argentine_Grand_Prix	f	12	11
-86	2	Monaco Grand Prix	1960-05-29	86	http://en.wikipedia.org/wiki/1960_Monaco_Grand_Prix	f	2	11
-87	3	Indianapolis 500	1960-05-30	87	http://en.wikipedia.org/wiki/1960_Indianapolis_500	f	3	11
-88	4	Dutch Grand Prix	1960-06-06	88	http://en.wikipedia.org/wiki/1960_Dutch_Grand_Prix	f	11	11
-89	5	Belgian Grand Prix	1960-06-19	89	http://en.wikipedia.org/wiki/1960_Belgian_Grand_Prix	f	5	11
-90	6	French Grand Prix	1960-07-03	90	http://en.wikipedia.org/wiki/1960_French_Grand_Prix	f	6	11
-91	7	British Grand Prix	1960-07-16	91	http://en.wikipedia.org/wiki/1960_British_Grand_Prix	f	1	11
-92	8	Portuguese Grand Prix	1960-08-14	92	http://en.wikipedia.org/wiki/1960_Portuguese_Grand_Prix	f	15	11
-93	9	Italian Grand Prix	1960-09-04	93	http://en.wikipedia.org/wiki/1960_Italian_Grand_Prix	f	7	11
-94	10	United States Grand Prix	1960-11-20	94	http://en.wikipedia.org/wiki/1960_United_States_Grand_Prix	f	20	11
-95	1	Monaco Grand Prix	1961-05-14	95	http://en.wikipedia.org/wiki/1961_Monaco_Grand_Prix	f	2	12
-96	2	Dutch Grand Prix	1961-05-22	96	http://en.wikipedia.org/wiki/1961_Dutch_Grand_Prix	f	11	12
-97	3	Belgian Grand Prix	1961-06-18	97	http://en.wikipedia.org/wiki/1961_Belgian_Grand_Prix	f	5	12
-98	4	French Grand Prix	1961-07-02	98	http://en.wikipedia.org/wiki/1961_French_Grand_Prix	f	6	12
-99	5	British Grand Prix	1961-07-15	99	http://en.wikipedia.org/wiki/1961_British_Grand_Prix	f	13	12
-100	6	German Grand Prix	1961-08-06	100	http://en.wikipedia.org/wiki/1961_German_Grand_Prix	f	8	12
-101	7	Italian Grand Prix	1961-09-10	101	http://en.wikipedia.org/wiki/1961_Italian_Grand_Prix	f	7	12
-102	8	United States Grand Prix	1961-10-08	102	http://en.wikipedia.org/wiki/1961_United_States_Grand_Prix	f	21	12
-103	1	Dutch Grand Prix	1962-05-20	103	http://en.wikipedia.org/wiki/1962_Dutch_Grand_Prix	f	11	13
-104	2	Monaco Grand Prix	1962-06-03	104	http://en.wikipedia.org/wiki/1962_Monaco_Grand_Prix	f	2	13
-105	3	Belgian Grand Prix	1962-06-17	105	http://en.wikipedia.org/wiki/1962_Belgian_Grand_Prix	f	5	13
-106	4	French Grand Prix	1962-07-08	106	http://en.wikipedia.org/wiki/1962_French_Grand_Prix	f	10	13
-107	5	British Grand Prix	1962-07-21	107	http://en.wikipedia.org/wiki/1962_British_Grand_Prix	f	13	13
-108	6	German Grand Prix	1962-08-05	108	http://en.wikipedia.org/wiki/1962_German_Grand_Prix	f	8	13
-109	7	Italian Grand Prix	1962-09-16	109	http://en.wikipedia.org/wiki/1962_Italian_Grand_Prix	f	7	13
-110	8	United States Grand Prix	1962-10-07	110	http://en.wikipedia.org/wiki/1962_United_States_Grand_Prix	f	21	13
-111	9	South African Grand Prix	1962-12-29	111	http://en.wikipedia.org/wiki/1962_South_African_Grand_Prix	f	22	13
-112	1	Monaco Grand Prix	1963-05-26	112	http://en.wikipedia.org/wiki/1963_Monaco_Grand_Prix	f	2	14
-113	2	Belgian Grand Prix	1963-06-09	113	http://en.wikipedia.org/wiki/1963_Belgian_Grand_Prix	f	5	14
-114	3	Dutch Grand Prix	1963-06-23	114	http://en.wikipedia.org/wiki/1963_Dutch_Grand_Prix	f	11	14
-115	4	French Grand Prix	1963-06-30	115	http://en.wikipedia.org/wiki/1963_French_Grand_Prix	f	6	14
-116	5	British Grand Prix	1963-07-20	116	http://en.wikipedia.org/wiki/1963_British_Grand_Prix	f	1	14
-117	6	German Grand Prix	1963-08-04	117	http://en.wikipedia.org/wiki/1963_German_Grand_Prix	f	8	14
-118	7	Italian Grand Prix	1963-09-08	118	http://en.wikipedia.org/wiki/1963_Italian_Grand_Prix	f	7	14
-119	8	United States Grand Prix	1963-10-06	119	http://en.wikipedia.org/wiki/1963_United_States_Grand_Prix	f	21	14
-120	9	Mexican Grand Prix	1963-10-27	120	http://en.wikipedia.org/wiki/1963_Mexican_Grand_Prix	f	23	14
-121	10	South African Grand Prix	1963-12-28	121	http://en.wikipedia.org/wiki/1963_South_African_Grand_Prix	f	22	14
-122	1	Monaco Grand Prix	1964-05-10	122	http://en.wikipedia.org/wiki/1964_Monaco_Grand_Prix	f	2	15
-123	2	Dutch Grand Prix	1964-05-24	123	http://en.wikipedia.org/wiki/1964_Dutch_Grand_Prix	f	11	15
-124	3	Belgian Grand Prix	1964-06-14	124	http://en.wikipedia.org/wiki/1964_Belgian_Grand_Prix	f	5	15
-125	4	French Grand Prix	1964-06-28	125	http://en.wikipedia.org/wiki/1964_French_Grand_Prix	f	10	15
-126	5	British Grand Prix	1964-07-11	126	http://en.wikipedia.org/wiki/1964_British_Grand_Prix	f	24	15
-127	6	German Grand Prix	1964-08-02	127	http://en.wikipedia.org/wiki/1964_German_Grand_Prix	f	8	15
-128	7	Austrian Grand Prix	1964-08-23	128	http://en.wikipedia.org/wiki/1964_Austrian_Grand_Prix	f	25	15
-129	8	Italian Grand Prix	1964-09-06	129	http://en.wikipedia.org/wiki/1964_Italian_Grand_Prix	f	7	15
-130	9	United States Grand Prix	1964-10-04	130	http://en.wikipedia.org/wiki/1964_United_States_Grand_Prix	f	21	15
-131	10	Mexican Grand Prix	1964-10-25	131	http://en.wikipedia.org/wiki/1964_Mexican_Grand_Prix	f	23	15
-132	1	South African Grand Prix	1965-01-01	132	http://en.wikipedia.org/wiki/1965_South_African_Grand_Prix	f	22	16
-133	2	Monaco Grand Prix	1965-05-30	133	http://en.wikipedia.org/wiki/1965_Monaco_Grand_Prix	f	2	16
-134	3	Belgian Grand Prix	1965-06-13	134	http://en.wikipedia.org/wiki/1965_Belgian_Grand_Prix	f	5	16
-135	4	French Grand Prix	1965-06-27	135	http://en.wikipedia.org/wiki/1965_French_Grand_Prix	f	26	16
-136	5	British Grand Prix	1965-07-10	136	http://en.wikipedia.org/wiki/1965_British_Grand_Prix	f	1	16
-137	6	Dutch Grand Prix	1965-07-18	137	http://en.wikipedia.org/wiki/1965_Dutch_Grand_Prix	f	11	16
-138	7	German Grand Prix	1965-08-01	138	http://en.wikipedia.org/wiki/1965_German_Grand_Prix	f	8	16
-139	8	Italian Grand Prix	1965-09-12	139	http://en.wikipedia.org/wiki/1965_Italian_Grand_Prix	f	7	16
-140	9	United States Grand Prix	1965-10-03	140	http://en.wikipedia.org/wiki/1965_United_States_Grand_Prix	f	21	16
-141	10	Mexican Grand Prix	1965-10-24	141	http://en.wikipedia.org/wiki/1965_Mexican_Grand_Prix	f	23	16
-142	1	Monaco Grand Prix	1966-05-22	142	http://en.wikipedia.org/wiki/1966_Monaco_Grand_Prix	f	2	17
-143	2	Belgian Grand Prix	1966-06-12	143	http://en.wikipedia.org/wiki/1966_Belgian_Grand_Prix	f	5	17
-144	3	French Grand Prix	1966-07-03	144	http://en.wikipedia.org/wiki/1966_French_Grand_Prix	f	6	17
-145	4	British Grand Prix	1966-07-16	145	http://en.wikipedia.org/wiki/1966_British_Grand_Prix	f	24	17
-146	5	Dutch Grand Prix	1966-07-24	146	http://en.wikipedia.org/wiki/1966_Dutch_Grand_Prix	f	11	17
-147	6	German Grand Prix	1966-08-07	147	http://en.wikipedia.org/wiki/1966_German_Grand_Prix	f	8	17
-148	7	Italian Grand Prix	1966-09-04	148	http://en.wikipedia.org/wiki/1966_Italian_Grand_Prix	f	7	17
-149	8	United States Grand Prix	1966-10-02	149	http://en.wikipedia.org/wiki/1966_United_States_Grand_Prix	f	21	17
-150	9	Mexican Grand Prix	1966-10-23	150	http://en.wikipedia.org/wiki/1966_Mexican_Grand_Prix	f	23	17
-151	1	South African Grand Prix	1967-01-02	151	http://en.wikipedia.org/wiki/1967_South_African_Grand_Prix	f	27	18
-152	2	Monaco Grand Prix	1967-05-07	152	http://en.wikipedia.org/wiki/1967_Monaco_Grand_Prix	f	2	18
-153	3	Dutch Grand Prix	1967-06-04	153	http://en.wikipedia.org/wiki/1967_Dutch_Grand_Prix	f	11	18
-154	4	Belgian Grand Prix	1967-06-18	154	http://en.wikipedia.org/wiki/1967_Belgian_Grand_Prix	f	5	18
-155	5	French Grand Prix	1967-07-02	155	http://en.wikipedia.org/wiki/1967_French_Grand_Prix	f	28	18
-156	6	British Grand Prix	1967-07-15	156	http://en.wikipedia.org/wiki/1967_British_Grand_Prix	f	1	18
-157	7	German Grand Prix	1967-08-06	157	http://en.wikipedia.org/wiki/1967_German_Grand_Prix	f	8	18
-158	8	Canadian Grand Prix	1967-08-27	158	http://en.wikipedia.org/wiki/1967_Canadian_Grand_Prix	f	29	18
-159	9	Italian Grand Prix	1967-09-10	159	http://en.wikipedia.org/wiki/1967_Italian_Grand_Prix	f	7	18
-160	10	United States Grand Prix	1967-10-01	160	http://en.wikipedia.org/wiki/1967_United_States_Grand_Prix	f	21	18
-161	11	Mexican Grand Prix	1967-10-22	161	http://en.wikipedia.org/wiki/1967_Mexican_Grand_Prix	f	23	18
-162	1	South African Grand Prix	1968-01-01	162	http://en.wikipedia.org/wiki/1968_South_African_Grand_Prix	f	27	19
-163	2	Spanish Grand Prix	1968-05-12	163	http://en.wikipedia.org/wiki/1968_Spanish_Grand_Prix	f	30	19
-164	3	Monaco Grand Prix	1968-05-26	164	http://en.wikipedia.org/wiki/1968_Monaco_Grand_Prix	f	2	19
-165	4	Belgian Grand Prix	1968-06-09	165	http://en.wikipedia.org/wiki/1968_Belgian_Grand_Prix	f	5	19
-166	5	Dutch Grand Prix	1968-06-23	166	http://en.wikipedia.org/wiki/1968_Dutch_Grand_Prix	f	11	19
-167	6	French Grand Prix	1968-07-07	167	http://en.wikipedia.org/wiki/1968_French_Grand_Prix	f	10	19
-168	7	British Grand Prix	1968-07-20	168	http://en.wikipedia.org/wiki/1968_British_Grand_Prix	f	24	19
-169	8	German Grand Prix	1968-08-04	169	http://en.wikipedia.org/wiki/1968_German_Grand_Prix	f	8	19
-170	9	Italian Grand Prix	1968-09-08	170	http://en.wikipedia.org/wiki/1968_Italian_Grand_Prix	f	7	19
-171	10	Canadian Grand Prix	1968-09-22	171	http://en.wikipedia.org/wiki/1968_Canadian_Grand_Prix	f	31	19
-172	11	United States Grand Prix	1968-10-06	172	http://en.wikipedia.org/wiki/1968_United_States_Grand_Prix	f	21	19
-173	12	Mexican Grand Prix	1968-11-03	173	http://en.wikipedia.org/wiki/1968_Mexican_Grand_Prix	f	23	19
-174	1	South African Grand Prix	1969-03-01	174	http://en.wikipedia.org/wiki/1969_South_African_Grand_Prix	f	27	20
-175	2	Spanish Grand Prix	1969-05-04	175	http://en.wikipedia.org/wiki/1969_Spanish_Grand_Prix	f	32	20
-176	3	Monaco Grand Prix	1969-05-18	176	http://en.wikipedia.org/wiki/1969_Monaco_Grand_Prix	f	2	20
-177	4	Dutch Grand Prix	1969-06-21	177	http://en.wikipedia.org/wiki/1969_Dutch_Grand_Prix	f	11	20
-178	5	French Grand Prix	1969-07-06	178	http://en.wikipedia.org/wiki/1969_French_Grand_Prix	f	26	20
-179	6	British Grand Prix	1969-07-19	179	http://en.wikipedia.org/wiki/1969_British_Grand_Prix	f	1	20
-180	7	German Grand Prix	1969-08-03	180	http://en.wikipedia.org/wiki/1969_German_Grand_Prix	f	8	20
-181	8	Italian Grand Prix	1969-09-07	181	http://en.wikipedia.org/wiki/1969_Italian_Grand_Prix	f	7	20
-182	9	Canadian Grand Prix	1969-09-20	182	http://en.wikipedia.org/wiki/1969_Canadian_Grand_Prix	f	29	20
-183	10	United States Grand Prix	1969-10-05	183	http://en.wikipedia.org/wiki/1969_United_States_Grand_Prix	f	21	20
-184	11	Mexican Grand Prix	1969-10-19	184	http://en.wikipedia.org/wiki/1969_Mexican_Grand_Prix	f	23	20
-185	1	South African Grand Prix	1970-03-07	185	http://en.wikipedia.org/wiki/1970_South_African_Grand_Prix	f	27	21
-186	2	Spanish Grand Prix	1970-04-19	186	http://en.wikipedia.org/wiki/1970_Spanish_Grand_Prix	f	30	21
-187	3	Monaco Grand Prix	1970-05-10	187	http://en.wikipedia.org/wiki/1970_Monaco_Grand_Prix	f	2	21
-188	4	Belgian Grand Prix	1970-06-07	188	http://en.wikipedia.org/wiki/1970_Belgian_Grand_Prix	f	5	21
-189	5	Dutch Grand Prix	1970-06-21	189	http://en.wikipedia.org/wiki/1970_Dutch_Grand_Prix	f	11	21
-190	6	French Grand Prix	1970-07-05	190	http://en.wikipedia.org/wiki/1970_French_Grand_Prix	f	26	21
-191	7	British Grand Prix	1970-07-18	191	http://en.wikipedia.org/wiki/1970_British_Grand_Prix	f	24	21
-192	8	German Grand Prix	1970-08-02	192	http://en.wikipedia.org/wiki/1970_German_Grand_Prix	f	33	21
-193	9	Austrian Grand Prix	1970-08-16	193	http://en.wikipedia.org/wiki/1970_Austrian_Grand_Prix	f	34	21
-194	10	Italian Grand Prix	1970-09-06	194	http://en.wikipedia.org/wiki/1970_Italian_Grand_Prix	f	7	21
-195	11	Canadian Grand Prix	1970-09-20	195	http://en.wikipedia.org/wiki/1970_Canadian_Grand_Prix	f	31	21
-196	12	United States Grand Prix	1970-10-04	196	http://en.wikipedia.org/wiki/1970_United_States_Grand_Prix	f	21	21
-197	13	Mexican Grand Prix	1970-10-25	197	http://en.wikipedia.org/wiki/1970_Mexican_Grand_Prix	f	23	21
-198	1	South African Grand Prix	1971-03-06	198	http://en.wikipedia.org/wiki/1971_South_African_Grand_Prix	f	27	22
-199	2	Spanish Grand Prix	1971-04-18	199	http://en.wikipedia.org/wiki/1971_Spanish_Grand_Prix	f	32	22
-200	3	Monaco Grand Prix	1971-05-23	200	http://en.wikipedia.org/wiki/1971_Monaco_Grand_Prix	f	2	22
-201	4	Dutch Grand Prix	1971-06-20	201	http://en.wikipedia.org/wiki/1971_Dutch_Grand_Prix	f	11	22
-202	5	French Grand Prix	1971-07-04	202	http://en.wikipedia.org/wiki/1971_French_Grand_Prix	f	35	22
-203	6	British Grand Prix	1971-07-17	203	http://en.wikipedia.org/wiki/1971_British_Grand_Prix	f	1	22
-204	7	German Grand Prix	1971-08-01	204	http://en.wikipedia.org/wiki/1971_German_Grand_Prix	f	8	22
-205	8	Austrian Grand Prix	1971-08-15	205	http://en.wikipedia.org/wiki/1971_Austrian_Grand_Prix	f	34	22
-206	9	Italian Grand Prix	1971-09-05	206	http://en.wikipedia.org/wiki/1971_Italian_Grand_Prix	f	7	22
-207	10	Canadian Grand Prix	1971-09-19	207	http://en.wikipedia.org/wiki/1971_Canadian_Grand_Prix	f	29	22
-208	11	United States Grand Prix	1971-10-03	208	http://en.wikipedia.org/wiki/1971_United_States_Grand_Prix	f	21	22
-209	1	Argentine Grand Prix	1972-01-23	209	http://en.wikipedia.org/wiki/1972_Argentine_Grand_Prix	f	12	23
-210	2	South African Grand Prix	1972-03-04	210	http://en.wikipedia.org/wiki/1972_South_African_Grand_Prix	f	27	23
-211	3	Spanish Grand Prix	1972-05-01	211	http://en.wikipedia.org/wiki/1972_Spanish_Grand_Prix	f	30	23
-212	4	Monaco Grand Prix	1972-05-14	212	http://en.wikipedia.org/wiki/1972_Monaco_Grand_Prix	f	2	23
-213	5	Belgian Grand Prix	1972-06-04	213	http://en.wikipedia.org/wiki/1972_Belgian_Grand_Prix	f	36	23
-214	6	French Grand Prix	1972-07-02	214	http://en.wikipedia.org/wiki/1972_French_Grand_Prix	f	26	23
-215	7	British Grand Prix	1972-07-15	215	http://en.wikipedia.org/wiki/1972_British_Grand_Prix	f	24	23
-216	8	German Grand Prix	1972-07-30	216	http://en.wikipedia.org/wiki/1972_German_Grand_Prix	f	8	23
-217	9	Austrian Grand Prix	1972-08-13	217	http://en.wikipedia.org/wiki/1972_Austrian_Grand_Prix	f	34	23
-218	10	Italian Grand Prix	1972-09-10	218	http://en.wikipedia.org/wiki/1972_Italian_Grand_Prix	f	7	23
-219	11	Canadian Grand Prix	1972-09-24	219	http://en.wikipedia.org/wiki/1972_Canadian_Grand_Prix	f	29	23
-220	12	United States Grand Prix	1972-10-08	220	http://en.wikipedia.org/wiki/1972_United_States_Grand_Prix	f	21	23
-221	1	Argentine Grand Prix	1973-01-28	221	http://en.wikipedia.org/wiki/1973_Argentine_Grand_Prix	f	12	24
-222	2	Brazilian Grand Prix	1973-02-11	222	http://en.wikipedia.org/wiki/1973_Brazilian_Grand_Prix	f	37	24
-223	3	South African Grand Prix	1973-03-03	223	http://en.wikipedia.org/wiki/1973_South_African_Grand_Prix	f	27	24
-224	4	Spanish Grand Prix	1973-04-29	224	http://en.wikipedia.org/wiki/1973_Spanish_Grand_Prix	f	32	24
-225	5	Belgian Grand Prix	1973-05-20	225	http://en.wikipedia.org/wiki/1973_Belgian_Grand_Prix	f	38	24
-226	6	Monaco Grand Prix	1973-06-03	226	http://en.wikipedia.org/wiki/1973_Monaco_Grand_Prix	f	2	24
-227	7	Swedish Grand Prix	1973-06-17	227	http://en.wikipedia.org/wiki/1973_Swedish_Grand_Prix	f	39	24
-228	8	French Grand Prix	1973-07-01	228	http://en.wikipedia.org/wiki/1973_French_Grand_Prix	f	35	24
-229	9	British Grand Prix	1973-07-14	229	http://en.wikipedia.org/wiki/1973_British_Grand_Prix	f	1	24
-230	10	Dutch Grand Prix	1973-07-29	230	http://en.wikipedia.org/wiki/1973_Dutch_Grand_Prix	f	11	24
-231	11	German Grand Prix	1973-08-05	231	http://en.wikipedia.org/wiki/1973_German_Grand_Prix	f	8	24
-232	12	Austrian Grand Prix	1973-08-19	232	http://en.wikipedia.org/wiki/1973_Austrian_Grand_Prix	f	34	24
-233	13	Italian Grand Prix	1973-09-09	233	http://en.wikipedia.org/wiki/1973_Italian_Grand_Prix	f	7	24
-234	14	Canadian Grand Prix	1973-09-23	234	http://en.wikipedia.org/wiki/1973_Canadian_Grand_Prix	f	29	24
-235	15	United States Grand Prix	1973-10-07	235	http://en.wikipedia.org/wiki/1973_United_States_Grand_Prix	f	21	24
-236	1	Argentine Grand Prix	1974-01-13	236	http://en.wikipedia.org/wiki/1974_Argentine_Grand_Prix	f	12	25
-237	2	Brazilian Grand Prix	1974-01-27	237	http://en.wikipedia.org/wiki/1974_Brazilian_Grand_Prix	f	37	25
-238	3	South African Grand Prix	1974-03-30	238	http://en.wikipedia.org/wiki/1974_South_African_Grand_Prix	f	27	25
-239	4	Spanish Grand Prix	1974-04-28	239	http://en.wikipedia.org/wiki/1974_Spanish_Grand_Prix	f	30	25
-240	5	Belgian Grand Prix	1974-05-12	240	http://en.wikipedia.org/wiki/1974_Belgian_Grand_Prix	f	36	25
-241	6	Monaco Grand Prix	1974-05-26	241	http://en.wikipedia.org/wiki/1974_Monaco_Grand_Prix	f	2	25
-242	7	Swedish Grand Prix	1974-06-09	242	http://en.wikipedia.org/wiki/1974_Swedish_Grand_Prix	f	39	25
-243	8	Dutch Grand Prix	1974-06-23	243	http://en.wikipedia.org/wiki/1974_Dutch_Grand_Prix	f	11	25
-244	9	French Grand Prix	1974-07-07	244	http://en.wikipedia.org/wiki/1974_French_Grand_Prix	f	40	25
-245	10	British Grand Prix	1974-07-20	245	http://en.wikipedia.org/wiki/1974_British_Grand_Prix	f	24	25
-246	11	German Grand Prix	1974-08-04	246	http://en.wikipedia.org/wiki/1974_German_Grand_Prix	f	8	25
-247	12	Austrian Grand Prix	1974-08-18	247	http://en.wikipedia.org/wiki/1974_Austrian_Grand_Prix	f	34	25
-248	13	Italian Grand Prix	1974-09-08	248	http://en.wikipedia.org/wiki/1974_Italian_Grand_Prix	f	7	25
-249	14	Canadian Grand Prix	1974-09-22	249	http://en.wikipedia.org/wiki/1974_Canadian_Grand_Prix	f	29	25
-250	15	United States Grand Prix	1974-10-06	250	http://en.wikipedia.org/wiki/1974_United_States_Grand_Prix	f	21	25
-251	1	Argentine Grand Prix	1975-01-12	251	http://en.wikipedia.org/wiki/1975_Argentine_Grand_Prix	f	12	26
-252	2	Brazilian Grand Prix	1975-01-26	252	http://en.wikipedia.org/wiki/1975_Brazilian_Grand_Prix	f	37	26
-253	3	South African Grand Prix	1975-03-01	253	http://en.wikipedia.org/wiki/1975_South_African_Grand_Prix	f	27	26
-254	4	Spanish Grand Prix	1975-04-27	254	http://en.wikipedia.org/wiki/1975_Spanish_Grand_Prix	f	32	26
-255	5	Monaco Grand Prix	1975-05-11	255	http://en.wikipedia.org/wiki/1975_Monaco_Grand_Prix	f	2	26
-256	6	Belgian Grand Prix	1975-05-25	256	http://en.wikipedia.org/wiki/1975_Belgian_Grand_Prix	f	38	26
-257	7	Swedish Grand Prix	1975-06-08	257	http://en.wikipedia.org/wiki/1975_Swedish_Grand_Prix	f	39	26
-258	8	Dutch Grand Prix	1975-06-22	258	http://en.wikipedia.org/wiki/1975_Dutch_Grand_Prix	f	11	26
-259	9	French Grand Prix	1975-07-06	259	http://en.wikipedia.org/wiki/1975_French_Grand_Prix	f	35	26
-260	10	British Grand Prix	1975-07-19	260	http://en.wikipedia.org/wiki/1975_British_Grand_Prix	f	1	26
-261	11	German Grand Prix	1975-08-03	261	http://en.wikipedia.org/wiki/1975_German_Grand_Prix	f	8	26
-262	12	Austrian Grand Prix	1975-08-17	262	http://en.wikipedia.org/wiki/1975_Austrian_Grand_Prix	f	34	26
-263	13	Italian Grand Prix	1975-09-07	263	http://en.wikipedia.org/wiki/1975_Italian_Grand_Prix	f	7	26
-264	14	United States Grand Prix	1975-10-05	264	http://en.wikipedia.org/wiki/1975_United_States_Grand_Prix	f	21	26
-265	1	Brazilian Grand Prix	1976-01-25	265	http://en.wikipedia.org/wiki/1976_Brazilian_Grand_Prix	f	37	27
-266	2	South African Grand Prix	1976-03-06	266	http://en.wikipedia.org/wiki/1976_South_African_Grand_Prix	f	27	27
-267	3	United States Grand Prix West	1976-03-28	267	http://en.wikipedia.org/wiki/1976_United_States_Grand_Prix_West	f	41	27
-268	4	Spanish Grand Prix	1976-05-02	268	http://en.wikipedia.org/wiki/1976_Spanish_Grand_Prix	f	30	27
-269	5	Belgian Grand Prix	1976-05-16	269	http://en.wikipedia.org/wiki/1976_Belgian_Grand_Prix	f	38	27
-270	6	Monaco Grand Prix	1976-05-30	270	http://en.wikipedia.org/wiki/1976_Monaco_Grand_Prix	f	2	27
-271	7	Swedish Grand Prix	1976-06-13	271	http://en.wikipedia.org/wiki/1976_Swedish_Grand_Prix	f	39	27
-272	8	French Grand Prix	1976-07-04	272	http://en.wikipedia.org/wiki/1976_French_Grand_Prix	f	35	27
-273	9	British Grand Prix	1976-07-18	273	http://en.wikipedia.org/wiki/1976_British_Grand_Prix	f	24	27
-274	10	German Grand Prix	1976-08-01	274	http://en.wikipedia.org/wiki/1976_German_Grand_Prix	f	8	27
-275	11	Austrian Grand Prix	1976-08-15	275	http://en.wikipedia.org/wiki/1976_Austrian_Grand_Prix	f	34	27
-276	12	Dutch Grand Prix	1976-08-29	276	http://en.wikipedia.org/wiki/1976_Dutch_Grand_Prix	f	11	27
-277	13	Italian Grand Prix	1976-09-12	277	http://en.wikipedia.org/wiki/1976_Italian_Grand_Prix	f	7	27
-278	14	Canadian Grand Prix	1976-10-03	278	http://en.wikipedia.org/wiki/1976_Canadian_Grand_Prix	f	29	27
-279	15	United States Grand Prix	1976-10-10	279	http://en.wikipedia.org/wiki/1976_United_States_Grand_Prix	f	21	27
-280	16	Japanese Grand Prix	1976-10-24	280	http://en.wikipedia.org/wiki/1976_Japanese_Grand_Prix	f	42	27
-281	1	Argentine Grand Prix	1977-01-09	281	http://en.wikipedia.org/wiki/1977_Argentine_Grand_Prix	f	12	28
-282	2	Brazilian Grand Prix	1977-01-23	282	http://en.wikipedia.org/wiki/1977_Brazilian_Grand_Prix	f	37	28
-283	3	South African Grand Prix	1977-03-05	283	http://en.wikipedia.org/wiki/1977_South_African_Grand_Prix	f	27	28
-284	4	United States Grand Prix West	1977-04-03	284	http://en.wikipedia.org/wiki/1977_United_States_Grand_Prix_West	f	41	28
-285	5	Spanish Grand Prix	1977-05-08	285	http://en.wikipedia.org/wiki/1977_Spanish_Grand_Prix	f	30	28
-286	6	Monaco Grand Prix	1977-05-22	286	http://en.wikipedia.org/wiki/1977_Monaco_Grand_Prix	f	2	28
-287	7	Belgian Grand Prix	1977-06-05	287	http://en.wikipedia.org/wiki/1977_Belgian_Grand_Prix	f	38	28
-288	8	Swedish Grand Prix	1977-06-19	288	http://en.wikipedia.org/wiki/1977_Swedish_Grand_Prix	f	39	28
-289	9	French Grand Prix	1977-07-03	289	http://en.wikipedia.org/wiki/1977_French_Grand_Prix	f	40	28
-290	10	British Grand Prix	1977-07-16	290	http://en.wikipedia.org/wiki/1977_British_Grand_Prix	f	1	28
-291	11	German Grand Prix	1977-07-31	291	http://en.wikipedia.org/wiki/1977_German_Grand_Prix	f	33	28
-292	12	Austrian Grand Prix	1977-08-14	292	http://en.wikipedia.org/wiki/1977_Austrian_Grand_Prix	f	34	28
-293	13	Dutch Grand Prix	1977-08-28	293	http://en.wikipedia.org/wiki/1977_Dutch_Grand_Prix	f	11	28
-294	14	Italian Grand Prix	1977-09-11	294	http://en.wikipedia.org/wiki/1977_Italian_Grand_Prix	f	7	28
-295	15	United States Grand Prix	1977-10-02	295	http://en.wikipedia.org/wiki/1977_United_States_Grand_Prix	f	21	28
-296	16	Canadian Grand Prix	1977-10-09	296	http://en.wikipedia.org/wiki/1977_Canadian_Grand_Prix	f	29	28
-297	17	Japanese Grand Prix	1977-10-23	297	http://en.wikipedia.org/wiki/1977_Japanese_Grand_Prix	f	42	28
-298	1	Argentine Grand Prix	1978-01-15	298	http://en.wikipedia.org/wiki/1978_Argentine_Grand_Prix	f	12	29
-299	2	Brazilian Grand Prix	1978-01-29	299	http://en.wikipedia.org/wiki/1978_Brazilian_Grand_Prix	f	43	29
-300	3	South African Grand Prix	1978-03-04	300	http://en.wikipedia.org/wiki/1978_South_African_Grand_Prix	f	27	29
-301	4	United States Grand Prix West	1978-04-02	301	http://en.wikipedia.org/wiki/1978_United_States_Grand_Prix_West	f	41	29
-302	5	Monaco Grand Prix	1978-05-07	302	http://en.wikipedia.org/wiki/1978_Monaco_Grand_Prix	f	2	29
-303	6	Belgian Grand Prix	1978-05-21	303	http://en.wikipedia.org/wiki/1978_Belgian_Grand_Prix	f	38	29
-304	7	Spanish Grand Prix	1978-06-04	304	http://en.wikipedia.org/wiki/1978_Spanish_Grand_Prix	f	30	29
-305	8	Swedish Grand Prix	1978-06-17	305	http://en.wikipedia.org/wiki/1978_Swedish_Grand_Prix	f	39	29
-306	9	French Grand Prix	1978-07-02	306	http://en.wikipedia.org/wiki/1978_French_Grand_Prix	f	35	29
-307	10	British Grand Prix	1978-07-16	307	http://en.wikipedia.org/wiki/1978_British_Grand_Prix	f	24	29
-308	11	German Grand Prix	1978-07-30	308	http://en.wikipedia.org/wiki/1978_German_Grand_Prix	f	33	29
-309	12	Austrian Grand Prix	1978-08-13	309	http://en.wikipedia.org/wiki/1978_Austrian_Grand_Prix	f	34	29
-310	13	Dutch Grand Prix	1978-08-27	310	http://en.wikipedia.org/wiki/1978_Dutch_Grand_Prix	f	11	29
-311	14	Italian Grand Prix	1978-09-10	311	http://en.wikipedia.org/wiki/1978_Italian_Grand_Prix	f	7	29
-312	15	United States Grand Prix	1978-10-01	312	http://en.wikipedia.org/wiki/1978_United_States_Grand_Prix	f	21	29
-313	16	Canadian Grand Prix	1978-10-08	313	http://en.wikipedia.org/wiki/1978_Canadian_Grand_Prix	f	44	29
-314	1	Argentine Grand Prix	1979-01-21	314	http://en.wikipedia.org/wiki/1979_Argentine_Grand_Prix	f	12	30
-315	2	Brazilian Grand Prix	1979-02-04	315	http://en.wikipedia.org/wiki/1979_Brazilian_Grand_Prix	f	37	30
-316	3	South African Grand Prix	1979-03-03	316	http://en.wikipedia.org/wiki/1979_South_African_Grand_Prix	f	27	30
-317	4	United States Grand Prix West	1979-04-08	317	http://en.wikipedia.org/wiki/1979_United_States_Grand_Prix_West	f	41	30
-318	5	Spanish Grand Prix	1979-04-29	318	http://en.wikipedia.org/wiki/1979_Spanish_Grand_Prix	f	30	30
-319	6	Belgian Grand Prix	1979-05-13	319	http://en.wikipedia.org/wiki/1979_Belgian_Grand_Prix	f	38	30
-320	7	Monaco Grand Prix	1979-05-27	320	http://en.wikipedia.org/wiki/1979_Monaco_Grand_Prix	f	2	30
-321	8	French Grand Prix	1979-07-01	321	http://en.wikipedia.org/wiki/1979_French_Grand_Prix	f	40	30
-322	9	British Grand Prix	1979-07-14	322	http://en.wikipedia.org/wiki/1979_British_Grand_Prix	f	1	30
-323	10	German Grand Prix	1979-07-29	323	http://en.wikipedia.org/wiki/1979_German_Grand_Prix	f	33	30
-324	11	Austrian Grand Prix	1979-08-12	324	http://en.wikipedia.org/wiki/1979_Austrian_Grand_Prix	f	34	30
-325	12	Dutch Grand Prix	1979-08-26	325	http://en.wikipedia.org/wiki/1979_Dutch_Grand_Prix	f	11	30
-326	13	Italian Grand Prix	1979-09-09	326	http://en.wikipedia.org/wiki/1979_Italian_Grand_Prix	f	7	30
-327	14	Canadian Grand Prix	1979-09-30	327	http://en.wikipedia.org/wiki/1979_Canadian_Grand_Prix	f	44	30
-328	15	United States Grand Prix	1979-10-07	328	http://en.wikipedia.org/wiki/1979_United_States_Grand_Prix	f	21	30
-329	1	Argentine Grand Prix	1980-01-13	329	http://en.wikipedia.org/wiki/1980_Argentine_Grand_Prix	f	12	31
-330	2	Brazilian Grand Prix	1980-01-27	330	http://en.wikipedia.org/wiki/1980_Brazilian_Grand_Prix	f	37	31
-331	3	South African Grand Prix	1980-03-01	331	http://en.wikipedia.org/wiki/1980_South_African_Grand_Prix	f	27	31
-332	4	United States Grand Prix West	1980-03-30	332	http://en.wikipedia.org/wiki/1980_United_States_Grand_Prix_West	f	41	31
-333	5	Belgian Grand Prix	1980-05-04	333	http://en.wikipedia.org/wiki/1980_Belgian_Grand_Prix	f	38	31
-334	6	Monaco Grand Prix	1980-05-18	334	http://en.wikipedia.org/wiki/1980_Monaco_Grand_Prix	f	2	31
-335	7	French Grand Prix	1980-06-29	335	http://en.wikipedia.org/wiki/1980_French_Grand_Prix	f	35	31
-336	8	British Grand Prix	1980-07-13	336	http://en.wikipedia.org/wiki/1980_British_Grand_Prix	f	24	31
-337	9	German Grand Prix	1980-08-10	337	http://en.wikipedia.org/wiki/1980_German_Grand_Prix	f	33	31
-338	10	Austrian Grand Prix	1980-08-17	338	http://en.wikipedia.org/wiki/1980_Austrian_Grand_Prix	f	34	31
-339	11	Dutch Grand Prix	1980-08-31	339	http://en.wikipedia.org/wiki/1980_Dutch_Grand_Prix	f	11	31
-340	12	Italian Grand Prix	1980-09-14	340	http://en.wikipedia.org/wiki/1980_Italian_Grand_Prix	f	45	31
-341	13	Canadian Grand Prix	1980-09-28	341	http://en.wikipedia.org/wiki/1980_Canadian_Grand_Prix	f	44	31
-342	14	United States Grand Prix	1980-10-05	342	http://en.wikipedia.org/wiki/1980_United_States_Grand_Prix	f	21	31
-343	1	United States Grand Prix West	1981-03-15	343	http://en.wikipedia.org/wiki/1981_United_States_Grand_Prix_West	f	41	32
-344	2	Brazilian Grand Prix	1981-03-29	344	http://en.wikipedia.org/wiki/1981_Brazilian_Grand_Prix	f	43	32
-345	3	Argentine Grand Prix	1981-04-12	345	http://en.wikipedia.org/wiki/1981_Argentine_Grand_Prix	f	12	32
-346	4	San Marino Grand Prix	1981-05-03	346	http://en.wikipedia.org/wiki/1981_San_Marino_Grand_Prix	f	45	32
-347	5	Belgian Grand Prix	1981-05-17	347	http://en.wikipedia.org/wiki/1981_Belgian_Grand_Prix	f	38	32
-348	6	Monaco Grand Prix	1981-05-31	348	http://en.wikipedia.org/wiki/1981_Monaco_Grand_Prix	f	2	32
-349	7	Spanish Grand Prix	1981-06-21	349	http://en.wikipedia.org/wiki/1981_Spanish_Grand_Prix	f	30	32
-350	8	French Grand Prix	1981-07-05	350	http://en.wikipedia.org/wiki/1981_French_Grand_Prix	f	40	32
-351	9	British Grand Prix	1981-07-18	351	http://en.wikipedia.org/wiki/1981_British_Grand_Prix	f	1	32
-352	10	German Grand Prix	1981-08-02	352	http://en.wikipedia.org/wiki/1981_German_Grand_Prix	f	33	32
-353	11	Austrian Grand Prix	1981-08-16	353	http://en.wikipedia.org/wiki/1981_Austrian_Grand_Prix	f	34	32
-354	12	Dutch Grand Prix	1981-08-30	354	http://en.wikipedia.org/wiki/1981_Dutch_Grand_Prix	f	11	32
-355	13	Italian Grand Prix	1981-09-13	355	http://en.wikipedia.org/wiki/1981_Italian_Grand_Prix	f	7	32
-356	14	Canadian Grand Prix	1981-09-27	356	http://en.wikipedia.org/wiki/1981_Canadian_Grand_Prix	f	44	32
-357	15	Caesars Palace Grand Prix	1981-10-17	357	http://en.wikipedia.org/wiki/1981_Caesars_Palace_Grand_Prix	f	46	32
-358	1	South African Grand Prix	1982-01-23	358	http://en.wikipedia.org/wiki/1982_South_African_Grand_Prix	f	27	33
-359	2	Brazilian Grand Prix	1982-03-21	359	http://en.wikipedia.org/wiki/1982_Brazilian_Grand_Prix	f	43	33
-360	3	United States Grand Prix West	1982-04-04	360	http://en.wikipedia.org/wiki/1982_United_States_Grand_Prix_West	f	41	33
-361	4	San Marino Grand Prix	1982-04-25	361	http://en.wikipedia.org/wiki/1982_San_Marino_Grand_Prix	f	45	33
-362	5	Belgian Grand Prix	1982-05-09	362	http://en.wikipedia.org/wiki/1982_Belgian_Grand_Prix	f	38	33
-363	6	Monaco Grand Prix	1982-05-23	363	http://en.wikipedia.org/wiki/1982_Monaco_Grand_Prix	f	2	33
-364	7	Detroit Grand Prix	1982-06-06	364	http://en.wikipedia.org/wiki/1982_Detroit_Grand_Prix	f	47	33
-365	8	Canadian Grand Prix	1982-06-13	365	http://en.wikipedia.org/wiki/1982_Canadian_Grand_Prix	f	44	33
-366	9	Dutch Grand Prix	1982-07-03	366	http://en.wikipedia.org/wiki/1982_Dutch_Grand_Prix	f	11	33
-367	10	British Grand Prix	1982-07-18	367	http://en.wikipedia.org/wiki/1982_British_Grand_Prix	f	24	33
-368	11	French Grand Prix	1982-07-25	368	http://en.wikipedia.org/wiki/1982_French_Grand_Prix	f	35	33
-369	12	German Grand Prix	1982-08-08	369	http://en.wikipedia.org/wiki/1982_German_Grand_Prix	f	33	33
-370	13	Austrian Grand Prix	1982-08-15	370	http://en.wikipedia.org/wiki/1982_Austrian_Grand_Prix	f	34	33
-371	14	Swiss Grand Prix	1982-08-29	371	http://en.wikipedia.org/wiki/1982_Swiss_Grand_Prix	f	40	33
-372	15	Italian Grand Prix	1982-09-12	372	http://en.wikipedia.org/wiki/1982_Italian_Grand_Prix	f	7	33
-373	16	Caesars Palace Grand Prix	1982-09-25	373	http://en.wikipedia.org/wiki/1982_Caesars_Palace_Grand_Prix	f	46	33
-374	1	Brazilian Grand Prix	1983-03-13	374	http://en.wikipedia.org/wiki/1983_Brazilian_Grand_Prix	f	43	34
-375	2	United States Grand Prix West	1983-03-27	375	http://en.wikipedia.org/wiki/1983_United_States_Grand_Prix_West	f	41	34
-376	3	French Grand Prix	1983-04-17	376	http://en.wikipedia.org/wiki/1983_French_Grand_Prix	f	35	34
-377	4	San Marino Grand Prix	1983-05-01	377	http://en.wikipedia.org/wiki/1983_San_Marino_Grand_Prix	f	45	34
-378	5	Monaco Grand Prix	1983-05-15	378	http://en.wikipedia.org/wiki/1983_Monaco_Grand_Prix	f	2	34
-379	6	Belgian Grand Prix	1983-05-22	379	http://en.wikipedia.org/wiki/1983_Belgian_Grand_Prix	f	5	34
-380	7	Detroit Grand Prix	1983-06-05	380	http://en.wikipedia.org/wiki/1983_Detroit_Grand_Prix	f	47	34
-381	8	Canadian Grand Prix	1983-06-12	381	http://en.wikipedia.org/wiki/1983_Canadian_Grand_Prix	f	44	34
-382	9	British Grand Prix	1983-07-16	382	http://en.wikipedia.org/wiki/1983_British_Grand_Prix	f	1	34
-383	10	German Grand Prix	1983-08-07	383	http://en.wikipedia.org/wiki/1983_German_Grand_Prix	f	33	34
-384	11	Austrian Grand Prix	1983-08-14	384	http://en.wikipedia.org/wiki/1983_Austrian_Grand_Prix	f	34	34
-385	12	Dutch Grand Prix	1983-08-28	385	http://en.wikipedia.org/wiki/1983_Dutch_Grand_Prix	f	11	34
-386	13	Italian Grand Prix	1983-09-11	386	http://en.wikipedia.org/wiki/1983_Italian_Grand_Prix	f	7	34
-387	14	European Grand Prix	1983-09-25	387	http://en.wikipedia.org/wiki/1983_European_Grand_Prix	f	24	34
-388	15	South African Grand Prix	1983-10-15	388	http://en.wikipedia.org/wiki/1983_South_African_Grand_Prix	f	27	34
-389	1	Brazilian Grand Prix	1984-03-25	389	http://en.wikipedia.org/wiki/1984_Brazilian_Grand_Prix	f	43	35
-390	2	South African Grand Prix	1984-04-07	390	http://en.wikipedia.org/wiki/1984_South_African_Grand_Prix	f	27	35
-391	3	Belgian Grand Prix	1984-04-29	391	http://en.wikipedia.org/wiki/1984_Belgian_Grand_Prix	f	38	35
-392	4	San Marino Grand Prix	1984-05-06	392	http://en.wikipedia.org/wiki/1984_San_Marino_Grand_Prix	f	45	35
-393	5	French Grand Prix	1984-05-20	393	http://en.wikipedia.org/wiki/1984_French_Grand_Prix	f	40	35
-394	6	Monaco Grand Prix	1984-06-03	394	http://en.wikipedia.org/wiki/1984_Monaco_Grand_Prix	f	2	35
-395	7	Canadian Grand Prix	1984-06-17	395	http://en.wikipedia.org/wiki/1984_Canadian_Grand_Prix	f	44	35
-396	8	Detroit Grand Prix	1984-06-24	396	http://en.wikipedia.org/wiki/1984_Detroit_Grand_Prix	f	47	35
-397	9	Dallas Grand Prix	1984-07-08	397	http://en.wikipedia.org/wiki/1984_Dallas_Grand_Prix	f	48	35
-398	10	British Grand Prix	1984-07-22	398	http://en.wikipedia.org/wiki/1984_British_Grand_Prix	f	24	35
-399	11	German Grand Prix	1984-08-05	399	http://en.wikipedia.org/wiki/1984_German_Grand_Prix	f	33	35
-400	12	Austrian Grand Prix	1984-08-19	400	http://en.wikipedia.org/wiki/1984_Austrian_Grand_Prix	f	34	35
-401	13	Dutch Grand Prix	1984-08-26	401	http://en.wikipedia.org/wiki/1984_Dutch_Grand_Prix	f	11	35
-402	14	Italian Grand Prix	1984-09-09	402	http://en.wikipedia.org/wiki/1984_Italian_Grand_Prix	f	7	35
-403	15	European Grand Prix	1984-10-07	403	http://en.wikipedia.org/wiki/1984_European_Grand_Prix	f	8	35
-404	16	Portuguese Grand Prix	1984-10-21	404	http://en.wikipedia.org/wiki/1984_Portuguese_Grand_Prix	f	49	35
-405	1	Brazilian Grand Prix	1985-04-07	405	http://en.wikipedia.org/wiki/1985_Brazilian_Grand_Prix	f	43	36
-406	2	Portuguese Grand Prix	1985-04-21	406	http://en.wikipedia.org/wiki/1985_Portuguese_Grand_Prix	f	49	36
-407	3	San Marino Grand Prix	1985-05-05	407	http://en.wikipedia.org/wiki/1985_San_Marino_Grand_Prix	f	45	36
-408	4	Monaco Grand Prix	1985-05-19	408	http://en.wikipedia.org/wiki/1985_Monaco_Grand_Prix	f	2	36
-409	5	Canadian Grand Prix	1985-06-16	409	http://en.wikipedia.org/wiki/1985_Canadian_Grand_Prix	f	44	36
-410	6	Detroit Grand Prix	1985-06-23	410	http://en.wikipedia.org/wiki/1985_Detroit_Grand_Prix	f	47	36
-411	7	French Grand Prix	1985-07-07	411	http://en.wikipedia.org/wiki/1985_French_Grand_Prix	f	35	36
-412	8	British Grand Prix	1985-07-21	412	http://en.wikipedia.org/wiki/1985_British_Grand_Prix	f	1	36
-413	9	German Grand Prix	1985-08-04	413	http://en.wikipedia.org/wiki/1985_German_Grand_Prix	f	8	36
-414	10	Austrian Grand Prix	1985-08-18	414	http://en.wikipedia.org/wiki/1985_Austrian_Grand_Prix	f	34	36
-415	11	Dutch Grand Prix	1985-08-25	415	http://en.wikipedia.org/wiki/1985_Dutch_Grand_Prix	f	11	36
-416	12	Italian Grand Prix	1985-09-08	416	http://en.wikipedia.org/wiki/1985_Italian_Grand_Prix	f	7	36
-417	13	Belgian Grand Prix	1985-09-15	417	http://en.wikipedia.org/wiki/1985_Belgian_Grand_Prix	f	5	36
-418	14	European Grand Prix	1985-10-06	418	http://en.wikipedia.org/wiki/1985_European_Grand_Prix	f	24	36
-419	15	South African Grand Prix	1985-10-19	419	http://en.wikipedia.org/wiki/1985_South_African_Grand_Prix	f	27	36
-420	16	Australian Grand Prix	1985-11-03	420	http://en.wikipedia.org/wiki/1985_Australian_Grand_Prix	f	50	36
-421	1	Brazilian Grand Prix	1986-03-23	421	http://en.wikipedia.org/wiki/1986_Brazilian_Grand_Prix	f	43	37
-422	2	Spanish Grand Prix	1986-04-13	422	http://en.wikipedia.org/wiki/1986_Spanish_Grand_Prix	f	51	37
-423	3	San Marino Grand Prix	1986-04-27	423	http://en.wikipedia.org/wiki/1986_San_Marino_Grand_Prix	f	45	37
-424	4	Monaco Grand Prix	1986-05-11	424	http://en.wikipedia.org/wiki/1986_Monaco_Grand_Prix	f	2	37
-425	5	Belgian Grand Prix	1986-05-25	425	http://en.wikipedia.org/wiki/1986_Belgian_Grand_Prix	f	5	37
-426	6	Canadian Grand Prix	1986-06-15	426	http://en.wikipedia.org/wiki/1986_Canadian_Grand_Prix	f	44	37
-427	7	Detroit Grand Prix	1986-06-22	427	http://en.wikipedia.org/wiki/1986_Detroit_Grand_Prix	f	47	37
-428	8	French Grand Prix	1986-07-06	428	http://en.wikipedia.org/wiki/1986_French_Grand_Prix	f	35	37
-429	9	British Grand Prix	1986-07-13	429	http://en.wikipedia.org/wiki/1986_British_Grand_Prix	f	24	37
-430	10	German Grand Prix	1986-07-27	430	http://en.wikipedia.org/wiki/1986_German_Grand_Prix	f	33	37
-431	11	Hungarian Grand Prix	1986-08-10	431	http://en.wikipedia.org/wiki/1986_Hungarian_Grand_Prix	f	52	37
-432	12	Austrian Grand Prix	1986-08-17	432	http://en.wikipedia.org/wiki/1986_Austrian_Grand_Prix	f	34	37
-433	13	Italian Grand Prix	1986-09-07	433	http://en.wikipedia.org/wiki/1986_Italian_Grand_Prix	f	7	37
-434	14	Portuguese Grand Prix	1986-09-21	434	http://en.wikipedia.org/wiki/1986_Portuguese_Grand_Prix	f	49	37
-435	15	Mexican Grand Prix	1986-10-12	435	http://en.wikipedia.org/wiki/1986_Mexican_Grand_Prix	f	23	37
-436	16	Australian Grand Prix	1986-10-26	436	http://en.wikipedia.org/wiki/1986_Australian_Grand_Prix	f	50	37
-437	1	Brazilian Grand Prix	1987-04-12	437	http://en.wikipedia.org/wiki/1987_Brazilian_Grand_Prix	f	43	38
-438	2	San Marino Grand Prix	1987-05-03	438	http://en.wikipedia.org/wiki/1987_San_Marino_Grand_Prix	f	45	38
-439	3	Belgian Grand Prix	1987-05-17	439	http://en.wikipedia.org/wiki/1987_Belgian_Grand_Prix	f	5	38
-440	4	Monaco Grand Prix	1987-05-31	440	http://en.wikipedia.org/wiki/1987_Monaco_Grand_Prix	f	2	38
-441	5	Detroit Grand Prix	1987-06-21	441	http://en.wikipedia.org/wiki/1987_Detroit_Grand_Prix	f	47	38
-442	6	French Grand Prix	1987-07-05	442	http://en.wikipedia.org/wiki/1987_French_Grand_Prix	f	35	38
-443	7	British Grand Prix	1987-07-12	443	http://en.wikipedia.org/wiki/1987_British_Grand_Prix	f	1	38
-444	8	German Grand Prix	1987-07-26	444	http://en.wikipedia.org/wiki/1987_German_Grand_Prix	f	33	38
-445	9	Hungarian Grand Prix	1987-08-09	445	http://en.wikipedia.org/wiki/1987_Hungarian_Grand_Prix	f	52	38
-446	10	Austrian Grand Prix	1987-08-16	446	http://en.wikipedia.org/wiki/1987_Austrian_Grand_Prix	f	34	38
-447	11	Italian Grand Prix	1987-09-06	447	http://en.wikipedia.org/wiki/1987_Italian_Grand_Prix	f	7	38
-448	12	Portuguese Grand Prix	1987-09-20	448	http://en.wikipedia.org/wiki/1987_Portuguese_Grand_Prix	f	49	38
-449	13	Spanish Grand Prix	1987-09-27	449	http://en.wikipedia.org/wiki/1987_Spanish_Grand_Prix	f	51	38
-450	14	Mexican Grand Prix	1987-10-18	450	http://en.wikipedia.org/wiki/1987_Mexican_Grand_Prix	f	23	38
-451	15	Japanese Grand Prix	1987-11-01	451	http://en.wikipedia.org/wiki/1987_Japanese_Grand_Prix	f	53	38
-452	16	Australian Grand Prix	1987-11-15	452	http://en.wikipedia.org/wiki/1987_Australian_Grand_Prix	f	50	38
-453	1	Brazilian Grand Prix	1988-04-03	453	http://en.wikipedia.org/wiki/1988_Brazilian_Grand_Prix	f	43	39
-454	2	San Marino Grand Prix	1988-05-01	454	http://en.wikipedia.org/wiki/1988_San_Marino_Grand_Prix	f	45	39
-455	3	Monaco Grand Prix	1988-05-15	455	http://en.wikipedia.org/wiki/1988_Monaco_Grand_Prix	f	2	39
-456	4	Mexican Grand Prix	1988-05-29	456	http://en.wikipedia.org/wiki/1988_Mexican_Grand_Prix	f	23	39
-457	5	Canadian Grand Prix	1988-06-12	457	http://en.wikipedia.org/wiki/1988_Canadian_Grand_Prix	f	44	39
-458	6	Detroit Grand Prix	1988-06-19	458	http://en.wikipedia.org/wiki/1988_Detroit_Grand_Prix	f	47	39
-459	7	French Grand Prix	1988-07-03	459	http://en.wikipedia.org/wiki/1988_French_Grand_Prix	f	35	39
-460	8	British Grand Prix	1988-07-10	460	http://en.wikipedia.org/wiki/1988_British_Grand_Prix	f	1	39
-461	9	German Grand Prix	1988-07-24	461	http://en.wikipedia.org/wiki/1988_German_Grand_Prix	f	33	39
-462	10	Hungarian Grand Prix	1988-08-07	462	http://en.wikipedia.org/wiki/1988_Hungarian_Grand_Prix	f	52	39
-463	11	Belgian Grand Prix	1988-08-28	463	http://en.wikipedia.org/wiki/1988_Belgian_Grand_Prix	f	5	39
-464	12	Italian Grand Prix	1988-09-11	464	http://en.wikipedia.org/wiki/1988_Italian_Grand_Prix	f	7	39
-465	13	Portuguese Grand Prix	1988-09-25	465	http://en.wikipedia.org/wiki/1988_Portuguese_Grand_Prix	f	49	39
-466	14	Spanish Grand Prix	1988-10-02	466	http://en.wikipedia.org/wiki/1988_Spanish_Grand_Prix	f	51	39
-467	15	Japanese Grand Prix	1988-10-30	467	http://en.wikipedia.org/wiki/1988_Japanese_Grand_Prix	f	53	39
-468	16	Australian Grand Prix	1988-11-13	468	http://en.wikipedia.org/wiki/1988_Australian_Grand_Prix	f	50	39
-469	1	Brazilian Grand Prix	1989-03-26	469	http://en.wikipedia.org/wiki/1989_Brazilian_Grand_Prix	f	43	40
-470	2	San Marino Grand Prix	1989-04-23	470	http://en.wikipedia.org/wiki/1989_San_Marino_Grand_Prix	f	45	40
-471	3	Monaco Grand Prix	1989-05-07	471	http://en.wikipedia.org/wiki/1989_Monaco_Grand_Prix	f	2	40
-472	4	Mexican Grand Prix	1989-05-28	472	http://en.wikipedia.org/wiki/1989_Mexican_Grand_Prix	f	23	40
-473	5	United States Grand Prix	1989-06-04	473	http://en.wikipedia.org/wiki/1989_United_States_Grand_Prix	f	54	40
-474	6	Canadian Grand Prix	1989-06-18	474	http://en.wikipedia.org/wiki/1989_Canadian_Grand_Prix	f	44	40
-475	7	French Grand Prix	1989-07-09	475	http://en.wikipedia.org/wiki/1989_French_Grand_Prix	f	35	40
-476	8	British Grand Prix	1989-07-16	476	http://en.wikipedia.org/wiki/1989_British_Grand_Prix	f	1	40
-477	9	German Grand Prix	1989-07-30	477	http://en.wikipedia.org/wiki/1989_German_Grand_Prix	f	33	40
-478	10	Hungarian Grand Prix	1989-08-13	478	http://en.wikipedia.org/wiki/1989_Hungarian_Grand_Prix	f	52	40
-479	11	Belgian Grand Prix	1989-08-27	479	http://en.wikipedia.org/wiki/1989_Belgian_Grand_Prix	f	5	40
-480	12	Italian Grand Prix	1989-09-10	480	http://en.wikipedia.org/wiki/1989_Italian_Grand_Prix	f	7	40
-481	13	Portuguese Grand Prix	1989-09-24	481	http://en.wikipedia.org/wiki/1989_Portuguese_Grand_Prix	f	49	40
-482	14	Spanish Grand Prix	1989-10-01	482	http://en.wikipedia.org/wiki/1989_Spanish_Grand_Prix	f	51	40
-483	15	Japanese Grand Prix	1989-10-22	483	http://en.wikipedia.org/wiki/1989_Japanese_Grand_Prix	f	53	40
-484	16	Australian Grand Prix	1989-11-05	484	http://en.wikipedia.org/wiki/1989_Australian_Grand_Prix	f	50	40
-485	1	United States Grand Prix	1990-03-11	485	http://en.wikipedia.org/wiki/1990_United_States_Grand_Prix	f	54	41
-486	2	Brazilian Grand Prix	1990-03-25	486	http://en.wikipedia.org/wiki/1990_Brazilian_Grand_Prix	f	37	41
-487	3	San Marino Grand Prix	1990-05-13	487	http://en.wikipedia.org/wiki/1990_San_Marino_Grand_Prix	f	45	41
-488	4	Monaco Grand Prix	1990-05-27	488	http://en.wikipedia.org/wiki/1990_Monaco_Grand_Prix	f	2	41
-489	5	Canadian Grand Prix	1990-06-10	489	http://en.wikipedia.org/wiki/1990_Canadian_Grand_Prix	f	44	41
-490	6	Mexican Grand Prix	1990-06-24	490	http://en.wikipedia.org/wiki/1990_Mexican_Grand_Prix	f	23	41
-491	7	French Grand Prix	1990-07-08	491	http://en.wikipedia.org/wiki/1990_French_Grand_Prix	f	35	41
-492	8	British Grand Prix	1990-07-15	492	http://en.wikipedia.org/wiki/1990_British_Grand_Prix	f	1	41
-493	9	German Grand Prix	1990-07-29	493	http://en.wikipedia.org/wiki/1990_German_Grand_Prix	f	33	41
-494	10	Hungarian Grand Prix	1990-08-12	494	http://en.wikipedia.org/wiki/1990_Hungarian_Grand_Prix	f	52	41
-495	11	Belgian Grand Prix	1990-08-26	495	http://en.wikipedia.org/wiki/1990_Belgian_Grand_Prix	f	5	41
-496	12	Italian Grand Prix	1990-09-09	496	http://en.wikipedia.org/wiki/1990_Italian_Grand_Prix	f	7	41
-497	13	Portuguese Grand Prix	1990-09-23	497	http://en.wikipedia.org/wiki/1990_Portuguese_Grand_Prix	f	49	41
-498	14	Spanish Grand Prix	1990-09-30	498	http://en.wikipedia.org/wiki/1990_Spanish_Grand_Prix	f	51	41
-499	15	Japanese Grand Prix	1990-10-21	499	http://en.wikipedia.org/wiki/1990_Japanese_Grand_Prix	f	53	41
-500	16	Australian Grand Prix	1990-11-04	500	http://en.wikipedia.org/wiki/1990_Australian_Grand_Prix	f	50	41
-501	1	United States Grand Prix	1991-03-10	501	http://en.wikipedia.org/wiki/1991_United_States_Grand_Prix	f	54	42
-502	2	Brazilian Grand Prix	1991-03-24	502	http://en.wikipedia.org/wiki/1991_Brazilian_Grand_Prix	f	37	42
-503	3	San Marino Grand Prix	1991-04-28	503	http://en.wikipedia.org/wiki/1991_San_Marino_Grand_Prix	f	45	42
-504	4	Monaco Grand Prix	1991-05-12	504	http://en.wikipedia.org/wiki/1991_Monaco_Grand_Prix	f	2	42
-505	5	Canadian Grand Prix	1991-06-02	505	http://en.wikipedia.org/wiki/1991_Canadian_Grand_Prix	f	44	42
-506	6	Mexican Grand Prix	1991-06-16	506	http://en.wikipedia.org/wiki/1991_Mexican_Grand_Prix	f	23	42
-507	7	French Grand Prix	1991-07-07	507	http://en.wikipedia.org/wiki/1991_French_Grand_Prix	f	55	42
-508	8	British Grand Prix	1991-07-14	508	http://en.wikipedia.org/wiki/1991_British_Grand_Prix	f	1	42
-509	9	German Grand Prix	1991-07-28	509	http://en.wikipedia.org/wiki/1991_German_Grand_Prix	f	33	42
-510	10	Hungarian Grand Prix	1991-08-11	510	http://en.wikipedia.org/wiki/1991_Hungarian_Grand_Prix	f	52	42
-511	11	Belgian Grand Prix	1991-08-25	511	http://en.wikipedia.org/wiki/1991_Belgian_Grand_Prix	f	5	42
-512	12	Italian Grand Prix	1991-09-08	512	http://en.wikipedia.org/wiki/1991_Italian_Grand_Prix	f	7	42
-513	13	Portuguese Grand Prix	1991-09-22	513	http://en.wikipedia.org/wiki/1991_Portuguese_Grand_Prix	f	49	42
-514	14	Spanish Grand Prix	1991-09-29	514	http://en.wikipedia.org/wiki/1991_Spanish_Grand_Prix	f	56	42
-515	15	Japanese Grand Prix	1991-10-20	515	http://en.wikipedia.org/wiki/1991_Japanese_Grand_Prix	f	53	42
-516	16	Australian Grand Prix	1991-11-03	516	http://en.wikipedia.org/wiki/1991_Australian_Grand_Prix	f	50	42
-517	1	South African Grand Prix	1992-03-01	517	http://en.wikipedia.org/wiki/1992_South_African_Grand_Prix	f	27	43
-518	2	Mexican Grand Prix	1992-03-22	518	http://en.wikipedia.org/wiki/1992_Mexican_Grand_Prix	f	23	43
-519	3	Brazilian Grand Prix	1992-04-05	519	http://en.wikipedia.org/wiki/1992_Brazilian_Grand_Prix	f	37	43
-520	4	Spanish Grand Prix	1992-05-03	520	http://en.wikipedia.org/wiki/1992_Spanish_Grand_Prix	f	56	43
-521	5	San Marino Grand Prix	1992-05-17	521	http://en.wikipedia.org/wiki/1992_San_Marino_Grand_Prix	f	45	43
-522	6	Monaco Grand Prix	1992-05-31	522	http://en.wikipedia.org/wiki/1992_Monaco_Grand_Prix	f	2	43
-523	7	Canadian Grand Prix	1992-06-14	523	http://en.wikipedia.org/wiki/1992_Canadian_Grand_Prix	f	44	43
-524	8	French Grand Prix	1992-07-05	524	http://en.wikipedia.org/wiki/1992_French_Grand_Prix	f	55	43
-525	9	British Grand Prix	1992-07-12	525	http://en.wikipedia.org/wiki/1992_British_Grand_Prix	f	1	43
-526	10	German Grand Prix	1992-07-26	526	http://en.wikipedia.org/wiki/1992_German_Grand_Prix	f	33	43
-527	11	Hungarian Grand Prix	1992-08-16	527	http://en.wikipedia.org/wiki/1992_Hungarian_Grand_Prix	f	52	43
-528	12	Belgian Grand Prix	1992-08-30	528	http://en.wikipedia.org/wiki/1992_Belgian_Grand_Prix	f	5	43
-529	13	Italian Grand Prix	1992-09-13	529	http://en.wikipedia.org/wiki/1992_Italian_Grand_Prix	f	7	43
-530	14	Portuguese Grand Prix	1992-09-27	530	http://en.wikipedia.org/wiki/1992_Portuguese_Grand_Prix	f	49	43
-531	15	Japanese Grand Prix	1992-10-25	531	http://en.wikipedia.org/wiki/1992_Japanese_Grand_Prix	f	53	43
-532	16	Australian Grand Prix	1992-11-08	532	http://en.wikipedia.org/wiki/1992_Australian_Grand_Prix	f	50	43
-533	1	South African Grand Prix	1993-03-14	533	http://en.wikipedia.org/wiki/1993_South_African_Grand_Prix	f	27	44
-534	2	Brazilian Grand Prix	1993-03-28	534	http://en.wikipedia.org/wiki/1993_Brazilian_Grand_Prix	f	37	44
-535	3	European Grand Prix	1993-04-11	535	http://en.wikipedia.org/wiki/1993_European_Grand_Prix	f	57	44
-536	4	San Marino Grand Prix	1993-04-25	536	http://en.wikipedia.org/wiki/1993_San_Marino_Grand_Prix	f	45	44
-537	5	Spanish Grand Prix	1993-05-09	537	http://en.wikipedia.org/wiki/1993_Spanish_Grand_Prix	f	56	44
-538	6	Monaco Grand Prix	1993-05-23	538	http://en.wikipedia.org/wiki/1993_Monaco_Grand_Prix	f	2	44
-539	7	Canadian Grand Prix	1993-06-13	539	http://en.wikipedia.org/wiki/1993_Canadian_Grand_Prix	f	44	44
-540	8	French Grand Prix	1993-07-04	540	http://en.wikipedia.org/wiki/1993_French_Grand_Prix	f	55	44
-541	9	British Grand Prix	1993-07-11	541	http://en.wikipedia.org/wiki/1993_British_Grand_Prix	f	1	44
-542	10	German Grand Prix	1993-07-25	542	http://en.wikipedia.org/wiki/1993_German_Grand_Prix	f	33	44
-543	11	Hungarian Grand Prix	1993-08-15	543	http://en.wikipedia.org/wiki/1993_Hungarian_Grand_Prix	f	52	44
-544	12	Belgian Grand Prix	1993-08-29	544	http://en.wikipedia.org/wiki/1993_Belgian_Grand_Prix	f	5	44
-545	13	Italian Grand Prix	1993-09-12	545	http://en.wikipedia.org/wiki/1993_Italian_Grand_Prix	f	7	44
-546	14	Portuguese Grand Prix	1993-09-26	546	http://en.wikipedia.org/wiki/1993_Portuguese_Grand_Prix	f	49	44
-547	15	Japanese Grand Prix	1993-10-24	547	http://en.wikipedia.org/wiki/1993_Japanese_Grand_Prix	f	53	44
-548	16	Australian Grand Prix	1993-11-07	548	http://en.wikipedia.org/wiki/1993_Australian_Grand_Prix	f	50	44
-549	1	Brazilian Grand Prix	1994-03-27	549	http://en.wikipedia.org/wiki/1994_Brazilian_Grand_Prix	f	37	45
-550	2	Pacific Grand Prix	1994-04-17	550	http://en.wikipedia.org/wiki/1994_Pacific_Grand_Prix	f	58	45
-551	3	San Marino Grand Prix	1994-05-01	551	http://en.wikipedia.org/wiki/1994_San_Marino_Grand_Prix	f	45	45
-552	4	Monaco Grand Prix	1994-05-15	552	http://en.wikipedia.org/wiki/1994_Monaco_Grand_Prix	f	2	45
-553	5	Spanish Grand Prix	1994-05-29	553	http://en.wikipedia.org/wiki/1994_Spanish_Grand_Prix	f	56	45
-554	6	Canadian Grand Prix	1994-06-12	554	http://en.wikipedia.org/wiki/1994_Canadian_Grand_Prix	f	44	45
-555	7	French Grand Prix	1994-07-03	555	http://en.wikipedia.org/wiki/1994_French_Grand_Prix	f	55	45
-556	8	British Grand Prix	1994-07-10	556	http://en.wikipedia.org/wiki/1994_British_Grand_Prix	f	1	45
-557	9	German Grand Prix	1994-07-31	557	http://en.wikipedia.org/wiki/1994_German_Grand_Prix	f	33	45
-558	10	Hungarian Grand Prix	1994-08-14	558	http://en.wikipedia.org/wiki/1994_Hungarian_Grand_Prix	f	52	45
-559	11	Belgian Grand Prix	1994-08-28	559	http://en.wikipedia.org/wiki/1994_Belgian_Grand_Prix	f	5	45
-560	12	Italian Grand Prix	1994-09-11	560	http://en.wikipedia.org/wiki/1994_Italian_Grand_Prix	f	7	45
-561	13	Portuguese Grand Prix	1994-09-25	561	http://en.wikipedia.org/wiki/1994_Portuguese_Grand_Prix	f	49	45
-562	14	European Grand Prix	1994-10-16	562	http://en.wikipedia.org/wiki/1994_European_Grand_Prix	f	51	45
-563	15	Japanese Grand Prix	1994-11-06	563	http://en.wikipedia.org/wiki/1994_Japanese_Grand_Prix	f	53	45
-564	16	Australian Grand Prix	1994-11-13	564	http://en.wikipedia.org/wiki/1994_Australian_Grand_Prix	f	50	45
-565	1	Brazilian Grand Prix	1995-03-26	565	http://en.wikipedia.org/wiki/1995_Brazilian_Grand_Prix	f	37	46
-566	2	Argentine Grand Prix	1995-04-09	566	http://en.wikipedia.org/wiki/1995_Argentine_Grand_Prix	f	12	46
-567	3	San Marino Grand Prix	1995-04-30	567	http://en.wikipedia.org/wiki/1995_San_Marino_Grand_Prix	f	45	46
-568	4	Spanish Grand Prix	1995-05-14	568	http://en.wikipedia.org/wiki/1995_Spanish_Grand_Prix	f	56	46
-569	5	Monaco Grand Prix	1995-05-28	569	http://en.wikipedia.org/wiki/1995_Monaco_Grand_Prix	f	2	46
-570	6	Canadian Grand Prix	1995-06-11	570	http://en.wikipedia.org/wiki/1995_Canadian_Grand_Prix	f	44	46
-571	7	French Grand Prix	1995-07-02	571	http://en.wikipedia.org/wiki/1995_French_Grand_Prix	f	55	46
-572	8	British Grand Prix	1995-07-16	572	http://en.wikipedia.org/wiki/1995_British_Grand_Prix	f	1	46
-573	9	German Grand Prix	1995-07-30	573	http://en.wikipedia.org/wiki/1995_German_Grand_Prix	f	33	46
-574	10	Hungarian Grand Prix	1995-08-13	574	http://en.wikipedia.org/wiki/1995_Hungarian_Grand_Prix	f	52	46
-575	11	Belgian Grand Prix	1995-08-27	575	http://en.wikipedia.org/wiki/1995_Belgian_Grand_Prix	f	5	46
-576	12	Italian Grand Prix	1995-09-10	576	http://en.wikipedia.org/wiki/1995_Italian_Grand_Prix	f	7	46
-577	13	Portuguese Grand Prix	1995-09-24	577	http://en.wikipedia.org/wiki/1995_Portuguese_Grand_Prix	f	49	46
-578	14	European Grand Prix	1995-10-01	578	http://en.wikipedia.org/wiki/1995_European_Grand_Prix	f	8	46
-579	15	Pacific Grand Prix	1995-10-22	579	http://en.wikipedia.org/wiki/1995_Pacific_Grand_Prix	f	58	46
-580	16	Japanese Grand Prix	1995-10-29	580	http://en.wikipedia.org/wiki/1995_Japanese_Grand_Prix	f	53	46
-581	17	Australian Grand Prix	1995-11-12	581	http://en.wikipedia.org/wiki/1995_Australian_Grand_Prix	f	50	46
-582	1	Australian Grand Prix	1996-03-10	582	http://en.wikipedia.org/wiki/1996_Australian_Grand_Prix	f	59	47
-583	2	Brazilian Grand Prix	1996-03-31	583	http://en.wikipedia.org/wiki/1996_Brazilian_Grand_Prix	f	37	47
-584	3	Argentine Grand Prix	1996-04-07	584	http://en.wikipedia.org/wiki/1996_Argentine_Grand_Prix	f	12	47
-585	4	European Grand Prix	1996-04-28	585	http://en.wikipedia.org/wiki/1996_European_Grand_Prix	f	8	47
-586	5	San Marino Grand Prix	1996-05-05	586	http://en.wikipedia.org/wiki/1996_San_Marino_Grand_Prix	f	45	47
-587	6	Monaco Grand Prix	1996-05-19	587	http://en.wikipedia.org/wiki/1996_Monaco_Grand_Prix	f	2	47
-588	7	Spanish Grand Prix	1996-06-02	588	http://en.wikipedia.org/wiki/1996_Spanish_Grand_Prix	f	56	47
-589	8	Canadian Grand Prix	1996-06-16	589	http://en.wikipedia.org/wiki/1996_Canadian_Grand_Prix	f	44	47
-590	9	French Grand Prix	1996-06-30	590	http://en.wikipedia.org/wiki/1996_French_Grand_Prix	f	55	47
-591	10	British Grand Prix	1996-07-14	591	http://en.wikipedia.org/wiki/1996_British_Grand_Prix	f	1	47
-592	11	German Grand Prix	1996-07-28	592	http://en.wikipedia.org/wiki/1996_German_Grand_Prix	f	33	47
-593	12	Hungarian Grand Prix	1996-08-11	593	http://en.wikipedia.org/wiki/1996_Hungarian_Grand_Prix	f	52	47
-594	13	Belgian Grand Prix	1996-08-25	594	http://en.wikipedia.org/wiki/1996_Belgian_Grand_Prix	f	5	47
-595	14	Italian Grand Prix	1996-09-08	595	http://en.wikipedia.org/wiki/1996_Italian_Grand_Prix	f	7	47
-596	15	Portuguese Grand Prix	1996-09-22	596	http://en.wikipedia.org/wiki/1996_Portuguese_Grand_Prix	f	49	47
-597	16	Japanese Grand Prix	1996-10-13	597	http://en.wikipedia.org/wiki/1996_Japanese_Grand_Prix	f	53	47
-598	1	Australian Grand Prix	1997-03-09	598	http://en.wikipedia.org/wiki/1997_Australian_Grand_Prix	f	59	48
-599	2	Brazilian Grand Prix	1997-03-30	599	http://en.wikipedia.org/wiki/1997_Brazilian_Grand_Prix	f	37	48
-600	3	Argentine Grand Prix	1997-04-13	600	http://en.wikipedia.org/wiki/1997_Argentine_Grand_Prix	f	12	48
-601	4	San Marino Grand Prix	1997-04-27	601	http://en.wikipedia.org/wiki/1997_San_Marino_Grand_Prix	f	45	48
-602	5	Monaco Grand Prix	1997-05-11	602	http://en.wikipedia.org/wiki/1997_Monaco_Grand_Prix	f	2	48
-603	6	Spanish Grand Prix	1997-05-25	603	http://en.wikipedia.org/wiki/1997_Spanish_Grand_Prix	f	56	48
-604	7	Canadian Grand Prix	1997-06-15	604	http://en.wikipedia.org/wiki/1997_Canadian_Grand_Prix	f	44	48
-605	8	French Grand Prix	1997-06-29	605	http://en.wikipedia.org/wiki/1997_French_Grand_Prix	f	55	48
-606	9	British Grand Prix	1997-07-13	606	http://en.wikipedia.org/wiki/1997_British_Grand_Prix	f	1	48
-607	10	German Grand Prix	1997-07-27	607	http://en.wikipedia.org/wiki/1997_German_Grand_Prix	f	33	48
-608	11	Hungarian Grand Prix	1997-08-10	608	http://en.wikipedia.org/wiki/1997_Hungarian_Grand_Prix	f	52	48
-609	12	Belgian Grand Prix	1997-08-24	609	http://en.wikipedia.org/wiki/1997_Belgian_Grand_Prix	f	5	48
-610	13	Italian Grand Prix	1997-09-07	610	http://en.wikipedia.org/wiki/1997_Italian_Grand_Prix	f	7	48
-611	14	Austrian Grand Prix	1997-09-21	611	http://en.wikipedia.org/wiki/1997_Austrian_Grand_Prix	f	34	48
-612	15	Luxembourg Grand Prix	1997-09-28	612	http://en.wikipedia.org/wiki/1997_Luxembourg_Grand_Prix	f	8	48
-613	16	Japanese Grand Prix	1997-10-12	613	http://en.wikipedia.org/wiki/1997_Japanese_Grand_Prix	f	53	48
-614	17	European Grand Prix	1997-10-26	614	http://en.wikipedia.org/wiki/1997_European_Grand_Prix	f	51	48
-615	1	Australian Grand Prix	1998-03-08	615	http://en.wikipedia.org/wiki/1998_Australian_Grand_Prix	f	59	49
-616	2	Brazilian Grand Prix	1998-03-29	616	http://en.wikipedia.org/wiki/1998_Brazilian_Grand_Prix	f	37	49
-617	3	Argentine Grand Prix	1998-04-12	617	http://en.wikipedia.org/wiki/1998_Argentine_Grand_Prix	f	12	49
-618	4	San Marino Grand Prix	1998-04-26	618	http://en.wikipedia.org/wiki/1998_San_Marino_Grand_Prix	f	45	49
-619	5	Spanish Grand Prix	1998-05-10	619	http://en.wikipedia.org/wiki/1998_Spanish_Grand_Prix	f	56	49
-620	6	Monaco Grand Prix	1998-05-24	620	http://en.wikipedia.org/wiki/1998_Monaco_Grand_Prix	f	2	49
-621	7	Canadian Grand Prix	1998-06-07	621	http://en.wikipedia.org/wiki/1998_Canadian_Grand_Prix	f	44	49
-622	8	French Grand Prix	1998-06-28	622	http://en.wikipedia.org/wiki/1998_French_Grand_Prix	f	55	49
-623	9	British Grand Prix	1998-07-12	623	http://en.wikipedia.org/wiki/1998_British_Grand_Prix	f	1	49
-624	10	Austrian Grand Prix	1998-07-26	624	http://en.wikipedia.org/wiki/1998_Austrian_Grand_Prix	f	34	49
-625	11	German Grand Prix	1998-08-02	625	http://en.wikipedia.org/wiki/1998_German_Grand_Prix	f	33	49
-626	12	Hungarian Grand Prix	1998-08-16	626	http://en.wikipedia.org/wiki/1998_Hungarian_Grand_Prix	f	52	49
-627	13	Belgian Grand Prix	1998-08-30	627	http://en.wikipedia.org/wiki/1998_Belgian_Grand_Prix	f	5	49
-628	14	Italian Grand Prix	1998-09-13	628	http://en.wikipedia.org/wiki/1998_Italian_Grand_Prix	f	7	49
-629	15	Luxembourg Grand Prix	1998-09-27	629	http://en.wikipedia.org/wiki/1998_Luxembourg_Grand_Prix	f	8	49
-630	16	Japanese Grand Prix	1998-11-01	630	http://en.wikipedia.org/wiki/1998_Japanese_Grand_Prix	f	53	49
-631	1	Australian Grand Prix	1999-03-07	631	http://en.wikipedia.org/wiki/1999_Australian_Grand_Prix	f	59	50
-632	2	Brazilian Grand Prix	1999-04-11	632	http://en.wikipedia.org/wiki/1999_Brazilian_Grand_Prix	f	37	50
-633	3	San Marino Grand Prix	1999-05-02	633	http://en.wikipedia.org/wiki/1999_San_Marino_Grand_Prix	f	45	50
-634	4	Monaco Grand Prix	1999-05-16	634	http://en.wikipedia.org/wiki/1999_Monaco_Grand_Prix	f	2	50
-635	5	Spanish Grand Prix	1999-05-30	635	http://en.wikipedia.org/wiki/1999_Spanish_Grand_Prix	f	56	50
-636	6	Canadian Grand Prix	1999-06-13	636	http://en.wikipedia.org/wiki/1999_Canadian_Grand_Prix	f	44	50
-637	7	French Grand Prix	1999-06-27	637	http://en.wikipedia.org/wiki/1999_French_Grand_Prix	f	55	50
-638	8	British Grand Prix	1999-07-11	638	http://en.wikipedia.org/wiki/1999_British_Grand_Prix	f	1	50
-639	9	Austrian Grand Prix	1999-07-25	639	http://en.wikipedia.org/wiki/1999_Austrian_Grand_Prix	f	34	50
-640	10	German Grand Prix	1999-08-01	640	http://en.wikipedia.org/wiki/1999_German_Grand_Prix	f	33	50
-641	11	Hungarian Grand Prix	1999-08-15	641	http://en.wikipedia.org/wiki/1999_Hungarian_Grand_Prix	f	52	50
-642	12	Belgian Grand Prix	1999-08-29	642	http://en.wikipedia.org/wiki/1999_Belgian_Grand_Prix	f	5	50
-643	13	Italian Grand Prix	1999-09-12	643	http://en.wikipedia.org/wiki/1999_Italian_Grand_Prix	f	7	50
-644	14	European Grand Prix	1999-09-26	644	http://en.wikipedia.org/wiki/1999_European_Grand_Prix	f	8	50
-645	15	Malaysian Grand Prix	1999-10-17	645	http://en.wikipedia.org/wiki/1999_Malaysian_Grand_Prix	f	60	50
-646	16	Japanese Grand Prix	1999-10-31	646	http://en.wikipedia.org/wiki/1999_Japanese_Grand_Prix	f	53	50
-647	1	Australian Grand Prix	2000-03-12	647	http://en.wikipedia.org/wiki/2000_Australian_Grand_Prix	f	59	51
-648	2	Brazilian Grand Prix	2000-03-26	648	http://en.wikipedia.org/wiki/2000_Brazilian_Grand_Prix	f	37	51
-649	3	San Marino Grand Prix	2000-04-09	649	http://en.wikipedia.org/wiki/2000_San_Marino_Grand_Prix	f	45	51
-650	4	British Grand Prix	2000-04-23	650	http://en.wikipedia.org/wiki/2000_British_Grand_Prix	f	1	51
-651	5	Spanish Grand Prix	2000-05-07	651	http://en.wikipedia.org/wiki/2000_Spanish_Grand_Prix	f	56	51
-652	6	European Grand Prix	2000-05-21	652	http://en.wikipedia.org/wiki/2000_European_Grand_Prix	f	8	51
-653	7	Monaco Grand Prix	2000-06-04	653	http://en.wikipedia.org/wiki/2000_Monaco_Grand_Prix	f	2	51
-654	8	Canadian Grand Prix	2000-06-18	654	http://en.wikipedia.org/wiki/2000_Canadian_Grand_Prix	f	44	51
-655	9	French Grand Prix	2000-07-02	655	http://en.wikipedia.org/wiki/2000_French_Grand_Prix	f	55	51
-656	10	Austrian Grand Prix	2000-07-16	656	http://en.wikipedia.org/wiki/2000_Austrian_Grand_Prix	f	34	51
-657	11	German Grand Prix	2000-07-30	657	http://en.wikipedia.org/wiki/2000_German_Grand_Prix	f	33	51
-658	12	Hungarian Grand Prix	2000-08-13	658	http://en.wikipedia.org/wiki/2000_Hungarian_Grand_Prix	f	52	51
-659	13	Belgian Grand Prix	2000-08-27	659	http://en.wikipedia.org/wiki/2000_Belgian_Grand_Prix	f	5	51
-660	14	Italian Grand Prix	2000-09-10	660	http://en.wikipedia.org/wiki/2000_Italian_Grand_Prix	f	7	51
-661	15	United States Grand Prix	2000-09-24	661	http://en.wikipedia.org/wiki/2000_United_States_Grand_Prix	f	3	51
-662	16	Japanese Grand Prix	2000-10-08	662	http://en.wikipedia.org/wiki/2000_Japanese_Grand_Prix	f	53	51
-663	17	Malaysian Grand Prix	2000-10-22	663	http://en.wikipedia.org/wiki/2000_Malaysian_Grand_Prix	f	60	51
-664	1	Australian Grand Prix	2001-03-04	664	http://en.wikipedia.org/wiki/2001_Australian_Grand_Prix	f	59	52
-665	2	Malaysian Grand Prix	2001-03-18	665	http://en.wikipedia.org/wiki/2001_Malaysian_Grand_Prix	f	60	52
-666	3	Brazilian Grand Prix	2001-04-01	666	http://en.wikipedia.org/wiki/2001_Brazilian_Grand_Prix	f	37	52
-667	4	San Marino Grand Prix	2001-04-15	667	http://en.wikipedia.org/wiki/2001_San_Marino_Grand_Prix	f	45	52
-668	5	Spanish Grand Prix	2001-04-29	668	http://en.wikipedia.org/wiki/2001_Spanish_Grand_Prix	f	56	52
-669	6	Austrian Grand Prix	2001-05-13	669	http://en.wikipedia.org/wiki/2001_Austrian_Grand_Prix	f	34	52
-670	7	Monaco Grand Prix	2001-05-27	670	http://en.wikipedia.org/wiki/2001_Monaco_Grand_Prix	f	2	52
-671	8	Canadian Grand Prix	2001-06-10	671	http://en.wikipedia.org/wiki/2001_Canadian_Grand_Prix	f	44	52
-672	9	European Grand Prix	2001-06-24	672	http://en.wikipedia.org/wiki/2001_European_Grand_Prix	f	8	52
-673	10	French Grand Prix	2001-07-01	673	http://en.wikipedia.org/wiki/2001_French_Grand_Prix	f	55	52
-674	11	British Grand Prix	2001-07-15	674	http://en.wikipedia.org/wiki/2001_British_Grand_Prix	f	1	52
-675	12	German Grand Prix	2001-07-29	675	http://en.wikipedia.org/wiki/2001_German_Grand_Prix	f	33	52
-676	13	Hungarian Grand Prix	2001-08-19	676	http://en.wikipedia.org/wiki/2001_Hungarian_Grand_Prix	f	52	52
-677	14	Belgian Grand Prix	2001-09-02	677	http://en.wikipedia.org/wiki/2001_Belgian_Grand_Prix	f	5	52
-678	15	Italian Grand Prix	2001-09-16	678	http://en.wikipedia.org/wiki/2001_Italian_Grand_Prix	f	7	52
-679	16	United States Grand Prix	2001-09-30	679	http://en.wikipedia.org/wiki/2001_United_States_Grand_Prix	f	3	52
-680	17	Japanese Grand Prix	2001-10-14	680	http://en.wikipedia.org/wiki/2001_Japanese_Grand_Prix	f	53	52
-681	1	Australian Grand Prix	2002-03-03	681	http://en.wikipedia.org/wiki/2002_Australian_Grand_Prix	f	59	53
-682	2	Malaysian Grand Prix	2002-03-17	682	http://en.wikipedia.org/wiki/2002_Malaysian_Grand_Prix	f	60	53
-683	3	Brazilian Grand Prix	2002-03-31	683	http://en.wikipedia.org/wiki/2002_Brazilian_Grand_Prix	f	37	53
-684	4	San Marino Grand Prix	2002-04-14	684	http://en.wikipedia.org/wiki/2002_San_Marino_Grand_Prix	f	45	53
-685	5	Spanish Grand Prix	2002-04-28	685	http://en.wikipedia.org/wiki/2002_Spanish_Grand_Prix	f	56	53
-686	6	Austrian Grand Prix	2002-05-12	686	http://en.wikipedia.org/wiki/2002_Austrian_Grand_Prix	f	34	53
-687	7	Monaco Grand Prix	2002-05-26	687	http://en.wikipedia.org/wiki/2002_Monaco_Grand_Prix	f	2	53
-688	8	Canadian Grand Prix	2002-06-09	688	http://en.wikipedia.org/wiki/2002_Canadian_Grand_Prix	f	44	53
-689	9	European Grand Prix	2002-06-23	689	http://en.wikipedia.org/wiki/2002_European_Grand_Prix	f	8	53
-690	10	British Grand Prix	2002-07-07	690	http://en.wikipedia.org/wiki/2002_British_Grand_Prix	f	1	53
-691	11	French Grand Prix	2002-07-21	691	http://en.wikipedia.org/wiki/2002_French_Grand_Prix	f	55	53
-692	12	German Grand Prix	2002-07-28	692	http://en.wikipedia.org/wiki/2002_German_Grand_Prix	f	33	53
-693	13	Hungarian Grand Prix	2002-08-18	693	http://en.wikipedia.org/wiki/2002_Hungarian_Grand_Prix	f	52	53
-694	14	Belgian Grand Prix	2002-09-01	694	http://en.wikipedia.org/wiki/2002_Belgian_Grand_Prix	f	5	53
-695	15	Italian Grand Prix	2002-09-15	695	http://en.wikipedia.org/wiki/2002_Italian_Grand_Prix	f	7	53
-696	16	United States Grand Prix	2002-09-29	696	http://en.wikipedia.org/wiki/2002_United_States_Grand_Prix	f	3	53
-697	17	Japanese Grand Prix	2002-10-13	697	http://en.wikipedia.org/wiki/2002_Japanese_Grand_Prix	f	53	53
-698	1	Australian Grand Prix	2003-03-09	698	http://en.wikipedia.org/wiki/2003_Australian_Grand_Prix	f	59	54
-699	2	Malaysian Grand Prix	2003-03-23	699	http://en.wikipedia.org/wiki/2003_Malaysian_Grand_Prix	f	60	54
-700	3	Brazilian Grand Prix	2003-04-06	700	http://en.wikipedia.org/wiki/2003_Brazilian_Grand_Prix	f	37	54
-701	4	San Marino Grand Prix	2003-04-20	701	http://en.wikipedia.org/wiki/2003_San_Marino_Grand_Prix	f	45	54
-702	5	Spanish Grand Prix	2003-05-04	702	http://en.wikipedia.org/wiki/2003_Spanish_Grand_Prix	f	56	54
-703	6	Austrian Grand Prix	2003-05-18	703	http://en.wikipedia.org/wiki/2003_Austrian_Grand_Prix	f	34	54
-704	7	Monaco Grand Prix	2003-06-01	704	http://en.wikipedia.org/wiki/2003_Monaco_Grand_Prix	f	2	54
-705	8	Canadian Grand Prix	2003-06-15	705	http://en.wikipedia.org/wiki/2003_Canadian_Grand_Prix	f	44	54
-706	9	European Grand Prix	2003-06-29	706	http://en.wikipedia.org/wiki/2003_European_Grand_Prix	f	8	54
-707	10	French Grand Prix	2003-07-06	707	http://en.wikipedia.org/wiki/2003_French_Grand_Prix	f	55	54
-708	11	British Grand Prix	2003-07-20	708	http://en.wikipedia.org/wiki/2003_British_Grand_Prix	f	1	54
-709	12	German Grand Prix	2003-08-03	709	http://en.wikipedia.org/wiki/2003_German_Grand_Prix	f	33	54
-710	13	Hungarian Grand Prix	2003-08-24	710	http://en.wikipedia.org/wiki/2003_Hungarian_Grand_Prix	f	52	54
-711	14	Italian Grand Prix	2003-09-14	711	http://en.wikipedia.org/wiki/2003_Italian_Grand_Prix	f	7	54
-712	15	United States Grand Prix	2003-09-28	712	http://en.wikipedia.org/wiki/2003_United_States_Grand_Prix	f	3	54
-713	16	Japanese Grand Prix	2003-10-12	713	http://en.wikipedia.org/wiki/2003_Japanese_Grand_Prix	f	53	54
-714	1	Australian Grand Prix	2004-03-07	714	http://en.wikipedia.org/wiki/2004_Australian_Grand_Prix	f	59	55
-715	2	Malaysian Grand Prix	2004-03-21	715	http://en.wikipedia.org/wiki/2004_Malaysian_Grand_Prix	f	60	55
-716	3	Bahrain Grand Prix	2004-04-04	716	http://en.wikipedia.org/wiki/2004_Bahrain_Grand_Prix	f	61	55
-717	4	San Marino Grand Prix	2004-04-25	717	http://en.wikipedia.org/wiki/2004_San_Marino_Grand_Prix	f	45	55
-718	5	Spanish Grand Prix	2004-05-09	718	http://en.wikipedia.org/wiki/2004_Spanish_Grand_Prix	f	56	55
-719	6	Monaco Grand Prix	2004-05-23	719	http://en.wikipedia.org/wiki/2004_Monaco_Grand_Prix	f	2	55
-720	7	European Grand Prix	2004-05-30	720	http://en.wikipedia.org/wiki/2004_European_Grand_Prix	f	8	55
-721	8	Canadian Grand Prix	2004-06-13	721	http://en.wikipedia.org/wiki/2004_Canadian_Grand_Prix	f	44	55
-722	9	United States Grand Prix	2004-06-20	722	http://en.wikipedia.org/wiki/2004_United_States_Grand_Prix	f	3	55
-723	10	French Grand Prix	2004-07-04	723	http://en.wikipedia.org/wiki/2004_French_Grand_Prix	f	55	55
-724	11	British Grand Prix	2004-07-11	724	http://en.wikipedia.org/wiki/2004_British_Grand_Prix	f	1	55
-725	12	German Grand Prix	2004-07-25	725	http://en.wikipedia.org/wiki/2004_German_Grand_Prix	f	33	55
-726	13	Hungarian Grand Prix	2004-08-15	726	http://en.wikipedia.org/wiki/2004_Hungarian_Grand_Prix	f	52	55
-727	14	Belgian Grand Prix	2004-08-29	727	http://en.wikipedia.org/wiki/2004_Belgian_Grand_Prix	f	5	55
-728	15	Italian Grand Prix	2004-09-12	728	http://en.wikipedia.org/wiki/2004_Italian_Grand_Prix	f	7	55
-729	16	Chinese Grand Prix	2004-09-26	729	http://en.wikipedia.org/wiki/2004_Chinese_Grand_Prix	f	62	55
-730	17	Japanese Grand Prix	2004-10-10	730	http://en.wikipedia.org/wiki/2004_Japanese_Grand_Prix	f	53	55
-731	18	Brazilian Grand Prix	2004-10-24	731	http://en.wikipedia.org/wiki/2004_Brazilian_Grand_Prix	f	37	55
-732	1	Australian Grand Prix	2005-03-06	732	http://en.wikipedia.org/wiki/2005_Australian_Grand_Prix	f	59	56
-733	2	Malaysian Grand Prix	2005-03-20	733	http://en.wikipedia.org/wiki/2005_Malaysian_Grand_Prix	f	60	56
-734	3	Bahrain Grand Prix	2005-04-03	734	http://en.wikipedia.org/wiki/2005_Bahrain_Grand_Prix	f	61	56
-735	4	San Marino Grand Prix	2005-04-24	735	http://en.wikipedia.org/wiki/2005_San_Marino_Grand_Prix	f	45	56
-736	5	Spanish Grand Prix	2005-05-08	736	http://en.wikipedia.org/wiki/2005_Spanish_Grand_Prix	f	56	56
-737	6	Monaco Grand Prix	2005-05-22	737	http://en.wikipedia.org/wiki/2005_Monaco_Grand_Prix	f	2	56
-738	7	European Grand Prix	2005-05-29	738	http://en.wikipedia.org/wiki/2005_European_Grand_Prix	f	8	56
-739	8	Canadian Grand Prix	2005-06-12	739	http://en.wikipedia.org/wiki/2005_Canadian_Grand_Prix	f	44	56
-740	9	United States Grand Prix	2005-06-19	740	http://en.wikipedia.org/wiki/2005_United_States_Grand_Prix	f	3	56
-741	10	French Grand Prix	2005-07-03	741	http://en.wikipedia.org/wiki/2005_French_Grand_Prix	f	55	56
-742	11	British Grand Prix	2005-07-10	742	http://en.wikipedia.org/wiki/2005_British_Grand_Prix	f	1	56
-743	12	German Grand Prix	2005-07-24	743	http://en.wikipedia.org/wiki/2005_German_Grand_Prix	f	33	56
-744	13	Hungarian Grand Prix	2005-07-31	744	http://en.wikipedia.org/wiki/2005_Hungarian_Grand_Prix	f	52	56
-745	14	Turkish Grand Prix	2005-08-21	745	http://en.wikipedia.org/wiki/2005_Turkish_Grand_Prix	f	63	56
-746	15	Italian Grand Prix	2005-09-04	746	http://en.wikipedia.org/wiki/2005_Italian_Grand_Prix	f	7	56
-747	16	Belgian Grand Prix	2005-09-11	747	http://en.wikipedia.org/wiki/2005_Belgian_Grand_Prix	f	5	56
-748	17	Brazilian Grand Prix	2005-09-25	748	http://en.wikipedia.org/wiki/2005_Brazilian_Grand_Prix	f	37	56
-749	18	Japanese Grand Prix	2005-10-09	749	http://en.wikipedia.org/wiki/2005_Japanese_Grand_Prix	f	53	56
-750	19	Chinese Grand Prix	2005-10-16	750	http://en.wikipedia.org/wiki/2005_Chinese_Grand_Prix	f	62	56
-751	1	Bahrain Grand Prix	2006-03-12	751	http://en.wikipedia.org/wiki/2006_Bahrain_Grand_Prix	f	61	57
-752	2	Malaysian Grand Prix	2006-03-19	752	http://en.wikipedia.org/wiki/2006_Malaysian_Grand_Prix	f	60	57
-753	3	Australian Grand Prix	2006-04-02	753	http://en.wikipedia.org/wiki/2006_Australian_Grand_Prix	f	59	57
-754	4	San Marino Grand Prix	2006-04-23	754	http://en.wikipedia.org/wiki/2006_San_Marino_Grand_Prix	f	45	57
-755	5	European Grand Prix	2006-05-07	755	http://en.wikipedia.org/wiki/2006_European_Grand_Prix	f	8	57
-756	6	Spanish Grand Prix	2006-05-14	756	http://en.wikipedia.org/wiki/2006_Spanish_Grand_Prix	f	56	57
-757	7	Monaco Grand Prix	2006-05-28	757	http://en.wikipedia.org/wiki/2006_Monaco_Grand_Prix	f	2	57
-758	8	British Grand Prix	2006-06-11	758	http://en.wikipedia.org/wiki/2006_British_Grand_Prix	f	1	57
-759	9	Canadian Grand Prix	2006-06-25	759	http://en.wikipedia.org/wiki/2006_Canadian_Grand_Prix	f	44	57
-760	10	United States Grand Prix	2006-07-02	760	http://en.wikipedia.org/wiki/2006_United_States_Grand_Prix	f	3	57
-761	11	French Grand Prix	2006-07-16	761	http://en.wikipedia.org/wiki/2006_French_Grand_Prix	f	55	57
-762	12	German Grand Prix	2006-07-30	762	http://en.wikipedia.org/wiki/2006_German_Grand_Prix	f	33	57
-763	13	Hungarian Grand Prix	2006-08-06	763	http://en.wikipedia.org/wiki/2006_Hungarian_Grand_Prix	f	52	57
-764	14	Turkish Grand Prix	2006-08-27	764	http://en.wikipedia.org/wiki/2006_Turkish_Grand_Prix	f	63	57
-765	15	Italian Grand Prix	2006-09-10	765	http://en.wikipedia.org/wiki/2006_Italian_Grand_Prix	f	7	57
-766	16	Chinese Grand Prix	2006-10-01	766	http://en.wikipedia.org/wiki/2006_Chinese_Grand_Prix	f	62	57
-767	17	Japanese Grand Prix	2006-10-08	767	http://en.wikipedia.org/wiki/2006_Japanese_Grand_Prix	f	53	57
-768	18	Brazilian Grand Prix	2006-10-22	768	http://en.wikipedia.org/wiki/2006_Brazilian_Grand_Prix	f	37	57
-769	1	Australian Grand Prix	2007-03-18	769	http://en.wikipedia.org/wiki/2007_Australian_Grand_Prix	f	59	58
-770	2	Malaysian Grand Prix	2007-04-08	770	http://en.wikipedia.org/wiki/2007_Malaysian_Grand_Prix	f	60	58
-771	3	Bahrain Grand Prix	2007-04-15	771	http://en.wikipedia.org/wiki/2007_Bahrain_Grand_Prix	f	61	58
-772	4	Spanish Grand Prix	2007-05-13	772	http://en.wikipedia.org/wiki/2007_Spanish_Grand_Prix	f	56	58
-773	5	Monaco Grand Prix	2007-05-27	773	http://en.wikipedia.org/wiki/2007_Monaco_Grand_Prix	f	2	58
-774	6	Canadian Grand Prix	2007-06-10	774	http://en.wikipedia.org/wiki/2007_Canadian_Grand_Prix	f	44	58
-775	7	United States Grand Prix	2007-06-17	775	http://en.wikipedia.org/wiki/2007_United_States_Grand_Prix	f	3	58
-776	8	French Grand Prix	2007-07-01	776	http://en.wikipedia.org/wiki/2007_French_Grand_Prix	f	55	58
-777	9	British Grand Prix	2007-07-08	777	http://en.wikipedia.org/wiki/2007_British_Grand_Prix	f	1	58
-778	10	European Grand Prix	2007-07-22	778	http://en.wikipedia.org/wiki/2007_European_Grand_Prix	f	8	58
-779	11	Hungarian Grand Prix	2007-08-05	779	http://en.wikipedia.org/wiki/2007_Hungarian_Grand_Prix	f	52	58
-780	12	Turkish Grand Prix	2007-08-26	780	http://en.wikipedia.org/wiki/2007_Turkish_Grand_Prix	f	63	58
-781	13	Italian Grand Prix	2007-09-09	781	http://en.wikipedia.org/wiki/2007_Italian_Grand_Prix	f	7	58
-782	14	Belgian Grand Prix	2007-09-16	782	http://en.wikipedia.org/wiki/2007_Belgian_Grand_Prix	f	5	58
-783	15	Japanese Grand Prix	2007-09-30	783	http://en.wikipedia.org/wiki/2007_Japanese_Grand_Prix	f	42	58
-784	16	Chinese Grand Prix	2007-10-07	784	http://en.wikipedia.org/wiki/2007_Chinese_Grand_Prix	f	62	58
-785	17	Brazilian Grand Prix	2007-10-21	785	http://en.wikipedia.org/wiki/2007_Brazilian_Grand_Prix	f	37	58
-786	1	Australian Grand Prix	2008-03-16	786	http://en.wikipedia.org/wiki/2008_Australian_Grand_Prix	f	59	59
-787	2	Malaysian Grand Prix	2008-03-23	787	http://en.wikipedia.org/wiki/2008_Malaysian_Grand_Prix	f	60	59
-788	3	Bahrain Grand Prix	2008-04-06	788	http://en.wikipedia.org/wiki/2008_Bahrain_Grand_Prix	f	61	59
-789	4	Spanish Grand Prix	2008-04-27	789	http://en.wikipedia.org/wiki/2008_Spanish_Grand_Prix	f	56	59
-790	5	Turkish Grand Prix	2008-05-11	790	http://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix	f	63	59
-791	6	Monaco Grand Prix	2008-05-25	791	http://en.wikipedia.org/wiki/2008_Monaco_Grand_Prix	f	2	59
-792	7	Canadian Grand Prix	2008-06-08	792	http://en.wikipedia.org/wiki/2008_Canadian_Grand_Prix	f	44	59
-793	8	French Grand Prix	2008-06-22	793	http://en.wikipedia.org/wiki/2008_French_Grand_Prix	f	55	59
-794	9	British Grand Prix	2008-07-06	794	http://en.wikipedia.org/wiki/2008_British_Grand_Prix	f	1	59
-795	10	German Grand Prix	2008-07-20	795	http://en.wikipedia.org/wiki/2008_German_Grand_Prix	f	33	59
-796	11	Hungarian Grand Prix	2008-08-03	796	http://en.wikipedia.org/wiki/2008_Hungarian_Grand_Prix	f	52	59
-797	12	European Grand Prix	2008-08-24	797	http://en.wikipedia.org/wiki/2008_European_Grand_Prix	f	64	59
-798	13	Belgian Grand Prix	2008-09-07	798	http://en.wikipedia.org/wiki/2008_Belgian_Grand_Prix	f	5	59
-799	14	Italian Grand Prix	2008-09-14	799	http://en.wikipedia.org/wiki/2008_Italian_Grand_Prix	f	7	59
-800	15	Singapore Grand Prix	2008-09-28	800	http://en.wikipedia.org/wiki/2008_Singapore_Grand_Prix	f	65	59
-801	16	Japanese Grand Prix	2008-10-12	801	http://en.wikipedia.org/wiki/2008_Japanese_Grand_Prix	f	42	59
-802	17	Chinese Grand Prix	2008-10-19	802	http://en.wikipedia.org/wiki/2008_Chinese_Grand_Prix	f	62	59
-803	18	Brazilian Grand Prix	2008-11-02	803	http://en.wikipedia.org/wiki/2008_Brazilian_Grand_Prix	f	37	59
-804	1	Australian Grand Prix	2009-03-29	804	http://en.wikipedia.org/wiki/2009_Australian_Grand_Prix	f	59	60
-805	2	Malaysian Grand Prix	2009-04-05	805	http://en.wikipedia.org/wiki/2009_Malaysian_Grand_Prix	f	60	60
-806	3	Chinese Grand Prix	2009-04-19	806	http://en.wikipedia.org/wiki/2009_Chinese_Grand_Prix	f	62	60
-807	4	Bahrain Grand Prix	2009-04-26	807	http://en.wikipedia.org/wiki/2009_Bahrain_Grand_Prix	f	61	60
-808	5	Spanish Grand Prix	2009-05-10	808	http://en.wikipedia.org/wiki/2009_Spanish_Grand_Prix	f	56	60
-809	6	Monaco Grand Prix	2009-05-24	809	http://en.wikipedia.org/wiki/2009_Monaco_Grand_Prix	f	2	60
-810	7	Turkish Grand Prix	2009-06-07	810	http://en.wikipedia.org/wiki/2009_Turkish_Grand_Prix	f	63	60
-811	8	British Grand Prix	2009-06-21	811	http://en.wikipedia.org/wiki/2009_British_Grand_Prix	f	1	60
-812	9	German Grand Prix	2009-07-12	812	http://en.wikipedia.org/wiki/2009_German_Grand_Prix	f	8	60
-813	10	Hungarian Grand Prix	2009-07-26	813	http://en.wikipedia.org/wiki/2009_Hungarian_Grand_Prix	f	52	60
-814	11	European Grand Prix	2009-08-23	814	http://en.wikipedia.org/wiki/2009_European_Grand_Prix	f	64	60
-815	12	Belgian Grand Prix	2009-08-30	815	http://en.wikipedia.org/wiki/2009_Belgian_Grand_Prix	f	5	60
-816	13	Italian Grand Prix	2009-09-13	816	http://en.wikipedia.org/wiki/2009_Italian_Grand_Prix	f	7	60
-817	14	Singapore Grand Prix	2009-09-27	817	http://en.wikipedia.org/wiki/2009_Singapore_Grand_Prix	f	65	60
-818	15	Japanese Grand Prix	2009-10-04	818	http://en.wikipedia.org/wiki/2009_Japanese_Grand_Prix	f	53	60
-819	16	Brazilian Grand Prix	2009-10-18	819	http://en.wikipedia.org/wiki/2009_Brazilian_Grand_Prix	f	37	60
-820	17	Abu Dhabi Grand Prix	2009-11-01	820	http://en.wikipedia.org/wiki/2009_Abu_Dhabi_Grand_Prix	f	66	60
-821	1	Bahrain Grand Prix	2010-03-14	821	http://en.wikipedia.org/wiki/2010_Bahrain_Grand_Prix	f	61	61
-822	2	Australian Grand Prix	2010-03-28	822	http://en.wikipedia.org/wiki/2010_Australian_Grand_Prix	f	59	61
-823	3	Malaysian Grand Prix	2010-04-04	823	http://en.wikipedia.org/wiki/2010_Malaysian_Grand_Prix	f	60	61
-824	4	Chinese Grand Prix	2010-04-18	824	http://en.wikipedia.org/wiki/2010_Chinese_Grand_Prix	f	62	61
-825	5	Spanish Grand Prix	2010-05-09	825	http://en.wikipedia.org/wiki/2010_Spanish_Grand_Prix	f	56	61
-826	6	Monaco Grand Prix	2010-05-16	826	http://en.wikipedia.org/wiki/2010_Monaco_Grand_Prix	f	2	61
-827	7	Turkish Grand Prix	2010-05-30	827	http://en.wikipedia.org/wiki/2010_Turkish_Grand_Prix	f	63	61
-828	8	Canadian Grand Prix	2010-06-13	828	http://en.wikipedia.org/wiki/2010_Canadian_Grand_Prix	f	44	61
-829	9	European Grand Prix	2010-06-27	829	http://en.wikipedia.org/wiki/2010_European_Grand_Prix	f	64	61
-830	10	British Grand Prix	2010-07-11	830	http://en.wikipedia.org/wiki/2010_British_Grand_Prix	f	1	61
-831	11	German Grand Prix	2010-07-25	831	http://en.wikipedia.org/wiki/2010_German_Grand_Prix	f	33	61
-832	12	Hungarian Grand Prix	2010-08-01	832	http://en.wikipedia.org/wiki/2010_Hungarian_Grand_Prix	f	52	61
-833	13	Belgian Grand Prix	2010-08-29	833	http://en.wikipedia.org/wiki/2010_Belgian_Grand_Prix	f	5	61
-834	14	Italian Grand Prix	2010-09-12	834	http://en.wikipedia.org/wiki/2010_Italian_Grand_Prix	f	7	61
-835	15	Singapore Grand Prix	2010-09-26	835	http://en.wikipedia.org/wiki/2010_Singapore_Grand_Prix	f	65	61
-836	16	Japanese Grand Prix	2010-10-10	836	http://en.wikipedia.org/wiki/2010_Japanese_Grand_Prix	f	53	61
-837	17	Korean Grand Prix	2010-10-24	837	http://en.wikipedia.org/wiki/2010_Korean_Grand_Prix	f	67	61
-838	18	Brazilian Grand Prix	2010-11-07	838	http://en.wikipedia.org/wiki/2010_Brazilian_Grand_Prix	f	37	61
-839	19	Abu Dhabi Grand Prix	2010-11-14	839	http://en.wikipedia.org/wiki/2010_Abu_Dhabi_Grand_Prix	f	66	61
-840	1	Australian Grand Prix	2011-03-27	840	http://en.wikipedia.org/wiki/2011_Australian_Grand_Prix	f	59	62
-841	2	Malaysian Grand Prix	2011-04-10	841	http://en.wikipedia.org/wiki/2011_Malaysian_Grand_Prix	f	60	62
-842	3	Chinese Grand Prix	2011-04-17	842	http://en.wikipedia.org/wiki/2011_Chinese_Grand_Prix	f	62	62
-843	4	Turkish Grand Prix	2011-05-08	843	http://en.wikipedia.org/wiki/2011_Turkish_Grand_Prix	f	63	62
-844	5	Spanish Grand Prix	2011-05-22	844	http://en.wikipedia.org/wiki/2011_Spanish_Grand_Prix	f	56	62
-845	6	Monaco Grand Prix	2011-05-29	845	http://en.wikipedia.org/wiki/2011_Monaco_Grand_Prix	f	2	62
-846	7	Canadian Grand Prix	2011-06-12	846	http://en.wikipedia.org/wiki/2011_Canadian_Grand_Prix	f	44	62
-847	8	European Grand Prix	2011-06-26	847	http://en.wikipedia.org/wiki/2011_European_Grand_Prix	f	64	62
-848	9	British Grand Prix	2011-07-10	848	http://en.wikipedia.org/wiki/2011_British_Grand_Prix	f	1	62
-849	10	German Grand Prix	2011-07-24	849	http://en.wikipedia.org/wiki/2011_German_Grand_Prix	f	8	62
-850	11	Hungarian Grand Prix	2011-07-31	850	http://en.wikipedia.org/wiki/2011_Hungarian_Grand_Prix	f	52	62
-851	12	Belgian Grand Prix	2011-08-28	851	http://en.wikipedia.org/wiki/2011_Belgian_Grand_Prix	f	5	62
-852	13	Italian Grand Prix	2011-09-11	852	http://en.wikipedia.org/wiki/2011_Italian_Grand_Prix	f	7	62
-853	14	Singapore Grand Prix	2011-09-25	853	http://en.wikipedia.org/wiki/2011_Singapore_Grand_Prix	f	65	62
-854	15	Japanese Grand Prix	2011-10-09	854	http://en.wikipedia.org/wiki/2011_Japanese_Grand_Prix	f	53	62
-855	16	Korean Grand Prix	2011-10-16	855	http://en.wikipedia.org/wiki/2011_Korean_Grand_Prix	f	67	62
-856	17	Indian Grand Prix	2011-10-30	856	http://en.wikipedia.org/wiki/2011_Indian_Grand_Prix	f	68	62
-857	18	Abu Dhabi Grand Prix	2011-11-13	857	http://en.wikipedia.org/wiki/2011_Abu_Dhabi_Grand_Prix	f	66	62
-858	19	Brazilian Grand Prix	2011-11-27	858	http://en.wikipedia.org/wiki/2011_Brazilian_Grand_Prix	f	37	62
-859	1	Australian Grand Prix	2012-03-18	859	http://en.wikipedia.org/wiki/2012_Australian_Grand_Prix	f	59	63
-860	2	Malaysian Grand Prix	2012-03-25	860	http://en.wikipedia.org/wiki/2012_Malaysian_Grand_Prix	f	60	63
-861	3	Chinese Grand Prix	2012-04-15	861	http://en.wikipedia.org/wiki/2012_Chinese_Grand_Prix	f	62	63
-862	4	Bahrain Grand Prix	2012-04-22	862	http://en.wikipedia.org/wiki/2012_Bahrain_Grand_Prix	f	61	63
-863	5	Spanish Grand Prix	2012-05-13	863	http://en.wikipedia.org/wiki/2012_Spanish_Grand_Prix	f	56	63
-864	6	Monaco Grand Prix	2012-05-27	864	http://en.wikipedia.org/wiki/2012_Monaco_Grand_Prix	f	2	63
-865	7	Canadian Grand Prix	2012-06-10	865	http://en.wikipedia.org/wiki/2012_Canadian_Grand_Prix	f	44	63
-866	8	European Grand Prix	2012-06-24	866	http://en.wikipedia.org/wiki/2012_European_Grand_Prix	f	64	63
-867	9	British Grand Prix	2012-07-08	867	http://en.wikipedia.org/wiki/2012_British_Grand_Prix	f	1	63
-868	10	German Grand Prix	2012-07-22	868	http://en.wikipedia.org/wiki/2012_German_Grand_Prix	f	33	63
-869	11	Hungarian Grand Prix	2012-07-29	869	http://en.wikipedia.org/wiki/2012_Hungarian_Grand_Prix	f	52	63
-870	12	Belgian Grand Prix	2012-09-02	870	http://en.wikipedia.org/wiki/2012_Belgian_Grand_Prix	f	5	63
-871	13	Italian Grand Prix	2012-09-09	871	http://en.wikipedia.org/wiki/2012_Italian_Grand_Prix	f	7	63
-872	14	Singapore Grand Prix	2012-09-23	872	http://en.wikipedia.org/wiki/2012_Singapore_Grand_Prix	f	65	63
-873	15	Japanese Grand Prix	2012-10-07	873	http://en.wikipedia.org/wiki/2012_Japanese_Grand_Prix	f	53	63
-874	16	Korean Grand Prix	2012-10-14	874	http://en.wikipedia.org/wiki/2012_Korean_Grand_Prix	f	67	63
-875	17	Indian Grand Prix	2012-10-28	875	http://en.wikipedia.org/wiki/2012_Indian_Grand_Prix	f	68	63
-876	18	Abu Dhabi Grand Prix	2012-11-04	876	http://en.wikipedia.org/wiki/2012_Abu_Dhabi_Grand_Prix	f	66	63
-877	19	United States Grand Prix	2012-11-18	877	http://en.wikipedia.org/wiki/2012_United_States_Grand_Prix	f	69	63
-878	20	Brazilian Grand Prix	2012-11-25	878	http://en.wikipedia.org/wiki/2012_Brazilian_Grand_Prix	f	37	63
-879	1	Australian Grand Prix	2013-03-17	879	http://en.wikipedia.org/wiki/2013_Australian_Grand_Prix	f	59	64
-880	2	Malaysian Grand Prix	2013-03-24	880	http://en.wikipedia.org/wiki/2013_Malaysian_Grand_Prix	f	60	64
-881	3	Chinese Grand Prix	2013-04-14	881	http://en.wikipedia.org/wiki/2013_Chinese_Grand_Prix	f	62	64
-882	4	Bahrain Grand Prix	2013-04-21	882	http://en.wikipedia.org/wiki/2013_Bahrain_Grand_Prix	f	61	64
-883	5	Spanish Grand Prix	2013-05-12	883	http://en.wikipedia.org/wiki/2013_Spanish_Grand_Prix	f	56	64
-884	6	Monaco Grand Prix	2013-05-26	884	http://en.wikipedia.org/wiki/2013_Monaco_Grand_Prix	f	2	64
-885	7	Canadian Grand Prix	2013-06-09	885	http://en.wikipedia.org/wiki/2013_Canadian_Grand_Prix	f	44	64
-886	8	British Grand Prix	2013-06-30	886	http://en.wikipedia.org/wiki/2013_British_Grand_Prix	f	1	64
-887	9	German Grand Prix	2013-07-07	887	http://en.wikipedia.org/wiki/2013_German_Grand_Prix	f	8	64
-888	10	Hungarian Grand Prix	2013-07-28	888	http://en.wikipedia.org/wiki/2013_Hungarian_Grand_Prix	f	52	64
-889	11	Belgian Grand Prix	2013-08-25	889	http://en.wikipedia.org/wiki/2013_Belgian_Grand_Prix	f	5	64
-890	12	Italian Grand Prix	2013-09-08	890	http://en.wikipedia.org/wiki/2013_Italian_Grand_Prix	f	7	64
-891	13	Singapore Grand Prix	2013-09-22	891	http://en.wikipedia.org/wiki/2013_Singapore_Grand_Prix	f	65	64
-892	14	Korean Grand Prix	2013-10-06	892	http://en.wikipedia.org/wiki/2013_Korean_Grand_Prix	f	67	64
-893	15	Japanese Grand Prix	2013-10-13	893	http://en.wikipedia.org/wiki/2013_Japanese_Grand_Prix	f	53	64
-894	16	Indian Grand Prix	2013-10-27	894	http://en.wikipedia.org/wiki/2013_Indian_Grand_Prix	f	68	64
-895	17	Abu Dhabi Grand Prix	2013-11-03	895	http://en.wikipedia.org/wiki/2013_Abu_Dhabi_Grand_Prix	f	66	64
-896	18	United States Grand Prix	2013-11-17	896	http://en.wikipedia.org/wiki/2013_United_States_Grand_Prix	f	69	64
-897	19	Brazilian Grand Prix	2013-11-24	897	http://en.wikipedia.org/wiki/2013_Brazilian_Grand_Prix	f	37	64
-898	1	Australian Grand Prix	2014-03-16	898	http://en.wikipedia.org/wiki/2014_Australian_Grand_Prix	f	59	65
-899	2	Malaysian Grand Prix	2014-03-30	899	http://en.wikipedia.org/wiki/2014_Malaysian_Grand_Prix	f	60	65
-900	3	Bahrain Grand Prix	2014-04-06	900	http://en.wikipedia.org/wiki/2014_Bahrain_Grand_Prix	f	61	65
-901	4	Chinese Grand Prix	2014-04-20	901	http://en.wikipedia.org/wiki/2014_Chinese_Grand_Prix	f	62	65
-902	5	Spanish Grand Prix	2014-05-11	902	http://en.wikipedia.org/wiki/2014_Spanish_Grand_Prix	f	56	65
-903	6	Monaco Grand Prix	2014-05-25	903	http://en.wikipedia.org/wiki/2014_Monaco_Grand_Prix	f	2	65
-904	7	Canadian Grand Prix	2014-06-08	904	http://en.wikipedia.org/wiki/2014_Canadian_Grand_Prix	f	44	65
-905	8	Austrian Grand Prix	2014-06-22	905	http://en.wikipedia.org/wiki/2014_Austrian_Grand_Prix	f	34	65
-906	9	British Grand Prix	2014-07-06	906	http://en.wikipedia.org/wiki/2014_British_Grand_Prix	f	1	65
-907	10	German Grand Prix	2014-07-20	907	http://en.wikipedia.org/wiki/2014_German_Grand_Prix	f	33	65
-908	11	Hungarian Grand Prix	2014-07-27	908	http://en.wikipedia.org/wiki/2014_Hungarian_Grand_Prix	f	52	65
-909	12	Belgian Grand Prix	2014-08-24	909	http://en.wikipedia.org/wiki/2014_Belgian_Grand_Prix	f	5	65
-910	13	Italian Grand Prix	2014-09-07	910	http://en.wikipedia.org/wiki/2014_Italian_Grand_Prix	f	7	65
-911	14	Singapore Grand Prix	2014-09-21	911	http://en.wikipedia.org/wiki/2014_Singapore_Grand_Prix	f	65	65
-912	15	Japanese Grand Prix	2014-10-05	912	http://en.wikipedia.org/wiki/2014_Japanese_Grand_Prix	f	53	65
-913	16	Russian Grand Prix	2014-10-12	913	http://en.wikipedia.org/wiki/2014_Russian_Grand_Prix	f	70	65
-914	17	United States Grand Prix	2014-11-02	914	http://en.wikipedia.org/wiki/2014_United_States_Grand_Prix	f	69	65
-915	18	Brazilian Grand Prix	2014-11-09	915	http://en.wikipedia.org/wiki/2014_Brazilian_Grand_Prix	f	37	65
-916	19	Abu Dhabi Grand Prix	2014-11-23	916	http://en.wikipedia.org/wiki/2014_Abu_Dhabi_Grand_Prix	f	66	65
-917	1	Australian Grand Prix	2015-03-15	917	http://en.wikipedia.org/wiki/2015_Australian_Grand_Prix	f	59	66
-918	2	Malaysian Grand Prix	2015-03-29	918	http://en.wikipedia.org/wiki/2015_Malaysian_Grand_Prix	f	60	66
-919	3	Chinese Grand Prix	2015-04-12	919	http://en.wikipedia.org/wiki/2015_Chinese_Grand_Prix	f	62	66
-920	4	Bahrain Grand Prix	2015-04-19	920	http://en.wikipedia.org/wiki/2015_Bahrain_Grand_Prix	f	61	66
-921	5	Spanish Grand Prix	2015-05-10	921	http://en.wikipedia.org/wiki/2015_Spanish_Grand_Prix	f	56	66
-922	6	Monaco Grand Prix	2015-05-24	922	http://en.wikipedia.org/wiki/2015_Monaco_Grand_Prix	f	2	66
-923	7	Canadian Grand Prix	2015-06-07	923	http://en.wikipedia.org/wiki/2015_Canadian_Grand_Prix	f	44	66
-924	8	Austrian Grand Prix	2015-06-21	924	http://en.wikipedia.org/wiki/2015_Austrian_Grand_Prix	f	34	66
-925	9	British Grand Prix	2015-07-05	925	http://en.wikipedia.org/wiki/2015_British_Grand_Prix	f	1	66
-926	10	Hungarian Grand Prix	2015-07-26	926	http://en.wikipedia.org/wiki/2015_Hungarian_Grand_Prix	f	52	66
-927	11	Belgian Grand Prix	2015-08-23	927	http://en.wikipedia.org/wiki/2015_Belgian_Grand_Prix	f	5	66
-928	12	Italian Grand Prix	2015-09-06	928	http://en.wikipedia.org/wiki/2015_Italian_Grand_Prix	f	7	66
-929	13	Singapore Grand Prix	2015-09-20	929	http://en.wikipedia.org/wiki/2015_Singapore_Grand_Prix	f	65	66
-930	14	Japanese Grand Prix	2015-09-27	930	http://en.wikipedia.org/wiki/2015_Japanese_Grand_Prix	f	53	66
-931	15	Russian Grand Prix	2015-10-11	931	http://en.wikipedia.org/wiki/2015_Russian_Grand_Prix	f	70	66
-932	16	United States Grand Prix	2015-10-25	932	http://en.wikipedia.org/wiki/2015_United_States_Grand_Prix	f	69	66
-933	17	Mexican Grand Prix	2015-11-01	933	http://en.wikipedia.org/wiki/2015_Mexican_Grand_Prix	f	23	66
-934	18	Brazilian Grand Prix	2015-11-15	934	http://en.wikipedia.org/wiki/2015_Brazilian_Grand_Prix	f	37	66
-935	19	Abu Dhabi Grand Prix	2015-11-29	935	http://en.wikipedia.org/wiki/2015_Abu_Dhabi_Grand_Prix	f	66	66
-936	1	Australian Grand Prix	2016-03-20	936	http://en.wikipedia.org/wiki/2016_Australian_Grand_Prix	f	59	67
-937	2	Bahrain Grand Prix	2016-04-03	937	http://en.wikipedia.org/wiki/2016_Bahrain_Grand_Prix	f	61	67
-938	3	Chinese Grand Prix	2016-04-17	938	http://en.wikipedia.org/wiki/2016_Chinese_Grand_Prix	f	62	67
-939	4	Russian Grand Prix	2016-05-01	939	http://en.wikipedia.org/wiki/2016_Russian_Grand_Prix	f	70	67
-940	5	Spanish Grand Prix	2016-05-15	940	http://en.wikipedia.org/wiki/2016_Spanish_Grand_Prix	f	56	67
-941	6	Monaco Grand Prix	2016-05-29	941	http://en.wikipedia.org/wiki/2016_Monaco_Grand_Prix	f	2	67
-942	7	Canadian Grand Prix	2016-06-12	942	http://en.wikipedia.org/wiki/2016_Canadian_Grand_Prix	f	44	67
-943	8	European Grand Prix	2016-06-19	943	http://en.wikipedia.org/wiki/2016_European_Grand_Prix	f	71	67
-944	9	Austrian Grand Prix	2016-07-03	944	http://en.wikipedia.org/wiki/2016_Austrian_Grand_Prix	f	34	67
-945	10	British Grand Prix	2016-07-10	945	http://en.wikipedia.org/wiki/2016_British_Grand_Prix	f	1	67
-946	11	Hungarian Grand Prix	2016-07-24	946	http://en.wikipedia.org/wiki/2016_Hungarian_Grand_Prix	f	52	67
-947	12	German Grand Prix	2016-07-31	947	http://en.wikipedia.org/wiki/2016_German_Grand_Prix	f	33	67
-948	13	Belgian Grand Prix	2016-08-28	948	http://en.wikipedia.org/wiki/2016_Belgian_Grand_Prix	f	5	67
-949	14	Italian Grand Prix	2016-09-04	949	http://en.wikipedia.org/wiki/2016_Italian_Grand_Prix	f	7	67
-950	15	Singapore Grand Prix	2016-09-18	950	http://en.wikipedia.org/wiki/2016_Singapore_Grand_Prix	f	65	67
-951	16	Malaysian Grand Prix	2016-10-02	951	http://en.wikipedia.org/wiki/2016_Malaysian_Grand_Prix	f	60	67
-952	17	Japanese Grand Prix	2016-10-09	952	http://en.wikipedia.org/wiki/2016_Japanese_Grand_Prix	f	53	67
-953	18	United States Grand Prix	2016-10-23	953	http://en.wikipedia.org/wiki/2016_United_States_Grand_Prix	f	69	67
-954	19	Mexican Grand Prix	2016-10-30	954	http://en.wikipedia.org/wiki/2016_Mexican_Grand_Prix	f	23	67
-955	20	Brazilian Grand Prix	2016-11-13	955	http://en.wikipedia.org/wiki/2016_Brazilian_Grand_Prix	f	37	67
-956	21	Abu Dhabi Grand Prix	2016-11-27	956	http://en.wikipedia.org/wiki/2016_Abu_Dhabi_Grand_Prix	f	66	67
-957	1	Australian Grand Prix	2017-03-26	957	http://en.wikipedia.org/wiki/2017_Australian_Grand_Prix	f	59	68
-958	2	Chinese Grand Prix	2017-04-09	958	http://en.wikipedia.org/wiki/2017_Chinese_Grand_Prix	f	62	68
-959	3	Bahrain Grand Prix	2017-04-16	959	http://en.wikipedia.org/wiki/2017_Bahrain_Grand_Prix	f	61	68
-960	4	Russian Grand Prix	2017-04-30	960	http://en.wikipedia.org/wiki/2017_Russian_Grand_Prix	f	70	68
-961	5	Spanish Grand Prix	2017-05-14	961	http://en.wikipedia.org/wiki/2017_Spanish_Grand_Prix	f	56	68
-962	6	Monaco Grand Prix	2017-05-28	962	http://en.wikipedia.org/wiki/2017_Monaco_Grand_Prix	f	2	68
-963	7	Canadian Grand Prix	2017-06-11	963	http://en.wikipedia.org/wiki/2017_Canadian_Grand_Prix	f	44	68
-964	8	Azerbaijan Grand Prix	2017-06-25	964	http://en.wikipedia.org/wiki/2017_Azerbaijan_Grand_Prix	f	71	68
-965	9	Austrian Grand Prix	2017-07-09	965	http://en.wikipedia.org/wiki/2017_Austrian_Grand_Prix	f	34	68
-966	10	British Grand Prix	2017-07-16	966	http://en.wikipedia.org/wiki/2017_British_Grand_Prix	f	1	68
-967	11	Hungarian Grand Prix	2017-07-30	967	http://en.wikipedia.org/wiki/2017_Hungarian_Grand_Prix	f	52	68
-968	12	Belgian Grand Prix	2017-08-27	968	http://en.wikipedia.org/wiki/2017_Belgian_Grand_Prix	f	5	68
-969	13	Italian Grand Prix	2017-09-03	969	http://en.wikipedia.org/wiki/2017_Italian_Grand_Prix	f	7	68
-970	14	Singapore Grand Prix	2017-09-17	970	http://en.wikipedia.org/wiki/2017_Singapore_Grand_Prix	f	65	68
-971	15	Malaysian Grand Prix	2017-10-01	971	http://en.wikipedia.org/wiki/2017_Malaysian_Grand_Prix	f	60	68
-972	16	Japanese Grand Prix	2017-10-08	972	http://en.wikipedia.org/wiki/2017_Japanese_Grand_Prix	f	53	68
-973	17	United States Grand Prix	2017-10-22	973	http://en.wikipedia.org/wiki/2017_United_States_Grand_Prix	f	69	68
-974	18	Mexican Grand Prix	2017-10-29	974	http://en.wikipedia.org/wiki/2017_Mexican_Grand_Prix	f	23	68
-975	19	Brazilian Grand Prix	2017-11-12	975	http://en.wikipedia.org/wiki/2017_Brazilian_Grand_Prix	f	37	68
-976	20	Abu Dhabi Grand Prix	2017-11-26	976	http://en.wikipedia.org/wiki/2017_Abu_Dhabi_Grand_Prix	f	66	68
-977	1	Australian Grand Prix	2018-03-25	977	http://en.wikipedia.org/wiki/2018_Australian_Grand_Prix	f	59	69
-978	2	Bahrain Grand Prix	2018-04-08	978	http://en.wikipedia.org/wiki/2018_Bahrain_Grand_Prix	f	61	69
-979	3	Chinese Grand Prix	2018-04-15	979	http://en.wikipedia.org/wiki/2018_Chinese_Grand_Prix	f	62	69
-980	4	Azerbaijan Grand Prix	2018-04-29	980	http://en.wikipedia.org/wiki/2018_Azerbaijan_Grand_Prix	f	71	69
-981	5	Spanish Grand Prix	2018-05-13	981	http://en.wikipedia.org/wiki/2018_Spanish_Grand_Prix	f	56	69
-982	6	Monaco Grand Prix	2018-05-27	982	http://en.wikipedia.org/wiki/2018_Monaco_Grand_Prix	f	2	69
-983	7	Canadian Grand Prix	2018-06-10	983	http://en.wikipedia.org/wiki/2018_Canadian_Grand_Prix	f	44	69
-984	8	French Grand Prix	2018-06-24	984	http://en.wikipedia.org/wiki/2018_French_Grand_Prix	f	35	69
-985	9	Austrian Grand Prix	2018-07-01	985	http://en.wikipedia.org/wiki/2018_Austrian_Grand_Prix	f	34	69
-986	10	British Grand Prix	2018-07-08	986	http://en.wikipedia.org/wiki/2018_British_Grand_Prix	f	1	69
-987	11	German Grand Prix	2018-07-22	987	http://en.wikipedia.org/wiki/2018_German_Grand_Prix	f	33	69
-988	12	Hungarian Grand Prix	2018-07-29	988	http://en.wikipedia.org/wiki/2018_Hungarian_Grand_Prix	f	52	69
-989	13	Belgian Grand Prix	2018-08-26	989	http://en.wikipedia.org/wiki/2018_Belgian_Grand_Prix	f	5	69
-990	14	Italian Grand Prix	2018-09-02	990	http://en.wikipedia.org/wiki/2018_Italian_Grand_Prix	f	7	69
-991	15	Singapore Grand Prix	2018-09-16	991	http://en.wikipedia.org/wiki/2018_Singapore_Grand_Prix	f	65	69
-992	16	Russian Grand Prix	2018-09-30	992	http://en.wikipedia.org/wiki/2018_Russian_Grand_Prix	f	70	69
-993	17	Japanese Grand Prix	2018-10-07	993	http://en.wikipedia.org/wiki/2018_Japanese_Grand_Prix	f	53	69
-994	18	United States Grand Prix	2018-10-21	994	http://en.wikipedia.org/wiki/2018_United_States_Grand_Prix	f	69	69
-995	19	Mexican Grand Prix	2018-10-28	995	http://en.wikipedia.org/wiki/2018_Mexican_Grand_Prix	f	23	69
-996	20	Brazilian Grand Prix	2018-11-11	996	http://en.wikipedia.org/wiki/2018_Brazilian_Grand_Prix	f	37	69
-997	21	Abu Dhabi Grand Prix	2018-11-25	997	http://en.wikipedia.org/wiki/2018_Abu_Dhabi_Grand_Prix	f	66	69
-998	1	Australian Grand Prix	2019-03-17	998	http://en.wikipedia.org/wiki/2019_Australian_Grand_Prix	f	59	70
-999	2	Bahrain Grand Prix	2019-03-31	999	http://en.wikipedia.org/wiki/2019_Bahrain_Grand_Prix	f	61	70
-1000	3	Chinese Grand Prix	2019-04-14	1000	http://en.wikipedia.org/wiki/2019_Chinese_Grand_Prix	f	62	70
-1001	4	Azerbaijan Grand Prix	2019-04-28	1001	http://en.wikipedia.org/wiki/2019_Azerbaijan_Grand_Prix	f	71	70
-1002	5	Spanish Grand Prix	2019-05-12	1002	http://en.wikipedia.org/wiki/2019_Spanish_Grand_Prix	f	56	70
-1003	6	Monaco Grand Prix	2019-05-26	1003	http://en.wikipedia.org/wiki/2019_Monaco_Grand_Prix	f	2	70
-1004	7	Canadian Grand Prix	2019-06-09	1004	http://en.wikipedia.org/wiki/2019_Canadian_Grand_Prix	f	44	70
-1005	8	French Grand Prix	2019-06-23	1005	http://en.wikipedia.org/wiki/2019_French_Grand_Prix	f	35	70
-1006	9	Austrian Grand Prix	2019-06-30	1006	http://en.wikipedia.org/wiki/2019_Austrian_Grand_Prix	f	34	70
-1007	10	British Grand Prix	2019-07-14	1007	http://en.wikipedia.org/wiki/2019_British_Grand_Prix	f	1	70
-1008	11	German Grand Prix	2019-07-28	1008	http://en.wikipedia.org/wiki/2019_German_Grand_Prix	f	33	70
-1009	12	Hungarian Grand Prix	2019-08-04	1009	http://en.wikipedia.org/wiki/2019_Hungarian_Grand_Prix	f	52	70
-1010	13	Belgian Grand Prix	2019-09-01	1010	http://en.wikipedia.org/wiki/2019_Belgian_Grand_Prix	f	5	70
-1011	14	Italian Grand Prix	2019-09-08	1011	http://en.wikipedia.org/wiki/2019_Italian_Grand_Prix	f	7	70
-1012	15	Singapore Grand Prix	2019-09-22	1012	http://en.wikipedia.org/wiki/2019_Singapore_Grand_Prix	f	65	70
-1013	16	Russian Grand Prix	2019-09-29	1013	http://en.wikipedia.org/wiki/2019_Russian_Grand_Prix	f	70	70
-1014	17	Japanese Grand Prix	2019-10-13	1014	http://en.wikipedia.org/wiki/2019_Japanese_Grand_Prix	f	53	70
-1015	18	Mexican Grand Prix	2019-10-27	1015	http://en.wikipedia.org/wiki/2019_Mexican_Grand_Prix	f	23	70
-1016	19	United States Grand Prix	2019-11-03	1016	http://en.wikipedia.org/wiki/2019_United_States_Grand_Prix	f	69	70
-1017	20	Brazilian Grand Prix	2019-11-17	1017	http://en.wikipedia.org/wiki/2019_Brazilian_Grand_Prix	f	37	70
-1018	21	Abu Dhabi Grand Prix	2019-12-01	1018	http://en.wikipedia.org/wiki/2019_Abu_Dhabi_Grand_Prix	f	66	70
-1019	1	Austrian Grand Prix	2020-07-05	1019	http://en.wikipedia.org/wiki/2020_Austrian_Grand_Prix	f	34	71
-1020	2	Styrian Grand Prix	2020-07-12	1020	http://en.wikipedia.org/wiki/2020_Styrian_Grand_Prix	f	34	71
-1021	3	Hungarian Grand Prix	2020-07-19	1021	http://en.wikipedia.org/wiki/2020_Hungarian_Grand_Prix	f	52	71
-1022	4	British Grand Prix	2020-08-02	1022	http://en.wikipedia.org/wiki/2020_British_Grand_Prix	f	1	71
-1023	5	70th Anniversary Grand Prix	2020-08-09	1023	http://en.wikipedia.org/wiki/70th_Anniversary_Grand_Prix	f	1	71
-1024	6	Spanish Grand Prix	2020-08-16	1024	http://en.wikipedia.org/wiki/2020_Spanish_Grand_Prix	f	56	71
-1025	7	Belgian Grand Prix	2020-08-30	1025	http://en.wikipedia.org/wiki/2020_Belgian_Grand_Prix	f	5	71
-1026	8	Italian Grand Prix	2020-09-06	1026	http://en.wikipedia.org/wiki/2020_Italian_Grand_Prix	f	7	71
-1027	9	Tuscan Grand Prix	2020-09-13	1027	http://en.wikipedia.org/wiki/2020_Tuscan_Grand_Prix	f	72	71
-1028	10	Russian Grand Prix	2020-09-27	1028	http://en.wikipedia.org/wiki/2020_Russian_Grand_Prix	f	70	71
-1029	11	Eifel Grand Prix	2020-10-11	1029	http://en.wikipedia.org/wiki/2020_Eifel_Grand_Prix	f	8	71
-1030	12	Portuguese Grand Prix	2020-10-25	1030	http://en.wikipedia.org/wiki/2020_Portuguese_Grand_Prix	f	73	71
-1031	13	Emilia Romagna Grand Prix	2020-11-01	1031	http://en.wikipedia.org/wiki/2020_Emilia_Romagna_Grand_Prix	f	45	71
-1032	14	Turkish Grand Prix	2020-11-15	1032	http://en.wikipedia.org/wiki/2020_Turkish_Grand_Prix	f	63	71
-1033	15	Bahrain Grand Prix	2020-11-29	1033	http://en.wikipedia.org/wiki/2020_Bahrain_Grand_Prix	f	61	71
-1034	16	Sakhir Grand Prix	2020-12-06	1034	http://en.wikipedia.org/wiki/2020_Sakhir_Grand_Prix	f	61	71
-1035	17	Abu Dhabi Grand Prix	2020-12-13	1035	http://en.wikipedia.org/wiki/2020_Abu_Dhabi_Grand_Prix	f	66	71
-1036	1	Bahrain Grand Prix	2021-03-28	1036	http://en.wikipedia.org/wiki/2021_Bahrain_Grand_Prix	f	61	72
-1037	2	Emilia Romagna Grand Prix	2021-04-18	1037	http://en.wikipedia.org/wiki/2021_Emilia_Romagna_Grand_Prix	f	45	72
-1038	3	Portuguese Grand Prix	2021-05-02	1038	http://en.wikipedia.org/wiki/2021_Portuguese_Grand_Prix	f	73	72
-1039	4	Spanish Grand Prix	2021-05-09	1039	http://en.wikipedia.org/wiki/2021_Spanish_Grand_Prix	f	56	72
-1040	5	Monaco Grand Prix	2021-05-23	1040	http://en.wikipedia.org/wiki/2021_Monaco_Grand_Prix	f	2	72
-1041	6	Azerbaijan Grand Prix	2021-06-06	1041	http://en.wikipedia.org/wiki/2021_Azerbaijan_Grand_Prix	f	71	72
-1042	7	French Grand Prix	2021-06-20	1042	http://en.wikipedia.org/wiki/2021_French_Grand_Prix	f	35	72
-1043	8	Styrian Grand Prix	2021-06-27	1043	http://en.wikipedia.org/wiki/2021_Styrian_Grand_Prix	f	34	72
-1044	9	Austrian Grand Prix	2021-07-04	1044	http://en.wikipedia.org/wiki/2021_Austrian_Grand_Prix	f	34	72
-1045	10	British Grand Prix	2021-07-18	1045	http://en.wikipedia.org/wiki/2021_British_Grand_Prix	f	1	72
-1046	11	Hungarian Grand Prix	2021-08-01	1046	http://en.wikipedia.org/wiki/2021_Hungarian_Grand_Prix	f	52	72
-1047	12	Belgian Grand Prix	2021-08-29	1047	http://en.wikipedia.org/wiki/2021_Belgian_Grand_Prix	f	5	72
-1048	13	Dutch Grand Prix	2021-09-05	1048	http://en.wikipedia.org/wiki/2021_Dutch_Grand_Prix	f	11	72
-1049	14	Italian Grand Prix	2021-09-12	1049	http://en.wikipedia.org/wiki/2021_Italian_Grand_Prix	f	7	72
-1050	15	Russian Grand Prix	2021-09-26	1050	http://en.wikipedia.org/wiki/2021_Russian_Grand_Prix	f	70	72
-1051	16	Turkish Grand Prix	2021-10-10	1051	http://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix	f	63	72
-1052	17	United States Grand Prix	2021-10-24	1052	http://en.wikipedia.org/wiki/2021_United_States_Grand_Prix	f	69	72
-1053	18	Mexico City Grand Prix	2021-11-07	1053	http://en.wikipedia.org/wiki/2021_Mexican_Grand_Prix	f	23	72
-1054	19	São Paulo Grand Prix	2021-11-14	1054	http://en.wikipedia.org/wiki/2021_S%C3%A3o_Paulo_Grand_Prix	f	37	72
-1055	20	Qatar Grand Prix	2021-11-21	1055	http://en.wikipedia.org/wiki/2021_Qatar_Grand_Prix	f	74	72
-1056	21	Saudi Arabian Grand Prix	2021-12-05	1056	http://en.wikipedia.org/wiki/2021_Saudi_Arabian_Grand_Prix	f	75	72
-1057	22	Abu Dhabi Grand Prix	2021-12-12	1057	http://en.wikipedia.org/wiki/2021_Abu_Dhabi_Grand_Prix	f	66	72
-1058	1	Bahrain Grand Prix	2022-03-20	1058	http://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix	f	61	73
-1059	2	Saudi Arabian Grand Prix	2022-03-27	1059	http://en.wikipedia.org/wiki/2022_Saudi_Arabian_Grand_Prix	f	75	73
-1060	3	Australian Grand Prix	2022-04-10	1060	http://en.wikipedia.org/wiki/2022_Australian_Grand_Prix	f	59	73
-1061	4	Emilia Romagna Grand Prix	2022-04-24	1061	http://en.wikipedia.org/wiki/2022_Emilia_Romagna_Grand_Prix	f	45	73
-1062	5	Miami Grand Prix	2022-05-08	1062	http://en.wikipedia.org/wiki/2022_Miami_Grand_Prix	f	76	73
-1063	6	Spanish Grand Prix	2022-05-22	1063	http://en.wikipedia.org/wiki/2022_Spanish_Grand_Prix	f	56	73
-1064	7	Monaco Grand Prix	2022-05-29	1064	http://en.wikipedia.org/wiki/2022_Monaco_Grand_Prix	f	2	73
-1065	8	Azerbaijan Grand Prix	2022-06-12	1065	http://en.wikipedia.org/wiki/2022_Azerbaijan_Grand_Prix	f	71	73
-1066	9	Canadian Grand Prix	2022-06-19	1066	http://en.wikipedia.org/wiki/2022_Canadian_Grand_Prix	f	44	73
-1067	10	British Grand Prix	2022-07-03	1067	http://en.wikipedia.org/wiki/2022_British_Grand_Prix	f	1	73
-1068	11	Austrian Grand Prix	2022-07-10	1068	http://en.wikipedia.org/wiki/2022_Austrian_Grand_Prix	f	34	73
-1069	12	French Grand Prix	2022-07-24	1069	http://en.wikipedia.org/wiki/2022_French_Grand_Prix	f	35	73
-1070	13	Hungarian Grand Prix	2022-07-31	1070	http://en.wikipedia.org/wiki/2022_Hungarian_Grand_Prix	f	52	73
-1071	14	Belgian Grand Prix	2022-08-28	1071	http://en.wikipedia.org/wiki/2022_Belgian_Grand_Prix	f	5	73
-1072	15	Dutch Grand Prix	2022-09-04	1072	http://en.wikipedia.org/wiki/2022_Dutch_Grand_Prix	f	11	73
-1073	16	Italian Grand Prix	2022-09-11	1073	http://en.wikipedia.org/wiki/2022_Italian_Grand_Prix	f	7	73
-1074	17	Singapore Grand Prix	2022-10-02	1074	http://en.wikipedia.org/wiki/2022_Singapore_Grand_Prix	f	65	73
-1075	18	Japanese Grand Prix	2022-10-09	1075	http://en.wikipedia.org/wiki/2022_Japanese_Grand_Prix	f	53	73
-1076	19	United States Grand Prix	2022-10-23	1076	http://en.wikipedia.org/wiki/2022_United_States_Grand_Prix	f	69	73
-1077	20	Mexico City Grand Prix	2022-10-30	1077	http://en.wikipedia.org/wiki/2022_Mexican_Grand_Prix	f	23	73
-1078	21	São Paulo Grand Prix	2022-11-13	1078	http://en.wikipedia.org/wiki/2022_Brazilian_Grand_Prix	f	37	73
-1079	22	Abu Dhabi Grand Prix	2022-11-20	1079	http://en.wikipedia.org/wiki/2022_Abu_Dhabi_Grand_Prix	f	66	73
+1	1	British Grand Prix	1950-05-13	1	https://en.wikipedia.org/wiki/1950_British_Grand_Prix	f	1	1
+2	2	Monaco Grand Prix	1950-05-21	2	https://en.wikipedia.org/wiki/1950_Monaco_Grand_Prix	f	2	1
+3	3	Indianapolis 500	1950-05-30	3	https://en.wikipedia.org/wiki/1950_Indianapolis_500	f	3	1
+4	4	Swiss Grand Prix	1950-06-04	4	https://en.wikipedia.org/wiki/1950_Swiss_Grand_Prix	f	4	1
+5	5	Belgian Grand Prix	1950-06-18	5	https://en.wikipedia.org/wiki/1950_Belgian_Grand_Prix	f	5	1
+6	6	French Grand Prix	1950-07-02	6	https://en.wikipedia.org/wiki/1950_French_Grand_Prix	f	6	1
+7	7	Italian Grand Prix	1950-09-03	7	https://en.wikipedia.org/wiki/1950_Italian_Grand_Prix	f	7	1
+8	1	Swiss Grand Prix	1951-05-27	8	https://en.wikipedia.org/wiki/1951_Swiss_Grand_Prix	f	4	2
+9	2	Indianapolis 500	1951-05-30	9	https://en.wikipedia.org/wiki/1951_Indianapolis_500	f	3	2
+10	3	Belgian Grand Prix	1951-06-17	10	https://en.wikipedia.org/wiki/1951_Belgian_Grand_Prix	f	5	2
+11	4	French Grand Prix	1951-07-01	11	https://en.wikipedia.org/wiki/1951_French_Grand_Prix	f	6	2
+12	5	British Grand Prix	1951-07-14	12	https://en.wikipedia.org/wiki/1951_British_Grand_Prix	f	1	2
+13	6	German Grand Prix	1951-07-29	13	https://en.wikipedia.org/wiki/1951_German_Grand_Prix	f	8	2
+14	7	Italian Grand Prix	1951-09-16	14	https://en.wikipedia.org/wiki/1951_Italian_Grand_Prix	f	7	2
+15	8	Spanish Grand Prix	1951-10-28	15	https://en.wikipedia.org/wiki/1951_Spanish_Grand_Prix	f	9	2
+16	1	Swiss Grand Prix	1952-05-18	16	https://en.wikipedia.org/wiki/1952_Swiss_Grand_Prix	f	4	3
+17	2	Indianapolis 500	1952-05-30	17	https://en.wikipedia.org/wiki/1952_Indianapolis_500	f	3	3
+18	3	Belgian Grand Prix	1952-06-22	18	https://en.wikipedia.org/wiki/1952_Belgian_Grand_Prix	f	5	3
+19	4	French Grand Prix	1952-07-06	19	https://en.wikipedia.org/wiki/1952_French_Grand_Prix	f	10	3
+20	5	British Grand Prix	1952-07-19	20	https://en.wikipedia.org/wiki/1952_British_Grand_Prix	f	1	3
+21	6	German Grand Prix	1952-08-03	21	https://en.wikipedia.org/wiki/1952_German_Grand_Prix	f	8	3
+22	7	Dutch Grand Prix	1952-08-17	22	https://en.wikipedia.org/wiki/1952_Dutch_Grand_Prix	f	11	3
+23	8	Italian Grand Prix	1952-09-07	23	https://en.wikipedia.org/wiki/1952_Italian_Grand_Prix	f	7	3
+24	1	Argentine Grand Prix	1953-01-18	24	https://en.wikipedia.org/wiki/1953_Argentine_Grand_Prix	f	12	4
+25	2	Indianapolis 500	1953-05-30	25	https://en.wikipedia.org/wiki/1953_Indianapolis_500	f	3	4
+26	3	Dutch Grand Prix	1953-06-07	26	https://en.wikipedia.org/wiki/1953_Dutch_Grand_Prix	f	11	4
+27	4	Belgian Grand Prix	1953-06-21	27	https://en.wikipedia.org/wiki/1953_Belgian_Grand_Prix	f	5	4
+28	5	French Grand Prix	1953-07-05	28	https://en.wikipedia.org/wiki/1953_French_Grand_Prix	f	6	4
+29	6	British Grand Prix	1953-07-18	29	https://en.wikipedia.org/wiki/1953_British_Grand_Prix	f	1	4
+30	7	German Grand Prix	1953-08-02	30	https://en.wikipedia.org/wiki/1953_German_Grand_Prix	f	8	4
+31	8	Swiss Grand Prix	1953-08-23	31	https://en.wikipedia.org/wiki/1953_Swiss_Grand_Prix	f	4	4
+32	9	Italian Grand Prix	1953-09-13	32	https://en.wikipedia.org/wiki/1953_Italian_Grand_Prix	f	7	4
+33	1	Argentine Grand Prix	1954-01-17	33	https://en.wikipedia.org/wiki/1954_Argentine_Grand_Prix	f	12	5
+34	2	Indianapolis 500	1954-05-31	34	https://en.wikipedia.org/wiki/1954_Indianapolis_500	f	3	5
+35	3	Belgian Grand Prix	1954-06-20	35	https://en.wikipedia.org/wiki/1954_Belgian_Grand_Prix	f	5	5
+36	4	French Grand Prix	1954-07-04	36	https://en.wikipedia.org/wiki/1954_French_Grand_Prix	f	6	5
+37	5	British Grand Prix	1954-07-17	37	https://en.wikipedia.org/wiki/1954_British_Grand_Prix	f	1	5
+38	6	German Grand Prix	1954-08-01	38	https://en.wikipedia.org/wiki/1954_German_Grand_Prix	f	8	5
+39	7	Swiss Grand Prix	1954-08-22	39	https://en.wikipedia.org/wiki/1954_Swiss_Grand_Prix	f	4	5
+40	8	Italian Grand Prix	1954-09-05	40	https://en.wikipedia.org/wiki/1954_Italian_Grand_Prix	f	7	5
+41	9	Spanish Grand Prix	1954-10-24	41	https://en.wikipedia.org/wiki/1954_Spanish_Grand_Prix	f	9	5
+42	1	Argentine Grand Prix	1955-01-16	42	https://en.wikipedia.org/wiki/1955_Argentine_Grand_Prix	f	12	6
+43	2	Monaco Grand Prix	1955-05-22	43	https://en.wikipedia.org/wiki/1955_Monaco_Grand_Prix	f	2	6
+44	3	Indianapolis 500	1955-05-30	44	https://en.wikipedia.org/wiki/1955_Indianapolis_500	f	3	6
+45	4	Belgian Grand Prix	1955-06-05	45	https://en.wikipedia.org/wiki/1955_Belgian_Grand_Prix	f	5	6
+46	5	Dutch Grand Prix	1955-06-19	46	https://en.wikipedia.org/wiki/1955_Dutch_Grand_Prix	f	11	6
+47	6	British Grand Prix	1955-07-16	47	https://en.wikipedia.org/wiki/1955_British_Grand_Prix	f	13	6
+48	7	Italian Grand Prix	1955-09-11	48	https://en.wikipedia.org/wiki/1955_Italian_Grand_Prix	f	7	6
+49	1	Argentine Grand Prix	1956-01-22	49	https://en.wikipedia.org/wiki/1956_Argentine_Grand_Prix	f	12	7
+50	2	Monaco Grand Prix	1956-05-13	50	https://en.wikipedia.org/wiki/1956_Monaco_Grand_Prix	f	2	7
+51	3	Indianapolis 500	1956-05-30	51	https://en.wikipedia.org/wiki/1956_Indianapolis_500	f	3	7
+52	4	Belgian Grand Prix	1956-06-03	52	https://en.wikipedia.org/wiki/1956_Belgian_Grand_Prix	f	5	7
+53	5	French Grand Prix	1956-07-01	53	https://en.wikipedia.org/wiki/1956_French_Grand_Prix	f	6	7
+54	6	British Grand Prix	1956-07-14	54	https://en.wikipedia.org/wiki/1956_British_Grand_Prix	f	1	7
+55	7	German Grand Prix	1956-08-05	55	https://en.wikipedia.org/wiki/1956_German_Grand_Prix	f	8	7
+56	8	Italian Grand Prix	1956-09-02	56	https://en.wikipedia.org/wiki/1956_Italian_Grand_Prix	f	7	7
+57	1	Argentine Grand Prix	1957-01-13	57	https://en.wikipedia.org/wiki/1957_Argentine_Grand_Prix	f	12	8
+58	2	Monaco Grand Prix	1957-05-19	58	https://en.wikipedia.org/wiki/1957_Monaco_Grand_Prix	f	2	8
+59	3	Indianapolis 500	1957-05-30	59	https://en.wikipedia.org/wiki/1957_Indianapolis_500	f	3	8
+60	4	French Grand Prix	1957-07-07	60	https://en.wikipedia.org/wiki/1957_French_Grand_Prix	f	10	8
+61	5	British Grand Prix	1957-07-20	61	https://en.wikipedia.org/wiki/1957_British_Grand_Prix	f	13	8
+62	6	German Grand Prix	1957-08-04	62	https://en.wikipedia.org/wiki/1957_German_Grand_Prix	f	8	8
+63	7	Pescara Grand Prix	1957-08-18	63	https://en.wikipedia.org/wiki/1957_Pescara_Grand_Prix	f	14	8
+64	8	Italian Grand Prix	1957-09-08	64	https://en.wikipedia.org/wiki/1957_Italian_Grand_Prix	f	7	8
+65	1	Argentine Grand Prix	1958-01-19	65	https://en.wikipedia.org/wiki/1958_Argentine_Grand_Prix	f	12	9
+66	2	Monaco Grand Prix	1958-05-18	66	https://en.wikipedia.org/wiki/1958_Monaco_Grand_Prix	f	2	9
+67	3	Dutch Grand Prix	1958-05-26	67	https://en.wikipedia.org/wiki/1958_Dutch_Grand_Prix	f	11	9
+68	4	Indianapolis 500	1958-05-30	68	https://en.wikipedia.org/wiki/1958_Indianapolis_500	f	3	9
+69	5	Belgian Grand Prix	1958-06-15	69	https://en.wikipedia.org/wiki/1958_Belgian_Grand_Prix	f	5	9
+70	6	French Grand Prix	1958-07-06	70	https://en.wikipedia.org/wiki/1958_French_Grand_Prix	f	6	9
+71	7	British Grand Prix	1958-07-19	71	https://en.wikipedia.org/wiki/1958_British_Grand_Prix	f	1	9
+72	8	German Grand Prix	1958-08-03	72	https://en.wikipedia.org/wiki/1958_German_Grand_Prix	f	8	9
+73	9	Portuguese Grand Prix	1958-08-24	73	https://en.wikipedia.org/wiki/1958_Portuguese_Grand_Prix	f	15	9
+74	10	Italian Grand Prix	1958-09-07	74	https://en.wikipedia.org/wiki/1958_Italian_Grand_Prix	f	7	9
+75	11	Moroccan Grand Prix	1958-10-19	75	https://en.wikipedia.org/wiki/1958_Moroccan_Grand_Prix	f	16	9
+76	1	Monaco Grand Prix	1959-05-10	76	https://en.wikipedia.org/wiki/1959_Monaco_Grand_Prix	f	2	10
+77	2	Indianapolis 500	1959-05-30	77	https://en.wikipedia.org/wiki/1959_Indianapolis_500	f	3	10
+78	3	Dutch Grand Prix	1959-05-31	78	https://en.wikipedia.org/wiki/1959_Dutch_Grand_Prix	f	11	10
+79	4	French Grand Prix	1959-07-05	79	https://en.wikipedia.org/wiki/1959_French_Grand_Prix	f	6	10
+80	5	British Grand Prix	1959-07-18	80	https://en.wikipedia.org/wiki/1959_British_Grand_Prix	f	13	10
+81	6	German Grand Prix	1959-08-02	81	https://en.wikipedia.org/wiki/1959_German_Grand_Prix	f	17	10
+82	7	Portuguese Grand Prix	1959-08-23	82	https://en.wikipedia.org/wiki/1959_Portuguese_Grand_Prix	f	18	10
+83	8	Italian Grand Prix	1959-09-13	83	https://en.wikipedia.org/wiki/1959_Italian_Grand_Prix	f	7	10
+84	9	United States Grand Prix	1959-12-12	84	https://en.wikipedia.org/wiki/1959_United_States_Grand_Prix	f	19	10
+85	1	Argentine Grand Prix	1960-02-07	85	https://en.wikipedia.org/wiki/1960_Argentine_Grand_Prix	f	12	11
+86	2	Monaco Grand Prix	1960-05-29	86	https://en.wikipedia.org/wiki/1960_Monaco_Grand_Prix	f	2	11
+87	3	Indianapolis 500	1960-05-30	87	https://en.wikipedia.org/wiki/1960_Indianapolis_500	f	3	11
+88	4	Dutch Grand Prix	1960-06-06	88	https://en.wikipedia.org/wiki/1960_Dutch_Grand_Prix	f	11	11
+89	5	Belgian Grand Prix	1960-06-19	89	https://en.wikipedia.org/wiki/1960_Belgian_Grand_Prix	f	5	11
+90	6	French Grand Prix	1960-07-03	90	https://en.wikipedia.org/wiki/1960_French_Grand_Prix	f	6	11
+91	7	British Grand Prix	1960-07-16	91	https://en.wikipedia.org/wiki/1960_British_Grand_Prix	f	1	11
+92	8	Portuguese Grand Prix	1960-08-14	92	https://en.wikipedia.org/wiki/1960_Portuguese_Grand_Prix	f	15	11
+93	9	Italian Grand Prix	1960-09-04	93	https://en.wikipedia.org/wiki/1960_Italian_Grand_Prix	f	7	11
+94	10	United States Grand Prix	1960-11-20	94	https://en.wikipedia.org/wiki/1960_United_States_Grand_Prix	f	20	11
+95	1	Monaco Grand Prix	1961-05-14	95	https://en.wikipedia.org/wiki/1961_Monaco_Grand_Prix	f	2	12
+96	2	Dutch Grand Prix	1961-05-22	96	https://en.wikipedia.org/wiki/1961_Dutch_Grand_Prix	f	11	12
+97	3	Belgian Grand Prix	1961-06-18	97	https://en.wikipedia.org/wiki/1961_Belgian_Grand_Prix	f	5	12
+98	4	French Grand Prix	1961-07-02	98	https://en.wikipedia.org/wiki/1961_French_Grand_Prix	f	6	12
+99	5	British Grand Prix	1961-07-15	99	https://en.wikipedia.org/wiki/1961_British_Grand_Prix	f	13	12
+100	6	German Grand Prix	1961-08-06	100	https://en.wikipedia.org/wiki/1961_German_Grand_Prix	f	8	12
+101	7	Italian Grand Prix	1961-09-10	101	https://en.wikipedia.org/wiki/1961_Italian_Grand_Prix	f	7	12
+102	8	United States Grand Prix	1961-10-08	102	https://en.wikipedia.org/wiki/1961_United_States_Grand_Prix	f	21	12
+103	1	Dutch Grand Prix	1962-05-20	103	https://en.wikipedia.org/wiki/1962_Dutch_Grand_Prix	f	11	13
+104	2	Monaco Grand Prix	1962-06-03	104	https://en.wikipedia.org/wiki/1962_Monaco_Grand_Prix	f	2	13
+105	3	Belgian Grand Prix	1962-06-17	105	https://en.wikipedia.org/wiki/1962_Belgian_Grand_Prix	f	5	13
+106	4	French Grand Prix	1962-07-08	106	https://en.wikipedia.org/wiki/1962_French_Grand_Prix	f	10	13
+107	5	British Grand Prix	1962-07-21	107	https://en.wikipedia.org/wiki/1962_British_Grand_Prix	f	13	13
+108	6	German Grand Prix	1962-08-05	108	https://en.wikipedia.org/wiki/1962_German_Grand_Prix	f	8	13
+109	7	Italian Grand Prix	1962-09-16	109	https://en.wikipedia.org/wiki/1962_Italian_Grand_Prix	f	7	13
+110	8	United States Grand Prix	1962-10-07	110	https://en.wikipedia.org/wiki/1962_United_States_Grand_Prix	f	21	13
+111	9	South African Grand Prix	1962-12-29	111	https://en.wikipedia.org/wiki/1962_South_African_Grand_Prix	f	22	13
+112	1	Monaco Grand Prix	1963-05-26	112	https://en.wikipedia.org/wiki/1963_Monaco_Grand_Prix	f	2	14
+113	2	Belgian Grand Prix	1963-06-09	113	https://en.wikipedia.org/wiki/1963_Belgian_Grand_Prix	f	5	14
+114	3	Dutch Grand Prix	1963-06-23	114	https://en.wikipedia.org/wiki/1963_Dutch_Grand_Prix	f	11	14
+115	4	French Grand Prix	1963-06-30	115	https://en.wikipedia.org/wiki/1963_French_Grand_Prix	f	6	14
+116	5	British Grand Prix	1963-07-20	116	https://en.wikipedia.org/wiki/1963_British_Grand_Prix	f	1	14
+117	6	German Grand Prix	1963-08-04	117	https://en.wikipedia.org/wiki/1963_German_Grand_Prix	f	8	14
+118	7	Italian Grand Prix	1963-09-08	118	https://en.wikipedia.org/wiki/1963_Italian_Grand_Prix	f	7	14
+119	8	United States Grand Prix	1963-10-06	119	https://en.wikipedia.org/wiki/1963_United_States_Grand_Prix	f	21	14
+120	9	Mexican Grand Prix	1963-10-27	120	https://en.wikipedia.org/wiki/1963_Mexican_Grand_Prix	f	23	14
+121	10	South African Grand Prix	1963-12-28	121	https://en.wikipedia.org/wiki/1963_South_African_Grand_Prix	f	22	14
+122	1	Monaco Grand Prix	1964-05-10	122	https://en.wikipedia.org/wiki/1964_Monaco_Grand_Prix	f	2	15
+123	2	Dutch Grand Prix	1964-05-24	123	https://en.wikipedia.org/wiki/1964_Dutch_Grand_Prix	f	11	15
+124	3	Belgian Grand Prix	1964-06-14	124	https://en.wikipedia.org/wiki/1964_Belgian_Grand_Prix	f	5	15
+125	4	French Grand Prix	1964-06-28	125	https://en.wikipedia.org/wiki/1964_French_Grand_Prix	f	10	15
+126	5	British Grand Prix	1964-07-11	126	https://en.wikipedia.org/wiki/1964_British_Grand_Prix	f	24	15
+127	6	German Grand Prix	1964-08-02	127	https://en.wikipedia.org/wiki/1964_German_Grand_Prix	f	8	15
+128	7	Austrian Grand Prix	1964-08-23	128	https://en.wikipedia.org/wiki/1964_Austrian_Grand_Prix	f	25	15
+129	8	Italian Grand Prix	1964-09-06	129	https://en.wikipedia.org/wiki/1964_Italian_Grand_Prix	f	7	15
+130	9	United States Grand Prix	1964-10-04	130	https://en.wikipedia.org/wiki/1964_United_States_Grand_Prix	f	21	15
+131	10	Mexican Grand Prix	1964-10-25	131	https://en.wikipedia.org/wiki/1964_Mexican_Grand_Prix	f	23	15
+132	1	South African Grand Prix	1965-01-01	132	https://en.wikipedia.org/wiki/1965_South_African_Grand_Prix	f	22	16
+133	2	Monaco Grand Prix	1965-05-30	133	https://en.wikipedia.org/wiki/1965_Monaco_Grand_Prix	f	2	16
+134	3	Belgian Grand Prix	1965-06-13	134	https://en.wikipedia.org/wiki/1965_Belgian_Grand_Prix	f	5	16
+135	4	French Grand Prix	1965-06-27	135	https://en.wikipedia.org/wiki/1965_French_Grand_Prix	f	26	16
+136	5	British Grand Prix	1965-07-10	136	https://en.wikipedia.org/wiki/1965_British_Grand_Prix	f	1	16
+137	6	Dutch Grand Prix	1965-07-18	137	https://en.wikipedia.org/wiki/1965_Dutch_Grand_Prix	f	11	16
+138	7	German Grand Prix	1965-08-01	138	https://en.wikipedia.org/wiki/1965_German_Grand_Prix	f	8	16
+139	8	Italian Grand Prix	1965-09-12	139	https://en.wikipedia.org/wiki/1965_Italian_Grand_Prix	f	7	16
+140	9	United States Grand Prix	1965-10-03	140	https://en.wikipedia.org/wiki/1965_United_States_Grand_Prix	f	21	16
+141	10	Mexican Grand Prix	1965-10-24	141	https://en.wikipedia.org/wiki/1965_Mexican_Grand_Prix	f	23	16
+142	1	Monaco Grand Prix	1966-05-22	142	https://en.wikipedia.org/wiki/1966_Monaco_Grand_Prix	f	2	17
+143	2	Belgian Grand Prix	1966-06-12	143	https://en.wikipedia.org/wiki/1966_Belgian_Grand_Prix	f	5	17
+144	3	French Grand Prix	1966-07-03	144	https://en.wikipedia.org/wiki/1966_French_Grand_Prix	f	6	17
+145	4	British Grand Prix	1966-07-16	145	https://en.wikipedia.org/wiki/1966_British_Grand_Prix	f	24	17
+146	5	Dutch Grand Prix	1966-07-24	146	https://en.wikipedia.org/wiki/1966_Dutch_Grand_Prix	f	11	17
+147	6	German Grand Prix	1966-08-07	147	https://en.wikipedia.org/wiki/1966_German_Grand_Prix	f	8	17
+148	7	Italian Grand Prix	1966-09-04	148	https://en.wikipedia.org/wiki/1966_Italian_Grand_Prix	f	7	17
+149	8	United States Grand Prix	1966-10-02	149	https://en.wikipedia.org/wiki/1966_United_States_Grand_Prix	f	21	17
+150	9	Mexican Grand Prix	1966-10-23	150	https://en.wikipedia.org/wiki/1966_Mexican_Grand_Prix	f	23	17
+151	1	South African Grand Prix	1967-01-02	151	https://en.wikipedia.org/wiki/1967_South_African_Grand_Prix	f	27	18
+152	2	Monaco Grand Prix	1967-05-07	152	https://en.wikipedia.org/wiki/1967_Monaco_Grand_Prix	f	2	18
+153	3	Dutch Grand Prix	1967-06-04	153	https://en.wikipedia.org/wiki/1967_Dutch_Grand_Prix	f	11	18
+154	4	Belgian Grand Prix	1967-06-18	154	https://en.wikipedia.org/wiki/1967_Belgian_Grand_Prix	f	5	18
+155	5	French Grand Prix	1967-07-02	155	https://en.wikipedia.org/wiki/1967_French_Grand_Prix	f	28	18
+156	6	British Grand Prix	1967-07-15	156	https://en.wikipedia.org/wiki/1967_British_Grand_Prix	f	1	18
+157	7	German Grand Prix	1967-08-06	157	https://en.wikipedia.org/wiki/1967_German_Grand_Prix	f	8	18
+158	8	Canadian Grand Prix	1967-08-27	158	https://en.wikipedia.org/wiki/1967_Canadian_Grand_Prix	f	29	18
+159	9	Italian Grand Prix	1967-09-10	159	https://en.wikipedia.org/wiki/1967_Italian_Grand_Prix	f	7	18
+160	10	United States Grand Prix	1967-10-01	160	https://en.wikipedia.org/wiki/1967_United_States_Grand_Prix	f	21	18
+161	11	Mexican Grand Prix	1967-10-22	161	https://en.wikipedia.org/wiki/1967_Mexican_Grand_Prix	f	23	18
+162	1	South African Grand Prix	1968-01-01	162	https://en.wikipedia.org/wiki/1968_South_African_Grand_Prix	f	27	19
+163	2	Spanish Grand Prix	1968-05-12	163	https://en.wikipedia.org/wiki/1968_Spanish_Grand_Prix	f	30	19
+164	3	Monaco Grand Prix	1968-05-26	164	https://en.wikipedia.org/wiki/1968_Monaco_Grand_Prix	f	2	19
+165	4	Belgian Grand Prix	1968-06-09	165	https://en.wikipedia.org/wiki/1968_Belgian_Grand_Prix	f	5	19
+166	5	Dutch Grand Prix	1968-06-23	166	https://en.wikipedia.org/wiki/1968_Dutch_Grand_Prix	f	11	19
+167	6	French Grand Prix	1968-07-07	167	https://en.wikipedia.org/wiki/1968_French_Grand_Prix	f	10	19
+168	7	British Grand Prix	1968-07-20	168	https://en.wikipedia.org/wiki/1968_British_Grand_Prix	f	24	19
+169	8	German Grand Prix	1968-08-04	169	https://en.wikipedia.org/wiki/1968_German_Grand_Prix	f	8	19
+170	9	Italian Grand Prix	1968-09-08	170	https://en.wikipedia.org/wiki/1968_Italian_Grand_Prix	f	7	19
+171	10	Canadian Grand Prix	1968-09-22	171	https://en.wikipedia.org/wiki/1968_Canadian_Grand_Prix	f	31	19
+172	11	United States Grand Prix	1968-10-06	172	https://en.wikipedia.org/wiki/1968_United_States_Grand_Prix	f	21	19
+173	12	Mexican Grand Prix	1968-11-03	173	https://en.wikipedia.org/wiki/1968_Mexican_Grand_Prix	f	23	19
+174	1	South African Grand Prix	1969-03-01	174	https://en.wikipedia.org/wiki/1969_South_African_Grand_Prix	f	27	20
+175	2	Spanish Grand Prix	1969-05-04	175	https://en.wikipedia.org/wiki/1969_Spanish_Grand_Prix	f	32	20
+176	3	Monaco Grand Prix	1969-05-18	176	https://en.wikipedia.org/wiki/1969_Monaco_Grand_Prix	f	2	20
+177	4	Dutch Grand Prix	1969-06-21	177	https://en.wikipedia.org/wiki/1969_Dutch_Grand_Prix	f	11	20
+178	5	French Grand Prix	1969-07-06	178	https://en.wikipedia.org/wiki/1969_French_Grand_Prix	f	26	20
+179	6	British Grand Prix	1969-07-19	179	https://en.wikipedia.org/wiki/1969_British_Grand_Prix	f	1	20
+180	7	German Grand Prix	1969-08-03	180	https://en.wikipedia.org/wiki/1969_German_Grand_Prix	f	8	20
+181	8	Italian Grand Prix	1969-09-07	181	https://en.wikipedia.org/wiki/1969_Italian_Grand_Prix	f	7	20
+182	9	Canadian Grand Prix	1969-09-20	182	https://en.wikipedia.org/wiki/1969_Canadian_Grand_Prix	f	29	20
+183	10	United States Grand Prix	1969-10-05	183	https://en.wikipedia.org/wiki/1969_United_States_Grand_Prix	f	21	20
+184	11	Mexican Grand Prix	1969-10-19	184	https://en.wikipedia.org/wiki/1969_Mexican_Grand_Prix	f	23	20
+185	1	South African Grand Prix	1970-03-07	185	https://en.wikipedia.org/wiki/1970_South_African_Grand_Prix	f	27	21
+186	2	Spanish Grand Prix	1970-04-19	186	https://en.wikipedia.org/wiki/1970_Spanish_Grand_Prix	f	30	21
+187	3	Monaco Grand Prix	1970-05-10	187	https://en.wikipedia.org/wiki/1970_Monaco_Grand_Prix	f	2	21
+188	4	Belgian Grand Prix	1970-06-07	188	https://en.wikipedia.org/wiki/1970_Belgian_Grand_Prix	f	5	21
+189	5	Dutch Grand Prix	1970-06-21	189	https://en.wikipedia.org/wiki/1970_Dutch_Grand_Prix	f	11	21
+190	6	French Grand Prix	1970-07-05	190	https://en.wikipedia.org/wiki/1970_French_Grand_Prix	f	26	21
+191	7	British Grand Prix	1970-07-18	191	https://en.wikipedia.org/wiki/1970_British_Grand_Prix	f	24	21
+192	8	German Grand Prix	1970-08-02	192	https://en.wikipedia.org/wiki/1970_German_Grand_Prix	f	33	21
+193	9	Austrian Grand Prix	1970-08-16	193	https://en.wikipedia.org/wiki/1970_Austrian_Grand_Prix	f	34	21
+194	10	Italian Grand Prix	1970-09-06	194	https://en.wikipedia.org/wiki/1970_Italian_Grand_Prix	f	7	21
+195	11	Canadian Grand Prix	1970-09-20	195	https://en.wikipedia.org/wiki/1970_Canadian_Grand_Prix	f	31	21
+196	12	United States Grand Prix	1970-10-04	196	https://en.wikipedia.org/wiki/1970_United_States_Grand_Prix	f	21	21
+197	13	Mexican Grand Prix	1970-10-25	197	https://en.wikipedia.org/wiki/1970_Mexican_Grand_Prix	f	23	21
+198	1	South African Grand Prix	1971-03-06	198	https://en.wikipedia.org/wiki/1971_South_African_Grand_Prix	f	27	22
+199	2	Spanish Grand Prix	1971-04-18	199	https://en.wikipedia.org/wiki/1971_Spanish_Grand_Prix	f	32	22
+200	3	Monaco Grand Prix	1971-05-23	200	https://en.wikipedia.org/wiki/1971_Monaco_Grand_Prix	f	2	22
+201	4	Dutch Grand Prix	1971-06-20	201	https://en.wikipedia.org/wiki/1971_Dutch_Grand_Prix	f	11	22
+202	5	French Grand Prix	1971-07-04	202	https://en.wikipedia.org/wiki/1971_French_Grand_Prix	f	35	22
+203	6	British Grand Prix	1971-07-17	203	https://en.wikipedia.org/wiki/1971_British_Grand_Prix	f	1	22
+204	7	German Grand Prix	1971-08-01	204	https://en.wikipedia.org/wiki/1971_German_Grand_Prix	f	8	22
+205	8	Austrian Grand Prix	1971-08-15	205	https://en.wikipedia.org/wiki/1971_Austrian_Grand_Prix	f	34	22
+206	9	Italian Grand Prix	1971-09-05	206	https://en.wikipedia.org/wiki/1971_Italian_Grand_Prix	f	7	22
+207	10	Canadian Grand Prix	1971-09-19	207	https://en.wikipedia.org/wiki/1971_Canadian_Grand_Prix	f	29	22
+208	11	United States Grand Prix	1971-10-03	208	https://en.wikipedia.org/wiki/1971_United_States_Grand_Prix	f	21	22
+209	1	Argentine Grand Prix	1972-01-23	209	https://en.wikipedia.org/wiki/1972_Argentine_Grand_Prix	f	12	23
+210	2	South African Grand Prix	1972-03-04	210	https://en.wikipedia.org/wiki/1972_South_African_Grand_Prix	f	27	23
+211	3	Spanish Grand Prix	1972-05-01	211	https://en.wikipedia.org/wiki/1972_Spanish_Grand_Prix	f	30	23
+212	4	Monaco Grand Prix	1972-05-14	212	https://en.wikipedia.org/wiki/1972_Monaco_Grand_Prix	f	2	23
+213	5	Belgian Grand Prix	1972-06-04	213	https://en.wikipedia.org/wiki/1972_Belgian_Grand_Prix	f	36	23
+214	6	French Grand Prix	1972-07-02	214	https://en.wikipedia.org/wiki/1972_French_Grand_Prix	f	26	23
+215	7	British Grand Prix	1972-07-15	215	https://en.wikipedia.org/wiki/1972_British_Grand_Prix	f	24	23
+216	8	German Grand Prix	1972-07-30	216	https://en.wikipedia.org/wiki/1972_German_Grand_Prix	f	8	23
+217	9	Austrian Grand Prix	1972-08-13	217	https://en.wikipedia.org/wiki/1972_Austrian_Grand_Prix	f	34	23
+218	10	Italian Grand Prix	1972-09-10	218	https://en.wikipedia.org/wiki/1972_Italian_Grand_Prix	f	7	23
+219	11	Canadian Grand Prix	1972-09-24	219	https://en.wikipedia.org/wiki/1972_Canadian_Grand_Prix	f	29	23
+220	12	United States Grand Prix	1972-10-08	220	https://en.wikipedia.org/wiki/1972_United_States_Grand_Prix	f	21	23
+221	1	Argentine Grand Prix	1973-01-28	221	https://en.wikipedia.org/wiki/1973_Argentine_Grand_Prix	f	12	24
+222	2	Brazilian Grand Prix	1973-02-11	222	https://en.wikipedia.org/wiki/1973_Brazilian_Grand_Prix	f	37	24
+223	3	South African Grand Prix	1973-03-03	223	https://en.wikipedia.org/wiki/1973_South_African_Grand_Prix	f	27	24
+224	4	Spanish Grand Prix	1973-04-29	224	https://en.wikipedia.org/wiki/1973_Spanish_Grand_Prix	f	32	24
+225	5	Belgian Grand Prix	1973-05-20	225	https://en.wikipedia.org/wiki/1973_Belgian_Grand_Prix	f	38	24
+226	6	Monaco Grand Prix	1973-06-03	226	https://en.wikipedia.org/wiki/1973_Monaco_Grand_Prix	f	2	24
+227	7	Swedish Grand Prix	1973-06-17	227	https://en.wikipedia.org/wiki/1973_Swedish_Grand_Prix	f	39	24
+228	8	French Grand Prix	1973-07-01	228	https://en.wikipedia.org/wiki/1973_French_Grand_Prix	f	35	24
+229	9	British Grand Prix	1973-07-14	229	https://en.wikipedia.org/wiki/1973_British_Grand_Prix	f	1	24
+230	10	Dutch Grand Prix	1973-07-29	230	https://en.wikipedia.org/wiki/1973_Dutch_Grand_Prix	f	11	24
+231	11	German Grand Prix	1973-08-05	231	https://en.wikipedia.org/wiki/1973_German_Grand_Prix	f	8	24
+232	12	Austrian Grand Prix	1973-08-19	232	https://en.wikipedia.org/wiki/1973_Austrian_Grand_Prix	f	34	24
+233	13	Italian Grand Prix	1973-09-09	233	https://en.wikipedia.org/wiki/1973_Italian_Grand_Prix	f	7	24
+234	14	Canadian Grand Prix	1973-09-23	234	https://en.wikipedia.org/wiki/1973_Canadian_Grand_Prix	f	29	24
+235	15	United States Grand Prix	1973-10-07	235	https://en.wikipedia.org/wiki/1973_United_States_Grand_Prix	f	21	24
+236	1	Argentine Grand Prix	1974-01-13	236	https://en.wikipedia.org/wiki/1974_Argentine_Grand_Prix	f	12	25
+237	2	Brazilian Grand Prix	1974-01-27	237	https://en.wikipedia.org/wiki/1974_Brazilian_Grand_Prix	f	37	25
+238	3	South African Grand Prix	1974-03-30	238	https://en.wikipedia.org/wiki/1974_South_African_Grand_Prix	f	27	25
+239	4	Spanish Grand Prix	1974-04-28	239	https://en.wikipedia.org/wiki/1974_Spanish_Grand_Prix	f	30	25
+240	5	Belgian Grand Prix	1974-05-12	240	https://en.wikipedia.org/wiki/1974_Belgian_Grand_Prix	f	36	25
+241	6	Monaco Grand Prix	1974-05-26	241	https://en.wikipedia.org/wiki/1974_Monaco_Grand_Prix	f	2	25
+242	7	Swedish Grand Prix	1974-06-09	242	https://en.wikipedia.org/wiki/1974_Swedish_Grand_Prix	f	39	25
+243	8	Dutch Grand Prix	1974-06-23	243	https://en.wikipedia.org/wiki/1974_Dutch_Grand_Prix	f	11	25
+244	9	French Grand Prix	1974-07-07	244	https://en.wikipedia.org/wiki/1974_French_Grand_Prix	f	40	25
+245	10	British Grand Prix	1974-07-20	245	https://en.wikipedia.org/wiki/1974_British_Grand_Prix	f	24	25
+246	11	German Grand Prix	1974-08-04	246	https://en.wikipedia.org/wiki/1974_German_Grand_Prix	f	8	25
+247	12	Austrian Grand Prix	1974-08-18	247	https://en.wikipedia.org/wiki/1974_Austrian_Grand_Prix	f	34	25
+248	13	Italian Grand Prix	1974-09-08	248	https://en.wikipedia.org/wiki/1974_Italian_Grand_Prix	f	7	25
+249	14	Canadian Grand Prix	1974-09-22	249	https://en.wikipedia.org/wiki/1974_Canadian_Grand_Prix	f	29	25
+250	15	United States Grand Prix	1974-10-06	250	https://en.wikipedia.org/wiki/1974_United_States_Grand_Prix	f	21	25
+251	1	Argentine Grand Prix	1975-01-12	251	https://en.wikipedia.org/wiki/1975_Argentine_Grand_Prix	f	12	26
+252	2	Brazilian Grand Prix	1975-01-26	252	https://en.wikipedia.org/wiki/1975_Brazilian_Grand_Prix	f	37	26
+253	3	South African Grand Prix	1975-03-01	253	https://en.wikipedia.org/wiki/1975_South_African_Grand_Prix	f	27	26
+254	4	Spanish Grand Prix	1975-04-27	254	https://en.wikipedia.org/wiki/1975_Spanish_Grand_Prix	f	32	26
+255	5	Monaco Grand Prix	1975-05-11	255	https://en.wikipedia.org/wiki/1975_Monaco_Grand_Prix	f	2	26
+256	6	Belgian Grand Prix	1975-05-25	256	https://en.wikipedia.org/wiki/1975_Belgian_Grand_Prix	f	38	26
+257	7	Swedish Grand Prix	1975-06-08	257	https://en.wikipedia.org/wiki/1975_Swedish_Grand_Prix	f	39	26
+258	8	Dutch Grand Prix	1975-06-22	258	https://en.wikipedia.org/wiki/1975_Dutch_Grand_Prix	f	11	26
+259	9	French Grand Prix	1975-07-06	259	https://en.wikipedia.org/wiki/1975_French_Grand_Prix	f	35	26
+260	10	British Grand Prix	1975-07-19	260	https://en.wikipedia.org/wiki/1975_British_Grand_Prix	f	1	26
+261	11	German Grand Prix	1975-08-03	261	https://en.wikipedia.org/wiki/1975_German_Grand_Prix	f	8	26
+262	12	Austrian Grand Prix	1975-08-17	262	https://en.wikipedia.org/wiki/1975_Austrian_Grand_Prix	f	34	26
+263	13	Italian Grand Prix	1975-09-07	263	https://en.wikipedia.org/wiki/1975_Italian_Grand_Prix	f	7	26
+264	14	United States Grand Prix	1975-10-05	264	https://en.wikipedia.org/wiki/1975_United_States_Grand_Prix	f	21	26
+265	1	Brazilian Grand Prix	1976-01-25	265	https://en.wikipedia.org/wiki/1976_Brazilian_Grand_Prix	f	37	27
+266	2	South African Grand Prix	1976-03-06	266	https://en.wikipedia.org/wiki/1976_South_African_Grand_Prix	f	27	27
+267	3	United States Grand Prix West	1976-03-28	267	https://en.wikipedia.org/wiki/1976_United_States_Grand_Prix_West	f	41	27
+268	4	Spanish Grand Prix	1976-05-02	268	https://en.wikipedia.org/wiki/1976_Spanish_Grand_Prix	f	30	27
+269	5	Belgian Grand Prix	1976-05-16	269	https://en.wikipedia.org/wiki/1976_Belgian_Grand_Prix	f	38	27
+270	6	Monaco Grand Prix	1976-05-30	270	https://en.wikipedia.org/wiki/1976_Monaco_Grand_Prix	f	2	27
+271	7	Swedish Grand Prix	1976-06-13	271	https://en.wikipedia.org/wiki/1976_Swedish_Grand_Prix	f	39	27
+272	8	French Grand Prix	1976-07-04	272	https://en.wikipedia.org/wiki/1976_French_Grand_Prix	f	35	27
+273	9	British Grand Prix	1976-07-18	273	https://en.wikipedia.org/wiki/1976_British_Grand_Prix	f	24	27
+274	10	German Grand Prix	1976-08-01	274	https://en.wikipedia.org/wiki/1976_German_Grand_Prix	f	8	27
+275	11	Austrian Grand Prix	1976-08-15	275	https://en.wikipedia.org/wiki/1976_Austrian_Grand_Prix	f	34	27
+276	12	Dutch Grand Prix	1976-08-29	276	https://en.wikipedia.org/wiki/1976_Dutch_Grand_Prix	f	11	27
+277	13	Italian Grand Prix	1976-09-12	277	https://en.wikipedia.org/wiki/1976_Italian_Grand_Prix	f	7	27
+278	14	Canadian Grand Prix	1976-10-03	278	https://en.wikipedia.org/wiki/1976_Canadian_Grand_Prix	f	29	27
+279	15	United States Grand Prix	1976-10-10	279	https://en.wikipedia.org/wiki/1976_United_States_Grand_Prix	f	21	27
+280	16	Japanese Grand Prix	1976-10-24	280	https://en.wikipedia.org/wiki/1976_Japanese_Grand_Prix	f	42	27
+281	1	Argentine Grand Prix	1977-01-09	281	https://en.wikipedia.org/wiki/1977_Argentine_Grand_Prix	f	12	28
+282	2	Brazilian Grand Prix	1977-01-23	282	https://en.wikipedia.org/wiki/1977_Brazilian_Grand_Prix	f	37	28
+283	3	South African Grand Prix	1977-03-05	283	https://en.wikipedia.org/wiki/1977_South_African_Grand_Prix	f	27	28
+284	4	United States Grand Prix West	1977-04-03	284	https://en.wikipedia.org/wiki/1977_United_States_Grand_Prix_West	f	41	28
+285	5	Spanish Grand Prix	1977-05-08	285	https://en.wikipedia.org/wiki/1977_Spanish_Grand_Prix	f	30	28
+286	6	Monaco Grand Prix	1977-05-22	286	https://en.wikipedia.org/wiki/1977_Monaco_Grand_Prix	f	2	28
+287	7	Belgian Grand Prix	1977-06-05	287	https://en.wikipedia.org/wiki/1977_Belgian_Grand_Prix	f	38	28
+288	8	Swedish Grand Prix	1977-06-19	288	https://en.wikipedia.org/wiki/1977_Swedish_Grand_Prix	f	39	28
+289	9	French Grand Prix	1977-07-03	289	https://en.wikipedia.org/wiki/1977_French_Grand_Prix	f	40	28
+290	10	British Grand Prix	1977-07-16	290	https://en.wikipedia.org/wiki/1977_British_Grand_Prix	f	1	28
+291	11	German Grand Prix	1977-07-31	291	https://en.wikipedia.org/wiki/1977_German_Grand_Prix	f	33	28
+292	12	Austrian Grand Prix	1977-08-14	292	https://en.wikipedia.org/wiki/1977_Austrian_Grand_Prix	f	34	28
+293	13	Dutch Grand Prix	1977-08-28	293	https://en.wikipedia.org/wiki/1977_Dutch_Grand_Prix	f	11	28
+294	14	Italian Grand Prix	1977-09-11	294	https://en.wikipedia.org/wiki/1977_Italian_Grand_Prix	f	7	28
+295	15	United States Grand Prix	1977-10-02	295	https://en.wikipedia.org/wiki/1977_United_States_Grand_Prix	f	21	28
+296	16	Canadian Grand Prix	1977-10-09	296	https://en.wikipedia.org/wiki/1977_Canadian_Grand_Prix	f	29	28
+297	17	Japanese Grand Prix	1977-10-23	297	https://en.wikipedia.org/wiki/1977_Japanese_Grand_Prix	f	42	28
+298	1	Argentine Grand Prix	1978-01-15	298	https://en.wikipedia.org/wiki/1978_Argentine_Grand_Prix	f	12	29
+299	2	Brazilian Grand Prix	1978-01-29	299	https://en.wikipedia.org/wiki/1978_Brazilian_Grand_Prix	f	43	29
+300	3	South African Grand Prix	1978-03-04	300	https://en.wikipedia.org/wiki/1978_South_African_Grand_Prix	f	27	29
+301	4	United States Grand Prix West	1978-04-02	301	https://en.wikipedia.org/wiki/1978_United_States_Grand_Prix_West	f	41	29
+302	5	Monaco Grand Prix	1978-05-07	302	https://en.wikipedia.org/wiki/1978_Monaco_Grand_Prix	f	2	29
+303	6	Belgian Grand Prix	1978-05-21	303	https://en.wikipedia.org/wiki/1978_Belgian_Grand_Prix	f	38	29
+304	7	Spanish Grand Prix	1978-06-04	304	https://en.wikipedia.org/wiki/1978_Spanish_Grand_Prix	f	30	29
+305	8	Swedish Grand Prix	1978-06-17	305	https://en.wikipedia.org/wiki/1978_Swedish_Grand_Prix	f	39	29
+306	9	French Grand Prix	1978-07-02	306	https://en.wikipedia.org/wiki/1978_French_Grand_Prix	f	35	29
+307	10	British Grand Prix	1978-07-16	307	https://en.wikipedia.org/wiki/1978_British_Grand_Prix	f	24	29
+308	11	German Grand Prix	1978-07-30	308	https://en.wikipedia.org/wiki/1978_German_Grand_Prix	f	33	29
+309	12	Austrian Grand Prix	1978-08-13	309	https://en.wikipedia.org/wiki/1978_Austrian_Grand_Prix	f	34	29
+310	13	Dutch Grand Prix	1978-08-27	310	https://en.wikipedia.org/wiki/1978_Dutch_Grand_Prix	f	11	29
+311	14	Italian Grand Prix	1978-09-10	311	https://en.wikipedia.org/wiki/1978_Italian_Grand_Prix	f	7	29
+312	15	United States Grand Prix	1978-10-01	312	https://en.wikipedia.org/wiki/1978_United_States_Grand_Prix	f	21	29
+313	16	Canadian Grand Prix	1978-10-08	313	https://en.wikipedia.org/wiki/1978_Canadian_Grand_Prix	f	44	29
+314	1	Argentine Grand Prix	1979-01-21	314	https://en.wikipedia.org/wiki/1979_Argentine_Grand_Prix	f	12	30
+315	2	Brazilian Grand Prix	1979-02-04	315	https://en.wikipedia.org/wiki/1979_Brazilian_Grand_Prix	f	37	30
+316	3	South African Grand Prix	1979-03-03	316	https://en.wikipedia.org/wiki/1979_South_African_Grand_Prix	f	27	30
+317	4	United States Grand Prix West	1979-04-08	317	https://en.wikipedia.org/wiki/1979_United_States_Grand_Prix_West	f	41	30
+318	5	Spanish Grand Prix	1979-04-29	318	https://en.wikipedia.org/wiki/1979_Spanish_Grand_Prix	f	30	30
+319	6	Belgian Grand Prix	1979-05-13	319	https://en.wikipedia.org/wiki/1979_Belgian_Grand_Prix	f	38	30
+320	7	Monaco Grand Prix	1979-05-27	320	https://en.wikipedia.org/wiki/1979_Monaco_Grand_Prix	f	2	30
+321	8	French Grand Prix	1979-07-01	321	https://en.wikipedia.org/wiki/1979_French_Grand_Prix	f	40	30
+322	9	British Grand Prix	1979-07-14	322	https://en.wikipedia.org/wiki/1979_British_Grand_Prix	f	1	30
+323	10	German Grand Prix	1979-07-29	323	https://en.wikipedia.org/wiki/1979_German_Grand_Prix	f	33	30
+324	11	Austrian Grand Prix	1979-08-12	324	https://en.wikipedia.org/wiki/1979_Austrian_Grand_Prix	f	34	30
+325	12	Dutch Grand Prix	1979-08-26	325	https://en.wikipedia.org/wiki/1979_Dutch_Grand_Prix	f	11	30
+326	13	Italian Grand Prix	1979-09-09	326	https://en.wikipedia.org/wiki/1979_Italian_Grand_Prix	f	7	30
+327	14	Canadian Grand Prix	1979-09-30	327	https://en.wikipedia.org/wiki/1979_Canadian_Grand_Prix	f	44	30
+328	15	United States Grand Prix	1979-10-07	328	https://en.wikipedia.org/wiki/1979_United_States_Grand_Prix	f	21	30
+329	1	Argentine Grand Prix	1980-01-13	329	https://en.wikipedia.org/wiki/1980_Argentine_Grand_Prix	f	12	31
+330	2	Brazilian Grand Prix	1980-01-27	330	https://en.wikipedia.org/wiki/1980_Brazilian_Grand_Prix	f	37	31
+331	3	South African Grand Prix	1980-03-01	331	https://en.wikipedia.org/wiki/1980_South_African_Grand_Prix	f	27	31
+332	4	United States Grand Prix West	1980-03-30	332	https://en.wikipedia.org/wiki/1980_United_States_Grand_Prix_West	f	41	31
+333	5	Belgian Grand Prix	1980-05-04	333	https://en.wikipedia.org/wiki/1980_Belgian_Grand_Prix	f	38	31
+334	6	Monaco Grand Prix	1980-05-18	334	https://en.wikipedia.org/wiki/1980_Monaco_Grand_Prix	f	2	31
+335	7	French Grand Prix	1980-06-29	335	https://en.wikipedia.org/wiki/1980_French_Grand_Prix	f	35	31
+336	8	British Grand Prix	1980-07-13	336	https://en.wikipedia.org/wiki/1980_British_Grand_Prix	f	24	31
+337	9	German Grand Prix	1980-08-10	337	https://en.wikipedia.org/wiki/1980_German_Grand_Prix	f	33	31
+338	10	Austrian Grand Prix	1980-08-17	338	https://en.wikipedia.org/wiki/1980_Austrian_Grand_Prix	f	34	31
+339	11	Dutch Grand Prix	1980-08-31	339	https://en.wikipedia.org/wiki/1980_Dutch_Grand_Prix	f	11	31
+340	12	Italian Grand Prix	1980-09-14	340	https://en.wikipedia.org/wiki/1980_Italian_Grand_Prix	f	45	31
+341	13	Canadian Grand Prix	1980-09-28	341	https://en.wikipedia.org/wiki/1980_Canadian_Grand_Prix	f	44	31
+342	14	United States Grand Prix	1980-10-05	342	https://en.wikipedia.org/wiki/1980_United_States_Grand_Prix	f	21	31
+343	1	United States Grand Prix West	1981-03-15	343	https://en.wikipedia.org/wiki/1981_United_States_Grand_Prix_West	f	41	32
+344	2	Brazilian Grand Prix	1981-03-29	344	https://en.wikipedia.org/wiki/1981_Brazilian_Grand_Prix	f	43	32
+345	3	Argentine Grand Prix	1981-04-12	345	https://en.wikipedia.org/wiki/1981_Argentine_Grand_Prix	f	12	32
+346	4	San Marino Grand Prix	1981-05-03	346	https://en.wikipedia.org/wiki/1981_San_Marino_Grand_Prix	f	45	32
+347	5	Belgian Grand Prix	1981-05-17	347	https://en.wikipedia.org/wiki/1981_Belgian_Grand_Prix	f	38	32
+348	6	Monaco Grand Prix	1981-05-31	348	https://en.wikipedia.org/wiki/1981_Monaco_Grand_Prix	f	2	32
+349	7	Spanish Grand Prix	1981-06-21	349	https://en.wikipedia.org/wiki/1981_Spanish_Grand_Prix	f	30	32
+350	8	French Grand Prix	1981-07-05	350	https://en.wikipedia.org/wiki/1981_French_Grand_Prix	f	40	32
+351	9	British Grand Prix	1981-07-18	351	https://en.wikipedia.org/wiki/1981_British_Grand_Prix	f	1	32
+352	10	German Grand Prix	1981-08-02	352	https://en.wikipedia.org/wiki/1981_German_Grand_Prix	f	33	32
+353	11	Austrian Grand Prix	1981-08-16	353	https://en.wikipedia.org/wiki/1981_Austrian_Grand_Prix	f	34	32
+354	12	Dutch Grand Prix	1981-08-30	354	https://en.wikipedia.org/wiki/1981_Dutch_Grand_Prix	f	11	32
+355	13	Italian Grand Prix	1981-09-13	355	https://en.wikipedia.org/wiki/1981_Italian_Grand_Prix	f	7	32
+356	14	Canadian Grand Prix	1981-09-27	356	https://en.wikipedia.org/wiki/1981_Canadian_Grand_Prix	f	44	32
+357	15	Caesars Palace Grand Prix	1981-10-17	357	https://en.wikipedia.org/wiki/1981_Caesars_Palace_Grand_Prix	f	46	32
+358	1	South African Grand Prix	1982-01-23	358	https://en.wikipedia.org/wiki/1982_South_African_Grand_Prix	f	27	33
+359	2	Brazilian Grand Prix	1982-03-21	359	https://en.wikipedia.org/wiki/1982_Brazilian_Grand_Prix	f	43	33
+360	3	United States Grand Prix West	1982-04-04	360	https://en.wikipedia.org/wiki/1982_United_States_Grand_Prix_West	f	41	33
+361	4	San Marino Grand Prix	1982-04-25	361	https://en.wikipedia.org/wiki/1982_San_Marino_Grand_Prix	f	45	33
+362	5	Belgian Grand Prix	1982-05-09	362	https://en.wikipedia.org/wiki/1982_Belgian_Grand_Prix	f	38	33
+363	6	Monaco Grand Prix	1982-05-23	363	https://en.wikipedia.org/wiki/1982_Monaco_Grand_Prix	f	2	33
+364	7	Detroit Grand Prix	1982-06-06	364	https://en.wikipedia.org/wiki/1982_Detroit_Grand_Prix	f	47	33
+365	8	Canadian Grand Prix	1982-06-13	365	https://en.wikipedia.org/wiki/1982_Canadian_Grand_Prix	f	44	33
+366	9	Dutch Grand Prix	1982-07-03	366	https://en.wikipedia.org/wiki/1982_Dutch_Grand_Prix	f	11	33
+367	10	British Grand Prix	1982-07-18	367	https://en.wikipedia.org/wiki/1982_British_Grand_Prix	f	24	33
+368	11	French Grand Prix	1982-07-25	368	https://en.wikipedia.org/wiki/1982_French_Grand_Prix	f	35	33
+369	12	German Grand Prix	1982-08-08	369	https://en.wikipedia.org/wiki/1982_German_Grand_Prix	f	33	33
+370	13	Austrian Grand Prix	1982-08-15	370	https://en.wikipedia.org/wiki/1982_Austrian_Grand_Prix	f	34	33
+371	14	Swiss Grand Prix	1982-08-29	371	https://en.wikipedia.org/wiki/1982_Swiss_Grand_Prix	f	40	33
+372	15	Italian Grand Prix	1982-09-12	372	https://en.wikipedia.org/wiki/1982_Italian_Grand_Prix	f	7	33
+373	16	Caesars Palace Grand Prix	1982-09-25	373	https://en.wikipedia.org/wiki/1982_Caesars_Palace_Grand_Prix	f	46	33
+374	1	Brazilian Grand Prix	1983-03-13	374	https://en.wikipedia.org/wiki/1983_Brazilian_Grand_Prix	f	43	34
+375	2	United States Grand Prix West	1983-03-27	375	https://en.wikipedia.org/wiki/1983_United_States_Grand_Prix_West	f	41	34
+376	3	French Grand Prix	1983-04-17	376	https://en.wikipedia.org/wiki/1983_French_Grand_Prix	f	35	34
+377	4	San Marino Grand Prix	1983-05-01	377	https://en.wikipedia.org/wiki/1983_San_Marino_Grand_Prix	f	45	34
+378	5	Monaco Grand Prix	1983-05-15	378	https://en.wikipedia.org/wiki/1983_Monaco_Grand_Prix	f	2	34
+379	6	Belgian Grand Prix	1983-05-22	379	https://en.wikipedia.org/wiki/1983_Belgian_Grand_Prix	f	5	34
+380	7	Detroit Grand Prix	1983-06-05	380	https://en.wikipedia.org/wiki/1983_Detroit_Grand_Prix	f	47	34
+381	8	Canadian Grand Prix	1983-06-12	381	https://en.wikipedia.org/wiki/1983_Canadian_Grand_Prix	f	44	34
+382	9	British Grand Prix	1983-07-16	382	https://en.wikipedia.org/wiki/1983_British_Grand_Prix	f	1	34
+383	10	German Grand Prix	1983-08-07	383	https://en.wikipedia.org/wiki/1983_German_Grand_Prix	f	33	34
+384	11	Austrian Grand Prix	1983-08-14	384	https://en.wikipedia.org/wiki/1983_Austrian_Grand_Prix	f	34	34
+385	12	Dutch Grand Prix	1983-08-28	385	https://en.wikipedia.org/wiki/1983_Dutch_Grand_Prix	f	11	34
+386	13	Italian Grand Prix	1983-09-11	386	https://en.wikipedia.org/wiki/1983_Italian_Grand_Prix	f	7	34
+387	14	European Grand Prix	1983-09-25	387	https://en.wikipedia.org/wiki/1983_European_Grand_Prix	f	24	34
+388	15	South African Grand Prix	1983-10-15	388	https://en.wikipedia.org/wiki/1983_South_African_Grand_Prix	f	27	34
+389	1	Brazilian Grand Prix	1984-03-25	389	https://en.wikipedia.org/wiki/1984_Brazilian_Grand_Prix	f	43	35
+390	2	South African Grand Prix	1984-04-07	390	https://en.wikipedia.org/wiki/1984_South_African_Grand_Prix	f	27	35
+391	3	Belgian Grand Prix	1984-04-29	391	https://en.wikipedia.org/wiki/1984_Belgian_Grand_Prix	f	38	35
+392	4	San Marino Grand Prix	1984-05-06	392	https://en.wikipedia.org/wiki/1984_San_Marino_Grand_Prix	f	45	35
+393	5	French Grand Prix	1984-05-20	393	https://en.wikipedia.org/wiki/1984_French_Grand_Prix	f	40	35
+394	6	Monaco Grand Prix	1984-06-03	394	https://en.wikipedia.org/wiki/1984_Monaco_Grand_Prix	f	2	35
+395	7	Canadian Grand Prix	1984-06-17	395	https://en.wikipedia.org/wiki/1984_Canadian_Grand_Prix	f	44	35
+396	8	Detroit Grand Prix	1984-06-24	396	https://en.wikipedia.org/wiki/1984_Detroit_Grand_Prix	f	47	35
+397	9	Dallas Grand Prix	1984-07-08	397	https://en.wikipedia.org/wiki/1984_Dallas_Grand_Prix	f	48	35
+398	10	British Grand Prix	1984-07-22	398	https://en.wikipedia.org/wiki/1984_British_Grand_Prix	f	24	35
+399	11	German Grand Prix	1984-08-05	399	https://en.wikipedia.org/wiki/1984_German_Grand_Prix	f	33	35
+400	12	Austrian Grand Prix	1984-08-19	400	https://en.wikipedia.org/wiki/1984_Austrian_Grand_Prix	f	34	35
+401	13	Dutch Grand Prix	1984-08-26	401	https://en.wikipedia.org/wiki/1984_Dutch_Grand_Prix	f	11	35
+402	14	Italian Grand Prix	1984-09-09	402	https://en.wikipedia.org/wiki/1984_Italian_Grand_Prix	f	7	35
+403	15	European Grand Prix	1984-10-07	403	https://en.wikipedia.org/wiki/1984_European_Grand_Prix	f	8	35
+404	16	Portuguese Grand Prix	1984-10-21	404	https://en.wikipedia.org/wiki/1984_Portuguese_Grand_Prix	f	49	35
+405	1	Brazilian Grand Prix	1985-04-07	405	https://en.wikipedia.org/wiki/1985_Brazilian_Grand_Prix	f	43	36
+406	2	Portuguese Grand Prix	1985-04-21	406	https://en.wikipedia.org/wiki/1985_Portuguese_Grand_Prix	f	49	36
+407	3	San Marino Grand Prix	1985-05-05	407	https://en.wikipedia.org/wiki/1985_San_Marino_Grand_Prix	f	45	36
+408	4	Monaco Grand Prix	1985-05-19	408	https://en.wikipedia.org/wiki/1985_Monaco_Grand_Prix	f	2	36
+409	5	Canadian Grand Prix	1985-06-16	409	https://en.wikipedia.org/wiki/1985_Canadian_Grand_Prix	f	44	36
+410	6	Detroit Grand Prix	1985-06-23	410	https://en.wikipedia.org/wiki/1985_Detroit_Grand_Prix	f	47	36
+411	7	French Grand Prix	1985-07-07	411	https://en.wikipedia.org/wiki/1985_French_Grand_Prix	f	35	36
+412	8	British Grand Prix	1985-07-21	412	https://en.wikipedia.org/wiki/1985_British_Grand_Prix	f	1	36
+413	9	German Grand Prix	1985-08-04	413	https://en.wikipedia.org/wiki/1985_German_Grand_Prix	f	8	36
+414	10	Austrian Grand Prix	1985-08-18	414	https://en.wikipedia.org/wiki/1985_Austrian_Grand_Prix	f	34	36
+415	11	Dutch Grand Prix	1985-08-25	415	https://en.wikipedia.org/wiki/1985_Dutch_Grand_Prix	f	11	36
+416	12	Italian Grand Prix	1985-09-08	416	https://en.wikipedia.org/wiki/1985_Italian_Grand_Prix	f	7	36
+417	13	Belgian Grand Prix	1985-09-15	417	https://en.wikipedia.org/wiki/1985_Belgian_Grand_Prix	f	5	36
+418	14	European Grand Prix	1985-10-06	418	https://en.wikipedia.org/wiki/1985_European_Grand_Prix	f	24	36
+419	15	South African Grand Prix	1985-10-19	419	https://en.wikipedia.org/wiki/1985_South_African_Grand_Prix	f	27	36
+420	16	Australian Grand Prix	1985-11-03	420	https://en.wikipedia.org/wiki/1985_Australian_Grand_Prix	f	50	36
+421	1	Brazilian Grand Prix	1986-03-23	421	https://en.wikipedia.org/wiki/1986_Brazilian_Grand_Prix	f	43	37
+422	2	Spanish Grand Prix	1986-04-13	422	https://en.wikipedia.org/wiki/1986_Spanish_Grand_Prix	f	51	37
+423	3	San Marino Grand Prix	1986-04-27	423	https://en.wikipedia.org/wiki/1986_San_Marino_Grand_Prix	f	45	37
+424	4	Monaco Grand Prix	1986-05-11	424	https://en.wikipedia.org/wiki/1986_Monaco_Grand_Prix	f	2	37
+425	5	Belgian Grand Prix	1986-05-25	425	https://en.wikipedia.org/wiki/1986_Belgian_Grand_Prix	f	5	37
+426	6	Canadian Grand Prix	1986-06-15	426	https://en.wikipedia.org/wiki/1986_Canadian_Grand_Prix	f	44	37
+427	7	Detroit Grand Prix	1986-06-22	427	https://en.wikipedia.org/wiki/1986_Detroit_Grand_Prix	f	47	37
+428	8	French Grand Prix	1986-07-06	428	https://en.wikipedia.org/wiki/1986_French_Grand_Prix	f	35	37
+429	9	British Grand Prix	1986-07-13	429	https://en.wikipedia.org/wiki/1986_British_Grand_Prix	f	24	37
+430	10	German Grand Prix	1986-07-27	430	https://en.wikipedia.org/wiki/1986_German_Grand_Prix	f	33	37
+431	11	Hungarian Grand Prix	1986-08-10	431	https://en.wikipedia.org/wiki/1986_Hungarian_Grand_Prix	f	52	37
+432	12	Austrian Grand Prix	1986-08-17	432	https://en.wikipedia.org/wiki/1986_Austrian_Grand_Prix	f	34	37
+433	13	Italian Grand Prix	1986-09-07	433	https://en.wikipedia.org/wiki/1986_Italian_Grand_Prix	f	7	37
+434	14	Portuguese Grand Prix	1986-09-21	434	https://en.wikipedia.org/wiki/1986_Portuguese_Grand_Prix	f	49	37
+435	15	Mexican Grand Prix	1986-10-12	435	https://en.wikipedia.org/wiki/1986_Mexican_Grand_Prix	f	23	37
+436	16	Australian Grand Prix	1986-10-26	436	https://en.wikipedia.org/wiki/1986_Australian_Grand_Prix	f	50	37
+437	1	Brazilian Grand Prix	1987-04-12	437	https://en.wikipedia.org/wiki/1987_Brazilian_Grand_Prix	f	43	38
+438	2	San Marino Grand Prix	1987-05-03	438	https://en.wikipedia.org/wiki/1987_San_Marino_Grand_Prix	f	45	38
+439	3	Belgian Grand Prix	1987-05-17	439	https://en.wikipedia.org/wiki/1987_Belgian_Grand_Prix	f	5	38
+440	4	Monaco Grand Prix	1987-05-31	440	https://en.wikipedia.org/wiki/1987_Monaco_Grand_Prix	f	2	38
+441	5	Detroit Grand Prix	1987-06-21	441	https://en.wikipedia.org/wiki/1987_Detroit_Grand_Prix	f	47	38
+442	6	French Grand Prix	1987-07-05	442	https://en.wikipedia.org/wiki/1987_French_Grand_Prix	f	35	38
+443	7	British Grand Prix	1987-07-12	443	https://en.wikipedia.org/wiki/1987_British_Grand_Prix	f	1	38
+444	8	German Grand Prix	1987-07-26	444	https://en.wikipedia.org/wiki/1987_German_Grand_Prix	f	33	38
+445	9	Hungarian Grand Prix	1987-08-09	445	https://en.wikipedia.org/wiki/1987_Hungarian_Grand_Prix	f	52	38
+446	10	Austrian Grand Prix	1987-08-16	446	https://en.wikipedia.org/wiki/1987_Austrian_Grand_Prix	f	34	38
+447	11	Italian Grand Prix	1987-09-06	447	https://en.wikipedia.org/wiki/1987_Italian_Grand_Prix	f	7	38
+448	12	Portuguese Grand Prix	1987-09-20	448	https://en.wikipedia.org/wiki/1987_Portuguese_Grand_Prix	f	49	38
+449	13	Spanish Grand Prix	1987-09-27	449	https://en.wikipedia.org/wiki/1987_Spanish_Grand_Prix	f	51	38
+450	14	Mexican Grand Prix	1987-10-18	450	https://en.wikipedia.org/wiki/1987_Mexican_Grand_Prix	f	23	38
+451	15	Japanese Grand Prix	1987-11-01	451	https://en.wikipedia.org/wiki/1987_Japanese_Grand_Prix	f	53	38
+452	16	Australian Grand Prix	1987-11-15	452	https://en.wikipedia.org/wiki/1987_Australian_Grand_Prix	f	50	38
+453	1	Brazilian Grand Prix	1988-04-03	453	https://en.wikipedia.org/wiki/1988_Brazilian_Grand_Prix	f	43	39
+454	2	San Marino Grand Prix	1988-05-01	454	https://en.wikipedia.org/wiki/1988_San_Marino_Grand_Prix	f	45	39
+455	3	Monaco Grand Prix	1988-05-15	455	https://en.wikipedia.org/wiki/1988_Monaco_Grand_Prix	f	2	39
+456	4	Mexican Grand Prix	1988-05-29	456	https://en.wikipedia.org/wiki/1988_Mexican_Grand_Prix	f	23	39
+457	5	Canadian Grand Prix	1988-06-12	457	https://en.wikipedia.org/wiki/1988_Canadian_Grand_Prix	f	44	39
+458	6	Detroit Grand Prix	1988-06-19	458	https://en.wikipedia.org/wiki/1988_Detroit_Grand_Prix	f	47	39
+459	7	French Grand Prix	1988-07-03	459	https://en.wikipedia.org/wiki/1988_French_Grand_Prix	f	35	39
+460	8	British Grand Prix	1988-07-10	460	https://en.wikipedia.org/wiki/1988_British_Grand_Prix	f	1	39
+461	9	German Grand Prix	1988-07-24	461	https://en.wikipedia.org/wiki/1988_German_Grand_Prix	f	33	39
+462	10	Hungarian Grand Prix	1988-08-07	462	https://en.wikipedia.org/wiki/1988_Hungarian_Grand_Prix	f	52	39
+463	11	Belgian Grand Prix	1988-08-28	463	https://en.wikipedia.org/wiki/1988_Belgian_Grand_Prix	f	5	39
+464	12	Italian Grand Prix	1988-09-11	464	https://en.wikipedia.org/wiki/1988_Italian_Grand_Prix	f	7	39
+465	13	Portuguese Grand Prix	1988-09-25	465	https://en.wikipedia.org/wiki/1988_Portuguese_Grand_Prix	f	49	39
+466	14	Spanish Grand Prix	1988-10-02	466	https://en.wikipedia.org/wiki/1988_Spanish_Grand_Prix	f	51	39
+467	15	Japanese Grand Prix	1988-10-30	467	https://en.wikipedia.org/wiki/1988_Japanese_Grand_Prix	f	53	39
+468	16	Australian Grand Prix	1988-11-13	468	https://en.wikipedia.org/wiki/1988_Australian_Grand_Prix	f	50	39
+469	1	Brazilian Grand Prix	1989-03-26	469	https://en.wikipedia.org/wiki/1989_Brazilian_Grand_Prix	f	43	40
+470	2	San Marino Grand Prix	1989-04-23	470	https://en.wikipedia.org/wiki/1989_San_Marino_Grand_Prix	f	45	40
+471	3	Monaco Grand Prix	1989-05-07	471	https://en.wikipedia.org/wiki/1989_Monaco_Grand_Prix	f	2	40
+472	4	Mexican Grand Prix	1989-05-28	472	https://en.wikipedia.org/wiki/1989_Mexican_Grand_Prix	f	23	40
+473	5	United States Grand Prix	1989-06-04	473	https://en.wikipedia.org/wiki/1989_United_States_Grand_Prix	f	54	40
+474	6	Canadian Grand Prix	1989-06-18	474	https://en.wikipedia.org/wiki/1989_Canadian_Grand_Prix	f	44	40
+475	7	French Grand Prix	1989-07-09	475	https://en.wikipedia.org/wiki/1989_French_Grand_Prix	f	35	40
+476	8	British Grand Prix	1989-07-16	476	https://en.wikipedia.org/wiki/1989_British_Grand_Prix	f	1	40
+477	9	German Grand Prix	1989-07-30	477	https://en.wikipedia.org/wiki/1989_German_Grand_Prix	f	33	40
+478	10	Hungarian Grand Prix	1989-08-13	478	https://en.wikipedia.org/wiki/1989_Hungarian_Grand_Prix	f	52	40
+479	11	Belgian Grand Prix	1989-08-27	479	https://en.wikipedia.org/wiki/1989_Belgian_Grand_Prix	f	5	40
+480	12	Italian Grand Prix	1989-09-10	480	https://en.wikipedia.org/wiki/1989_Italian_Grand_Prix	f	7	40
+481	13	Portuguese Grand Prix	1989-09-24	481	https://en.wikipedia.org/wiki/1989_Portuguese_Grand_Prix	f	49	40
+482	14	Spanish Grand Prix	1989-10-01	482	https://en.wikipedia.org/wiki/1989_Spanish_Grand_Prix	f	51	40
+483	15	Japanese Grand Prix	1989-10-22	483	https://en.wikipedia.org/wiki/1989_Japanese_Grand_Prix	f	53	40
+484	16	Australian Grand Prix	1989-11-05	484	https://en.wikipedia.org/wiki/1989_Australian_Grand_Prix	f	50	40
+485	1	United States Grand Prix	1990-03-11	485	https://en.wikipedia.org/wiki/1990_United_States_Grand_Prix	f	54	41
+486	2	Brazilian Grand Prix	1990-03-25	486	https://en.wikipedia.org/wiki/1990_Brazilian_Grand_Prix	f	37	41
+487	3	San Marino Grand Prix	1990-05-13	487	https://en.wikipedia.org/wiki/1990_San_Marino_Grand_Prix	f	45	41
+488	4	Monaco Grand Prix	1990-05-27	488	https://en.wikipedia.org/wiki/1990_Monaco_Grand_Prix	f	2	41
+489	5	Canadian Grand Prix	1990-06-10	489	https://en.wikipedia.org/wiki/1990_Canadian_Grand_Prix	f	44	41
+490	6	Mexican Grand Prix	1990-06-24	490	https://en.wikipedia.org/wiki/1990_Mexican_Grand_Prix	f	23	41
+491	7	French Grand Prix	1990-07-08	491	https://en.wikipedia.org/wiki/1990_French_Grand_Prix	f	35	41
+492	8	British Grand Prix	1990-07-15	492	https://en.wikipedia.org/wiki/1990_British_Grand_Prix	f	1	41
+493	9	German Grand Prix	1990-07-29	493	https://en.wikipedia.org/wiki/1990_German_Grand_Prix	f	33	41
+494	10	Hungarian Grand Prix	1990-08-12	494	https://en.wikipedia.org/wiki/1990_Hungarian_Grand_Prix	f	52	41
+495	11	Belgian Grand Prix	1990-08-26	495	https://en.wikipedia.org/wiki/1990_Belgian_Grand_Prix	f	5	41
+496	12	Italian Grand Prix	1990-09-09	496	https://en.wikipedia.org/wiki/1990_Italian_Grand_Prix	f	7	41
+497	13	Portuguese Grand Prix	1990-09-23	497	https://en.wikipedia.org/wiki/1990_Portuguese_Grand_Prix	f	49	41
+498	14	Spanish Grand Prix	1990-09-30	498	https://en.wikipedia.org/wiki/1990_Spanish_Grand_Prix	f	51	41
+499	15	Japanese Grand Prix	1990-10-21	499	https://en.wikipedia.org/wiki/1990_Japanese_Grand_Prix	f	53	41
+500	16	Australian Grand Prix	1990-11-04	500	https://en.wikipedia.org/wiki/1990_Australian_Grand_Prix	f	50	41
+501	1	United States Grand Prix	1991-03-10	501	https://en.wikipedia.org/wiki/1991_United_States_Grand_Prix	f	54	42
+502	2	Brazilian Grand Prix	1991-03-24	502	https://en.wikipedia.org/wiki/1991_Brazilian_Grand_Prix	f	37	42
+503	3	San Marino Grand Prix	1991-04-28	503	https://en.wikipedia.org/wiki/1991_San_Marino_Grand_Prix	f	45	42
+504	4	Monaco Grand Prix	1991-05-12	504	https://en.wikipedia.org/wiki/1991_Monaco_Grand_Prix	f	2	42
+505	5	Canadian Grand Prix	1991-06-02	505	https://en.wikipedia.org/wiki/1991_Canadian_Grand_Prix	f	44	42
+506	6	Mexican Grand Prix	1991-06-16	506	https://en.wikipedia.org/wiki/1991_Mexican_Grand_Prix	f	23	42
+507	7	French Grand Prix	1991-07-07	507	https://en.wikipedia.org/wiki/1991_French_Grand_Prix	f	55	42
+508	8	British Grand Prix	1991-07-14	508	https://en.wikipedia.org/wiki/1991_British_Grand_Prix	f	1	42
+509	9	German Grand Prix	1991-07-28	509	https://en.wikipedia.org/wiki/1991_German_Grand_Prix	f	33	42
+510	10	Hungarian Grand Prix	1991-08-11	510	https://en.wikipedia.org/wiki/1991_Hungarian_Grand_Prix	f	52	42
+511	11	Belgian Grand Prix	1991-08-25	511	https://en.wikipedia.org/wiki/1991_Belgian_Grand_Prix	f	5	42
+512	12	Italian Grand Prix	1991-09-08	512	https://en.wikipedia.org/wiki/1991_Italian_Grand_Prix	f	7	42
+513	13	Portuguese Grand Prix	1991-09-22	513	https://en.wikipedia.org/wiki/1991_Portuguese_Grand_Prix	f	49	42
+514	14	Spanish Grand Prix	1991-09-29	514	https://en.wikipedia.org/wiki/1991_Spanish_Grand_Prix	f	56	42
+515	15	Japanese Grand Prix	1991-10-20	515	https://en.wikipedia.org/wiki/1991_Japanese_Grand_Prix	f	53	42
+516	16	Australian Grand Prix	1991-11-03	516	https://en.wikipedia.org/wiki/1991_Australian_Grand_Prix	f	50	42
+517	1	South African Grand Prix	1992-03-01	517	https://en.wikipedia.org/wiki/1992_South_African_Grand_Prix	f	27	43
+518	2	Mexican Grand Prix	1992-03-22	518	https://en.wikipedia.org/wiki/1992_Mexican_Grand_Prix	f	23	43
+519	3	Brazilian Grand Prix	1992-04-05	519	https://en.wikipedia.org/wiki/1992_Brazilian_Grand_Prix	f	37	43
+520	4	Spanish Grand Prix	1992-05-03	520	https://en.wikipedia.org/wiki/1992_Spanish_Grand_Prix	f	56	43
+521	5	San Marino Grand Prix	1992-05-17	521	https://en.wikipedia.org/wiki/1992_San_Marino_Grand_Prix	f	45	43
+522	6	Monaco Grand Prix	1992-05-31	522	https://en.wikipedia.org/wiki/1992_Monaco_Grand_Prix	f	2	43
+523	7	Canadian Grand Prix	1992-06-14	523	https://en.wikipedia.org/wiki/1992_Canadian_Grand_Prix	f	44	43
+524	8	French Grand Prix	1992-07-05	524	https://en.wikipedia.org/wiki/1992_French_Grand_Prix	f	55	43
+525	9	British Grand Prix	1992-07-12	525	https://en.wikipedia.org/wiki/1992_British_Grand_Prix	f	1	43
+526	10	German Grand Prix	1992-07-26	526	https://en.wikipedia.org/wiki/1992_German_Grand_Prix	f	33	43
+527	11	Hungarian Grand Prix	1992-08-16	527	https://en.wikipedia.org/wiki/1992_Hungarian_Grand_Prix	f	52	43
+528	12	Belgian Grand Prix	1992-08-30	528	https://en.wikipedia.org/wiki/1992_Belgian_Grand_Prix	f	5	43
+529	13	Italian Grand Prix	1992-09-13	529	https://en.wikipedia.org/wiki/1992_Italian_Grand_Prix	f	7	43
+530	14	Portuguese Grand Prix	1992-09-27	530	https://en.wikipedia.org/wiki/1992_Portuguese_Grand_Prix	f	49	43
+531	15	Japanese Grand Prix	1992-10-25	531	https://en.wikipedia.org/wiki/1992_Japanese_Grand_Prix	f	53	43
+532	16	Australian Grand Prix	1992-11-08	532	https://en.wikipedia.org/wiki/1992_Australian_Grand_Prix	f	50	43
+533	1	South African Grand Prix	1993-03-14	533	https://en.wikipedia.org/wiki/1993_South_African_Grand_Prix	f	27	44
+534	2	Brazilian Grand Prix	1993-03-28	534	https://en.wikipedia.org/wiki/1993_Brazilian_Grand_Prix	f	37	44
+535	3	European Grand Prix	1993-04-11	535	https://en.wikipedia.org/wiki/1993_European_Grand_Prix	f	57	44
+536	4	San Marino Grand Prix	1993-04-25	536	https://en.wikipedia.org/wiki/1993_San_Marino_Grand_Prix	f	45	44
+537	5	Spanish Grand Prix	1993-05-09	537	https://en.wikipedia.org/wiki/1993_Spanish_Grand_Prix	f	56	44
+538	6	Monaco Grand Prix	1993-05-23	538	https://en.wikipedia.org/wiki/1993_Monaco_Grand_Prix	f	2	44
+539	7	Canadian Grand Prix	1993-06-13	539	https://en.wikipedia.org/wiki/1993_Canadian_Grand_Prix	f	44	44
+540	8	French Grand Prix	1993-07-04	540	https://en.wikipedia.org/wiki/1993_French_Grand_Prix	f	55	44
+541	9	British Grand Prix	1993-07-11	541	https://en.wikipedia.org/wiki/1993_British_Grand_Prix	f	1	44
+542	10	German Grand Prix	1993-07-25	542	https://en.wikipedia.org/wiki/1993_German_Grand_Prix	f	33	44
+543	11	Hungarian Grand Prix	1993-08-15	543	https://en.wikipedia.org/wiki/1993_Hungarian_Grand_Prix	f	52	44
+544	12	Belgian Grand Prix	1993-08-29	544	https://en.wikipedia.org/wiki/1993_Belgian_Grand_Prix	f	5	44
+545	13	Italian Grand Prix	1993-09-12	545	https://en.wikipedia.org/wiki/1993_Italian_Grand_Prix	f	7	44
+546	14	Portuguese Grand Prix	1993-09-26	546	https://en.wikipedia.org/wiki/1993_Portuguese_Grand_Prix	f	49	44
+547	15	Japanese Grand Prix	1993-10-24	547	https://en.wikipedia.org/wiki/1993_Japanese_Grand_Prix	f	53	44
+548	16	Australian Grand Prix	1993-11-07	548	https://en.wikipedia.org/wiki/1993_Australian_Grand_Prix	f	50	44
+549	1	Brazilian Grand Prix	1994-03-27	549	https://en.wikipedia.org/wiki/1994_Brazilian_Grand_Prix	f	37	45
+550	2	Pacific Grand Prix	1994-04-17	550	https://en.wikipedia.org/wiki/1994_Pacific_Grand_Prix	f	58	45
+551	3	San Marino Grand Prix	1994-05-01	551	https://en.wikipedia.org/wiki/1994_San_Marino_Grand_Prix	f	45	45
+552	4	Monaco Grand Prix	1994-05-15	552	https://en.wikipedia.org/wiki/1994_Monaco_Grand_Prix	f	2	45
+553	5	Spanish Grand Prix	1994-05-29	553	https://en.wikipedia.org/wiki/1994_Spanish_Grand_Prix	f	56	45
+554	6	Canadian Grand Prix	1994-06-12	554	https://en.wikipedia.org/wiki/1994_Canadian_Grand_Prix	f	44	45
+555	7	French Grand Prix	1994-07-03	555	https://en.wikipedia.org/wiki/1994_French_Grand_Prix	f	55	45
+556	8	British Grand Prix	1994-07-10	556	https://en.wikipedia.org/wiki/1994_British_Grand_Prix	f	1	45
+557	9	German Grand Prix	1994-07-31	557	https://en.wikipedia.org/wiki/1994_German_Grand_Prix	f	33	45
+558	10	Hungarian Grand Prix	1994-08-14	558	https://en.wikipedia.org/wiki/1994_Hungarian_Grand_Prix	f	52	45
+559	11	Belgian Grand Prix	1994-08-28	559	https://en.wikipedia.org/wiki/1994_Belgian_Grand_Prix	f	5	45
+560	12	Italian Grand Prix	1994-09-11	560	https://en.wikipedia.org/wiki/1994_Italian_Grand_Prix	f	7	45
+561	13	Portuguese Grand Prix	1994-09-25	561	https://en.wikipedia.org/wiki/1994_Portuguese_Grand_Prix	f	49	45
+562	14	European Grand Prix	1994-10-16	562	https://en.wikipedia.org/wiki/1994_European_Grand_Prix	f	51	45
+563	15	Japanese Grand Prix	1994-11-06	563	https://en.wikipedia.org/wiki/1994_Japanese_Grand_Prix	f	53	45
+564	16	Australian Grand Prix	1994-11-13	564	https://en.wikipedia.org/wiki/1994_Australian_Grand_Prix	f	50	45
+565	1	Brazilian Grand Prix	1995-03-26	565	https://en.wikipedia.org/wiki/1995_Brazilian_Grand_Prix	f	37	46
+566	2	Argentine Grand Prix	1995-04-09	566	https://en.wikipedia.org/wiki/1995_Argentine_Grand_Prix	f	12	46
+567	3	San Marino Grand Prix	1995-04-30	567	https://en.wikipedia.org/wiki/1995_San_Marino_Grand_Prix	f	45	46
+568	4	Spanish Grand Prix	1995-05-14	568	https://en.wikipedia.org/wiki/1995_Spanish_Grand_Prix	f	56	46
+569	5	Monaco Grand Prix	1995-05-28	569	https://en.wikipedia.org/wiki/1995_Monaco_Grand_Prix	f	2	46
+570	6	Canadian Grand Prix	1995-06-11	570	https://en.wikipedia.org/wiki/1995_Canadian_Grand_Prix	f	44	46
+571	7	French Grand Prix	1995-07-02	571	https://en.wikipedia.org/wiki/1995_French_Grand_Prix	f	55	46
+572	8	British Grand Prix	1995-07-16	572	https://en.wikipedia.org/wiki/1995_British_Grand_Prix	f	1	46
+573	9	German Grand Prix	1995-07-30	573	https://en.wikipedia.org/wiki/1995_German_Grand_Prix	f	33	46
+574	10	Hungarian Grand Prix	1995-08-13	574	https://en.wikipedia.org/wiki/1995_Hungarian_Grand_Prix	f	52	46
+575	11	Belgian Grand Prix	1995-08-27	575	https://en.wikipedia.org/wiki/1995_Belgian_Grand_Prix	f	5	46
+576	12	Italian Grand Prix	1995-09-10	576	https://en.wikipedia.org/wiki/1995_Italian_Grand_Prix	f	7	46
+577	13	Portuguese Grand Prix	1995-09-24	577	https://en.wikipedia.org/wiki/1995_Portuguese_Grand_Prix	f	49	46
+578	14	European Grand Prix	1995-10-01	578	https://en.wikipedia.org/wiki/1995_European_Grand_Prix	f	8	46
+579	15	Pacific Grand Prix	1995-10-22	579	https://en.wikipedia.org/wiki/1995_Pacific_Grand_Prix	f	58	46
+580	16	Japanese Grand Prix	1995-10-29	580	https://en.wikipedia.org/wiki/1995_Japanese_Grand_Prix	f	53	46
+581	17	Australian Grand Prix	1995-11-12	581	https://en.wikipedia.org/wiki/1995_Australian_Grand_Prix	f	50	46
+582	1	Australian Grand Prix	1996-03-10	582	https://en.wikipedia.org/wiki/1996_Australian_Grand_Prix	f	59	47
+583	2	Brazilian Grand Prix	1996-03-31	583	https://en.wikipedia.org/wiki/1996_Brazilian_Grand_Prix	f	37	47
+584	3	Argentine Grand Prix	1996-04-07	584	https://en.wikipedia.org/wiki/1996_Argentine_Grand_Prix	f	12	47
+585	4	European Grand Prix	1996-04-28	585	https://en.wikipedia.org/wiki/1996_European_Grand_Prix	f	8	47
+586	5	San Marino Grand Prix	1996-05-05	586	https://en.wikipedia.org/wiki/1996_San_Marino_Grand_Prix	f	45	47
+587	6	Monaco Grand Prix	1996-05-19	587	https://en.wikipedia.org/wiki/1996_Monaco_Grand_Prix	f	2	47
+588	7	Spanish Grand Prix	1996-06-02	588	https://en.wikipedia.org/wiki/1996_Spanish_Grand_Prix	f	56	47
+589	8	Canadian Grand Prix	1996-06-16	589	https://en.wikipedia.org/wiki/1996_Canadian_Grand_Prix	f	44	47
+590	9	French Grand Prix	1996-06-30	590	https://en.wikipedia.org/wiki/1996_French_Grand_Prix	f	55	47
+591	10	British Grand Prix	1996-07-14	591	https://en.wikipedia.org/wiki/1996_British_Grand_Prix	f	1	47
+592	11	German Grand Prix	1996-07-28	592	https://en.wikipedia.org/wiki/1996_German_Grand_Prix	f	33	47
+593	12	Hungarian Grand Prix	1996-08-11	593	https://en.wikipedia.org/wiki/1996_Hungarian_Grand_Prix	f	52	47
+594	13	Belgian Grand Prix	1996-08-25	594	https://en.wikipedia.org/wiki/1996_Belgian_Grand_Prix	f	5	47
+595	14	Italian Grand Prix	1996-09-08	595	https://en.wikipedia.org/wiki/1996_Italian_Grand_Prix	f	7	47
+596	15	Portuguese Grand Prix	1996-09-22	596	https://en.wikipedia.org/wiki/1996_Portuguese_Grand_Prix	f	49	47
+597	16	Japanese Grand Prix	1996-10-13	597	https://en.wikipedia.org/wiki/1996_Japanese_Grand_Prix	f	53	47
+598	1	Australian Grand Prix	1997-03-09	598	https://en.wikipedia.org/wiki/1997_Australian_Grand_Prix	f	59	48
+599	2	Brazilian Grand Prix	1997-03-30	599	https://en.wikipedia.org/wiki/1997_Brazilian_Grand_Prix	f	37	48
+600	3	Argentine Grand Prix	1997-04-13	600	https://en.wikipedia.org/wiki/1997_Argentine_Grand_Prix	f	12	48
+601	4	San Marino Grand Prix	1997-04-27	601	https://en.wikipedia.org/wiki/1997_San_Marino_Grand_Prix	f	45	48
+602	5	Monaco Grand Prix	1997-05-11	602	https://en.wikipedia.org/wiki/1997_Monaco_Grand_Prix	f	2	48
+603	6	Spanish Grand Prix	1997-05-25	603	https://en.wikipedia.org/wiki/1997_Spanish_Grand_Prix	f	56	48
+604	7	Canadian Grand Prix	1997-06-15	604	https://en.wikipedia.org/wiki/1997_Canadian_Grand_Prix	f	44	48
+605	8	French Grand Prix	1997-06-29	605	https://en.wikipedia.org/wiki/1997_French_Grand_Prix	f	55	48
+606	9	British Grand Prix	1997-07-13	606	https://en.wikipedia.org/wiki/1997_British_Grand_Prix	f	1	48
+607	10	German Grand Prix	1997-07-27	607	https://en.wikipedia.org/wiki/1997_German_Grand_Prix	f	33	48
+608	11	Hungarian Grand Prix	1997-08-10	608	https://en.wikipedia.org/wiki/1997_Hungarian_Grand_Prix	f	52	48
+609	12	Belgian Grand Prix	1997-08-24	609	https://en.wikipedia.org/wiki/1997_Belgian_Grand_Prix	f	5	48
+610	13	Italian Grand Prix	1997-09-07	610	https://en.wikipedia.org/wiki/1997_Italian_Grand_Prix	f	7	48
+611	14	Austrian Grand Prix	1997-09-21	611	https://en.wikipedia.org/wiki/1997_Austrian_Grand_Prix	f	34	48
+612	15	Luxembourg Grand Prix	1997-09-28	612	https://en.wikipedia.org/wiki/1997_Luxembourg_Grand_Prix	f	8	48
+613	16	Japanese Grand Prix	1997-10-12	613	https://en.wikipedia.org/wiki/1997_Japanese_Grand_Prix	f	53	48
+614	17	European Grand Prix	1997-10-26	614	https://en.wikipedia.org/wiki/1997_European_Grand_Prix	f	51	48
+615	1	Australian Grand Prix	1998-03-08	615	https://en.wikipedia.org/wiki/1998_Australian_Grand_Prix	f	59	49
+616	2	Brazilian Grand Prix	1998-03-29	616	https://en.wikipedia.org/wiki/1998_Brazilian_Grand_Prix	f	37	49
+617	3	Argentine Grand Prix	1998-04-12	617	https://en.wikipedia.org/wiki/1998_Argentine_Grand_Prix	f	12	49
+618	4	San Marino Grand Prix	1998-04-26	618	https://en.wikipedia.org/wiki/1998_San_Marino_Grand_Prix	f	45	49
+619	5	Spanish Grand Prix	1998-05-10	619	https://en.wikipedia.org/wiki/1998_Spanish_Grand_Prix	f	56	49
+620	6	Monaco Grand Prix	1998-05-24	620	https://en.wikipedia.org/wiki/1998_Monaco_Grand_Prix	f	2	49
+621	7	Canadian Grand Prix	1998-06-07	621	https://en.wikipedia.org/wiki/1998_Canadian_Grand_Prix	f	44	49
+622	8	French Grand Prix	1998-06-28	622	https://en.wikipedia.org/wiki/1998_French_Grand_Prix	f	55	49
+623	9	British Grand Prix	1998-07-12	623	https://en.wikipedia.org/wiki/1998_British_Grand_Prix	f	1	49
+624	10	Austrian Grand Prix	1998-07-26	624	https://en.wikipedia.org/wiki/1998_Austrian_Grand_Prix	f	34	49
+625	11	German Grand Prix	1998-08-02	625	https://en.wikipedia.org/wiki/1998_German_Grand_Prix	f	33	49
+626	12	Hungarian Grand Prix	1998-08-16	626	https://en.wikipedia.org/wiki/1998_Hungarian_Grand_Prix	f	52	49
+627	13	Belgian Grand Prix	1998-08-30	627	https://en.wikipedia.org/wiki/1998_Belgian_Grand_Prix	f	5	49
+628	14	Italian Grand Prix	1998-09-13	628	https://en.wikipedia.org/wiki/1998_Italian_Grand_Prix	f	7	49
+629	15	Luxembourg Grand Prix	1998-09-27	629	https://en.wikipedia.org/wiki/1998_Luxembourg_Grand_Prix	f	8	49
+630	16	Japanese Grand Prix	1998-11-01	630	https://en.wikipedia.org/wiki/1998_Japanese_Grand_Prix	f	53	49
+631	1	Australian Grand Prix	1999-03-07	631	https://en.wikipedia.org/wiki/1999_Australian_Grand_Prix	f	59	50
+632	2	Brazilian Grand Prix	1999-04-11	632	https://en.wikipedia.org/wiki/1999_Brazilian_Grand_Prix	f	37	50
+633	3	San Marino Grand Prix	1999-05-02	633	https://en.wikipedia.org/wiki/1999_San_Marino_Grand_Prix	f	45	50
+634	4	Monaco Grand Prix	1999-05-16	634	https://en.wikipedia.org/wiki/1999_Monaco_Grand_Prix	f	2	50
+635	5	Spanish Grand Prix	1999-05-30	635	https://en.wikipedia.org/wiki/1999_Spanish_Grand_Prix	f	56	50
+636	6	Canadian Grand Prix	1999-06-13	636	https://en.wikipedia.org/wiki/1999_Canadian_Grand_Prix	f	44	50
+637	7	French Grand Prix	1999-06-27	637	https://en.wikipedia.org/wiki/1999_French_Grand_Prix	f	55	50
+638	8	British Grand Prix	1999-07-11	638	https://en.wikipedia.org/wiki/1999_British_Grand_Prix	f	1	50
+639	9	Austrian Grand Prix	1999-07-25	639	https://en.wikipedia.org/wiki/1999_Austrian_Grand_Prix	f	34	50
+640	10	German Grand Prix	1999-08-01	640	https://en.wikipedia.org/wiki/1999_German_Grand_Prix	f	33	50
+641	11	Hungarian Grand Prix	1999-08-15	641	https://en.wikipedia.org/wiki/1999_Hungarian_Grand_Prix	f	52	50
+642	12	Belgian Grand Prix	1999-08-29	642	https://en.wikipedia.org/wiki/1999_Belgian_Grand_Prix	f	5	50
+643	13	Italian Grand Prix	1999-09-12	643	https://en.wikipedia.org/wiki/1999_Italian_Grand_Prix	f	7	50
+644	14	European Grand Prix	1999-09-26	644	https://en.wikipedia.org/wiki/1999_European_Grand_Prix	f	8	50
+645	15	Malaysian Grand Prix	1999-10-17	645	https://en.wikipedia.org/wiki/1999_Malaysian_Grand_Prix	f	60	50
+646	16	Japanese Grand Prix	1999-10-31	646	https://en.wikipedia.org/wiki/1999_Japanese_Grand_Prix	f	53	50
+647	1	Australian Grand Prix	2000-03-12	647	https://en.wikipedia.org/wiki/2000_Australian_Grand_Prix	f	59	51
+648	2	Brazilian Grand Prix	2000-03-26	648	https://en.wikipedia.org/wiki/2000_Brazilian_Grand_Prix	f	37	51
+649	3	San Marino Grand Prix	2000-04-09	649	https://en.wikipedia.org/wiki/2000_San_Marino_Grand_Prix	f	45	51
+650	4	British Grand Prix	2000-04-23	650	https://en.wikipedia.org/wiki/2000_British_Grand_Prix	f	1	51
+651	5	Spanish Grand Prix	2000-05-07	651	https://en.wikipedia.org/wiki/2000_Spanish_Grand_Prix	f	56	51
+652	6	European Grand Prix	2000-05-21	652	https://en.wikipedia.org/wiki/2000_European_Grand_Prix	f	8	51
+653	7	Monaco Grand Prix	2000-06-04	653	https://en.wikipedia.org/wiki/2000_Monaco_Grand_Prix	f	2	51
+654	8	Canadian Grand Prix	2000-06-18	654	https://en.wikipedia.org/wiki/2000_Canadian_Grand_Prix	f	44	51
+655	9	French Grand Prix	2000-07-02	655	https://en.wikipedia.org/wiki/2000_French_Grand_Prix	f	55	51
+656	10	Austrian Grand Prix	2000-07-16	656	https://en.wikipedia.org/wiki/2000_Austrian_Grand_Prix	f	34	51
+657	11	German Grand Prix	2000-07-30	657	https://en.wikipedia.org/wiki/2000_German_Grand_Prix	f	33	51
+658	12	Hungarian Grand Prix	2000-08-13	658	https://en.wikipedia.org/wiki/2000_Hungarian_Grand_Prix	f	52	51
+659	13	Belgian Grand Prix	2000-08-27	659	https://en.wikipedia.org/wiki/2000_Belgian_Grand_Prix	f	5	51
+660	14	Italian Grand Prix	2000-09-10	660	https://en.wikipedia.org/wiki/2000_Italian_Grand_Prix	f	7	51
+661	15	United States Grand Prix	2000-09-24	661	https://en.wikipedia.org/wiki/2000_United_States_Grand_Prix	f	3	51
+662	16	Japanese Grand Prix	2000-10-08	662	https://en.wikipedia.org/wiki/2000_Japanese_Grand_Prix	f	53	51
+663	17	Malaysian Grand Prix	2000-10-22	663	https://en.wikipedia.org/wiki/2000_Malaysian_Grand_Prix	f	60	51
+664	1	Australian Grand Prix	2001-03-04	664	https://en.wikipedia.org/wiki/2001_Australian_Grand_Prix	f	59	52
+665	2	Malaysian Grand Prix	2001-03-18	665	https://en.wikipedia.org/wiki/2001_Malaysian_Grand_Prix	f	60	52
+666	3	Brazilian Grand Prix	2001-04-01	666	https://en.wikipedia.org/wiki/2001_Brazilian_Grand_Prix	f	37	52
+667	4	San Marino Grand Prix	2001-04-15	667	https://en.wikipedia.org/wiki/2001_San_Marino_Grand_Prix	f	45	52
+668	5	Spanish Grand Prix	2001-04-29	668	https://en.wikipedia.org/wiki/2001_Spanish_Grand_Prix	f	56	52
+669	6	Austrian Grand Prix	2001-05-13	669	https://en.wikipedia.org/wiki/2001_Austrian_Grand_Prix	f	34	52
+670	7	Monaco Grand Prix	2001-05-27	670	https://en.wikipedia.org/wiki/2001_Monaco_Grand_Prix	f	2	52
+671	8	Canadian Grand Prix	2001-06-10	671	https://en.wikipedia.org/wiki/2001_Canadian_Grand_Prix	f	44	52
+672	9	European Grand Prix	2001-06-24	672	https://en.wikipedia.org/wiki/2001_European_Grand_Prix	f	8	52
+673	10	French Grand Prix	2001-07-01	673	https://en.wikipedia.org/wiki/2001_French_Grand_Prix	f	55	52
+674	11	British Grand Prix	2001-07-15	674	https://en.wikipedia.org/wiki/2001_British_Grand_Prix	f	1	52
+675	12	German Grand Prix	2001-07-29	675	https://en.wikipedia.org/wiki/2001_German_Grand_Prix	f	33	52
+676	13	Hungarian Grand Prix	2001-08-19	676	https://en.wikipedia.org/wiki/2001_Hungarian_Grand_Prix	f	52	52
+677	14	Belgian Grand Prix	2001-09-02	677	https://en.wikipedia.org/wiki/2001_Belgian_Grand_Prix	f	5	52
+678	15	Italian Grand Prix	2001-09-16	678	https://en.wikipedia.org/wiki/2001_Italian_Grand_Prix	f	7	52
+679	16	United States Grand Prix	2001-09-30	679	https://en.wikipedia.org/wiki/2001_United_States_Grand_Prix	f	3	52
+680	17	Japanese Grand Prix	2001-10-14	680	https://en.wikipedia.org/wiki/2001_Japanese_Grand_Prix	f	53	52
+681	1	Australian Grand Prix	2002-03-03	681	https://en.wikipedia.org/wiki/2002_Australian_Grand_Prix	f	59	53
+682	2	Malaysian Grand Prix	2002-03-17	682	https://en.wikipedia.org/wiki/2002_Malaysian_Grand_Prix	f	60	53
+683	3	Brazilian Grand Prix	2002-03-31	683	https://en.wikipedia.org/wiki/2002_Brazilian_Grand_Prix	f	37	53
+684	4	San Marino Grand Prix	2002-04-14	684	https://en.wikipedia.org/wiki/2002_San_Marino_Grand_Prix	f	45	53
+685	5	Spanish Grand Prix	2002-04-28	685	https://en.wikipedia.org/wiki/2002_Spanish_Grand_Prix	f	56	53
+686	6	Austrian Grand Prix	2002-05-12	686	https://en.wikipedia.org/wiki/2002_Austrian_Grand_Prix	f	34	53
+687	7	Monaco Grand Prix	2002-05-26	687	https://en.wikipedia.org/wiki/2002_Monaco_Grand_Prix	f	2	53
+688	8	Canadian Grand Prix	2002-06-09	688	https://en.wikipedia.org/wiki/2002_Canadian_Grand_Prix	f	44	53
+689	9	European Grand Prix	2002-06-23	689	https://en.wikipedia.org/wiki/2002_European_Grand_Prix	f	8	53
+690	10	British Grand Prix	2002-07-07	690	https://en.wikipedia.org/wiki/2002_British_Grand_Prix	f	1	53
+691	11	French Grand Prix	2002-07-21	691	https://en.wikipedia.org/wiki/2002_French_Grand_Prix	f	55	53
+692	12	German Grand Prix	2002-07-28	692	https://en.wikipedia.org/wiki/2002_German_Grand_Prix	f	33	53
+693	13	Hungarian Grand Prix	2002-08-18	693	https://en.wikipedia.org/wiki/2002_Hungarian_Grand_Prix	f	52	53
+694	14	Belgian Grand Prix	2002-09-01	694	https://en.wikipedia.org/wiki/2002_Belgian_Grand_Prix	f	5	53
+695	15	Italian Grand Prix	2002-09-15	695	https://en.wikipedia.org/wiki/2002_Italian_Grand_Prix	f	7	53
+696	16	United States Grand Prix	2002-09-29	696	https://en.wikipedia.org/wiki/2002_United_States_Grand_Prix	f	3	53
+697	17	Japanese Grand Prix	2002-10-13	697	https://en.wikipedia.org/wiki/2002_Japanese_Grand_Prix	f	53	53
+698	1	Australian Grand Prix	2003-03-09	698	https://en.wikipedia.org/wiki/2003_Australian_Grand_Prix	f	59	54
+699	2	Malaysian Grand Prix	2003-03-23	699	https://en.wikipedia.org/wiki/2003_Malaysian_Grand_Prix	f	60	54
+700	3	Brazilian Grand Prix	2003-04-06	700	https://en.wikipedia.org/wiki/2003_Brazilian_Grand_Prix	f	37	54
+701	4	San Marino Grand Prix	2003-04-20	701	https://en.wikipedia.org/wiki/2003_San_Marino_Grand_Prix	f	45	54
+702	5	Spanish Grand Prix	2003-05-04	702	https://en.wikipedia.org/wiki/2003_Spanish_Grand_Prix	f	56	54
+703	6	Austrian Grand Prix	2003-05-18	703	https://en.wikipedia.org/wiki/2003_Austrian_Grand_Prix	f	34	54
+704	7	Monaco Grand Prix	2003-06-01	704	https://en.wikipedia.org/wiki/2003_Monaco_Grand_Prix	f	2	54
+705	8	Canadian Grand Prix	2003-06-15	705	https://en.wikipedia.org/wiki/2003_Canadian_Grand_Prix	f	44	54
+706	9	European Grand Prix	2003-06-29	706	https://en.wikipedia.org/wiki/2003_European_Grand_Prix	f	8	54
+707	10	French Grand Prix	2003-07-06	707	https://en.wikipedia.org/wiki/2003_French_Grand_Prix	f	55	54
+708	11	British Grand Prix	2003-07-20	708	https://en.wikipedia.org/wiki/2003_British_Grand_Prix	f	1	54
+709	12	German Grand Prix	2003-08-03	709	https://en.wikipedia.org/wiki/2003_German_Grand_Prix	f	33	54
+710	13	Hungarian Grand Prix	2003-08-24	710	https://en.wikipedia.org/wiki/2003_Hungarian_Grand_Prix	f	52	54
+711	14	Italian Grand Prix	2003-09-14	711	https://en.wikipedia.org/wiki/2003_Italian_Grand_Prix	f	7	54
+712	15	United States Grand Prix	2003-09-28	712	https://en.wikipedia.org/wiki/2003_United_States_Grand_Prix	f	3	54
+713	16	Japanese Grand Prix	2003-10-12	713	https://en.wikipedia.org/wiki/2003_Japanese_Grand_Prix	f	53	54
+714	1	Australian Grand Prix	2004-03-07	714	https://en.wikipedia.org/wiki/2004_Australian_Grand_Prix	f	59	55
+715	2	Malaysian Grand Prix	2004-03-21	715	https://en.wikipedia.org/wiki/2004_Malaysian_Grand_Prix	f	60	55
+716	3	Bahrain Grand Prix	2004-04-04	716	https://en.wikipedia.org/wiki/2004_Bahrain_Grand_Prix	f	61	55
+717	4	San Marino Grand Prix	2004-04-25	717	https://en.wikipedia.org/wiki/2004_San_Marino_Grand_Prix	f	45	55
+718	5	Spanish Grand Prix	2004-05-09	718	https://en.wikipedia.org/wiki/2004_Spanish_Grand_Prix	f	56	55
+719	6	Monaco Grand Prix	2004-05-23	719	https://en.wikipedia.org/wiki/2004_Monaco_Grand_Prix	f	2	55
+720	7	European Grand Prix	2004-05-30	720	https://en.wikipedia.org/wiki/2004_European_Grand_Prix	f	8	55
+721	8	Canadian Grand Prix	2004-06-13	721	https://en.wikipedia.org/wiki/2004_Canadian_Grand_Prix	f	44	55
+722	9	United States Grand Prix	2004-06-20	722	https://en.wikipedia.org/wiki/2004_United_States_Grand_Prix	f	3	55
+723	10	French Grand Prix	2004-07-04	723	https://en.wikipedia.org/wiki/2004_French_Grand_Prix	f	55	55
+724	11	British Grand Prix	2004-07-11	724	https://en.wikipedia.org/wiki/2004_British_Grand_Prix	f	1	55
+725	12	German Grand Prix	2004-07-25	725	https://en.wikipedia.org/wiki/2004_German_Grand_Prix	f	33	55
+726	13	Hungarian Grand Prix	2004-08-15	726	https://en.wikipedia.org/wiki/2004_Hungarian_Grand_Prix	f	52	55
+727	14	Belgian Grand Prix	2004-08-29	727	https://en.wikipedia.org/wiki/2004_Belgian_Grand_Prix	f	5	55
+728	15	Italian Grand Prix	2004-09-12	728	https://en.wikipedia.org/wiki/2004_Italian_Grand_Prix	f	7	55
+729	16	Chinese Grand Prix	2004-09-26	729	https://en.wikipedia.org/wiki/2004_Chinese_Grand_Prix	f	62	55
+730	17	Japanese Grand Prix	2004-10-10	730	https://en.wikipedia.org/wiki/2004_Japanese_Grand_Prix	f	53	55
+731	18	Brazilian Grand Prix	2004-10-24	731	https://en.wikipedia.org/wiki/2004_Brazilian_Grand_Prix	f	37	55
+732	1	Australian Grand Prix	2005-03-06	732	https://en.wikipedia.org/wiki/2005_Australian_Grand_Prix	f	59	56
+733	2	Malaysian Grand Prix	2005-03-20	733	https://en.wikipedia.org/wiki/2005_Malaysian_Grand_Prix	f	60	56
+734	3	Bahrain Grand Prix	2005-04-03	734	https://en.wikipedia.org/wiki/2005_Bahrain_Grand_Prix	f	61	56
+735	4	San Marino Grand Prix	2005-04-24	735	https://en.wikipedia.org/wiki/2005_San_Marino_Grand_Prix	f	45	56
+736	5	Spanish Grand Prix	2005-05-08	736	https://en.wikipedia.org/wiki/2005_Spanish_Grand_Prix	f	56	56
+737	6	Monaco Grand Prix	2005-05-22	737	https://en.wikipedia.org/wiki/2005_Monaco_Grand_Prix	f	2	56
+738	7	European Grand Prix	2005-05-29	738	https://en.wikipedia.org/wiki/2005_European_Grand_Prix	f	8	56
+739	8	Canadian Grand Prix	2005-06-12	739	https://en.wikipedia.org/wiki/2005_Canadian_Grand_Prix	f	44	56
+740	9	United States Grand Prix	2005-06-19	740	https://en.wikipedia.org/wiki/2005_United_States_Grand_Prix	f	3	56
+741	10	French Grand Prix	2005-07-03	741	https://en.wikipedia.org/wiki/2005_French_Grand_Prix	f	55	56
+742	11	British Grand Prix	2005-07-10	742	https://en.wikipedia.org/wiki/2005_British_Grand_Prix	f	1	56
+743	12	German Grand Prix	2005-07-24	743	https://en.wikipedia.org/wiki/2005_German_Grand_Prix	f	33	56
+744	13	Hungarian Grand Prix	2005-07-31	744	https://en.wikipedia.org/wiki/2005_Hungarian_Grand_Prix	f	52	56
+745	14	Turkish Grand Prix	2005-08-21	745	https://en.wikipedia.org/wiki/2005_Turkish_Grand_Prix	f	63	56
+746	15	Italian Grand Prix	2005-09-04	746	https://en.wikipedia.org/wiki/2005_Italian_Grand_Prix	f	7	56
+747	16	Belgian Grand Prix	2005-09-11	747	https://en.wikipedia.org/wiki/2005_Belgian_Grand_Prix	f	5	56
+748	17	Brazilian Grand Prix	2005-09-25	748	https://en.wikipedia.org/wiki/2005_Brazilian_Grand_Prix	f	37	56
+749	18	Japanese Grand Prix	2005-10-09	749	https://en.wikipedia.org/wiki/2005_Japanese_Grand_Prix	f	53	56
+750	19	Chinese Grand Prix	2005-10-16	750	https://en.wikipedia.org/wiki/2005_Chinese_Grand_Prix	f	62	56
+751	1	Bahrain Grand Prix	2006-03-12	751	https://en.wikipedia.org/wiki/2006_Bahrain_Grand_Prix	f	61	57
+752	2	Malaysian Grand Prix	2006-03-19	752	https://en.wikipedia.org/wiki/2006_Malaysian_Grand_Prix	f	60	57
+753	3	Australian Grand Prix	2006-04-02	753	https://en.wikipedia.org/wiki/2006_Australian_Grand_Prix	f	59	57
+754	4	San Marino Grand Prix	2006-04-23	754	https://en.wikipedia.org/wiki/2006_San_Marino_Grand_Prix	f	45	57
+755	5	European Grand Prix	2006-05-07	755	https://en.wikipedia.org/wiki/2006_European_Grand_Prix	f	8	57
+756	6	Spanish Grand Prix	2006-05-14	756	https://en.wikipedia.org/wiki/2006_Spanish_Grand_Prix	f	56	57
+757	7	Monaco Grand Prix	2006-05-28	757	https://en.wikipedia.org/wiki/2006_Monaco_Grand_Prix	f	2	57
+758	8	British Grand Prix	2006-06-11	758	https://en.wikipedia.org/wiki/2006_British_Grand_Prix	f	1	57
+759	9	Canadian Grand Prix	2006-06-25	759	https://en.wikipedia.org/wiki/2006_Canadian_Grand_Prix	f	44	57
+760	10	United States Grand Prix	2006-07-02	760	https://en.wikipedia.org/wiki/2006_United_States_Grand_Prix	f	3	57
+761	11	French Grand Prix	2006-07-16	761	https://en.wikipedia.org/wiki/2006_French_Grand_Prix	f	55	57
+762	12	German Grand Prix	2006-07-30	762	https://en.wikipedia.org/wiki/2006_German_Grand_Prix	f	33	57
+763	13	Hungarian Grand Prix	2006-08-06	763	https://en.wikipedia.org/wiki/2006_Hungarian_Grand_Prix	f	52	57
+764	14	Turkish Grand Prix	2006-08-27	764	https://en.wikipedia.org/wiki/2006_Turkish_Grand_Prix	f	63	57
+765	15	Italian Grand Prix	2006-09-10	765	https://en.wikipedia.org/wiki/2006_Italian_Grand_Prix	f	7	57
+766	16	Chinese Grand Prix	2006-10-01	766	https://en.wikipedia.org/wiki/2006_Chinese_Grand_Prix	f	62	57
+767	17	Japanese Grand Prix	2006-10-08	767	https://en.wikipedia.org/wiki/2006_Japanese_Grand_Prix	f	53	57
+768	18	Brazilian Grand Prix	2006-10-22	768	https://en.wikipedia.org/wiki/2006_Brazilian_Grand_Prix	f	37	57
+769	1	Australian Grand Prix	2007-03-18	769	https://en.wikipedia.org/wiki/2007_Australian_Grand_Prix	f	59	58
+770	2	Malaysian Grand Prix	2007-04-08	770	https://en.wikipedia.org/wiki/2007_Malaysian_Grand_Prix	f	60	58
+771	3	Bahrain Grand Prix	2007-04-15	771	https://en.wikipedia.org/wiki/2007_Bahrain_Grand_Prix	f	61	58
+772	4	Spanish Grand Prix	2007-05-13	772	https://en.wikipedia.org/wiki/2007_Spanish_Grand_Prix	f	56	58
+773	5	Monaco Grand Prix	2007-05-27	773	https://en.wikipedia.org/wiki/2007_Monaco_Grand_Prix	f	2	58
+774	6	Canadian Grand Prix	2007-06-10	774	https://en.wikipedia.org/wiki/2007_Canadian_Grand_Prix	f	44	58
+775	7	United States Grand Prix	2007-06-17	775	https://en.wikipedia.org/wiki/2007_United_States_Grand_Prix	f	3	58
+776	8	French Grand Prix	2007-07-01	776	https://en.wikipedia.org/wiki/2007_French_Grand_Prix	f	55	58
+777	9	British Grand Prix	2007-07-08	777	https://en.wikipedia.org/wiki/2007_British_Grand_Prix	f	1	58
+778	10	European Grand Prix	2007-07-22	778	https://en.wikipedia.org/wiki/2007_European_Grand_Prix	f	8	58
+779	11	Hungarian Grand Prix	2007-08-05	779	https://en.wikipedia.org/wiki/2007_Hungarian_Grand_Prix	f	52	58
+780	12	Turkish Grand Prix	2007-08-26	780	https://en.wikipedia.org/wiki/2007_Turkish_Grand_Prix	f	63	58
+781	13	Italian Grand Prix	2007-09-09	781	https://en.wikipedia.org/wiki/2007_Italian_Grand_Prix	f	7	58
+782	14	Belgian Grand Prix	2007-09-16	782	https://en.wikipedia.org/wiki/2007_Belgian_Grand_Prix	f	5	58
+783	15	Japanese Grand Prix	2007-09-30	783	https://en.wikipedia.org/wiki/2007_Japanese_Grand_Prix	f	42	58
+784	16	Chinese Grand Prix	2007-10-07	784	https://en.wikipedia.org/wiki/2007_Chinese_Grand_Prix	f	62	58
+785	17	Brazilian Grand Prix	2007-10-21	785	https://en.wikipedia.org/wiki/2007_Brazilian_Grand_Prix	f	37	58
+786	1	Australian Grand Prix	2008-03-16	786	https://en.wikipedia.org/wiki/2008_Australian_Grand_Prix	f	59	59
+787	2	Malaysian Grand Prix	2008-03-23	787	https://en.wikipedia.org/wiki/2008_Malaysian_Grand_Prix	f	60	59
+788	3	Bahrain Grand Prix	2008-04-06	788	https://en.wikipedia.org/wiki/2008_Bahrain_Grand_Prix	f	61	59
+789	4	Spanish Grand Prix	2008-04-27	789	https://en.wikipedia.org/wiki/2008_Spanish_Grand_Prix	f	56	59
+790	5	Turkish Grand Prix	2008-05-11	790	https://en.wikipedia.org/wiki/2008_Turkish_Grand_Prix	f	63	59
+791	6	Monaco Grand Prix	2008-05-25	791	https://en.wikipedia.org/wiki/2008_Monaco_Grand_Prix	f	2	59
+792	7	Canadian Grand Prix	2008-06-08	792	https://en.wikipedia.org/wiki/2008_Canadian_Grand_Prix	f	44	59
+793	8	French Grand Prix	2008-06-22	793	https://en.wikipedia.org/wiki/2008_French_Grand_Prix	f	55	59
+794	9	British Grand Prix	2008-07-06	794	https://en.wikipedia.org/wiki/2008_British_Grand_Prix	f	1	59
+795	10	German Grand Prix	2008-07-20	795	https://en.wikipedia.org/wiki/2008_German_Grand_Prix	f	33	59
+796	11	Hungarian Grand Prix	2008-08-03	796	https://en.wikipedia.org/wiki/2008_Hungarian_Grand_Prix	f	52	59
+797	12	European Grand Prix	2008-08-24	797	https://en.wikipedia.org/wiki/2008_European_Grand_Prix	f	64	59
+798	13	Belgian Grand Prix	2008-09-07	798	https://en.wikipedia.org/wiki/2008_Belgian_Grand_Prix	f	5	59
+799	14	Italian Grand Prix	2008-09-14	799	https://en.wikipedia.org/wiki/2008_Italian_Grand_Prix	f	7	59
+800	15	Singapore Grand Prix	2008-09-28	800	https://en.wikipedia.org/wiki/2008_Singapore_Grand_Prix	f	65	59
+801	16	Japanese Grand Prix	2008-10-12	801	https://en.wikipedia.org/wiki/2008_Japanese_Grand_Prix	f	42	59
+802	17	Chinese Grand Prix	2008-10-19	802	https://en.wikipedia.org/wiki/2008_Chinese_Grand_Prix	f	62	59
+803	18	Brazilian Grand Prix	2008-11-02	803	https://en.wikipedia.org/wiki/2008_Brazilian_Grand_Prix	f	37	59
+804	1	Australian Grand Prix	2009-03-29	804	https://en.wikipedia.org/wiki/2009_Australian_Grand_Prix	f	59	60
+805	2	Malaysian Grand Prix	2009-04-05	805	https://en.wikipedia.org/wiki/2009_Malaysian_Grand_Prix	f	60	60
+806	3	Chinese Grand Prix	2009-04-19	806	https://en.wikipedia.org/wiki/2009_Chinese_Grand_Prix	f	62	60
+807	4	Bahrain Grand Prix	2009-04-26	807	https://en.wikipedia.org/wiki/2009_Bahrain_Grand_Prix	f	61	60
+808	5	Spanish Grand Prix	2009-05-10	808	https://en.wikipedia.org/wiki/2009_Spanish_Grand_Prix	f	56	60
+809	6	Monaco Grand Prix	2009-05-24	809	https://en.wikipedia.org/wiki/2009_Monaco_Grand_Prix	f	2	60
+810	7	Turkish Grand Prix	2009-06-07	810	https://en.wikipedia.org/wiki/2009_Turkish_Grand_Prix	f	63	60
+811	8	British Grand Prix	2009-06-21	811	https://en.wikipedia.org/wiki/2009_British_Grand_Prix	f	1	60
+812	9	German Grand Prix	2009-07-12	812	https://en.wikipedia.org/wiki/2009_German_Grand_Prix	f	8	60
+813	10	Hungarian Grand Prix	2009-07-26	813	https://en.wikipedia.org/wiki/2009_Hungarian_Grand_Prix	f	52	60
+814	11	European Grand Prix	2009-08-23	814	https://en.wikipedia.org/wiki/2009_European_Grand_Prix	f	64	60
+815	12	Belgian Grand Prix	2009-08-30	815	https://en.wikipedia.org/wiki/2009_Belgian_Grand_Prix	f	5	60
+816	13	Italian Grand Prix	2009-09-13	816	https://en.wikipedia.org/wiki/2009_Italian_Grand_Prix	f	7	60
+817	14	Singapore Grand Prix	2009-09-27	817	https://en.wikipedia.org/wiki/2009_Singapore_Grand_Prix	f	65	60
+818	15	Japanese Grand Prix	2009-10-04	818	https://en.wikipedia.org/wiki/2009_Japanese_Grand_Prix	f	53	60
+819	16	Brazilian Grand Prix	2009-10-18	819	https://en.wikipedia.org/wiki/2009_Brazilian_Grand_Prix	f	37	60
+820	17	Abu Dhabi Grand Prix	2009-11-01	820	https://en.wikipedia.org/wiki/2009_Abu_Dhabi_Grand_Prix	f	66	60
+821	1	Bahrain Grand Prix	2010-03-14	821	https://en.wikipedia.org/wiki/2010_Bahrain_Grand_Prix	f	61	61
+822	2	Australian Grand Prix	2010-03-28	822	https://en.wikipedia.org/wiki/2010_Australian_Grand_Prix	f	59	61
+823	3	Malaysian Grand Prix	2010-04-04	823	https://en.wikipedia.org/wiki/2010_Malaysian_Grand_Prix	f	60	61
+824	4	Chinese Grand Prix	2010-04-18	824	https://en.wikipedia.org/wiki/2010_Chinese_Grand_Prix	f	62	61
+825	5	Spanish Grand Prix	2010-05-09	825	https://en.wikipedia.org/wiki/2010_Spanish_Grand_Prix	f	56	61
+826	6	Monaco Grand Prix	2010-05-16	826	https://en.wikipedia.org/wiki/2010_Monaco_Grand_Prix	f	2	61
+827	7	Turkish Grand Prix	2010-05-30	827	https://en.wikipedia.org/wiki/2010_Turkish_Grand_Prix	f	63	61
+828	8	Canadian Grand Prix	2010-06-13	828	https://en.wikipedia.org/wiki/2010_Canadian_Grand_Prix	f	44	61
+829	9	European Grand Prix	2010-06-27	829	https://en.wikipedia.org/wiki/2010_European_Grand_Prix	f	64	61
+830	10	British Grand Prix	2010-07-11	830	https://en.wikipedia.org/wiki/2010_British_Grand_Prix	f	1	61
+831	11	German Grand Prix	2010-07-25	831	https://en.wikipedia.org/wiki/2010_German_Grand_Prix	f	33	61
+832	12	Hungarian Grand Prix	2010-08-01	832	https://en.wikipedia.org/wiki/2010_Hungarian_Grand_Prix	f	52	61
+833	13	Belgian Grand Prix	2010-08-29	833	https://en.wikipedia.org/wiki/2010_Belgian_Grand_Prix	f	5	61
+834	14	Italian Grand Prix	2010-09-12	834	https://en.wikipedia.org/wiki/2010_Italian_Grand_Prix	f	7	61
+835	15	Singapore Grand Prix	2010-09-26	835	https://en.wikipedia.org/wiki/2010_Singapore_Grand_Prix	f	65	61
+836	16	Japanese Grand Prix	2010-10-10	836	https://en.wikipedia.org/wiki/2010_Japanese_Grand_Prix	f	53	61
+837	17	Korean Grand Prix	2010-10-24	837	https://en.wikipedia.org/wiki/2010_Korean_Grand_Prix	f	67	61
+838	18	Brazilian Grand Prix	2010-11-07	838	https://en.wikipedia.org/wiki/2010_Brazilian_Grand_Prix	f	37	61
+839	19	Abu Dhabi Grand Prix	2010-11-14	839	https://en.wikipedia.org/wiki/2010_Abu_Dhabi_Grand_Prix	f	66	61
+840	1	Australian Grand Prix	2011-03-27	840	https://en.wikipedia.org/wiki/2011_Australian_Grand_Prix	f	59	62
+841	2	Malaysian Grand Prix	2011-04-10	841	https://en.wikipedia.org/wiki/2011_Malaysian_Grand_Prix	f	60	62
+842	3	Chinese Grand Prix	2011-04-17	842	https://en.wikipedia.org/wiki/2011_Chinese_Grand_Prix	f	62	62
+843	4	Turkish Grand Prix	2011-05-08	843	https://en.wikipedia.org/wiki/2011_Turkish_Grand_Prix	f	63	62
+844	5	Spanish Grand Prix	2011-05-22	844	https://en.wikipedia.org/wiki/2011_Spanish_Grand_Prix	f	56	62
+845	6	Monaco Grand Prix	2011-05-29	845	https://en.wikipedia.org/wiki/2011_Monaco_Grand_Prix	f	2	62
+846	7	Canadian Grand Prix	2011-06-12	846	https://en.wikipedia.org/wiki/2011_Canadian_Grand_Prix	f	44	62
+847	8	European Grand Prix	2011-06-26	847	https://en.wikipedia.org/wiki/2011_European_Grand_Prix	f	64	62
+848	9	British Grand Prix	2011-07-10	848	https://en.wikipedia.org/wiki/2011_British_Grand_Prix	f	1	62
+849	10	German Grand Prix	2011-07-24	849	https://en.wikipedia.org/wiki/2011_German_Grand_Prix	f	8	62
+850	11	Hungarian Grand Prix	2011-07-31	850	https://en.wikipedia.org/wiki/2011_Hungarian_Grand_Prix	f	52	62
+851	12	Belgian Grand Prix	2011-08-28	851	https://en.wikipedia.org/wiki/2011_Belgian_Grand_Prix	f	5	62
+852	13	Italian Grand Prix	2011-09-11	852	https://en.wikipedia.org/wiki/2011_Italian_Grand_Prix	f	7	62
+853	14	Singapore Grand Prix	2011-09-25	853	https://en.wikipedia.org/wiki/2011_Singapore_Grand_Prix	f	65	62
+854	15	Japanese Grand Prix	2011-10-09	854	https://en.wikipedia.org/wiki/2011_Japanese_Grand_Prix	f	53	62
+855	16	Korean Grand Prix	2011-10-16	855	https://en.wikipedia.org/wiki/2011_Korean_Grand_Prix	f	67	62
+856	17	Indian Grand Prix	2011-10-30	856	https://en.wikipedia.org/wiki/2011_Indian_Grand_Prix	f	68	62
+857	18	Abu Dhabi Grand Prix	2011-11-13	857	https://en.wikipedia.org/wiki/2011_Abu_Dhabi_Grand_Prix	f	66	62
+858	19	Brazilian Grand Prix	2011-11-27	858	https://en.wikipedia.org/wiki/2011_Brazilian_Grand_Prix	f	37	62
+859	1	Australian Grand Prix	2012-03-18	859	https://en.wikipedia.org/wiki/2012_Australian_Grand_Prix	f	59	63
+860	2	Malaysian Grand Prix	2012-03-25	860	https://en.wikipedia.org/wiki/2012_Malaysian_Grand_Prix	f	60	63
+861	3	Chinese Grand Prix	2012-04-15	861	https://en.wikipedia.org/wiki/2012_Chinese_Grand_Prix	f	62	63
+862	4	Bahrain Grand Prix	2012-04-22	862	https://en.wikipedia.org/wiki/2012_Bahrain_Grand_Prix	f	61	63
+863	5	Spanish Grand Prix	2012-05-13	863	https://en.wikipedia.org/wiki/2012_Spanish_Grand_Prix	f	56	63
+864	6	Monaco Grand Prix	2012-05-27	864	https://en.wikipedia.org/wiki/2012_Monaco_Grand_Prix	f	2	63
+865	7	Canadian Grand Prix	2012-06-10	865	https://en.wikipedia.org/wiki/2012_Canadian_Grand_Prix	f	44	63
+866	8	European Grand Prix	2012-06-24	866	https://en.wikipedia.org/wiki/2012_European_Grand_Prix	f	64	63
+867	9	British Grand Prix	2012-07-08	867	https://en.wikipedia.org/wiki/2012_British_Grand_Prix	f	1	63
+868	10	German Grand Prix	2012-07-22	868	https://en.wikipedia.org/wiki/2012_German_Grand_Prix	f	33	63
+869	11	Hungarian Grand Prix	2012-07-29	869	https://en.wikipedia.org/wiki/2012_Hungarian_Grand_Prix	f	52	63
+870	12	Belgian Grand Prix	2012-09-02	870	https://en.wikipedia.org/wiki/2012_Belgian_Grand_Prix	f	5	63
+871	13	Italian Grand Prix	2012-09-09	871	https://en.wikipedia.org/wiki/2012_Italian_Grand_Prix	f	7	63
+872	14	Singapore Grand Prix	2012-09-23	872	https://en.wikipedia.org/wiki/2012_Singapore_Grand_Prix	f	65	63
+873	15	Japanese Grand Prix	2012-10-07	873	https://en.wikipedia.org/wiki/2012_Japanese_Grand_Prix	f	53	63
+874	16	Korean Grand Prix	2012-10-14	874	https://en.wikipedia.org/wiki/2012_Korean_Grand_Prix	f	67	63
+875	17	Indian Grand Prix	2012-10-28	875	https://en.wikipedia.org/wiki/2012_Indian_Grand_Prix	f	68	63
+876	18	Abu Dhabi Grand Prix	2012-11-04	876	https://en.wikipedia.org/wiki/2012_Abu_Dhabi_Grand_Prix	f	66	63
+877	19	United States Grand Prix	2012-11-18	877	https://en.wikipedia.org/wiki/2012_United_States_Grand_Prix	f	69	63
+878	20	Brazilian Grand Prix	2012-11-25	878	https://en.wikipedia.org/wiki/2012_Brazilian_Grand_Prix	f	37	63
+879	1	Australian Grand Prix	2013-03-17	879	https://en.wikipedia.org/wiki/2013_Australian_Grand_Prix	f	59	64
+880	2	Malaysian Grand Prix	2013-03-24	880	https://en.wikipedia.org/wiki/2013_Malaysian_Grand_Prix	f	60	64
+881	3	Chinese Grand Prix	2013-04-14	881	https://en.wikipedia.org/wiki/2013_Chinese_Grand_Prix	f	62	64
+882	4	Bahrain Grand Prix	2013-04-21	882	https://en.wikipedia.org/wiki/2013_Bahrain_Grand_Prix	f	61	64
+883	5	Spanish Grand Prix	2013-05-12	883	https://en.wikipedia.org/wiki/2013_Spanish_Grand_Prix	f	56	64
+884	6	Monaco Grand Prix	2013-05-26	884	https://en.wikipedia.org/wiki/2013_Monaco_Grand_Prix	f	2	64
+885	7	Canadian Grand Prix	2013-06-09	885	https://en.wikipedia.org/wiki/2013_Canadian_Grand_Prix	f	44	64
+886	8	British Grand Prix	2013-06-30	886	https://en.wikipedia.org/wiki/2013_British_Grand_Prix	f	1	64
+887	9	German Grand Prix	2013-07-07	887	https://en.wikipedia.org/wiki/2013_German_Grand_Prix	f	8	64
+888	10	Hungarian Grand Prix	2013-07-28	888	https://en.wikipedia.org/wiki/2013_Hungarian_Grand_Prix	f	52	64
+889	11	Belgian Grand Prix	2013-08-25	889	https://en.wikipedia.org/wiki/2013_Belgian_Grand_Prix	f	5	64
+890	12	Italian Grand Prix	2013-09-08	890	https://en.wikipedia.org/wiki/2013_Italian_Grand_Prix	f	7	64
+891	13	Singapore Grand Prix	2013-09-22	891	https://en.wikipedia.org/wiki/2013_Singapore_Grand_Prix	f	65	64
+892	14	Korean Grand Prix	2013-10-06	892	https://en.wikipedia.org/wiki/2013_Korean_Grand_Prix	f	67	64
+893	15	Japanese Grand Prix	2013-10-13	893	https://en.wikipedia.org/wiki/2013_Japanese_Grand_Prix	f	53	64
+894	16	Indian Grand Prix	2013-10-27	894	https://en.wikipedia.org/wiki/2013_Indian_Grand_Prix	f	68	64
+895	17	Abu Dhabi Grand Prix	2013-11-03	895	https://en.wikipedia.org/wiki/2013_Abu_Dhabi_Grand_Prix	f	66	64
+896	18	United States Grand Prix	2013-11-17	896	https://en.wikipedia.org/wiki/2013_United_States_Grand_Prix	f	69	64
+897	19	Brazilian Grand Prix	2013-11-24	897	https://en.wikipedia.org/wiki/2013_Brazilian_Grand_Prix	f	37	64
+898	1	Australian Grand Prix	2014-03-16	898	https://en.wikipedia.org/wiki/2014_Australian_Grand_Prix	f	59	65
+899	2	Malaysian Grand Prix	2014-03-30	899	https://en.wikipedia.org/wiki/2014_Malaysian_Grand_Prix	f	60	65
+900	3	Bahrain Grand Prix	2014-04-06	900	https://en.wikipedia.org/wiki/2014_Bahrain_Grand_Prix	f	61	65
+901	4	Chinese Grand Prix	2014-04-20	901	https://en.wikipedia.org/wiki/2014_Chinese_Grand_Prix	f	62	65
+902	5	Spanish Grand Prix	2014-05-11	902	https://en.wikipedia.org/wiki/2014_Spanish_Grand_Prix	f	56	65
+903	6	Monaco Grand Prix	2014-05-25	903	https://en.wikipedia.org/wiki/2014_Monaco_Grand_Prix	f	2	65
+904	7	Canadian Grand Prix	2014-06-08	904	https://en.wikipedia.org/wiki/2014_Canadian_Grand_Prix	f	44	65
+905	8	Austrian Grand Prix	2014-06-22	905	https://en.wikipedia.org/wiki/2014_Austrian_Grand_Prix	f	34	65
+906	9	British Grand Prix	2014-07-06	906	https://en.wikipedia.org/wiki/2014_British_Grand_Prix	f	1	65
+907	10	German Grand Prix	2014-07-20	907	https://en.wikipedia.org/wiki/2014_German_Grand_Prix	f	33	65
+908	11	Hungarian Grand Prix	2014-07-27	908	https://en.wikipedia.org/wiki/2014_Hungarian_Grand_Prix	f	52	65
+909	12	Belgian Grand Prix	2014-08-24	909	https://en.wikipedia.org/wiki/2014_Belgian_Grand_Prix	f	5	65
+910	13	Italian Grand Prix	2014-09-07	910	https://en.wikipedia.org/wiki/2014_Italian_Grand_Prix	f	7	65
+911	14	Singapore Grand Prix	2014-09-21	911	https://en.wikipedia.org/wiki/2014_Singapore_Grand_Prix	f	65	65
+912	15	Japanese Grand Prix	2014-10-05	912	https://en.wikipedia.org/wiki/2014_Japanese_Grand_Prix	f	53	65
+913	16	Russian Grand Prix	2014-10-12	913	https://en.wikipedia.org/wiki/2014_Russian_Grand_Prix	f	70	65
+914	17	United States Grand Prix	2014-11-02	914	https://en.wikipedia.org/wiki/2014_United_States_Grand_Prix	f	69	65
+915	18	Brazilian Grand Prix	2014-11-09	915	https://en.wikipedia.org/wiki/2014_Brazilian_Grand_Prix	f	37	65
+916	19	Abu Dhabi Grand Prix	2014-11-23	916	https://en.wikipedia.org/wiki/2014_Abu_Dhabi_Grand_Prix	f	66	65
+917	1	Australian Grand Prix	2015-03-15	917	https://en.wikipedia.org/wiki/2015_Australian_Grand_Prix	f	59	66
+918	2	Malaysian Grand Prix	2015-03-29	918	https://en.wikipedia.org/wiki/2015_Malaysian_Grand_Prix	f	60	66
+919	3	Chinese Grand Prix	2015-04-12	919	https://en.wikipedia.org/wiki/2015_Chinese_Grand_Prix	f	62	66
+920	4	Bahrain Grand Prix	2015-04-19	920	https://en.wikipedia.org/wiki/2015_Bahrain_Grand_Prix	f	61	66
+921	5	Spanish Grand Prix	2015-05-10	921	https://en.wikipedia.org/wiki/2015_Spanish_Grand_Prix	f	56	66
+922	6	Monaco Grand Prix	2015-05-24	922	https://en.wikipedia.org/wiki/2015_Monaco_Grand_Prix	f	2	66
+923	7	Canadian Grand Prix	2015-06-07	923	https://en.wikipedia.org/wiki/2015_Canadian_Grand_Prix	f	44	66
+924	8	Austrian Grand Prix	2015-06-21	924	https://en.wikipedia.org/wiki/2015_Austrian_Grand_Prix	f	34	66
+925	9	British Grand Prix	2015-07-05	925	https://en.wikipedia.org/wiki/2015_British_Grand_Prix	f	1	66
+926	10	Hungarian Grand Prix	2015-07-26	926	https://en.wikipedia.org/wiki/2015_Hungarian_Grand_Prix	f	52	66
+927	11	Belgian Grand Prix	2015-08-23	927	https://en.wikipedia.org/wiki/2015_Belgian_Grand_Prix	f	5	66
+928	12	Italian Grand Prix	2015-09-06	928	https://en.wikipedia.org/wiki/2015_Italian_Grand_Prix	f	7	66
+929	13	Singapore Grand Prix	2015-09-20	929	https://en.wikipedia.org/wiki/2015_Singapore_Grand_Prix	f	65	66
+930	14	Japanese Grand Prix	2015-09-27	930	https://en.wikipedia.org/wiki/2015_Japanese_Grand_Prix	f	53	66
+931	15	Russian Grand Prix	2015-10-11	931	https://en.wikipedia.org/wiki/2015_Russian_Grand_Prix	f	70	66
+932	16	United States Grand Prix	2015-10-25	932	https://en.wikipedia.org/wiki/2015_United_States_Grand_Prix	f	69	66
+933	17	Mexican Grand Prix	2015-11-01	933	https://en.wikipedia.org/wiki/2015_Mexican_Grand_Prix	f	23	66
+934	18	Brazilian Grand Prix	2015-11-15	934	https://en.wikipedia.org/wiki/2015_Brazilian_Grand_Prix	f	37	66
+935	19	Abu Dhabi Grand Prix	2015-11-29	935	https://en.wikipedia.org/wiki/2015_Abu_Dhabi_Grand_Prix	f	66	66
+936	1	Australian Grand Prix	2016-03-20	936	https://en.wikipedia.org/wiki/2016_Australian_Grand_Prix	f	59	67
+937	2	Bahrain Grand Prix	2016-04-03	937	https://en.wikipedia.org/wiki/2016_Bahrain_Grand_Prix	f	61	67
+938	3	Chinese Grand Prix	2016-04-17	938	https://en.wikipedia.org/wiki/2016_Chinese_Grand_Prix	f	62	67
+939	4	Russian Grand Prix	2016-05-01	939	https://en.wikipedia.org/wiki/2016_Russian_Grand_Prix	f	70	67
+940	5	Spanish Grand Prix	2016-05-15	940	https://en.wikipedia.org/wiki/2016_Spanish_Grand_Prix	f	56	67
+941	6	Monaco Grand Prix	2016-05-29	941	https://en.wikipedia.org/wiki/2016_Monaco_Grand_Prix	f	2	67
+942	7	Canadian Grand Prix	2016-06-12	942	https://en.wikipedia.org/wiki/2016_Canadian_Grand_Prix	f	44	67
+943	8	European Grand Prix	2016-06-19	943	https://en.wikipedia.org/wiki/2016_European_Grand_Prix	f	71	67
+944	9	Austrian Grand Prix	2016-07-03	944	https://en.wikipedia.org/wiki/2016_Austrian_Grand_Prix	f	34	67
+945	10	British Grand Prix	2016-07-10	945	https://en.wikipedia.org/wiki/2016_British_Grand_Prix	f	1	67
+946	11	Hungarian Grand Prix	2016-07-24	946	https://en.wikipedia.org/wiki/2016_Hungarian_Grand_Prix	f	52	67
+947	12	German Grand Prix	2016-07-31	947	https://en.wikipedia.org/wiki/2016_German_Grand_Prix	f	33	67
+948	13	Belgian Grand Prix	2016-08-28	948	https://en.wikipedia.org/wiki/2016_Belgian_Grand_Prix	f	5	67
+949	14	Italian Grand Prix	2016-09-04	949	https://en.wikipedia.org/wiki/2016_Italian_Grand_Prix	f	7	67
+950	15	Singapore Grand Prix	2016-09-18	950	https://en.wikipedia.org/wiki/2016_Singapore_Grand_Prix	f	65	67
+951	16	Malaysian Grand Prix	2016-10-02	951	https://en.wikipedia.org/wiki/2016_Malaysian_Grand_Prix	f	60	67
+952	17	Japanese Grand Prix	2016-10-09	952	https://en.wikipedia.org/wiki/2016_Japanese_Grand_Prix	f	53	67
+953	18	United States Grand Prix	2016-10-23	953	https://en.wikipedia.org/wiki/2016_United_States_Grand_Prix	f	69	67
+954	19	Mexican Grand Prix	2016-10-30	954	https://en.wikipedia.org/wiki/2016_Mexican_Grand_Prix	f	23	67
+955	20	Brazilian Grand Prix	2016-11-13	955	https://en.wikipedia.org/wiki/2016_Brazilian_Grand_Prix	f	37	67
+956	21	Abu Dhabi Grand Prix	2016-11-27	956	https://en.wikipedia.org/wiki/2016_Abu_Dhabi_Grand_Prix	f	66	67
+957	1	Australian Grand Prix	2017-03-26	957	https://en.wikipedia.org/wiki/2017_Australian_Grand_Prix	f	59	68
+958	2	Chinese Grand Prix	2017-04-09	958	https://en.wikipedia.org/wiki/2017_Chinese_Grand_Prix	f	62	68
+959	3	Bahrain Grand Prix	2017-04-16	959	https://en.wikipedia.org/wiki/2017_Bahrain_Grand_Prix	f	61	68
+960	4	Russian Grand Prix	2017-04-30	960	https://en.wikipedia.org/wiki/2017_Russian_Grand_Prix	f	70	68
+961	5	Spanish Grand Prix	2017-05-14	961	https://en.wikipedia.org/wiki/2017_Spanish_Grand_Prix	f	56	68
+962	6	Monaco Grand Prix	2017-05-28	962	https://en.wikipedia.org/wiki/2017_Monaco_Grand_Prix	f	2	68
+963	7	Canadian Grand Prix	2017-06-11	963	https://en.wikipedia.org/wiki/2017_Canadian_Grand_Prix	f	44	68
+964	8	Azerbaijan Grand Prix	2017-06-25	964	https://en.wikipedia.org/wiki/2017_Azerbaijan_Grand_Prix	f	71	68
+965	9	Austrian Grand Prix	2017-07-09	965	https://en.wikipedia.org/wiki/2017_Austrian_Grand_Prix	f	34	68
+966	10	British Grand Prix	2017-07-16	966	https://en.wikipedia.org/wiki/2017_British_Grand_Prix	f	1	68
+967	11	Hungarian Grand Prix	2017-07-30	967	https://en.wikipedia.org/wiki/2017_Hungarian_Grand_Prix	f	52	68
+968	12	Belgian Grand Prix	2017-08-27	968	https://en.wikipedia.org/wiki/2017_Belgian_Grand_Prix	f	5	68
+969	13	Italian Grand Prix	2017-09-03	969	https://en.wikipedia.org/wiki/2017_Italian_Grand_Prix	f	7	68
+970	14	Singapore Grand Prix	2017-09-17	970	https://en.wikipedia.org/wiki/2017_Singapore_Grand_Prix	f	65	68
+971	15	Malaysian Grand Prix	2017-10-01	971	https://en.wikipedia.org/wiki/2017_Malaysian_Grand_Prix	f	60	68
+972	16	Japanese Grand Prix	2017-10-08	972	https://en.wikipedia.org/wiki/2017_Japanese_Grand_Prix	f	53	68
+973	17	United States Grand Prix	2017-10-22	973	https://en.wikipedia.org/wiki/2017_United_States_Grand_Prix	f	69	68
+974	18	Mexican Grand Prix	2017-10-29	974	https://en.wikipedia.org/wiki/2017_Mexican_Grand_Prix	f	23	68
+975	19	Brazilian Grand Prix	2017-11-12	975	https://en.wikipedia.org/wiki/2017_Brazilian_Grand_Prix	f	37	68
+976	20	Abu Dhabi Grand Prix	2017-11-26	976	https://en.wikipedia.org/wiki/2017_Abu_Dhabi_Grand_Prix	f	66	68
+977	1	Australian Grand Prix	2018-03-25	977	https://en.wikipedia.org/wiki/2018_Australian_Grand_Prix	f	59	69
+978	2	Bahrain Grand Prix	2018-04-08	978	https://en.wikipedia.org/wiki/2018_Bahrain_Grand_Prix	f	61	69
+979	3	Chinese Grand Prix	2018-04-15	979	https://en.wikipedia.org/wiki/2018_Chinese_Grand_Prix	f	62	69
+980	4	Azerbaijan Grand Prix	2018-04-29	980	https://en.wikipedia.org/wiki/2018_Azerbaijan_Grand_Prix	f	71	69
+981	5	Spanish Grand Prix	2018-05-13	981	https://en.wikipedia.org/wiki/2018_Spanish_Grand_Prix	f	56	69
+982	6	Monaco Grand Prix	2018-05-27	982	https://en.wikipedia.org/wiki/2018_Monaco_Grand_Prix	f	2	69
+983	7	Canadian Grand Prix	2018-06-10	983	https://en.wikipedia.org/wiki/2018_Canadian_Grand_Prix	f	44	69
+984	8	French Grand Prix	2018-06-24	984	https://en.wikipedia.org/wiki/2018_French_Grand_Prix	f	35	69
+985	9	Austrian Grand Prix	2018-07-01	985	https://en.wikipedia.org/wiki/2018_Austrian_Grand_Prix	f	34	69
+986	10	British Grand Prix	2018-07-08	986	https://en.wikipedia.org/wiki/2018_British_Grand_Prix	f	1	69
+987	11	German Grand Prix	2018-07-22	987	https://en.wikipedia.org/wiki/2018_German_Grand_Prix	f	33	69
+988	12	Hungarian Grand Prix	2018-07-29	988	https://en.wikipedia.org/wiki/2018_Hungarian_Grand_Prix	f	52	69
+989	13	Belgian Grand Prix	2018-08-26	989	https://en.wikipedia.org/wiki/2018_Belgian_Grand_Prix	f	5	69
+990	14	Italian Grand Prix	2018-09-02	990	https://en.wikipedia.org/wiki/2018_Italian_Grand_Prix	f	7	69
+991	15	Singapore Grand Prix	2018-09-16	991	https://en.wikipedia.org/wiki/2018_Singapore_Grand_Prix	f	65	69
+992	16	Russian Grand Prix	2018-09-30	992	https://en.wikipedia.org/wiki/2018_Russian_Grand_Prix	f	70	69
+993	17	Japanese Grand Prix	2018-10-07	993	https://en.wikipedia.org/wiki/2018_Japanese_Grand_Prix	f	53	69
+994	18	United States Grand Prix	2018-10-21	994	https://en.wikipedia.org/wiki/2018_United_States_Grand_Prix	f	69	69
+995	19	Mexican Grand Prix	2018-10-28	995	https://en.wikipedia.org/wiki/2018_Mexican_Grand_Prix	f	23	69
+996	20	Brazilian Grand Prix	2018-11-11	996	https://en.wikipedia.org/wiki/2018_Brazilian_Grand_Prix	f	37	69
+997	21	Abu Dhabi Grand Prix	2018-11-25	997	https://en.wikipedia.org/wiki/2018_Abu_Dhabi_Grand_Prix	f	66	69
+998	1	Australian Grand Prix	2019-03-17	998	https://en.wikipedia.org/wiki/2019_Australian_Grand_Prix	f	59	70
+999	2	Bahrain Grand Prix	2019-03-31	999	https://en.wikipedia.org/wiki/2019_Bahrain_Grand_Prix	f	61	70
+1000	3	Chinese Grand Prix	2019-04-14	1000	https://en.wikipedia.org/wiki/2019_Chinese_Grand_Prix	f	62	70
+1001	4	Azerbaijan Grand Prix	2019-04-28	1001	https://en.wikipedia.org/wiki/2019_Azerbaijan_Grand_Prix	f	71	70
+1002	5	Spanish Grand Prix	2019-05-12	1002	https://en.wikipedia.org/wiki/2019_Spanish_Grand_Prix	f	56	70
+1003	6	Monaco Grand Prix	2019-05-26	1003	https://en.wikipedia.org/wiki/2019_Monaco_Grand_Prix	f	2	70
+1004	7	Canadian Grand Prix	2019-06-09	1004	https://en.wikipedia.org/wiki/2019_Canadian_Grand_Prix	f	44	70
+1005	8	French Grand Prix	2019-06-23	1005	https://en.wikipedia.org/wiki/2019_French_Grand_Prix	f	35	70
+1006	9	Austrian Grand Prix	2019-06-30	1006	https://en.wikipedia.org/wiki/2019_Austrian_Grand_Prix	f	34	70
+1007	10	British Grand Prix	2019-07-14	1007	https://en.wikipedia.org/wiki/2019_British_Grand_Prix	f	1	70
+1008	11	German Grand Prix	2019-07-28	1008	https://en.wikipedia.org/wiki/2019_German_Grand_Prix	f	33	70
+1009	12	Hungarian Grand Prix	2019-08-04	1009	https://en.wikipedia.org/wiki/2019_Hungarian_Grand_Prix	f	52	70
+1010	13	Belgian Grand Prix	2019-09-01	1010	https://en.wikipedia.org/wiki/2019_Belgian_Grand_Prix	f	5	70
+1011	14	Italian Grand Prix	2019-09-08	1011	https://en.wikipedia.org/wiki/2019_Italian_Grand_Prix	f	7	70
+1012	15	Singapore Grand Prix	2019-09-22	1012	https://en.wikipedia.org/wiki/2019_Singapore_Grand_Prix	f	65	70
+1013	16	Russian Grand Prix	2019-09-29	1013	https://en.wikipedia.org/wiki/2019_Russian_Grand_Prix	f	70	70
+1014	17	Japanese Grand Prix	2019-10-13	1014	https://en.wikipedia.org/wiki/2019_Japanese_Grand_Prix	f	53	70
+1015	18	Mexican Grand Prix	2019-10-27	1015	https://en.wikipedia.org/wiki/2019_Mexican_Grand_Prix	f	23	70
+1016	19	United States Grand Prix	2019-11-03	1016	https://en.wikipedia.org/wiki/2019_United_States_Grand_Prix	f	69	70
+1017	20	Brazilian Grand Prix	2019-11-17	1017	https://en.wikipedia.org/wiki/2019_Brazilian_Grand_Prix	f	37	70
+1018	21	Abu Dhabi Grand Prix	2019-12-01	1018	https://en.wikipedia.org/wiki/2019_Abu_Dhabi_Grand_Prix	f	66	70
+1019	1	Austrian Grand Prix	2020-07-05	1019	https://en.wikipedia.org/wiki/2020_Austrian_Grand_Prix	f	34	71
+1020	2	Styrian Grand Prix	2020-07-12	1020	https://en.wikipedia.org/wiki/2020_Styrian_Grand_Prix	f	34	71
+1021	3	Hungarian Grand Prix	2020-07-19	1021	https://en.wikipedia.org/wiki/2020_Hungarian_Grand_Prix	f	52	71
+1022	4	British Grand Prix	2020-08-02	1022	https://en.wikipedia.org/wiki/2020_British_Grand_Prix	f	1	71
+1023	5	70th Anniversary Grand Prix	2020-08-09	1023	https://en.wikipedia.org/wiki/70th_Anniversary_Grand_Prix	f	1	71
+1024	6	Spanish Grand Prix	2020-08-16	1024	https://en.wikipedia.org/wiki/2020_Spanish_Grand_Prix	f	56	71
+1025	7	Belgian Grand Prix	2020-08-30	1025	https://en.wikipedia.org/wiki/2020_Belgian_Grand_Prix	f	5	71
+1026	8	Italian Grand Prix	2020-09-06	1026	https://en.wikipedia.org/wiki/2020_Italian_Grand_Prix	f	7	71
+1027	9	Tuscan Grand Prix	2020-09-13	1027	https://en.wikipedia.org/wiki/2020_Tuscan_Grand_Prix	f	72	71
+1028	10	Russian Grand Prix	2020-09-27	1028	https://en.wikipedia.org/wiki/2020_Russian_Grand_Prix	f	70	71
+1029	11	Eifel Grand Prix	2020-10-11	1029	https://en.wikipedia.org/wiki/2020_Eifel_Grand_Prix	f	8	71
+1030	12	Portuguese Grand Prix	2020-10-25	1030	https://en.wikipedia.org/wiki/2020_Portuguese_Grand_Prix	f	73	71
+1031	13	Emilia Romagna Grand Prix	2020-11-01	1031	https://en.wikipedia.org/wiki/2020_Emilia_Romagna_Grand_Prix	f	45	71
+1032	14	Turkish Grand Prix	2020-11-15	1032	https://en.wikipedia.org/wiki/2020_Turkish_Grand_Prix	f	63	71
+1033	15	Bahrain Grand Prix	2020-11-29	1033	https://en.wikipedia.org/wiki/2020_Bahrain_Grand_Prix	f	61	71
+1034	16	Sakhir Grand Prix	2020-12-06	1034	https://en.wikipedia.org/wiki/2020_Sakhir_Grand_Prix	f	61	71
+1035	17	Abu Dhabi Grand Prix	2020-12-13	1035	https://en.wikipedia.org/wiki/2020_Abu_Dhabi_Grand_Prix	f	66	71
+1036	1	Bahrain Grand Prix	2021-03-28	1036	https://en.wikipedia.org/wiki/2021_Bahrain_Grand_Prix	f	61	72
+1037	2	Emilia Romagna Grand Prix	2021-04-18	1037	https://en.wikipedia.org/wiki/2021_Emilia_Romagna_Grand_Prix	f	45	72
+1038	3	Portuguese Grand Prix	2021-05-02	1038	https://en.wikipedia.org/wiki/2021_Portuguese_Grand_Prix	f	73	72
+1039	4	Spanish Grand Prix	2021-05-09	1039	https://en.wikipedia.org/wiki/2021_Spanish_Grand_Prix	f	56	72
+1040	5	Monaco Grand Prix	2021-05-23	1040	https://en.wikipedia.org/wiki/2021_Monaco_Grand_Prix	f	2	72
+1041	6	Azerbaijan Grand Prix	2021-06-06	1041	https://en.wikipedia.org/wiki/2021_Azerbaijan_Grand_Prix	f	71	72
+1042	7	French Grand Prix	2021-06-20	1042	https://en.wikipedia.org/wiki/2021_French_Grand_Prix	f	35	72
+1043	8	Styrian Grand Prix	2021-06-27	1043	https://en.wikipedia.org/wiki/2021_Styrian_Grand_Prix	f	34	72
+1044	9	Austrian Grand Prix	2021-07-04	1044	https://en.wikipedia.org/wiki/2021_Austrian_Grand_Prix	f	34	72
+1045	10	British Grand Prix	2021-07-18	1045	https://en.wikipedia.org/wiki/2021_British_Grand_Prix	f	1	72
+1046	11	Hungarian Grand Prix	2021-08-01	1046	https://en.wikipedia.org/wiki/2021_Hungarian_Grand_Prix	f	52	72
+1047	12	Belgian Grand Prix	2021-08-29	1047	https://en.wikipedia.org/wiki/2021_Belgian_Grand_Prix	f	5	72
+1048	13	Dutch Grand Prix	2021-09-05	1048	https://en.wikipedia.org/wiki/2021_Dutch_Grand_Prix	f	11	72
+1049	14	Italian Grand Prix	2021-09-12	1049	https://en.wikipedia.org/wiki/2021_Italian_Grand_Prix	f	7	72
+1050	15	Russian Grand Prix	2021-09-26	1050	https://en.wikipedia.org/wiki/2021_Russian_Grand_Prix	f	70	72
+1051	16	Turkish Grand Prix	2021-10-10	1051	https://en.wikipedia.org/wiki/2021_Turkish_Grand_Prix	f	63	72
+1052	17	United States Grand Prix	2021-10-24	1052	https://en.wikipedia.org/wiki/2021_United_States_Grand_Prix	f	69	72
+1053	18	Mexico City Grand Prix	2021-11-07	1053	https://en.wikipedia.org/wiki/2021_Mexico_City_Grand_Prix	f	23	72
+1054	19	São Paulo Grand Prix	2021-11-14	1054	https://en.wikipedia.org/wiki/2021_S%C3%A3o_Paulo_Grand_Prix	f	37	72
+1055	20	Qatar Grand Prix	2021-11-21	1055	https://en.wikipedia.org/wiki/2021_Qatar_Grand_Prix	f	74	72
+1056	21	Saudi Arabian Grand Prix	2021-12-05	1056	https://en.wikipedia.org/wiki/2021_Saudi_Arabian_Grand_Prix	f	75	72
+1057	22	Abu Dhabi Grand Prix	2021-12-12	1057	https://en.wikipedia.org/wiki/2021_Abu_Dhabi_Grand_Prix	f	66	72
+1058	1	Bahrain Grand Prix	2022-03-20	1058	https://en.wikipedia.org/wiki/2022_Bahrain_Grand_Prix	f	61	73
+1059	2	Saudi Arabian Grand Prix	2022-03-27	1059	https://en.wikipedia.org/wiki/2022_Saudi_Arabian_Grand_Prix	f	75	73
+1060	3	Australian Grand Prix	2022-04-10	1060	https://en.wikipedia.org/wiki/2022_Australian_Grand_Prix	f	59	73
+1061	4	Emilia Romagna Grand Prix	2022-04-24	1061	https://en.wikipedia.org/wiki/2022_Emilia_Romagna_Grand_Prix	f	45	73
+1062	5	Miami Grand Prix	2022-05-08	1062	https://en.wikipedia.org/wiki/2022_Miami_Grand_Prix	f	76	73
+1063	6	Spanish Grand Prix	2022-05-22	1063	https://en.wikipedia.org/wiki/2022_Spanish_Grand_Prix	f	56	73
+1064	7	Monaco Grand Prix	2022-05-29	1064	https://en.wikipedia.org/wiki/2022_Monaco_Grand_Prix	f	2	73
+1065	8	Azerbaijan Grand Prix	2022-06-12	1065	https://en.wikipedia.org/wiki/2022_Azerbaijan_Grand_Prix	f	71	73
+1066	9	Canadian Grand Prix	2022-06-19	1066	https://en.wikipedia.org/wiki/2022_Canadian_Grand_Prix	f	44	73
+1067	10	British Grand Prix	2022-07-03	1067	https://en.wikipedia.org/wiki/2022_British_Grand_Prix	f	1	73
+1068	11	Austrian Grand Prix	2022-07-10	1068	https://en.wikipedia.org/wiki/2022_Austrian_Grand_Prix	f	34	73
+1069	12	French Grand Prix	2022-07-24	1069	https://en.wikipedia.org/wiki/2022_French_Grand_Prix	f	35	73
+1070	13	Hungarian Grand Prix	2022-07-31	1070	https://en.wikipedia.org/wiki/2022_Hungarian_Grand_Prix	f	52	73
+1071	14	Belgian Grand Prix	2022-08-28	1071	https://en.wikipedia.org/wiki/2022_Belgian_Grand_Prix	f	5	73
+1072	15	Dutch Grand Prix	2022-09-04	1072	https://en.wikipedia.org/wiki/2022_Dutch_Grand_Prix	f	11	73
+1073	16	Italian Grand Prix	2022-09-11	1073	https://en.wikipedia.org/wiki/2022_Italian_Grand_Prix	f	7	73
+1074	17	Singapore Grand Prix	2022-10-02	1074	https://en.wikipedia.org/wiki/2022_Singapore_Grand_Prix	f	65	73
+1075	18	Japanese Grand Prix	2022-10-09	1075	https://en.wikipedia.org/wiki/2022_Japanese_Grand_Prix	f	53	73
+1076	19	United States Grand Prix	2022-10-23	1076	https://en.wikipedia.org/wiki/2022_United_States_Grand_Prix	f	69	73
+1077	20	Mexico City Grand Prix	2022-10-30	1077	https://en.wikipedia.org/wiki/2022_Mexico_City_Grand_Prix	f	23	73
+1078	21	São Paulo Grand Prix	2022-11-13	1078	https://en.wikipedia.org/wiki/2022_São_Paulo_Grand_Prix	f	37	73
+1079	22	Abu Dhabi Grand Prix	2022-11-20	1079	https://en.wikipedia.org/wiki/2022_Abu_Dhabi_Grand_Prix	f	66	73
 1080	1	Bahrain Grand Prix	2023-03-05	1080	https://en.wikipedia.org/wiki/2023_Bahrain_Grand_Prix	f	61	74
 1081	2	Saudi Arabian Grand Prix	2023-03-19	1081	https://en.wikipedia.org/wiki/2023_Saudi_Arabian_Grand_Prix	f	75	74
 1082	3	Australian Grand Prix	2023-04-02	1082	https://en.wikipedia.org/wiki/2023_Australian_Grand_Prix	f	59	74
@@ -2625,6 +2486,30 @@ COPY public.formula_one_round (id, number, name, date, race_number, wikipedia, i
 1123	22	Las Vegas Grand Prix	2024-11-23	1123	https://en.wikipedia.org/wiki/2024_Las_Vegas_Grand_Prix	f	77	75
 1124	23	Qatar Grand Prix	2024-12-01	1124	https://en.wikipedia.org/wiki/2024_Qatar_Grand_Prix	f	74	75
 1125	24	Abu Dhabi Grand Prix	2024-12-08	1125	https://en.wikipedia.org/wiki/2024_Abu_Dhabi_Grand_Prix	f	66	75
+1126	1	Australian Grand Prix	2025-03-16	1126	https://en.wikipedia.org/wiki/2025_Australian_Grand_Prix	f	59	76
+1127	2	Chinese Grand Prix	2025-03-23	1127	https://en.wikipedia.org/wiki/2025_Chinese_Grand_Prix	f	62	76
+1128	3	Japanese Grand Prix	2025-04-06	1128	https://en.wikipedia.org/wiki/2025_Japanese_Grand_Prix	f	53	76
+1129	4	Bahrain Grand Prix	2025-04-13	1129	https://en.wikipedia.org/wiki/2025_Bahrain_Grand_Prix	f	61	76
+1130	5	Saudi Arabian Grand Prix	2025-04-20	1130	https://en.wikipedia.org/wiki/2025_Saudi_Arabian_Grand_Prix	f	75	76
+1131	6	Miami Grand Prix	2025-05-04	1131	https://en.wikipedia.org/wiki/2025_Miami_Grand_Prix	f	76	76
+1132	7	Emilia Romagna Grand Prix	2025-05-18	1132	https://en.wikipedia.org/wiki/2025_Emilia_Romagna_Grand_Prix	f	45	76
+1133	8	Monaco Grand Prix	2025-05-25	1133	https://en.wikipedia.org/wiki/2025_Monaco_Grand_Prix	f	2	76
+1134	9	Spanish Grand Prix	2025-06-01	1134	https://en.wikipedia.org/wiki/2025_Spanish_Grand_Prix	f	56	76
+1135	10	Canadian Grand Prix	2025-06-15	1135	https://en.wikipedia.org/wiki/2025_Canadian_Grand_Prix	f	44	76
+1136	11	Austrian Grand Prix	2025-06-29	1136	https://en.wikipedia.org/wiki/2025_Austrian_Grand_Prix	f	34	76
+1137	12	British Grand Prix	2025-07-06	1137	https://en.wikipedia.org/wiki/2025_British_Grand_Prix	f	1	76
+1138	13	Belgian Grand Prix	2025-07-27	1138	https://en.wikipedia.org/wiki/2025_Belgian_Grand_Prix	f	5	76
+1139	14	Hungarian Grand Prix	2025-08-03	1139	https://en.wikipedia.org/wiki/2025_Hungarian_Grand_Prix	f	52	76
+1140	15	Dutch Grand Prix	2025-08-31	1140	https://en.wikipedia.org/wiki/2025_Dutch_Grand_Prix	f	11	76
+1141	16	Italian Grand Prix	2025-09-07	1141	https://en.wikipedia.org/wiki/2025_Italian_Grand_Prix	f	7	76
+1142	17	Azerbaijan Grand Prix	2025-09-21	1142	https://en.wikipedia.org/wiki/2025_Azerbaijan_Grand_Prix	f	71	76
+1143	18	Singapore Grand Prix	2025-10-05	1143	https://en.wikipedia.org/wiki/2025_Singapore_Grand_Prix	f	65	76
+1144	19	United States Grand Prix	2025-10-19	1144	https://en.wikipedia.org/wiki/2025_United_States_Grand_Prix	f	69	76
+1145	20	Mexico City Grand Prix	2025-10-26	1145	https://en.wikipedia.org/wiki/2025_Mexico_City_Grand_Prix	f	23	76
+1146	21	São Paulo Grand Prix	2025-11-09	1146	https://en.wikipedia.org/wiki/2025_S%C3%A3o_Paulo_Grand_Prix	f	37	76
+1147	22	Las Vegas Grand Prix	2025-11-22	1147	https://en.wikipedia.org/wiki/2025_Las_Vegas_Grand_Prix	f	77	76
+1148	23	Qatar Grand Prix	2025-11-30	1148	https://en.wikipedia.org/wiki/2025_Qatar_Grand_Prix	f	74	76
+1149	24	Abu Dhabi Grand Prix	2025-12-07	1149	https://en.wikipedia.org/wiki/2025_Abu_Dhabi_Grand_Prix	f	66	76
 \.
 
 
@@ -2633,4776 +2518,4956 @@ COPY public.formula_one_round (id, number, name, date, race_number, wikipedia, i
 --
 
 COPY public.formula_one_session (id, number, type, date, "time", scheduled_laps, is_cancelled, point_system_id, round_id) FROM stdin;
-2	1	QB	1950-05-11	\N	\N	f	1	1
 1	2	R	1950-05-13	\N	\N	f	2	1
-5	1	QB	1950-05-18	\N	\N	f	1	2
+2	1	QB	1950-05-11	\N	\N	f	1	1
+3	\N	QB	1950-05-12	\N	\N	f	1	1
 4	2	R	1950-05-21	\N	\N	f	2	2
-8	1	QB	1950-05-28	\N	\N	f	1	3
+5	1	QB	1950-05-18	\N	\N	f	1	2
+6	\N	QB	1950-05-20	\N	\N	f	1	2
 7	2	R	1950-05-30	\N	\N	f	2	3
-11	1	QB	1950-06-02	\N	\N	f	1	4
+8	1	QB	1950-05-28	\N	\N	f	1	3
+9	\N	QB	1950-05-29	\N	\N	f	1	3
 10	2	R	1950-06-04	\N	\N	f	2	4
-14	1	QB	1950-06-16	\N	\N	f	1	5
+11	1	QB	1950-06-02	\N	\N	f	1	4
+12	\N	QB	1950-06-03	\N	\N	f	1	4
 13	2	R	1950-06-18	\N	\N	f	2	5
-17	1	QB	1950-06-30	\N	\N	f	1	6
+14	1	QB	1950-06-16	\N	\N	f	1	5
+15	\N	QB	1950-06-17	\N	\N	f	1	5
 16	2	R	1950-07-02	\N	\N	f	2	6
-20	1	QB	1950-09-01	\N	\N	f	1	7
+17	1	QB	1950-06-30	\N	\N	f	1	6
+18	\N	QB	1950-07-01	\N	\N	f	1	6
 19	2	R	1950-09-03	\N	\N	f	2	7
-23	1	QB	1951-05-25	\N	\N	f	1	8
+20	1	QB	1950-09-01	\N	\N	f	1	7
+21	\N	QB	1950-09-02	\N	\N	f	1	7
 22	2	R	1951-05-27	\N	\N	f	2	8
-26	1	QB	1951-05-28	\N	\N	f	1	9
+23	1	QB	1951-05-25	\N	\N	f	1	8
+24	\N	QB	1951-05-26	\N	\N	f	1	8
 25	2	R	1951-05-30	\N	\N	f	2	9
-29	1	QB	1951-06-15	\N	\N	f	1	10
+26	1	QB	1951-05-28	\N	\N	f	1	9
+27	\N	QB	1951-05-29	\N	\N	f	1	9
 28	2	R	1951-06-17	\N	\N	f	2	10
-32	1	QB	1951-06-29	\N	\N	f	1	11
+29	1	QB	1951-06-15	\N	\N	f	1	10
+30	\N	QB	1951-06-16	\N	\N	f	1	10
 31	2	R	1951-07-01	\N	\N	f	2	11
-35	1	QB	1951-07-12	\N	\N	f	1	12
+32	1	QB	1951-06-29	\N	\N	f	1	11
+33	\N	QB	1951-06-30	\N	\N	f	1	11
 34	2	R	1951-07-14	\N	\N	f	2	12
-38	1	QB	1951-07-27	\N	\N	f	1	13
+35	1	QB	1951-07-12	\N	\N	f	1	12
+36	\N	QB	1951-07-13	\N	\N	f	1	12
 37	2	R	1951-07-29	\N	\N	f	2	13
-41	1	QB	1951-09-14	\N	\N	f	1	14
+38	1	QB	1951-07-27	\N	\N	f	1	13
+39	\N	QB	1951-07-28	\N	\N	f	1	13
 40	2	R	1951-09-16	\N	\N	f	2	14
-44	1	QB	1951-10-26	\N	\N	f	1	15
+41	1	QB	1951-09-14	\N	\N	f	1	14
+42	\N	QB	1951-09-15	\N	\N	f	1	14
 43	2	R	1951-10-28	\N	\N	f	2	15
-47	1	QB	1952-05-16	\N	\N	f	1	16
+44	1	QB	1951-10-26	\N	\N	f	1	15
+45	\N	QB	1951-10-27	\N	\N	f	1	15
 46	2	R	1952-05-18	\N	\N	f	2	16
-50	1	QB	1952-05-28	\N	\N	f	1	17
+47	1	QB	1952-05-16	\N	\N	f	1	16
+48	\N	QB	1952-05-17	\N	\N	f	1	16
 49	2	R	1952-05-30	\N	\N	f	2	17
-53	1	QB	1952-06-20	\N	\N	f	1	18
+50	1	QB	1952-05-28	\N	\N	f	1	17
+51	\N	QB	1952-05-29	\N	\N	f	1	17
 52	2	R	1952-06-22	\N	\N	f	2	18
-56	1	QB	1952-07-04	\N	\N	f	1	19
+53	1	QB	1952-06-20	\N	\N	f	1	18
+54	\N	QB	1952-06-21	\N	\N	f	1	18
 55	2	R	1952-07-06	\N	\N	f	2	19
-59	1	QB	1952-07-17	\N	\N	f	1	20
+56	1	QB	1952-07-04	\N	\N	f	1	19
+57	\N	QB	1952-07-05	\N	\N	f	1	19
 58	2	R	1952-07-19	\N	\N	f	2	20
-62	1	QB	1952-08-01	\N	\N	f	1	21
+59	1	QB	1952-07-17	\N	\N	f	1	20
+60	\N	QB	1952-07-18	\N	\N	f	1	20
 61	2	R	1952-08-03	\N	\N	f	2	21
-65	1	QB	1952-08-15	\N	\N	f	1	22
+62	1	QB	1952-08-01	\N	\N	f	1	21
+63	\N	QB	1952-08-02	\N	\N	f	1	21
 64	2	R	1952-08-17	\N	\N	f	2	22
-68	1	QB	1952-09-05	\N	\N	f	1	23
+65	1	QB	1952-08-15	\N	\N	f	1	22
+66	\N	QB	1952-08-16	\N	\N	f	1	22
 67	2	R	1952-09-07	\N	\N	f	2	23
-71	1	QB	1953-01-16	\N	\N	f	1	24
+68	1	QB	1952-09-05	\N	\N	f	1	23
+69	\N	QB	1952-09-06	\N	\N	f	1	23
 70	2	R	1953-01-18	\N	\N	f	2	24
-74	1	QB	1953-05-28	\N	\N	f	1	25
+71	1	QB	1953-01-16	\N	\N	f	1	24
+72	\N	QB	1953-01-17	\N	\N	f	1	24
 73	2	R	1953-05-30	\N	\N	f	2	25
-77	1	QB	1953-06-05	\N	\N	f	1	26
+74	1	QB	1953-05-28	\N	\N	f	1	25
+75	\N	QB	1953-05-29	\N	\N	f	1	25
 76	2	R	1953-06-07	\N	\N	f	2	26
-80	1	QB	1953-06-19	\N	\N	f	1	27
+77	1	QB	1953-06-05	\N	\N	f	1	26
+78	\N	QB	1953-06-06	\N	\N	f	1	26
 79	2	R	1953-06-21	\N	\N	f	2	27
-83	1	QB	1953-07-03	\N	\N	f	1	28
+80	1	QB	1953-06-19	\N	\N	f	1	27
+81	\N	QB	1953-06-20	\N	\N	f	1	27
 82	2	R	1953-07-05	\N	\N	f	2	28
-86	1	QB	1953-07-16	\N	\N	f	1	29
+83	1	QB	1953-07-03	\N	\N	f	1	28
+84	\N	QB	1953-07-04	\N	\N	f	1	28
 85	2	R	1953-07-18	\N	\N	f	2	29
-89	1	QB	1953-07-31	\N	\N	f	1	30
+86	1	QB	1953-07-16	\N	\N	f	1	29
+87	\N	QB	1953-07-17	\N	\N	f	1	29
 88	2	R	1953-08-02	\N	\N	f	2	30
-92	1	QB	1953-08-21	\N	\N	f	1	31
+89	1	QB	1953-07-31	\N	\N	f	1	30
+90	\N	QB	1953-08-01	\N	\N	f	1	30
 91	2	R	1953-08-23	\N	\N	f	2	31
-95	1	QB	1953-09-11	\N	\N	f	1	32
+92	1	QB	1953-08-21	\N	\N	f	1	31
+93	\N	QB	1953-08-22	\N	\N	f	1	31
 94	2	R	1953-09-13	\N	\N	f	2	32
-98	1	QB	1954-01-15	\N	\N	f	1	33
+95	1	QB	1953-09-11	\N	\N	f	1	32
+96	\N	QB	1953-09-12	\N	\N	f	1	32
 97	2	R	1954-01-17	\N	\N	f	3	33
-101	1	QB	1954-05-29	\N	\N	f	1	34
+98	1	QB	1954-01-15	\N	\N	f	1	33
+99	\N	QB	1954-01-16	\N	\N	f	1	33
 100	2	R	1954-05-31	\N	\N	f	3	34
-104	1	QB	1954-06-18	\N	\N	f	1	35
+101	1	QB	1954-05-29	\N	\N	f	1	34
+102	\N	QB	1954-05-30	\N	\N	f	1	34
 103	2	R	1954-06-20	\N	\N	f	3	35
-107	1	QB	1954-07-02	\N	\N	f	1	36
+104	1	QB	1954-06-18	\N	\N	f	1	35
+105	\N	QB	1954-06-19	\N	\N	f	1	35
 106	2	R	1954-07-04	\N	\N	f	3	36
-110	1	QB	1954-07-15	\N	\N	f	1	37
+107	1	QB	1954-07-02	\N	\N	f	1	36
+108	\N	QB	1954-07-03	\N	\N	f	1	36
 109	2	R	1954-07-17	\N	\N	f	3	37
-113	1	QB	1954-07-30	\N	\N	f	1	38
+110	1	QB	1954-07-15	\N	\N	f	1	37
+111	\N	QB	1954-07-16	\N	\N	f	1	37
 112	2	R	1954-08-01	\N	\N	f	3	38
-116	1	QB	1954-08-20	\N	\N	f	1	39
+113	1	QB	1954-07-30	\N	\N	f	1	38
+114	\N	QB	1954-07-31	\N	\N	f	1	38
 115	2	R	1954-08-22	\N	\N	f	3	39
-119	1	QB	1954-09-03	\N	\N	f	1	40
+116	1	QB	1954-08-20	\N	\N	f	1	39
+117	\N	QB	1954-08-21	\N	\N	f	1	39
 118	2	R	1954-09-05	\N	\N	f	3	40
-122	1	QB	1954-10-22	\N	\N	f	1	41
+119	1	QB	1954-09-03	\N	\N	f	1	40
+120	\N	QB	1954-09-04	\N	\N	f	1	40
 121	2	R	1954-10-24	\N	\N	f	3	41
-125	1	QB	1955-01-14	\N	\N	f	1	42
+122	1	QB	1954-10-22	\N	\N	f	1	41
+123	\N	QB	1954-10-23	\N	\N	f	1	41
 124	2	R	1955-01-16	\N	\N	f	4	42
-128	1	QB	1955-05-19	\N	\N	f	1	43
+125	1	QB	1955-01-14	\N	\N	f	1	42
+126	\N	QB	1955-01-15	\N	\N	f	1	42
 127	2	R	1955-05-22	\N	\N	f	4	43
-131	1	QB	1955-05-28	\N	\N	f	1	44
+128	1	QB	1955-05-19	\N	\N	f	1	43
+129	\N	QB	1955-05-21	\N	\N	f	1	43
 130	2	R	1955-05-30	\N	\N	f	4	44
-134	1	QB	1955-06-03	\N	\N	f	1	45
+131	1	QB	1955-05-28	\N	\N	f	1	44
+132	\N	QB	1955-05-29	\N	\N	f	1	44
 133	2	R	1955-06-05	\N	\N	f	4	45
-137	1	QB	1955-06-17	\N	\N	f	1	46
+134	1	QB	1955-06-03	\N	\N	f	1	45
+135	\N	QB	1955-06-04	\N	\N	f	1	45
 136	2	R	1955-06-19	\N	\N	f	4	46
-140	1	QB	1955-07-14	\N	\N	f	1	47
+137	1	QB	1955-06-17	\N	\N	f	1	46
+138	\N	QB	1955-06-18	\N	\N	f	1	46
 139	2	R	1955-07-16	\N	\N	f	4	47
-143	1	QB	1955-09-09	\N	\N	f	1	48
+140	1	QB	1955-07-14	\N	\N	f	1	47
+141	\N	QB	1955-07-15	\N	\N	f	1	47
 142	2	R	1955-09-11	\N	\N	f	4	48
-146	1	QB	1956-01-20	\N	\N	f	1	49
+143	1	QB	1955-09-09	\N	\N	f	1	48
+144	\N	QB	1955-09-10	\N	\N	f	1	48
 145	2	R	1956-01-22	\N	\N	f	5	49
-149	1	QB	1956-05-10	\N	\N	f	1	50
+146	1	QB	1956-01-20	\N	\N	f	1	49
+147	\N	QB	1956-01-21	\N	\N	f	1	49
 148	2	R	1956-05-13	\N	\N	f	5	50
-152	1	QB	1956-05-28	\N	\N	f	1	51
+149	1	QB	1956-05-10	\N	\N	f	1	50
+150	\N	QB	1956-05-12	\N	\N	f	1	50
 151	2	R	1956-05-30	\N	\N	f	5	51
-155	1	QB	1956-06-01	\N	\N	f	1	52
+152	1	QB	1956-05-28	\N	\N	f	1	51
+153	\N	QB	1956-05-29	\N	\N	f	1	51
 154	2	R	1956-06-03	\N	\N	f	5	52
-158	1	QB	1956-06-29	\N	\N	f	1	53
+155	1	QB	1956-06-01	\N	\N	f	1	52
+156	\N	QB	1956-06-02	\N	\N	f	1	52
 157	2	R	1956-07-01	\N	\N	f	5	53
-161	1	QB	1956-07-12	\N	\N	f	1	54
+158	1	QB	1956-06-29	\N	\N	f	1	53
+159	\N	QB	1956-06-30	\N	\N	f	1	53
 160	2	R	1956-07-14	\N	\N	f	5	54
-164	1	QB	1956-08-03	\N	\N	f	1	55
+161	1	QB	1956-07-12	\N	\N	f	1	54
+162	\N	QB	1956-07-13	\N	\N	f	1	54
 163	2	R	1956-08-05	\N	\N	f	5	55
-167	1	QB	1956-08-31	\N	\N	f	1	56
+164	1	QB	1956-08-03	\N	\N	f	1	55
+165	\N	QB	1956-08-04	\N	\N	f	1	55
 166	2	R	1956-09-02	\N	\N	f	5	56
-170	1	QB	1957-01-11	\N	\N	f	1	57
+167	1	QB	1956-08-31	\N	\N	f	1	56
+168	\N	QB	1956-09-01	\N	\N	f	1	56
 169	2	R	1957-01-13	\N	\N	f	5	57
-173	1	QB	1957-05-16	\N	\N	f	1	58
+170	1	QB	1957-01-11	\N	\N	f	1	57
+171	\N	QB	1957-01-12	\N	\N	f	1	57
 172	2	R	1957-05-19	\N	\N	f	5	58
-176	1	QB	1957-05-28	\N	\N	f	1	59
+173	1	QB	1957-05-16	\N	\N	f	1	58
+174	\N	QB	1957-05-18	\N	\N	f	1	58
 175	2	R	1957-05-30	\N	\N	f	5	59
-179	1	QB	1957-07-05	\N	\N	f	1	60
+176	1	QB	1957-05-28	\N	\N	f	1	59
+177	\N	QB	1957-05-29	\N	\N	f	1	59
 178	2	R	1957-07-07	\N	\N	f	5	60
-182	1	QB	1957-07-18	\N	\N	f	1	61
+179	1	QB	1957-07-05	\N	\N	f	1	60
+180	\N	QB	1957-07-06	\N	\N	f	1	60
 181	2	R	1957-07-20	\N	\N	f	5	61
-185	1	QB	1957-08-02	\N	\N	f	1	62
+182	1	QB	1957-07-18	\N	\N	f	1	61
+183	\N	QB	1957-07-19	\N	\N	f	1	61
 184	2	R	1957-08-04	\N	\N	f	5	62
-188	1	QB	1957-08-16	\N	\N	f	1	63
+185	1	QB	1957-08-02	\N	\N	f	1	62
+186	\N	QB	1957-08-03	\N	\N	f	1	62
 187	2	R	1957-08-18	\N	\N	f	5	63
-191	1	QB	1957-09-06	\N	\N	f	1	64
+188	1	QB	1957-08-16	\N	\N	f	1	63
+189	\N	QB	1957-08-17	\N	\N	f	1	63
 190	2	R	1957-09-08	\N	\N	f	5	64
-194	1	QB	1958-01-17	\N	\N	f	1	65
+191	1	QB	1957-09-06	\N	\N	f	1	64
+192	\N	QB	1957-09-07	\N	\N	f	1	64
 193	2	R	1958-01-19	\N	\N	f	6	65
-197	1	QB	1958-05-15	\N	\N	f	1	66
+194	1	QB	1958-01-17	\N	\N	f	1	65
+195	\N	QB	1958-01-18	\N	\N	f	1	65
 196	2	R	1958-05-18	\N	\N	f	6	66
-200	1	QB	1958-05-24	\N	\N	f	1	67
+197	1	QB	1958-05-15	\N	\N	f	1	66
+198	\N	QB	1958-05-17	\N	\N	f	1	66
 199	2	R	1958-05-26	\N	\N	f	6	67
-203	1	QB	1958-05-28	\N	\N	f	1	68
+200	1	QB	1958-05-24	\N	\N	f	1	67
+201	\N	QB	1958-05-25	\N	\N	f	1	67
 202	2	R	1958-05-30	\N	\N	f	7	68
-206	1	QB	1958-06-13	\N	\N	f	1	69
+203	1	QB	1958-05-28	\N	\N	f	1	68
+204	\N	QB	1958-05-29	\N	\N	f	1	68
 205	2	R	1958-06-15	\N	\N	f	6	69
-209	1	QB	1958-07-04	\N	\N	f	1	70
+206	1	QB	1958-06-13	\N	\N	f	1	69
+207	\N	QB	1958-06-14	\N	\N	f	1	69
 208	2	R	1958-07-06	\N	\N	f	6	70
-212	1	QB	1958-07-17	\N	\N	f	1	71
+209	1	QB	1958-07-04	\N	\N	f	1	70
+210	\N	QB	1958-07-05	\N	\N	f	1	70
 211	2	R	1958-07-19	\N	\N	f	6	71
-215	1	QB	1958-08-01	\N	\N	f	1	72
+212	1	QB	1958-07-17	\N	\N	f	1	71
+213	\N	QB	1958-07-18	\N	\N	f	1	71
 214	2	R	1958-08-03	\N	\N	f	6	72
-218	1	QB	1958-08-22	\N	\N	f	1	73
+215	1	QB	1958-08-01	\N	\N	f	1	72
+216	\N	QB	1958-08-02	\N	\N	f	1	72
 217	2	R	1958-08-24	\N	\N	f	6	73
-221	1	QB	1958-09-05	\N	\N	f	1	74
+218	1	QB	1958-08-22	\N	\N	f	1	73
+219	\N	QB	1958-08-23	\N	\N	f	1	73
 220	2	R	1958-09-07	\N	\N	f	6	74
-224	1	QB	1958-10-17	\N	\N	f	1	75
+221	1	QB	1958-09-05	\N	\N	f	1	74
+222	\N	QB	1958-09-06	\N	\N	f	1	74
 223	2	R	1958-10-19	\N	\N	f	6	75
-227	1	QB	1959-05-07	\N	\N	f	1	76
+224	1	QB	1958-10-17	\N	\N	f	1	75
+225	\N	QB	1958-10-18	\N	\N	f	1	75
 226	2	R	1959-05-10	\N	\N	f	6	76
-230	1	QB	1959-05-28	\N	\N	f	1	77
+227	1	QB	1959-05-07	\N	\N	f	1	76
+228	\N	QB	1959-05-09	\N	\N	f	1	76
 229	2	R	1959-05-30	\N	\N	f	7	77
-233	1	QB	1959-05-29	\N	\N	f	1	78
+230	1	QB	1959-05-28	\N	\N	f	1	77
+231	\N	QB	1959-05-29	\N	\N	f	1	77
 232	2	R	1959-05-31	\N	\N	f	6	78
-236	1	QB	1959-07-03	\N	\N	f	1	79
+233	1	QB	1959-05-29	\N	\N	f	1	78
+234	\N	QB	1959-05-30	\N	\N	f	1	78
 235	2	R	1959-07-05	\N	\N	f	6	79
-239	1	QB	1959-07-16	\N	\N	f	1	80
+236	1	QB	1959-07-03	\N	\N	f	1	79
+237	\N	QB	1959-07-04	\N	\N	f	1	79
 238	2	R	1959-07-18	\N	\N	f	6	80
-242	1	QB	1959-07-31	\N	\N	f	1	81
+239	1	QB	1959-07-16	\N	\N	f	1	80
+240	\N	QB	1959-07-17	\N	\N	f	1	80
 241	2	R	1959-08-02	\N	\N	f	6	81
-245	1	QB	1959-08-21	\N	\N	f	1	82
+242	1	QB	1959-07-31	\N	\N	f	1	81
+243	\N	QB	1959-08-01	\N	\N	f	1	81
 244	2	R	1959-08-23	\N	\N	f	6	82
-248	1	QB	1959-09-11	\N	\N	f	1	83
+245	1	QB	1959-08-21	\N	\N	f	1	82
+246	\N	QB	1959-08-22	\N	\N	f	1	82
 247	2	R	1959-09-13	\N	\N	f	6	83
-251	1	QB	1959-12-10	\N	\N	f	1	84
+248	1	QB	1959-09-11	\N	\N	f	1	83
+249	\N	QB	1959-09-12	\N	\N	f	1	83
 250	2	R	1959-12-12	\N	\N	f	6	84
-254	1	QB	1960-02-05	\N	\N	f	1	85
+251	1	QB	1959-12-10	\N	\N	f	1	84
+252	\N	QB	1959-12-11	\N	\N	f	1	84
 253	2	R	1960-02-07	\N	\N	f	8	85
-257	1	QB	1960-05-26	\N	\N	f	1	86
+254	1	QB	1960-02-05	\N	\N	f	1	85
+255	\N	QB	1960-02-06	\N	\N	f	1	85
 256	2	R	1960-05-29	\N	\N	f	8	86
-260	1	QB	1960-05-28	\N	\N	f	1	87
+257	1	QB	1960-05-26	\N	\N	f	1	86
+258	\N	QB	1960-05-28	\N	\N	f	1	86
 259	2	R	1960-05-30	\N	\N	f	9	87
-263	1	QB	1960-06-04	\N	\N	f	1	88
+260	1	QB	1960-05-28	\N	\N	f	1	87
+261	\N	QB	1960-05-29	\N	\N	f	1	87
 262	2	R	1960-06-06	\N	\N	f	8	88
-266	1	QB	1960-06-17	\N	\N	f	1	89
+263	1	QB	1960-06-04	\N	\N	f	1	88
+264	\N	QB	1960-06-05	\N	\N	f	1	88
 265	2	R	1960-06-19	\N	\N	f	8	89
-269	1	QB	1960-07-01	\N	\N	f	1	90
+266	1	QB	1960-06-17	\N	\N	f	1	89
+267	\N	QB	1960-06-18	\N	\N	f	1	89
 268	2	R	1960-07-03	\N	\N	f	8	90
-272	1	QB	1960-07-14	\N	\N	f	1	91
+269	1	QB	1960-07-01	\N	\N	f	1	90
+270	\N	QB	1960-07-02	\N	\N	f	1	90
 271	2	R	1960-07-16	\N	\N	f	8	91
-275	1	QB	1960-08-12	\N	\N	f	1	92
+272	1	QB	1960-07-14	\N	\N	f	1	91
+273	\N	QB	1960-07-15	\N	\N	f	1	91
 274	2	R	1960-08-14	\N	\N	f	8	92
-278	1	QB	1960-09-02	\N	\N	f	1	93
+275	1	QB	1960-08-12	\N	\N	f	1	92
+276	\N	QB	1960-08-13	\N	\N	f	1	92
 277	2	R	1960-09-04	\N	\N	f	8	93
-281	1	QB	1960-11-18	\N	\N	f	1	94
+278	1	QB	1960-09-02	\N	\N	f	1	93
+279	\N	QB	1960-09-03	\N	\N	f	1	93
 280	2	R	1960-11-20	\N	\N	f	8	94
-284	1	QB	1961-05-11	\N	\N	f	1	95
+281	1	QB	1960-11-18	\N	\N	f	1	94
+282	\N	QB	1960-11-19	\N	\N	f	1	94
 283	2	R	1961-05-14	\N	\N	f	10	95
-287	1	QB	1961-05-20	\N	\N	f	1	96
+284	1	QB	1961-05-11	\N	\N	f	1	95
+285	\N	QB	1961-05-13	\N	\N	f	1	95
 286	2	R	1961-05-22	\N	\N	f	10	96
-290	1	QB	1961-06-16	\N	\N	f	1	97
+287	1	QB	1961-05-20	\N	\N	f	1	96
+288	\N	QB	1961-05-21	\N	\N	f	1	96
 289	2	R	1961-06-18	\N	\N	f	10	97
-293	1	QB	1961-06-30	\N	\N	f	1	98
+290	1	QB	1961-06-16	\N	\N	f	1	97
+291	\N	QB	1961-06-17	\N	\N	f	1	97
 292	2	R	1961-07-02	\N	\N	f	10	98
-296	1	QB	1961-07-13	\N	\N	f	1	99
+293	1	QB	1961-06-30	\N	\N	f	1	98
+294	\N	QB	1961-07-01	\N	\N	f	1	98
 295	2	R	1961-07-15	\N	\N	f	10	99
-299	1	QB	1961-08-04	\N	\N	f	1	100
+296	1	QB	1961-07-13	\N	\N	f	1	99
+297	\N	QB	1961-07-14	\N	\N	f	1	99
 298	2	R	1961-08-06	\N	\N	f	10	100
-302	1	QB	1961-09-08	\N	\N	f	1	101
+299	1	QB	1961-08-04	\N	\N	f	1	100
+300	\N	QB	1961-08-05	\N	\N	f	1	100
 301	2	R	1961-09-10	\N	\N	f	10	101
-305	1	QB	1961-10-06	\N	\N	f	1	102
+302	1	QB	1961-09-08	\N	\N	f	1	101
+303	\N	QB	1961-09-09	\N	\N	f	1	101
 304	2	R	1961-10-08	\N	\N	f	10	102
-308	1	QB	1962-05-18	\N	\N	f	1	103
+305	1	QB	1961-10-06	\N	\N	f	1	102
+306	\N	QB	1961-10-07	\N	\N	f	1	102
 307	2	R	1962-05-20	\N	\N	f	11	103
-311	1	QB	1962-05-31	\N	\N	f	1	104
+308	1	QB	1962-05-18	\N	\N	f	1	103
+309	\N	QB	1962-05-19	\N	\N	f	1	103
 310	2	R	1962-06-03	\N	\N	f	11	104
-314	1	QB	1962-06-15	\N	\N	f	1	105
+311	1	QB	1962-05-31	\N	\N	f	1	104
+312	\N	QB	1962-06-02	\N	\N	f	1	104
 313	2	R	1962-06-17	\N	\N	f	11	105
-317	1	QB	1962-07-06	\N	\N	f	1	106
+314	1	QB	1962-06-15	\N	\N	f	1	105
+315	\N	QB	1962-06-16	\N	\N	f	1	105
 316	2	R	1962-07-08	\N	\N	f	11	106
-320	1	QB	1962-07-19	\N	\N	f	1	107
+317	1	QB	1962-07-06	\N	\N	f	1	106
+318	\N	QB	1962-07-07	\N	\N	f	1	106
 319	2	R	1962-07-21	\N	\N	f	11	107
-323	1	QB	1962-08-03	\N	\N	f	1	108
+320	1	QB	1962-07-19	\N	\N	f	1	107
+321	\N	QB	1962-07-20	\N	\N	f	1	107
 322	2	R	1962-08-05	\N	\N	f	11	108
-326	1	QB	1962-09-14	\N	\N	f	1	109
+323	1	QB	1962-08-03	\N	\N	f	1	108
+324	\N	QB	1962-08-04	\N	\N	f	1	108
 325	2	R	1962-09-16	\N	\N	f	11	109
-329	1	QB	1962-10-05	\N	\N	f	1	110
+326	1	QB	1962-09-14	\N	\N	f	1	109
+327	\N	QB	1962-09-15	\N	\N	f	1	109
 328	2	R	1962-10-07	\N	\N	f	11	110
-332	1	QB	1962-12-27	\N	\N	f	1	111
+329	1	QB	1962-10-05	\N	\N	f	1	110
+330	\N	QB	1962-10-06	\N	\N	f	1	110
 331	2	R	1962-12-29	\N	\N	f	11	111
-335	1	QB	1963-05-23	\N	\N	f	1	112
+332	1	QB	1962-12-27	\N	\N	f	1	111
+333	\N	QB	1962-12-28	\N	\N	f	1	111
 334	2	R	1963-05-26	\N	\N	f	11	112
-338	1	QB	1963-06-07	\N	\N	f	1	113
+335	1	QB	1963-05-23	\N	\N	f	1	112
+336	\N	QB	1963-05-25	\N	\N	f	1	112
 337	2	R	1963-06-09	\N	\N	f	11	113
-341	1	QB	1963-06-21	\N	\N	f	1	114
+338	1	QB	1963-06-07	\N	\N	f	1	113
+339	\N	QB	1963-06-08	\N	\N	f	1	113
 340	2	R	1963-06-23	\N	\N	f	11	114
-344	1	QB	1963-06-28	\N	\N	f	1	115
+341	1	QB	1963-06-21	\N	\N	f	1	114
+342	\N	QB	1963-06-22	\N	\N	f	1	114
 343	2	R	1963-06-30	\N	\N	f	11	115
-347	1	QB	1963-07-18	\N	\N	f	1	116
+344	1	QB	1963-06-28	\N	\N	f	1	115
+345	\N	QB	1963-06-29	\N	\N	f	1	115
 346	2	R	1963-07-20	\N	\N	f	11	116
-350	1	QB	1963-08-02	\N	\N	f	1	117
+347	1	QB	1963-07-18	\N	\N	f	1	116
+348	\N	QB	1963-07-19	\N	\N	f	1	116
 349	2	R	1963-08-04	\N	\N	f	11	117
-353	1	QB	1963-09-06	\N	\N	f	1	118
+350	1	QB	1963-08-02	\N	\N	f	1	117
+351	\N	QB	1963-08-03	\N	\N	f	1	117
 352	2	R	1963-09-08	\N	\N	f	11	118
-356	1	QB	1963-10-04	\N	\N	f	1	119
+353	1	QB	1963-09-06	\N	\N	f	1	118
+354	\N	QB	1963-09-07	\N	\N	f	1	118
 355	2	R	1963-10-06	\N	\N	f	11	119
-359	1	QB	1963-10-25	\N	\N	f	1	120
+356	1	QB	1963-10-04	\N	\N	f	1	119
+357	\N	QB	1963-10-05	\N	\N	f	1	119
 358	2	R	1963-10-27	\N	\N	f	11	120
-362	1	QB	1963-12-26	\N	\N	f	1	121
+359	1	QB	1963-10-25	\N	\N	f	1	120
+360	\N	QB	1963-10-26	\N	\N	f	1	120
 361	2	R	1963-12-28	\N	\N	f	11	121
-365	1	QB	1964-05-07	\N	\N	f	1	122
+362	1	QB	1963-12-26	\N	\N	f	1	121
+363	\N	QB	1963-12-27	\N	\N	f	1	121
 364	2	R	1964-05-10	\N	\N	f	11	122
-368	1	QB	1964-05-22	\N	\N	f	1	123
+365	1	QB	1964-05-07	\N	\N	f	1	122
+366	\N	QB	1964-05-09	\N	\N	f	1	122
 367	2	R	1964-05-24	\N	\N	f	11	123
-371	1	QB	1964-06-12	\N	\N	f	1	124
+368	1	QB	1964-05-22	\N	\N	f	1	123
+369	\N	QB	1964-05-23	\N	\N	f	1	123
 370	2	R	1964-06-14	\N	\N	f	11	124
-374	1	QB	1964-06-26	\N	\N	f	1	125
+371	1	QB	1964-06-12	\N	\N	f	1	124
+372	\N	QB	1964-06-13	\N	\N	f	1	124
 373	2	R	1964-06-28	\N	\N	f	11	125
-377	1	QB	1964-07-09	\N	\N	f	1	126
+374	1	QB	1964-06-26	\N	\N	f	1	125
+375	\N	QB	1964-06-27	\N	\N	f	1	125
 376	2	R	1964-07-11	\N	\N	f	11	126
-380	1	QB	1964-07-31	\N	\N	f	1	127
+377	1	QB	1964-07-09	\N	\N	f	1	126
+378	\N	QB	1964-07-10	\N	\N	f	1	126
 379	2	R	1964-08-02	\N	\N	f	11	127
-383	1	QB	1964-08-21	\N	\N	f	1	128
+380	1	QB	1964-07-31	\N	\N	f	1	127
+381	\N	QB	1964-08-01	\N	\N	f	1	127
 382	2	R	1964-08-23	\N	\N	f	11	128
-386	1	QB	1964-09-04	\N	\N	f	1	129
+383	1	QB	1964-08-21	\N	\N	f	1	128
+384	\N	QB	1964-08-22	\N	\N	f	1	128
 385	2	R	1964-09-06	\N	\N	f	11	129
-389	1	QB	1964-10-02	\N	\N	f	1	130
+386	1	QB	1964-09-04	\N	\N	f	1	129
+387	\N	QB	1964-09-05	\N	\N	f	1	129
 388	2	R	1964-10-04	\N	\N	f	11	130
-392	1	QB	1964-10-23	\N	\N	f	1	131
+389	1	QB	1964-10-02	\N	\N	f	1	130
+390	\N	QB	1964-10-03	\N	\N	f	1	130
 391	2	R	1964-10-25	\N	\N	f	11	131
-395	1	QB	1964-12-30	\N	\N	f	1	132
+392	1	QB	1964-10-23	\N	\N	f	1	131
+393	\N	QB	1964-10-24	\N	\N	f	1	131
 394	2	R	1965-01-01	\N	\N	f	11	132
-398	1	QB	1965-05-27	\N	\N	f	1	133
+395	1	QB	1964-12-30	\N	\N	f	1	132
+396	\N	QB	1964-12-31	\N	\N	f	1	132
 397	2	R	1965-05-30	\N	\N	f	11	133
-401	1	QB	1965-06-11	\N	\N	f	1	134
+398	1	QB	1965-05-27	\N	\N	f	1	133
+399	\N	QB	1965-05-29	\N	\N	f	1	133
 400	2	R	1965-06-13	\N	\N	f	11	134
-404	1	QB	1965-06-25	\N	\N	f	1	135
+401	1	QB	1965-06-11	\N	\N	f	1	134
+402	\N	QB	1965-06-12	\N	\N	f	1	134
 403	2	R	1965-06-27	\N	\N	f	11	135
-407	1	QB	1965-07-08	\N	\N	f	1	136
+404	1	QB	1965-06-25	\N	\N	f	1	135
+405	\N	QB	1965-06-26	\N	\N	f	1	135
 406	2	R	1965-07-10	\N	\N	f	11	136
-410	1	QB	1965-07-16	\N	\N	f	1	137
+407	1	QB	1965-07-08	\N	\N	f	1	136
+408	\N	QB	1965-07-09	\N	\N	f	1	136
 409	2	R	1965-07-18	\N	\N	f	11	137
-413	1	QB	1965-07-30	\N	\N	f	1	138
+410	1	QB	1965-07-16	\N	\N	f	1	137
+411	\N	QB	1965-07-17	\N	\N	f	1	137
 412	2	R	1965-08-01	\N	\N	f	11	138
-416	1	QB	1965-09-10	\N	\N	f	1	139
+413	1	QB	1965-07-30	\N	\N	f	1	138
+414	\N	QB	1965-07-31	\N	\N	f	1	138
 415	2	R	1965-09-12	\N	\N	f	11	139
-419	1	QB	1965-10-01	\N	\N	f	1	140
+416	1	QB	1965-09-10	\N	\N	f	1	139
+417	\N	QB	1965-09-11	\N	\N	f	1	139
 418	2	R	1965-10-03	\N	\N	f	11	140
-422	1	QB	1965-10-22	\N	\N	f	1	141
+419	1	QB	1965-10-01	\N	\N	f	1	140
+420	\N	QB	1965-10-02	\N	\N	f	1	140
 421	2	R	1965-10-24	\N	\N	f	11	141
-425	1	QB	1966-05-19	\N	\N	f	1	142
+422	1	QB	1965-10-22	\N	\N	f	1	141
+423	\N	QB	1965-10-23	\N	\N	f	1	141
 424	2	R	1966-05-22	\N	\N	f	11	142
-428	1	QB	1966-06-10	\N	\N	f	1	143
+425	1	QB	1966-05-19	\N	\N	f	1	142
+426	\N	QB	1966-05-21	\N	\N	f	1	142
 427	2	R	1966-06-12	\N	\N	f	11	143
-431	1	QB	1966-07-01	\N	\N	f	1	144
+428	1	QB	1966-06-10	\N	\N	f	1	143
+429	\N	QB	1966-06-11	\N	\N	f	1	143
 430	2	R	1966-07-03	\N	\N	f	11	144
-434	1	QB	1966-07-14	\N	\N	f	1	145
+431	1	QB	1966-07-01	\N	\N	f	1	144
+432	\N	QB	1966-07-02	\N	\N	f	1	144
 433	2	R	1966-07-16	\N	\N	f	11	145
-437	1	QB	1966-07-22	\N	\N	f	1	146
+434	1	QB	1966-07-14	\N	\N	f	1	145
+435	\N	QB	1966-07-15	\N	\N	f	1	145
 436	2	R	1966-07-24	\N	\N	f	11	146
-440	1	QB	1966-08-05	\N	\N	f	1	147
+437	1	QB	1966-07-22	\N	\N	f	1	146
+438	\N	QB	1966-07-23	\N	\N	f	1	146
 439	2	R	1966-08-07	\N	\N	f	11	147
-443	1	QB	1966-09-02	\N	\N	f	1	148
+440	1	QB	1966-08-05	\N	\N	f	1	147
+441	\N	QB	1966-08-06	\N	\N	f	1	147
 442	2	R	1966-09-04	\N	\N	f	11	148
-446	1	QB	1966-09-30	\N	\N	f	1	149
+443	1	QB	1966-09-02	\N	\N	f	1	148
+444	\N	QB	1966-09-03	\N	\N	f	1	148
 445	2	R	1966-10-02	\N	\N	f	11	149
-449	1	QB	1966-10-21	\N	\N	f	1	150
+446	1	QB	1966-09-30	\N	\N	f	1	149
+447	\N	QB	1966-10-01	\N	\N	f	1	149
 448	2	R	1966-10-23	\N	\N	f	11	150
-452	1	QB	1966-12-31	\N	\N	f	1	151
+449	1	QB	1966-10-21	\N	\N	f	1	150
+450	\N	QB	1966-10-22	\N	\N	f	1	150
 451	2	R	1967-01-02	\N	\N	f	11	151
-455	1	QB	1967-05-04	\N	\N	f	1	152
+452	1	QB	1966-12-31	\N	\N	f	1	151
+453	\N	QB	1967-01-01	\N	\N	f	1	151
 454	2	R	1967-05-07	\N	\N	f	11	152
-458	1	QB	1967-06-02	\N	\N	f	1	153
+455	1	QB	1967-05-04	\N	\N	f	1	152
+456	\N	QB	1967-05-06	\N	\N	f	1	152
 457	2	R	1967-06-04	\N	\N	f	11	153
-461	1	QB	1967-06-16	\N	\N	f	1	154
+458	1	QB	1967-06-02	\N	\N	f	1	153
+459	\N	QB	1967-06-03	\N	\N	f	1	153
 460	2	R	1967-06-18	\N	\N	f	11	154
-464	1	QB	1967-06-30	\N	\N	f	1	155
+461	1	QB	1967-06-16	\N	\N	f	1	154
+462	\N	QB	1967-06-17	\N	\N	f	1	154
 463	2	R	1967-07-02	\N	\N	f	11	155
-467	1	QB	1967-07-13	\N	\N	f	1	156
+464	1	QB	1967-06-30	\N	\N	f	1	155
+465	\N	QB	1967-07-01	\N	\N	f	1	155
 466	2	R	1967-07-15	\N	\N	f	11	156
-470	1	QB	1967-08-04	\N	\N	f	1	157
+467	1	QB	1967-07-13	\N	\N	f	1	156
+468	\N	QB	1967-07-14	\N	\N	f	1	156
 469	2	R	1967-08-06	\N	\N	f	11	157
-473	1	QB	1967-08-25	\N	\N	f	1	158
+470	1	QB	1967-08-04	\N	\N	f	1	157
+471	\N	QB	1967-08-05	\N	\N	f	1	157
 472	2	R	1967-08-27	\N	\N	f	11	158
-476	1	QB	1967-09-08	\N	\N	f	1	159
+473	1	QB	1967-08-25	\N	\N	f	1	158
+474	\N	QB	1967-08-26	\N	\N	f	1	158
 475	2	R	1967-09-10	\N	\N	f	11	159
-479	1	QB	1967-09-29	\N	\N	f	1	160
+476	1	QB	1967-09-08	\N	\N	f	1	159
+477	\N	QB	1967-09-09	\N	\N	f	1	159
 478	2	R	1967-10-01	\N	\N	f	11	160
-482	1	QB	1967-10-20	\N	\N	f	1	161
+479	1	QB	1967-09-29	\N	\N	f	1	160
+480	\N	QB	1967-09-30	\N	\N	f	1	160
 481	2	R	1967-10-22	\N	\N	f	11	161
-485	1	QB	1967-12-30	\N	\N	f	1	162
+482	1	QB	1967-10-20	\N	\N	f	1	161
+483	\N	QB	1967-10-21	\N	\N	f	1	161
 484	2	R	1968-01-01	\N	\N	f	11	162
-488	1	QB	1968-05-10	\N	\N	f	1	163
+485	1	QB	1967-12-30	\N	\N	f	1	162
+486	\N	QB	1967-12-31	\N	\N	f	1	162
 487	2	R	1968-05-12	\N	\N	f	11	163
-491	1	QB	1968-05-23	\N	\N	f	1	164
+488	1	QB	1968-05-10	\N	\N	f	1	163
+489	\N	QB	1968-05-11	\N	\N	f	1	163
 490	2	R	1968-05-26	\N	\N	f	11	164
-494	1	QB	1968-06-07	\N	\N	f	1	165
+491	1	QB	1968-05-23	\N	\N	f	1	164
+492	\N	QB	1968-05-25	\N	\N	f	1	164
 493	2	R	1968-06-09	\N	\N	f	11	165
-497	1	QB	1968-06-21	\N	\N	f	1	166
+494	1	QB	1968-06-07	\N	\N	f	1	165
+495	\N	QB	1968-06-08	\N	\N	f	1	165
 496	2	R	1968-06-23	\N	\N	f	11	166
-500	1	QB	1968-07-05	\N	\N	f	1	167
+497	1	QB	1968-06-21	\N	\N	f	1	166
+498	\N	QB	1968-06-22	\N	\N	f	1	166
 499	2	R	1968-07-07	\N	\N	f	11	167
-503	1	QB	1968-07-18	\N	\N	f	1	168
+500	1	QB	1968-07-05	\N	\N	f	1	167
+501	\N	QB	1968-07-06	\N	\N	f	1	167
 502	2	R	1968-07-20	\N	\N	f	11	168
-506	1	QB	1968-08-02	\N	\N	f	1	169
+503	1	QB	1968-07-18	\N	\N	f	1	168
+504	\N	QB	1968-07-19	\N	\N	f	1	168
 505	2	R	1968-08-04	\N	\N	f	11	169
-509	1	QB	1968-09-06	\N	\N	f	1	170
+506	1	QB	1968-08-02	\N	\N	f	1	169
+507	\N	QB	1968-08-03	\N	\N	f	1	169
 508	2	R	1968-09-08	\N	\N	f	11	170
-512	1	QB	1968-09-20	\N	\N	f	1	171
+509	1	QB	1968-09-06	\N	\N	f	1	170
+510	\N	QB	1968-09-07	\N	\N	f	1	170
 511	2	R	1968-09-22	\N	\N	f	11	171
-515	1	QB	1968-10-04	\N	\N	f	1	172
+512	1	QB	1968-09-20	\N	\N	f	1	171
+513	\N	QB	1968-09-21	\N	\N	f	1	171
 514	2	R	1968-10-06	\N	\N	f	11	172
-518	1	QB	1968-11-01	\N	\N	f	1	173
+515	1	QB	1968-10-04	\N	\N	f	1	172
+516	\N	QB	1968-10-05	\N	\N	f	1	172
 517	2	R	1968-11-03	\N	\N	f	11	173
-521	1	QB	1969-02-27	\N	\N	f	1	174
+518	1	QB	1968-11-01	\N	\N	f	1	173
+519	\N	QB	1968-11-02	\N	\N	f	1	173
 520	2	R	1969-03-01	\N	\N	f	11	174
-524	1	QB	1969-05-02	\N	\N	f	1	175
+521	1	QB	1969-02-27	\N	\N	f	1	174
+522	\N	QB	1969-02-28	\N	\N	f	1	174
 523	2	R	1969-05-04	\N	\N	f	11	175
-527	1	QB	1969-05-15	\N	\N	f	1	176
+524	1	QB	1969-05-02	\N	\N	f	1	175
+525	\N	QB	1969-05-03	\N	\N	f	1	175
 526	2	R	1969-05-18	\N	\N	f	11	176
-530	1	QB	1969-06-19	\N	\N	f	1	177
+527	1	QB	1969-05-15	\N	\N	f	1	176
+528	\N	QB	1969-05-17	\N	\N	f	1	176
 529	2	R	1969-06-21	\N	\N	f	11	177
-533	1	QB	1969-07-04	\N	\N	f	1	178
+530	1	QB	1969-06-19	\N	\N	f	1	177
+531	\N	QB	1969-06-20	\N	\N	f	1	177
 532	2	R	1969-07-06	\N	\N	f	11	178
-536	1	QB	1969-07-17	\N	\N	f	1	179
+533	1	QB	1969-07-04	\N	\N	f	1	178
+534	\N	QB	1969-07-05	\N	\N	f	1	178
 535	2	R	1969-07-19	\N	\N	f	11	179
-539	1	QB	1969-08-01	\N	\N	f	1	180
+536	1	QB	1969-07-17	\N	\N	f	1	179
+537	\N	QB	1969-07-18	\N	\N	f	1	179
 538	2	R	1969-08-03	\N	\N	f	11	180
-542	1	QB	1969-09-05	\N	\N	f	1	181
+539	1	QB	1969-08-01	\N	\N	f	1	180
+540	\N	QB	1969-08-02	\N	\N	f	1	180
 541	2	R	1969-09-07	\N	\N	f	11	181
-545	1	QB	1969-09-18	\N	\N	f	1	182
+542	1	QB	1969-09-05	\N	\N	f	1	181
+543	\N	QB	1969-09-06	\N	\N	f	1	181
 544	2	R	1969-09-20	\N	\N	f	11	182
-548	1	QB	1969-10-03	\N	\N	f	1	183
+545	1	QB	1969-09-18	\N	\N	f	1	182
+546	\N	QB	1969-09-19	\N	\N	f	1	182
 547	2	R	1969-10-05	\N	\N	f	11	183
-551	1	QB	1969-10-17	\N	\N	f	1	184
+548	1	QB	1969-10-03	\N	\N	f	1	183
+549	\N	QB	1969-10-04	\N	\N	f	1	183
 550	2	R	1969-10-19	\N	\N	f	11	184
-554	1	QB	1970-03-05	\N	\N	f	1	185
+551	1	QB	1969-10-17	\N	\N	f	1	184
+552	\N	QB	1969-10-18	\N	\N	f	1	184
 553	2	R	1970-03-07	\N	\N	f	11	185
-557	1	QB	1970-04-17	\N	\N	f	1	186
+554	1	QB	1970-03-05	\N	\N	f	1	185
+555	\N	QB	1970-03-06	\N	\N	f	1	185
 556	2	R	1970-04-19	\N	\N	f	11	186
-560	1	QB	1970-05-07	\N	\N	f	1	187
+557	1	QB	1970-04-17	\N	\N	f	1	186
+558	\N	QB	1970-04-18	\N	\N	f	1	186
 559	2	R	1970-05-10	\N	\N	f	11	187
-563	1	QB	1970-06-05	\N	\N	f	1	188
+560	1	QB	1970-05-07	\N	\N	f	1	187
+561	\N	QB	1970-05-09	\N	\N	f	1	187
 562	2	R	1970-06-07	\N	\N	f	11	188
-566	1	QB	1970-06-19	\N	\N	f	1	189
+563	1	QB	1970-06-05	\N	\N	f	1	188
+564	\N	QB	1970-06-06	\N	\N	f	1	188
 565	2	R	1970-06-21	\N	\N	f	11	189
-569	1	QB	1970-07-03	\N	\N	f	1	190
+566	1	QB	1970-06-19	\N	\N	f	1	189
+567	\N	QB	1970-06-20	\N	\N	f	1	189
 568	2	R	1970-07-05	\N	\N	f	11	190
-572	1	QB	1970-07-16	\N	\N	f	1	191
+569	1	QB	1970-07-03	\N	\N	f	1	190
+570	\N	QB	1970-07-04	\N	\N	f	1	190
 571	2	R	1970-07-18	\N	\N	f	11	191
-575	1	QB	1970-07-31	\N	\N	f	1	192
+572	1	QB	1970-07-16	\N	\N	f	1	191
+573	\N	QB	1970-07-17	\N	\N	f	1	191
 574	2	R	1970-08-02	\N	\N	f	11	192
-578	1	QB	1970-08-14	\N	\N	f	1	193
+575	1	QB	1970-07-31	\N	\N	f	1	192
+576	\N	QB	1970-08-01	\N	\N	f	1	192
 577	2	R	1970-08-16	\N	\N	f	11	193
-581	1	QB	1970-09-04	\N	\N	f	1	194
+578	1	QB	1970-08-14	\N	\N	f	1	193
+579	\N	QB	1970-08-15	\N	\N	f	1	193
 580	2	R	1970-09-06	\N	\N	f	11	194
-584	1	QB	1970-09-18	\N	\N	f	1	195
+581	1	QB	1970-09-04	\N	\N	f	1	194
+582	\N	QB	1970-09-05	\N	\N	f	1	194
 583	2	R	1970-09-20	\N	\N	f	11	195
-587	1	QB	1970-10-02	\N	\N	f	1	196
+584	1	QB	1970-09-18	\N	\N	f	1	195
+585	\N	QB	1970-09-19	\N	\N	f	1	195
 586	2	R	1970-10-04	\N	\N	f	11	196
-590	1	QB	1970-10-23	\N	\N	f	1	197
+587	1	QB	1970-10-02	\N	\N	f	1	196
+588	\N	QB	1970-10-03	\N	\N	f	1	196
 589	2	R	1970-10-25	\N	\N	f	11	197
-593	1	QB	1971-03-04	\N	\N	f	1	198
+590	1	QB	1970-10-23	\N	\N	f	1	197
+591	\N	QB	1970-10-24	\N	\N	f	1	197
 592	2	R	1971-03-06	\N	\N	f	11	198
-596	1	QB	1971-04-16	\N	\N	f	1	199
+593	1	QB	1971-03-04	\N	\N	f	1	198
+594	\N	QB	1971-03-05	\N	\N	f	1	198
 595	2	R	1971-04-18	\N	\N	f	11	199
-599	1	QB	1971-05-20	\N	\N	f	1	200
+596	1	QB	1971-04-16	\N	\N	f	1	199
+597	\N	QB	1971-04-17	\N	\N	f	1	199
 598	2	R	1971-05-23	\N	\N	f	11	200
-602	1	QB	1971-06-18	\N	\N	f	1	201
+599	1	QB	1971-05-20	\N	\N	f	1	200
+600	\N	QB	1971-05-22	\N	\N	f	1	200
 601	2	R	1971-06-20	\N	\N	f	11	201
-605	1	QB	1971-07-02	\N	\N	f	1	202
+602	1	QB	1971-06-18	\N	\N	f	1	201
+603	\N	QB	1971-06-19	\N	\N	f	1	201
 604	2	R	1971-07-04	\N	\N	f	11	202
-608	1	QB	1971-07-15	\N	\N	f	1	203
+605	1	QB	1971-07-02	\N	\N	f	1	202
+606	\N	QB	1971-07-03	\N	\N	f	1	202
 607	2	R	1971-07-17	\N	\N	f	11	203
-611	1	QB	1971-07-30	\N	\N	f	1	204
+608	1	QB	1971-07-15	\N	\N	f	1	203
+609	\N	QB	1971-07-16	\N	\N	f	1	203
 610	2	R	1971-08-01	\N	\N	f	11	204
-614	1	QB	1971-08-13	\N	\N	f	1	205
+611	1	QB	1971-07-30	\N	\N	f	1	204
+612	\N	QB	1971-07-31	\N	\N	f	1	204
 613	2	R	1971-08-15	\N	\N	f	11	205
-617	1	QB	1971-09-03	\N	\N	f	1	206
+614	1	QB	1971-08-13	\N	\N	f	1	205
+615	\N	QB	1971-08-14	\N	\N	f	1	205
 616	2	R	1971-09-05	\N	\N	f	11	206
-620	1	QB	1971-09-17	\N	\N	f	1	207
+617	1	QB	1971-09-03	\N	\N	f	1	206
+618	\N	QB	1971-09-04	\N	\N	f	1	206
 619	2	R	1971-09-19	\N	\N	f	11	207
-623	1	QB	1971-10-01	\N	\N	f	1	208
+620	1	QB	1971-09-17	\N	\N	f	1	207
+621	\N	QB	1971-09-18	\N	\N	f	1	207
 622	2	R	1971-10-03	\N	\N	f	11	208
-626	1	QB	1972-01-21	\N	\N	f	1	209
+623	1	QB	1971-10-01	\N	\N	f	1	208
+624	\N	QB	1971-10-02	\N	\N	f	1	208
 625	2	R	1972-01-23	\N	\N	f	11	209
-629	1	QB	1972-03-02	\N	\N	f	1	210
+626	1	QB	1972-01-21	\N	\N	f	1	209
+627	\N	QB	1972-01-22	\N	\N	f	1	209
 628	2	R	1972-03-04	\N	\N	f	11	210
-632	1	QB	1972-04-29	\N	\N	f	1	211
+629	1	QB	1972-03-02	\N	\N	f	1	210
+630	\N	QB	1972-03-03	\N	\N	f	1	210
 631	2	R	1972-05-01	\N	\N	f	11	211
-635	1	QB	1972-05-11	\N	\N	f	1	212
+632	1	QB	1972-04-29	\N	\N	f	1	211
+633	\N	QB	1972-04-30	\N	\N	f	1	211
 634	2	R	1972-05-14	\N	\N	f	11	212
-638	1	QB	1972-06-02	\N	\N	f	1	213
+635	1	QB	1972-05-11	\N	\N	f	1	212
+636	\N	QB	1972-05-13	\N	\N	f	1	212
 637	2	R	1972-06-04	\N	\N	f	11	213
-641	1	QB	1972-06-30	\N	\N	f	1	214
+638	1	QB	1972-06-02	\N	\N	f	1	213
+639	\N	QB	1972-06-03	\N	\N	f	1	213
 640	2	R	1972-07-02	\N	\N	f	11	214
-644	1	QB	1972-07-13	\N	\N	f	1	215
+641	1	QB	1972-06-30	\N	\N	f	1	214
+642	\N	QB	1972-07-01	\N	\N	f	1	214
 643	2	R	1972-07-15	\N	\N	f	11	215
-647	1	QB	1972-07-28	\N	\N	f	1	216
+644	1	QB	1972-07-13	\N	\N	f	1	215
+645	\N	QB	1972-07-14	\N	\N	f	1	215
 646	2	R	1972-07-30	\N	\N	f	11	216
-650	1	QB	1972-08-11	\N	\N	f	1	217
+647	1	QB	1972-07-28	\N	\N	f	1	216
+648	\N	QB	1972-07-29	\N	\N	f	1	216
 649	2	R	1972-08-13	\N	\N	f	11	217
-653	1	QB	1972-09-08	\N	\N	f	1	218
+650	1	QB	1972-08-11	\N	\N	f	1	217
+651	\N	QB	1972-08-12	\N	\N	f	1	217
 652	2	R	1972-09-10	\N	\N	f	11	218
-656	1	QB	1972-09-22	\N	\N	f	1	219
+653	1	QB	1972-09-08	\N	\N	f	1	218
+654	\N	QB	1972-09-09	\N	\N	f	1	218
 655	2	R	1972-09-24	\N	\N	f	11	219
-659	1	QB	1972-10-06	\N	\N	f	1	220
+656	1	QB	1972-09-22	\N	\N	f	1	219
+657	\N	QB	1972-09-23	\N	\N	f	1	219
 658	2	R	1972-10-08	\N	\N	f	11	220
-662	1	QB	1973-01-26	\N	\N	f	1	221
+659	1	QB	1972-10-06	\N	\N	f	1	220
+660	\N	QB	1972-10-07	\N	\N	f	1	220
 661	2	R	1973-01-28	\N	\N	f	11	221
-665	1	QB	1973-02-09	\N	\N	f	1	222
+662	1	QB	1973-01-26	\N	\N	f	1	221
+663	\N	QB	1973-01-27	\N	\N	f	1	221
 664	2	R	1973-02-11	\N	\N	f	11	222
-668	1	QB	1973-03-01	\N	\N	f	1	223
+665	1	QB	1973-02-09	\N	\N	f	1	222
+666	\N	QB	1973-02-10	\N	\N	f	1	222
 667	2	R	1973-03-03	\N	\N	f	11	223
-671	1	QB	1973-04-27	\N	\N	f	1	224
+668	1	QB	1973-03-01	\N	\N	f	1	223
+669	\N	QB	1973-03-02	\N	\N	f	1	223
 670	2	R	1973-04-29	\N	\N	f	11	224
-674	1	QB	1973-05-18	\N	\N	f	1	225
+671	1	QB	1973-04-27	\N	\N	f	1	224
+672	\N	QB	1973-04-28	\N	\N	f	1	224
 673	2	R	1973-05-20	\N	\N	f	11	225
-677	1	QB	1973-05-31	\N	\N	f	1	226
+674	1	QB	1973-05-18	\N	\N	f	1	225
+675	\N	QB	1973-05-19	\N	\N	f	1	225
 676	2	R	1973-06-03	\N	\N	f	11	226
-680	1	QB	1973-06-15	\N	\N	f	1	227
+677	1	QB	1973-05-31	\N	\N	f	1	226
+678	\N	QB	1973-06-02	\N	\N	f	1	226
 679	2	R	1973-06-17	\N	\N	f	11	227
-683	1	QB	1973-06-29	\N	\N	f	1	228
+680	1	QB	1973-06-15	\N	\N	f	1	227
+681	\N	QB	1973-06-16	\N	\N	f	1	227
 682	2	R	1973-07-01	\N	\N	f	11	228
-686	1	QB	1973-07-12	\N	\N	f	1	229
+683	1	QB	1973-06-29	\N	\N	f	1	228
+684	\N	QB	1973-06-30	\N	\N	f	1	228
 685	2	R	1973-07-14	\N	\N	f	11	229
-689	1	QB	1973-07-27	\N	\N	f	1	230
+686	1	QB	1973-07-12	\N	\N	f	1	229
+687	\N	QB	1973-07-13	\N	\N	f	1	229
 688	2	R	1973-07-29	\N	\N	f	11	230
-692	1	QB	1973-08-03	\N	\N	f	1	231
+689	1	QB	1973-07-27	\N	\N	f	1	230
+690	\N	QB	1973-07-28	\N	\N	f	1	230
 691	2	R	1973-08-05	\N	\N	f	11	231
-695	1	QB	1973-08-17	\N	\N	f	1	232
+692	1	QB	1973-08-03	\N	\N	f	1	231
+693	\N	QB	1973-08-04	\N	\N	f	1	231
 694	2	R	1973-08-19	\N	\N	f	11	232
-698	1	QB	1973-09-07	\N	\N	f	1	233
+695	1	QB	1973-08-17	\N	\N	f	1	232
+696	\N	QB	1973-08-18	\N	\N	f	1	232
 697	2	R	1973-09-09	\N	\N	f	11	233
-701	1	QB	1973-09-21	\N	\N	f	1	234
+698	1	QB	1973-09-07	\N	\N	f	1	233
+699	\N	QB	1973-09-08	\N	\N	f	1	233
 700	2	R	1973-09-23	\N	\N	f	11	234
-704	1	QB	1973-10-05	\N	\N	f	1	235
+701	1	QB	1973-09-21	\N	\N	f	1	234
+702	\N	QB	1973-09-22	\N	\N	f	1	234
 703	2	R	1973-10-07	\N	\N	f	11	235
-707	1	QB	1974-01-11	\N	\N	f	1	236
+704	1	QB	1973-10-05	\N	\N	f	1	235
+705	\N	QB	1973-10-06	\N	\N	f	1	235
 706	2	R	1974-01-13	\N	\N	f	11	236
-710	1	QB	1974-01-25	\N	\N	f	1	237
+707	1	QB	1974-01-11	\N	\N	f	1	236
+708	\N	QB	1974-01-12	\N	\N	f	1	236
 709	2	R	1974-01-27	\N	\N	f	11	237
-713	1	QB	1974-03-28	\N	\N	f	1	238
+710	1	QB	1974-01-25	\N	\N	f	1	237
+711	\N	QB	1974-01-26	\N	\N	f	1	237
 712	2	R	1974-03-30	\N	\N	f	11	238
-716	1	QB	1974-04-26	\N	\N	f	1	239
+713	1	QB	1974-03-28	\N	\N	f	1	238
+714	\N	QB	1974-03-29	\N	\N	f	1	238
 715	2	R	1974-04-28	\N	\N	f	11	239
-719	1	QB	1974-05-10	\N	\N	f	1	240
+716	1	QB	1974-04-26	\N	\N	f	1	239
+717	\N	QB	1974-04-27	\N	\N	f	1	239
 718	2	R	1974-05-12	\N	\N	f	11	240
-722	1	QB	1974-05-23	\N	\N	f	1	241
+719	1	QB	1974-05-10	\N	\N	f	1	240
+720	\N	QB	1974-05-11	\N	\N	f	1	240
 721	2	R	1974-05-26	\N	\N	f	11	241
-725	1	QB	1974-06-07	\N	\N	f	1	242
+722	1	QB	1974-05-23	\N	\N	f	1	241
+723	\N	QB	1974-05-25	\N	\N	f	1	241
 724	2	R	1974-06-09	\N	\N	f	11	242
-728	1	QB	1974-06-21	\N	\N	f	1	243
+725	1	QB	1974-06-07	\N	\N	f	1	242
+726	\N	QB	1974-06-08	\N	\N	f	1	242
 727	2	R	1974-06-23	\N	\N	f	11	243
-731	1	QB	1974-07-05	\N	\N	f	1	244
+728	1	QB	1974-06-21	\N	\N	f	1	243
+729	\N	QB	1974-06-22	\N	\N	f	1	243
 730	2	R	1974-07-07	\N	\N	f	11	244
-734	1	QB	1974-07-18	\N	\N	f	1	245
+731	1	QB	1974-07-05	\N	\N	f	1	244
+732	\N	QB	1974-07-06	\N	\N	f	1	244
 733	2	R	1974-07-20	\N	\N	f	11	245
-737	1	QB	1974-08-02	\N	\N	f	1	246
+734	1	QB	1974-07-18	\N	\N	f	1	245
+735	\N	QB	1974-07-19	\N	\N	f	1	245
 736	2	R	1974-08-04	\N	\N	f	11	246
-740	1	QB	1974-08-16	\N	\N	f	1	247
+737	1	QB	1974-08-02	\N	\N	f	1	246
+738	\N	QB	1974-08-03	\N	\N	f	1	246
 739	2	R	1974-08-18	\N	\N	f	11	247
-743	1	QB	1974-09-06	\N	\N	f	1	248
+740	1	QB	1974-08-16	\N	\N	f	1	247
+741	\N	QB	1974-08-17	\N	\N	f	1	247
 742	2	R	1974-09-08	\N	\N	f	11	248
-746	1	QB	1974-09-20	\N	\N	f	1	249
+743	1	QB	1974-09-06	\N	\N	f	1	248
+744	\N	QB	1974-09-07	\N	\N	f	1	248
 745	2	R	1974-09-22	\N	\N	f	11	249
-749	1	QB	1974-10-04	\N	\N	f	1	250
+746	1	QB	1974-09-20	\N	\N	f	1	249
+747	\N	QB	1974-09-21	\N	\N	f	1	249
 748	2	R	1974-10-06	\N	\N	f	11	250
-752	1	QB	1975-01-10	\N	\N	f	1	251
+749	1	QB	1974-10-04	\N	\N	f	1	250
+750	\N	QB	1974-10-05	\N	\N	f	1	250
 751	2	R	1975-01-12	\N	\N	f	12	251
-755	1	QB	1975-01-24	\N	\N	f	1	252
+752	1	QB	1975-01-10	\N	\N	f	1	251
+753	\N	QB	1975-01-11	\N	\N	f	1	251
 754	2	R	1975-01-26	\N	\N	f	12	252
-758	1	QB	1975-02-27	\N	\N	f	1	253
+755	1	QB	1975-01-24	\N	\N	f	1	252
+756	\N	QB	1975-01-25	\N	\N	f	1	252
 757	2	R	1975-03-01	\N	\N	f	12	253
-761	1	QB	1975-04-25	\N	\N	f	1	254
+758	1	QB	1975-02-27	\N	\N	f	1	253
+759	\N	QB	1975-02-28	\N	\N	f	1	253
 760	2	R	1975-04-27	\N	\N	f	12	254
-764	1	QB	1975-05-08	\N	\N	f	1	255
+761	1	QB	1975-04-25	\N	\N	f	1	254
+762	\N	QB	1975-04-26	\N	\N	f	1	254
 763	2	R	1975-05-11	\N	\N	f	12	255
-767	1	QB	1975-05-23	\N	\N	f	1	256
+764	1	QB	1975-05-08	\N	\N	f	1	255
+765	\N	QB	1975-05-10	\N	\N	f	1	255
 766	2	R	1975-05-25	\N	\N	f	12	256
-770	1	QB	1975-06-06	\N	\N	f	1	257
+767	1	QB	1975-05-23	\N	\N	f	1	256
+768	\N	QB	1975-05-24	\N	\N	f	1	256
 769	2	R	1975-06-08	\N	\N	f	12	257
-773	1	QB	1975-06-20	\N	\N	f	1	258
+770	1	QB	1975-06-06	\N	\N	f	1	257
+771	\N	QB	1975-06-07	\N	\N	f	1	257
 772	2	R	1975-06-22	\N	\N	f	12	258
-776	1	QB	1975-07-04	\N	\N	f	1	259
+773	1	QB	1975-06-20	\N	\N	f	1	258
+774	\N	QB	1975-06-21	\N	\N	f	1	258
 775	2	R	1975-07-06	\N	\N	f	12	259
-779	1	QB	1975-07-17	\N	\N	f	1	260
+776	1	QB	1975-07-04	\N	\N	f	1	259
+777	\N	QB	1975-07-05	\N	\N	f	1	259
 778	2	R	1975-07-19	\N	\N	f	12	260
-782	1	QB	1975-08-01	\N	\N	f	1	261
+779	1	QB	1975-07-17	\N	\N	f	1	260
+780	\N	QB	1975-07-18	\N	\N	f	1	260
 781	2	R	1975-08-03	\N	\N	f	12	261
-785	1	QB	1975-08-15	\N	\N	f	1	262
+782	1	QB	1975-08-01	\N	\N	f	1	261
+783	\N	QB	1975-08-02	\N	\N	f	1	261
 784	2	R	1975-08-17	\N	\N	f	12	262
-788	1	QB	1975-09-05	\N	\N	f	1	263
+785	1	QB	1975-08-15	\N	\N	f	1	262
+786	\N	QB	1975-08-16	\N	\N	f	1	262
 787	2	R	1975-09-07	\N	\N	f	12	263
-791	1	QB	1975-10-03	\N	\N	f	1	264
+788	1	QB	1975-09-05	\N	\N	f	1	263
+789	\N	QB	1975-09-06	\N	\N	f	1	263
 790	2	R	1975-10-05	\N	\N	f	12	264
-794	1	QB	1976-01-23	\N	\N	f	1	265
+791	1	QB	1975-10-03	\N	\N	f	1	264
+792	\N	QB	1975-10-04	\N	\N	f	1	264
 793	2	R	1976-01-25	\N	\N	f	12	265
-797	1	QB	1976-03-04	\N	\N	f	1	266
+794	1	QB	1976-01-23	\N	\N	f	1	265
+795	\N	QB	1976-01-24	\N	\N	f	1	265
 796	2	R	1976-03-06	\N	\N	f	12	266
-800	1	QB	1976-03-26	\N	\N	f	1	267
+797	1	QB	1976-03-04	\N	\N	f	1	266
+798	\N	QB	1976-03-05	\N	\N	f	1	266
 799	2	R	1976-03-28	\N	\N	f	12	267
-803	1	QB	1976-04-30	\N	\N	f	1	268
+800	1	QB	1976-03-26	\N	\N	f	1	267
+801	\N	QB	1976-03-27	\N	\N	f	1	267
 802	2	R	1976-05-02	\N	\N	f	12	268
-806	1	QB	1976-05-14	\N	\N	f	1	269
+803	1	QB	1976-04-30	\N	\N	f	1	268
+804	\N	QB	1976-05-01	\N	\N	f	1	268
 805	2	R	1976-05-16	\N	\N	f	12	269
-809	1	QB	1976-05-27	\N	\N	f	1	270
+806	1	QB	1976-05-14	\N	\N	f	1	269
+807	\N	QB	1976-05-15	\N	\N	f	1	269
 808	2	R	1976-05-30	\N	\N	f	12	270
-812	1	QB	1976-06-11	\N	\N	f	1	271
+809	1	QB	1976-05-27	\N	\N	f	1	270
+810	\N	QB	1976-05-29	\N	\N	f	1	270
 811	2	R	1976-06-13	\N	\N	f	12	271
-815	1	QB	1976-07-02	\N	\N	f	1	272
+812	1	QB	1976-06-11	\N	\N	f	1	271
+813	\N	QB	1976-06-12	\N	\N	f	1	271
 814	2	R	1976-07-04	\N	\N	f	12	272
-818	1	QB	1976-07-16	\N	\N	f	1	273
+815	1	QB	1976-07-02	\N	\N	f	1	272
+816	\N	QB	1976-07-03	\N	\N	f	1	272
 817	2	R	1976-07-18	\N	\N	f	12	273
-821	1	QB	1976-07-30	\N	\N	f	1	274
+818	1	QB	1976-07-16	\N	\N	f	1	273
+819	\N	QB	1976-07-17	\N	\N	f	1	273
 820	2	R	1976-08-01	\N	\N	f	12	274
-824	1	QB	1976-08-13	\N	\N	f	1	275
+821	1	QB	1976-07-30	\N	\N	f	1	274
+822	\N	QB	1976-07-31	\N	\N	f	1	274
 823	2	R	1976-08-15	\N	\N	f	12	275
-827	1	QB	1976-08-27	\N	\N	f	1	276
+824	1	QB	1976-08-13	\N	\N	f	1	275
+825	\N	QB	1976-08-14	\N	\N	f	1	275
 826	2	R	1976-08-29	\N	\N	f	12	276
-830	1	QB	1976-09-10	\N	\N	f	1	277
+827	1	QB	1976-08-27	\N	\N	f	1	276
+828	\N	QB	1976-08-28	\N	\N	f	1	276
 829	2	R	1976-09-12	\N	\N	f	12	277
-833	1	QB	1976-10-01	\N	\N	f	1	278
+830	1	QB	1976-09-10	\N	\N	f	1	277
+831	\N	QB	1976-09-11	\N	\N	f	1	277
 832	2	R	1976-10-03	\N	\N	f	12	278
-836	1	QB	1976-10-08	\N	\N	f	1	279
+833	1	QB	1976-10-01	\N	\N	f	1	278
+834	\N	QB	1976-10-02	\N	\N	f	1	278
 835	2	R	1976-10-10	\N	\N	f	12	279
-839	1	QB	1976-10-22	\N	\N	f	1	280
+836	1	QB	1976-10-08	\N	\N	f	1	279
+837	\N	QB	1976-10-09	\N	\N	f	1	279
 838	2	R	1976-10-24	\N	\N	f	12	280
-842	1	QB	1977-01-07	\N	\N	f	1	281
+839	1	QB	1976-10-22	\N	\N	f	1	280
+840	\N	QB	1976-10-23	\N	\N	f	1	280
 841	2	R	1977-01-09	\N	\N	f	12	281
-845	1	QB	1977-01-21	\N	\N	f	1	282
+842	1	QB	1977-01-07	\N	\N	f	1	281
+843	\N	QB	1977-01-08	\N	\N	f	1	281
 844	2	R	1977-01-23	\N	\N	f	12	282
-848	1	QB	1977-03-03	\N	\N	f	1	283
+845	1	QB	1977-01-21	\N	\N	f	1	282
+846	\N	QB	1977-01-22	\N	\N	f	1	282
 847	2	R	1977-03-05	\N	\N	f	12	283
-851	1	QB	1977-04-01	\N	\N	f	1	284
+848	1	QB	1977-03-03	\N	\N	f	1	283
+849	\N	QB	1977-03-04	\N	\N	f	1	283
 850	2	R	1977-04-03	\N	\N	f	12	284
-854	1	QB	1977-05-06	\N	\N	f	1	285
+851	1	QB	1977-04-01	\N	\N	f	1	284
+852	\N	QB	1977-04-02	\N	\N	f	1	284
 853	2	R	1977-05-08	\N	\N	f	12	285
-857	1	QB	1977-05-19	\N	\N	f	1	286
+854	1	QB	1977-05-06	\N	\N	f	1	285
+855	\N	QB	1977-05-07	\N	\N	f	1	285
 856	2	R	1977-05-22	\N	\N	f	12	286
-860	1	QB	1977-06-03	\N	\N	f	1	287
+857	1	QB	1977-05-19	\N	\N	f	1	286
+858	\N	QB	1977-05-21	\N	\N	f	1	286
 859	2	R	1977-06-05	\N	\N	f	12	287
-863	1	QB	1977-06-17	\N	\N	f	1	288
+860	1	QB	1977-06-03	\N	\N	f	1	287
+861	\N	QB	1977-06-04	\N	\N	f	1	287
 862	2	R	1977-06-19	\N	\N	f	12	288
-866	1	QB	1977-07-01	\N	\N	f	1	289
+863	1	QB	1977-06-17	\N	\N	f	1	288
+864	\N	QB	1977-06-18	\N	\N	f	1	288
 865	2	R	1977-07-03	\N	\N	f	12	289
-869	1	QB	1977-07-14	\N	\N	f	1	290
+866	1	QB	1977-07-01	\N	\N	f	1	289
+867	\N	QB	1977-07-02	\N	\N	f	1	289
 868	2	R	1977-07-16	\N	\N	f	12	290
-872	1	QB	1977-07-29	\N	\N	f	1	291
+869	1	QB	1977-07-14	\N	\N	f	1	290
+870	\N	QB	1977-07-15	\N	\N	f	1	290
 871	2	R	1977-07-31	\N	\N	f	12	291
-875	1	QB	1977-08-12	\N	\N	f	1	292
+872	1	QB	1977-07-29	\N	\N	f	1	291
+873	\N	QB	1977-07-30	\N	\N	f	1	291
 874	2	R	1977-08-14	\N	\N	f	12	292
-878	1	QB	1977-08-26	\N	\N	f	1	293
+875	1	QB	1977-08-12	\N	\N	f	1	292
+876	\N	QB	1977-08-13	\N	\N	f	1	292
 877	2	R	1977-08-28	\N	\N	f	12	293
-881	1	QB	1977-09-09	\N	\N	f	1	294
+878	1	QB	1977-08-26	\N	\N	f	1	293
+879	\N	QB	1977-08-27	\N	\N	f	1	293
 880	2	R	1977-09-11	\N	\N	f	12	294
-884	1	QB	1977-09-30	\N	\N	f	1	295
+881	1	QB	1977-09-09	\N	\N	f	1	294
+882	\N	QB	1977-09-10	\N	\N	f	1	294
 883	2	R	1977-10-02	\N	\N	f	12	295
-887	1	QB	1977-10-07	\N	\N	f	1	296
+884	1	QB	1977-09-30	\N	\N	f	1	295
+885	\N	QB	1977-10-01	\N	\N	f	1	295
 886	2	R	1977-10-09	\N	\N	f	12	296
-890	1	QB	1977-10-21	\N	\N	f	1	297
+887	1	QB	1977-10-07	\N	\N	f	1	296
+888	\N	QB	1977-10-08	\N	\N	f	1	296
 889	2	R	1977-10-23	\N	\N	f	12	297
-893	1	QB	1978-01-13	\N	\N	f	1	298
+890	1	QB	1977-10-21	\N	\N	f	1	297
+891	\N	QB	1977-10-22	\N	\N	f	1	297
 892	2	R	1978-01-15	\N	\N	f	12	298
-896	1	QB	1978-01-27	\N	\N	f	1	299
+893	1	QB	1978-01-13	\N	\N	f	1	298
+894	\N	QB	1978-01-14	\N	\N	f	1	298
 895	2	R	1978-01-29	\N	\N	f	12	299
-899	1	QB	1978-03-02	\N	\N	f	1	300
+896	1	QB	1978-01-27	\N	\N	f	1	299
+897	\N	QB	1978-01-28	\N	\N	f	1	299
 898	2	R	1978-03-04	\N	\N	f	12	300
-902	1	QB	1978-03-31	\N	\N	f	1	301
+899	1	QB	1978-03-02	\N	\N	f	1	300
+900	\N	QB	1978-03-03	\N	\N	f	1	300
 901	2	R	1978-04-02	\N	\N	f	12	301
-905	1	QB	1978-05-04	\N	\N	f	1	302
+902	1	QB	1978-03-31	\N	\N	f	1	301
+903	\N	QB	1978-04-01	\N	\N	f	1	301
 904	2	R	1978-05-07	\N	\N	f	12	302
-908	1	QB	1978-05-19	\N	\N	f	1	303
+905	1	QB	1978-05-04	\N	\N	f	1	302
+906	\N	QB	1978-05-06	\N	\N	f	1	302
 907	2	R	1978-05-21	\N	\N	f	12	303
-911	1	QB	1978-06-02	\N	\N	f	1	304
+908	1	QB	1978-05-19	\N	\N	f	1	303
+909	\N	QB	1978-05-20	\N	\N	f	1	303
 910	2	R	1978-06-04	\N	\N	f	12	304
-914	1	QB	1978-06-15	\N	\N	f	1	305
+911	1	QB	1978-06-02	\N	\N	f	1	304
+912	\N	QB	1978-06-03	\N	\N	f	1	304
 913	2	R	1978-06-17	\N	\N	f	12	305
-917	1	QB	1978-06-30	\N	\N	f	1	306
+914	1	QB	1978-06-15	\N	\N	f	1	305
+915	\N	QB	1978-06-16	\N	\N	f	1	305
 916	2	R	1978-07-02	\N	\N	f	12	306
-920	1	QB	1978-07-14	\N	\N	f	1	307
+917	1	QB	1978-06-30	\N	\N	f	1	306
+918	\N	QB	1978-07-01	\N	\N	f	1	306
 919	2	R	1978-07-16	\N	\N	f	12	307
-923	1	QB	1978-07-28	\N	\N	f	1	308
+920	1	QB	1978-07-14	\N	\N	f	1	307
+921	\N	QB	1978-07-15	\N	\N	f	1	307
 922	2	R	1978-07-30	\N	\N	f	12	308
-926	1	QB	1978-08-11	\N	\N	f	1	309
+923	1	QB	1978-07-28	\N	\N	f	1	308
+924	\N	QB	1978-07-29	\N	\N	f	1	308
 925	2	R	1978-08-13	\N	\N	f	12	309
-929	1	QB	1978-08-25	\N	\N	f	1	310
+926	1	QB	1978-08-11	\N	\N	f	1	309
+927	\N	QB	1978-08-12	\N	\N	f	1	309
 928	2	R	1978-08-27	\N	\N	f	12	310
-932	1	QB	1978-09-08	\N	\N	f	1	311
+929	1	QB	1978-08-25	\N	\N	f	1	310
+930	\N	QB	1978-08-26	\N	\N	f	1	310
 931	2	R	1978-09-10	\N	\N	f	12	311
-935	1	QB	1978-09-29	\N	\N	f	1	312
+932	1	QB	1978-09-08	\N	\N	f	1	311
+933	\N	QB	1978-09-09	\N	\N	f	1	311
 934	2	R	1978-10-01	\N	\N	f	12	312
-938	1	QB	1978-10-06	\N	\N	f	1	313
+935	1	QB	1978-09-29	\N	\N	f	1	312
+936	\N	QB	1978-09-30	\N	\N	f	1	312
 937	2	R	1978-10-08	\N	\N	f	12	313
-941	1	QB	1979-01-19	\N	\N	f	1	314
+938	1	QB	1978-10-06	\N	\N	f	1	313
+939	\N	QB	1978-10-07	\N	\N	f	1	313
 940	2	R	1979-01-21	\N	\N	f	12	314
-944	1	QB	1979-02-02	\N	\N	f	1	315
+941	1	QB	1979-01-19	\N	\N	f	1	314
+942	\N	QB	1979-01-20	\N	\N	f	1	314
 943	2	R	1979-02-04	\N	\N	f	12	315
-947	1	QB	1979-03-01	\N	\N	f	1	316
+944	1	QB	1979-02-02	\N	\N	f	1	315
+945	\N	QB	1979-02-03	\N	\N	f	1	315
 946	2	R	1979-03-03	\N	\N	f	12	316
-950	1	QB	1979-04-06	\N	\N	f	1	317
+947	1	QB	1979-03-01	\N	\N	f	1	316
+948	\N	QB	1979-03-02	\N	\N	f	1	316
 949	2	R	1979-04-08	\N	\N	f	12	317
-953	1	QB	1979-04-27	\N	\N	f	1	318
+950	1	QB	1979-04-06	\N	\N	f	1	317
+951	\N	QB	1979-04-07	\N	\N	f	1	317
 952	2	R	1979-04-29	\N	\N	f	12	318
-956	1	QB	1979-05-11	\N	\N	f	1	319
+953	1	QB	1979-04-27	\N	\N	f	1	318
+954	\N	QB	1979-04-28	\N	\N	f	1	318
 955	2	R	1979-05-13	\N	\N	f	12	319
-959	1	QB	1979-05-24	\N	\N	f	1	320
+956	1	QB	1979-05-11	\N	\N	f	1	319
+957	\N	QB	1979-05-12	\N	\N	f	1	319
 958	2	R	1979-05-27	\N	\N	f	12	320
-962	1	QB	1979-06-29	\N	\N	f	1	321
+959	1	QB	1979-05-24	\N	\N	f	1	320
+960	\N	QB	1979-05-26	\N	\N	f	1	320
 961	2	R	1979-07-01	\N	\N	f	12	321
-965	1	QB	1979-07-12	\N	\N	f	1	322
+962	1	QB	1979-06-29	\N	\N	f	1	321
+963	\N	QB	1979-06-30	\N	\N	f	1	321
 964	2	R	1979-07-14	\N	\N	f	12	322
-968	1	QB	1979-07-27	\N	\N	f	1	323
+965	1	QB	1979-07-12	\N	\N	f	1	322
+966	\N	QB	1979-07-13	\N	\N	f	1	322
 967	2	R	1979-07-29	\N	\N	f	12	323
-971	1	QB	1979-08-10	\N	\N	f	1	324
+968	1	QB	1979-07-27	\N	\N	f	1	323
+969	\N	QB	1979-07-28	\N	\N	f	1	323
 970	2	R	1979-08-12	\N	\N	f	12	324
-974	1	QB	1979-08-24	\N	\N	f	1	325
+971	1	QB	1979-08-10	\N	\N	f	1	324
+972	\N	QB	1979-08-11	\N	\N	f	1	324
 973	2	R	1979-08-26	\N	\N	f	12	325
-977	1	QB	1979-09-07	\N	\N	f	1	326
+974	1	QB	1979-08-24	\N	\N	f	1	325
+975	\N	QB	1979-08-25	\N	\N	f	1	325
 976	2	R	1979-09-09	\N	\N	f	12	326
-980	1	QB	1979-09-28	\N	\N	f	1	327
+977	1	QB	1979-09-07	\N	\N	f	1	326
+978	\N	QB	1979-09-08	\N	\N	f	1	326
 979	2	R	1979-09-30	\N	\N	f	12	327
-983	1	QB	1979-10-05	\N	\N	f	1	328
+980	1	QB	1979-09-28	\N	\N	f	1	327
+981	\N	QB	1979-09-29	\N	\N	f	1	327
 982	2	R	1979-10-07	\N	\N	f	12	328
-986	1	QB	1980-01-11	\N	\N	f	1	329
+983	1	QB	1979-10-05	\N	\N	f	1	328
+984	\N	QB	1979-10-06	\N	\N	f	1	328
 985	2	R	1980-01-13	\N	\N	f	13	329
-989	1	QB	1980-01-25	\N	\N	f	1	330
+986	1	QB	1980-01-11	\N	\N	f	1	329
+987	\N	QB	1980-01-12	\N	\N	f	1	329
 988	2	R	1980-01-27	\N	\N	f	13	330
-992	1	QB	1980-02-28	\N	\N	f	1	331
+989	1	QB	1980-01-25	\N	\N	f	1	330
+990	\N	QB	1980-01-26	\N	\N	f	1	330
 991	2	R	1980-03-01	\N	\N	f	13	331
-995	1	QB	1980-03-28	\N	\N	f	1	332
+992	1	QB	1980-02-28	\N	\N	f	1	331
+993	\N	QB	1980-02-29	\N	\N	f	1	331
 994	2	R	1980-03-30	\N	\N	f	13	332
-998	1	QB	1980-05-02	\N	\N	f	1	333
+995	1	QB	1980-03-28	\N	\N	f	1	332
+996	\N	QB	1980-03-29	\N	\N	f	1	332
 997	2	R	1980-05-04	\N	\N	f	13	333
-1001	1	QB	1980-05-15	\N	\N	f	1	334
+998	1	QB	1980-05-02	\N	\N	f	1	333
+999	\N	QB	1980-05-03	\N	\N	f	1	333
 1000	2	R	1980-05-18	\N	\N	f	13	334
-1004	1	QB	1980-06-27	\N	\N	f	1	335
+1001	1	QB	1980-05-15	\N	\N	f	1	334
+1002	\N	QB	1980-05-17	\N	\N	f	1	334
 1003	2	R	1980-06-29	\N	\N	f	13	335
-1007	1	QB	1980-07-11	\N	\N	f	1	336
+1004	1	QB	1980-06-27	\N	\N	f	1	335
+1005	\N	QB	1980-06-28	\N	\N	f	1	335
 1006	2	R	1980-07-13	\N	\N	f	13	336
-1010	1	QB	1980-08-08	\N	\N	f	1	337
+1007	1	QB	1980-07-11	\N	\N	f	1	336
+1008	\N	QB	1980-07-12	\N	\N	f	1	336
 1009	2	R	1980-08-10	\N	\N	f	13	337
-1013	1	QB	1980-08-15	\N	\N	f	1	338
+1010	1	QB	1980-08-08	\N	\N	f	1	337
+1011	\N	QB	1980-08-09	\N	\N	f	1	337
 1012	2	R	1980-08-17	\N	\N	f	13	338
-1016	1	QB	1980-08-29	\N	\N	f	1	339
+1013	1	QB	1980-08-15	\N	\N	f	1	338
+1014	\N	QB	1980-08-16	\N	\N	f	1	338
 1015	2	R	1980-08-31	\N	\N	f	13	339
-1019	1	QB	1980-09-12	\N	\N	f	1	340
+1016	1	QB	1980-08-29	\N	\N	f	1	339
+1017	\N	QB	1980-08-30	\N	\N	f	1	339
 1018	2	R	1980-09-14	\N	\N	f	13	340
-1022	1	QB	1980-09-26	\N	\N	f	1	341
+1019	1	QB	1980-09-12	\N	\N	f	1	340
+1020	\N	QB	1980-09-13	\N	\N	f	1	340
 1021	2	R	1980-09-28	\N	\N	f	13	341
-1025	1	QB	1980-10-03	\N	\N	f	1	342
+1022	1	QB	1980-09-26	\N	\N	f	1	341
+1023	\N	QB	1980-09-27	\N	\N	f	1	341
 1024	2	R	1980-10-05	\N	\N	f	13	342
-1028	1	QB	1981-03-13	\N	\N	f	1	343
+1025	1	QB	1980-10-03	\N	\N	f	1	342
+1026	\N	QB	1980-10-04	\N	\N	f	1	342
 1027	2	R	1981-03-15	\N	\N	f	13	343
-1031	1	QB	1981-03-27	\N	\N	f	1	344
+1028	1	QB	1981-03-13	\N	\N	f	1	343
+1029	\N	QB	1981-03-14	\N	\N	f	1	343
 1030	2	R	1981-03-29	\N	\N	f	13	344
-1034	1	QB	1981-04-10	\N	\N	f	1	345
+1031	1	QB	1981-03-27	\N	\N	f	1	344
+1032	\N	QB	1981-03-28	\N	\N	f	1	344
 1033	2	R	1981-04-12	\N	\N	f	13	345
-1037	1	QB	1981-05-01	\N	\N	f	1	346
+1034	1	QB	1981-04-10	\N	\N	f	1	345
+1035	\N	QB	1981-04-11	\N	\N	f	1	345
 1036	2	R	1981-05-03	\N	\N	f	13	346
-1040	1	QB	1981-05-15	\N	\N	f	1	347
+1037	1	QB	1981-05-01	\N	\N	f	1	346
+1038	\N	QB	1981-05-02	\N	\N	f	1	346
 1039	2	R	1981-05-17	\N	\N	f	13	347
-1043	1	QB	1981-05-28	\N	\N	f	1	348
+1040	1	QB	1981-05-15	\N	\N	f	1	347
+1041	\N	QB	1981-05-16	\N	\N	f	1	347
 1042	2	R	1981-05-31	\N	\N	f	13	348
-1046	1	QB	1981-06-19	\N	\N	f	1	349
+1043	1	QB	1981-05-28	\N	\N	f	1	348
+1044	\N	QB	1981-05-30	\N	\N	f	1	348
 1045	2	R	1981-06-21	\N	\N	f	13	349
-1049	1	QB	1981-07-03	\N	\N	f	1	350
+1046	1	QB	1981-06-19	\N	\N	f	1	349
+1047	\N	QB	1981-06-20	\N	\N	f	1	349
 1048	2	R	1981-07-05	\N	\N	f	13	350
-1052	1	QB	1981-07-16	\N	\N	f	1	351
+1049	1	QB	1981-07-03	\N	\N	f	1	350
+1050	\N	QB	1981-07-04	\N	\N	f	1	350
 1051	2	R	1981-07-18	\N	\N	f	13	351
-1055	1	QB	1981-07-31	\N	\N	f	1	352
+1052	1	QB	1981-07-16	\N	\N	f	1	351
+1053	\N	QB	1981-07-17	\N	\N	f	1	351
 1054	2	R	1981-08-02	\N	\N	f	13	352
-1058	1	QB	1981-08-14	\N	\N	f	1	353
+1055	1	QB	1981-07-31	\N	\N	f	1	352
+1056	\N	QB	1981-08-01	\N	\N	f	1	352
 1057	2	R	1981-08-16	\N	\N	f	13	353
-1061	1	QB	1981-08-28	\N	\N	f	1	354
+1058	1	QB	1981-08-14	\N	\N	f	1	353
+1059	\N	QB	1981-08-15	\N	\N	f	1	353
 1060	2	R	1981-08-30	\N	\N	f	13	354
-1064	1	QB	1981-09-11	\N	\N	f	1	355
+1061	1	QB	1981-08-28	\N	\N	f	1	354
+1062	\N	QB	1981-08-29	\N	\N	f	1	354
 1063	2	R	1981-09-13	\N	\N	f	13	355
-1067	1	QB	1981-09-25	\N	\N	f	1	356
+1064	1	QB	1981-09-11	\N	\N	f	1	355
+1065	\N	QB	1981-09-12	\N	\N	f	1	355
 1066	2	R	1981-09-27	\N	\N	f	13	356
-1070	1	QB	1981-10-15	\N	\N	f	1	357
+1067	1	QB	1981-09-25	\N	\N	f	1	356
+1068	\N	QB	1981-09-26	\N	\N	f	1	356
 1069	2	R	1981-10-17	\N	\N	f	13	357
-1073	1	QB	1982-01-21	\N	\N	f	1	358
+1070	1	QB	1981-10-15	\N	\N	f	1	357
+1071	\N	QB	1981-10-16	\N	\N	f	1	357
 1072	2	R	1982-01-23	\N	\N	f	13	358
-1076	1	QB	1982-03-19	\N	\N	f	1	359
+1073	1	QB	1982-01-21	\N	\N	f	1	358
+1074	\N	QB	1982-01-22	\N	\N	f	1	358
 1075	2	R	1982-03-21	\N	\N	f	13	359
-1079	1	QB	1982-04-02	\N	\N	f	1	360
+1076	1	QB	1982-03-19	\N	\N	f	1	359
+1077	\N	QB	1982-03-20	\N	\N	f	1	359
 1078	2	R	1982-04-04	\N	\N	f	13	360
-1082	1	QB	1982-04-23	\N	\N	f	1	361
+1079	1	QB	1982-04-02	\N	\N	f	1	360
+1080	\N	QB	1982-04-03	\N	\N	f	1	360
 1081	2	R	1982-04-25	\N	\N	f	13	361
-1085	1	QB	1982-05-07	\N	\N	f	1	362
+1082	1	QB	1982-04-23	\N	\N	f	1	361
+1083	\N	QB	1982-04-24	\N	\N	f	1	361
 1084	2	R	1982-05-09	\N	\N	f	13	362
-1088	1	QB	1982-05-20	\N	\N	f	1	363
+1085	1	QB	1982-05-07	\N	\N	f	1	362
+1086	\N	QB	1982-05-08	\N	\N	f	1	362
 1087	2	R	1982-05-23	\N	\N	f	13	363
-1091	1	QB	1982-06-04	\N	\N	f	1	364
+1088	1	QB	1982-05-20	\N	\N	f	1	363
+1089	\N	QB	1982-05-22	\N	\N	f	1	363
 1090	2	R	1982-06-06	\N	\N	f	13	364
-1094	1	QB	1982-06-11	\N	\N	f	1	365
+1091	1	QB	1982-06-04	\N	\N	f	1	364
+1092	\N	QB	1982-06-05	\N	\N	f	1	364
 1093	2	R	1982-06-13	\N	\N	f	13	365
-1097	1	QB	1982-07-01	\N	\N	f	1	366
+1094	1	QB	1982-06-11	\N	\N	f	1	365
+1095	\N	QB	1982-06-12	\N	\N	f	1	365
 1096	2	R	1982-07-03	\N	\N	f	13	366
-1100	1	QB	1982-07-16	\N	\N	f	1	367
+1097	1	QB	1982-07-01	\N	\N	f	1	366
+1098	\N	QB	1982-07-02	\N	\N	f	1	366
 1099	2	R	1982-07-18	\N	\N	f	13	367
-1103	1	QB	1982-07-23	\N	\N	f	1	368
+1100	1	QB	1982-07-16	\N	\N	f	1	367
+1101	\N	QB	1982-07-17	\N	\N	f	1	367
 1102	2	R	1982-07-25	\N	\N	f	13	368
-1106	1	QB	1982-08-06	\N	\N	f	1	369
+1103	1	QB	1982-07-23	\N	\N	f	1	368
+1104	\N	QB	1982-07-24	\N	\N	f	1	368
 1105	2	R	1982-08-08	\N	\N	f	13	369
-1109	1	QB	1982-08-13	\N	\N	f	1	370
+1106	1	QB	1982-08-06	\N	\N	f	1	369
+1107	\N	QB	1982-08-07	\N	\N	f	1	369
 1108	2	R	1982-08-15	\N	\N	f	13	370
-1112	1	QB	1982-08-27	\N	\N	f	1	371
+1109	1	QB	1982-08-13	\N	\N	f	1	370
+1110	\N	QB	1982-08-14	\N	\N	f	1	370
 1111	2	R	1982-08-29	\N	\N	f	13	371
-1115	1	QB	1982-09-10	\N	\N	f	1	372
+1112	1	QB	1982-08-27	\N	\N	f	1	371
+1113	\N	QB	1982-08-28	\N	\N	f	1	371
 1114	2	R	1982-09-12	\N	\N	f	13	372
-1118	1	QB	1982-09-23	\N	\N	f	1	373
+1115	1	QB	1982-09-10	\N	\N	f	1	372
+1116	\N	QB	1982-09-11	\N	\N	f	1	372
 1117	2	R	1982-09-25	\N	\N	f	13	373
-1121	1	QB	1983-03-11	\N	\N	f	1	374
+1118	1	QB	1982-09-23	\N	\N	f	1	373
+1119	\N	QB	1982-09-24	\N	\N	f	1	373
 1120	2	R	1983-03-13	\N	\N	f	13	374
-1124	1	QB	1983-03-25	\N	\N	f	1	375
+1121	1	QB	1983-03-11	\N	\N	f	1	374
+1122	\N	QB	1983-03-12	\N	\N	f	1	374
 1123	2	R	1983-03-27	\N	\N	f	13	375
-1127	1	QB	1983-04-15	\N	\N	f	1	376
+1124	1	QB	1983-03-25	\N	\N	f	1	375
+1125	\N	QB	1983-03-26	\N	\N	f	1	375
 1126	2	R	1983-04-17	\N	\N	f	13	376
-1130	1	QB	1983-04-29	\N	\N	f	1	377
+1127	1	QB	1983-04-15	\N	\N	f	1	376
+1128	\N	QB	1983-04-16	\N	\N	f	1	376
 1129	2	R	1983-05-01	\N	\N	f	13	377
-1133	1	QB	1983-05-12	\N	\N	f	1	378
+1130	1	QB	1983-04-29	\N	\N	f	1	377
+1131	\N	QB	1983-04-30	\N	\N	f	1	377
 1132	2	R	1983-05-15	\N	\N	f	13	378
-1136	1	QB	1983-05-20	\N	\N	f	1	379
+1133	1	QB	1983-05-12	\N	\N	f	1	378
+1134	\N	QB	1983-05-14	\N	\N	f	1	378
 1135	2	R	1983-05-22	\N	\N	f	13	379
-1139	1	QB	1983-06-03	\N	\N	f	1	380
+1136	1	QB	1983-05-20	\N	\N	f	1	379
+1137	\N	QB	1983-05-21	\N	\N	f	1	379
 1138	2	R	1983-06-05	\N	\N	f	13	380
-1142	1	QB	1983-06-10	\N	\N	f	1	381
+1139	1	QB	1983-06-03	\N	\N	f	1	380
+1140	\N	QB	1983-06-04	\N	\N	f	1	380
 1141	2	R	1983-06-12	\N	\N	f	13	381
-1145	1	QB	1983-07-14	\N	\N	f	1	382
+1142	1	QB	1983-06-10	\N	\N	f	1	381
+1143	\N	QB	1983-06-11	\N	\N	f	1	381
 1144	2	R	1983-07-16	\N	\N	f	13	382
-1148	1	QB	1983-08-05	\N	\N	f	1	383
+1145	1	QB	1983-07-14	\N	\N	f	1	382
+1146	\N	QB	1983-07-15	\N	\N	f	1	382
 1147	2	R	1983-08-07	\N	\N	f	13	383
-1151	1	QB	1983-08-12	\N	\N	f	1	384
+1148	1	QB	1983-08-05	\N	\N	f	1	383
+1149	\N	QB	1983-08-06	\N	\N	f	1	383
 1150	2	R	1983-08-14	\N	\N	f	13	384
-1154	1	QB	1983-08-26	\N	\N	f	1	385
+1151	1	QB	1983-08-12	\N	\N	f	1	384
+1152	\N	QB	1983-08-13	\N	\N	f	1	384
 1153	2	R	1983-08-28	\N	\N	f	13	385
-1157	1	QB	1983-09-09	\N	\N	f	1	386
+1154	1	QB	1983-08-26	\N	\N	f	1	385
+1155	\N	QB	1983-08-27	\N	\N	f	1	385
 1156	2	R	1983-09-11	\N	\N	f	13	386
-1160	1	QB	1983-09-23	\N	\N	f	1	387
+1157	1	QB	1983-09-09	\N	\N	f	1	386
+1158	\N	QB	1983-09-10	\N	\N	f	1	386
 1159	2	R	1983-09-25	\N	\N	f	13	387
-1163	1	QB	1983-10-13	\N	\N	f	1	388
+1160	1	QB	1983-09-23	\N	\N	f	1	387
+1161	\N	QB	1983-09-24	\N	\N	f	1	387
 1162	2	R	1983-10-15	\N	\N	f	13	388
-1166	1	QB	1984-03-23	\N	\N	f	1	389
+1163	1	QB	1983-10-13	\N	\N	f	1	388
+1164	\N	QB	1983-10-14	\N	\N	f	1	388
 1165	2	R	1984-03-25	\N	\N	f	13	389
-1169	1	QB	1984-04-05	\N	\N	f	1	390
+1166	1	QB	1984-03-23	\N	\N	f	1	389
+1167	\N	QB	1984-03-24	\N	\N	f	1	389
 1168	2	R	1984-04-07	\N	\N	f	13	390
-1172	1	QB	1984-04-27	\N	\N	f	1	391
+1169	1	QB	1984-04-05	\N	\N	f	1	390
+1170	\N	QB	1984-04-06	\N	\N	f	1	390
 1171	2	R	1984-04-29	\N	\N	f	13	391
-1175	1	QB	1984-05-04	\N	\N	f	1	392
+1172	1	QB	1984-04-27	\N	\N	f	1	391
+1173	\N	QB	1984-04-28	\N	\N	f	1	391
 1174	2	R	1984-05-06	\N	\N	f	13	392
-1178	1	QB	1984-05-18	\N	\N	f	1	393
+1175	1	QB	1984-05-04	\N	\N	f	1	392
+1176	\N	QB	1984-05-05	\N	\N	f	1	392
 1177	2	R	1984-05-20	\N	\N	f	13	393
-1181	1	QB	1984-05-31	\N	\N	f	1	394
+1178	1	QB	1984-05-18	\N	\N	f	1	393
+1179	\N	QB	1984-05-19	\N	\N	f	1	393
 1180	2	R	1984-06-03	\N	\N	f	13	394
-1184	1	QB	1984-06-15	\N	\N	f	1	395
+1181	1	QB	1984-05-31	\N	\N	f	1	394
+1182	\N	QB	1984-06-02	\N	\N	f	1	394
 1183	2	R	1984-06-17	\N	\N	f	13	395
-1187	1	QB	1984-06-22	\N	\N	f	1	396
+1184	1	QB	1984-06-15	\N	\N	f	1	395
+1185	\N	QB	1984-06-16	\N	\N	f	1	395
 1186	2	R	1984-06-24	\N	\N	f	13	396
-1190	1	QB	1984-07-06	\N	\N	f	1	397
+1187	1	QB	1984-06-22	\N	\N	f	1	396
+1188	\N	QB	1984-06-23	\N	\N	f	1	396
 1189	2	R	1984-07-08	\N	\N	f	13	397
-1193	1	QB	1984-07-20	\N	\N	f	1	398
+1190	1	QB	1984-07-06	\N	\N	f	1	397
+1191	\N	QB	1984-07-07	\N	\N	f	1	397
 1192	2	R	1984-07-22	\N	\N	f	13	398
-1196	1	QB	1984-08-03	\N	\N	f	1	399
+1193	1	QB	1984-07-20	\N	\N	f	1	398
+1194	\N	QB	1984-07-21	\N	\N	f	1	398
 1195	2	R	1984-08-05	\N	\N	f	13	399
-1199	1	QB	1984-08-17	\N	\N	f	1	400
+1196	1	QB	1984-08-03	\N	\N	f	1	399
+1197	\N	QB	1984-08-04	\N	\N	f	1	399
 1198	2	R	1984-08-19	\N	\N	f	13	400
-1202	1	QB	1984-08-24	\N	\N	f	1	401
+1199	1	QB	1984-08-17	\N	\N	f	1	400
+1200	\N	QB	1984-08-18	\N	\N	f	1	400
 1201	2	R	1984-08-26	\N	\N	f	13	401
-1205	1	QB	1984-09-07	\N	\N	f	1	402
+1202	1	QB	1984-08-24	\N	\N	f	1	401
+1203	\N	QB	1984-08-25	\N	\N	f	1	401
 1204	2	R	1984-09-09	\N	\N	f	13	402
-1208	1	QB	1984-10-05	\N	\N	f	1	403
+1205	1	QB	1984-09-07	\N	\N	f	1	402
+1206	\N	QB	1984-09-08	\N	\N	f	1	402
 1207	2	R	1984-10-07	\N	\N	f	13	403
-1211	1	QB	1984-10-19	\N	\N	f	1	404
+1208	1	QB	1984-10-05	\N	\N	f	1	403
+1209	\N	QB	1984-10-06	\N	\N	f	1	403
 1210	2	R	1984-10-21	\N	\N	f	13	404
-1214	1	QB	1985-04-05	\N	\N	f	1	405
+1211	1	QB	1984-10-19	\N	\N	f	1	404
+1212	\N	QB	1984-10-20	\N	\N	f	1	404
 1213	2	R	1985-04-07	\N	\N	f	13	405
-1217	1	QB	1985-04-19	\N	\N	f	1	406
+1214	1	QB	1985-04-05	\N	\N	f	1	405
+1215	\N	QB	1985-04-06	\N	\N	f	1	405
 1216	2	R	1985-04-21	\N	\N	f	13	406
-1220	1	QB	1985-05-03	\N	\N	f	1	407
+1217	1	QB	1985-04-19	\N	\N	f	1	406
+1218	\N	QB	1985-04-20	\N	\N	f	1	406
 1219	2	R	1985-05-05	\N	\N	f	13	407
-1223	1	QB	1985-05-16	\N	\N	f	1	408
+1220	1	QB	1985-05-03	\N	\N	f	1	407
+1221	\N	QB	1985-05-04	\N	\N	f	1	407
 1222	2	R	1985-05-19	\N	\N	f	13	408
-1226	1	QB	1985-06-14	\N	\N	f	1	409
+1223	1	QB	1985-05-16	\N	\N	f	1	408
+1224	\N	QB	1985-05-18	\N	\N	f	1	408
 1225	2	R	1985-06-16	\N	\N	f	13	409
-1229	1	QB	1985-06-21	\N	\N	f	1	410
+1226	1	QB	1985-06-14	\N	\N	f	1	409
+1227	\N	QB	1985-06-15	\N	\N	f	1	409
 1228	2	R	1985-06-23	\N	\N	f	13	410
-1232	1	QB	1985-07-05	\N	\N	f	1	411
+1229	1	QB	1985-06-21	\N	\N	f	1	410
+1230	\N	QB	1985-06-22	\N	\N	f	1	410
 1231	2	R	1985-07-07	\N	\N	f	13	411
-1235	1	QB	1985-07-19	\N	\N	f	1	412
+1232	1	QB	1985-07-05	\N	\N	f	1	411
+1233	\N	QB	1985-07-06	\N	\N	f	1	411
 1234	2	R	1985-07-21	\N	\N	f	13	412
-1238	1	QB	1985-08-02	\N	\N	f	1	413
+1235	1	QB	1985-07-19	\N	\N	f	1	412
+1236	\N	QB	1985-07-20	\N	\N	f	1	412
 1237	2	R	1985-08-04	\N	\N	f	13	413
-1241	1	QB	1985-08-16	\N	\N	f	1	414
+1238	1	QB	1985-08-02	\N	\N	f	1	413
+1239	\N	QB	1985-08-03	\N	\N	f	1	413
 1240	2	R	1985-08-18	\N	\N	f	13	414
-1244	1	QB	1985-08-23	\N	\N	f	1	415
+1241	1	QB	1985-08-16	\N	\N	f	1	414
+1242	\N	QB	1985-08-17	\N	\N	f	1	414
 1243	2	R	1985-08-25	\N	\N	f	13	415
-1247	1	QB	1985-09-06	\N	\N	f	1	416
+1244	1	QB	1985-08-23	\N	\N	f	1	415
+1245	\N	QB	1985-08-24	\N	\N	f	1	415
 1246	2	R	1985-09-08	\N	\N	f	13	416
-1250	1	QB	1985-09-13	\N	\N	f	1	417
+1247	1	QB	1985-09-06	\N	\N	f	1	416
+1248	\N	QB	1985-09-07	\N	\N	f	1	416
 1249	2	R	1985-09-15	\N	\N	f	13	417
-1253	1	QB	1985-10-04	\N	\N	f	1	418
+1250	1	QB	1985-09-13	\N	\N	f	1	417
+1251	\N	QB	1985-09-14	\N	\N	f	1	417
 1252	2	R	1985-10-06	\N	\N	f	13	418
-1256	1	QB	1985-10-17	\N	\N	f	1	419
+1253	1	QB	1985-10-04	\N	\N	f	1	418
+1254	\N	QB	1985-10-05	\N	\N	f	1	418
 1255	2	R	1985-10-19	\N	\N	f	13	419
-1259	1	QB	1985-11-01	\N	\N	f	1	420
+1256	1	QB	1985-10-17	\N	\N	f	1	419
+1257	\N	QB	1985-10-18	\N	\N	f	1	419
 1258	2	R	1985-11-03	\N	\N	f	13	420
-1262	1	QB	1986-03-21	\N	\N	f	1	421
+1259	1	QB	1985-11-01	\N	\N	f	1	420
+1260	\N	QB	1985-11-02	\N	\N	f	1	420
 1261	2	R	1986-03-23	\N	\N	f	13	421
-1265	1	QB	1986-04-11	\N	\N	f	1	422
+1262	1	QB	1986-03-21	\N	\N	f	1	421
+1263	\N	QB	1986-03-22	\N	\N	f	1	421
 1264	2	R	1986-04-13	\N	\N	f	13	422
-1268	1	QB	1986-04-25	\N	\N	f	1	423
+1265	1	QB	1986-04-11	\N	\N	f	1	422
+1266	\N	QB	1986-04-12	\N	\N	f	1	422
 1267	2	R	1986-04-27	\N	\N	f	13	423
-1271	1	QB	1986-05-08	\N	\N	f	1	424
+1268	1	QB	1986-04-25	\N	\N	f	1	423
+1269	\N	QB	1986-04-26	\N	\N	f	1	423
 1270	2	R	1986-05-11	\N	\N	f	13	424
-1274	1	QB	1986-05-23	\N	\N	f	1	425
+1271	1	QB	1986-05-08	\N	\N	f	1	424
+1272	\N	QB	1986-05-10	\N	\N	f	1	424
 1273	2	R	1986-05-25	\N	\N	f	13	425
-1277	1	QB	1986-06-13	\N	\N	f	1	426
+1274	1	QB	1986-05-23	\N	\N	f	1	425
+1275	\N	QB	1986-05-24	\N	\N	f	1	425
 1276	2	R	1986-06-15	\N	\N	f	13	426
-1280	1	QB	1986-06-20	\N	\N	f	1	427
+1277	1	QB	1986-06-13	\N	\N	f	1	426
+1278	\N	QB	1986-06-14	\N	\N	f	1	426
 1279	2	R	1986-06-22	\N	\N	f	13	427
-1283	1	QB	1986-07-04	\N	\N	f	1	428
+1280	1	QB	1986-06-20	\N	\N	f	1	427
+1281	\N	QB	1986-06-21	\N	\N	f	1	427
 1282	2	R	1986-07-06	\N	\N	f	13	428
-1286	1	QB	1986-07-11	\N	\N	f	1	429
+1283	1	QB	1986-07-04	\N	\N	f	1	428
+1284	\N	QB	1986-07-05	\N	\N	f	1	428
 1285	2	R	1986-07-13	\N	\N	f	13	429
-1289	1	QB	1986-07-25	\N	\N	f	1	430
+1286	1	QB	1986-07-11	\N	\N	f	1	429
+1287	\N	QB	1986-07-12	\N	\N	f	1	429
 1288	2	R	1986-07-27	\N	\N	f	13	430
-1292	1	QB	1986-08-08	\N	\N	f	1	431
+1289	1	QB	1986-07-25	\N	\N	f	1	430
+1290	\N	QB	1986-07-26	\N	\N	f	1	430
 1291	2	R	1986-08-10	\N	\N	f	13	431
-1295	1	QB	1986-08-15	\N	\N	f	1	432
+1292	1	QB	1986-08-08	\N	\N	f	1	431
+1293	\N	QB	1986-08-09	\N	\N	f	1	431
 1294	2	R	1986-08-17	\N	\N	f	13	432
-1298	1	QB	1986-09-05	\N	\N	f	1	433
+1295	1	QB	1986-08-15	\N	\N	f	1	432
+1296	\N	QB	1986-08-16	\N	\N	f	1	432
 1297	2	R	1986-09-07	\N	\N	f	13	433
-1301	1	QB	1986-09-19	\N	\N	f	1	434
+1298	1	QB	1986-09-05	\N	\N	f	1	433
+1299	\N	QB	1986-09-06	\N	\N	f	1	433
 1300	2	R	1986-09-21	\N	\N	f	13	434
-1304	1	QB	1986-10-10	\N	\N	f	1	435
+1301	1	QB	1986-09-19	\N	\N	f	1	434
+1302	\N	QB	1986-09-20	\N	\N	f	1	434
 1303	2	R	1986-10-12	\N	\N	f	13	435
-1307	1	QB	1986-10-24	\N	\N	f	1	436
+1304	1	QB	1986-10-10	\N	\N	f	1	435
+1305	\N	QB	1986-10-11	\N	\N	f	1	435
 1306	2	R	1986-10-26	\N	\N	f	13	436
-1310	1	QB	1987-04-10	\N	\N	f	1	437
+1307	1	QB	1986-10-24	\N	\N	f	1	436
+1308	\N	QB	1986-10-25	\N	\N	f	1	436
 1309	2	R	1987-04-12	\N	\N	f	13	437
-1313	1	QB	1987-05-01	\N	\N	f	1	438
+1310	1	QB	1987-04-10	\N	\N	f	1	437
+1311	\N	QB	1987-04-11	\N	\N	f	1	437
 1312	2	R	1987-05-03	\N	\N	f	13	438
-1316	1	QB	1987-05-15	\N	\N	f	1	439
+1313	1	QB	1987-05-01	\N	\N	f	1	438
+1314	\N	QB	1987-05-02	\N	\N	f	1	438
 1315	2	R	1987-05-17	\N	\N	f	13	439
-1319	1	QB	1987-05-28	\N	\N	f	1	440
+1316	1	QB	1987-05-15	\N	\N	f	1	439
+1317	\N	QB	1987-05-16	\N	\N	f	1	439
 1318	2	R	1987-05-31	\N	\N	f	13	440
-1322	1	QB	1987-06-19	\N	\N	f	1	441
+1319	1	QB	1987-05-28	\N	\N	f	1	440
+1320	\N	QB	1987-05-30	\N	\N	f	1	440
 1321	2	R	1987-06-21	\N	\N	f	13	441
-1325	1	QB	1987-07-03	\N	\N	f	1	442
+1322	1	QB	1987-06-19	\N	\N	f	1	441
+1323	\N	QB	1987-06-20	\N	\N	f	1	441
 1324	2	R	1987-07-05	\N	\N	f	13	442
-1328	1	QB	1987-07-10	\N	\N	f	1	443
+1325	1	QB	1987-07-03	\N	\N	f	1	442
+1326	\N	QB	1987-07-04	\N	\N	f	1	442
 1327	2	R	1987-07-12	\N	\N	f	13	443
-1331	1	QB	1987-07-24	\N	\N	f	1	444
+1328	1	QB	1987-07-10	\N	\N	f	1	443
+1329	\N	QB	1987-07-11	\N	\N	f	1	443
 1330	2	R	1987-07-26	\N	\N	f	13	444
-1334	1	QB	1987-08-07	\N	\N	f	1	445
+1331	1	QB	1987-07-24	\N	\N	f	1	444
+1332	\N	QB	1987-07-25	\N	\N	f	1	444
 1333	2	R	1987-08-09	\N	\N	f	13	445
-1337	1	QB	1987-08-14	\N	\N	f	1	446
+1334	1	QB	1987-08-07	\N	\N	f	1	445
+1335	\N	QB	1987-08-08	\N	\N	f	1	445
 1336	2	R	1987-08-16	\N	\N	f	13	446
-1340	1	QB	1987-09-04	\N	\N	f	1	447
+1337	1	QB	1987-08-14	\N	\N	f	1	446
+1338	\N	QB	1987-08-15	\N	\N	f	1	446
 1339	2	R	1987-09-06	\N	\N	f	13	447
-1343	1	QB	1987-09-18	\N	\N	f	1	448
+1340	1	QB	1987-09-04	\N	\N	f	1	447
+1341	\N	QB	1987-09-05	\N	\N	f	1	447
 1342	2	R	1987-09-20	\N	\N	f	13	448
-1346	1	QB	1987-09-25	\N	\N	f	1	449
+1343	1	QB	1987-09-18	\N	\N	f	1	448
+1344	\N	QB	1987-09-19	\N	\N	f	1	448
 1345	2	R	1987-09-27	\N	\N	f	13	449
-1349	1	QB	1987-10-16	\N	\N	f	1	450
+1346	1	QB	1987-09-25	\N	\N	f	1	449
+1347	\N	QB	1987-09-26	\N	\N	f	1	449
 1348	2	R	1987-10-18	\N	\N	f	13	450
-1352	1	QB	1987-10-30	\N	\N	f	1	451
+1349	1	QB	1987-10-16	\N	\N	f	1	450
+1350	\N	QB	1987-10-17	\N	\N	f	1	450
 1351	2	R	1987-11-01	\N	\N	f	13	451
-1355	1	QB	1987-11-13	\N	\N	f	1	452
+1352	1	QB	1987-10-30	\N	\N	f	1	451
+1353	\N	QB	1987-10-31	\N	\N	f	1	451
 1354	2	R	1987-11-15	\N	\N	f	13	452
-1358	1	QB	1988-04-01	\N	\N	f	1	453
+1355	1	QB	1987-11-13	\N	\N	f	1	452
+1356	\N	QB	1987-11-14	\N	\N	f	1	452
 1357	2	R	1988-04-03	\N	\N	f	13	453
-1361	1	QB	1988-04-29	\N	\N	f	1	454
+1358	1	QB	1988-04-01	\N	\N	f	1	453
+1359	\N	QB	1988-04-02	\N	\N	f	1	453
 1360	2	R	1988-05-01	\N	\N	f	13	454
-1364	1	QB	1988-05-12	\N	\N	f	1	455
+1361	1	QB	1988-04-29	\N	\N	f	1	454
+1362	\N	QB	1988-04-30	\N	\N	f	1	454
 1363	2	R	1988-05-15	\N	\N	f	13	455
-1367	1	QB	1988-05-27	\N	\N	f	1	456
+1364	1	QB	1988-05-12	\N	\N	f	1	455
+1365	\N	QB	1988-05-14	\N	\N	f	1	455
 1366	2	R	1988-05-29	\N	\N	f	13	456
-1370	1	QB	1988-06-10	\N	\N	f	1	457
+1367	1	QB	1988-05-27	\N	\N	f	1	456
+1368	\N	QB	1988-05-28	\N	\N	f	1	456
 1369	2	R	1988-06-12	\N	\N	f	13	457
-1373	1	QB	1988-06-17	\N	\N	f	1	458
+1370	1	QB	1988-06-10	\N	\N	f	1	457
+1371	\N	QB	1988-06-11	\N	\N	f	1	457
 1372	2	R	1988-06-19	\N	\N	f	13	458
-1376	1	QB	1988-07-01	\N	\N	f	1	459
+1373	1	QB	1988-06-17	\N	\N	f	1	458
+1374	\N	QB	1988-06-18	\N	\N	f	1	458
 1375	2	R	1988-07-03	\N	\N	f	13	459
-1379	1	QB	1988-07-08	\N	\N	f	1	460
+1376	1	QB	1988-07-01	\N	\N	f	1	459
+1377	\N	QB	1988-07-02	\N	\N	f	1	459
 1378	2	R	1988-07-10	\N	\N	f	13	460
-1382	1	QB	1988-07-22	\N	\N	f	1	461
+1379	1	QB	1988-07-08	\N	\N	f	1	460
+1380	\N	QB	1988-07-09	\N	\N	f	1	460
 1381	2	R	1988-07-24	\N	\N	f	13	461
-1385	1	QB	1988-08-05	\N	\N	f	1	462
+1382	1	QB	1988-07-22	\N	\N	f	1	461
+1383	\N	QB	1988-07-23	\N	\N	f	1	461
 1384	2	R	1988-08-07	\N	\N	f	13	462
-1388	1	QB	1988-08-26	\N	\N	f	1	463
+1385	1	QB	1988-08-05	\N	\N	f	1	462
+1386	\N	QB	1988-08-06	\N	\N	f	1	462
 1387	2	R	1988-08-28	\N	\N	f	13	463
-1391	1	QB	1988-09-09	\N	\N	f	1	464
+1388	1	QB	1988-08-26	\N	\N	f	1	463
+1389	\N	QB	1988-08-27	\N	\N	f	1	463
 1390	2	R	1988-09-11	\N	\N	f	13	464
-1394	1	QB	1988-09-23	\N	\N	f	1	465
+1391	1	QB	1988-09-09	\N	\N	f	1	464
+1392	\N	QB	1988-09-10	\N	\N	f	1	464
 1393	2	R	1988-09-25	\N	\N	f	13	465
-1397	1	QB	1988-09-30	\N	\N	f	1	466
+1394	1	QB	1988-09-23	\N	\N	f	1	465
+1395	\N	QB	1988-09-24	\N	\N	f	1	465
 1396	2	R	1988-10-02	\N	\N	f	13	466
-1400	1	QB	1988-10-28	\N	\N	f	1	467
+1397	1	QB	1988-09-30	\N	\N	f	1	466
+1398	\N	QB	1988-10-01	\N	\N	f	1	466
 1399	2	R	1988-10-30	\N	\N	f	13	467
-1403	1	QB	1988-11-11	\N	\N	f	1	468
+1400	1	QB	1988-10-28	\N	\N	f	1	467
+1401	\N	QB	1988-10-29	\N	\N	f	1	467
 1402	2	R	1988-11-13	\N	\N	f	13	468
-1406	1	QB	1989-03-24	\N	\N	f	1	469
+1403	1	QB	1988-11-11	\N	\N	f	1	468
+1404	\N	QB	1988-11-12	\N	\N	f	1	468
 1405	2	R	1989-03-26	\N	\N	f	13	469
-1409	1	QB	1989-04-21	\N	\N	f	1	470
+1406	1	QB	1989-03-24	\N	\N	f	1	469
+1407	\N	QB	1989-03-25	\N	\N	f	1	469
 1408	2	R	1989-04-23	\N	\N	f	13	470
-1412	1	QB	1989-05-04	\N	\N	f	1	471
+1409	1	QB	1989-04-21	\N	\N	f	1	470
+1410	\N	QB	1989-04-22	\N	\N	f	1	470
 1411	2	R	1989-05-07	\N	\N	f	13	471
-1415	1	QB	1989-05-26	\N	\N	f	1	472
+1412	1	QB	1989-05-04	\N	\N	f	1	471
+1413	\N	QB	1989-05-06	\N	\N	f	1	471
 1414	2	R	1989-05-28	\N	\N	f	13	472
-1418	1	QB	1989-06-02	\N	\N	f	1	473
+1415	1	QB	1989-05-26	\N	\N	f	1	472
+1416	\N	QB	1989-05-27	\N	\N	f	1	472
 1417	2	R	1989-06-04	\N	\N	f	13	473
-1421	1	QB	1989-06-16	\N	\N	f	1	474
+1418	1	QB	1989-06-02	\N	\N	f	1	473
+1419	\N	QB	1989-06-03	\N	\N	f	1	473
 1420	2	R	1989-06-18	\N	\N	f	13	474
-1424	1	QB	1989-07-07	\N	\N	f	1	475
+1421	1	QB	1989-06-16	\N	\N	f	1	474
+1422	\N	QB	1989-06-17	\N	\N	f	1	474
 1423	2	R	1989-07-09	\N	\N	f	13	475
-1427	1	QB	1989-07-14	\N	\N	f	1	476
+1424	1	QB	1989-07-07	\N	\N	f	1	475
+1425	\N	QB	1989-07-08	\N	\N	f	1	475
 1426	2	R	1989-07-16	\N	\N	f	13	476
-1430	1	QB	1989-07-28	\N	\N	f	1	477
+1427	1	QB	1989-07-14	\N	\N	f	1	476
+1428	\N	QB	1989-07-15	\N	\N	f	1	476
 1429	2	R	1989-07-30	\N	\N	f	13	477
-1433	1	QB	1989-08-11	\N	\N	f	1	478
+1430	1	QB	1989-07-28	\N	\N	f	1	477
+1431	\N	QB	1989-07-29	\N	\N	f	1	477
 1432	2	R	1989-08-13	\N	\N	f	13	478
-1436	1	QB	1989-08-25	\N	\N	f	1	479
+1433	1	QB	1989-08-11	\N	\N	f	1	478
+1434	\N	QB	1989-08-12	\N	\N	f	1	478
 1435	2	R	1989-08-27	\N	\N	f	13	479
-1439	1	QB	1989-09-08	\N	\N	f	1	480
+1436	1	QB	1989-08-25	\N	\N	f	1	479
+1437	\N	QB	1989-08-26	\N	\N	f	1	479
 1438	2	R	1989-09-10	\N	\N	f	13	480
-1442	1	QB	1989-09-22	\N	\N	f	1	481
+1439	1	QB	1989-09-08	\N	\N	f	1	480
+1440	\N	QB	1989-09-09	\N	\N	f	1	480
 1441	2	R	1989-09-24	\N	\N	f	13	481
-1445	1	QB	1989-09-29	\N	\N	f	1	482
+1442	1	QB	1989-09-22	\N	\N	f	1	481
+1443	\N	QB	1989-09-23	\N	\N	f	1	481
 1444	2	R	1989-10-01	\N	\N	f	13	482
-1448	1	QB	1989-10-20	\N	\N	f	1	483
+1445	1	QB	1989-09-29	\N	\N	f	1	482
+1446	\N	QB	1989-09-30	\N	\N	f	1	482
 1447	2	R	1989-10-22	\N	\N	f	13	483
-1451	1	QB	1989-11-03	\N	\N	f	1	484
+1448	1	QB	1989-10-20	\N	\N	f	1	483
+1449	\N	QB	1989-10-21	\N	\N	f	1	483
 1450	2	R	1989-11-05	\N	\N	f	13	484
-1454	1	QB	1990-03-09	\N	\N	f	1	485
+1451	1	QB	1989-11-03	\N	\N	f	1	484
+1452	\N	QB	1989-11-04	\N	\N	f	1	484
 1453	2	R	1990-03-11	\N	\N	f	13	485
-1457	1	QB	1990-03-23	\N	\N	f	1	486
+1454	1	QB	1990-03-09	\N	\N	f	1	485
+1455	\N	QB	1990-03-10	\N	\N	f	1	485
 1456	2	R	1990-03-25	\N	\N	f	13	486
-1460	1	QB	1990-05-11	\N	\N	f	1	487
+1457	1	QB	1990-03-23	\N	\N	f	1	486
+1458	\N	QB	1990-03-24	\N	\N	f	1	486
 1459	2	R	1990-05-13	\N	\N	f	13	487
-1463	1	QB	1990-05-24	\N	\N	f	1	488
+1460	1	QB	1990-05-11	\N	\N	f	1	487
+1461	\N	QB	1990-05-12	\N	\N	f	1	487
 1462	2	R	1990-05-27	\N	\N	f	13	488
-1466	1	QB	1990-06-08	\N	\N	f	1	489
+1463	1	QB	1990-05-24	\N	\N	f	1	488
+1464	\N	QB	1990-05-26	\N	\N	f	1	488
 1465	2	R	1990-06-10	\N	\N	f	13	489
-1469	1	QB	1990-06-22	\N	\N	f	1	490
+1466	1	QB	1990-06-08	\N	\N	f	1	489
+1467	\N	QB	1990-06-09	\N	\N	f	1	489
 1468	2	R	1990-06-24	\N	\N	f	13	490
-1472	1	QB	1990-07-06	\N	\N	f	1	491
+1469	1	QB	1990-06-22	\N	\N	f	1	490
+1470	\N	QB	1990-06-23	\N	\N	f	1	490
 1471	2	R	1990-07-08	\N	\N	f	13	491
-1475	1	QB	1990-07-13	\N	\N	f	1	492
+1472	1	QB	1990-07-06	\N	\N	f	1	491
+1473	\N	QB	1990-07-07	\N	\N	f	1	491
 1474	2	R	1990-07-15	\N	\N	f	13	492
-1478	1	QB	1990-07-27	\N	\N	f	1	493
+1475	1	QB	1990-07-13	\N	\N	f	1	492
+1476	\N	QB	1990-07-14	\N	\N	f	1	492
 1477	2	R	1990-07-29	\N	\N	f	13	493
-1481	1	QB	1990-08-10	\N	\N	f	1	494
+1478	1	QB	1990-07-27	\N	\N	f	1	493
+1479	\N	QB	1990-07-28	\N	\N	f	1	493
 1480	2	R	1990-08-12	\N	\N	f	13	494
-1484	1	QB	1990-08-24	\N	\N	f	1	495
+1481	1	QB	1990-08-10	\N	\N	f	1	494
+1482	\N	QB	1990-08-11	\N	\N	f	1	494
 1483	2	R	1990-08-26	\N	\N	f	13	495
-1487	1	QB	1990-09-07	\N	\N	f	1	496
+1484	1	QB	1990-08-24	\N	\N	f	1	495
+1485	\N	QB	1990-08-25	\N	\N	f	1	495
 1486	2	R	1990-09-09	\N	\N	f	13	496
-1490	1	QB	1990-09-21	\N	\N	f	1	497
+1487	1	QB	1990-09-07	\N	\N	f	1	496
+1488	\N	QB	1990-09-08	\N	\N	f	1	496
 1489	2	R	1990-09-23	\N	\N	f	13	497
-1493	1	QB	1990-09-28	\N	\N	f	1	498
+1490	1	QB	1990-09-21	\N	\N	f	1	497
+1491	\N	QB	1990-09-22	\N	\N	f	1	497
 1492	2	R	1990-09-30	\N	\N	f	13	498
-1496	1	QB	1990-10-19	\N	\N	f	1	499
+1493	1	QB	1990-09-28	\N	\N	f	1	498
+1494	\N	QB	1990-09-29	\N	\N	f	1	498
 1495	2	R	1990-10-21	\N	\N	f	13	499
-1499	1	QB	1990-11-02	\N	\N	f	1	500
+1496	1	QB	1990-10-19	\N	\N	f	1	499
+1497	\N	QB	1990-10-20	\N	\N	f	1	499
 1498	2	R	1990-11-04	\N	\N	f	13	500
-1502	1	QB	1991-03-08	\N	\N	f	1	501
+1499	1	QB	1990-11-02	\N	\N	f	1	500
+1500	\N	QB	1990-11-03	\N	\N	f	1	500
 1501	2	R	1991-03-10	\N	\N	f	14	501
-1505	1	QB	1991-03-22	\N	\N	f	1	502
+1502	1	QB	1991-03-08	\N	\N	f	1	501
+1503	\N	QB	1991-03-09	\N	\N	f	1	501
 1504	2	R	1991-03-24	\N	\N	f	14	502
-1508	1	QB	1991-04-26	\N	\N	f	1	503
+1505	1	QB	1991-03-22	\N	\N	f	1	502
+1506	\N	QB	1991-03-23	\N	\N	f	1	502
 1507	2	R	1991-04-28	\N	\N	f	14	503
-1511	1	QB	1991-05-09	\N	\N	f	1	504
+1508	1	QB	1991-04-26	\N	\N	f	1	503
+1509	\N	QB	1991-04-27	\N	\N	f	1	503
 1510	2	R	1991-05-12	\N	\N	f	14	504
-1514	1	QB	1991-05-31	\N	\N	f	1	505
+1511	1	QB	1991-05-09	\N	\N	f	1	504
+1512	\N	QB	1991-05-11	\N	\N	f	1	504
 1513	2	R	1991-06-02	\N	\N	f	14	505
-1517	1	QB	1991-06-14	\N	\N	f	1	506
+1514	1	QB	1991-05-31	\N	\N	f	1	505
+1515	\N	QB	1991-06-01	\N	\N	f	1	505
 1516	2	R	1991-06-16	\N	\N	f	14	506
-1520	1	QB	1991-07-05	\N	\N	f	1	507
+1517	1	QB	1991-06-14	\N	\N	f	1	506
+1518	\N	QB	1991-06-15	\N	\N	f	1	506
 1519	2	R	1991-07-07	\N	\N	f	14	507
-1523	1	QB	1991-07-12	\N	\N	f	1	508
+1520	1	QB	1991-07-05	\N	\N	f	1	507
+1521	\N	QB	1991-07-06	\N	\N	f	1	507
 1522	2	R	1991-07-14	\N	\N	f	14	508
-1526	1	QB	1991-07-26	\N	\N	f	1	509
+1523	1	QB	1991-07-12	\N	\N	f	1	508
+1524	\N	QB	1991-07-13	\N	\N	f	1	508
 1525	2	R	1991-07-28	\N	\N	f	14	509
-1529	1	QB	1991-08-09	\N	\N	f	1	510
+1526	1	QB	1991-07-26	\N	\N	f	1	509
+1527	\N	QB	1991-07-27	\N	\N	f	1	509
 1528	2	R	1991-08-11	\N	\N	f	14	510
-1532	1	QB	1991-08-23	\N	\N	f	1	511
+1529	1	QB	1991-08-09	\N	\N	f	1	510
+1530	\N	QB	1991-08-10	\N	\N	f	1	510
 1531	2	R	1991-08-25	\N	\N	f	14	511
-1535	1	QB	1991-09-06	\N	\N	f	1	512
+1532	1	QB	1991-08-23	\N	\N	f	1	511
+1533	\N	QB	1991-08-24	\N	\N	f	1	511
 1534	2	R	1991-09-08	\N	\N	f	14	512
-1538	1	QB	1991-09-20	\N	\N	f	1	513
+1535	1	QB	1991-09-06	\N	\N	f	1	512
+1536	\N	QB	1991-09-07	\N	\N	f	1	512
 1537	2	R	1991-09-22	\N	\N	f	14	513
-1541	1	QB	1991-09-27	\N	\N	f	1	514
+1538	1	QB	1991-09-20	\N	\N	f	1	513
+1539	\N	QB	1991-09-21	\N	\N	f	1	513
 1540	2	R	1991-09-29	\N	\N	f	14	514
-1544	1	QB	1991-10-18	\N	\N	f	1	515
+1541	1	QB	1991-09-27	\N	\N	f	1	514
+1542	\N	QB	1991-09-28	\N	\N	f	1	514
 1543	2	R	1991-10-20	\N	\N	f	14	515
-1547	1	QB	1991-11-01	\N	\N	f	1	516
+1544	1	QB	1991-10-18	\N	\N	f	1	515
+1545	\N	QB	1991-10-19	\N	\N	f	1	515
 1546	2	R	1991-11-03	\N	\N	f	14	516
-1550	1	QB	1992-02-28	\N	\N	f	1	517
+1547	1	QB	1991-11-01	\N	\N	f	1	516
+1548	\N	QB	1991-11-02	\N	\N	f	1	516
 1549	2	R	1992-03-01	\N	\N	f	14	517
-1553	1	QB	1992-03-20	\N	\N	f	1	518
+1550	1	QB	1992-02-28	\N	\N	f	1	517
+1551	\N	QB	1992-02-29	\N	\N	f	1	517
 1552	2	R	1992-03-22	\N	\N	f	14	518
-1556	1	QB	1992-04-03	\N	\N	f	1	519
+1553	1	QB	1992-03-20	\N	\N	f	1	518
+1554	\N	QB	1992-03-21	\N	\N	f	1	518
 1555	2	R	1992-04-05	\N	\N	f	14	519
-1559	1	QB	1992-05-01	\N	\N	f	1	520
+1556	1	QB	1992-04-03	\N	\N	f	1	519
+1557	\N	QB	1992-04-04	\N	\N	f	1	519
 1558	2	R	1992-05-03	\N	\N	f	14	520
-1562	1	QB	1992-05-15	\N	\N	f	1	521
+1559	1	QB	1992-05-01	\N	\N	f	1	520
+1560	\N	QB	1992-05-02	\N	\N	f	1	520
 1561	2	R	1992-05-17	\N	\N	f	14	521
-1565	1	QB	1992-05-28	\N	\N	f	1	522
+1562	1	QB	1992-05-15	\N	\N	f	1	521
+1563	\N	QB	1992-05-16	\N	\N	f	1	521
 1564	2	R	1992-05-31	\N	\N	f	14	522
-1568	1	QB	1992-06-12	\N	\N	f	1	523
+1565	1	QB	1992-05-28	\N	\N	f	1	522
+1566	\N	QB	1992-05-30	\N	\N	f	1	522
 1567	2	R	1992-06-14	\N	\N	f	14	523
-1571	1	QB	1992-07-03	\N	\N	f	1	524
+1568	1	QB	1992-06-12	\N	\N	f	1	523
+1569	\N	QB	1992-06-13	\N	\N	f	1	523
 1570	2	R	1992-07-05	\N	\N	f	14	524
-1574	1	QB	1992-07-10	\N	\N	f	1	525
+1571	1	QB	1992-07-03	\N	\N	f	1	524
+1572	\N	QB	1992-07-04	\N	\N	f	1	524
 1573	2	R	1992-07-12	\N	\N	f	14	525
-1577	1	QB	1992-07-24	\N	\N	f	1	526
+1574	1	QB	1992-07-10	\N	\N	f	1	525
+1575	\N	QB	1992-07-11	\N	\N	f	1	525
 1576	2	R	1992-07-26	\N	\N	f	14	526
-1580	1	QB	1992-08-14	\N	\N	f	1	527
+1577	1	QB	1992-07-24	\N	\N	f	1	526
+1578	\N	QB	1992-07-25	\N	\N	f	1	526
 1579	2	R	1992-08-16	\N	\N	f	14	527
-1583	1	QB	1992-08-28	\N	\N	f	1	528
+1580	1	QB	1992-08-14	\N	\N	f	1	527
+1581	\N	QB	1992-08-15	\N	\N	f	1	527
 1582	2	R	1992-08-30	\N	\N	f	14	528
-1586	1	QB	1992-09-11	\N	\N	f	1	529
+1583	1	QB	1992-08-28	\N	\N	f	1	528
+1584	\N	QB	1992-08-29	\N	\N	f	1	528
 1585	2	R	1992-09-13	\N	\N	f	14	529
-1589	1	QB	1992-09-25	\N	\N	f	1	530
+1586	1	QB	1992-09-11	\N	\N	f	1	529
+1587	\N	QB	1992-09-12	\N	\N	f	1	529
 1588	2	R	1992-09-27	\N	\N	f	14	530
-1592	1	QB	1992-10-23	\N	\N	f	1	531
+1589	1	QB	1992-09-25	\N	\N	f	1	530
+1590	\N	QB	1992-09-26	\N	\N	f	1	530
 1591	2	R	1992-10-25	\N	\N	f	14	531
-1595	1	QB	1992-11-06	\N	\N	f	1	532
+1592	1	QB	1992-10-23	\N	\N	f	1	531
+1593	\N	QB	1992-10-24	\N	\N	f	1	531
 1594	2	R	1992-11-08	\N	\N	f	14	532
-1598	1	QB	1993-03-12	\N	\N	f	1	533
+1595	1	QB	1992-11-06	\N	\N	f	1	532
+1596	\N	QB	1992-11-07	\N	\N	f	1	532
 1597	2	R	1993-03-14	\N	\N	f	14	533
-1601	1	QB	1993-03-26	\N	\N	f	1	534
+1598	1	QB	1993-03-12	\N	\N	f	1	533
+1599	\N	QB	1993-03-13	\N	\N	f	1	533
 1600	2	R	1993-03-28	\N	\N	f	14	534
-1604	1	QB	1993-04-09	\N	\N	f	1	535
+1601	1	QB	1993-03-26	\N	\N	f	1	534
+1602	\N	QB	1993-03-27	\N	\N	f	1	534
 1603	2	R	1993-04-11	\N	\N	f	14	535
-1607	1	QB	1993-04-23	\N	\N	f	1	536
+1604	1	QB	1993-04-09	\N	\N	f	1	535
+1605	\N	QB	1993-04-10	\N	\N	f	1	535
 1606	2	R	1993-04-25	\N	\N	f	14	536
-1610	1	QB	1993-05-07	\N	\N	f	1	537
+1607	1	QB	1993-04-23	\N	\N	f	1	536
+1608	\N	QB	1993-04-24	\N	\N	f	1	536
 1609	2	R	1993-05-09	\N	\N	f	14	537
-1613	1	QB	1993-05-20	\N	\N	f	1	538
+1610	1	QB	1993-05-07	\N	\N	f	1	537
+1611	\N	QB	1993-05-08	\N	\N	f	1	537
 1612	2	R	1993-05-23	\N	\N	f	14	538
-1616	1	QB	1993-06-11	\N	\N	f	1	539
+1613	1	QB	1993-05-20	\N	\N	f	1	538
+1614	\N	QB	1993-05-22	\N	\N	f	1	538
 1615	2	R	1993-06-13	\N	\N	f	14	539
-1619	1	QB	1993-07-02	\N	\N	f	1	540
+1616	1	QB	1993-06-11	\N	\N	f	1	539
+1617	\N	QB	1993-06-12	\N	\N	f	1	539
 1618	2	R	1993-07-04	\N	\N	f	14	540
-1622	1	QB	1993-07-09	\N	\N	f	1	541
+1619	1	QB	1993-07-02	\N	\N	f	1	540
+1620	\N	QB	1993-07-03	\N	\N	f	1	540
 1621	2	R	1993-07-11	\N	\N	f	14	541
-1625	1	QB	1993-07-23	\N	\N	f	1	542
+1622	1	QB	1993-07-09	\N	\N	f	1	541
+1623	\N	QB	1993-07-10	\N	\N	f	1	541
 1624	2	R	1993-07-25	\N	\N	f	14	542
-1628	1	QB	1993-08-13	\N	\N	f	1	543
+1625	1	QB	1993-07-23	\N	\N	f	1	542
+1626	\N	QB	1993-07-24	\N	\N	f	1	542
 1627	2	R	1993-08-15	\N	\N	f	14	543
-1631	1	QB	1993-08-27	\N	\N	f	1	544
+1628	1	QB	1993-08-13	\N	\N	f	1	543
+1629	\N	QB	1993-08-14	\N	\N	f	1	543
 1630	2	R	1993-08-29	\N	\N	f	14	544
-1634	1	QB	1993-09-10	\N	\N	f	1	545
+1631	1	QB	1993-08-27	\N	\N	f	1	544
+1632	\N	QB	1993-08-28	\N	\N	f	1	544
 1633	2	R	1993-09-12	\N	\N	f	14	545
-1637	1	QB	1993-09-24	\N	\N	f	1	546
+1634	1	QB	1993-09-10	\N	\N	f	1	545
+1635	\N	QB	1993-09-11	\N	\N	f	1	545
 1636	2	R	1993-09-26	\N	\N	f	14	546
-1640	1	QB	1993-10-22	\N	\N	f	1	547
+1637	1	QB	1993-09-24	\N	\N	f	1	546
+1638	\N	QB	1993-09-25	\N	\N	f	1	546
 1639	2	R	1993-10-24	\N	\N	f	14	547
-1643	1	QB	1993-11-05	\N	\N	f	1	548
+1640	1	QB	1993-10-22	\N	\N	f	1	547
+1641	\N	QB	1993-10-23	\N	\N	f	1	547
 1642	2	R	1993-11-07	\N	\N	f	14	548
-1646	1	QB	1994-03-25	\N	\N	f	1	549
+1643	1	QB	1993-11-05	\N	\N	f	1	548
+1644	\N	QB	1993-11-06	\N	\N	f	1	548
 1645	2	R	1994-03-27	\N	\N	f	14	549
-1649	1	QB	1994-04-15	\N	\N	f	1	550
+1646	1	QB	1994-03-25	\N	\N	f	1	549
+1647	\N	QB	1994-03-26	\N	\N	f	1	549
 1648	2	R	1994-04-17	\N	\N	f	14	550
-1652	1	QB	1994-04-29	\N	\N	f	1	551
+1649	1	QB	1994-04-15	\N	\N	f	1	550
+1650	\N	QB	1994-04-16	\N	\N	f	1	550
 1651	2	R	1994-05-01	\N	\N	f	14	551
-1655	1	QB	1994-05-12	\N	\N	f	1	552
+1652	1	QB	1994-04-29	\N	\N	f	1	551
+1653	\N	QB	1994-04-30	\N	\N	f	1	551
 1654	2	R	1994-05-15	\N	\N	f	14	552
-1658	1	QB	1994-05-27	\N	\N	f	1	553
+1655	1	QB	1994-05-12	\N	\N	f	1	552
+1656	\N	QB	1994-05-14	\N	\N	f	1	552
 1657	2	R	1994-05-29	\N	\N	f	14	553
-1661	1	QB	1994-06-10	\N	\N	f	1	554
+1658	1	QB	1994-05-27	\N	\N	f	1	553
+1659	\N	QB	1994-05-28	\N	\N	f	1	553
 1660	2	R	1994-06-12	\N	\N	f	14	554
-1664	1	QB	1994-07-01	\N	\N	f	1	555
+1661	1	QB	1994-06-10	\N	\N	f	1	554
+1662	\N	QB	1994-06-11	\N	\N	f	1	554
 1663	2	R	1994-07-03	\N	\N	f	14	555
-1667	1	QB	1994-07-08	\N	\N	f	1	556
+1664	1	QB	1994-07-01	\N	\N	f	1	555
+1665	\N	QB	1994-07-02	\N	\N	f	1	555
 1666	2	R	1994-07-10	\N	\N	f	14	556
-1670	1	QB	1994-07-29	\N	\N	f	1	557
+1667	1	QB	1994-07-08	\N	\N	f	1	556
+1668	\N	QB	1994-07-09	\N	\N	f	1	556
 1669	2	R	1994-07-31	\N	\N	f	14	557
-1673	1	QB	1994-08-12	\N	\N	f	1	558
+1670	1	QB	1994-07-29	\N	\N	f	1	557
+1671	\N	QB	1994-07-30	\N	\N	f	1	557
 1672	2	R	1994-08-14	\N	\N	f	14	558
-1676	1	QB	1994-08-26	\N	\N	f	1	559
+1673	1	QB	1994-08-12	\N	\N	f	1	558
+1674	\N	QB	1994-08-13	\N	\N	f	1	558
 1675	2	R	1994-08-28	\N	\N	f	14	559
-1679	1	QB	1994-09-09	\N	\N	f	1	560
+1676	1	QB	1994-08-26	\N	\N	f	1	559
+1677	\N	QB	1994-08-27	\N	\N	f	1	559
 1678	2	R	1994-09-11	\N	\N	f	14	560
-1682	1	QB	1994-09-23	\N	\N	f	1	561
+1679	1	QB	1994-09-09	\N	\N	f	1	560
+1680	\N	QB	1994-09-10	\N	\N	f	1	560
 1681	2	R	1994-09-25	\N	\N	f	14	561
-1685	1	QB	1994-10-14	\N	\N	f	1	562
+1682	1	QB	1994-09-23	\N	\N	f	1	561
+1683	\N	QB	1994-09-24	\N	\N	f	1	561
 1684	2	R	1994-10-16	\N	\N	f	14	562
-1688	1	QB	1994-11-04	\N	\N	f	1	563
+1685	1	QB	1994-10-14	\N	\N	f	1	562
+1686	\N	QB	1994-10-15	\N	\N	f	1	562
 1687	2	R	1994-11-06	\N	\N	f	14	563
-1691	1	QB	1994-11-11	\N	\N	f	1	564
+1688	1	QB	1994-11-04	\N	\N	f	1	563
+1689	\N	QB	1994-11-05	\N	\N	f	1	563
 1690	2	R	1994-11-13	\N	\N	f	14	564
-1694	1	QB	1995-03-24	\N	\N	f	1	565
+1691	1	QB	1994-11-11	\N	\N	f	1	564
+1692	\N	QB	1994-11-12	\N	\N	f	1	564
 1693	2	R	1995-03-26	\N	\N	f	14	565
-1697	1	QB	1995-04-07	\N	\N	f	1	566
+1694	1	QB	1995-03-24	\N	\N	f	1	565
+1695	\N	QB	1995-03-25	\N	\N	f	1	565
 1696	2	R	1995-04-09	\N	\N	f	14	566
-1700	1	QB	1995-04-28	\N	\N	f	1	567
+1697	1	QB	1995-04-07	\N	\N	f	1	566
+1698	\N	QB	1995-04-08	\N	\N	f	1	566
 1699	2	R	1995-04-30	\N	\N	f	14	567
-1703	1	QB	1995-05-12	\N	\N	f	1	568
+1700	1	QB	1995-04-28	\N	\N	f	1	567
+1701	\N	QB	1995-04-29	\N	\N	f	1	567
 1702	2	R	1995-05-14	\N	\N	f	14	568
-1706	1	QB	1995-05-25	\N	\N	f	1	569
+1703	1	QB	1995-05-12	\N	\N	f	1	568
+1704	\N	QB	1995-05-13	\N	\N	f	1	568
 1705	2	R	1995-05-28	\N	\N	f	14	569
-1709	1	QB	1995-06-09	\N	\N	f	1	570
+1706	1	QB	1995-05-25	\N	\N	f	1	569
+1707	\N	QB	1995-05-27	\N	\N	f	1	569
 1708	2	R	1995-06-11	\N	\N	f	14	570
-1712	1	QB	1995-06-30	\N	\N	f	1	571
+1709	1	QB	1995-06-09	\N	\N	f	1	570
+1710	\N	QB	1995-06-10	\N	\N	f	1	570
 1711	2	R	1995-07-02	\N	\N	f	14	571
-1715	1	QB	1995-07-14	\N	\N	f	1	572
+1712	1	QB	1995-06-30	\N	\N	f	1	571
+1713	\N	QB	1995-07-01	\N	\N	f	1	571
 1714	2	R	1995-07-16	\N	\N	f	14	572
-1718	1	QB	1995-07-28	\N	\N	f	1	573
+1715	1	QB	1995-07-14	\N	\N	f	1	572
+1716	\N	QB	1995-07-15	\N	\N	f	1	572
 1717	2	R	1995-07-30	\N	\N	f	14	573
-1721	1	QB	1995-08-11	\N	\N	f	1	574
+1718	1	QB	1995-07-28	\N	\N	f	1	573
+1719	\N	QB	1995-07-29	\N	\N	f	1	573
 1720	2	R	1995-08-13	\N	\N	f	14	574
-1724	1	QB	1995-08-25	\N	\N	f	1	575
+1721	1	QB	1995-08-11	\N	\N	f	1	574
+1722	\N	QB	1995-08-12	\N	\N	f	1	574
 1723	2	R	1995-08-27	\N	\N	f	14	575
-1727	1	QB	1995-09-08	\N	\N	f	1	576
+1724	1	QB	1995-08-25	\N	\N	f	1	575
+1725	\N	QB	1995-08-26	\N	\N	f	1	575
 1726	2	R	1995-09-10	\N	\N	f	14	576
-1730	1	QB	1995-09-22	\N	\N	f	1	577
+1727	1	QB	1995-09-08	\N	\N	f	1	576
+1728	\N	QB	1995-09-09	\N	\N	f	1	576
 1729	2	R	1995-09-24	\N	\N	f	14	577
-1733	1	QB	1995-09-29	\N	\N	f	1	578
+1730	1	QB	1995-09-22	\N	\N	f	1	577
+1731	\N	QB	1995-09-23	\N	\N	f	1	577
 1732	2	R	1995-10-01	\N	\N	f	14	578
-1736	1	QB	1995-10-20	\N	\N	f	1	579
+1733	1	QB	1995-09-29	\N	\N	f	1	578
+1734	\N	QB	1995-09-30	\N	\N	f	1	578
 1735	2	R	1995-10-22	\N	\N	f	14	579
-1739	1	QB	1995-10-27	\N	\N	f	1	580
+1736	1	QB	1995-10-20	\N	\N	f	1	579
+1737	\N	QB	1995-10-21	\N	\N	f	1	579
 1738	2	R	1995-10-29	\N	\N	f	14	580
-1742	1	QB	1995-11-10	\N	\N	f	1	581
+1739	1	QB	1995-10-27	\N	\N	f	1	580
+1740	\N	QB	1995-10-28	\N	\N	f	1	580
 1741	2	R	1995-11-12	\N	\N	f	14	581
-1745	1	QB	1996-03-09	\N	\N	f	1	582
+1742	1	QB	1995-11-10	\N	\N	f	1	581
+1743	\N	QB	1995-11-11	\N	\N	f	1	581
 1744	2	R	1996-03-10	\N	\N	f	14	582
-1747	1	QB	1996-03-30	\N	\N	f	1	583
+1745	1	QB	1996-03-09	\N	\N	f	1	582
 1746	2	R	1996-03-31	\N	\N	f	14	583
-1749	1	QB	1996-04-06	\N	\N	f	1	584
+1747	1	QB	1996-03-30	\N	\N	f	1	583
 1748	2	R	1996-04-07	\N	\N	f	14	584
-1751	1	QB	1996-04-27	\N	\N	f	1	585
+1749	1	QB	1996-04-06	\N	\N	f	1	584
 1750	2	R	1996-04-28	\N	\N	f	14	585
-1753	1	QB	1996-05-04	\N	\N	f	1	586
+1751	1	QB	1996-04-27	\N	\N	f	1	585
 1752	2	R	1996-05-05	\N	\N	f	14	586
-1755	1	QB	1996-05-18	\N	\N	f	1	587
+1753	1	QB	1996-05-04	\N	\N	f	1	586
 1754	2	R	1996-05-19	\N	\N	f	14	587
-1757	1	QB	1996-06-01	\N	\N	f	1	588
+1755	1	QB	1996-05-18	\N	\N	f	1	587
 1756	2	R	1996-06-02	\N	\N	f	14	588
-1759	1	QB	1996-06-15	\N	\N	f	1	589
+1757	1	QB	1996-06-01	\N	\N	f	1	588
 1758	2	R	1996-06-16	\N	\N	f	14	589
-1761	1	QB	1996-06-29	\N	\N	f	1	590
+1759	1	QB	1996-06-15	\N	\N	f	1	589
 1760	2	R	1996-06-30	\N	\N	f	14	590
-1763	1	QB	1996-07-13	\N	\N	f	1	591
+1761	1	QB	1996-06-29	\N	\N	f	1	590
 1762	2	R	1996-07-14	\N	\N	f	14	591
-1765	1	QB	1996-07-27	\N	\N	f	1	592
+1763	1	QB	1996-07-13	\N	\N	f	1	591
 1764	2	R	1996-07-28	\N	\N	f	14	592
-1767	1	QB	1996-08-10	\N	\N	f	1	593
+1765	1	QB	1996-07-27	\N	\N	f	1	592
 1766	2	R	1996-08-11	\N	\N	f	14	593
-1769	1	QB	1996-08-24	\N	\N	f	1	594
+1767	1	QB	1996-08-10	\N	\N	f	1	593
 1768	2	R	1996-08-25	\N	\N	f	14	594
-1771	1	QB	1996-09-07	\N	\N	f	1	595
+1769	1	QB	1996-08-24	\N	\N	f	1	594
 1770	2	R	1996-09-08	\N	\N	f	14	595
-1773	1	QB	1996-09-21	\N	\N	f	1	596
+1771	1	QB	1996-09-07	\N	\N	f	1	595
 1772	2	R	1996-09-22	\N	\N	f	14	596
-1775	1	QB	1996-10-12	\N	\N	f	1	597
+1773	1	QB	1996-09-21	\N	\N	f	1	596
 1774	2	R	1996-10-13	\N	\N	f	14	597
-1777	1	QB	1997-03-08	\N	\N	f	1	598
+1775	1	QB	1996-10-12	\N	\N	f	1	597
 1776	2	R	1997-03-09	\N	\N	f	14	598
-1779	1	QB	1997-03-29	\N	\N	f	1	599
+1777	1	QB	1997-03-08	\N	\N	f	1	598
 1778	2	R	1997-03-30	\N	\N	f	14	599
-1781	1	QB	1997-04-12	\N	\N	f	1	600
+1779	1	QB	1997-03-29	\N	\N	f	1	599
 1780	2	R	1997-04-13	\N	\N	f	14	600
-1783	1	QB	1997-04-26	\N	\N	f	1	601
+1781	1	QB	1997-04-12	\N	\N	f	1	600
 1782	2	R	1997-04-27	\N	\N	f	14	601
-1785	1	QB	1997-05-10	\N	\N	f	1	602
+1783	1	QB	1997-04-26	\N	\N	f	1	601
 1784	2	R	1997-05-11	\N	\N	f	14	602
-1787	1	QB	1997-05-24	\N	\N	f	1	603
+1785	1	QB	1997-05-10	\N	\N	f	1	602
 1786	2	R	1997-05-25	\N	\N	f	14	603
-1789	1	QB	1997-06-14	\N	\N	f	1	604
+1787	1	QB	1997-05-24	\N	\N	f	1	603
 1788	2	R	1997-06-15	\N	\N	f	14	604
-1791	1	QB	1997-06-28	\N	\N	f	1	605
+1789	1	QB	1997-06-14	\N	\N	f	1	604
 1790	2	R	1997-06-29	\N	\N	f	14	605
-1793	1	QB	1997-07-12	\N	\N	f	1	606
+1791	1	QB	1997-06-28	\N	\N	f	1	605
 1792	2	R	1997-07-13	\N	\N	f	14	606
-1795	1	QB	1997-07-26	\N	\N	f	1	607
+1793	1	QB	1997-07-12	\N	\N	f	1	606
 1794	2	R	1997-07-27	\N	\N	f	14	607
-1797	1	QB	1997-08-09	\N	\N	f	1	608
+1795	1	QB	1997-07-26	\N	\N	f	1	607
 1796	2	R	1997-08-10	\N	\N	f	14	608
-1799	1	QB	1997-08-23	\N	\N	f	1	609
+1797	1	QB	1997-08-09	\N	\N	f	1	608
 1798	2	R	1997-08-24	\N	\N	f	14	609
-1801	1	QB	1997-09-06	\N	\N	f	1	610
+1799	1	QB	1997-08-23	\N	\N	f	1	609
 1800	2	R	1997-09-07	\N	\N	f	14	610
-1803	1	QB	1997-09-20	\N	\N	f	1	611
+1801	1	QB	1997-09-06	\N	\N	f	1	610
 1802	2	R	1997-09-21	\N	\N	f	14	611
-1805	1	QB	1997-09-27	\N	\N	f	1	612
+1803	1	QB	1997-09-20	\N	\N	f	1	611
 1804	2	R	1997-09-28	\N	\N	f	14	612
-1807	1	QB	1997-10-11	\N	\N	f	1	613
+1805	1	QB	1997-09-27	\N	\N	f	1	612
 1806	2	R	1997-10-12	\N	\N	f	14	613
-1809	1	QB	1997-10-25	\N	\N	f	1	614
+1807	1	QB	1997-10-11	\N	\N	f	1	613
 1808	2	R	1997-10-26	\N	\N	f	14	614
-1811	1	QB	1998-03-07	\N	\N	f	1	615
+1809	1	QB	1997-10-25	\N	\N	f	1	614
 1810	2	R	1998-03-08	\N	\N	f	14	615
-1813	1	QB	1998-03-28	\N	\N	f	1	616
+1811	1	QB	1998-03-07	\N	\N	f	1	615
 1812	2	R	1998-03-29	\N	\N	f	14	616
-1815	1	QB	1998-04-11	\N	\N	f	1	617
+1813	1	QB	1998-03-28	\N	\N	f	1	616
 1814	2	R	1998-04-12	\N	\N	f	14	617
-1817	1	QB	1998-04-25	\N	\N	f	1	618
+1815	1	QB	1998-04-11	\N	\N	f	1	617
 1816	2	R	1998-04-26	\N	\N	f	14	618
-1819	1	QB	1998-05-09	\N	\N	f	1	619
+1817	1	QB	1998-04-25	\N	\N	f	1	618
 1818	2	R	1998-05-10	\N	\N	f	14	619
-1821	1	QB	1998-05-23	\N	\N	f	1	620
+1819	1	QB	1998-05-09	\N	\N	f	1	619
 1820	2	R	1998-05-24	\N	\N	f	14	620
-1823	1	QB	1998-06-06	\N	\N	f	1	621
+1821	1	QB	1998-05-23	\N	\N	f	1	620
 1822	2	R	1998-06-07	\N	\N	f	14	621
-1825	1	QB	1998-06-27	\N	\N	f	1	622
+1823	1	QB	1998-06-06	\N	\N	f	1	621
 1824	2	R	1998-06-28	\N	\N	f	14	622
-1827	1	QB	1998-07-11	\N	\N	f	1	623
+1825	1	QB	1998-06-27	\N	\N	f	1	622
 1826	2	R	1998-07-12	\N	\N	f	14	623
-1829	1	QB	1998-07-25	\N	\N	f	1	624
+1827	1	QB	1998-07-11	\N	\N	f	1	623
 1828	2	R	1998-07-26	\N	\N	f	14	624
-1831	1	QB	1998-08-01	\N	\N	f	1	625
+1829	1	QB	1998-07-25	\N	\N	f	1	624
 1830	2	R	1998-08-02	\N	\N	f	14	625
-1833	1	QB	1998-08-15	\N	\N	f	1	626
+1831	1	QB	1998-08-01	\N	\N	f	1	625
 1832	2	R	1998-08-16	\N	\N	f	14	626
-1835	1	QB	1998-08-29	\N	\N	f	1	627
+1833	1	QB	1998-08-15	\N	\N	f	1	626
 1834	2	R	1998-08-30	\N	\N	f	14	627
-1837	1	QB	1998-09-12	\N	\N	f	1	628
+1835	1	QB	1998-08-29	\N	\N	f	1	627
 1836	2	R	1998-09-13	\N	\N	f	14	628
-1839	1	QB	1998-09-26	\N	\N	f	1	629
+1837	1	QB	1998-09-12	\N	\N	f	1	628
 1838	2	R	1998-09-27	\N	\N	f	14	629
-1841	1	QB	1998-10-31	\N	\N	f	1	630
+1839	1	QB	1998-09-26	\N	\N	f	1	629
 1840	2	R	1998-11-01	\N	\N	f	14	630
-1843	1	QB	1999-03-06	\N	\N	f	1	631
+1841	1	QB	1998-10-31	\N	\N	f	1	630
 1842	2	R	1999-03-07	\N	\N	f	14	631
-1845	1	QB	1999-04-10	\N	\N	f	1	632
+1843	1	QB	1999-03-06	\N	\N	f	1	631
 1844	2	R	1999-04-11	\N	\N	f	14	632
-1847	1	QB	1999-05-01	\N	\N	f	1	633
+1845	1	QB	1999-04-10	\N	\N	f	1	632
 1846	2	R	1999-05-02	\N	\N	f	14	633
-1849	1	QB	1999-05-15	\N	\N	f	1	634
+1847	1	QB	1999-05-01	\N	\N	f	1	633
 1848	2	R	1999-05-16	\N	\N	f	14	634
-1851	1	QB	1999-05-29	\N	\N	f	1	635
+1849	1	QB	1999-05-15	\N	\N	f	1	634
 1850	2	R	1999-05-30	\N	\N	f	14	635
-1853	1	QB	1999-06-12	\N	\N	f	1	636
+1851	1	QB	1999-05-29	\N	\N	f	1	635
 1852	2	R	1999-06-13	\N	\N	f	14	636
-1855	1	QB	1999-06-26	\N	\N	f	1	637
+1853	1	QB	1999-06-12	\N	\N	f	1	636
 1854	2	R	1999-06-27	\N	\N	f	14	637
-1857	1	QB	1999-07-10	\N	\N	f	1	638
+1855	1	QB	1999-06-26	\N	\N	f	1	637
 1856	2	R	1999-07-11	\N	\N	f	14	638
-1859	1	QB	1999-07-24	\N	\N	f	1	639
+1857	1	QB	1999-07-10	\N	\N	f	1	638
 1858	2	R	1999-07-25	\N	\N	f	14	639
-1861	1	QB	1999-07-31	\N	\N	f	1	640
+1859	1	QB	1999-07-24	\N	\N	f	1	639
 1860	2	R	1999-08-01	\N	\N	f	14	640
-1863	1	QB	1999-08-14	\N	\N	f	1	641
+1861	1	QB	1999-07-31	\N	\N	f	1	640
 1862	2	R	1999-08-15	\N	\N	f	14	641
-1865	1	QB	1999-08-28	\N	\N	f	1	642
+1863	1	QB	1999-08-14	\N	\N	f	1	641
 1864	2	R	1999-08-29	\N	\N	f	14	642
-1867	1	QB	1999-09-11	\N	\N	f	1	643
+1865	1	QB	1999-08-28	\N	\N	f	1	642
 1866	2	R	1999-09-12	\N	\N	f	14	643
-1869	1	QB	1999-09-25	\N	\N	f	1	644
+1867	1	QB	1999-09-11	\N	\N	f	1	643
 1868	2	R	1999-09-26	\N	\N	f	14	644
-1871	1	QB	1999-10-16	\N	\N	f	1	645
+1869	1	QB	1999-09-25	\N	\N	f	1	644
 1870	2	R	1999-10-17	\N	\N	f	14	645
-1873	1	QB	1999-10-30	\N	\N	f	1	646
+1871	1	QB	1999-10-16	\N	\N	f	1	645
 1872	2	R	1999-10-31	\N	\N	f	14	646
-1875	1	QB	2000-03-11	\N	\N	f	1	647
+1873	1	QB	1999-10-30	\N	\N	f	1	646
 1874	2	R	2000-03-12	\N	\N	f	14	647
-1877	1	QB	2000-03-25	\N	\N	f	1	648
+1875	1	QB	2000-03-11	\N	\N	f	1	647
 1876	2	R	2000-03-26	\N	\N	f	14	648
-1879	1	QB	2000-04-08	\N	\N	f	1	649
+1877	1	QB	2000-03-25	\N	\N	f	1	648
 1878	2	R	2000-04-09	\N	\N	f	14	649
-1881	1	QB	2000-04-22	\N	\N	f	1	650
+1879	1	QB	2000-04-08	\N	\N	f	1	649
 1880	2	R	2000-04-23	\N	\N	f	14	650
-1883	1	QB	2000-05-06	\N	\N	f	1	651
+1881	1	QB	2000-04-22	\N	\N	f	1	650
 1882	2	R	2000-05-07	\N	\N	f	14	651
-1885	1	QB	2000-05-20	\N	\N	f	1	652
+1883	1	QB	2000-05-06	\N	\N	f	1	651
 1884	2	R	2000-05-21	\N	\N	f	14	652
-1887	1	QB	2000-06-03	\N	\N	f	1	653
+1885	1	QB	2000-05-20	\N	\N	f	1	652
 1886	2	R	2000-06-04	\N	\N	f	14	653
-1889	1	QB	2000-06-17	\N	\N	f	1	654
+1887	1	QB	2000-06-03	\N	\N	f	1	653
 1888	2	R	2000-06-18	\N	\N	f	14	654
-1891	1	QB	2000-07-01	\N	\N	f	1	655
+1889	1	QB	2000-06-17	\N	\N	f	1	654
 1890	2	R	2000-07-02	\N	\N	f	14	655
-1893	1	QB	2000-07-15	\N	\N	f	1	656
+1891	1	QB	2000-07-01	\N	\N	f	1	655
 1892	2	R	2000-07-16	\N	\N	f	14	656
-1895	1	QB	2000-07-29	\N	\N	f	1	657
+1893	1	QB	2000-07-15	\N	\N	f	1	656
 1894	2	R	2000-07-30	\N	\N	f	14	657
-1897	1	QB	2000-08-12	\N	\N	f	1	658
+1895	1	QB	2000-07-29	\N	\N	f	1	657
 1896	2	R	2000-08-13	\N	\N	f	14	658
-1899	1	QB	2000-08-26	\N	\N	f	1	659
+1897	1	QB	2000-08-12	\N	\N	f	1	658
 1898	2	R	2000-08-27	\N	\N	f	14	659
-1901	1	QB	2000-09-09	\N	\N	f	1	660
+1899	1	QB	2000-08-26	\N	\N	f	1	659
 1900	2	R	2000-09-10	\N	\N	f	14	660
-1903	1	QB	2000-09-23	\N	\N	f	1	661
+1901	1	QB	2000-09-09	\N	\N	f	1	660
 1902	2	R	2000-09-24	\N	\N	f	14	661
-1905	1	QB	2000-10-07	\N	\N	f	1	662
+1903	1	QB	2000-09-23	\N	\N	f	1	661
 1904	2	R	2000-10-08	\N	\N	f	14	662
-1907	1	QB	2000-10-21	\N	\N	f	1	663
+1905	1	QB	2000-10-07	\N	\N	f	1	662
 1906	2	R	2000-10-22	\N	\N	f	14	663
-1909	1	QB	2001-03-03	\N	\N	f	1	664
+1907	1	QB	2000-10-21	\N	\N	f	1	663
 1908	2	R	2001-03-04	\N	\N	f	14	664
-1911	1	QB	2001-03-17	\N	\N	f	1	665
+1909	1	QB	2001-03-03	\N	\N	f	1	664
 1910	2	R	2001-03-18	\N	\N	f	14	665
-1913	1	QB	2001-03-31	\N	\N	f	1	666
+1911	1	QB	2001-03-17	\N	\N	f	1	665
 1912	2	R	2001-04-01	\N	\N	f	14	666
-1915	1	QB	2001-04-14	\N	\N	f	1	667
+1913	1	QB	2001-03-31	\N	\N	f	1	666
 1914	2	R	2001-04-15	\N	\N	f	14	667
-1917	1	QB	2001-04-28	\N	\N	f	1	668
+1915	1	QB	2001-04-14	\N	\N	f	1	667
 1916	2	R	2001-04-29	\N	\N	f	14	668
-1919	1	QB	2001-05-12	\N	\N	f	1	669
+1917	1	QB	2001-04-28	\N	\N	f	1	668
 1918	2	R	2001-05-13	\N	\N	f	14	669
-1921	1	QB	2001-05-26	\N	\N	f	1	670
+1919	1	QB	2001-05-12	\N	\N	f	1	669
 1920	2	R	2001-05-27	\N	\N	f	14	670
-1923	1	QB	2001-06-09	\N	\N	f	1	671
+1921	1	QB	2001-05-26	\N	\N	f	1	670
 1922	2	R	2001-06-10	\N	\N	f	14	671
-1925	1	QB	2001-06-23	\N	\N	f	1	672
+1923	1	QB	2001-06-09	\N	\N	f	1	671
 1924	2	R	2001-06-24	\N	\N	f	14	672
-1927	1	QB	2001-06-30	\N	\N	f	1	673
+1925	1	QB	2001-06-23	\N	\N	f	1	672
 1926	2	R	2001-07-01	\N	\N	f	14	673
-1929	1	QB	2001-07-14	\N	\N	f	1	674
+1927	1	QB	2001-06-30	\N	\N	f	1	673
 1928	2	R	2001-07-15	\N	\N	f	14	674
-1931	1	QB	2001-07-28	\N	\N	f	1	675
+1929	1	QB	2001-07-14	\N	\N	f	1	674
 1930	2	R	2001-07-29	\N	\N	f	14	675
-1933	1	QB	2001-08-18	\N	\N	f	1	676
+1931	1	QB	2001-07-28	\N	\N	f	1	675
 1932	2	R	2001-08-19	\N	\N	f	14	676
-1935	1	QB	2001-09-01	\N	\N	f	1	677
+1933	1	QB	2001-08-18	\N	\N	f	1	676
 1934	2	R	2001-09-02	\N	\N	f	14	677
-1937	1	QB	2001-09-15	\N	\N	f	1	678
+1935	1	QB	2001-09-01	\N	\N	f	1	677
 1936	2	R	2001-09-16	\N	\N	f	14	678
-1939	1	QB	2001-09-29	\N	\N	f	1	679
+1937	1	QB	2001-09-15	\N	\N	f	1	678
 1938	2	R	2001-09-30	\N	\N	f	14	679
-1941	1	QB	2001-10-13	\N	\N	f	1	680
+1939	1	QB	2001-09-29	\N	\N	f	1	679
 1940	2	R	2001-10-14	\N	\N	f	14	680
-1943	1	QB	2002-03-02	\N	\N	f	1	681
+1941	1	QB	2001-10-13	\N	\N	f	1	680
 1942	2	R	2002-03-03	\N	\N	f	14	681
-1945	1	QB	2002-03-16	\N	\N	f	1	682
+1943	1	QB	2002-03-02	\N	\N	f	1	681
 1944	2	R	2002-03-17	\N	\N	f	14	682
-1947	1	QB	2002-03-30	\N	\N	f	1	683
+1945	1	QB	2002-03-16	\N	\N	f	1	682
 1946	2	R	2002-03-31	\N	\N	f	14	683
-1949	1	QB	2002-04-13	\N	\N	f	1	684
+1947	1	QB	2002-03-30	\N	\N	f	1	683
 1948	2	R	2002-04-14	\N	\N	f	14	684
-1951	1	QB	2002-04-27	\N	\N	f	1	685
+1949	1	QB	2002-04-13	\N	\N	f	1	684
 1950	2	R	2002-04-28	\N	\N	f	14	685
-1953	1	QB	2002-05-11	\N	\N	f	1	686
+1951	1	QB	2002-04-27	\N	\N	f	1	685
 1952	2	R	2002-05-12	\N	\N	f	14	686
-1955	1	QB	2002-05-25	\N	\N	f	1	687
+1953	1	QB	2002-05-11	\N	\N	f	1	686
 1954	2	R	2002-05-26	\N	\N	f	14	687
-1957	1	QB	2002-06-08	\N	\N	f	1	688
+1955	1	QB	2002-05-25	\N	\N	f	1	687
 1956	2	R	2002-06-09	\N	\N	f	14	688
-1959	1	QB	2002-06-22	\N	\N	f	1	689
+1957	1	QB	2002-06-08	\N	\N	f	1	688
 1958	2	R	2002-06-23	\N	\N	f	14	689
-1961	1	QB	2002-07-06	\N	\N	f	1	690
+1959	1	QB	2002-06-22	\N	\N	f	1	689
 1960	2	R	2002-07-07	\N	\N	f	14	690
-1963	1	QB	2002-07-20	\N	\N	f	1	691
+1961	1	QB	2002-07-06	\N	\N	f	1	690
 1962	2	R	2002-07-21	\N	\N	f	14	691
-1965	1	QB	2002-07-27	\N	\N	f	1	692
+1963	1	QB	2002-07-20	\N	\N	f	1	691
 1964	2	R	2002-07-28	\N	\N	f	14	692
-1967	1	QB	2002-08-17	\N	\N	f	1	693
+1965	1	QB	2002-07-27	\N	\N	f	1	692
 1966	2	R	2002-08-18	\N	\N	f	14	693
-1969	1	QB	2002-08-31	\N	\N	f	1	694
+1967	1	QB	2002-08-17	\N	\N	f	1	693
 1968	2	R	2002-09-01	\N	\N	f	14	694
-1971	1	QB	2002-09-14	\N	\N	f	1	695
+1969	1	QB	2002-08-31	\N	\N	f	1	694
 1970	2	R	2002-09-15	\N	\N	f	14	695
-1973	1	QB	2002-09-28	\N	\N	f	1	696
+1971	1	QB	2002-09-14	\N	\N	f	1	695
 1972	2	R	2002-09-29	\N	\N	f	14	696
-1975	1	QB	2002-10-12	\N	\N	f	1	697
+1973	1	QB	2002-09-28	\N	\N	f	1	696
 1974	2	R	2002-10-13	\N	\N	f	14	697
+1975	1	QB	2002-10-12	\N	\N	f	1	697
+1976	3	R	2003-03-09	\N	\N	f	15	698
 1977	1	QO	2003-03-07	\N	\N	f	1	698
 1978	2	QB	2003-03-08	\N	\N	f	1	698
-1976	3	R	2003-03-09	\N	\N	f	15	698
+1979	3	R	2003-03-23	\N	\N	f	15	699
 1980	1	QO	2003-03-21	\N	\N	f	1	699
 1981	2	QB	2003-03-22	\N	\N	f	1	699
-1979	3	R	2003-03-23	\N	\N	f	15	699
+1982	3	R	2003-04-06	\N	\N	f	15	700
 1983	1	QO	2003-04-04	\N	\N	f	1	700
 1984	2	QB	2003-04-05	\N	\N	f	1	700
-1982	3	R	2003-04-06	\N	\N	f	15	700
+1985	3	R	2003-04-20	\N	\N	f	15	701
 1986	1	QO	2003-04-18	\N	\N	f	1	701
 1987	2	QB	2003-04-19	\N	\N	f	1	701
-1985	3	R	2003-04-20	\N	\N	f	15	701
+1988	3	R	2003-05-04	\N	\N	f	15	702
 1989	1	QO	2003-05-02	\N	\N	f	1	702
 1990	2	QB	2003-05-03	\N	\N	f	1	702
-1988	3	R	2003-05-04	\N	\N	f	15	702
+1991	3	R	2003-05-18	\N	\N	f	15	703
 1992	1	QO	2003-05-16	\N	\N	f	1	703
 1993	2	QB	2003-05-17	\N	\N	f	1	703
-1991	3	R	2003-05-18	\N	\N	f	15	703
+1994	3	R	2003-06-01	\N	\N	f	15	704
 1995	1	QO	2003-05-29	\N	\N	f	1	704
 1996	2	QB	2003-05-31	\N	\N	f	1	704
-1994	3	R	2003-06-01	\N	\N	f	15	704
+1997	3	R	2003-06-15	\N	\N	f	15	705
 1998	1	QO	2003-06-13	\N	\N	f	1	705
 1999	2	QB	2003-06-14	\N	\N	f	1	705
-1997	3	R	2003-06-15	\N	\N	f	15	705
+2000	3	R	2003-06-29	\N	\N	f	15	706
 2001	1	QO	2003-06-27	\N	\N	f	1	706
 2002	2	QB	2003-06-28	\N	\N	f	1	706
-2000	3	R	2003-06-29	\N	\N	f	15	706
+2003	3	R	2003-07-06	\N	\N	f	15	707
 2004	1	QO	2003-07-04	\N	\N	f	1	707
 2005	2	QB	2003-07-05	\N	\N	f	1	707
-2003	3	R	2003-07-06	\N	\N	f	15	707
+2006	3	R	2003-07-20	\N	\N	f	15	708
 2007	1	QO	2003-07-18	\N	\N	f	1	708
 2008	2	QB	2003-07-19	\N	\N	f	1	708
-2006	3	R	2003-07-20	\N	\N	f	15	708
+2009	3	R	2003-08-03	\N	\N	f	15	709
 2010	1	QO	2003-08-01	\N	\N	f	1	709
 2011	2	QB	2003-08-02	\N	\N	f	1	709
-2009	3	R	2003-08-03	\N	\N	f	15	709
+2012	3	R	2003-08-24	\N	\N	f	15	710
 2013	1	QO	2003-08-22	\N	\N	f	1	710
 2014	2	QB	2003-08-23	\N	\N	f	1	710
-2012	3	R	2003-08-24	\N	\N	f	15	710
+2015	3	R	2003-09-14	\N	\N	f	15	711
 2016	1	QO	2003-09-12	\N	\N	f	1	711
 2017	2	QB	2003-09-13	\N	\N	f	1	711
-2015	3	R	2003-09-14	\N	\N	f	15	711
+2018	3	R	2003-09-28	\N	\N	f	15	712
 2019	1	QO	2003-09-26	\N	\N	f	1	712
 2020	2	QB	2003-09-27	\N	\N	f	1	712
-2018	3	R	2003-09-28	\N	\N	f	15	712
+2021	3	R	2003-10-12	\N	\N	f	15	713
 2022	1	QO	2003-10-10	\N	\N	f	1	713
 2023	2	QB	2003-10-11	\N	\N	f	1	713
-2021	3	R	2003-10-12	\N	\N	f	15	713
+2024	3	R	2004-03-07	\N	\N	f	15	714
 2025	1	QO	2004-03-06	\N	\N	f	1	714
 2026	2	QB	2004-03-06	\N	\N	f	1	714
-2024	3	R	2004-03-07	\N	\N	f	15	714
+2027	3	R	2004-03-21	\N	\N	f	15	715
 2028	1	QO	2004-03-20	\N	\N	f	1	715
 2029	2	QB	2004-03-20	\N	\N	f	1	715
-2027	3	R	2004-03-21	\N	\N	f	15	715
+2030	3	R	2004-04-04	\N	\N	f	15	716
 2031	1	QO	2004-04-03	\N	\N	f	1	716
 2032	2	QB	2004-04-03	\N	\N	f	1	716
-2030	3	R	2004-04-04	\N	\N	f	15	716
+2033	3	R	2004-04-25	\N	\N	f	15	717
 2034	1	QO	2004-04-24	\N	\N	f	1	717
 2035	2	QB	2004-04-24	\N	\N	f	1	717
-2033	3	R	2004-04-25	\N	\N	f	15	717
+2036	3	R	2004-05-09	\N	\N	f	15	718
 2037	1	QO	2004-05-08	\N	\N	f	1	718
 2038	2	QB	2004-05-08	\N	\N	f	1	718
-2036	3	R	2004-05-09	\N	\N	f	15	718
+2039	3	R	2004-05-23	\N	\N	f	15	719
 2040	1	QO	2004-05-22	\N	\N	f	1	719
 2041	2	QB	2004-05-22	\N	\N	f	1	719
-2039	3	R	2004-05-23	\N	\N	f	15	719
+2042	3	R	2004-05-30	\N	\N	f	15	720
 2043	1	QO	2004-05-29	\N	\N	f	1	720
 2044	2	QB	2004-05-29	\N	\N	f	1	720
-2042	3	R	2004-05-30	\N	\N	f	15	720
+2045	3	R	2004-06-13	\N	\N	f	15	721
 2046	1	QO	2004-06-12	\N	\N	f	1	721
 2047	2	QB	2004-06-12	\N	\N	f	1	721
-2045	3	R	2004-06-13	\N	\N	f	15	721
+2048	3	R	2004-06-20	\N	\N	f	15	722
 2049	1	QO	2004-06-19	\N	\N	f	1	722
 2050	2	QB	2004-06-19	\N	\N	f	1	722
-2048	3	R	2004-06-20	\N	\N	f	15	722
+2051	3	R	2004-07-04	\N	\N	f	15	723
 2052	1	QO	2004-07-03	\N	\N	f	1	723
 2053	2	QB	2004-07-03	\N	\N	f	1	723
-2051	3	R	2004-07-04	\N	\N	f	15	723
+2054	3	R	2004-07-11	\N	\N	f	15	724
 2055	1	QO	2004-07-10	\N	\N	f	1	724
 2056	2	QB	2004-07-10	\N	\N	f	1	724
-2054	3	R	2004-07-11	\N	\N	f	15	724
+2057	3	R	2004-07-25	\N	\N	f	15	725
 2058	1	QO	2004-07-24	\N	\N	f	1	725
 2059	2	QB	2004-07-24	\N	\N	f	1	725
-2057	3	R	2004-07-25	\N	\N	f	15	725
+2060	3	R	2004-08-15	\N	\N	f	15	726
 2061	1	QO	2004-08-14	\N	\N	f	1	726
 2062	2	QB	2004-08-14	\N	\N	f	1	726
-2060	3	R	2004-08-15	\N	\N	f	15	726
+2063	3	R	2004-08-29	\N	\N	f	15	727
 2064	1	QO	2004-08-28	\N	\N	f	1	727
 2065	2	QB	2004-08-28	\N	\N	f	1	727
-2063	3	R	2004-08-29	\N	\N	f	15	727
+2066	3	R	2004-09-12	\N	\N	f	15	728
 2067	1	QO	2004-09-11	\N	\N	f	1	728
 2068	2	QB	2004-09-11	\N	\N	f	1	728
-2066	3	R	2004-09-12	\N	\N	f	15	728
+2069	3	R	2004-09-26	\N	\N	f	15	729
 2070	1	QO	2004-09-25	\N	\N	f	1	729
 2071	2	QB	2004-09-25	\N	\N	f	1	729
-2069	3	R	2004-09-26	\N	\N	f	15	729
+2072	3	R	2004-10-10	\N	\N	f	15	730
 2073	1	QO	2004-10-09	\N	\N	f	1	730
 2074	2	QB	2004-10-09	\N	\N	f	1	730
-2072	3	R	2004-10-10	\N	\N	f	15	730
+2075	3	R	2004-10-24	\N	\N	f	15	731
 2076	1	QO	2004-10-23	\N	\N	f	1	731
 2077	2	QB	2004-10-23	\N	\N	f	1	731
-2075	3	R	2004-10-24	\N	\N	f	15	731
-2079	1	QA	2005-03-05	\N	\N	f	1	732
 2078	2	R	2005-03-06	14:00:00	\N	f	15	732
+2079	1	QA	2005-03-05	\N	\N	f	1	732
 2080	3	QA	2005-03-06	\N	\N	f	1	732
-2082	1	QA	2005-03-19	\N	\N	f	1	733
 2081	2	R	2005-03-20	15:00:00	\N	f	15	733
+2082	1	QA	2005-03-19	\N	\N	f	1	733
 2083	3	QA	2005-03-20	\N	\N	f	1	733
-2085	1	QA	2005-04-02	\N	\N	f	1	734
 2084	2	R	2005-04-03	14:30:00	\N	f	15	734
+2085	1	QA	2005-04-02	\N	\N	f	1	734
 2086	3	QA	2005-04-03	\N	\N	f	1	734
-2088	1	QA	2005-04-23	\N	\N	f	1	735
 2087	2	R	2005-04-24	14:00:00	\N	f	15	735
+2088	1	QA	2005-04-23	\N	\N	f	1	735
 2089	3	QA	2005-04-24	\N	\N	f	1	735
-2091	1	QA	2005-05-07	\N	\N	f	1	736
 2090	2	R	2005-05-08	14:00:00	\N	f	15	736
+2091	1	QA	2005-05-07	\N	\N	f	1	736
 2092	3	QA	2005-05-08	\N	\N	f	1	736
-2094	1	QA	2005-05-21	\N	\N	f	1	737
 2093	2	R	2005-05-22	14:00:00	\N	f	15	737
+2094	1	QA	2005-05-21	\N	\N	f	1	737
 2095	3	QA	2005-05-22	\N	\N	f	1	737
-2097	1	QB	2005-05-28	\N	\N	f	1	738
 2096	2	R	2005-05-29	14:00:00	\N	f	15	738
-2099	1	QB	2005-06-11	\N	\N	f	1	739
+2097	1	QB	2005-05-28	\N	\N	f	1	738
 2098	2	R	2005-06-12	13:00:00	\N	f	15	739
-2101	1	QB	2005-06-18	\N	\N	f	1	740
+2099	1	QB	2005-06-11	\N	\N	f	1	739
 2100	2	R	2005-06-19	14:00:00	\N	f	15	740
-2103	1	QB	2005-07-02	\N	\N	f	1	741
+2101	1	QB	2005-06-18	\N	\N	f	1	740
 2102	2	R	2005-07-03	14:00:00	\N	f	15	741
-2105	1	QB	2005-07-09	\N	\N	f	1	742
+2103	1	QB	2005-07-02	\N	\N	f	1	741
 2104	2	R	2005-07-10	14:00:00	\N	f	15	742
-2107	1	QB	2005-07-23	\N	\N	f	1	743
+2105	1	QB	2005-07-09	\N	\N	f	1	742
 2106	2	R	2005-07-24	14:00:00	\N	f	15	743
-2109	1	QB	2005-07-30	\N	\N	f	1	744
+2107	1	QB	2005-07-23	\N	\N	f	1	743
 2108	2	R	2005-07-31	14:00:00	\N	f	15	744
-2111	1	QB	2005-08-20	\N	\N	f	1	745
+2109	1	QB	2005-07-30	\N	\N	f	1	744
 2110	2	R	2005-08-21	15:00:00	\N	f	15	745
-2113	1	QB	2005-09-03	\N	\N	f	1	746
+2111	1	QB	2005-08-20	\N	\N	f	1	745
 2112	2	R	2005-09-04	14:00:00	\N	f	15	746
-2115	1	QB	2005-09-10	\N	\N	f	1	747
+2113	1	QB	2005-09-03	\N	\N	f	1	746
 2114	2	R	2005-09-11	14:00:00	\N	f	15	747
-2117	1	QB	2005-09-24	\N	\N	f	1	748
+2115	1	QB	2005-09-10	\N	\N	f	1	747
 2116	2	R	2005-09-25	14:00:00	\N	f	15	748
-2119	1	QB	2005-10-08	\N	\N	f	1	749
+2117	1	QB	2005-09-24	\N	\N	f	1	748
 2118	2	R	2005-10-09	14:00:00	\N	f	15	749
-2121	1	QB	2005-10-15	\N	\N	f	1	750
+2119	1	QB	2005-10-08	\N	\N	f	1	749
 2120	2	R	2005-10-16	14:00:00	\N	f	15	750
-2126	1	FP1	2006-03-10	\N	\N	f	1	751
-2127	2	FP2	2006-03-10	\N	\N	f	1	751
+2121	1	QB	2005-10-15	\N	\N	f	1	750
+2122	7	R	2006-03-12	14:30:00	\N	f	15	751
 2123	3	Q1	2006-03-11	\N	\N	f	1	751
 2124	4	Q2	2006-03-11	\N	\N	f	1	751
 2125	5	Q3	2006-03-11	\N	\N	f	1	751
+2126	1	FP1	2006-03-10	\N	\N	f	1	751
+2127	2	FP2	2006-03-10	\N	\N	f	1	751
 2128	6	FP3	2006-03-11	\N	\N	f	1	751
-2122	7	R	2006-03-12	14:30:00	\N	f	15	751
-2133	1	FP1	2006-03-17	\N	\N	f	1	752
-2134	2	FP2	2006-03-17	\N	\N	f	1	752
+2129	7	R	2006-03-19	15:00:00	\N	f	15	752
 2130	3	Q1	2006-03-18	\N	\N	f	1	752
 2131	4	Q2	2006-03-18	\N	\N	f	1	752
 2132	5	Q3	2006-03-18	\N	\N	f	1	752
+2133	1	FP1	2006-03-17	\N	\N	f	1	752
+2134	2	FP2	2006-03-17	\N	\N	f	1	752
 2135	6	FP3	2006-03-18	\N	\N	f	1	752
-2129	7	R	2006-03-19	15:00:00	\N	f	15	752
-2140	1	FP1	2006-03-31	\N	\N	f	1	753
-2141	2	FP2	2006-03-31	\N	\N	f	1	753
+2136	7	R	2006-04-02	14:00:00	\N	f	15	753
 2137	3	Q1	2006-04-01	\N	\N	f	1	753
 2138	4	Q2	2006-04-01	\N	\N	f	1	753
 2139	5	Q3	2006-04-01	\N	\N	f	1	753
+2140	1	FP1	2006-03-31	\N	\N	f	1	753
+2141	2	FP2	2006-03-31	\N	\N	f	1	753
 2142	6	FP3	2006-04-01	\N	\N	f	1	753
-2136	7	R	2006-04-02	14:00:00	\N	f	15	753
-2147	1	FP1	2006-04-21	\N	\N	f	1	754
-2148	2	FP2	2006-04-21	\N	\N	f	1	754
+2143	7	R	2006-04-23	14:00:00	\N	f	15	754
 2144	3	Q1	2006-04-22	\N	\N	f	1	754
 2145	4	Q2	2006-04-22	\N	\N	f	1	754
 2146	5	Q3	2006-04-22	\N	\N	f	1	754
+2147	1	FP1	2006-04-21	\N	\N	f	1	754
+2148	2	FP2	2006-04-21	\N	\N	f	1	754
 2149	6	FP3	2006-04-22	\N	\N	f	1	754
-2143	7	R	2006-04-23	14:00:00	\N	f	15	754
-2154	1	FP1	2006-05-05	\N	\N	f	1	755
-2155	2	FP2	2006-05-05	\N	\N	f	1	755
+2150	7	R	2006-05-07	14:00:00	\N	f	15	755
 2151	3	Q1	2006-05-06	\N	\N	f	1	755
 2152	4	Q2	2006-05-06	\N	\N	f	1	755
 2153	5	Q3	2006-05-06	\N	\N	f	1	755
+2154	1	FP1	2006-05-05	\N	\N	f	1	755
+2155	2	FP2	2006-05-05	\N	\N	f	1	755
 2156	6	FP3	2006-05-06	\N	\N	f	1	755
-2150	7	R	2006-05-07	14:00:00	\N	f	15	755
-2161	1	FP1	2006-05-12	\N	\N	f	1	756
-2162	2	FP2	2006-05-12	\N	\N	f	1	756
+2157	7	R	2006-05-14	14:00:00	\N	f	15	756
 2158	3	Q1	2006-05-13	\N	\N	f	1	756
 2159	4	Q2	2006-05-13	\N	\N	f	1	756
 2160	5	Q3	2006-05-13	\N	\N	f	1	756
+2161	1	FP1	2006-05-12	\N	\N	f	1	756
+2162	2	FP2	2006-05-12	\N	\N	f	1	756
 2163	6	FP3	2006-05-13	\N	\N	f	1	756
-2157	7	R	2006-05-14	14:00:00	\N	f	15	756
-2168	1	FP1	2006-05-25	\N	\N	f	1	757
-2169	2	FP2	2006-05-25	\N	\N	f	1	757
+2164	7	R	2006-05-28	14:00:00	\N	f	15	757
 2165	3	Q1	2006-05-27	\N	\N	f	1	757
 2166	4	Q2	2006-05-27	\N	\N	f	1	757
 2167	5	Q3	2006-05-27	\N	\N	f	1	757
+2168	1	FP1	2006-05-25	\N	\N	f	1	757
+2169	2	FP2	2006-05-25	\N	\N	f	1	757
 2170	6	FP3	2006-05-27	\N	\N	f	1	757
-2164	7	R	2006-05-28	14:00:00	\N	f	15	757
-2175	1	FP1	2006-06-09	\N	\N	f	1	758
-2176	2	FP2	2006-06-09	\N	\N	f	1	758
+2171	7	R	2006-06-11	12:00:00	\N	f	15	758
 2172	3	Q1	2006-06-10	\N	\N	f	1	758
 2173	4	Q2	2006-06-10	\N	\N	f	1	758
 2174	5	Q3	2006-06-10	\N	\N	f	1	758
+2175	1	FP1	2006-06-09	\N	\N	f	1	758
+2176	2	FP2	2006-06-09	\N	\N	f	1	758
 2177	6	FP3	2006-06-10	\N	\N	f	1	758
-2171	7	R	2006-06-11	12:00:00	\N	f	15	758
-2182	1	FP1	2006-06-23	\N	\N	f	1	759
-2183	2	FP2	2006-06-23	\N	\N	f	1	759
+2178	7	R	2006-06-25	13:00:00	\N	f	15	759
 2179	3	Q1	2006-06-24	\N	\N	f	1	759
 2180	4	Q2	2006-06-24	\N	\N	f	1	759
 2181	5	Q3	2006-06-24	\N	\N	f	1	759
+2182	1	FP1	2006-06-23	\N	\N	f	1	759
+2183	2	FP2	2006-06-23	\N	\N	f	1	759
 2184	6	FP3	2006-06-24	\N	\N	f	1	759
-2178	7	R	2006-06-25	13:00:00	\N	f	15	759
-2189	1	FP1	2006-06-30	\N	\N	f	1	760
-2190	2	FP2	2006-06-30	\N	\N	f	1	760
+2185	7	R	2006-07-02	14:00:00	\N	f	15	760
 2186	3	Q1	2006-07-01	\N	\N	f	1	760
 2187	4	Q2	2006-07-01	\N	\N	f	1	760
 2188	5	Q3	2006-07-01	\N	\N	f	1	760
+2189	1	FP1	2006-06-30	\N	\N	f	1	760
+2190	2	FP2	2006-06-30	\N	\N	f	1	760
 2191	6	FP3	2006-07-01	\N	\N	f	1	760
-2185	7	R	2006-07-02	14:00:00	\N	f	15	760
-2196	1	FP1	2006-07-14	\N	\N	f	1	761
-2197	2	FP2	2006-07-14	\N	\N	f	1	761
+2192	7	R	2006-07-16	14:00:00	\N	f	15	761
 2193	3	Q1	2006-07-15	\N	\N	f	1	761
 2194	4	Q2	2006-07-15	\N	\N	f	1	761
 2195	5	Q3	2006-07-15	\N	\N	f	1	761
+2196	1	FP1	2006-07-14	\N	\N	f	1	761
+2197	2	FP2	2006-07-14	\N	\N	f	1	761
 2198	6	FP3	2006-07-15	\N	\N	f	1	761
-2192	7	R	2006-07-16	14:00:00	\N	f	15	761
-2203	1	FP1	2006-07-28	\N	\N	f	1	762
-2204	2	FP2	2006-07-28	\N	\N	f	1	762
+2199	7	R	2006-07-30	14:00:00	\N	f	15	762
 2200	3	Q1	2006-07-29	\N	\N	f	1	762
 2201	4	Q2	2006-07-29	\N	\N	f	1	762
 2202	5	Q3	2006-07-29	\N	\N	f	1	762
+2203	1	FP1	2006-07-28	\N	\N	f	1	762
+2204	2	FP2	2006-07-28	\N	\N	f	1	762
 2205	6	FP3	2006-07-29	\N	\N	f	1	762
-2199	7	R	2006-07-30	14:00:00	\N	f	15	762
-2210	1	FP1	2006-08-04	\N	\N	f	1	763
-2211	2	FP2	2006-08-04	\N	\N	f	1	763
+2206	7	R	2006-08-06	14:00:00	\N	f	15	763
 2207	3	Q1	2006-08-05	\N	\N	f	1	763
 2208	4	Q2	2006-08-05	\N	\N	f	1	763
 2209	5	Q3	2006-08-05	\N	\N	f	1	763
+2210	1	FP1	2006-08-04	\N	\N	f	1	763
+2211	2	FP2	2006-08-04	\N	\N	f	1	763
 2212	6	FP3	2006-08-05	\N	\N	f	1	763
-2206	7	R	2006-08-06	14:00:00	\N	f	15	763
-2217	1	FP1	2006-08-25	\N	\N	f	1	764
-2218	2	FP2	2006-08-25	\N	\N	f	1	764
+2213	7	R	2006-08-27	15:00:00	\N	f	15	764
 2214	3	Q1	2006-08-26	\N	\N	f	1	764
 2215	4	Q2	2006-08-26	\N	\N	f	1	764
 2216	5	Q3	2006-08-26	\N	\N	f	1	764
+2217	1	FP1	2006-08-25	\N	\N	f	1	764
+2218	2	FP2	2006-08-25	\N	\N	f	1	764
 2219	6	FP3	2006-08-26	\N	\N	f	1	764
-2213	7	R	2006-08-27	15:00:00	\N	f	15	764
-2224	1	FP1	2006-09-08	\N	\N	f	1	765
-2225	2	FP2	2006-09-08	\N	\N	f	1	765
+2220	7	R	2006-09-10	14:00:00	\N	f	15	765
 2221	3	Q1	2006-09-09	\N	\N	f	1	765
 2222	4	Q2	2006-09-09	\N	\N	f	1	765
 2223	5	Q3	2006-09-09	\N	\N	f	1	765
+2224	1	FP1	2006-09-08	\N	\N	f	1	765
+2225	2	FP2	2006-09-08	\N	\N	f	1	765
 2226	6	FP3	2006-09-09	\N	\N	f	1	765
-2220	7	R	2006-09-10	14:00:00	\N	f	15	765
-2231	1	FP1	2006-09-29	\N	\N	f	1	766
-2232	2	FP2	2006-09-29	\N	\N	f	1	766
+2227	7	R	2006-10-01	14:00:00	\N	f	15	766
 2228	3	Q1	2006-09-30	\N	\N	f	1	766
 2229	4	Q2	2006-09-30	\N	\N	f	1	766
 2230	5	Q3	2006-09-30	\N	\N	f	1	766
+2231	1	FP1	2006-09-29	\N	\N	f	1	766
+2232	2	FP2	2006-09-29	\N	\N	f	1	766
 2233	6	FP3	2006-09-30	\N	\N	f	1	766
-2227	7	R	2006-10-01	14:00:00	\N	f	15	766
-2238	1	FP1	2006-10-06	\N	\N	f	1	767
-2239	2	FP2	2006-10-06	\N	\N	f	1	767
+2234	7	R	2006-10-08	14:00:00	\N	f	15	767
 2235	3	Q1	2006-10-07	\N	\N	f	1	767
 2236	4	Q2	2006-10-07	\N	\N	f	1	767
 2237	5	Q3	2006-10-07	\N	\N	f	1	767
+2238	1	FP1	2006-10-06	\N	\N	f	1	767
+2239	2	FP2	2006-10-06	\N	\N	f	1	767
 2240	6	FP3	2006-10-07	\N	\N	f	1	767
-2234	7	R	2006-10-08	14:00:00	\N	f	15	767
-2245	1	FP1	2006-10-20	\N	\N	f	1	768
-2246	2	FP2	2006-10-20	\N	\N	f	1	768
+2241	7	R	2006-10-22	14:00:00	\N	f	15	768
 2242	3	Q1	2006-10-21	\N	\N	f	1	768
 2243	4	Q2	2006-10-21	\N	\N	f	1	768
 2244	5	Q3	2006-10-21	\N	\N	f	1	768
+2245	1	FP1	2006-10-20	\N	\N	f	1	768
+2246	2	FP2	2006-10-20	\N	\N	f	1	768
 2247	6	FP3	2006-10-21	\N	\N	f	1	768
-2241	7	R	2006-10-22	14:00:00	\N	f	15	768
-2252	1	FP1	2007-03-16	\N	\N	f	1	769
-2253	2	FP2	2007-03-16	\N	\N	f	1	769
+2248	7	R	2007-03-18	03:00:00	\N	f	15	769
 2249	3	Q1	2007-03-17	\N	\N	f	1	769
 2250	4	Q2	2007-03-17	\N	\N	f	1	769
 2251	5	Q3	2007-03-17	\N	\N	f	1	769
+2252	1	FP1	2007-03-16	\N	\N	f	1	769
+2253	2	FP2	2007-03-16	\N	\N	f	1	769
 2254	6	FP3	2007-03-17	\N	\N	f	1	769
-2248	7	R	2007-03-18	03:00:00	\N	f	15	769
-2259	1	FP1	2007-04-06	\N	\N	f	1	770
-2260	2	FP2	2007-04-06	\N	\N	f	1	770
+2255	7	R	2007-04-08	07:00:00	\N	f	15	770
 2256	3	Q1	2007-04-07	\N	\N	f	1	770
 2257	4	Q2	2007-04-07	\N	\N	f	1	770
 2258	5	Q3	2007-04-07	\N	\N	f	1	770
+2259	1	FP1	2007-04-06	\N	\N	f	1	770
+2260	2	FP2	2007-04-06	\N	\N	f	1	770
 2261	6	FP3	2007-04-07	\N	\N	f	1	770
-2255	7	R	2007-04-08	07:00:00	\N	f	15	770
-2266	1	FP1	2007-04-13	\N	\N	f	1	771
-2267	2	FP2	2007-04-13	\N	\N	f	1	771
+2262	7	R	2007-04-15	11:30:00	\N	f	15	771
 2263	3	Q1	2007-04-14	\N	\N	f	1	771
 2264	4	Q2	2007-04-14	\N	\N	f	1	771
 2265	5	Q3	2007-04-14	\N	\N	f	1	771
+2266	1	FP1	2007-04-13	\N	\N	f	1	771
+2267	2	FP2	2007-04-13	\N	\N	f	1	771
 2268	6	FP3	2007-04-14	\N	\N	f	1	771
-2262	7	R	2007-04-15	11:30:00	\N	f	15	771
-2273	1	FP1	2007-05-11	\N	\N	f	1	772
-2274	2	FP2	2007-05-11	\N	\N	f	1	772
+2269	7	R	2007-05-13	12:00:00	\N	f	15	772
 2270	3	Q1	2007-05-12	\N	\N	f	1	772
 2271	4	Q2	2007-05-12	\N	\N	f	1	772
 2272	5	Q3	2007-05-12	\N	\N	f	1	772
+2273	1	FP1	2007-05-11	\N	\N	f	1	772
+2274	2	FP2	2007-05-11	\N	\N	f	1	772
 2275	6	FP3	2007-05-12	\N	\N	f	1	772
-2269	7	R	2007-05-13	12:00:00	\N	f	15	772
-2280	1	FP1	2007-05-24	\N	\N	f	1	773
-2281	2	FP2	2007-05-24	\N	\N	f	1	773
+2276	7	R	2007-05-27	12:00:00	\N	f	15	773
 2277	3	Q1	2007-05-26	\N	\N	f	1	773
 2278	4	Q2	2007-05-26	\N	\N	f	1	773
 2279	5	Q3	2007-05-26	\N	\N	f	1	773
+2280	1	FP1	2007-05-24	\N	\N	f	1	773
+2281	2	FP2	2007-05-24	\N	\N	f	1	773
 2282	6	FP3	2007-05-26	\N	\N	f	1	773
-2276	7	R	2007-05-27	12:00:00	\N	f	15	773
-2287	1	FP1	2007-06-08	\N	\N	f	1	774
-2288	2	FP2	2007-06-08	\N	\N	f	1	774
+2283	7	R	2007-06-10	17:00:00	\N	f	15	774
 2284	3	Q1	2007-06-09	\N	\N	f	1	774
 2285	4	Q2	2007-06-09	\N	\N	f	1	774
 2286	5	Q3	2007-06-09	\N	\N	f	1	774
+2287	1	FP1	2007-06-08	\N	\N	f	1	774
+2288	2	FP2	2007-06-08	\N	\N	f	1	774
 2289	6	FP3	2007-06-09	\N	\N	f	1	774
-2283	7	R	2007-06-10	17:00:00	\N	f	15	774
-2294	1	FP1	2007-06-15	\N	\N	f	1	775
-2295	2	FP2	2007-06-15	\N	\N	f	1	775
+2290	7	R	2007-06-17	17:00:00	\N	f	15	775
 2291	3	Q1	2007-06-16	\N	\N	f	1	775
 2292	4	Q2	2007-06-16	\N	\N	f	1	775
 2293	5	Q3	2007-06-16	\N	\N	f	1	775
+2294	1	FP1	2007-06-15	\N	\N	f	1	775
+2295	2	FP2	2007-06-15	\N	\N	f	1	775
 2296	6	FP3	2007-06-16	\N	\N	f	1	775
-2290	7	R	2007-06-17	17:00:00	\N	f	15	775
-2301	1	FP1	2007-06-29	\N	\N	f	1	776
-2302	2	FP2	2007-06-29	\N	\N	f	1	776
+2297	7	R	2007-07-01	12:00:00	\N	f	15	776
 2298	3	Q1	2007-06-30	\N	\N	f	1	776
 2299	4	Q2	2007-06-30	\N	\N	f	1	776
 2300	5	Q3	2007-06-30	\N	\N	f	1	776
+2301	1	FP1	2007-06-29	\N	\N	f	1	776
+2302	2	FP2	2007-06-29	\N	\N	f	1	776
 2303	6	FP3	2007-06-30	\N	\N	f	1	776
-2297	7	R	2007-07-01	12:00:00	\N	f	15	776
-2308	1	FP1	2007-07-06	\N	\N	f	1	777
-2309	2	FP2	2007-07-06	\N	\N	f	1	777
+2304	7	R	2007-07-08	12:00:00	\N	f	15	777
 2305	3	Q1	2007-07-07	\N	\N	f	1	777
 2306	4	Q2	2007-07-07	\N	\N	f	1	777
 2307	5	Q3	2007-07-07	\N	\N	f	1	777
+2308	1	FP1	2007-07-06	\N	\N	f	1	777
+2309	2	FP2	2007-07-06	\N	\N	f	1	777
 2310	6	FP3	2007-07-07	\N	\N	f	1	777
-2304	7	R	2007-07-08	12:00:00	\N	f	15	777
-2315	1	FP1	2007-07-20	\N	\N	f	1	778
-2316	2	FP2	2007-07-20	\N	\N	f	1	778
+2311	7	R	2007-07-22	12:00:00	\N	f	15	778
 2312	3	Q1	2007-07-21	\N	\N	f	1	778
 2313	4	Q2	2007-07-21	\N	\N	f	1	778
 2314	5	Q3	2007-07-21	\N	\N	f	1	778
+2315	1	FP1	2007-07-20	\N	\N	f	1	778
+2316	2	FP2	2007-07-20	\N	\N	f	1	778
 2317	6	FP3	2007-07-21	\N	\N	f	1	778
-2311	7	R	2007-07-22	12:00:00	\N	f	15	778
-2322	1	FP1	2007-08-03	\N	\N	f	1	779
-2323	2	FP2	2007-08-03	\N	\N	f	1	779
+2318	7	R	2007-08-05	12:00:00	\N	f	15	779
 2319	3	Q1	2007-08-04	\N	\N	f	1	779
 2320	4	Q2	2007-08-04	\N	\N	f	1	779
 2321	5	Q3	2007-08-04	\N	\N	f	1	779
+2322	1	FP1	2007-08-03	\N	\N	f	1	779
+2323	2	FP2	2007-08-03	\N	\N	f	1	779
 2324	6	FP3	2007-08-04	\N	\N	f	1	779
-2318	7	R	2007-08-05	12:00:00	\N	f	15	779
-2329	1	FP1	2007-08-24	\N	\N	f	1	780
-2330	2	FP2	2007-08-24	\N	\N	f	1	780
+2325	7	R	2007-08-26	12:00:00	\N	f	15	780
 2326	3	Q1	2007-08-25	\N	\N	f	1	780
 2327	4	Q2	2007-08-25	\N	\N	f	1	780
 2328	5	Q3	2007-08-25	\N	\N	f	1	780
+2329	1	FP1	2007-08-24	\N	\N	f	1	780
+2330	2	FP2	2007-08-24	\N	\N	f	1	780
 2331	6	FP3	2007-08-25	\N	\N	f	1	780
-2325	7	R	2007-08-26	12:00:00	\N	f	15	780
-2336	1	FP1	2007-09-07	\N	\N	f	1	781
-2337	2	FP2	2007-09-07	\N	\N	f	1	781
+2332	7	R	2007-09-09	12:00:00	\N	f	15	781
 2333	3	Q1	2007-09-08	\N	\N	f	1	781
 2334	4	Q2	2007-09-08	\N	\N	f	1	781
 2335	5	Q3	2007-09-08	\N	\N	f	1	781
+2336	1	FP1	2007-09-07	\N	\N	f	1	781
+2337	2	FP2	2007-09-07	\N	\N	f	1	781
 2338	6	FP3	2007-09-08	\N	\N	f	1	781
-2332	7	R	2007-09-09	12:00:00	\N	f	15	781
-2343	1	FP1	2007-09-14	\N	\N	f	1	782
-2344	2	FP2	2007-09-14	\N	\N	f	1	782
+2339	7	R	2007-09-16	12:00:00	\N	f	15	782
 2340	3	Q1	2007-09-15	\N	\N	f	1	782
 2341	4	Q2	2007-09-15	\N	\N	f	1	782
 2342	5	Q3	2007-09-15	\N	\N	f	1	782
+2343	1	FP1	2007-09-14	\N	\N	f	1	782
+2344	2	FP2	2007-09-14	\N	\N	f	1	782
 2345	6	FP3	2007-09-15	\N	\N	f	1	782
-2339	7	R	2007-09-16	12:00:00	\N	f	15	782
-2350	1	FP1	2007-09-28	\N	\N	f	1	783
-2351	2	FP2	2007-09-28	\N	\N	f	1	783
+2346	7	R	2007-09-30	04:30:00	\N	f	15	783
 2347	3	Q1	2007-09-29	\N	\N	f	1	783
 2348	4	Q2	2007-09-29	\N	\N	f	1	783
 2349	5	Q3	2007-09-29	\N	\N	f	1	783
+2350	1	FP1	2007-09-28	\N	\N	f	1	783
+2351	2	FP2	2007-09-28	\N	\N	f	1	783
 2352	6	FP3	2007-09-29	\N	\N	f	1	783
-2346	7	R	2007-09-30	04:30:00	\N	f	15	783
-2357	1	FP1	2007-10-05	\N	\N	f	1	784
-2358	2	FP2	2007-10-05	\N	\N	f	1	784
+2353	7	R	2007-10-07	06:00:00	\N	f	15	784
 2354	3	Q1	2007-10-06	\N	\N	f	1	784
 2355	4	Q2	2007-10-06	\N	\N	f	1	784
 2356	5	Q3	2007-10-06	\N	\N	f	1	784
+2357	1	FP1	2007-10-05	\N	\N	f	1	784
+2358	2	FP2	2007-10-05	\N	\N	f	1	784
 2359	6	FP3	2007-10-06	\N	\N	f	1	784
-2353	7	R	2007-10-07	06:00:00	\N	f	15	784
-2364	1	FP1	2007-10-19	\N	\N	f	1	785
-2365	2	FP2	2007-10-19	\N	\N	f	1	785
+2360	7	R	2007-10-21	16:00:00	\N	f	15	785
 2361	3	Q1	2007-10-20	\N	\N	f	1	785
 2362	4	Q2	2007-10-20	\N	\N	f	1	785
 2363	5	Q3	2007-10-20	\N	\N	f	1	785
+2364	1	FP1	2007-10-19	\N	\N	f	1	785
+2365	2	FP2	2007-10-19	\N	\N	f	1	785
 2366	6	FP3	2007-10-20	\N	\N	f	1	785
-2360	7	R	2007-10-21	16:00:00	\N	f	15	785
-2371	1	FP1	2008-03-14	\N	\N	f	1	786
-2372	2	FP2	2008-03-14	\N	\N	f	1	786
+2367	7	R	2008-03-16	04:30:00	\N	f	15	786
 2368	3	Q1	2008-03-15	\N	\N	f	1	786
 2369	4	Q2	2008-03-15	\N	\N	f	1	786
 2370	5	Q3	2008-03-15	\N	\N	f	1	786
+2371	1	FP1	2008-03-14	\N	\N	f	1	786
+2372	2	FP2	2008-03-14	\N	\N	f	1	786
 2373	6	FP3	2008-03-15	\N	\N	f	1	786
-2367	7	R	2008-03-16	04:30:00	\N	f	15	786
-2378	1	FP1	2008-03-21	\N	\N	f	1	787
-2379	2	FP2	2008-03-21	\N	\N	f	1	787
+2374	7	R	2008-03-23	07:00:00	\N	f	15	787
 2375	3	Q1	2008-03-22	\N	\N	f	1	787
 2376	4	Q2	2008-03-22	\N	\N	f	1	787
 2377	5	Q3	2008-03-22	\N	\N	f	1	787
+2378	1	FP1	2008-03-21	\N	\N	f	1	787
+2379	2	FP2	2008-03-21	\N	\N	f	1	787
 2380	6	FP3	2008-03-22	\N	\N	f	1	787
-2374	7	R	2008-03-23	07:00:00	\N	f	15	787
-2385	1	FP1	2008-04-04	\N	\N	f	1	788
-2386	2	FP2	2008-04-04	\N	\N	f	1	788
+2381	7	R	2008-04-06	11:30:00	\N	f	15	788
 2382	3	Q1	2008-04-05	\N	\N	f	1	788
 2383	4	Q2	2008-04-05	\N	\N	f	1	788
 2384	5	Q3	2008-04-05	\N	\N	f	1	788
+2385	1	FP1	2008-04-04	\N	\N	f	1	788
+2386	2	FP2	2008-04-04	\N	\N	f	1	788
 2387	6	FP3	2008-04-05	\N	\N	f	1	788
-2381	7	R	2008-04-06	11:30:00	\N	f	15	788
-2392	1	FP1	2008-04-25	\N	\N	f	1	789
-2393	2	FP2	2008-04-25	\N	\N	f	1	789
+2388	7	R	2008-04-27	12:00:00	\N	f	15	789
 2389	3	Q1	2008-04-26	\N	\N	f	1	789
 2390	4	Q2	2008-04-26	\N	\N	f	1	789
 2391	5	Q3	2008-04-26	\N	\N	f	1	789
+2392	1	FP1	2008-04-25	\N	\N	f	1	789
+2393	2	FP2	2008-04-25	\N	\N	f	1	789
 2394	6	FP3	2008-04-26	\N	\N	f	1	789
-2388	7	R	2008-04-27	12:00:00	\N	f	15	789
-2399	1	FP1	2008-05-09	\N	\N	f	1	790
-2400	2	FP2	2008-05-09	\N	\N	f	1	790
+2395	7	R	2008-05-11	12:00:00	\N	f	15	790
 2396	3	Q1	2008-05-10	\N	\N	f	1	790
 2397	4	Q2	2008-05-10	\N	\N	f	1	790
 2398	5	Q3	2008-05-10	\N	\N	f	1	790
+2399	1	FP1	2008-05-09	\N	\N	f	1	790
+2400	2	FP2	2008-05-09	\N	\N	f	1	790
 2401	6	FP3	2008-05-10	\N	\N	f	1	790
-2395	7	R	2008-05-11	12:00:00	\N	f	15	790
-2406	1	FP1	2008-05-22	\N	\N	f	1	791
-2407	2	FP2	2008-05-22	\N	\N	f	1	791
+2402	7	R	2008-05-25	12:00:00	\N	f	15	791
 2403	3	Q1	2008-05-24	\N	\N	f	1	791
 2404	4	Q2	2008-05-24	\N	\N	f	1	791
 2405	5	Q3	2008-05-24	\N	\N	f	1	791
+2406	1	FP1	2008-05-22	\N	\N	f	1	791
+2407	2	FP2	2008-05-22	\N	\N	f	1	791
 2408	6	FP3	2008-05-24	\N	\N	f	1	791
-2402	7	R	2008-05-25	12:00:00	\N	f	15	791
-2413	1	FP1	2008-06-06	\N	\N	f	1	792
-2414	2	FP2	2008-06-06	\N	\N	f	1	792
+2409	7	R	2008-06-08	17:00:00	\N	f	15	792
 2410	3	Q1	2008-06-07	\N	\N	f	1	792
 2411	4	Q2	2008-06-07	\N	\N	f	1	792
 2412	5	Q3	2008-06-07	\N	\N	f	1	792
+2413	1	FP1	2008-06-06	\N	\N	f	1	792
+2414	2	FP2	2008-06-06	\N	\N	f	1	792
 2415	6	FP3	2008-06-07	\N	\N	f	1	792
-2409	7	R	2008-06-08	17:00:00	\N	f	15	792
-2420	1	FP1	2008-06-20	\N	\N	f	1	793
-2421	2	FP2	2008-06-20	\N	\N	f	1	793
+2416	7	R	2008-06-22	12:00:00	\N	f	15	793
 2417	3	Q1	2008-06-21	\N	\N	f	1	793
 2418	4	Q2	2008-06-21	\N	\N	f	1	793
 2419	5	Q3	2008-06-21	\N	\N	f	1	793
+2420	1	FP1	2008-06-20	\N	\N	f	1	793
+2421	2	FP2	2008-06-20	\N	\N	f	1	793
 2422	6	FP3	2008-06-21	\N	\N	f	1	793
-2416	7	R	2008-06-22	12:00:00	\N	f	15	793
-2427	1	FP1	2008-07-04	\N	\N	f	1	794
-2428	2	FP2	2008-07-04	\N	\N	f	1	794
+2423	7	R	2008-07-06	12:00:00	\N	f	15	794
 2424	3	Q1	2008-07-05	\N	\N	f	1	794
 2425	4	Q2	2008-07-05	\N	\N	f	1	794
 2426	5	Q3	2008-07-05	\N	\N	f	1	794
+2427	1	FP1	2008-07-04	\N	\N	f	1	794
+2428	2	FP2	2008-07-04	\N	\N	f	1	794
 2429	6	FP3	2008-07-05	\N	\N	f	1	794
-2423	7	R	2008-07-06	12:00:00	\N	f	15	794
-2434	1	FP1	2008-07-18	\N	\N	f	1	795
-2435	2	FP2	2008-07-18	\N	\N	f	1	795
+2430	7	R	2008-07-20	12:00:00	\N	f	15	795
 2431	3	Q1	2008-07-19	\N	\N	f	1	795
 2432	4	Q2	2008-07-19	\N	\N	f	1	795
 2433	5	Q3	2008-07-19	\N	\N	f	1	795
+2434	1	FP1	2008-07-18	\N	\N	f	1	795
+2435	2	FP2	2008-07-18	\N	\N	f	1	795
 2436	6	FP3	2008-07-19	\N	\N	f	1	795
-2430	7	R	2008-07-20	12:00:00	\N	f	15	795
-2441	1	FP1	2008-08-01	\N	\N	f	1	796
-2442	2	FP2	2008-08-01	\N	\N	f	1	796
+2437	7	R	2008-08-03	12:00:00	\N	f	15	796
 2438	3	Q1	2008-08-02	\N	\N	f	1	796
 2439	4	Q2	2008-08-02	\N	\N	f	1	796
 2440	5	Q3	2008-08-02	\N	\N	f	1	796
+2441	1	FP1	2008-08-01	\N	\N	f	1	796
+2442	2	FP2	2008-08-01	\N	\N	f	1	796
 2443	6	FP3	2008-08-02	\N	\N	f	1	796
-2437	7	R	2008-08-03	12:00:00	\N	f	15	796
-2448	1	FP1	2008-08-22	\N	\N	f	1	797
-2449	2	FP2	2008-08-22	\N	\N	f	1	797
+2444	7	R	2008-08-24	12:00:00	\N	f	15	797
 2445	3	Q1	2008-08-23	\N	\N	f	1	797
 2446	4	Q2	2008-08-23	\N	\N	f	1	797
 2447	5	Q3	2008-08-23	\N	\N	f	1	797
+2448	1	FP1	2008-08-22	\N	\N	f	1	797
+2449	2	FP2	2008-08-22	\N	\N	f	1	797
 2450	6	FP3	2008-08-23	\N	\N	f	1	797
-2444	7	R	2008-08-24	12:00:00	\N	f	15	797
-2455	1	FP1	2008-09-05	\N	\N	f	1	798
-2456	2	FP2	2008-09-05	\N	\N	f	1	798
+2451	7	R	2008-09-07	12:00:00	\N	f	15	798
 2452	3	Q1	2008-09-06	\N	\N	f	1	798
 2453	4	Q2	2008-09-06	\N	\N	f	1	798
 2454	5	Q3	2008-09-06	\N	\N	f	1	798
+2455	1	FP1	2008-09-05	\N	\N	f	1	798
+2456	2	FP2	2008-09-05	\N	\N	f	1	798
 2457	6	FP3	2008-09-06	\N	\N	f	1	798
-2451	7	R	2008-09-07	12:00:00	\N	f	15	798
-2462	1	FP1	2008-09-12	\N	\N	f	1	799
-2463	2	FP2	2008-09-12	\N	\N	f	1	799
+2458	7	R	2008-09-14	12:00:00	\N	f	15	799
 2459	3	Q1	2008-09-13	\N	\N	f	1	799
 2460	4	Q2	2008-09-13	\N	\N	f	1	799
 2461	5	Q3	2008-09-13	\N	\N	f	1	799
+2462	1	FP1	2008-09-12	\N	\N	f	1	799
+2463	2	FP2	2008-09-12	\N	\N	f	1	799
 2464	6	FP3	2008-09-13	\N	\N	f	1	799
-2458	7	R	2008-09-14	12:00:00	\N	f	15	799
-2469	1	FP1	2008-09-26	\N	\N	f	1	800
-2470	2	FP2	2008-09-26	\N	\N	f	1	800
+2465	7	R	2008-09-28	12:00:00	\N	f	15	800
 2466	3	Q1	2008-09-27	\N	\N	f	1	800
 2467	4	Q2	2008-09-27	\N	\N	f	1	800
 2468	5	Q3	2008-09-27	\N	\N	f	1	800
+2469	1	FP1	2008-09-26	\N	\N	f	1	800
+2470	2	FP2	2008-09-26	\N	\N	f	1	800
 2471	6	FP3	2008-09-27	\N	\N	f	1	800
-2465	7	R	2008-09-28	12:00:00	\N	f	15	800
-2476	1	FP1	2008-10-10	\N	\N	f	1	801
-2477	2	FP2	2008-10-10	\N	\N	f	1	801
+2472	7	R	2008-10-12	04:30:00	\N	f	15	801
 2473	3	Q1	2008-10-11	\N	\N	f	1	801
 2474	4	Q2	2008-10-11	\N	\N	f	1	801
 2475	5	Q3	2008-10-11	\N	\N	f	1	801
+2476	1	FP1	2008-10-10	\N	\N	f	1	801
+2477	2	FP2	2008-10-10	\N	\N	f	1	801
 2478	6	FP3	2008-10-11	\N	\N	f	1	801
-2472	7	R	2008-10-12	04:30:00	\N	f	15	801
-2483	1	FP1	2008-10-17	\N	\N	f	1	802
-2484	2	FP2	2008-10-17	\N	\N	f	1	802
+2479	7	R	2008-10-19	07:00:00	\N	f	15	802
 2480	3	Q1	2008-10-18	\N	\N	f	1	802
 2481	4	Q2	2008-10-18	\N	\N	f	1	802
 2482	5	Q3	2008-10-18	\N	\N	f	1	802
+2483	1	FP1	2008-10-17	\N	\N	f	1	802
+2484	2	FP2	2008-10-17	\N	\N	f	1	802
 2485	6	FP3	2008-10-18	\N	\N	f	1	802
-2479	7	R	2008-10-19	07:00:00	\N	f	15	802
-2490	1	FP1	2008-10-31	\N	\N	f	1	803
-2491	2	FP2	2008-10-31	\N	\N	f	1	803
+2486	7	R	2008-11-02	17:00:00	\N	f	15	803
 2487	3	Q1	2008-11-01	\N	\N	f	1	803
 2488	4	Q2	2008-11-01	\N	\N	f	1	803
 2489	5	Q3	2008-11-01	\N	\N	f	1	803
+2490	1	FP1	2008-10-31	\N	\N	f	1	803
+2491	2	FP2	2008-10-31	\N	\N	f	1	803
 2492	6	FP3	2008-11-01	\N	\N	f	1	803
-2486	7	R	2008-11-02	17:00:00	\N	f	15	803
-2497	1	FP1	2009-03-27	\N	\N	f	1	804
-2498	2	FP2	2009-03-27	\N	\N	f	1	804
+2493	7	R	2009-03-29	06:00:00	\N	f	15	804
 2494	3	Q1	2009-03-28	\N	\N	f	1	804
 2495	4	Q2	2009-03-28	\N	\N	f	1	804
 2496	5	Q3	2009-03-28	\N	\N	f	1	804
+2497	1	FP1	2009-03-27	\N	\N	f	1	804
+2498	2	FP2	2009-03-27	\N	\N	f	1	804
 2499	6	FP3	2009-03-28	\N	\N	f	1	804
-2493	7	R	2009-03-29	06:00:00	\N	f	15	804
-2504	1	FP1	2009-04-03	\N	\N	f	1	805
-2505	2	FP2	2009-04-03	\N	\N	f	1	805
+2500	7	R	2009-04-05	09:00:00	\N	f	15	805
 2501	3	Q1	2009-04-04	\N	\N	f	1	805
 2502	4	Q2	2009-04-04	\N	\N	f	1	805
 2503	5	Q3	2009-04-04	\N	\N	f	1	805
+2504	1	FP1	2009-04-03	\N	\N	f	1	805
+2505	2	FP2	2009-04-03	\N	\N	f	1	805
 2506	6	FP3	2009-04-04	\N	\N	f	1	805
-2500	7	R	2009-04-05	09:00:00	\N	f	15	805
-2511	1	FP1	2009-04-17	\N	\N	f	1	806
-2512	2	FP2	2009-04-17	\N	\N	f	1	806
+2507	7	R	2009-04-19	07:00:00	\N	f	15	806
 2508	3	Q1	2009-04-18	\N	\N	f	1	806
 2509	4	Q2	2009-04-18	\N	\N	f	1	806
 2510	5	Q3	2009-04-18	\N	\N	f	1	806
+2511	1	FP1	2009-04-17	\N	\N	f	1	806
+2512	2	FP2	2009-04-17	\N	\N	f	1	806
 2513	6	FP3	2009-04-18	\N	\N	f	1	806
-2507	7	R	2009-04-19	07:00:00	\N	f	15	806
-2518	1	FP1	2009-04-24	\N	\N	f	1	807
-2519	2	FP2	2009-04-24	\N	\N	f	1	807
+2514	7	R	2009-04-26	12:00:00	\N	f	15	807
 2515	3	Q1	2009-04-25	\N	\N	f	1	807
 2516	4	Q2	2009-04-25	\N	\N	f	1	807
 2517	5	Q3	2009-04-25	\N	\N	f	1	807
+2518	1	FP1	2009-04-24	\N	\N	f	1	807
+2519	2	FP2	2009-04-24	\N	\N	f	1	807
 2520	6	FP3	2009-04-25	\N	\N	f	1	807
-2514	7	R	2009-04-26	12:00:00	\N	f	15	807
-2525	1	FP1	2009-05-08	\N	\N	f	1	808
-2526	2	FP2	2009-05-08	\N	\N	f	1	808
+2521	7	R	2009-05-10	12:00:00	\N	f	15	808
 2522	3	Q1	2009-05-09	\N	\N	f	1	808
 2523	4	Q2	2009-05-09	\N	\N	f	1	808
 2524	5	Q3	2009-05-09	\N	\N	f	1	808
+2525	1	FP1	2009-05-08	\N	\N	f	1	808
+2526	2	FP2	2009-05-08	\N	\N	f	1	808
 2527	6	FP3	2009-05-09	\N	\N	f	1	808
-2521	7	R	2009-05-10	12:00:00	\N	f	15	808
-2532	1	FP1	2009-05-21	\N	\N	f	1	809
-2533	2	FP2	2009-05-21	\N	\N	f	1	809
+2528	7	R	2009-05-24	12:00:00	\N	f	15	809
 2529	3	Q1	2009-05-23	\N	\N	f	1	809
 2530	4	Q2	2009-05-23	\N	\N	f	1	809
 2531	5	Q3	2009-05-23	\N	\N	f	1	809
+2532	1	FP1	2009-05-21	\N	\N	f	1	809
+2533	2	FP2	2009-05-21	\N	\N	f	1	809
 2534	6	FP3	2009-05-23	\N	\N	f	1	809
-2528	7	R	2009-05-24	12:00:00	\N	f	15	809
-2539	1	FP1	2009-06-05	\N	\N	f	1	810
-2540	2	FP2	2009-06-05	\N	\N	f	1	810
+2535	7	R	2009-06-07	12:00:00	\N	f	15	810
 2536	3	Q1	2009-06-06	\N	\N	f	1	810
 2537	4	Q2	2009-06-06	\N	\N	f	1	810
 2538	5	Q3	2009-06-06	\N	\N	f	1	810
+2539	1	FP1	2009-06-05	\N	\N	f	1	810
+2540	2	FP2	2009-06-05	\N	\N	f	1	810
 2541	6	FP3	2009-06-06	\N	\N	f	1	810
-2535	7	R	2009-06-07	12:00:00	\N	f	15	810
-2546	1	FP1	2009-06-19	\N	\N	f	1	811
-2547	2	FP2	2009-06-19	\N	\N	f	1	811
+2542	7	R	2009-06-21	12:00:00	\N	f	15	811
 2543	3	Q1	2009-06-20	\N	\N	f	1	811
 2544	4	Q2	2009-06-20	\N	\N	f	1	811
 2545	5	Q3	2009-06-20	\N	\N	f	1	811
+2546	1	FP1	2009-06-19	\N	\N	f	1	811
+2547	2	FP2	2009-06-19	\N	\N	f	1	811
 2548	6	FP3	2009-06-20	\N	\N	f	1	811
-2542	7	R	2009-06-21	12:00:00	\N	f	15	811
-2553	1	FP1	2009-07-10	\N	\N	f	1	812
-2554	2	FP2	2009-07-10	\N	\N	f	1	812
+2549	7	R	2009-07-12	12:00:00	\N	f	15	812
 2550	3	Q1	2009-07-11	\N	\N	f	1	812
 2551	4	Q2	2009-07-11	\N	\N	f	1	812
 2552	5	Q3	2009-07-11	\N	\N	f	1	812
+2553	1	FP1	2009-07-10	\N	\N	f	1	812
+2554	2	FP2	2009-07-10	\N	\N	f	1	812
 2555	6	FP3	2009-07-11	\N	\N	f	1	812
-2549	7	R	2009-07-12	12:00:00	\N	f	15	812
-2560	1	FP1	2009-07-24	\N	\N	f	1	813
-2561	2	FP2	2009-07-24	\N	\N	f	1	813
+2556	7	R	2009-07-26	12:00:00	\N	f	15	813
 2557	3	Q1	2009-07-25	\N	\N	f	1	813
 2558	4	Q2	2009-07-25	\N	\N	f	1	813
 2559	5	Q3	2009-07-25	\N	\N	f	1	813
+2560	1	FP1	2009-07-24	\N	\N	f	1	813
+2561	2	FP2	2009-07-24	\N	\N	f	1	813
 2562	6	FP3	2009-07-25	\N	\N	f	1	813
-2556	7	R	2009-07-26	12:00:00	\N	f	15	813
-2567	1	FP1	2009-08-21	\N	\N	f	1	814
-2568	2	FP2	2009-08-21	\N	\N	f	1	814
+2563	7	R	2009-08-23	12:00:00	\N	f	15	814
 2564	3	Q1	2009-08-22	\N	\N	f	1	814
 2565	4	Q2	2009-08-22	\N	\N	f	1	814
 2566	5	Q3	2009-08-22	\N	\N	f	1	814
+2567	1	FP1	2009-08-21	\N	\N	f	1	814
+2568	2	FP2	2009-08-21	\N	\N	f	1	814
 2569	6	FP3	2009-08-22	\N	\N	f	1	814
-2563	7	R	2009-08-23	12:00:00	\N	f	15	814
-2574	1	FP1	2009-08-28	\N	\N	f	1	815
-2575	2	FP2	2009-08-28	\N	\N	f	1	815
+2570	7	R	2009-08-30	12:00:00	\N	f	15	815
 2571	3	Q1	2009-08-29	\N	\N	f	1	815
 2572	4	Q2	2009-08-29	\N	\N	f	1	815
 2573	5	Q3	2009-08-29	\N	\N	f	1	815
+2574	1	FP1	2009-08-28	\N	\N	f	1	815
+2575	2	FP2	2009-08-28	\N	\N	f	1	815
 2576	6	FP3	2009-08-29	\N	\N	f	1	815
-2570	7	R	2009-08-30	12:00:00	\N	f	15	815
-2581	1	FP1	2009-09-11	\N	\N	f	1	816
-2582	2	FP2	2009-09-11	\N	\N	f	1	816
+2577	7	R	2009-09-13	12:00:00	\N	f	15	816
 2578	3	Q1	2009-09-12	\N	\N	f	1	816
 2579	4	Q2	2009-09-12	\N	\N	f	1	816
 2580	5	Q3	2009-09-12	\N	\N	f	1	816
+2581	1	FP1	2009-09-11	\N	\N	f	1	816
+2582	2	FP2	2009-09-11	\N	\N	f	1	816
 2583	6	FP3	2009-09-12	\N	\N	f	1	816
-2577	7	R	2009-09-13	12:00:00	\N	f	15	816
-2588	1	FP1	2009-09-25	\N	\N	f	1	817
-2589	2	FP2	2009-09-25	\N	\N	f	1	817
+2584	7	R	2009-09-27	12:00:00	\N	f	15	817
 2585	3	Q1	2009-09-26	\N	\N	f	1	817
 2586	4	Q2	2009-09-26	\N	\N	f	1	817
 2587	5	Q3	2009-09-26	\N	\N	f	1	817
+2588	1	FP1	2009-09-25	\N	\N	f	1	817
+2589	2	FP2	2009-09-25	\N	\N	f	1	817
 2590	6	FP3	2009-09-26	\N	\N	f	1	817
-2584	7	R	2009-09-27	12:00:00	\N	f	15	817
-2595	1	FP1	2009-10-02	\N	\N	f	1	818
-2596	2	FP2	2009-10-02	\N	\N	f	1	818
+2591	7	R	2009-10-04	05:00:00	\N	f	15	818
 2592	3	Q1	2009-10-03	\N	\N	f	1	818
 2593	4	Q2	2009-10-03	\N	\N	f	1	818
 2594	5	Q3	2009-10-03	\N	\N	f	1	818
+2595	1	FP1	2009-10-02	\N	\N	f	1	818
+2596	2	FP2	2009-10-02	\N	\N	f	1	818
 2597	6	FP3	2009-10-03	\N	\N	f	1	818
-2591	7	R	2009-10-04	05:00:00	\N	f	15	818
-2602	1	FP1	2009-10-16	\N	\N	f	1	819
-2603	2	FP2	2009-10-16	\N	\N	f	1	819
+2598	7	R	2009-10-18	16:00:00	\N	f	15	819
 2599	3	Q1	2009-10-17	\N	\N	f	1	819
 2600	4	Q2	2009-10-17	\N	\N	f	1	819
 2601	5	Q3	2009-10-17	\N	\N	f	1	819
+2602	1	FP1	2009-10-16	\N	\N	f	1	819
+2603	2	FP2	2009-10-16	\N	\N	f	1	819
 2604	6	FP3	2009-10-17	\N	\N	f	1	819
-2598	7	R	2009-10-18	16:00:00	\N	f	15	819
-2609	1	FP1	2009-10-30	\N	\N	f	1	820
-2610	2	FP2	2009-10-30	\N	\N	f	1	820
+2605	7	R	2009-11-01	11:00:00	\N	f	15	820
 2606	3	Q1	2009-10-31	\N	\N	f	1	820
 2607	4	Q2	2009-10-31	\N	\N	f	1	820
 2608	5	Q3	2009-10-31	\N	\N	f	1	820
+2609	1	FP1	2009-10-30	\N	\N	f	1	820
+2610	2	FP2	2009-10-30	\N	\N	f	1	820
 2611	6	FP3	2009-10-31	\N	\N	f	1	820
-2605	7	R	2009-11-01	11:00:00	\N	f	15	820
-2616	1	FP1	2010-03-12	\N	\N	f	1	821
-2617	2	FP2	2010-03-12	\N	\N	f	1	821
+2612	7	R	2010-03-14	12:00:00	\N	f	16	821
 2613	3	Q1	2010-03-13	\N	\N	f	1	821
 2614	4	Q2	2010-03-13	\N	\N	f	1	821
 2615	5	Q3	2010-03-13	\N	\N	f	1	821
+2616	1	FP1	2010-03-12	\N	\N	f	1	821
+2617	2	FP2	2010-03-12	\N	\N	f	1	821
 2618	6	FP3	2010-03-13	\N	\N	f	1	821
-2612	7	R	2010-03-14	12:00:00	\N	f	16	821
-2623	1	FP1	2010-03-26	\N	\N	f	1	822
-2624	2	FP2	2010-03-26	\N	\N	f	1	822
+2619	7	R	2010-03-28	06:00:00	\N	f	16	822
 2620	3	Q1	2010-03-27	\N	\N	f	1	822
 2621	4	Q2	2010-03-27	\N	\N	f	1	822
 2622	5	Q3	2010-03-27	\N	\N	f	1	822
+2623	1	FP1	2010-03-26	\N	\N	f	1	822
+2624	2	FP2	2010-03-26	\N	\N	f	1	822
 2625	6	FP3	2010-03-27	\N	\N	f	1	822
-2619	7	R	2010-03-28	06:00:00	\N	f	16	822
-2630	1	FP1	2010-04-02	\N	\N	f	1	823
-2631	2	FP2	2010-04-02	\N	\N	f	1	823
+2626	7	R	2010-04-04	08:00:00	\N	f	16	823
 2627	3	Q1	2010-04-03	\N	\N	f	1	823
 2628	4	Q2	2010-04-03	\N	\N	f	1	823
 2629	5	Q3	2010-04-03	\N	\N	f	1	823
+2630	1	FP1	2010-04-02	\N	\N	f	1	823
+2631	2	FP2	2010-04-02	\N	\N	f	1	823
 2632	6	FP3	2010-04-03	\N	\N	f	1	823
-2626	7	R	2010-04-04	08:00:00	\N	f	16	823
-2637	1	FP1	2010-04-16	\N	\N	f	1	824
-2638	2	FP2	2010-04-16	\N	\N	f	1	824
+2633	7	R	2010-04-18	06:00:00	\N	f	16	824
 2634	3	Q1	2010-04-17	\N	\N	f	1	824
 2635	4	Q2	2010-04-17	\N	\N	f	1	824
 2636	5	Q3	2010-04-17	\N	\N	f	1	824
+2637	1	FP1	2010-04-16	\N	\N	f	1	824
+2638	2	FP2	2010-04-16	\N	\N	f	1	824
 2639	6	FP3	2010-04-17	\N	\N	f	1	824
-2633	7	R	2010-04-18	06:00:00	\N	f	16	824
-2644	1	FP1	2010-05-07	\N	\N	f	1	825
-2645	2	FP2	2010-05-07	\N	\N	f	1	825
+2640	7	R	2010-05-09	12:00:00	\N	f	16	825
 2641	3	Q1	2010-05-08	\N	\N	f	1	825
 2642	4	Q2	2010-05-08	\N	\N	f	1	825
 2643	5	Q3	2010-05-08	\N	\N	f	1	825
+2644	1	FP1	2010-05-07	\N	\N	f	1	825
+2645	2	FP2	2010-05-07	\N	\N	f	1	825
 2646	6	FP3	2010-05-08	\N	\N	f	1	825
-2640	7	R	2010-05-09	12:00:00	\N	f	16	825
-2651	1	FP1	2010-05-13	\N	\N	f	1	826
-2652	2	FP2	2010-05-13	\N	\N	f	1	826
+2647	7	R	2010-05-16	12:00:00	\N	f	16	826
 2648	3	Q1	2010-05-15	\N	\N	f	1	826
 2649	4	Q2	2010-05-15	\N	\N	f	1	826
 2650	5	Q3	2010-05-15	\N	\N	f	1	826
+2651	1	FP1	2010-05-13	\N	\N	f	1	826
+2652	2	FP2	2010-05-13	\N	\N	f	1	826
 2653	6	FP3	2010-05-15	\N	\N	f	1	826
-2647	7	R	2010-05-16	12:00:00	\N	f	16	826
-2658	1	FP1	2010-05-28	\N	\N	f	1	827
-2659	2	FP2	2010-05-28	\N	\N	f	1	827
+2654	7	R	2010-05-30	11:00:00	\N	f	16	827
 2655	3	Q1	2010-05-29	\N	\N	f	1	827
 2656	4	Q2	2010-05-29	\N	\N	f	1	827
 2657	5	Q3	2010-05-29	\N	\N	f	1	827
+2658	1	FP1	2010-05-28	\N	\N	f	1	827
+2659	2	FP2	2010-05-28	\N	\N	f	1	827
 2660	6	FP3	2010-05-29	\N	\N	f	1	827
-2654	7	R	2010-05-30	11:00:00	\N	f	16	827
-2665	1	FP1	2010-06-11	\N	\N	f	1	828
-2666	2	FP2	2010-06-11	\N	\N	f	1	828
+2661	7	R	2010-06-13	16:00:00	\N	f	16	828
 2662	3	Q1	2010-06-12	\N	\N	f	1	828
 2663	4	Q2	2010-06-12	\N	\N	f	1	828
 2664	5	Q3	2010-06-12	\N	\N	f	1	828
+2665	1	FP1	2010-06-11	\N	\N	f	1	828
+2666	2	FP2	2010-06-11	\N	\N	f	1	828
 2667	6	FP3	2010-06-12	\N	\N	f	1	828
-2661	7	R	2010-06-13	16:00:00	\N	f	16	828
-2672	1	FP1	2010-06-25	\N	\N	f	1	829
-2673	2	FP2	2010-06-25	\N	\N	f	1	829
+2668	7	R	2010-06-27	12:00:00	\N	f	16	829
 2669	3	Q1	2010-06-26	\N	\N	f	1	829
 2670	4	Q2	2010-06-26	\N	\N	f	1	829
 2671	5	Q3	2010-06-26	\N	\N	f	1	829
+2672	1	FP1	2010-06-25	\N	\N	f	1	829
+2673	2	FP2	2010-06-25	\N	\N	f	1	829
 2674	6	FP3	2010-06-26	\N	\N	f	1	829
-2668	7	R	2010-06-27	12:00:00	\N	f	16	829
-2679	1	FP1	2010-07-09	\N	\N	f	1	830
-2680	2	FP2	2010-07-09	\N	\N	f	1	830
+2675	7	R	2010-07-11	12:00:00	\N	f	16	830
 2676	3	Q1	2010-07-10	\N	\N	f	1	830
 2677	4	Q2	2010-07-10	\N	\N	f	1	830
 2678	5	Q3	2010-07-10	\N	\N	f	1	830
+2679	1	FP1	2010-07-09	\N	\N	f	1	830
+2680	2	FP2	2010-07-09	\N	\N	f	1	830
 2681	6	FP3	2010-07-10	\N	\N	f	1	830
-2675	7	R	2010-07-11	12:00:00	\N	f	16	830
-2686	1	FP1	2010-07-23	\N	\N	f	1	831
-2687	2	FP2	2010-07-23	\N	\N	f	1	831
+2682	7	R	2010-07-25	12:00:00	\N	f	16	831
 2683	3	Q1	2010-07-24	\N	\N	f	1	831
 2684	4	Q2	2010-07-24	\N	\N	f	1	831
 2685	5	Q3	2010-07-24	\N	\N	f	1	831
+2686	1	FP1	2010-07-23	\N	\N	f	1	831
+2687	2	FP2	2010-07-23	\N	\N	f	1	831
 2688	6	FP3	2010-07-24	\N	\N	f	1	831
-2682	7	R	2010-07-25	12:00:00	\N	f	16	831
-2693	1	FP1	2010-07-30	\N	\N	f	1	832
-2694	2	FP2	2010-07-30	\N	\N	f	1	832
+2689	7	R	2010-08-01	12:00:00	\N	f	16	832
 2690	3	Q1	2010-07-31	\N	\N	f	1	832
 2691	4	Q2	2010-07-31	\N	\N	f	1	832
 2692	5	Q3	2010-07-31	\N	\N	f	1	832
+2693	1	FP1	2010-07-30	\N	\N	f	1	832
+2694	2	FP2	2010-07-30	\N	\N	f	1	832
 2695	6	FP3	2010-07-31	\N	\N	f	1	832
-2689	7	R	2010-08-01	12:00:00	\N	f	16	832
-2700	1	FP1	2010-08-27	\N	\N	f	1	833
-2701	2	FP2	2010-08-27	\N	\N	f	1	833
+2696	7	R	2010-08-29	12:00:00	\N	f	16	833
 2697	3	Q1	2010-08-28	\N	\N	f	1	833
 2698	4	Q2	2010-08-28	\N	\N	f	1	833
 2699	5	Q3	2010-08-28	\N	\N	f	1	833
+2700	1	FP1	2010-08-27	\N	\N	f	1	833
+2701	2	FP2	2010-08-27	\N	\N	f	1	833
 2702	6	FP3	2010-08-28	\N	\N	f	1	833
-2696	7	R	2010-08-29	12:00:00	\N	f	16	833
-2707	1	FP1	2010-09-10	\N	\N	f	1	834
-2708	2	FP2	2010-09-10	\N	\N	f	1	834
+2703	7	R	2010-09-12	12:00:00	\N	f	16	834
 2704	3	Q1	2010-09-11	\N	\N	f	1	834
 2705	4	Q2	2010-09-11	\N	\N	f	1	834
 2706	5	Q3	2010-09-11	\N	\N	f	1	834
+2707	1	FP1	2010-09-10	\N	\N	f	1	834
+2708	2	FP2	2010-09-10	\N	\N	f	1	834
 2709	6	FP3	2010-09-11	\N	\N	f	1	834
-2703	7	R	2010-09-12	12:00:00	\N	f	16	834
-2714	1	FP1	2010-09-24	\N	\N	f	1	835
-2715	2	FP2	2010-09-24	\N	\N	f	1	835
+2710	7	R	2010-09-26	12:00:00	\N	f	16	835
 2711	3	Q1	2010-09-25	\N	\N	f	1	835
 2712	4	Q2	2010-09-25	\N	\N	f	1	835
 2713	5	Q3	2010-09-25	\N	\N	f	1	835
+2714	1	FP1	2010-09-24	\N	\N	f	1	835
+2715	2	FP2	2010-09-24	\N	\N	f	1	835
 2716	6	FP3	2010-09-25	\N	\N	f	1	835
-2710	7	R	2010-09-26	12:00:00	\N	f	16	835
-2721	1	FP1	2010-10-08	\N	\N	f	1	836
-2722	2	FP2	2010-10-08	\N	\N	f	1	836
+2717	7	R	2010-10-10	06:00:00	\N	f	16	836
 2718	3	Q1	2010-10-09	\N	\N	f	1	836
 2719	4	Q2	2010-10-09	\N	\N	f	1	836
 2720	5	Q3	2010-10-09	\N	\N	f	1	836
+2721	1	FP1	2010-10-08	\N	\N	f	1	836
+2722	2	FP2	2010-10-08	\N	\N	f	1	836
 2723	6	FP3	2010-10-09	\N	\N	f	1	836
-2717	7	R	2010-10-10	06:00:00	\N	f	16	836
-2728	1	FP1	2010-10-22	\N	\N	f	1	837
-2729	2	FP2	2010-10-22	\N	\N	f	1	837
+2724	7	R	2010-10-24	05:00:00	\N	f	16	837
 2725	3	Q1	2010-10-23	\N	\N	f	1	837
 2726	4	Q2	2010-10-23	\N	\N	f	1	837
 2727	5	Q3	2010-10-23	\N	\N	f	1	837
+2728	1	FP1	2010-10-22	\N	\N	f	1	837
+2729	2	FP2	2010-10-22	\N	\N	f	1	837
 2730	6	FP3	2010-10-23	\N	\N	f	1	837
-2724	7	R	2010-10-24	05:00:00	\N	f	16	837
-2735	1	FP1	2010-11-05	\N	\N	f	1	838
-2736	2	FP2	2010-11-05	\N	\N	f	1	838
+2731	7	R	2010-11-07	16:00:00	\N	f	16	838
 2732	3	Q1	2010-11-06	\N	\N	f	1	838
 2733	4	Q2	2010-11-06	\N	\N	f	1	838
 2734	5	Q3	2010-11-06	\N	\N	f	1	838
+2735	1	FP1	2010-11-05	\N	\N	f	1	838
+2736	2	FP2	2010-11-05	\N	\N	f	1	838
 2737	6	FP3	2010-11-06	\N	\N	f	1	838
-2731	7	R	2010-11-07	16:00:00	\N	f	16	838
-2742	1	FP1	2010-11-12	\N	\N	f	1	839
-2743	2	FP2	2010-11-12	\N	\N	f	1	839
+2738	7	R	2010-11-14	13:00:00	\N	f	16	839
 2739	3	Q1	2010-11-13	\N	\N	f	1	839
 2740	4	Q2	2010-11-13	\N	\N	f	1	839
 2741	5	Q3	2010-11-13	\N	\N	f	1	839
+2742	1	FP1	2010-11-12	\N	\N	f	1	839
+2743	2	FP2	2010-11-12	\N	\N	f	1	839
 2744	6	FP3	2010-11-13	\N	\N	f	1	839
-2738	7	R	2010-11-14	13:00:00	\N	f	16	839
-2749	1	FP1	2011-03-25	\N	\N	f	1	840
-2750	2	FP2	2011-03-25	\N	\N	f	1	840
+2745	7	R	2011-03-27	06:00:00	\N	f	16	840
 2746	3	Q1	2011-03-26	\N	\N	f	1	840
 2747	4	Q2	2011-03-26	\N	\N	f	1	840
 2748	5	Q3	2011-03-26	\N	\N	f	1	840
+2749	1	FP1	2011-03-25	\N	\N	f	1	840
+2750	2	FP2	2011-03-25	\N	\N	f	1	840
 2751	6	FP3	2011-03-26	\N	\N	f	1	840
-2745	7	R	2011-03-27	06:00:00	\N	f	16	840
-2756	1	FP1	2011-04-08	\N	\N	f	1	841
-2757	2	FP2	2011-04-08	\N	\N	f	1	841
+2752	7	R	2011-04-10	08:00:00	\N	f	16	841
 2753	3	Q1	2011-04-09	\N	\N	f	1	841
 2754	4	Q2	2011-04-09	\N	\N	f	1	841
 2755	5	Q3	2011-04-09	\N	\N	f	1	841
+2756	1	FP1	2011-04-08	\N	\N	f	1	841
+2757	2	FP2	2011-04-08	\N	\N	f	1	841
 2758	6	FP3	2011-04-09	\N	\N	f	1	841
-2752	7	R	2011-04-10	08:00:00	\N	f	16	841
-2763	1	FP1	2011-04-15	\N	\N	f	1	842
-2764	2	FP2	2011-04-15	\N	\N	f	1	842
+2759	7	R	2011-04-17	07:00:00	\N	f	16	842
 2760	3	Q1	2011-04-16	\N	\N	f	1	842
 2761	4	Q2	2011-04-16	\N	\N	f	1	842
 2762	5	Q3	2011-04-16	\N	\N	f	1	842
+2763	1	FP1	2011-04-15	\N	\N	f	1	842
+2764	2	FP2	2011-04-15	\N	\N	f	1	842
 2765	6	FP3	2011-04-16	\N	\N	f	1	842
-2759	7	R	2011-04-17	07:00:00	\N	f	16	842
-2770	1	FP1	2011-05-06	\N	\N	f	1	843
-2771	2	FP2	2011-05-06	\N	\N	f	1	843
+2766	7	R	2011-05-08	12:00:00	\N	f	16	843
 2767	3	Q1	2011-05-07	\N	\N	f	1	843
 2768	4	Q2	2011-05-07	\N	\N	f	1	843
 2769	5	Q3	2011-05-07	\N	\N	f	1	843
+2770	1	FP1	2011-05-06	\N	\N	f	1	843
+2771	2	FP2	2011-05-06	\N	\N	f	1	843
 2772	6	FP3	2011-05-07	\N	\N	f	1	843
-2766	7	R	2011-05-08	12:00:00	\N	f	16	843
-2777	1	FP1	2011-05-20	\N	\N	f	1	844
-2778	2	FP2	2011-05-20	\N	\N	f	1	844
+2773	7	R	2011-05-22	12:00:00	\N	f	16	844
 2774	3	Q1	2011-05-21	\N	\N	f	1	844
 2775	4	Q2	2011-05-21	\N	\N	f	1	844
 2776	5	Q3	2011-05-21	\N	\N	f	1	844
+2777	1	FP1	2011-05-20	\N	\N	f	1	844
+2778	2	FP2	2011-05-20	\N	\N	f	1	844
 2779	6	FP3	2011-05-21	\N	\N	f	1	844
-2773	7	R	2011-05-22	12:00:00	\N	f	16	844
-2784	1	FP1	2011-05-26	\N	\N	f	1	845
-2785	2	FP2	2011-05-26	\N	\N	f	1	845
+2780	7	R	2011-05-29	12:00:00	\N	f	16	845
 2781	3	Q1	2011-05-28	\N	\N	f	1	845
 2782	4	Q2	2011-05-28	\N	\N	f	1	845
 2783	5	Q3	2011-05-28	\N	\N	f	1	845
+2784	1	FP1	2011-05-26	\N	\N	f	1	845
+2785	2	FP2	2011-05-26	\N	\N	f	1	845
 2786	6	FP3	2011-05-28	\N	\N	f	1	845
-2780	7	R	2011-05-29	12:00:00	\N	f	16	845
-2791	1	FP1	2011-06-10	\N	\N	f	1	846
-2792	2	FP2	2011-06-10	\N	\N	f	1	846
+2787	7	R	2011-06-12	17:00:00	\N	f	16	846
 2788	3	Q1	2011-06-11	\N	\N	f	1	846
 2789	4	Q2	2011-06-11	\N	\N	f	1	846
 2790	5	Q3	2011-06-11	\N	\N	f	1	846
+2791	1	FP1	2011-06-10	\N	\N	f	1	846
+2792	2	FP2	2011-06-10	\N	\N	f	1	846
 2793	6	FP3	2011-06-11	\N	\N	f	1	846
-2787	7	R	2011-06-12	17:00:00	\N	f	16	846
-2798	1	FP1	2011-06-24	\N	\N	f	1	847
-2799	2	FP2	2011-06-24	\N	\N	f	1	847
+2794	7	R	2011-06-26	12:00:00	\N	f	16	847
 2795	3	Q1	2011-06-25	\N	\N	f	1	847
 2796	4	Q2	2011-06-25	\N	\N	f	1	847
 2797	5	Q3	2011-06-25	\N	\N	f	1	847
+2798	1	FP1	2011-06-24	\N	\N	f	1	847
+2799	2	FP2	2011-06-24	\N	\N	f	1	847
 2800	6	FP3	2011-06-25	\N	\N	f	1	847
-2794	7	R	2011-06-26	12:00:00	\N	f	16	847
-2805	1	FP1	2011-07-08	\N	\N	f	1	848
-2806	2	FP2	2011-07-08	\N	\N	f	1	848
+2801	7	R	2011-07-10	12:00:00	\N	f	16	848
 2802	3	Q1	2011-07-09	\N	\N	f	1	848
 2803	4	Q2	2011-07-09	\N	\N	f	1	848
 2804	5	Q3	2011-07-09	\N	\N	f	1	848
+2805	1	FP1	2011-07-08	\N	\N	f	1	848
+2806	2	FP2	2011-07-08	\N	\N	f	1	848
 2807	6	FP3	2011-07-09	\N	\N	f	1	848
-2801	7	R	2011-07-10	12:00:00	\N	f	16	848
-2812	1	FP1	2011-07-22	\N	\N	f	1	849
-2813	2	FP2	2011-07-22	\N	\N	f	1	849
+2808	7	R	2011-07-24	12:00:00	\N	f	16	849
 2809	3	Q1	2011-07-23	\N	\N	f	1	849
 2810	4	Q2	2011-07-23	\N	\N	f	1	849
 2811	5	Q3	2011-07-23	\N	\N	f	1	849
+2812	1	FP1	2011-07-22	\N	\N	f	1	849
+2813	2	FP2	2011-07-22	\N	\N	f	1	849
 2814	6	FP3	2011-07-23	\N	\N	f	1	849
-2808	7	R	2011-07-24	12:00:00	\N	f	16	849
-2819	1	FP1	2011-07-29	\N	\N	f	1	850
-2820	2	FP2	2011-07-29	\N	\N	f	1	850
+2815	7	R	2011-07-31	12:00:00	\N	f	16	850
 2816	3	Q1	2011-07-30	\N	\N	f	1	850
 2817	4	Q2	2011-07-30	\N	\N	f	1	850
 2818	5	Q3	2011-07-30	\N	\N	f	1	850
+2819	1	FP1	2011-07-29	\N	\N	f	1	850
+2820	2	FP2	2011-07-29	\N	\N	f	1	850
 2821	6	FP3	2011-07-30	\N	\N	f	1	850
-2815	7	R	2011-07-31	12:00:00	\N	f	16	850
-2826	1	FP1	2011-08-26	\N	\N	f	1	851
-2827	2	FP2	2011-08-26	\N	\N	f	1	851
+2822	7	R	2011-08-28	12:00:00	\N	f	16	851
 2823	3	Q1	2011-08-27	\N	\N	f	1	851
 2824	4	Q2	2011-08-27	\N	\N	f	1	851
 2825	5	Q3	2011-08-27	\N	\N	f	1	851
+2826	1	FP1	2011-08-26	\N	\N	f	1	851
+2827	2	FP2	2011-08-26	\N	\N	f	1	851
 2828	6	FP3	2011-08-27	\N	\N	f	1	851
-2822	7	R	2011-08-28	12:00:00	\N	f	16	851
-2833	1	FP1	2011-09-09	\N	\N	f	1	852
-2834	2	FP2	2011-09-09	\N	\N	f	1	852
+2829	7	R	2011-09-11	12:00:00	\N	f	16	852
 2830	3	Q1	2011-09-10	\N	\N	f	1	852
 2831	4	Q2	2011-09-10	\N	\N	f	1	852
 2832	5	Q3	2011-09-10	\N	\N	f	1	852
+2833	1	FP1	2011-09-09	\N	\N	f	1	852
+2834	2	FP2	2011-09-09	\N	\N	f	1	852
 2835	6	FP3	2011-09-10	\N	\N	f	1	852
-2829	7	R	2011-09-11	12:00:00	\N	f	16	852
-2840	1	FP1	2011-09-23	\N	\N	f	1	853
-2841	2	FP2	2011-09-23	\N	\N	f	1	853
+2836	7	R	2011-09-25	12:00:00	\N	f	16	853
 2837	3	Q1	2011-09-24	\N	\N	f	1	853
 2838	4	Q2	2011-09-24	\N	\N	f	1	853
 2839	5	Q3	2011-09-24	\N	\N	f	1	853
+2840	1	FP1	2011-09-23	\N	\N	f	1	853
+2841	2	FP2	2011-09-23	\N	\N	f	1	853
 2842	6	FP3	2011-09-24	\N	\N	f	1	853
-2836	7	R	2011-09-25	12:00:00	\N	f	16	853
-2847	1	FP1	2011-10-07	\N	\N	f	1	854
-2848	2	FP2	2011-10-07	\N	\N	f	1	854
+2843	7	R	2011-10-09	06:00:00	\N	f	16	854
 2844	3	Q1	2011-10-08	\N	\N	f	1	854
 2845	4	Q2	2011-10-08	\N	\N	f	1	854
 2846	5	Q3	2011-10-08	\N	\N	f	1	854
+2847	1	FP1	2011-10-07	\N	\N	f	1	854
+2848	2	FP2	2011-10-07	\N	\N	f	1	854
 2849	6	FP3	2011-10-08	\N	\N	f	1	854
-2843	7	R	2011-10-09	06:00:00	\N	f	16	854
-2854	1	FP1	2011-10-14	\N	\N	f	1	855
-2855	2	FP2	2011-10-14	\N	\N	f	1	855
+2850	7	R	2011-10-16	06:00:00	\N	f	16	855
 2851	3	Q1	2011-10-15	\N	\N	f	1	855
 2852	4	Q2	2011-10-15	\N	\N	f	1	855
 2853	5	Q3	2011-10-15	\N	\N	f	1	855
+2854	1	FP1	2011-10-14	\N	\N	f	1	855
+2855	2	FP2	2011-10-14	\N	\N	f	1	855
 2856	6	FP3	2011-10-15	\N	\N	f	1	855
-2850	7	R	2011-10-16	06:00:00	\N	f	16	855
-2861	1	FP1	2011-10-28	\N	\N	f	1	856
-2862	2	FP2	2011-10-28	\N	\N	f	1	856
+2857	7	R	2011-10-30	09:30:00	\N	f	16	856
 2858	3	Q1	2011-10-29	\N	\N	f	1	856
 2859	4	Q2	2011-10-29	\N	\N	f	1	856
 2860	5	Q3	2011-10-29	\N	\N	f	1	856
+2861	1	FP1	2011-10-28	\N	\N	f	1	856
+2862	2	FP2	2011-10-28	\N	\N	f	1	856
 2863	6	FP3	2011-10-29	\N	\N	f	1	856
-2857	7	R	2011-10-30	09:30:00	\N	f	16	856
-2868	1	FP1	2011-11-11	\N	\N	f	1	857
-2869	2	FP2	2011-11-11	\N	\N	f	1	857
+2864	7	R	2011-11-13	13:00:00	\N	f	16	857
 2865	3	Q1	2011-11-12	\N	\N	f	1	857
 2866	4	Q2	2011-11-12	\N	\N	f	1	857
 2867	5	Q3	2011-11-12	\N	\N	f	1	857
+2868	1	FP1	2011-11-11	\N	\N	f	1	857
+2869	2	FP2	2011-11-11	\N	\N	f	1	857
 2870	6	FP3	2011-11-12	\N	\N	f	1	857
-2864	7	R	2011-11-13	13:00:00	\N	f	16	857
-2875	1	FP1	2011-11-25	\N	\N	f	1	858
-2876	2	FP2	2011-11-25	\N	\N	f	1	858
+2871	7	R	2011-11-27	16:00:00	\N	f	16	858
 2872	3	Q1	2011-11-26	\N	\N	f	1	858
 2873	4	Q2	2011-11-26	\N	\N	f	1	858
 2874	5	Q3	2011-11-26	\N	\N	f	1	858
+2875	1	FP1	2011-11-25	\N	\N	f	1	858
+2876	2	FP2	2011-11-25	\N	\N	f	1	858
 2877	6	FP3	2011-11-26	\N	\N	f	1	858
-2871	7	R	2011-11-27	16:00:00	\N	f	16	858
-2882	1	FP1	2012-03-16	\N	\N	f	1	859
-2883	2	FP2	2012-03-16	\N	\N	f	1	859
+2878	7	R	2012-03-18	06:00:00	\N	f	16	859
 2879	3	Q1	2012-03-17	\N	\N	f	1	859
 2880	4	Q2	2012-03-17	\N	\N	f	1	859
 2881	5	Q3	2012-03-17	\N	\N	f	1	859
+2882	1	FP1	2012-03-16	\N	\N	f	1	859
+2883	2	FP2	2012-03-16	\N	\N	f	1	859
 2884	6	FP3	2012-03-17	\N	\N	f	1	859
-2878	7	R	2012-03-18	06:00:00	\N	f	16	859
-2889	1	FP1	2012-03-23	\N	\N	f	1	860
-2890	2	FP2	2012-03-23	\N	\N	f	1	860
+2885	7	R	2012-03-25	08:00:00	\N	f	16	860
 2886	3	Q1	2012-03-24	\N	\N	f	1	860
 2887	4	Q2	2012-03-24	\N	\N	f	1	860
 2888	5	Q3	2012-03-24	\N	\N	f	1	860
+2889	1	FP1	2012-03-23	\N	\N	f	1	860
+2890	2	FP2	2012-03-23	\N	\N	f	1	860
 2891	6	FP3	2012-03-24	\N	\N	f	1	860
-2885	7	R	2012-03-25	08:00:00	\N	f	16	860
-2896	1	FP1	2012-04-13	\N	\N	f	1	861
-2897	2	FP2	2012-04-13	\N	\N	f	1	861
+2892	7	R	2012-04-15	07:00:00	\N	f	16	861
 2893	3	Q1	2012-04-14	\N	\N	f	1	861
 2894	4	Q2	2012-04-14	\N	\N	f	1	861
 2895	5	Q3	2012-04-14	\N	\N	f	1	861
+2896	1	FP1	2012-04-13	\N	\N	f	1	861
+2897	2	FP2	2012-04-13	\N	\N	f	1	861
 2898	6	FP3	2012-04-14	\N	\N	f	1	861
-2892	7	R	2012-04-15	07:00:00	\N	f	16	861
-2903	1	FP1	2012-04-20	\N	\N	f	1	862
-2904	2	FP2	2012-04-20	\N	\N	f	1	862
+2899	7	R	2012-04-22	12:00:00	\N	f	16	862
 2900	3	Q1	2012-04-21	\N	\N	f	1	862
 2901	4	Q2	2012-04-21	\N	\N	f	1	862
 2902	5	Q3	2012-04-21	\N	\N	f	1	862
+2903	1	FP1	2012-04-20	\N	\N	f	1	862
+2904	2	FP2	2012-04-20	\N	\N	f	1	862
 2905	6	FP3	2012-04-21	\N	\N	f	1	862
-2899	7	R	2012-04-22	12:00:00	\N	f	16	862
-2910	1	FP1	2012-05-11	\N	\N	f	1	863
-2911	2	FP2	2012-05-11	\N	\N	f	1	863
+2906	7	R	2012-05-13	12:00:00	\N	f	16	863
 2907	3	Q1	2012-05-12	\N	\N	f	1	863
 2908	4	Q2	2012-05-12	\N	\N	f	1	863
 2909	5	Q3	2012-05-12	\N	\N	f	1	863
+2910	1	FP1	2012-05-11	\N	\N	f	1	863
+2911	2	FP2	2012-05-11	\N	\N	f	1	863
 2912	6	FP3	2012-05-12	\N	\N	f	1	863
-2906	7	R	2012-05-13	12:00:00	\N	f	16	863
-2917	1	FP1	2012-05-24	\N	\N	f	1	864
-2918	2	FP2	2012-05-24	\N	\N	f	1	864
+2913	7	R	2012-05-27	12:00:00	\N	f	16	864
 2914	3	Q1	2012-05-26	\N	\N	f	1	864
 2915	4	Q2	2012-05-26	\N	\N	f	1	864
 2916	5	Q3	2012-05-26	\N	\N	f	1	864
+2917	1	FP1	2012-05-24	\N	\N	f	1	864
+2918	2	FP2	2012-05-24	\N	\N	f	1	864
 2919	6	FP3	2012-05-26	\N	\N	f	1	864
-2913	7	R	2012-05-27	12:00:00	\N	f	16	864
-2924	1	FP1	2012-06-08	\N	\N	f	1	865
-2925	2	FP2	2012-06-08	\N	\N	f	1	865
+2920	7	R	2012-06-10	18:00:00	\N	f	16	865
 2921	3	Q1	2012-06-09	\N	\N	f	1	865
 2922	4	Q2	2012-06-09	\N	\N	f	1	865
 2923	5	Q3	2012-06-09	\N	\N	f	1	865
+2924	1	FP1	2012-06-08	\N	\N	f	1	865
+2925	2	FP2	2012-06-08	\N	\N	f	1	865
 2926	6	FP3	2012-06-09	\N	\N	f	1	865
-2920	7	R	2012-06-10	18:00:00	\N	f	16	865
-2931	1	FP1	2012-06-22	\N	\N	f	1	866
-2932	2	FP2	2012-06-22	\N	\N	f	1	866
+2927	7	R	2012-06-24	12:00:00	\N	f	16	866
 2928	3	Q1	2012-06-23	\N	\N	f	1	866
 2929	4	Q2	2012-06-23	\N	\N	f	1	866
 2930	5	Q3	2012-06-23	\N	\N	f	1	866
+2931	1	FP1	2012-06-22	\N	\N	f	1	866
+2932	2	FP2	2012-06-22	\N	\N	f	1	866
 2933	6	FP3	2012-06-23	\N	\N	f	1	866
-2927	7	R	2012-06-24	12:00:00	\N	f	16	866
-2938	1	FP1	2012-07-06	\N	\N	f	1	867
-2939	2	FP2	2012-07-06	\N	\N	f	1	867
+2934	7	R	2012-07-08	12:00:00	\N	f	16	867
 2935	3	Q1	2012-07-07	\N	\N	f	1	867
 2936	4	Q2	2012-07-07	\N	\N	f	1	867
 2937	5	Q3	2012-07-07	\N	\N	f	1	867
+2938	1	FP1	2012-07-06	\N	\N	f	1	867
+2939	2	FP2	2012-07-06	\N	\N	f	1	867
 2940	6	FP3	2012-07-07	\N	\N	f	1	867
-2934	7	R	2012-07-08	12:00:00	\N	f	16	867
-2945	1	FP1	2012-07-20	\N	\N	f	1	868
-2946	2	FP2	2012-07-20	\N	\N	f	1	868
+2941	7	R	2012-07-22	12:00:00	\N	f	16	868
 2942	3	Q1	2012-07-21	\N	\N	f	1	868
 2943	4	Q2	2012-07-21	\N	\N	f	1	868
 2944	5	Q3	2012-07-21	\N	\N	f	1	868
+2945	1	FP1	2012-07-20	\N	\N	f	1	868
+2946	2	FP2	2012-07-20	\N	\N	f	1	868
 2947	6	FP3	2012-07-21	\N	\N	f	1	868
-2941	7	R	2012-07-22	12:00:00	\N	f	16	868
-2952	1	FP1	2012-07-27	\N	\N	f	1	869
-2953	2	FP2	2012-07-27	\N	\N	f	1	869
+2948	7	R	2012-07-29	12:00:00	\N	f	16	869
 2949	3	Q1	2012-07-28	\N	\N	f	1	869
 2950	4	Q2	2012-07-28	\N	\N	f	1	869
 2951	5	Q3	2012-07-28	\N	\N	f	1	869
+2952	1	FP1	2012-07-27	\N	\N	f	1	869
+2953	2	FP2	2012-07-27	\N	\N	f	1	869
 2954	6	FP3	2012-07-28	\N	\N	f	1	869
-2948	7	R	2012-07-29	12:00:00	\N	f	16	869
-2959	1	FP1	2012-08-31	\N	\N	f	1	870
-2960	2	FP2	2012-08-31	\N	\N	f	1	870
+2955	7	R	2012-09-02	12:00:00	\N	f	16	870
 2956	3	Q1	2012-09-01	\N	\N	f	1	870
 2957	4	Q2	2012-09-01	\N	\N	f	1	870
 2958	5	Q3	2012-09-01	\N	\N	f	1	870
+2959	1	FP1	2012-08-31	\N	\N	f	1	870
+2960	2	FP2	2012-08-31	\N	\N	f	1	870
 2961	6	FP3	2012-09-01	\N	\N	f	1	870
-2955	7	R	2012-09-02	12:00:00	\N	f	16	870
-2966	1	FP1	2012-09-07	\N	\N	f	1	871
-2967	2	FP2	2012-09-07	\N	\N	f	1	871
+2962	7	R	2012-09-09	12:00:00	\N	f	16	871
 2963	3	Q1	2012-09-08	\N	\N	f	1	871
 2964	4	Q2	2012-09-08	\N	\N	f	1	871
 2965	5	Q3	2012-09-08	\N	\N	f	1	871
+2966	1	FP1	2012-09-07	\N	\N	f	1	871
+2967	2	FP2	2012-09-07	\N	\N	f	1	871
 2968	6	FP3	2012-09-08	\N	\N	f	1	871
-2962	7	R	2012-09-09	12:00:00	\N	f	16	871
-2973	1	FP1	2012-09-21	\N	\N	f	1	872
-2974	2	FP2	2012-09-21	\N	\N	f	1	872
+2969	7	R	2012-09-23	12:00:00	\N	f	16	872
 2970	3	Q1	2012-09-22	\N	\N	f	1	872
 2971	4	Q2	2012-09-22	\N	\N	f	1	872
 2972	5	Q3	2012-09-22	\N	\N	f	1	872
+2973	1	FP1	2012-09-21	\N	\N	f	1	872
+2974	2	FP2	2012-09-21	\N	\N	f	1	872
 2975	6	FP3	2012-09-22	\N	\N	f	1	872
-2969	7	R	2012-09-23	12:00:00	\N	f	16	872
-2980	1	FP1	2012-10-05	\N	\N	f	1	873
-2981	2	FP2	2012-10-05	\N	\N	f	1	873
+2976	7	R	2012-10-07	06:00:00	\N	f	16	873
 2977	3	Q1	2012-10-06	\N	\N	f	1	873
 2978	4	Q2	2012-10-06	\N	\N	f	1	873
 2979	5	Q3	2012-10-06	\N	\N	f	1	873
+2980	1	FP1	2012-10-05	\N	\N	f	1	873
+2981	2	FP2	2012-10-05	\N	\N	f	1	873
 2982	6	FP3	2012-10-06	\N	\N	f	1	873
-2976	7	R	2012-10-07	06:00:00	\N	f	16	873
-2987	1	FP1	2012-10-12	\N	\N	f	1	874
-2988	2	FP2	2012-10-12	\N	\N	f	1	874
+2983	7	R	2012-10-14	06:00:00	\N	f	16	874
 2984	3	Q1	2012-10-13	\N	\N	f	1	874
 2985	4	Q2	2012-10-13	\N	\N	f	1	874
 2986	5	Q3	2012-10-13	\N	\N	f	1	874
+2987	1	FP1	2012-10-12	\N	\N	f	1	874
+2988	2	FP2	2012-10-12	\N	\N	f	1	874
 2989	6	FP3	2012-10-13	\N	\N	f	1	874
-2983	7	R	2012-10-14	06:00:00	\N	f	16	874
-2994	1	FP1	2012-10-26	\N	\N	f	1	875
-2995	2	FP2	2012-10-26	\N	\N	f	1	875
+2990	7	R	2012-10-28	09:30:00	\N	f	16	875
 2991	3	Q1	2012-10-27	\N	\N	f	1	875
 2992	4	Q2	2012-10-27	\N	\N	f	1	875
 2993	5	Q3	2012-10-27	\N	\N	f	1	875
+2994	1	FP1	2012-10-26	\N	\N	f	1	875
+2995	2	FP2	2012-10-26	\N	\N	f	1	875
 2996	6	FP3	2012-10-27	\N	\N	f	1	875
-2990	7	R	2012-10-28	09:30:00	\N	f	16	875
-3001	1	FP1	2012-11-02	\N	\N	f	1	876
-3002	2	FP2	2012-11-02	\N	\N	f	1	876
+2997	7	R	2012-11-04	13:00:00	\N	f	16	876
 2998	3	Q1	2012-11-03	\N	\N	f	1	876
 2999	4	Q2	2012-11-03	\N	\N	f	1	876
 3000	5	Q3	2012-11-03	\N	\N	f	1	876
+3001	1	FP1	2012-11-02	\N	\N	f	1	876
+3002	2	FP2	2012-11-02	\N	\N	f	1	876
 3003	6	FP3	2012-11-03	\N	\N	f	1	876
-2997	7	R	2012-11-04	13:00:00	\N	f	16	876
-3008	1	FP1	2012-11-16	\N	\N	f	1	877
-3009	2	FP2	2012-11-16	\N	\N	f	1	877
+3004	7	R	2012-11-18	19:00:00	\N	f	16	877
 3005	3	Q1	2012-11-17	\N	\N	f	1	877
 3006	4	Q2	2012-11-17	\N	\N	f	1	877
 3007	5	Q3	2012-11-17	\N	\N	f	1	877
+3008	1	FP1	2012-11-16	\N	\N	f	1	877
+3009	2	FP2	2012-11-16	\N	\N	f	1	877
 3010	6	FP3	2012-11-17	\N	\N	f	1	877
-3004	7	R	2012-11-18	19:00:00	\N	f	16	877
-3015	1	FP1	2012-11-23	\N	\N	f	1	878
-3016	2	FP2	2012-11-23	\N	\N	f	1	878
+3011	7	R	2012-11-25	16:00:00	\N	f	16	878
 3012	3	Q1	2012-11-24	\N	\N	f	1	878
 3013	4	Q2	2012-11-24	\N	\N	f	1	878
 3014	5	Q3	2012-11-24	\N	\N	f	1	878
+3015	1	FP1	2012-11-23	\N	\N	f	1	878
+3016	2	FP2	2012-11-23	\N	\N	f	1	878
 3017	6	FP3	2012-11-24	\N	\N	f	1	878
-3011	7	R	2012-11-25	16:00:00	\N	f	16	878
-3022	1	FP1	2013-03-15	\N	\N	f	1	879
-3023	2	FP2	2013-03-15	\N	\N	f	1	879
+3018	7	R	2013-03-17	06:00:00	\N	f	16	879
 3019	3	Q1	2013-03-16	\N	\N	f	1	879
 3020	4	Q2	2013-03-16	\N	\N	f	1	879
 3021	5	Q3	2013-03-16	\N	\N	f	1	879
+3022	1	FP1	2013-03-15	\N	\N	f	1	879
+3023	2	FP2	2013-03-15	\N	\N	f	1	879
 3024	6	FP3	2013-03-16	\N	\N	f	1	879
-3018	7	R	2013-03-17	06:00:00	\N	f	16	879
-3029	1	FP1	2013-03-22	\N	\N	f	1	880
-3030	2	FP2	2013-03-22	\N	\N	f	1	880
+3025	7	R	2013-03-24	08:00:00	\N	f	16	880
 3026	3	Q1	2013-03-23	\N	\N	f	1	880
 3027	4	Q2	2013-03-23	\N	\N	f	1	880
 3028	5	Q3	2013-03-23	\N	\N	f	1	880
+3029	1	FP1	2013-03-22	\N	\N	f	1	880
+3030	2	FP2	2013-03-22	\N	\N	f	1	880
 3031	6	FP3	2013-03-23	\N	\N	f	1	880
-3025	7	R	2013-03-24	08:00:00	\N	f	16	880
-3036	1	FP1	2013-04-12	\N	\N	f	1	881
-3037	2	FP2	2013-04-12	\N	\N	f	1	881
+3032	7	R	2013-04-14	07:00:00	\N	f	16	881
 3033	3	Q1	2013-04-13	\N	\N	f	1	881
 3034	4	Q2	2013-04-13	\N	\N	f	1	881
 3035	5	Q3	2013-04-13	\N	\N	f	1	881
+3036	1	FP1	2013-04-12	\N	\N	f	1	881
+3037	2	FP2	2013-04-12	\N	\N	f	1	881
 3038	6	FP3	2013-04-13	\N	\N	f	1	881
-3032	7	R	2013-04-14	07:00:00	\N	f	16	881
-3043	1	FP1	2013-04-19	\N	\N	f	1	882
-3044	2	FP2	2013-04-19	\N	\N	f	1	882
+3039	7	R	2013-04-21	12:00:00	\N	f	16	882
 3040	3	Q1	2013-04-20	\N	\N	f	1	882
 3041	4	Q2	2013-04-20	\N	\N	f	1	882
 3042	5	Q3	2013-04-20	\N	\N	f	1	882
+3043	1	FP1	2013-04-19	\N	\N	f	1	882
+3044	2	FP2	2013-04-19	\N	\N	f	1	882
 3045	6	FP3	2013-04-20	\N	\N	f	1	882
-3039	7	R	2013-04-21	12:00:00	\N	f	16	882
-3050	1	FP1	2013-05-10	\N	\N	f	1	883
-3051	2	FP2	2013-05-10	\N	\N	f	1	883
+3046	7	R	2013-05-12	12:00:00	\N	f	16	883
 3047	3	Q1	2013-05-11	\N	\N	f	1	883
 3048	4	Q2	2013-05-11	\N	\N	f	1	883
 3049	5	Q3	2013-05-11	\N	\N	f	1	883
+3050	1	FP1	2013-05-10	\N	\N	f	1	883
+3051	2	FP2	2013-05-10	\N	\N	f	1	883
 3052	6	FP3	2013-05-11	\N	\N	f	1	883
-3046	7	R	2013-05-12	12:00:00	\N	f	16	883
-3057	1	FP1	2013-05-23	\N	\N	f	1	884
-3058	2	FP2	2013-05-23	\N	\N	f	1	884
+3053	7	R	2013-05-26	12:00:00	\N	f	16	884
 3054	3	Q1	2013-05-25	\N	\N	f	1	884
 3055	4	Q2	2013-05-25	\N	\N	f	1	884
 3056	5	Q3	2013-05-25	\N	\N	f	1	884
+3057	1	FP1	2013-05-23	\N	\N	f	1	884
+3058	2	FP2	2013-05-23	\N	\N	f	1	884
 3059	6	FP3	2013-05-25	\N	\N	f	1	884
-3053	7	R	2013-05-26	12:00:00	\N	f	16	884
-3064	1	FP1	2013-06-07	\N	\N	f	1	885
-3065	2	FP2	2013-06-07	\N	\N	f	1	885
+3060	7	R	2013-06-09	18:00:00	\N	f	16	885
 3061	3	Q1	2013-06-08	\N	\N	f	1	885
 3062	4	Q2	2013-06-08	\N	\N	f	1	885
 3063	5	Q3	2013-06-08	\N	\N	f	1	885
+3064	1	FP1	2013-06-07	\N	\N	f	1	885
+3065	2	FP2	2013-06-07	\N	\N	f	1	885
 3066	6	FP3	2013-06-08	\N	\N	f	1	885
-3060	7	R	2013-06-09	18:00:00	\N	f	16	885
-3071	1	FP1	2013-06-28	\N	\N	f	1	886
-3072	2	FP2	2013-06-28	\N	\N	f	1	886
+3067	7	R	2013-06-30	12:00:00	\N	f	16	886
 3068	3	Q1	2013-06-29	\N	\N	f	1	886
 3069	4	Q2	2013-06-29	\N	\N	f	1	886
 3070	5	Q3	2013-06-29	\N	\N	f	1	886
+3071	1	FP1	2013-06-28	\N	\N	f	1	886
+3072	2	FP2	2013-06-28	\N	\N	f	1	886
 3073	6	FP3	2013-06-29	\N	\N	f	1	886
-3067	7	R	2013-06-30	12:00:00	\N	f	16	886
-3078	1	FP1	2013-07-05	\N	\N	f	1	887
-3079	2	FP2	2013-07-05	\N	\N	f	1	887
+3074	7	R	2013-07-07	12:00:00	\N	f	16	887
 3075	3	Q1	2013-07-06	\N	\N	f	1	887
 3076	4	Q2	2013-07-06	\N	\N	f	1	887
 3077	5	Q3	2013-07-06	\N	\N	f	1	887
+3078	1	FP1	2013-07-05	\N	\N	f	1	887
+3079	2	FP2	2013-07-05	\N	\N	f	1	887
 3080	6	FP3	2013-07-06	\N	\N	f	1	887
-3074	7	R	2013-07-07	12:00:00	\N	f	16	887
-3085	1	FP1	2013-07-26	\N	\N	f	1	888
-3086	2	FP2	2013-07-26	\N	\N	f	1	888
+3081	7	R	2013-07-28	12:00:00	\N	f	16	888
 3082	3	Q1	2013-07-27	\N	\N	f	1	888
 3083	4	Q2	2013-07-27	\N	\N	f	1	888
 3084	5	Q3	2013-07-27	\N	\N	f	1	888
+3085	1	FP1	2013-07-26	\N	\N	f	1	888
+3086	2	FP2	2013-07-26	\N	\N	f	1	888
 3087	6	FP3	2013-07-27	\N	\N	f	1	888
-3081	7	R	2013-07-28	12:00:00	\N	f	16	888
-3092	1	FP1	2013-08-23	\N	\N	f	1	889
-3093	2	FP2	2013-08-23	\N	\N	f	1	889
+3088	7	R	2013-08-25	12:00:00	\N	f	16	889
 3089	3	Q1	2013-08-24	\N	\N	f	1	889
 3090	4	Q2	2013-08-24	\N	\N	f	1	889
 3091	5	Q3	2013-08-24	\N	\N	f	1	889
+3092	1	FP1	2013-08-23	\N	\N	f	1	889
+3093	2	FP2	2013-08-23	\N	\N	f	1	889
 3094	6	FP3	2013-08-24	\N	\N	f	1	889
-3088	7	R	2013-08-25	12:00:00	\N	f	16	889
-3099	1	FP1	2013-09-06	\N	\N	f	1	890
-3100	2	FP2	2013-09-06	\N	\N	f	1	890
+3095	7	R	2013-09-08	12:00:00	\N	f	16	890
 3096	3	Q1	2013-09-07	\N	\N	f	1	890
 3097	4	Q2	2013-09-07	\N	\N	f	1	890
 3098	5	Q3	2013-09-07	\N	\N	f	1	890
+3099	1	FP1	2013-09-06	\N	\N	f	1	890
+3100	2	FP2	2013-09-06	\N	\N	f	1	890
 3101	6	FP3	2013-09-07	\N	\N	f	1	890
-3095	7	R	2013-09-08	12:00:00	\N	f	16	890
-3106	1	FP1	2013-09-20	\N	\N	f	1	891
-3107	2	FP2	2013-09-20	\N	\N	f	1	891
+3102	7	R	2013-09-22	12:00:00	\N	f	16	891
 3103	3	Q1	2013-09-21	\N	\N	f	1	891
 3104	4	Q2	2013-09-21	\N	\N	f	1	891
 3105	5	Q3	2013-09-21	\N	\N	f	1	891
+3106	1	FP1	2013-09-20	\N	\N	f	1	891
+3107	2	FP2	2013-09-20	\N	\N	f	1	891
 3108	6	FP3	2013-09-21	\N	\N	f	1	891
-3102	7	R	2013-09-22	12:00:00	\N	f	16	891
-3113	1	FP1	2013-10-04	\N	\N	f	1	892
-3114	2	FP2	2013-10-04	\N	\N	f	1	892
+3109	7	R	2013-10-06	06:00:00	\N	f	16	892
 3110	3	Q1	2013-10-05	\N	\N	f	1	892
 3111	4	Q2	2013-10-05	\N	\N	f	1	892
 3112	5	Q3	2013-10-05	\N	\N	f	1	892
+3113	1	FP1	2013-10-04	\N	\N	f	1	892
+3114	2	FP2	2013-10-04	\N	\N	f	1	892
 3115	6	FP3	2013-10-05	\N	\N	f	1	892
-3109	7	R	2013-10-06	06:00:00	\N	f	16	892
-3120	1	FP1	2013-10-11	\N	\N	f	1	893
-3121	2	FP2	2013-10-11	\N	\N	f	1	893
+3116	7	R	2013-10-13	06:00:00	\N	f	16	893
 3117	3	Q1	2013-10-12	\N	\N	f	1	893
 3118	4	Q2	2013-10-12	\N	\N	f	1	893
 3119	5	Q3	2013-10-12	\N	\N	f	1	893
+3120	1	FP1	2013-10-11	\N	\N	f	1	893
+3121	2	FP2	2013-10-11	\N	\N	f	1	893
 3122	6	FP3	2013-10-12	\N	\N	f	1	893
-3116	7	R	2013-10-13	06:00:00	\N	f	16	893
-3127	1	FP1	2013-10-25	\N	\N	f	1	894
-3128	2	FP2	2013-10-25	\N	\N	f	1	894
+3123	7	R	2013-10-27	09:30:00	\N	f	16	894
 3124	3	Q1	2013-10-26	\N	\N	f	1	894
 3125	4	Q2	2013-10-26	\N	\N	f	1	894
 3126	5	Q3	2013-10-26	\N	\N	f	1	894
+3127	1	FP1	2013-10-25	\N	\N	f	1	894
+3128	2	FP2	2013-10-25	\N	\N	f	1	894
 3129	6	FP3	2013-10-26	\N	\N	f	1	894
-3123	7	R	2013-10-27	09:30:00	\N	f	16	894
-3134	1	FP1	2013-11-01	\N	\N	f	1	895
-3135	2	FP2	2013-11-01	\N	\N	f	1	895
+3130	7	R	2013-11-03	13:00:00	\N	f	16	895
 3131	3	Q1	2013-11-02	\N	\N	f	1	895
 3132	4	Q2	2013-11-02	\N	\N	f	1	895
 3133	5	Q3	2013-11-02	\N	\N	f	1	895
+3134	1	FP1	2013-11-01	\N	\N	f	1	895
+3135	2	FP2	2013-11-01	\N	\N	f	1	895
 3136	6	FP3	2013-11-02	\N	\N	f	1	895
-3130	7	R	2013-11-03	13:00:00	\N	f	16	895
-3141	1	FP1	2013-11-15	\N	\N	f	1	896
-3142	2	FP2	2013-11-15	\N	\N	f	1	896
+3137	7	R	2013-11-17	19:00:00	\N	f	16	896
 3138	3	Q1	2013-11-16	\N	\N	f	1	896
 3139	4	Q2	2013-11-16	\N	\N	f	1	896
 3140	5	Q3	2013-11-16	\N	\N	f	1	896
+3141	1	FP1	2013-11-15	\N	\N	f	1	896
+3142	2	FP2	2013-11-15	\N	\N	f	1	896
 3143	6	FP3	2013-11-16	\N	\N	f	1	896
-3137	7	R	2013-11-17	19:00:00	\N	f	16	896
-3148	1	FP1	2013-11-22	\N	\N	f	1	897
-3149	2	FP2	2013-11-22	\N	\N	f	1	897
+3144	7	R	2013-11-24	16:00:00	\N	f	16	897
 3145	3	Q1	2013-11-23	\N	\N	f	1	897
 3146	4	Q2	2013-11-23	\N	\N	f	1	897
 3147	5	Q3	2013-11-23	\N	\N	f	1	897
+3148	1	FP1	2013-11-22	\N	\N	f	1	897
+3149	2	FP2	2013-11-22	\N	\N	f	1	897
 3150	6	FP3	2013-11-23	\N	\N	f	1	897
-3144	7	R	2013-11-24	16:00:00	\N	f	16	897
-3155	1	FP1	2014-03-14	\N	\N	f	1	898
-3156	2	FP2	2014-03-14	\N	\N	f	1	898
+3151	7	R	2014-03-16	06:00:00	\N	f	16	898
 3152	3	Q1	2014-03-15	\N	\N	f	1	898
 3153	4	Q2	2014-03-15	\N	\N	f	1	898
 3154	5	Q3	2014-03-15	\N	\N	f	1	898
+3155	1	FP1	2014-03-14	\N	\N	f	1	898
+3156	2	FP2	2014-03-14	\N	\N	f	1	898
 3157	6	FP3	2014-03-15	\N	\N	f	1	898
-3151	7	R	2014-03-16	06:00:00	\N	f	16	898
-3162	1	FP1	2014-03-28	\N	\N	f	1	899
-3163	2	FP2	2014-03-28	\N	\N	f	1	899
+3158	7	R	2014-03-30	08:00:00	\N	f	16	899
 3159	3	Q1	2014-03-29	\N	\N	f	1	899
 3160	4	Q2	2014-03-29	\N	\N	f	1	899
 3161	5	Q3	2014-03-29	\N	\N	f	1	899
+3162	1	FP1	2014-03-28	\N	\N	f	1	899
+3163	2	FP2	2014-03-28	\N	\N	f	1	899
 3164	6	FP3	2014-03-29	\N	\N	f	1	899
-3158	7	R	2014-03-30	08:00:00	\N	f	16	899
-3169	1	FP1	2014-04-04	\N	\N	f	1	900
-3170	2	FP2	2014-04-04	\N	\N	f	1	900
+3165	7	R	2014-04-06	15:00:00	\N	f	16	900
 3166	3	Q1	2014-04-05	\N	\N	f	1	900
 3167	4	Q2	2014-04-05	\N	\N	f	1	900
 3168	5	Q3	2014-04-05	\N	\N	f	1	900
+3169	1	FP1	2014-04-04	\N	\N	f	1	900
+3170	2	FP2	2014-04-04	\N	\N	f	1	900
 3171	6	FP3	2014-04-05	\N	\N	f	1	900
-3165	7	R	2014-04-06	15:00:00	\N	f	16	900
-3176	1	FP1	2014-04-18	\N	\N	f	1	901
-3177	2	FP2	2014-04-18	\N	\N	f	1	901
+3172	7	R	2014-04-20	07:00:00	\N	f	16	901
 3173	3	Q1	2014-04-19	\N	\N	f	1	901
 3174	4	Q2	2014-04-19	\N	\N	f	1	901
 3175	5	Q3	2014-04-19	\N	\N	f	1	901
+3176	1	FP1	2014-04-18	\N	\N	f	1	901
+3177	2	FP2	2014-04-18	\N	\N	f	1	901
 3178	6	FP3	2014-04-19	\N	\N	f	1	901
-3172	7	R	2014-04-20	07:00:00	\N	f	16	901
-3183	1	FP1	2014-05-09	\N	\N	f	1	902
-3184	2	FP2	2014-05-09	\N	\N	f	1	902
+3179	7	R	2014-05-11	12:00:00	\N	f	16	902
 3180	3	Q1	2014-05-10	\N	\N	f	1	902
 3181	4	Q2	2014-05-10	\N	\N	f	1	902
 3182	5	Q3	2014-05-10	\N	\N	f	1	902
+3183	1	FP1	2014-05-09	\N	\N	f	1	902
+3184	2	FP2	2014-05-09	\N	\N	f	1	902
 3185	6	FP3	2014-05-10	\N	\N	f	1	902
-3179	7	R	2014-05-11	12:00:00	\N	f	16	902
-3190	1	FP1	2014-05-22	\N	\N	f	1	903
-3191	2	FP2	2014-05-22	\N	\N	f	1	903
+3186	7	R	2014-05-25	12:00:00	\N	f	16	903
 3187	3	Q1	2014-05-24	\N	\N	f	1	903
 3188	4	Q2	2014-05-24	\N	\N	f	1	903
 3189	5	Q3	2014-05-24	\N	\N	f	1	903
+3190	1	FP1	2014-05-22	\N	\N	f	1	903
+3191	2	FP2	2014-05-22	\N	\N	f	1	903
 3192	6	FP3	2014-05-24	\N	\N	f	1	903
-3186	7	R	2014-05-25	12:00:00	\N	f	16	903
-3197	1	FP1	2014-06-06	\N	\N	f	1	904
-3198	2	FP2	2014-06-06	\N	\N	f	1	904
+3193	7	R	2014-06-08	18:00:00	\N	f	16	904
 3194	3	Q1	2014-06-07	\N	\N	f	1	904
 3195	4	Q2	2014-06-07	\N	\N	f	1	904
 3196	5	Q3	2014-06-07	\N	\N	f	1	904
+3197	1	FP1	2014-06-06	\N	\N	f	1	904
+3198	2	FP2	2014-06-06	\N	\N	f	1	904
 3199	6	FP3	2014-06-07	\N	\N	f	1	904
-3193	7	R	2014-06-08	18:00:00	\N	f	16	904
-3204	1	FP1	2014-06-20	\N	\N	f	1	905
-3205	2	FP2	2014-06-20	\N	\N	f	1	905
+3200	7	R	2014-06-22	12:00:00	\N	f	16	905
 3201	3	Q1	2014-06-21	\N	\N	f	1	905
 3202	4	Q2	2014-06-21	\N	\N	f	1	905
 3203	5	Q3	2014-06-21	\N	\N	f	1	905
+3204	1	FP1	2014-06-20	\N	\N	f	1	905
+3205	2	FP2	2014-06-20	\N	\N	f	1	905
 3206	6	FP3	2014-06-21	\N	\N	f	1	905
-3200	7	R	2014-06-22	12:00:00	\N	f	16	905
-3211	1	FP1	2014-07-04	\N	\N	f	1	906
-3212	2	FP2	2014-07-04	\N	\N	f	1	906
+3207	7	R	2014-07-06	12:00:00	\N	f	16	906
 3208	3	Q1	2014-07-05	\N	\N	f	1	906
 3209	4	Q2	2014-07-05	\N	\N	f	1	906
 3210	5	Q3	2014-07-05	\N	\N	f	1	906
+3211	1	FP1	2014-07-04	\N	\N	f	1	906
+3212	2	FP2	2014-07-04	\N	\N	f	1	906
 3213	6	FP3	2014-07-05	\N	\N	f	1	906
-3207	7	R	2014-07-06	12:00:00	\N	f	16	906
-3218	1	FP1	2014-07-18	\N	\N	f	1	907
-3219	2	FP2	2014-07-18	\N	\N	f	1	907
+3214	7	R	2014-07-20	12:00:00	\N	f	16	907
 3215	3	Q1	2014-07-19	\N	\N	f	1	907
 3216	4	Q2	2014-07-19	\N	\N	f	1	907
 3217	5	Q3	2014-07-19	\N	\N	f	1	907
+3218	1	FP1	2014-07-18	\N	\N	f	1	907
+3219	2	FP2	2014-07-18	\N	\N	f	1	907
 3220	6	FP3	2014-07-19	\N	\N	f	1	907
-3214	7	R	2014-07-20	12:00:00	\N	f	16	907
-3225	1	FP1	2014-07-25	\N	\N	f	1	908
-3226	2	FP2	2014-07-25	\N	\N	f	1	908
+3221	7	R	2014-07-27	12:00:00	\N	f	16	908
 3222	3	Q1	2014-07-26	\N	\N	f	1	908
 3223	4	Q2	2014-07-26	\N	\N	f	1	908
 3224	5	Q3	2014-07-26	\N	\N	f	1	908
+3225	1	FP1	2014-07-25	\N	\N	f	1	908
+3226	2	FP2	2014-07-25	\N	\N	f	1	908
 3227	6	FP3	2014-07-26	\N	\N	f	1	908
-3221	7	R	2014-07-27	12:00:00	\N	f	16	908
-3232	1	FP1	2014-08-22	\N	\N	f	1	909
-3233	2	FP2	2014-08-22	\N	\N	f	1	909
+3228	7	R	2014-08-24	12:00:00	\N	f	16	909
 3229	3	Q1	2014-08-23	\N	\N	f	1	909
 3230	4	Q2	2014-08-23	\N	\N	f	1	909
 3231	5	Q3	2014-08-23	\N	\N	f	1	909
+3232	1	FP1	2014-08-22	\N	\N	f	1	909
+3233	2	FP2	2014-08-22	\N	\N	f	1	909
 3234	6	FP3	2014-08-23	\N	\N	f	1	909
-3228	7	R	2014-08-24	12:00:00	\N	f	16	909
-3239	1	FP1	2014-09-05	\N	\N	f	1	910
-3240	2	FP2	2014-09-05	\N	\N	f	1	910
+3235	7	R	2014-09-07	12:00:00	\N	f	16	910
 3236	3	Q1	2014-09-06	\N	\N	f	1	910
 3237	4	Q2	2014-09-06	\N	\N	f	1	910
 3238	5	Q3	2014-09-06	\N	\N	f	1	910
+3239	1	FP1	2014-09-05	\N	\N	f	1	910
+3240	2	FP2	2014-09-05	\N	\N	f	1	910
 3241	6	FP3	2014-09-06	\N	\N	f	1	910
-3235	7	R	2014-09-07	12:00:00	\N	f	16	910
-3246	1	FP1	2014-09-19	\N	\N	f	1	911
-3247	2	FP2	2014-09-19	\N	\N	f	1	911
+3242	7	R	2014-09-21	12:00:00	\N	f	16	911
 3243	3	Q1	2014-09-20	\N	\N	f	1	911
 3244	4	Q2	2014-09-20	\N	\N	f	1	911
 3245	5	Q3	2014-09-20	\N	\N	f	1	911
+3246	1	FP1	2014-09-19	\N	\N	f	1	911
+3247	2	FP2	2014-09-19	\N	\N	f	1	911
 3248	6	FP3	2014-09-20	\N	\N	f	1	911
-3242	7	R	2014-09-21	12:00:00	\N	f	16	911
-3253	1	FP1	2014-10-03	\N	\N	f	1	912
-3254	2	FP2	2014-10-03	\N	\N	f	1	912
+3249	7	R	2014-10-05	06:00:00	\N	f	16	912
 3250	3	Q1	2014-10-04	\N	\N	f	1	912
 3251	4	Q2	2014-10-04	\N	\N	f	1	912
 3252	5	Q3	2014-10-04	\N	\N	f	1	912
+3253	1	FP1	2014-10-03	\N	\N	f	1	912
+3254	2	FP2	2014-10-03	\N	\N	f	1	912
 3255	6	FP3	2014-10-04	\N	\N	f	1	912
-3249	7	R	2014-10-05	06:00:00	\N	f	16	912
-3260	1	FP1	2014-10-10	\N	\N	f	1	913
-3261	2	FP2	2014-10-10	\N	\N	f	1	913
+3256	7	R	2014-10-12	11:00:00	\N	f	16	913
 3257	3	Q1	2014-10-11	\N	\N	f	1	913
 3258	4	Q2	2014-10-11	\N	\N	f	1	913
 3259	5	Q3	2014-10-11	\N	\N	f	1	913
+3260	1	FP1	2014-10-10	\N	\N	f	1	913
+3261	2	FP2	2014-10-10	\N	\N	f	1	913
 3262	6	FP3	2014-10-11	\N	\N	f	1	913
-3256	7	R	2014-10-12	11:00:00	\N	f	16	913
-3267	1	FP1	2014-10-31	\N	\N	f	1	914
-3268	2	FP2	2014-10-31	\N	\N	f	1	914
+3263	7	R	2014-11-02	20:00:00	\N	f	16	914
 3264	3	Q1	2014-11-01	\N	\N	f	1	914
 3265	4	Q2	2014-11-01	\N	\N	f	1	914
 3266	5	Q3	2014-11-01	\N	\N	f	1	914
+3267	1	FP1	2014-10-31	\N	\N	f	1	914
+3268	2	FP2	2014-10-31	\N	\N	f	1	914
 3269	6	FP3	2014-11-01	\N	\N	f	1	914
-3263	7	R	2014-11-02	20:00:00	\N	f	16	914
-3274	1	FP1	2014-11-07	\N	\N	f	1	915
-3275	2	FP2	2014-11-07	\N	\N	f	1	915
+3270	7	R	2014-11-09	16:00:00	\N	f	16	915
 3271	3	Q1	2014-11-08	\N	\N	f	1	915
 3272	4	Q2	2014-11-08	\N	\N	f	1	915
 3273	5	Q3	2014-11-08	\N	\N	f	1	915
+3274	1	FP1	2014-11-07	\N	\N	f	1	915
+3275	2	FP2	2014-11-07	\N	\N	f	1	915
 3276	6	FP3	2014-11-08	\N	\N	f	1	915
-3270	7	R	2014-11-09	16:00:00	\N	f	16	915
-3281	1	FP1	2014-11-21	\N	\N	f	1	916
-3282	2	FP2	2014-11-21	\N	\N	f	1	916
+3277	7	R	2014-11-23	13:00:00	\N	f	16	916
 3278	3	Q1	2014-11-22	\N	\N	f	1	916
 3279	4	Q2	2014-11-22	\N	\N	f	1	916
 3280	5	Q3	2014-11-22	\N	\N	f	1	916
+3281	1	FP1	2014-11-21	\N	\N	f	1	916
+3282	2	FP2	2014-11-21	\N	\N	f	1	916
 3283	6	FP3	2014-11-22	\N	\N	f	1	916
-3277	7	R	2014-11-23	13:00:00	\N	f	16	916
-3288	1	FP1	2015-03-13	\N	\N	f	1	917
-3289	2	FP2	2015-03-13	\N	\N	f	1	917
+3284	7	R	2015-03-15	05:00:00	\N	f	16	917
 3285	3	Q1	2015-03-14	\N	\N	f	1	917
 3286	4	Q2	2015-03-14	\N	\N	f	1	917
 3287	5	Q3	2015-03-14	\N	\N	f	1	917
+3288	1	FP1	2015-03-13	\N	\N	f	1	917
+3289	2	FP2	2015-03-13	\N	\N	f	1	917
 3290	6	FP3	2015-03-14	\N	\N	f	1	917
-3284	7	R	2015-03-15	05:00:00	\N	f	16	917
-3295	1	FP1	2015-03-27	\N	\N	f	1	918
-3296	2	FP2	2015-03-27	\N	\N	f	1	918
+3291	7	R	2015-03-29	07:00:00	\N	f	16	918
 3292	3	Q1	2015-03-28	\N	\N	f	1	918
 3293	4	Q2	2015-03-28	\N	\N	f	1	918
 3294	5	Q3	2015-03-28	\N	\N	f	1	918
+3295	1	FP1	2015-03-27	\N	\N	f	1	918
+3296	2	FP2	2015-03-27	\N	\N	f	1	918
 3297	6	FP3	2015-03-28	\N	\N	f	1	918
-3291	7	R	2015-03-29	07:00:00	\N	f	16	918
-3302	1	FP1	2015-04-10	\N	\N	f	1	919
-3303	2	FP2	2015-04-10	\N	\N	f	1	919
+3298	7	R	2015-04-12	06:00:00	\N	f	16	919
 3299	3	Q1	2015-04-11	\N	\N	f	1	919
 3300	4	Q2	2015-04-11	\N	\N	f	1	919
 3301	5	Q3	2015-04-11	\N	\N	f	1	919
+3302	1	FP1	2015-04-10	\N	\N	f	1	919
+3303	2	FP2	2015-04-10	\N	\N	f	1	919
 3304	6	FP3	2015-04-11	\N	\N	f	1	919
-3298	7	R	2015-04-12	06:00:00	\N	f	16	919
-3309	1	FP1	2015-04-17	\N	\N	f	1	920
-3310	2	FP2	2015-04-17	\N	\N	f	1	920
+3305	7	R	2015-04-19	15:00:00	\N	f	16	920
 3306	3	Q1	2015-04-18	\N	\N	f	1	920
 3307	4	Q2	2015-04-18	\N	\N	f	1	920
 3308	5	Q3	2015-04-18	\N	\N	f	1	920
+3309	1	FP1	2015-04-17	\N	\N	f	1	920
+3310	2	FP2	2015-04-17	\N	\N	f	1	920
 3311	6	FP3	2015-04-18	\N	\N	f	1	920
-3305	7	R	2015-04-19	15:00:00	\N	f	16	920
-3316	1	FP1	2015-05-08	\N	\N	f	1	921
-3317	2	FP2	2015-05-08	\N	\N	f	1	921
+3312	7	R	2015-05-10	12:00:00	\N	f	16	921
 3313	3	Q1	2015-05-09	\N	\N	f	1	921
 3314	4	Q2	2015-05-09	\N	\N	f	1	921
 3315	5	Q3	2015-05-09	\N	\N	f	1	921
+3316	1	FP1	2015-05-08	\N	\N	f	1	921
+3317	2	FP2	2015-05-08	\N	\N	f	1	921
 3318	6	FP3	2015-05-09	\N	\N	f	1	921
-3312	7	R	2015-05-10	12:00:00	\N	f	16	921
-3323	1	FP1	2015-05-21	\N	\N	f	1	922
-3324	2	FP2	2015-05-21	\N	\N	f	1	922
+3319	7	R	2015-05-24	12:00:00	\N	f	16	922
 3320	3	Q1	2015-05-23	\N	\N	f	1	922
 3321	4	Q2	2015-05-23	\N	\N	f	1	922
 3322	5	Q3	2015-05-23	\N	\N	f	1	922
+3323	1	FP1	2015-05-21	\N	\N	f	1	922
+3324	2	FP2	2015-05-21	\N	\N	f	1	922
 3325	6	FP3	2015-05-23	\N	\N	f	1	922
-3319	7	R	2015-05-24	12:00:00	\N	f	16	922
-3330	1	FP1	2015-06-05	\N	\N	f	1	923
-3331	2	FP2	2015-06-05	\N	\N	f	1	923
+3326	7	R	2015-06-07	18:00:00	\N	f	16	923
 3327	3	Q1	2015-06-06	\N	\N	f	1	923
 3328	4	Q2	2015-06-06	\N	\N	f	1	923
 3329	5	Q3	2015-06-06	\N	\N	f	1	923
+3330	1	FP1	2015-06-05	\N	\N	f	1	923
+3331	2	FP2	2015-06-05	\N	\N	f	1	923
 3332	6	FP3	2015-06-06	\N	\N	f	1	923
-3326	7	R	2015-06-07	18:00:00	\N	f	16	923
-3337	1	FP1	2015-06-19	\N	\N	f	1	924
-3338	2	FP2	2015-06-19	\N	\N	f	1	924
+3333	7	R	2015-06-21	12:00:00	\N	f	16	924
 3334	3	Q1	2015-06-20	\N	\N	f	1	924
 3335	4	Q2	2015-06-20	\N	\N	f	1	924
 3336	5	Q3	2015-06-20	\N	\N	f	1	924
+3337	1	FP1	2015-06-19	\N	\N	f	1	924
+3338	2	FP2	2015-06-19	\N	\N	f	1	924
 3339	6	FP3	2015-06-20	\N	\N	f	1	924
-3333	7	R	2015-06-21	12:00:00	\N	f	16	924
-3344	1	FP1	2015-07-03	\N	\N	f	1	925
-3345	2	FP2	2015-07-03	\N	\N	f	1	925
+3340	7	R	2015-07-05	12:00:00	\N	f	16	925
 3341	3	Q1	2015-07-04	\N	\N	f	1	925
 3342	4	Q2	2015-07-04	\N	\N	f	1	925
 3343	5	Q3	2015-07-04	\N	\N	f	1	925
+3344	1	FP1	2015-07-03	\N	\N	f	1	925
+3345	2	FP2	2015-07-03	\N	\N	f	1	925
 3346	6	FP3	2015-07-04	\N	\N	f	1	925
-3340	7	R	2015-07-05	12:00:00	\N	f	16	925
-3351	1	FP1	2015-07-24	\N	\N	f	1	926
-3352	2	FP2	2015-07-24	\N	\N	f	1	926
+3347	7	R	2015-07-26	12:00:00	\N	f	16	926
 3348	3	Q1	2015-07-25	\N	\N	f	1	926
 3349	4	Q2	2015-07-25	\N	\N	f	1	926
 3350	5	Q3	2015-07-25	\N	\N	f	1	926
+3351	1	FP1	2015-07-24	\N	\N	f	1	926
+3352	2	FP2	2015-07-24	\N	\N	f	1	926
 3353	6	FP3	2015-07-25	\N	\N	f	1	926
-3347	7	R	2015-07-26	12:00:00	\N	f	16	926
-3358	1	FP1	2015-08-21	\N	\N	f	1	927
-3359	2	FP2	2015-08-21	\N	\N	f	1	927
+3354	7	R	2015-08-23	12:00:00	\N	f	16	927
 3355	3	Q1	2015-08-22	\N	\N	f	1	927
 3356	4	Q2	2015-08-22	\N	\N	f	1	927
 3357	5	Q3	2015-08-22	\N	\N	f	1	927
+3358	1	FP1	2015-08-21	\N	\N	f	1	927
+3359	2	FP2	2015-08-21	\N	\N	f	1	927
 3360	6	FP3	2015-08-22	\N	\N	f	1	927
-3354	7	R	2015-08-23	12:00:00	\N	f	16	927
-3365	1	FP1	2015-09-04	\N	\N	f	1	928
-3366	2	FP2	2015-09-04	\N	\N	f	1	928
+3361	7	R	2015-09-06	12:00:00	\N	f	16	928
 3362	3	Q1	2015-09-05	\N	\N	f	1	928
 3363	4	Q2	2015-09-05	\N	\N	f	1	928
 3364	5	Q3	2015-09-05	\N	\N	f	1	928
+3365	1	FP1	2015-09-04	\N	\N	f	1	928
+3366	2	FP2	2015-09-04	\N	\N	f	1	928
 3367	6	FP3	2015-09-05	\N	\N	f	1	928
-3361	7	R	2015-09-06	12:00:00	\N	f	16	928
-3372	1	FP1	2015-09-18	\N	\N	f	1	929
-3373	2	FP2	2015-09-18	\N	\N	f	1	929
+3368	7	R	2015-09-20	12:00:00	\N	f	16	929
 3369	3	Q1	2015-09-19	\N	\N	f	1	929
 3370	4	Q2	2015-09-19	\N	\N	f	1	929
 3371	5	Q3	2015-09-19	\N	\N	f	1	929
+3372	1	FP1	2015-09-18	\N	\N	f	1	929
+3373	2	FP2	2015-09-18	\N	\N	f	1	929
 3374	6	FP3	2015-09-19	\N	\N	f	1	929
-3368	7	R	2015-09-20	12:00:00	\N	f	16	929
-3379	1	FP1	2015-09-25	\N	\N	f	1	930
-3380	2	FP2	2015-09-25	\N	\N	f	1	930
+3375	7	R	2015-09-27	05:00:00	\N	f	16	930
 3376	3	Q1	2015-09-26	\N	\N	f	1	930
 3377	4	Q2	2015-09-26	\N	\N	f	1	930
 3378	5	Q3	2015-09-26	\N	\N	f	1	930
+3379	1	FP1	2015-09-25	\N	\N	f	1	930
+3380	2	FP2	2015-09-25	\N	\N	f	1	930
 3381	6	FP3	2015-09-26	\N	\N	f	1	930
-3375	7	R	2015-09-27	05:00:00	\N	f	16	930
-3386	1	FP1	2015-10-09	\N	\N	f	1	931
-3387	2	FP2	2015-10-09	\N	\N	f	1	931
+3382	7	R	2015-10-11	11:00:00	\N	f	16	931
 3383	3	Q1	2015-10-10	\N	\N	f	1	931
 3384	4	Q2	2015-10-10	\N	\N	f	1	931
 3385	5	Q3	2015-10-10	\N	\N	f	1	931
+3386	1	FP1	2015-10-09	\N	\N	f	1	931
+3387	2	FP2	2015-10-09	\N	\N	f	1	931
 3388	6	FP3	2015-10-10	\N	\N	f	1	931
-3382	7	R	2015-10-11	11:00:00	\N	f	16	931
-3393	1	FP1	2015-10-23	\N	\N	f	1	932
-3394	2	FP2	2015-10-23	\N	\N	f	1	932
+3389	7	R	2015-10-25	19:00:00	\N	f	16	932
 3390	3	Q1	2015-10-24	\N	\N	f	1	932
 3391	4	Q2	2015-10-24	\N	\N	f	1	932
 3392	5	Q3	2015-10-24	\N	\N	f	1	932
+3393	1	FP1	2015-10-23	\N	\N	f	1	932
+3394	2	FP2	2015-10-23	\N	\N	f	1	932
 3395	6	FP3	2015-10-24	\N	\N	f	1	932
-3389	7	R	2015-10-25	19:00:00	\N	f	16	932
-3400	1	FP1	2015-10-30	\N	\N	f	1	933
-3401	2	FP2	2015-10-30	\N	\N	f	1	933
+3396	7	R	2015-11-01	19:00:00	\N	f	16	933
 3397	3	Q1	2015-10-31	\N	\N	f	1	933
 3398	4	Q2	2015-10-31	\N	\N	f	1	933
 3399	5	Q3	2015-10-31	\N	\N	f	1	933
+3400	1	FP1	2015-10-30	\N	\N	f	1	933
+3401	2	FP2	2015-10-30	\N	\N	f	1	933
 3402	6	FP3	2015-10-31	\N	\N	f	1	933
-3396	7	R	2015-11-01	19:00:00	\N	f	16	933
-3407	1	FP1	2015-11-13	\N	\N	f	1	934
-3408	2	FP2	2015-11-13	\N	\N	f	1	934
+3403	7	R	2015-11-15	16:00:00	\N	f	16	934
 3404	3	Q1	2015-11-14	\N	\N	f	1	934
 3405	4	Q2	2015-11-14	\N	\N	f	1	934
 3406	5	Q3	2015-11-14	\N	\N	f	1	934
+3407	1	FP1	2015-11-13	\N	\N	f	1	934
+3408	2	FP2	2015-11-13	\N	\N	f	1	934
 3409	6	FP3	2015-11-14	\N	\N	f	1	934
-3403	7	R	2015-11-15	16:00:00	\N	f	16	934
-3414	1	FP1	2015-11-27	\N	\N	f	1	935
-3415	2	FP2	2015-11-27	\N	\N	f	1	935
+3410	7	R	2015-11-29	13:00:00	\N	f	16	935
 3411	3	Q1	2015-11-28	\N	\N	f	1	935
 3412	4	Q2	2015-11-28	\N	\N	f	1	935
 3413	5	Q3	2015-11-28	\N	\N	f	1	935
+3414	1	FP1	2015-11-27	\N	\N	f	1	935
+3415	2	FP2	2015-11-27	\N	\N	f	1	935
 3416	6	FP3	2015-11-28	\N	\N	f	1	935
-3410	7	R	2015-11-29	13:00:00	\N	f	16	935
-3421	1	FP1	2016-03-18	\N	\N	f	1	936
-3422	2	FP2	2016-03-18	\N	\N	f	1	936
+3417	7	R	2016-03-20	05:00:00	\N	f	16	936
 3418	3	Q1	2016-03-19	\N	\N	f	1	936
 3419	4	Q2	2016-03-19	\N	\N	f	1	936
 3420	5	Q3	2016-03-19	\N	\N	f	1	936
+3421	1	FP1	2016-03-18	\N	\N	f	1	936
+3422	2	FP2	2016-03-18	\N	\N	f	1	936
 3423	6	FP3	2016-03-19	\N	\N	f	1	936
-3417	7	R	2016-03-20	05:00:00	\N	f	16	936
-3428	1	FP1	2016-04-01	\N	\N	f	1	937
-3429	2	FP2	2016-04-01	\N	\N	f	1	937
+3424	7	R	2016-04-03	15:00:00	\N	f	16	937
 3425	3	Q1	2016-04-02	\N	\N	f	1	937
 3426	4	Q2	2016-04-02	\N	\N	f	1	937
 3427	5	Q3	2016-04-02	\N	\N	f	1	937
+3428	1	FP1	2016-04-01	\N	\N	f	1	937
+3429	2	FP2	2016-04-01	\N	\N	f	1	937
 3430	6	FP3	2016-04-02	\N	\N	f	1	937
-3424	7	R	2016-04-03	15:00:00	\N	f	16	937
-3435	1	FP1	2016-04-15	\N	\N	f	1	938
-3436	2	FP2	2016-04-15	\N	\N	f	1	938
+3431	7	R	2016-04-17	06:00:00	\N	f	16	938
 3432	3	Q1	2016-04-16	\N	\N	f	1	938
 3433	4	Q2	2016-04-16	\N	\N	f	1	938
 3434	5	Q3	2016-04-16	\N	\N	f	1	938
+3435	1	FP1	2016-04-15	\N	\N	f	1	938
+3436	2	FP2	2016-04-15	\N	\N	f	1	938
 3437	6	FP3	2016-04-16	\N	\N	f	1	938
-3431	7	R	2016-04-17	06:00:00	\N	f	16	938
-3442	1	FP1	2016-04-29	\N	\N	f	1	939
-3443	2	FP2	2016-04-29	\N	\N	f	1	939
+3438	7	R	2016-05-01	12:00:00	\N	f	16	939
 3439	3	Q1	2016-04-30	\N	\N	f	1	939
 3440	4	Q2	2016-04-30	\N	\N	f	1	939
 3441	5	Q3	2016-04-30	\N	\N	f	1	939
+3442	1	FP1	2016-04-29	\N	\N	f	1	939
+3443	2	FP2	2016-04-29	\N	\N	f	1	939
 3444	6	FP3	2016-04-30	\N	\N	f	1	939
-3438	7	R	2016-05-01	12:00:00	\N	f	16	939
-3449	1	FP1	2016-05-13	\N	\N	f	1	940
-3450	2	FP2	2016-05-13	\N	\N	f	1	940
+3445	7	R	2016-05-15	12:00:00	\N	f	16	940
 3446	3	Q1	2016-05-14	\N	\N	f	1	940
 3447	4	Q2	2016-05-14	\N	\N	f	1	940
 3448	5	Q3	2016-05-14	\N	\N	f	1	940
+3449	1	FP1	2016-05-13	\N	\N	f	1	940
+3450	2	FP2	2016-05-13	\N	\N	f	1	940
 3451	6	FP3	2016-05-14	\N	\N	f	1	940
-3445	7	R	2016-05-15	12:00:00	\N	f	16	940
-3456	1	FP1	2016-05-26	\N	\N	f	1	941
-3457	2	FP2	2016-05-26	\N	\N	f	1	941
+3452	7	R	2016-05-29	12:00:00	\N	f	16	941
 3453	3	Q1	2016-05-28	\N	\N	f	1	941
 3454	4	Q2	2016-05-28	\N	\N	f	1	941
 3455	5	Q3	2016-05-28	\N	\N	f	1	941
+3456	1	FP1	2016-05-26	\N	\N	f	1	941
+3457	2	FP2	2016-05-26	\N	\N	f	1	941
 3458	6	FP3	2016-05-28	\N	\N	f	1	941
-3452	7	R	2016-05-29	12:00:00	\N	f	16	941
-3463	1	FP1	2016-06-10	\N	\N	f	1	942
-3464	2	FP2	2016-06-10	\N	\N	f	1	942
+3459	7	R	2016-06-12	18:00:00	\N	f	16	942
 3460	3	Q1	2016-06-11	\N	\N	f	1	942
 3461	4	Q2	2016-06-11	\N	\N	f	1	942
 3462	5	Q3	2016-06-11	\N	\N	f	1	942
+3463	1	FP1	2016-06-10	\N	\N	f	1	942
+3464	2	FP2	2016-06-10	\N	\N	f	1	942
 3465	6	FP3	2016-06-11	\N	\N	f	1	942
-3459	7	R	2016-06-12	18:00:00	\N	f	16	942
-3470	1	FP1	2016-06-17	\N	\N	f	1	943
-3471	2	FP2	2016-06-17	\N	\N	f	1	943
+3466	7	R	2016-06-19	13:00:00	\N	f	16	943
 3467	3	Q1	2016-06-18	\N	\N	f	1	943
 3468	4	Q2	2016-06-18	\N	\N	f	1	943
 3469	5	Q3	2016-06-18	\N	\N	f	1	943
+3470	1	FP1	2016-06-17	\N	\N	f	1	943
+3471	2	FP2	2016-06-17	\N	\N	f	1	943
 3472	6	FP3	2016-06-18	\N	\N	f	1	943
-3466	7	R	2016-06-19	13:00:00	\N	f	16	943
-3477	1	FP1	2016-07-01	\N	\N	f	1	944
-3478	2	FP2	2016-07-01	\N	\N	f	1	944
+3473	7	R	2016-07-03	12:00:00	\N	f	16	944
 3474	3	Q1	2016-07-02	\N	\N	f	1	944
 3475	4	Q2	2016-07-02	\N	\N	f	1	944
 3476	5	Q3	2016-07-02	\N	\N	f	1	944
+3477	1	FP1	2016-07-01	\N	\N	f	1	944
+3478	2	FP2	2016-07-01	\N	\N	f	1	944
 3479	6	FP3	2016-07-02	\N	\N	f	1	944
-3473	7	R	2016-07-03	12:00:00	\N	f	16	944
-3484	1	FP1	2016-07-08	\N	\N	f	1	945
-3485	2	FP2	2016-07-08	\N	\N	f	1	945
+3480	7	R	2016-07-10	12:00:00	\N	f	16	945
 3481	3	Q1	2016-07-09	\N	\N	f	1	945
 3482	4	Q2	2016-07-09	\N	\N	f	1	945
 3483	5	Q3	2016-07-09	\N	\N	f	1	945
+3484	1	FP1	2016-07-08	\N	\N	f	1	945
+3485	2	FP2	2016-07-08	\N	\N	f	1	945
 3486	6	FP3	2016-07-09	\N	\N	f	1	945
-3480	7	R	2016-07-10	12:00:00	\N	f	16	945
-3491	1	FP1	2016-07-22	\N	\N	f	1	946
-3492	2	FP2	2016-07-22	\N	\N	f	1	946
+3487	7	R	2016-07-24	12:00:00	\N	f	16	946
 3488	3	Q1	2016-07-23	\N	\N	f	1	946
 3489	4	Q2	2016-07-23	\N	\N	f	1	946
 3490	5	Q3	2016-07-23	\N	\N	f	1	946
+3491	1	FP1	2016-07-22	\N	\N	f	1	946
+3492	2	FP2	2016-07-22	\N	\N	f	1	946
 3493	6	FP3	2016-07-23	\N	\N	f	1	946
-3487	7	R	2016-07-24	12:00:00	\N	f	16	946
-3498	1	FP1	2016-07-29	\N	\N	f	1	947
-3499	2	FP2	2016-07-29	\N	\N	f	1	947
+3494	7	R	2016-07-31	12:00:00	\N	f	16	947
 3495	3	Q1	2016-07-30	\N	\N	f	1	947
 3496	4	Q2	2016-07-30	\N	\N	f	1	947
 3497	5	Q3	2016-07-30	\N	\N	f	1	947
+3498	1	FP1	2016-07-29	\N	\N	f	1	947
+3499	2	FP2	2016-07-29	\N	\N	f	1	947
 3500	6	FP3	2016-07-30	\N	\N	f	1	947
-3494	7	R	2016-07-31	12:00:00	\N	f	16	947
-3505	1	FP1	2016-08-26	\N	\N	f	1	948
-3506	2	FP2	2016-08-26	\N	\N	f	1	948
+3501	7	R	2016-08-28	12:00:00	\N	f	16	948
 3502	3	Q1	2016-08-27	\N	\N	f	1	948
 3503	4	Q2	2016-08-27	\N	\N	f	1	948
 3504	5	Q3	2016-08-27	\N	\N	f	1	948
+3505	1	FP1	2016-08-26	\N	\N	f	1	948
+3506	2	FP2	2016-08-26	\N	\N	f	1	948
 3507	6	FP3	2016-08-27	\N	\N	f	1	948
-3501	7	R	2016-08-28	12:00:00	\N	f	16	948
-3512	1	FP1	2016-09-02	\N	\N	f	1	949
-3513	2	FP2	2016-09-02	\N	\N	f	1	949
+3508	7	R	2016-09-04	12:00:00	\N	f	16	949
 3509	3	Q1	2016-09-03	\N	\N	f	1	949
 3510	4	Q2	2016-09-03	\N	\N	f	1	949
 3511	5	Q3	2016-09-03	\N	\N	f	1	949
+3512	1	FP1	2016-09-02	\N	\N	f	1	949
+3513	2	FP2	2016-09-02	\N	\N	f	1	949
 3514	6	FP3	2016-09-03	\N	\N	f	1	949
-3508	7	R	2016-09-04	12:00:00	\N	f	16	949
-3519	1	FP1	2016-09-16	\N	\N	f	1	950
-3520	2	FP2	2016-09-16	\N	\N	f	1	950
+3515	7	R	2016-09-18	12:00:00	\N	f	16	950
 3516	3	Q1	2016-09-17	\N	\N	f	1	950
 3517	4	Q2	2016-09-17	\N	\N	f	1	950
 3518	5	Q3	2016-09-17	\N	\N	f	1	950
+3519	1	FP1	2016-09-16	\N	\N	f	1	950
+3520	2	FP2	2016-09-16	\N	\N	f	1	950
 3521	6	FP3	2016-09-17	\N	\N	f	1	950
-3515	7	R	2016-09-18	12:00:00	\N	f	16	950
-3526	1	FP1	2016-09-30	\N	\N	f	1	951
-3527	2	FP2	2016-09-30	\N	\N	f	1	951
+3522	7	R	2016-10-02	07:00:00	\N	f	16	951
 3523	3	Q1	2016-10-01	\N	\N	f	1	951
 3524	4	Q2	2016-10-01	\N	\N	f	1	951
 3525	5	Q3	2016-10-01	\N	\N	f	1	951
+3526	1	FP1	2016-09-30	\N	\N	f	1	951
+3527	2	FP2	2016-09-30	\N	\N	f	1	951
 3528	6	FP3	2016-10-01	\N	\N	f	1	951
-3522	7	R	2016-10-02	07:00:00	\N	f	16	951
-3533	1	FP1	2016-10-07	\N	\N	f	1	952
-3534	2	FP2	2016-10-07	\N	\N	f	1	952
+3529	7	R	2016-10-09	05:00:00	\N	f	16	952
 3530	3	Q1	2016-10-08	\N	\N	f	1	952
 3531	4	Q2	2016-10-08	\N	\N	f	1	952
 3532	5	Q3	2016-10-08	\N	\N	f	1	952
+3533	1	FP1	2016-10-07	\N	\N	f	1	952
+3534	2	FP2	2016-10-07	\N	\N	f	1	952
 3535	6	FP3	2016-10-08	\N	\N	f	1	952
-3529	7	R	2016-10-09	05:00:00	\N	f	16	952
-3540	1	FP1	2016-10-21	\N	\N	f	1	953
-3541	2	FP2	2016-10-21	\N	\N	f	1	953
+3536	7	R	2016-10-23	19:00:00	\N	f	16	953
 3537	3	Q1	2016-10-22	\N	\N	f	1	953
 3538	4	Q2	2016-10-22	\N	\N	f	1	953
 3539	5	Q3	2016-10-22	\N	\N	f	1	953
+3540	1	FP1	2016-10-21	\N	\N	f	1	953
+3541	2	FP2	2016-10-21	\N	\N	f	1	953
 3542	6	FP3	2016-10-22	\N	\N	f	1	953
-3536	7	R	2016-10-23	19:00:00	\N	f	16	953
-3547	1	FP1	2016-10-28	\N	\N	f	1	954
-3548	2	FP2	2016-10-28	\N	\N	f	1	954
+3543	7	R	2016-10-30	19:00:00	\N	f	16	954
 3544	3	Q1	2016-10-29	\N	\N	f	1	954
 3545	4	Q2	2016-10-29	\N	\N	f	1	954
 3546	5	Q3	2016-10-29	\N	\N	f	1	954
+3547	1	FP1	2016-10-28	\N	\N	f	1	954
+3548	2	FP2	2016-10-28	\N	\N	f	1	954
 3549	6	FP3	2016-10-29	\N	\N	f	1	954
-3543	7	R	2016-10-30	19:00:00	\N	f	16	954
-3554	1	FP1	2016-11-11	\N	\N	f	1	955
-3555	2	FP2	2016-11-11	\N	\N	f	1	955
+3550	7	R	2016-11-13	16:00:00	\N	f	16	955
 3551	3	Q1	2016-11-12	\N	\N	f	1	955
 3552	4	Q2	2016-11-12	\N	\N	f	1	955
 3553	5	Q3	2016-11-12	\N	\N	f	1	955
+3554	1	FP1	2016-11-11	\N	\N	f	1	955
+3555	2	FP2	2016-11-11	\N	\N	f	1	955
 3556	6	FP3	2016-11-12	\N	\N	f	1	955
-3550	7	R	2016-11-13	16:00:00	\N	f	16	955
-3561	1	FP1	2016-11-25	\N	\N	f	1	956
-3562	2	FP2	2016-11-25	\N	\N	f	1	956
+3557	7	R	2016-11-27	13:00:00	\N	f	16	956
 3558	3	Q1	2016-11-26	\N	\N	f	1	956
 3559	4	Q2	2016-11-26	\N	\N	f	1	956
 3560	5	Q3	2016-11-26	\N	\N	f	1	956
+3561	1	FP1	2016-11-25	\N	\N	f	1	956
+3562	2	FP2	2016-11-25	\N	\N	f	1	956
 3563	6	FP3	2016-11-26	\N	\N	f	1	956
-3557	7	R	2016-11-27	13:00:00	\N	f	16	956
-3568	1	FP1	2017-03-24	\N	\N	f	1	957
-3569	2	FP2	2017-03-24	\N	\N	f	1	957
+3564	7	R	2017-03-26	05:00:00	\N	f	16	957
 3565	3	Q1	2017-03-25	\N	\N	f	1	957
 3566	4	Q2	2017-03-25	\N	\N	f	1	957
 3567	5	Q3	2017-03-25	\N	\N	f	1	957
+3568	1	FP1	2017-03-24	\N	\N	f	1	957
+3569	2	FP2	2017-03-24	\N	\N	f	1	957
 3570	6	FP3	2017-03-25	\N	\N	f	1	957
-3564	7	R	2017-03-26	05:00:00	\N	f	16	957
-3575	1	FP1	2017-04-07	\N	\N	f	1	958
-3576	2	FP2	2017-04-07	\N	\N	f	1	958
+3571	7	R	2017-04-09	06:00:00	\N	f	16	958
 3572	3	Q1	2017-04-08	\N	\N	f	1	958
 3573	4	Q2	2017-04-08	\N	\N	f	1	958
 3574	5	Q3	2017-04-08	\N	\N	f	1	958
+3575	1	FP1	2017-04-07	\N	\N	f	1	958
+3576	2	FP2	2017-04-07	\N	\N	f	1	958
 3577	6	FP3	2017-04-08	\N	\N	f	1	958
-3571	7	R	2017-04-09	06:00:00	\N	f	16	958
-3582	1	FP1	2017-04-14	\N	\N	f	1	959
-3583	2	FP2	2017-04-14	\N	\N	f	1	959
+3578	7	R	2017-04-16	15:00:00	\N	f	16	959
 3579	3	Q1	2017-04-15	\N	\N	f	1	959
 3580	4	Q2	2017-04-15	\N	\N	f	1	959
 3581	5	Q3	2017-04-15	\N	\N	f	1	959
+3582	1	FP1	2017-04-14	\N	\N	f	1	959
+3583	2	FP2	2017-04-14	\N	\N	f	1	959
 3584	6	FP3	2017-04-15	\N	\N	f	1	959
-3578	7	R	2017-04-16	15:00:00	\N	f	16	959
-3589	1	FP1	2017-04-28	\N	\N	f	1	960
-3590	2	FP2	2017-04-28	\N	\N	f	1	960
+3585	7	R	2017-04-30	12:00:00	\N	f	16	960
 3586	3	Q1	2017-04-29	\N	\N	f	1	960
 3587	4	Q2	2017-04-29	\N	\N	f	1	960
 3588	5	Q3	2017-04-29	\N	\N	f	1	960
+3589	1	FP1	2017-04-28	\N	\N	f	1	960
+3590	2	FP2	2017-04-28	\N	\N	f	1	960
 3591	6	FP3	2017-04-29	\N	\N	f	1	960
-3585	7	R	2017-04-30	12:00:00	\N	f	16	960
-3596	1	FP1	2017-05-12	\N	\N	f	1	961
-3597	2	FP2	2017-05-12	\N	\N	f	1	961
+3592	7	R	2017-05-14	12:00:00	\N	f	16	961
 3593	3	Q1	2017-05-13	\N	\N	f	1	961
 3594	4	Q2	2017-05-13	\N	\N	f	1	961
 3595	5	Q3	2017-05-13	\N	\N	f	1	961
+3596	1	FP1	2017-05-12	\N	\N	f	1	961
+3597	2	FP2	2017-05-12	\N	\N	f	1	961
 3598	6	FP3	2017-05-13	\N	\N	f	1	961
-3592	7	R	2017-05-14	12:00:00	\N	f	16	961
-3603	1	FP1	2017-05-25	\N	\N	f	1	962
-3604	2	FP2	2017-05-25	\N	\N	f	1	962
+3599	7	R	2017-05-28	12:00:00	\N	f	16	962
 3600	3	Q1	2017-05-27	\N	\N	f	1	962
 3601	4	Q2	2017-05-27	\N	\N	f	1	962
 3602	5	Q3	2017-05-27	\N	\N	f	1	962
+3603	1	FP1	2017-05-25	\N	\N	f	1	962
+3604	2	FP2	2017-05-25	\N	\N	f	1	962
 3605	6	FP3	2017-05-27	\N	\N	f	1	962
-3599	7	R	2017-05-28	12:00:00	\N	f	16	962
-3610	1	FP1	2017-06-09	\N	\N	f	1	963
-3611	2	FP2	2017-06-09	\N	\N	f	1	963
+3606	7	R	2017-06-11	18:00:00	\N	f	16	963
 3607	3	Q1	2017-06-10	\N	\N	f	1	963
 3608	4	Q2	2017-06-10	\N	\N	f	1	963
 3609	5	Q3	2017-06-10	\N	\N	f	1	963
+3610	1	FP1	2017-06-09	\N	\N	f	1	963
+3611	2	FP2	2017-06-09	\N	\N	f	1	963
 3612	6	FP3	2017-06-10	\N	\N	f	1	963
-3606	7	R	2017-06-11	18:00:00	\N	f	16	963
-3617	1	FP1	2017-06-23	\N	\N	f	1	964
-3618	2	FP2	2017-06-23	\N	\N	f	1	964
+3613	7	R	2017-06-25	13:00:00	\N	f	16	964
 3614	3	Q1	2017-06-24	\N	\N	f	1	964
 3615	4	Q2	2017-06-24	\N	\N	f	1	964
 3616	5	Q3	2017-06-24	\N	\N	f	1	964
+3617	1	FP1	2017-06-23	\N	\N	f	1	964
+3618	2	FP2	2017-06-23	\N	\N	f	1	964
 3619	6	FP3	2017-06-24	\N	\N	f	1	964
-3613	7	R	2017-06-25	13:00:00	\N	f	16	964
-3624	1	FP1	2017-07-07	\N	\N	f	1	965
-3625	2	FP2	2017-07-07	\N	\N	f	1	965
+3620	7	R	2017-07-09	12:00:00	\N	f	16	965
 3621	3	Q1	2017-07-08	\N	\N	f	1	965
 3622	4	Q2	2017-07-08	\N	\N	f	1	965
 3623	5	Q3	2017-07-08	\N	\N	f	1	965
+3624	1	FP1	2017-07-07	\N	\N	f	1	965
+3625	2	FP2	2017-07-07	\N	\N	f	1	965
 3626	6	FP3	2017-07-08	\N	\N	f	1	965
-3620	7	R	2017-07-09	12:00:00	\N	f	16	965
-3631	1	FP1	2017-07-14	\N	\N	f	1	966
-3632	2	FP2	2017-07-14	\N	\N	f	1	966
+3627	7	R	2017-07-16	12:00:00	\N	f	16	966
 3628	3	Q1	2017-07-15	\N	\N	f	1	966
 3629	4	Q2	2017-07-15	\N	\N	f	1	966
 3630	5	Q3	2017-07-15	\N	\N	f	1	966
+3631	1	FP1	2017-07-14	\N	\N	f	1	966
+3632	2	FP2	2017-07-14	\N	\N	f	1	966
 3633	6	FP3	2017-07-15	\N	\N	f	1	966
-3627	7	R	2017-07-16	12:00:00	\N	f	16	966
-3638	1	FP1	2017-07-28	\N	\N	f	1	967
-3639	2	FP2	2017-07-28	\N	\N	f	1	967
+3634	7	R	2017-07-30	12:00:00	\N	f	16	967
 3635	3	Q1	2017-07-29	\N	\N	f	1	967
 3636	4	Q2	2017-07-29	\N	\N	f	1	967
 3637	5	Q3	2017-07-29	\N	\N	f	1	967
+3638	1	FP1	2017-07-28	\N	\N	f	1	967
+3639	2	FP2	2017-07-28	\N	\N	f	1	967
 3640	6	FP3	2017-07-29	\N	\N	f	1	967
-3634	7	R	2017-07-30	12:00:00	\N	f	16	967
-3645	1	FP1	2017-08-25	\N	\N	f	1	968
-3646	2	FP2	2017-08-25	\N	\N	f	1	968
+3641	7	R	2017-08-27	12:00:00	\N	f	16	968
 3642	3	Q1	2017-08-26	\N	\N	f	1	968
 3643	4	Q2	2017-08-26	\N	\N	f	1	968
 3644	5	Q3	2017-08-26	\N	\N	f	1	968
+3645	1	FP1	2017-08-25	\N	\N	f	1	968
+3646	2	FP2	2017-08-25	\N	\N	f	1	968
 3647	6	FP3	2017-08-26	\N	\N	f	1	968
-3641	7	R	2017-08-27	12:00:00	\N	f	16	968
-3652	1	FP1	2017-09-01	\N	\N	f	1	969
-3653	2	FP2	2017-09-01	\N	\N	f	1	969
+3648	7	R	2017-09-03	12:00:00	\N	f	16	969
 3649	3	Q1	2017-09-02	\N	\N	f	1	969
 3650	4	Q2	2017-09-02	\N	\N	f	1	969
 3651	5	Q3	2017-09-02	\N	\N	f	1	969
+3652	1	FP1	2017-09-01	\N	\N	f	1	969
+3653	2	FP2	2017-09-01	\N	\N	f	1	969
 3654	6	FP3	2017-09-02	\N	\N	f	1	969
-3648	7	R	2017-09-03	12:00:00	\N	f	16	969
-3659	1	FP1	2017-09-15	\N	\N	f	1	970
-3660	2	FP2	2017-09-15	\N	\N	f	1	970
+3655	7	R	2017-09-17	12:00:00	\N	f	16	970
 3656	3	Q1	2017-09-16	\N	\N	f	1	970
 3657	4	Q2	2017-09-16	\N	\N	f	1	970
 3658	5	Q3	2017-09-16	\N	\N	f	1	970
+3659	1	FP1	2017-09-15	\N	\N	f	1	970
+3660	2	FP2	2017-09-15	\N	\N	f	1	970
 3661	6	FP3	2017-09-16	\N	\N	f	1	970
-3655	7	R	2017-09-17	12:00:00	\N	f	16	970
-3666	1	FP1	2017-09-29	\N	\N	f	1	971
-3667	2	FP2	2017-09-29	\N	\N	f	1	971
+3662	7	R	2017-10-01	07:00:00	\N	f	16	971
 3663	3	Q1	2017-09-30	\N	\N	f	1	971
 3664	4	Q2	2017-09-30	\N	\N	f	1	971
 3665	5	Q3	2017-09-30	\N	\N	f	1	971
+3666	1	FP1	2017-09-29	\N	\N	f	1	971
+3667	2	FP2	2017-09-29	\N	\N	f	1	971
 3668	6	FP3	2017-09-30	\N	\N	f	1	971
-3662	7	R	2017-10-01	07:00:00	\N	f	16	971
-3673	1	FP1	2017-10-06	\N	\N	f	1	972
-3674	2	FP2	2017-10-06	\N	\N	f	1	972
+3669	7	R	2017-10-08	05:00:00	\N	f	16	972
 3670	3	Q1	2017-10-07	\N	\N	f	1	972
 3671	4	Q2	2017-10-07	\N	\N	f	1	972
 3672	5	Q3	2017-10-07	\N	\N	f	1	972
+3673	1	FP1	2017-10-06	\N	\N	f	1	972
+3674	2	FP2	2017-10-06	\N	\N	f	1	972
 3675	6	FP3	2017-10-07	\N	\N	f	1	972
-3669	7	R	2017-10-08	05:00:00	\N	f	16	972
-3680	1	FP1	2017-10-20	\N	\N	f	1	973
-3681	2	FP2	2017-10-20	\N	\N	f	1	973
+3676	7	R	2017-10-22	19:00:00	\N	f	16	973
 3677	3	Q1	2017-10-21	\N	\N	f	1	973
 3678	4	Q2	2017-10-21	\N	\N	f	1	973
 3679	5	Q3	2017-10-21	\N	\N	f	1	973
+3680	1	FP1	2017-10-20	\N	\N	f	1	973
+3681	2	FP2	2017-10-20	\N	\N	f	1	973
 3682	6	FP3	2017-10-21	\N	\N	f	1	973
-3676	7	R	2017-10-22	19:00:00	\N	f	16	973
-3687	1	FP1	2017-10-27	\N	\N	f	1	974
-3688	2	FP2	2017-10-27	\N	\N	f	1	974
+3683	7	R	2017-10-29	19:00:00	\N	f	16	974
 3684	3	Q1	2017-10-28	\N	\N	f	1	974
 3685	4	Q2	2017-10-28	\N	\N	f	1	974
 3686	5	Q3	2017-10-28	\N	\N	f	1	974
+3687	1	FP1	2017-10-27	\N	\N	f	1	974
+3688	2	FP2	2017-10-27	\N	\N	f	1	974
 3689	6	FP3	2017-10-28	\N	\N	f	1	974
-3683	7	R	2017-10-29	19:00:00	\N	f	16	974
-3694	1	FP1	2017-11-10	\N	\N	f	1	975
-3695	2	FP2	2017-11-10	\N	\N	f	1	975
+3690	7	R	2017-11-12	16:00:00	\N	f	16	975
 3691	3	Q1	2017-11-11	\N	\N	f	1	975
 3692	4	Q2	2017-11-11	\N	\N	f	1	975
 3693	5	Q3	2017-11-11	\N	\N	f	1	975
+3694	1	FP1	2017-11-10	\N	\N	f	1	975
+3695	2	FP2	2017-11-10	\N	\N	f	1	975
 3696	6	FP3	2017-11-11	\N	\N	f	1	975
-3690	7	R	2017-11-12	16:00:00	\N	f	16	975
-3701	1	FP1	2017-11-24	\N	\N	f	1	976
-3702	2	FP2	2017-11-24	\N	\N	f	1	976
+3697	7	R	2017-11-26	13:00:00	\N	f	16	976
 3698	3	Q1	2017-11-25	\N	\N	f	1	976
 3699	4	Q2	2017-11-25	\N	\N	f	1	976
 3700	5	Q3	2017-11-25	\N	\N	f	1	976
+3701	1	FP1	2017-11-24	\N	\N	f	1	976
+3702	2	FP2	2017-11-24	\N	\N	f	1	976
 3703	6	FP3	2017-11-25	\N	\N	f	1	976
-3697	7	R	2017-11-26	13:00:00	\N	f	16	976
-3708	1	FP1	2018-03-23	\N	\N	f	1	977
-3709	2	FP2	2018-03-23	\N	\N	f	1	977
+3704	7	R	2018-03-25	05:10:00	\N	f	16	977
 3705	3	Q1	2018-03-24	\N	\N	f	1	977
 3706	4	Q2	2018-03-24	\N	\N	f	1	977
 3707	5	Q3	2018-03-24	\N	\N	f	1	977
+3708	1	FP1	2018-03-23	\N	\N	f	1	977
+3709	2	FP2	2018-03-23	\N	\N	f	1	977
 3710	6	FP3	2018-03-24	\N	\N	f	1	977
-3704	7	R	2018-03-25	05:10:00	\N	f	16	977
-3715	1	FP1	2018-04-06	\N	\N	f	1	978
-3716	2	FP2	2018-04-06	\N	\N	f	1	978
+3711	7	R	2018-04-08	15:10:00	\N	f	16	978
 3712	3	Q1	2018-04-07	\N	\N	f	1	978
 3713	4	Q2	2018-04-07	\N	\N	f	1	978
 3714	5	Q3	2018-04-07	\N	\N	f	1	978
+3715	1	FP1	2018-04-06	\N	\N	f	1	978
+3716	2	FP2	2018-04-06	\N	\N	f	1	978
 3717	6	FP3	2018-04-07	\N	\N	f	1	978
-3711	7	R	2018-04-08	15:10:00	\N	f	16	978
-3722	1	FP1	2018-04-13	\N	\N	f	1	979
-3723	2	FP2	2018-04-13	\N	\N	f	1	979
+3718	7	R	2018-04-15	06:10:00	\N	f	16	979
 3719	3	Q1	2018-04-14	\N	\N	f	1	979
 3720	4	Q2	2018-04-14	\N	\N	f	1	979
 3721	5	Q3	2018-04-14	\N	\N	f	1	979
+3722	1	FP1	2018-04-13	\N	\N	f	1	979
+3723	2	FP2	2018-04-13	\N	\N	f	1	979
 3724	6	FP3	2018-04-14	\N	\N	f	1	979
-3718	7	R	2018-04-15	06:10:00	\N	f	16	979
-3729	1	FP1	2018-04-27	\N	\N	f	1	980
-3730	2	FP2	2018-04-27	\N	\N	f	1	980
+3725	7	R	2018-04-29	12:10:00	\N	f	16	980
 3726	3	Q1	2018-04-28	\N	\N	f	1	980
 3727	4	Q2	2018-04-28	\N	\N	f	1	980
 3728	5	Q3	2018-04-28	\N	\N	f	1	980
+3729	1	FP1	2018-04-27	\N	\N	f	1	980
+3730	2	FP2	2018-04-27	\N	\N	f	1	980
 3731	6	FP3	2018-04-28	\N	\N	f	1	980
-3725	7	R	2018-04-29	12:10:00	\N	f	16	980
-3736	1	FP1	2018-05-11	\N	\N	f	1	981
-3737	2	FP2	2018-05-11	\N	\N	f	1	981
+3732	7	R	2018-05-13	13:10:00	\N	f	16	981
 3733	3	Q1	2018-05-12	\N	\N	f	1	981
 3734	4	Q2	2018-05-12	\N	\N	f	1	981
 3735	5	Q3	2018-05-12	\N	\N	f	1	981
+3736	1	FP1	2018-05-11	\N	\N	f	1	981
+3737	2	FP2	2018-05-11	\N	\N	f	1	981
 3738	6	FP3	2018-05-12	\N	\N	f	1	981
-3732	7	R	2018-05-13	13:10:00	\N	f	16	981
-3743	1	FP1	2018-05-24	\N	\N	f	1	982
-3744	2	FP2	2018-05-24	\N	\N	f	1	982
+3739	7	R	2018-05-27	13:10:00	\N	f	16	982
 3740	3	Q1	2018-05-26	\N	\N	f	1	982
 3741	4	Q2	2018-05-26	\N	\N	f	1	982
 3742	5	Q3	2018-05-26	\N	\N	f	1	982
+3743	1	FP1	2018-05-24	\N	\N	f	1	982
+3744	2	FP2	2018-05-24	\N	\N	f	1	982
 3745	6	FP3	2018-05-26	\N	\N	f	1	982
-3739	7	R	2018-05-27	13:10:00	\N	f	16	982
-3750	1	FP1	2018-06-08	\N	\N	f	1	983
-3751	2	FP2	2018-06-08	\N	\N	f	1	983
+3746	7	R	2018-06-10	18:10:00	\N	f	16	983
 3747	3	Q1	2018-06-09	\N	\N	f	1	983
 3748	4	Q2	2018-06-09	\N	\N	f	1	983
 3749	5	Q3	2018-06-09	\N	\N	f	1	983
+3750	1	FP1	2018-06-08	\N	\N	f	1	983
+3751	2	FP2	2018-06-08	\N	\N	f	1	983
 3752	6	FP3	2018-06-09	\N	\N	f	1	983
-3746	7	R	2018-06-10	18:10:00	\N	f	16	983
-3757	1	FP1	2018-06-22	\N	\N	f	1	984
-3758	2	FP2	2018-06-22	\N	\N	f	1	984
+3753	7	R	2018-06-24	14:10:00	\N	f	16	984
 3754	3	Q1	2018-06-23	\N	\N	f	1	984
 3755	4	Q2	2018-06-23	\N	\N	f	1	984
 3756	5	Q3	2018-06-23	\N	\N	f	1	984
+3757	1	FP1	2018-06-22	\N	\N	f	1	984
+3758	2	FP2	2018-06-22	\N	\N	f	1	984
 3759	6	FP3	2018-06-23	\N	\N	f	1	984
-3753	7	R	2018-06-24	14:10:00	\N	f	16	984
-3764	1	FP1	2018-06-29	\N	\N	f	1	985
-3765	2	FP2	2018-06-29	\N	\N	f	1	985
+3760	7	R	2018-07-01	13:10:00	\N	f	16	985
 3761	3	Q1	2018-06-30	\N	\N	f	1	985
 3762	4	Q2	2018-06-30	\N	\N	f	1	985
 3763	5	Q3	2018-06-30	\N	\N	f	1	985
+3764	1	FP1	2018-06-29	\N	\N	f	1	985
+3765	2	FP2	2018-06-29	\N	\N	f	1	985
 3766	6	FP3	2018-06-30	\N	\N	f	1	985
-3760	7	R	2018-07-01	13:10:00	\N	f	16	985
-3771	1	FP1	2018-07-06	\N	\N	f	1	986
-3772	2	FP2	2018-07-06	\N	\N	f	1	986
+3767	7	R	2018-07-08	13:10:00	\N	f	16	986
 3768	3	Q1	2018-07-07	\N	\N	f	1	986
 3769	4	Q2	2018-07-07	\N	\N	f	1	986
 3770	5	Q3	2018-07-07	\N	\N	f	1	986
+3771	1	FP1	2018-07-06	\N	\N	f	1	986
+3772	2	FP2	2018-07-06	\N	\N	f	1	986
 3773	6	FP3	2018-07-07	\N	\N	f	1	986
-3767	7	R	2018-07-08	13:10:00	\N	f	16	986
-3778	1	FP1	2018-07-20	\N	\N	f	1	987
-3779	2	FP2	2018-07-20	\N	\N	f	1	987
+3774	7	R	2018-07-22	13:10:00	\N	f	16	987
 3775	3	Q1	2018-07-21	\N	\N	f	1	987
 3776	4	Q2	2018-07-21	\N	\N	f	1	987
 3777	5	Q3	2018-07-21	\N	\N	f	1	987
+3778	1	FP1	2018-07-20	\N	\N	f	1	987
+3779	2	FP2	2018-07-20	\N	\N	f	1	987
 3780	6	FP3	2018-07-21	\N	\N	f	1	987
-3774	7	R	2018-07-22	13:10:00	\N	f	16	987
-3785	1	FP1	2018-07-27	\N	\N	f	1	988
-3786	2	FP2	2018-07-27	\N	\N	f	1	988
+3781	7	R	2018-07-29	13:10:00	\N	f	16	988
 3782	3	Q1	2018-07-28	\N	\N	f	1	988
 3783	4	Q2	2018-07-28	\N	\N	f	1	988
 3784	5	Q3	2018-07-28	\N	\N	f	1	988
+3785	1	FP1	2018-07-27	\N	\N	f	1	988
+3786	2	FP2	2018-07-27	\N	\N	f	1	988
 3787	6	FP3	2018-07-28	\N	\N	f	1	988
-3781	7	R	2018-07-29	13:10:00	\N	f	16	988
-3792	1	FP1	2018-08-24	\N	\N	f	1	989
-3793	2	FP2	2018-08-24	\N	\N	f	1	989
+3788	7	R	2018-08-26	13:10:00	\N	f	16	989
 3789	3	Q1	2018-08-25	\N	\N	f	1	989
 3790	4	Q2	2018-08-25	\N	\N	f	1	989
 3791	5	Q3	2018-08-25	\N	\N	f	1	989
+3792	1	FP1	2018-08-24	\N	\N	f	1	989
+3793	2	FP2	2018-08-24	\N	\N	f	1	989
 3794	6	FP3	2018-08-25	\N	\N	f	1	989
-3788	7	R	2018-08-26	13:10:00	\N	f	16	989
-3799	1	FP1	2018-08-31	\N	\N	f	1	990
-3800	2	FP2	2018-08-31	\N	\N	f	1	990
+3795	7	R	2018-09-02	13:10:00	\N	f	16	990
 3796	3	Q1	2018-09-01	\N	\N	f	1	990
 3797	4	Q2	2018-09-01	\N	\N	f	1	990
 3798	5	Q3	2018-09-01	\N	\N	f	1	990
+3799	1	FP1	2018-08-31	\N	\N	f	1	990
+3800	2	FP2	2018-08-31	\N	\N	f	1	990
 3801	6	FP3	2018-09-01	\N	\N	f	1	990
-3795	7	R	2018-09-02	13:10:00	\N	f	16	990
-3806	1	FP1	2018-09-14	\N	\N	f	1	991
-3807	2	FP2	2018-09-14	\N	\N	f	1	991
+3802	7	R	2018-09-16	12:10:00	\N	f	16	991
 3803	3	Q1	2018-09-15	\N	\N	f	1	991
 3804	4	Q2	2018-09-15	\N	\N	f	1	991
 3805	5	Q3	2018-09-15	\N	\N	f	1	991
+3806	1	FP1	2018-09-14	\N	\N	f	1	991
+3807	2	FP2	2018-09-14	\N	\N	f	1	991
 3808	6	FP3	2018-09-15	\N	\N	f	1	991
-3802	7	R	2018-09-16	12:10:00	\N	f	16	991
-3813	1	FP1	2018-09-28	\N	\N	f	1	992
-3814	2	FP2	2018-09-28	\N	\N	f	1	992
+3809	7	R	2018-09-30	11:10:00	\N	f	16	992
 3810	3	Q1	2018-09-29	\N	\N	f	1	992
 3811	4	Q2	2018-09-29	\N	\N	f	1	992
 3812	5	Q3	2018-09-29	\N	\N	f	1	992
+3813	1	FP1	2018-09-28	\N	\N	f	1	992
+3814	2	FP2	2018-09-28	\N	\N	f	1	992
 3815	6	FP3	2018-09-29	\N	\N	f	1	992
-3809	7	R	2018-09-30	11:10:00	\N	f	16	992
-3820	1	FP1	2018-10-05	\N	\N	f	1	993
-3821	2	FP2	2018-10-05	\N	\N	f	1	993
+3816	7	R	2018-10-07	05:10:00	\N	f	16	993
 3817	3	Q1	2018-10-06	\N	\N	f	1	993
 3818	4	Q2	2018-10-06	\N	\N	f	1	993
 3819	5	Q3	2018-10-06	\N	\N	f	1	993
+3820	1	FP1	2018-10-05	\N	\N	f	1	993
+3821	2	FP2	2018-10-05	\N	\N	f	1	993
 3822	6	FP3	2018-10-06	\N	\N	f	1	993
-3816	7	R	2018-10-07	05:10:00	\N	f	16	993
-3827	1	FP1	2018-10-19	\N	\N	f	1	994
-3828	2	FP2	2018-10-19	\N	\N	f	1	994
+3823	7	R	2018-10-21	18:10:00	\N	f	16	994
 3824	3	Q1	2018-10-20	\N	\N	f	1	994
 3825	4	Q2	2018-10-20	\N	\N	f	1	994
 3826	5	Q3	2018-10-20	\N	\N	f	1	994
+3827	1	FP1	2018-10-19	\N	\N	f	1	994
+3828	2	FP2	2018-10-19	\N	\N	f	1	994
 3829	6	FP3	2018-10-20	\N	\N	f	1	994
-3823	7	R	2018-10-21	18:10:00	\N	f	16	994
-3834	1	FP1	2018-10-26	\N	\N	f	1	995
-3835	2	FP2	2018-10-26	\N	\N	f	1	995
+3830	7	R	2018-10-28	19:10:00	\N	f	16	995
 3831	3	Q1	2018-10-27	\N	\N	f	1	995
 3832	4	Q2	2018-10-27	\N	\N	f	1	995
 3833	5	Q3	2018-10-27	\N	\N	f	1	995
+3834	1	FP1	2018-10-26	\N	\N	f	1	995
+3835	2	FP2	2018-10-26	\N	\N	f	1	995
 3836	6	FP3	2018-10-27	\N	\N	f	1	995
-3830	7	R	2018-10-28	19:10:00	\N	f	16	995
-3841	1	FP1	2018-11-09	\N	\N	f	1	996
-3842	2	FP2	2018-11-09	\N	\N	f	1	996
+3837	7	R	2018-11-11	17:10:00	\N	f	16	996
 3838	3	Q1	2018-11-10	\N	\N	f	1	996
 3839	4	Q2	2018-11-10	\N	\N	f	1	996
 3840	5	Q3	2018-11-10	\N	\N	f	1	996
+3841	1	FP1	2018-11-09	\N	\N	f	1	996
+3842	2	FP2	2018-11-09	\N	\N	f	1	996
 3843	6	FP3	2018-11-10	\N	\N	f	1	996
-3837	7	R	2018-11-11	17:10:00	\N	f	16	996
-3848	1	FP1	2018-11-23	\N	\N	f	1	997
-3849	2	FP2	2018-11-23	\N	\N	f	1	997
+3844	7	R	2018-11-25	13:10:00	\N	f	16	997
 3845	3	Q1	2018-11-24	\N	\N	f	1	997
 3846	4	Q2	2018-11-24	\N	\N	f	1	997
 3847	5	Q3	2018-11-24	\N	\N	f	1	997
+3848	1	FP1	2018-11-23	\N	\N	f	1	997
+3849	2	FP2	2018-11-23	\N	\N	f	1	997
 3850	6	FP3	2018-11-24	\N	\N	f	1	997
-3844	7	R	2018-11-25	13:10:00	\N	f	16	997
-3855	1	FP1	2019-03-15	\N	\N	f	1	998
-3856	2	FP2	2019-03-15	\N	\N	f	1	998
+3851	7	R	2019-03-17	05:10:00	\N	f	18	998
 3852	3	Q1	2019-03-16	\N	\N	f	1	998
 3853	4	Q2	2019-03-16	\N	\N	f	1	998
 3854	5	Q3	2019-03-16	\N	\N	f	1	998
+3855	1	FP1	2019-03-15	\N	\N	f	1	998
+3856	2	FP2	2019-03-15	\N	\N	f	1	998
 3857	6	FP3	2019-03-16	\N	\N	f	1	998
-3851	7	R	2019-03-17	05:10:00	\N	f	18	998
-3862	1	FP1	2019-03-29	\N	\N	f	1	999
-3863	2	FP2	2019-03-29	\N	\N	f	1	999
+3858	7	R	2019-03-31	15:10:00	\N	f	18	999
 3859	3	Q1	2019-03-30	\N	\N	f	1	999
 3860	4	Q2	2019-03-30	\N	\N	f	1	999
 3861	5	Q3	2019-03-30	\N	\N	f	1	999
+3862	1	FP1	2019-03-29	\N	\N	f	1	999
+3863	2	FP2	2019-03-29	\N	\N	f	1	999
 3864	6	FP3	2019-03-30	\N	\N	f	1	999
-3858	7	R	2019-03-31	15:10:00	\N	f	18	999
-3869	1	FP1	2019-04-12	\N	\N	f	1	1000
-3870	2	FP2	2019-04-12	\N	\N	f	1	1000
+3865	7	R	2019-04-14	06:10:00	\N	f	18	1000
 3866	3	Q1	2019-04-13	\N	\N	f	1	1000
 3867	4	Q2	2019-04-13	\N	\N	f	1	1000
 3868	5	Q3	2019-04-13	\N	\N	f	1	1000
+3869	1	FP1	2019-04-12	\N	\N	f	1	1000
+3870	2	FP2	2019-04-12	\N	\N	f	1	1000
 3871	6	FP3	2019-04-13	\N	\N	f	1	1000
-3865	7	R	2019-04-14	06:10:00	\N	f	18	1000
-3876	1	FP1	2019-04-26	\N	\N	f	1	1001
-3877	2	FP2	2019-04-26	\N	\N	f	1	1001
+3872	7	R	2019-04-28	12:10:00	\N	f	18	1001
 3873	3	Q1	2019-04-27	\N	\N	f	1	1001
 3874	4	Q2	2019-04-27	\N	\N	f	1	1001
 3875	5	Q3	2019-04-27	\N	\N	f	1	1001
+3876	1	FP1	2019-04-26	\N	\N	f	1	1001
+3877	2	FP2	2019-04-26	\N	\N	f	1	1001
 3878	6	FP3	2019-04-27	\N	\N	f	1	1001
-3872	7	R	2019-04-28	12:10:00	\N	f	18	1001
-3883	1	FP1	2019-05-10	\N	\N	f	1	1002
-3884	2	FP2	2019-05-10	\N	\N	f	1	1002
+3879	7	R	2019-05-12	13:10:00	\N	f	18	1002
 3880	3	Q1	2019-05-11	\N	\N	f	1	1002
 3881	4	Q2	2019-05-11	\N	\N	f	1	1002
 3882	5	Q3	2019-05-11	\N	\N	f	1	1002
+3883	1	FP1	2019-05-10	\N	\N	f	1	1002
+3884	2	FP2	2019-05-10	\N	\N	f	1	1002
 3885	6	FP3	2019-05-11	\N	\N	f	1	1002
-3879	7	R	2019-05-12	13:10:00	\N	f	18	1002
-3890	1	FP1	2019-05-23	\N	\N	f	1	1003
-3891	2	FP2	2019-05-23	\N	\N	f	1	1003
+3886	7	R	2019-05-26	13:10:00	\N	f	18	1003
 3887	3	Q1	2019-05-25	\N	\N	f	1	1003
 3888	4	Q2	2019-05-25	\N	\N	f	1	1003
 3889	5	Q3	2019-05-25	\N	\N	f	1	1003
+3890	1	FP1	2019-05-23	\N	\N	f	1	1003
+3891	2	FP2	2019-05-23	\N	\N	f	1	1003
 3892	6	FP3	2019-05-25	\N	\N	f	1	1003
-3886	7	R	2019-05-26	13:10:00	\N	f	18	1003
-3897	1	FP1	2019-06-07	\N	\N	f	1	1004
-3898	2	FP2	2019-06-07	\N	\N	f	1	1004
+3893	7	R	2019-06-09	18:10:00	\N	f	18	1004
 3894	3	Q1	2019-06-08	\N	\N	f	1	1004
 3895	4	Q2	2019-06-08	\N	\N	f	1	1004
 3896	5	Q3	2019-06-08	\N	\N	f	1	1004
+3897	1	FP1	2019-06-07	\N	\N	f	1	1004
+3898	2	FP2	2019-06-07	\N	\N	f	1	1004
 3899	6	FP3	2019-06-08	\N	\N	f	1	1004
-3893	7	R	2019-06-09	18:10:00	\N	f	18	1004
-3904	1	FP1	2019-06-21	\N	\N	f	1	1005
-3905	2	FP2	2019-06-21	\N	\N	f	1	1005
+3900	7	R	2019-06-23	13:10:00	\N	f	18	1005
 3901	3	Q1	2019-06-22	\N	\N	f	1	1005
 3902	4	Q2	2019-06-22	\N	\N	f	1	1005
 3903	5	Q3	2019-06-22	\N	\N	f	1	1005
+3904	1	FP1	2019-06-21	\N	\N	f	1	1005
+3905	2	FP2	2019-06-21	\N	\N	f	1	1005
 3906	6	FP3	2019-06-22	\N	\N	f	1	1005
-3900	7	R	2019-06-23	13:10:00	\N	f	18	1005
-3911	1	FP1	2019-06-28	\N	\N	f	1	1006
-3912	2	FP2	2019-06-28	\N	\N	f	1	1006
+3907	7	R	2019-06-30	13:10:00	\N	f	18	1006
 3908	3	Q1	2019-06-29	\N	\N	f	1	1006
 3909	4	Q2	2019-06-29	\N	\N	f	1	1006
 3910	5	Q3	2019-06-29	\N	\N	f	1	1006
+3911	1	FP1	2019-06-28	\N	\N	f	1	1006
+3912	2	FP2	2019-06-28	\N	\N	f	1	1006
 3913	6	FP3	2019-06-29	\N	\N	f	1	1006
-3907	7	R	2019-06-30	13:10:00	\N	f	18	1006
-3918	1	FP1	2019-07-12	\N	\N	f	1	1007
-3919	2	FP2	2019-07-12	\N	\N	f	1	1007
+3914	7	R	2019-07-14	13:10:00	\N	f	18	1007
 3915	3	Q1	2019-07-13	\N	\N	f	1	1007
 3916	4	Q2	2019-07-13	\N	\N	f	1	1007
 3917	5	Q3	2019-07-13	\N	\N	f	1	1007
+3918	1	FP1	2019-07-12	\N	\N	f	1	1007
+3919	2	FP2	2019-07-12	\N	\N	f	1	1007
 3920	6	FP3	2019-07-13	\N	\N	f	1	1007
-3914	7	R	2019-07-14	13:10:00	\N	f	18	1007
-3925	1	FP1	2019-07-26	\N	\N	f	1	1008
-3926	2	FP2	2019-07-26	\N	\N	f	1	1008
+3921	7	R	2019-07-28	13:10:00	\N	f	18	1008
 3922	3	Q1	2019-07-27	\N	\N	f	1	1008
 3923	4	Q2	2019-07-27	\N	\N	f	1	1008
 3924	5	Q3	2019-07-27	\N	\N	f	1	1008
+3925	1	FP1	2019-07-26	\N	\N	f	1	1008
+3926	2	FP2	2019-07-26	\N	\N	f	1	1008
 3927	6	FP3	2019-07-27	\N	\N	f	1	1008
-3921	7	R	2019-07-28	13:10:00	\N	f	18	1008
-3932	1	FP1	2019-08-02	\N	\N	f	1	1009
-3933	2	FP2	2019-08-02	\N	\N	f	1	1009
+3928	7	R	2019-08-04	13:10:00	\N	f	18	1009
 3929	3	Q1	2019-08-03	\N	\N	f	1	1009
 3930	4	Q2	2019-08-03	\N	\N	f	1	1009
 3931	5	Q3	2019-08-03	\N	\N	f	1	1009
+3932	1	FP1	2019-08-02	\N	\N	f	1	1009
+3933	2	FP2	2019-08-02	\N	\N	f	1	1009
 3934	6	FP3	2019-08-03	\N	\N	f	1	1009
-3928	7	R	2019-08-04	13:10:00	\N	f	18	1009
-3939	1	FP1	2019-08-30	\N	\N	f	1	1010
-3940	2	FP2	2019-08-30	\N	\N	f	1	1010
+3935	7	R	2019-09-01	13:10:00	\N	f	18	1010
 3936	3	Q1	2019-08-31	\N	\N	f	1	1010
 3937	4	Q2	2019-08-31	\N	\N	f	1	1010
 3938	5	Q3	2019-08-31	\N	\N	f	1	1010
+3939	1	FP1	2019-08-30	\N	\N	f	1	1010
+3940	2	FP2	2019-08-30	\N	\N	f	1	1010
 3941	6	FP3	2019-08-31	\N	\N	f	1	1010
-3935	7	R	2019-09-01	13:10:00	\N	f	18	1010
-3946	1	FP1	2019-09-06	\N	\N	f	1	1011
-3947	2	FP2	2019-09-06	\N	\N	f	1	1011
+3942	7	R	2019-09-08	13:10:00	\N	f	18	1011
 3943	3	Q1	2019-09-07	\N	\N	f	1	1011
 3944	4	Q2	2019-09-07	\N	\N	f	1	1011
 3945	5	Q3	2019-09-07	\N	\N	f	1	1011
+3946	1	FP1	2019-09-06	\N	\N	f	1	1011
+3947	2	FP2	2019-09-06	\N	\N	f	1	1011
 3948	6	FP3	2019-09-07	\N	\N	f	1	1011
-3942	7	R	2019-09-08	13:10:00	\N	f	18	1011
-3953	1	FP1	2019-09-20	\N	\N	f	1	1012
-3954	2	FP2	2019-09-20	\N	\N	f	1	1012
+3949	7	R	2019-09-22	12:10:00	\N	f	18	1012
 3950	3	Q1	2019-09-21	\N	\N	f	1	1012
 3951	4	Q2	2019-09-21	\N	\N	f	1	1012
 3952	5	Q3	2019-09-21	\N	\N	f	1	1012
+3953	1	FP1	2019-09-20	\N	\N	f	1	1012
+3954	2	FP2	2019-09-20	\N	\N	f	1	1012
 3955	6	FP3	2019-09-21	\N	\N	f	1	1012
-3949	7	R	2019-09-22	12:10:00	\N	f	18	1012
-3960	1	FP1	2019-09-27	\N	\N	f	1	1013
-3961	2	FP2	2019-09-27	\N	\N	f	1	1013
+3956	7	R	2019-09-29	11:10:00	\N	f	18	1013
 3957	3	Q1	2019-09-28	\N	\N	f	1	1013
 3958	4	Q2	2019-09-28	\N	\N	f	1	1013
 3959	5	Q3	2019-09-28	\N	\N	f	1	1013
+3960	1	FP1	2019-09-27	\N	\N	f	1	1013
+3961	2	FP2	2019-09-27	\N	\N	f	1	1013
 3962	6	FP3	2019-09-28	\N	\N	f	1	1013
-3956	7	R	2019-09-29	11:10:00	\N	f	18	1013
-3967	1	FP1	2019-10-11	\N	\N	f	1	1014
-3968	2	FP2	2019-10-11	\N	\N	f	1	1014
+3963	7	R	2019-10-13	05:10:00	\N	f	18	1014
 3964	3	Q1	2019-10-12	\N	\N	f	1	1014
 3965	4	Q2	2019-10-12	\N	\N	f	1	1014
 3966	5	Q3	2019-10-12	\N	\N	f	1	1014
+3967	1	FP1	2019-10-11	\N	\N	f	1	1014
+3968	2	FP2	2019-10-11	\N	\N	f	1	1014
 3969	6	FP3	2019-10-12	\N	\N	f	1	1014
-3963	7	R	2019-10-13	05:10:00	\N	f	18	1014
-3974	1	FP1	2019-10-25	\N	\N	f	1	1015
-3975	2	FP2	2019-10-25	\N	\N	f	1	1015
+3970	7	R	2019-10-27	19:10:00	\N	f	18	1015
 3971	3	Q1	2019-10-26	\N	\N	f	1	1015
 3972	4	Q2	2019-10-26	\N	\N	f	1	1015
 3973	5	Q3	2019-10-26	\N	\N	f	1	1015
+3974	1	FP1	2019-10-25	\N	\N	f	1	1015
+3975	2	FP2	2019-10-25	\N	\N	f	1	1015
 3976	6	FP3	2019-10-26	\N	\N	f	1	1015
-3970	7	R	2019-10-27	19:10:00	\N	f	18	1015
-3981	1	FP1	2019-11-01	\N	\N	f	1	1016
-3982	2	FP2	2019-11-01	\N	\N	f	1	1016
+3977	7	R	2019-11-03	19:10:00	\N	f	18	1016
 3978	3	Q1	2019-11-02	\N	\N	f	1	1016
 3979	4	Q2	2019-11-02	\N	\N	f	1	1016
 3980	5	Q3	2019-11-02	\N	\N	f	1	1016
+3981	1	FP1	2019-11-01	\N	\N	f	1	1016
+3982	2	FP2	2019-11-01	\N	\N	f	1	1016
 3983	6	FP3	2019-11-02	\N	\N	f	1	1016
-3977	7	R	2019-11-03	19:10:00	\N	f	18	1016
-3988	1	FP1	2019-11-15	\N	\N	f	1	1017
-3989	2	FP2	2019-11-15	\N	\N	f	1	1017
+3984	7	R	2019-11-17	17:10:00	\N	f	18	1017
 3985	3	Q1	2019-11-16	\N	\N	f	1	1017
 3986	4	Q2	2019-11-16	\N	\N	f	1	1017
 3987	5	Q3	2019-11-16	\N	\N	f	1	1017
+3988	1	FP1	2019-11-15	\N	\N	f	1	1017
+3989	2	FP2	2019-11-15	\N	\N	f	1	1017
 3990	6	FP3	2019-11-16	\N	\N	f	1	1017
-3984	7	R	2019-11-17	17:10:00	\N	f	18	1017
-3995	1	FP1	2019-11-29	\N	\N	f	1	1018
-3996	2	FP2	2019-11-29	\N	\N	f	1	1018
+3991	7	R	2019-12-01	13:10:00	\N	f	18	1018
 3992	3	Q1	2019-11-30	\N	\N	f	1	1018
 3993	4	Q2	2019-11-30	\N	\N	f	1	1018
 3994	5	Q3	2019-11-30	\N	\N	f	1	1018
+3995	1	FP1	2019-11-29	\N	\N	f	1	1018
+3996	2	FP2	2019-11-29	\N	\N	f	1	1018
 3997	6	FP3	2019-11-30	\N	\N	f	1	1018
-3991	7	R	2019-12-01	13:10:00	\N	f	18	1018
-4002	1	FP1	2020-07-03	\N	\N	f	1	1019
-4003	2	FP2	2020-07-03	\N	\N	f	1	1019
+3998	7	R	2020-07-05	13:10:00	\N	f	18	1019
 3999	3	Q1	2020-07-04	\N	\N	f	1	1019
 4000	4	Q2	2020-07-04	\N	\N	f	1	1019
 4001	5	Q3	2020-07-04	\N	\N	f	1	1019
+4002	1	FP1	2020-07-03	\N	\N	f	1	1019
+4003	2	FP2	2020-07-03	\N	\N	f	1	1019
 4004	6	FP3	2020-07-04	\N	\N	f	1	1019
-3998	7	R	2020-07-05	13:10:00	\N	f	18	1019
-4009	1	FP1	2020-07-10	\N	\N	f	1	1020
-4010	2	FP2	2020-07-10	\N	\N	f	1	1020
+4005	7	R	2020-07-12	13:10:00	\N	f	18	1020
 4006	3	Q1	2020-07-11	\N	\N	f	1	1020
 4007	4	Q2	2020-07-11	\N	\N	f	1	1020
 4008	5	Q3	2020-07-11	\N	\N	f	1	1020
+4009	1	FP1	2020-07-10	\N	\N	f	1	1020
+4010	2	FP2	2020-07-10	\N	\N	f	1	1020
 4011	6	FP3	2020-07-11	\N	\N	f	1	1020
-4005	7	R	2020-07-12	13:10:00	\N	f	18	1020
-4016	1	FP1	2020-07-17	\N	\N	f	1	1021
-4017	2	FP2	2020-07-17	\N	\N	f	1	1021
+4012	7	R	2020-07-19	13:10:00	\N	f	18	1021
 4013	3	Q1	2020-07-18	\N	\N	f	1	1021
 4014	4	Q2	2020-07-18	\N	\N	f	1	1021
 4015	5	Q3	2020-07-18	\N	\N	f	1	1021
+4016	1	FP1	2020-07-17	\N	\N	f	1	1021
+4017	2	FP2	2020-07-17	\N	\N	f	1	1021
 4018	6	FP3	2020-07-18	\N	\N	f	1	1021
-4012	7	R	2020-07-19	13:10:00	\N	f	18	1021
-4023	1	FP1	2020-07-31	\N	\N	f	1	1022
-4024	2	FP2	2020-07-31	\N	\N	f	1	1022
+4019	7	R	2020-08-02	13:10:00	\N	f	18	1022
 4020	3	Q1	2020-08-01	\N	\N	f	1	1022
 4021	4	Q2	2020-08-01	\N	\N	f	1	1022
 4022	5	Q3	2020-08-01	\N	\N	f	1	1022
+4023	1	FP1	2020-07-31	\N	\N	f	1	1022
+4024	2	FP2	2020-07-31	\N	\N	f	1	1022
 4025	6	FP3	2020-08-01	\N	\N	f	1	1022
-4019	7	R	2020-08-02	13:10:00	\N	f	18	1022
-4030	1	FP1	2020-08-07	\N	\N	f	1	1023
-4031	2	FP2	2020-08-07	\N	\N	f	1	1023
+4026	7	R	2020-08-09	13:10:00	\N	f	18	1023
 4027	3	Q1	2020-08-08	\N	\N	f	1	1023
 4028	4	Q2	2020-08-08	\N	\N	f	1	1023
 4029	5	Q3	2020-08-08	\N	\N	f	1	1023
+4030	1	FP1	2020-08-07	\N	\N	f	1	1023
+4031	2	FP2	2020-08-07	\N	\N	f	1	1023
 4032	6	FP3	2020-08-08	\N	\N	f	1	1023
-4026	7	R	2020-08-09	13:10:00	\N	f	18	1023
-4037	1	FP1	2020-08-14	\N	\N	f	1	1024
-4038	2	FP2	2020-08-14	\N	\N	f	1	1024
+4033	7	R	2020-08-16	13:10:00	\N	f	18	1024
 4034	3	Q1	2020-08-15	\N	\N	f	1	1024
 4035	4	Q2	2020-08-15	\N	\N	f	1	1024
 4036	5	Q3	2020-08-15	\N	\N	f	1	1024
+4037	1	FP1	2020-08-14	\N	\N	f	1	1024
+4038	2	FP2	2020-08-14	\N	\N	f	1	1024
 4039	6	FP3	2020-08-15	\N	\N	f	1	1024
-4033	7	R	2020-08-16	13:10:00	\N	f	18	1024
-4044	1	FP1	2020-08-28	\N	\N	f	1	1025
-4045	2	FP2	2020-08-28	\N	\N	f	1	1025
+4040	7	R	2020-08-30	13:10:00	\N	f	18	1025
 4041	3	Q1	2020-08-29	\N	\N	f	1	1025
 4042	4	Q2	2020-08-29	\N	\N	f	1	1025
 4043	5	Q3	2020-08-29	\N	\N	f	1	1025
+4044	1	FP1	2020-08-28	\N	\N	f	1	1025
+4045	2	FP2	2020-08-28	\N	\N	f	1	1025
 4046	6	FP3	2020-08-29	\N	\N	f	1	1025
-4040	7	R	2020-08-30	13:10:00	\N	f	18	1025
-4051	1	FP1	2020-09-04	\N	\N	f	1	1026
-4052	2	FP2	2020-09-04	\N	\N	f	1	1026
+4047	7	R	2020-09-06	13:10:00	\N	f	18	1026
 4048	3	Q1	2020-09-05	\N	\N	f	1	1026
 4049	4	Q2	2020-09-05	\N	\N	f	1	1026
 4050	5	Q3	2020-09-05	\N	\N	f	1	1026
+4051	1	FP1	2020-09-04	\N	\N	f	1	1026
+4052	2	FP2	2020-09-04	\N	\N	f	1	1026
 4053	6	FP3	2020-09-05	\N	\N	f	1	1026
-4047	7	R	2020-09-06	13:10:00	\N	f	18	1026
-4058	1	FP1	2020-09-11	\N	\N	f	1	1027
-4059	2	FP2	2020-09-11	\N	\N	f	1	1027
+4054	7	R	2020-09-13	13:10:00	\N	f	18	1027
 4055	3	Q1	2020-09-12	\N	\N	f	1	1027
 4056	4	Q2	2020-09-12	\N	\N	f	1	1027
 4057	5	Q3	2020-09-12	\N	\N	f	1	1027
+4058	1	FP1	2020-09-11	\N	\N	f	1	1027
+4059	2	FP2	2020-09-11	\N	\N	f	1	1027
 4060	6	FP3	2020-09-12	\N	\N	f	1	1027
-4054	7	R	2020-09-13	13:10:00	\N	f	18	1027
-4065	1	FP1	2020-09-25	\N	\N	f	1	1028
-4066	2	FP2	2020-09-25	\N	\N	f	1	1028
+4061	7	R	2020-09-27	11:10:00	\N	f	18	1028
 4062	3	Q1	2020-09-26	\N	\N	f	1	1028
 4063	4	Q2	2020-09-26	\N	\N	f	1	1028
 4064	5	Q3	2020-09-26	\N	\N	f	1	1028
+4065	1	FP1	2020-09-25	\N	\N	f	1	1028
+4066	2	FP2	2020-09-25	\N	\N	f	1	1028
 4067	6	FP3	2020-09-26	\N	\N	f	1	1028
-4061	7	R	2020-09-27	11:10:00	\N	f	18	1028
-4072	1	FP1	2020-10-09	\N	\N	f	1	1029
-4073	2	FP2	2020-10-09	\N	\N	f	1	1029
+4068	7	R	2020-10-11	13:10:00	\N	f	18	1029
 4069	3	Q1	2020-10-10	\N	\N	f	1	1029
 4070	4	Q2	2020-10-10	\N	\N	f	1	1029
 4071	5	Q3	2020-10-10	\N	\N	f	1	1029
+4072	1	FP1	2020-10-09	\N	\N	f	1	1029
+4073	2	FP2	2020-10-09	\N	\N	f	1	1029
 4074	6	FP3	2020-10-10	\N	\N	f	1	1029
-4068	7	R	2020-10-11	13:10:00	\N	f	18	1029
-4079	1	FP1	2020-10-23	\N	\N	f	1	1030
-4080	2	FP2	2020-10-23	\N	\N	f	1	1030
+4075	7	R	2020-10-25	12:10:00	\N	f	18	1030
 4076	3	Q1	2020-10-24	\N	\N	f	1	1030
 4077	4	Q2	2020-10-24	\N	\N	f	1	1030
 4078	5	Q3	2020-10-24	\N	\N	f	1	1030
+4079	1	FP1	2020-10-23	\N	\N	f	1	1030
+4080	2	FP2	2020-10-23	\N	\N	f	1	1030
 4081	6	FP3	2020-10-24	\N	\N	f	1	1030
-4075	7	R	2020-10-25	12:10:00	\N	f	18	1030
-4086	1	FP1	2020-10-30	\N	\N	f	1	1031
-4087	2	FP2	2020-10-30	\N	\N	f	1	1031
+4082	7	R	2020-11-01	12:10:00	\N	f	18	1031
 4083	3	Q1	2020-10-31	\N	\N	f	1	1031
 4084	4	Q2	2020-10-31	\N	\N	f	1	1031
 4085	5	Q3	2020-10-31	\N	\N	f	1	1031
+4086	1	FP1	2020-10-30	\N	\N	f	1	1031
+4087	2	FP2	2020-10-30	\N	\N	f	1	1031
 4088	6	FP3	2020-10-31	\N	\N	f	1	1031
-4082	7	R	2020-11-01	12:10:00	\N	f	18	1031
-4093	1	FP1	2020-11-13	\N	\N	f	1	1032
-4094	2	FP2	2020-11-13	\N	\N	f	1	1032
+4089	7	R	2020-11-15	10:10:00	\N	f	18	1032
 4090	3	Q1	2020-11-14	\N	\N	f	1	1032
 4091	4	Q2	2020-11-14	\N	\N	f	1	1032
 4092	5	Q3	2020-11-14	\N	\N	f	1	1032
+4093	1	FP1	2020-11-13	\N	\N	f	1	1032
+4094	2	FP2	2020-11-13	\N	\N	f	1	1032
 4095	6	FP3	2020-11-14	\N	\N	f	1	1032
-4089	7	R	2020-11-15	10:10:00	\N	f	18	1032
-4100	1	FP1	2020-11-27	\N	\N	f	1	1033
-4101	2	FP2	2020-11-27	\N	\N	f	1	1033
+4096	7	R	2020-11-29	14:10:00	\N	f	18	1033
 4097	3	Q1	2020-11-28	\N	\N	f	1	1033
 4098	4	Q2	2020-11-28	\N	\N	f	1	1033
 4099	5	Q3	2020-11-28	\N	\N	f	1	1033
+4100	1	FP1	2020-11-27	\N	\N	f	1	1033
+4101	2	FP2	2020-11-27	\N	\N	f	1	1033
 4102	6	FP3	2020-11-28	\N	\N	f	1	1033
-4096	7	R	2020-11-29	14:10:00	\N	f	18	1033
-4107	1	FP1	2020-12-04	\N	\N	f	1	1034
-4108	2	FP2	2020-12-04	\N	\N	f	1	1034
+4103	7	R	2020-12-06	17:10:00	\N	f	18	1034
 4104	3	Q1	2020-12-05	\N	\N	f	1	1034
 4105	4	Q2	2020-12-05	\N	\N	f	1	1034
 4106	5	Q3	2020-12-05	\N	\N	f	1	1034
+4107	1	FP1	2020-12-04	\N	\N	f	1	1034
+4108	2	FP2	2020-12-04	\N	\N	f	1	1034
 4109	6	FP3	2020-12-05	\N	\N	f	1	1034
-4103	7	R	2020-12-06	17:10:00	\N	f	18	1034
-4114	1	FP1	2020-12-11	\N	\N	f	1	1035
-4115	2	FP2	2020-12-11	\N	\N	f	1	1035
+4110	7	R	2020-12-13	13:10:00	\N	f	18	1035
 4111	3	Q1	2020-12-12	\N	\N	f	1	1035
 4112	4	Q2	2020-12-12	\N	\N	f	1	1035
 4113	5	Q3	2020-12-12	\N	\N	f	1	1035
+4114	1	FP1	2020-12-11	\N	\N	f	1	1035
+4115	2	FP2	2020-12-11	\N	\N	f	1	1035
 4116	6	FP3	2020-12-12	\N	\N	f	1	1035
-4110	7	R	2020-12-13	13:10:00	\N	f	18	1035
-4121	1	FP1	2021-03-26	\N	\N	f	1	1036
-4122	2	FP2	2021-03-26	\N	\N	f	1	1036
+4117	7	R	2021-03-28	15:00:00	\N	f	18	1036
 4118	3	Q1	2021-03-27	\N	\N	f	1	1036
 4119	4	Q2	2021-03-27	\N	\N	f	1	1036
 4120	5	Q3	2021-03-27	\N	\N	f	1	1036
+4121	1	FP1	2021-03-26	\N	\N	f	1	1036
+4122	2	FP2	2021-03-26	\N	\N	f	1	1036
 4123	6	FP3	2021-03-27	\N	\N	f	1	1036
-4117	7	R	2021-03-28	15:00:00	\N	f	18	1036
-4128	1	FP1	2021-04-16	\N	\N	f	1	1037
-4129	2	FP2	2021-04-16	\N	\N	f	1	1037
+4124	7	R	2021-04-18	13:00:00	\N	f	18	1037
 4125	3	Q1	2021-04-17	\N	\N	f	1	1037
 4126	4	Q2	2021-04-17	\N	\N	f	1	1037
 4127	5	Q3	2021-04-17	\N	\N	f	1	1037
+4128	1	FP1	2021-04-16	\N	\N	f	1	1037
+4129	2	FP2	2021-04-16	\N	\N	f	1	1037
 4130	6	FP3	2021-04-17	\N	\N	f	1	1037
-4124	7	R	2021-04-18	13:00:00	\N	f	18	1037
-4135	1	FP1	2021-04-30	\N	\N	f	1	1038
-4136	2	FP2	2021-04-30	\N	\N	f	1	1038
+4131	7	R	2021-05-02	14:00:00	\N	f	18	1038
 4132	3	Q1	2021-05-01	\N	\N	f	1	1038
 4133	4	Q2	2021-05-01	\N	\N	f	1	1038
 4134	5	Q3	2021-05-01	\N	\N	f	1	1038
+4135	1	FP1	2021-04-30	\N	\N	f	1	1038
+4136	2	FP2	2021-04-30	\N	\N	f	1	1038
 4137	6	FP3	2021-05-01	\N	\N	f	1	1038
-4131	7	R	2021-05-02	14:00:00	\N	f	18	1038
-4142	1	FP1	2021-05-07	\N	\N	f	1	1039
-4143	2	FP2	2021-05-07	\N	\N	f	1	1039
+4138	7	R	2021-05-09	13:00:00	\N	f	18	1039
 4139	3	Q1	2021-05-08	\N	\N	f	1	1039
 4140	4	Q2	2021-05-08	\N	\N	f	1	1039
 4141	5	Q3	2021-05-08	\N	\N	f	1	1039
+4142	1	FP1	2021-05-07	\N	\N	f	1	1039
+4143	2	FP2	2021-05-07	\N	\N	f	1	1039
 4144	6	FP3	2021-05-08	\N	\N	f	1	1039
-4138	7	R	2021-05-09	13:00:00	\N	f	18	1039
-4149	1	FP1	2021-05-21	\N	\N	f	1	1040
-4150	2	FP2	2021-05-21	\N	\N	f	1	1040
+4145	7	R	2021-05-23	13:00:00	\N	f	18	1040
 4146	3	Q1	2021-05-22	\N	\N	f	1	1040
 4147	4	Q2	2021-05-22	\N	\N	f	1	1040
 4148	5	Q3	2021-05-22	\N	\N	f	1	1040
+4149	1	FP1	2021-05-21	\N	\N	f	1	1040
+4150	2	FP2	2021-05-21	\N	\N	f	1	1040
 4151	6	FP3	2021-05-22	\N	\N	f	1	1040
-4145	7	R	2021-05-23	13:00:00	\N	f	18	1040
-4156	1	FP1	2021-06-04	\N	\N	f	1	1041
-4157	2	FP2	2021-06-04	\N	\N	f	1	1041
+4152	7	R	2021-06-06	12:00:00	\N	f	18	1041
 4153	3	Q1	2021-06-05	\N	\N	f	1	1041
 4154	4	Q2	2021-06-05	\N	\N	f	1	1041
 4155	5	Q3	2021-06-05	\N	\N	f	1	1041
+4156	1	FP1	2021-06-04	\N	\N	f	1	1041
+4157	2	FP2	2021-06-04	\N	\N	f	1	1041
 4158	6	FP3	2021-06-05	\N	\N	f	1	1041
-4152	7	R	2021-06-06	12:00:00	\N	f	18	1041
-4163	1	FP1	2021-06-18	\N	\N	f	1	1042
-4164	2	FP2	2021-06-18	\N	\N	f	1	1042
+4159	7	R	2021-06-20	13:00:00	\N	f	18	1042
 4160	3	Q1	2021-06-19	\N	\N	f	1	1042
 4161	4	Q2	2021-06-19	\N	\N	f	1	1042
 4162	5	Q3	2021-06-19	\N	\N	f	1	1042
+4163	1	FP1	2021-06-18	\N	\N	f	1	1042
+4164	2	FP2	2021-06-18	\N	\N	f	1	1042
 4165	6	FP3	2021-06-19	\N	\N	f	1	1042
-4159	7	R	2021-06-20	13:00:00	\N	f	18	1042
-4170	1	FP1	2021-06-25	\N	\N	f	1	1043
-4171	2	FP2	2021-06-25	\N	\N	f	1	1043
+4166	7	R	2021-06-27	13:00:00	\N	f	18	1043
 4167	3	Q1	2021-06-26	\N	\N	f	1	1043
 4168	4	Q2	2021-06-26	\N	\N	f	1	1043
 4169	5	Q3	2021-06-26	\N	\N	f	1	1043
+4170	1	FP1	2021-06-25	\N	\N	f	1	1043
+4171	2	FP2	2021-06-25	\N	\N	f	1	1043
 4172	6	FP3	2021-06-26	\N	\N	f	1	1043
-4166	7	R	2021-06-27	13:00:00	\N	f	18	1043
-4177	1	FP1	2021-07-02	\N	\N	f	1	1044
-4178	2	FP2	2021-07-02	\N	\N	f	1	1044
+4173	7	R	2021-07-04	13:00:00	\N	f	18	1044
 4174	3	Q1	2021-07-03	\N	\N	f	1	1044
 4175	4	Q2	2021-07-03	\N	\N	f	1	1044
 4176	5	Q3	2021-07-03	\N	\N	f	1	1044
+4177	1	FP1	2021-07-02	\N	\N	f	1	1044
+4178	2	FP2	2021-07-02	\N	\N	f	1	1044
 4179	6	FP3	2021-07-03	\N	\N	f	1	1044
-4173	7	R	2021-07-04	13:00:00	\N	f	18	1044
+4180	7	R	2021-07-18	14:00:00	\N	f	18	1045
 4181	1	Q1	2021-07-16	\N	\N	f	1	1045
 4182	2	Q2	2021-07-16	\N	\N	f	1	1045
 4183	3	Q3	2021-07-16	\N	\N	f	1	1045
 4184	4	FP1	2021-07-16	\N	\N	f	1	1045
 4185	5	FP2	2021-07-17	\N	\N	f	1	1045
 4186	6	SR	2021-07-17	\N	\N	f	19	1045
-4180	7	R	2021-07-18	14:00:00	\N	f	18	1045
-4191	1	FP1	2021-07-30	\N	\N	f	1	1046
-4192	2	FP2	2021-07-30	\N	\N	f	1	1046
+4187	7	R	2021-08-01	13:00:00	\N	f	18	1046
 4188	3	Q1	2021-07-31	\N	\N	f	1	1046
 4189	4	Q2	2021-07-31	\N	\N	f	1	1046
 4190	5	Q3	2021-07-31	\N	\N	f	1	1046
+4191	1	FP1	2021-07-30	\N	\N	f	1	1046
+4192	2	FP2	2021-07-30	\N	\N	f	1	1046
 4193	6	FP3	2021-07-31	\N	\N	f	1	1046
-4187	7	R	2021-08-01	13:00:00	\N	f	18	1046
-4198	1	FP1	2021-08-27	\N	\N	f	1	1047
-4199	2	FP2	2021-08-27	\N	\N	f	1	1047
+4194	7	R	2021-08-29	13:00:00	\N	f	18	1047
 4195	3	Q1	2021-08-28	\N	\N	f	1	1047
 4196	4	Q2	2021-08-28	\N	\N	f	1	1047
 4197	5	Q3	2021-08-28	\N	\N	f	1	1047
+4198	1	FP1	2021-08-27	\N	\N	f	1	1047
+4199	2	FP2	2021-08-27	\N	\N	f	1	1047
 4200	6	FP3	2021-08-28	\N	\N	f	1	1047
-4194	7	R	2021-08-29	13:00:00	\N	f	18	1047
-4205	1	FP1	2021-09-03	\N	\N	f	1	1048
-4206	2	FP2	2021-09-03	\N	\N	f	1	1048
+4201	7	R	2021-09-05	13:00:00	\N	f	18	1048
 4202	3	Q1	2021-09-04	\N	\N	f	1	1048
 4203	4	Q2	2021-09-04	\N	\N	f	1	1048
 4204	5	Q3	2021-09-04	\N	\N	f	1	1048
+4205	1	FP1	2021-09-03	\N	\N	f	1	1048
+4206	2	FP2	2021-09-03	\N	\N	f	1	1048
 4207	6	FP3	2021-09-04	\N	\N	f	1	1048
-4201	7	R	2021-09-05	13:00:00	\N	f	18	1048
+4208	7	R	2021-09-12	13:00:00	\N	f	18	1049
 4209	1	Q1	2021-09-10	\N	\N	f	1	1049
 4210	2	Q2	2021-09-10	\N	\N	f	1	1049
 4211	3	Q3	2021-09-10	\N	\N	f	1	1049
 4212	4	FP1	2021-09-10	\N	\N	f	1	1049
 4213	5	FP2	2021-09-11	\N	\N	f	1	1049
 4214	6	SR	2021-09-11	\N	\N	f	19	1049
-4208	7	R	2021-09-12	13:00:00	\N	f	18	1049
-4219	1	FP1	2021-09-24	\N	\N	f	1	1050
-4220	2	FP2	2021-09-24	\N	\N	f	1	1050
+4215	7	R	2021-09-26	12:00:00	\N	f	18	1050
 4216	3	Q1	2021-09-25	\N	\N	f	1	1050
 4217	4	Q2	2021-09-25	\N	\N	f	1	1050
 4218	5	Q3	2021-09-25	\N	\N	f	1	1050
+4219	1	FP1	2021-09-24	\N	\N	f	1	1050
+4220	2	FP2	2021-09-24	\N	\N	f	1	1050
 4221	6	FP3	2021-09-25	\N	\N	f	1	1050
-4215	7	R	2021-09-26	12:00:00	\N	f	18	1050
-4226	1	FP1	2021-10-08	\N	\N	f	1	1051
-4227	2	FP2	2021-10-08	\N	\N	f	1	1051
+4222	7	R	2021-10-10	12:00:00	\N	f	18	1051
 4223	3	Q1	2021-10-09	\N	\N	f	1	1051
 4224	4	Q2	2021-10-09	\N	\N	f	1	1051
 4225	5	Q3	2021-10-09	\N	\N	f	1	1051
+4226	1	FP1	2021-10-08	\N	\N	f	1	1051
+4227	2	FP2	2021-10-08	\N	\N	f	1	1051
 4228	6	FP3	2021-10-09	\N	\N	f	1	1051
-4222	7	R	2021-10-10	12:00:00	\N	f	18	1051
-4233	1	FP1	2021-10-22	\N	\N	f	1	1052
-4234	2	FP2	2021-10-22	\N	\N	f	1	1052
+4229	7	R	2021-10-24	19:00:00	\N	f	18	1052
 4230	3	Q1	2021-10-23	\N	\N	f	1	1052
 4231	4	Q2	2021-10-23	\N	\N	f	1	1052
 4232	5	Q3	2021-10-23	\N	\N	f	1	1052
+4233	1	FP1	2021-10-22	\N	\N	f	1	1052
+4234	2	FP2	2021-10-22	\N	\N	f	1	1052
 4235	6	FP3	2021-10-23	\N	\N	f	1	1052
-4229	7	R	2021-10-24	19:00:00	\N	f	18	1052
-4240	1	FP1	2021-11-05	\N	\N	f	1	1053
-4241	2	FP2	2021-11-05	\N	\N	f	1	1053
+4236	7	R	2021-11-07	19:00:00	\N	f	18	1053
 4237	3	Q1	2021-11-06	\N	\N	f	1	1053
 4238	4	Q2	2021-11-06	\N	\N	f	1	1053
 4239	5	Q3	2021-11-06	\N	\N	f	1	1053
+4240	1	FP1	2021-11-05	\N	\N	f	1	1053
+4241	2	FP2	2021-11-05	\N	\N	f	1	1053
 4242	6	FP3	2021-11-06	\N	\N	f	1	1053
-4236	7	R	2021-11-07	19:00:00	\N	f	18	1053
+4243	7	R	2021-11-14	17:00:00	\N	f	18	1054
 4244	1	Q1	2021-11-12	\N	\N	f	1	1054
 4245	2	Q2	2021-11-12	\N	\N	f	1	1054
 4246	3	Q3	2021-11-12	\N	\N	f	1	1054
 4247	4	FP1	2021-11-12	\N	\N	f	1	1054
 4248	5	FP2	2021-11-13	\N	\N	f	1	1054
 4249	6	SR	2021-11-13	\N	\N	f	19	1054
-4243	7	R	2021-11-14	17:00:00	\N	f	18	1054
-4254	1	FP1	2021-11-19	\N	\N	f	1	1055
-4255	2	FP2	2021-11-19	\N	\N	f	1	1055
+4250	7	R	2021-11-21	14:00:00	\N	f	18	1055
 4251	3	Q1	2021-11-20	\N	\N	f	1	1055
 4252	4	Q2	2021-11-20	\N	\N	f	1	1055
 4253	5	Q3	2021-11-20	\N	\N	f	1	1055
+4254	1	FP1	2021-11-19	\N	\N	f	1	1055
+4255	2	FP2	2021-11-19	\N	\N	f	1	1055
 4256	6	FP3	2021-11-20	\N	\N	f	1	1055
-4250	7	R	2021-11-21	14:00:00	\N	f	18	1055
-4261	1	FP1	2021-12-03	\N	\N	f	1	1056
-4262	2	FP2	2021-12-03	\N	\N	f	1	1056
+4257	7	R	2021-12-05	17:30:00	\N	f	18	1056
 4258	3	Q1	2021-12-04	\N	\N	f	1	1056
 4259	4	Q2	2021-12-04	\N	\N	f	1	1056
 4260	5	Q3	2021-12-04	\N	\N	f	1	1056
+4261	1	FP1	2021-12-03	\N	\N	f	1	1056
+4262	2	FP2	2021-12-03	\N	\N	f	1	1056
 4263	6	FP3	2021-12-04	\N	\N	f	1	1056
-4257	7	R	2021-12-05	17:30:00	\N	f	18	1056
-4268	1	FP1	2021-12-10	\N	\N	f	1	1057
-4269	2	FP2	2021-12-10	\N	\N	f	1	1057
+4264	7	R	2021-12-12	13:00:00	\N	f	18	1057
 4265	3	Q1	2021-12-11	\N	\N	f	1	1057
 4266	4	Q2	2021-12-11	\N	\N	f	1	1057
 4267	5	Q3	2021-12-11	\N	\N	f	1	1057
+4268	1	FP1	2021-12-10	\N	\N	f	1	1057
+4269	2	FP2	2021-12-10	\N	\N	f	1	1057
 4270	6	FP3	2021-12-11	\N	\N	f	1	1057
-4264	7	R	2021-12-12	13:00:00	\N	f	18	1057
-4275	1	FP1	2022-03-18	12:00:00	\N	f	1	1058
-4276	2	FP2	2022-03-18	15:00:00	\N	f	1	1058
-4277	3	FP3	2022-03-19	12:00:00	\N	f	1	1058
+4271	7	R	2022-03-20	15:00:00	\N	f	20	1058
 4272	4	Q1	2022-03-19	15:00:00	\N	f	1	1058
 4273	5	Q2	2022-03-19	15:00:00	\N	f	1	1058
 4274	6	Q3	2022-03-19	15:00:00	\N	f	1	1058
-4271	7	R	2022-03-20	15:00:00	\N	f	20	1058
-4282	1	FP1	2022-03-25	14:00:00	\N	f	1	1059
-4283	2	FP2	2022-03-25	17:00:00	\N	f	1	1059
-4284	3	FP3	2022-03-26	14:00:00	\N	f	1	1059
+4275	1	FP1	2022-03-18	12:00:00	\N	f	1	1058
+4276	2	FP2	2022-03-18	15:00:00	\N	f	1	1058
+4277	3	FP3	2022-03-19	12:00:00	\N	f	1	1058
+4278	7	R	2022-03-27	17:00:00	\N	f	20	1059
 4279	4	Q1	2022-03-26	17:00:00	\N	f	1	1059
 4280	5	Q2	2022-03-26	17:00:00	\N	f	1	1059
 4281	6	Q3	2022-03-26	17:00:00	\N	f	1	1059
-4278	7	R	2022-03-27	17:00:00	\N	f	20	1059
-4289	1	FP1	2022-04-08	03:00:00	\N	f	1	1060
-4290	2	FP2	2022-04-08	06:00:00	\N	f	1	1060
-4291	3	FP3	2022-04-09	03:00:00	\N	f	1	1060
+4282	1	FP1	2022-03-25	14:00:00	\N	f	1	1059
+4283	2	FP2	2022-03-25	17:00:00	\N	f	1	1059
+4284	3	FP3	2022-03-26	14:00:00	\N	f	1	1059
+4285	7	R	2022-04-10	05:00:00	\N	f	20	1060
 4286	4	Q1	2022-04-09	06:00:00	\N	f	1	1060
 4287	5	Q2	2022-04-09	06:00:00	\N	f	1	1060
 4288	6	Q3	2022-04-09	06:00:00	\N	f	1	1060
-4285	7	R	2022-04-10	05:00:00	\N	f	20	1060
-4296	1	FP1	2022-04-22	11:30:00	\N	f	1	1061
+4289	1	FP1	2022-04-08	03:00:00	\N	f	1	1060
+4290	2	FP2	2022-04-08	06:00:00	\N	f	1	1060
+4291	3	FP3	2022-04-09	03:00:00	\N	f	1	1060
+4292	7	R	2022-04-24	13:00:00	\N	f	20	1061
 4293	2	Q1	2022-04-22	15:00:00	\N	f	1	1061
 4294	3	Q2	2022-04-22	15:00:00	\N	f	1	1061
 4295	4	Q3	2022-04-22	15:00:00	\N	f	1	1061
+4296	1	FP1	2022-04-22	11:30:00	\N	f	1	1061
 4297	5	FP2	2022-04-23	10:30:00	\N	f	1	1061
 4298	6	SR	2022-04-23	14:30:00	\N	f	21	1061
-4292	7	R	2022-04-24	13:00:00	\N	f	20	1061
-4303	1	FP1	2022-05-06	18:30:00	\N	f	1	1062
-4304	2	FP2	2022-05-06	21:30:00	\N	f	1	1062
-4305	3	FP3	2022-05-07	17:00:00	\N	f	1	1062
+4299	7	R	2022-05-08	19:30:00	\N	f	20	1062
 4300	4	Q1	2022-05-07	20:00:00	\N	f	1	1062
 4301	5	Q2	2022-05-07	20:00:00	\N	f	1	1062
 4302	6	Q3	2022-05-07	20:00:00	\N	f	1	1062
-4299	7	R	2022-05-08	19:30:00	\N	f	20	1062
-4310	1	FP1	2022-05-20	12:00:00	\N	f	1	1063
-4311	2	FP2	2022-05-20	15:00:00	\N	f	1	1063
-4312	3	FP3	2022-05-21	11:00:00	\N	f	1	1063
+4303	1	FP1	2022-05-06	18:30:00	\N	f	1	1062
+4304	2	FP2	2022-05-06	21:30:00	\N	f	1	1062
+4305	3	FP3	2022-05-07	17:00:00	\N	f	1	1062
+4306	7	R	2022-05-22	13:00:00	\N	f	20	1063
 4307	4	Q1	2022-05-21	14:00:00	\N	f	1	1063
 4308	5	Q2	2022-05-21	14:00:00	\N	f	1	1063
 4309	6	Q3	2022-05-21	14:00:00	\N	f	1	1063
-4306	7	R	2022-05-22	13:00:00	\N	f	20	1063
-4317	1	FP1	2022-05-27	12:00:00	\N	f	1	1064
-4318	2	FP2	2022-05-27	15:00:00	\N	f	1	1064
-4319	3	FP3	2022-05-28	11:00:00	\N	f	1	1064
+4310	1	FP1	2022-05-20	12:00:00	\N	f	1	1063
+4311	2	FP2	2022-05-20	15:00:00	\N	f	1	1063
+4312	3	FP3	2022-05-21	11:00:00	\N	f	1	1063
+4313	7	R	2022-05-29	13:00:00	\N	f	20	1064
 4314	4	Q1	2022-05-28	14:00:00	\N	f	1	1064
 4315	5	Q2	2022-05-28	14:00:00	\N	f	1	1064
 4316	6	Q3	2022-05-28	14:00:00	\N	f	1	1064
-4313	7	R	2022-05-29	13:00:00	\N	f	20	1064
-4324	1	FP1	2022-06-10	11:00:00	\N	f	1	1065
-4325	2	FP2	2022-06-10	14:00:00	\N	f	1	1065
-4326	3	FP3	2022-06-11	11:00:00	\N	f	1	1065
+4317	1	FP1	2022-05-27	12:00:00	\N	f	1	1064
+4318	2	FP2	2022-05-27	15:00:00	\N	f	1	1064
+4319	3	FP3	2022-05-28	11:00:00	\N	f	1	1064
+4320	7	R	2022-06-12	11:00:00	\N	f	20	1065
 4321	4	Q1	2022-06-11	14:00:00	\N	f	1	1065
 4322	5	Q2	2022-06-11	14:00:00	\N	f	1	1065
 4323	6	Q3	2022-06-11	14:00:00	\N	f	1	1065
-4320	7	R	2022-06-12	11:00:00	\N	f	20	1065
-4331	1	FP1	2022-06-17	18:00:00	\N	f	1	1066
-4332	2	FP2	2022-06-17	21:00:00	\N	f	1	1066
-4333	3	FP3	2022-06-18	17:00:00	\N	f	1	1066
+4324	1	FP1	2022-06-10	11:00:00	\N	f	1	1065
+4325	2	FP2	2022-06-10	14:00:00	\N	f	1	1065
+4326	3	FP3	2022-06-11	11:00:00	\N	f	1	1065
+4327	7	R	2022-06-19	18:00:00	\N	f	20	1066
 4328	4	Q1	2022-06-18	20:00:00	\N	f	1	1066
 4329	5	Q2	2022-06-18	20:00:00	\N	f	1	1066
 4330	6	Q3	2022-06-18	20:00:00	\N	f	1	1066
-4327	7	R	2022-06-19	18:00:00	\N	f	20	1066
-4338	1	FP1	2022-07-01	12:00:00	\N	f	1	1067
-4339	2	FP2	2022-07-01	15:00:00	\N	f	1	1067
-4340	3	FP3	2022-07-02	11:00:00	\N	f	1	1067
+4331	1	FP1	2022-06-17	18:00:00	\N	f	1	1066
+4332	2	FP2	2022-06-17	21:00:00	\N	f	1	1066
+4333	3	FP3	2022-06-18	17:00:00	\N	f	1	1066
+4334	7	R	2022-07-03	14:00:00	\N	f	20	1067
 4335	4	Q1	2022-07-02	14:00:00	\N	f	1	1067
 4336	5	Q2	2022-07-02	14:00:00	\N	f	1	1067
 4337	6	Q3	2022-07-02	14:00:00	\N	f	1	1067
-4334	7	R	2022-07-03	14:00:00	\N	f	20	1067
-4345	1	FP1	2022-07-08	11:30:00	\N	f	1	1068
+4338	1	FP1	2022-07-01	12:00:00	\N	f	1	1067
+4339	2	FP2	2022-07-01	15:00:00	\N	f	1	1067
+4340	3	FP3	2022-07-02	11:00:00	\N	f	1	1067
+4341	7	R	2022-07-10	13:00:00	\N	f	20	1068
 4342	2	Q1	2022-07-08	15:00:00	\N	f	1	1068
 4343	3	Q2	2022-07-08	15:00:00	\N	f	1	1068
 4344	4	Q3	2022-07-08	15:00:00	\N	f	1	1068
+4345	1	FP1	2022-07-08	11:30:00	\N	f	1	1068
 4346	5	FP2	2022-07-09	10:30:00	\N	f	1	1068
 4347	6	SR	2022-07-09	14:30:00	\N	f	21	1068
-4341	7	R	2022-07-10	13:00:00	\N	f	20	1068
-4352	1	FP1	2022-07-22	12:00:00	\N	f	1	1069
-4353	2	FP2	2022-07-22	15:00:00	\N	f	1	1069
-4354	3	FP3	2022-07-23	11:00:00	\N	f	1	1069
+4348	7	R	2022-07-24	13:00:00	\N	f	20	1069
 4349	4	Q1	2022-07-23	14:00:00	\N	f	1	1069
 4350	5	Q2	2022-07-23	14:00:00	\N	f	1	1069
 4351	6	Q3	2022-07-23	14:00:00	\N	f	1	1069
-4348	7	R	2022-07-24	13:00:00	\N	f	20	1069
-4359	1	FP1	2022-07-29	12:00:00	\N	f	1	1070
-4360	2	FP2	2022-07-29	15:00:00	\N	f	1	1070
-4361	3	FP3	2022-07-30	11:00:00	\N	f	1	1070
+4352	1	FP1	2022-07-22	12:00:00	\N	f	1	1069
+4353	2	FP2	2022-07-22	15:00:00	\N	f	1	1069
+4354	3	FP3	2022-07-23	11:00:00	\N	f	1	1069
+4355	7	R	2022-07-31	13:00:00	\N	f	20	1070
 4356	4	Q1	2022-07-30	14:00:00	\N	f	1	1070
 4357	5	Q2	2022-07-30	14:00:00	\N	f	1	1070
 4358	6	Q3	2022-07-30	14:00:00	\N	f	1	1070
-4355	7	R	2022-07-31	13:00:00	\N	f	20	1070
-4366	1	FP1	2022-08-26	12:00:00	\N	f	1	1071
-4367	2	FP2	2022-08-26	15:00:00	\N	f	1	1071
-4368	3	FP3	2022-08-27	11:00:00	\N	f	1	1071
+4359	1	FP1	2022-07-29	12:00:00	\N	f	1	1070
+4360	2	FP2	2022-07-29	15:00:00	\N	f	1	1070
+4361	3	FP3	2022-07-30	11:00:00	\N	f	1	1070
+4362	7	R	2022-08-28	13:00:00	\N	f	20	1071
 4363	4	Q1	2022-08-27	14:00:00	\N	f	1	1071
 4364	5	Q2	2022-08-27	14:00:00	\N	f	1	1071
 4365	6	Q3	2022-08-27	14:00:00	\N	f	1	1071
-4362	7	R	2022-08-28	13:00:00	\N	f	20	1071
-4373	1	FP1	2022-09-02	10:30:00	\N	f	1	1072
-4374	2	FP2	2022-09-02	14:00:00	\N	f	1	1072
-4375	3	FP3	2022-09-03	10:00:00	\N	f	1	1072
+4366	1	FP1	2022-08-26	12:00:00	\N	f	1	1071
+4367	2	FP2	2022-08-26	15:00:00	\N	f	1	1071
+4368	3	FP3	2022-08-27	11:00:00	\N	f	1	1071
+4369	7	R	2022-09-04	13:00:00	\N	f	20	1072
 4370	4	Q1	2022-09-03	13:00:00	\N	f	1	1072
 4371	5	Q2	2022-09-03	13:00:00	\N	f	1	1072
 4372	6	Q3	2022-09-03	13:00:00	\N	f	1	1072
-4369	7	R	2022-09-04	13:00:00	\N	f	20	1072
-4380	1	FP1	2022-09-09	12:00:00	\N	f	1	1073
-4381	2	FP2	2022-09-09	15:00:00	\N	f	1	1073
-4382	3	FP3	2022-09-10	11:00:00	\N	f	1	1073
+4373	1	FP1	2022-09-02	10:30:00	\N	f	1	1072
+4374	2	FP2	2022-09-02	14:00:00	\N	f	1	1072
+4375	3	FP3	2022-09-03	10:00:00	\N	f	1	1072
+4376	7	R	2022-09-11	13:00:00	\N	f	20	1073
 4377	4	Q1	2022-09-10	14:00:00	\N	f	1	1073
 4378	5	Q2	2022-09-10	14:00:00	\N	f	1	1073
 4379	6	Q3	2022-09-10	14:00:00	\N	f	1	1073
-4376	7	R	2022-09-11	13:00:00	\N	f	20	1073
-4387	1	FP1	2022-09-30	10:00:00	\N	f	1	1074
-4388	2	FP2	2022-09-30	13:00:00	\N	f	1	1074
-4389	3	FP3	2022-10-01	10:00:00	\N	f	1	1074
+4380	1	FP1	2022-09-09	12:00:00	\N	f	1	1073
+4381	2	FP2	2022-09-09	15:00:00	\N	f	1	1073
+4382	3	FP3	2022-09-10	11:00:00	\N	f	1	1073
+4383	7	R	2022-10-02	12:00:00	\N	f	20	1074
 4384	4	Q1	2022-10-01	13:00:00	\N	f	1	1074
 4385	5	Q2	2022-10-01	13:00:00	\N	f	1	1074
 4386	6	Q3	2022-10-01	13:00:00	\N	f	1	1074
-4383	7	R	2022-10-02	12:00:00	\N	f	20	1074
-4394	1	FP1	2022-10-07	03:00:00	\N	f	1	1075
-4395	2	FP2	2022-10-07	06:00:00	\N	f	1	1075
-4396	3	FP3	2022-10-08	03:00:00	\N	f	1	1075
+4387	1	FP1	2022-09-30	10:00:00	\N	f	1	1074
+4388	2	FP2	2022-09-30	13:00:00	\N	f	1	1074
+4389	3	FP3	2022-10-01	10:00:00	\N	f	1	1074
+4390	7	R	2022-10-09	05:00:00	\N	f	20	1075
 4391	4	Q1	2022-10-08	06:00:00	\N	f	1	1075
 4392	5	Q2	2022-10-08	06:00:00	\N	f	1	1075
 4393	6	Q3	2022-10-08	06:00:00	\N	f	1	1075
-4390	7	R	2022-10-09	05:00:00	\N	f	20	1075
-4401	1	FP1	2022-10-21	19:00:00	\N	f	1	1076
-4402	2	FP2	2022-10-21	22:00:00	\N	f	1	1076
-4403	3	FP3	2022-10-22	19:00:00	\N	f	1	1076
+4394	1	FP1	2022-10-07	03:00:00	\N	f	1	1075
+4395	2	FP2	2022-10-07	06:00:00	\N	f	1	1075
+4396	3	FP3	2022-10-08	03:00:00	\N	f	1	1075
+4397	7	R	2022-10-23	19:00:00	\N	f	20	1076
 4398	4	Q1	2022-10-22	22:00:00	\N	f	1	1076
 4399	5	Q2	2022-10-22	22:00:00	\N	f	1	1076
 4400	6	Q3	2022-10-22	22:00:00	\N	f	1	1076
-4397	7	R	2022-10-23	19:00:00	\N	f	20	1076
-4408	1	FP1	2022-10-28	18:00:00	\N	f	1	1077
-4409	2	FP2	2022-10-28	21:00:00	\N	f	1	1077
-4410	3	FP3	2022-10-29	17:00:00	\N	f	1	1077
+4401	1	FP1	2022-10-21	19:00:00	\N	f	1	1076
+4402	2	FP2	2022-10-21	22:00:00	\N	f	1	1076
+4403	3	FP3	2022-10-22	19:00:00	\N	f	1	1076
+4404	7	R	2022-10-30	20:00:00	\N	f	20	1077
 4405	4	Q1	2022-10-29	20:00:00	\N	f	1	1077
 4406	5	Q2	2022-10-29	20:00:00	\N	f	1	1077
 4407	6	Q3	2022-10-29	20:00:00	\N	f	1	1077
-4404	7	R	2022-10-30	20:00:00	\N	f	20	1077
-4415	1	FP1	2022-11-11	15:30:00	\N	f	1	1078
+4408	1	FP1	2022-10-28	18:00:00	\N	f	1	1077
+4409	2	FP2	2022-10-28	21:00:00	\N	f	1	1077
+4410	3	FP3	2022-10-29	17:00:00	\N	f	1	1077
+4411	7	R	2022-11-13	18:00:00	\N	f	20	1078
 4412	2	Q1	2022-11-11	19:00:00	\N	f	1	1078
 4413	3	Q2	2022-11-11	19:00:00	\N	f	1	1078
 4414	4	Q3	2022-11-11	19:00:00	\N	f	1	1078
+4415	1	FP1	2022-11-11	15:30:00	\N	f	1	1078
 4416	5	FP2	2022-11-12	15:30:00	\N	f	1	1078
 4417	6	SR	2022-11-12	19:30:00	\N	f	21	1078
-4411	7	R	2022-11-13	18:00:00	\N	f	20	1078
-4422	1	FP1	2022-11-18	10:00:00	\N	f	1	1079
-4423	2	FP2	2022-11-18	13:00:00	\N	f	1	1079
-4424	3	FP3	2022-11-19	11:00:00	\N	f	1	1079
+4418	7	R	2022-11-20	13:00:00	\N	f	20	1079
 4419	4	Q1	2022-11-19	14:00:00	\N	f	1	1079
 4420	5	Q2	2022-11-19	14:00:00	\N	f	1	1079
 4421	6	Q3	2022-11-19	14:00:00	\N	f	1	1079
-4418	7	R	2022-11-20	13:00:00	\N	f	20	1079
-4429	1	FP1	2023-03-03	11:30:00	\N	f	1	1080
-4430	2	FP2	2023-03-03	15:00:00	\N	f	1	1080
-4431	3	FP3	2023-03-04	11:30:00	\N	f	1	1080
+4422	1	FP1	2022-11-18	10:00:00	\N	f	1	1079
+4423	2	FP2	2022-11-18	13:00:00	\N	f	1	1079
+4424	3	FP3	2022-11-19	11:00:00	\N	f	1	1079
+4425	7	R	2023-03-05	15:00:00	\N	f	22	1080
 4426	4	Q1	2023-03-04	15:00:00	\N	f	1	1080
 4427	5	Q2	2023-03-04	15:00:00	\N	f	1	1080
 4428	6	Q3	2023-03-04	15:00:00	\N	f	1	1080
-4425	7	R	2023-03-05	15:00:00	\N	f	22	1080
-4436	1	FP1	2023-03-17	13:30:00	\N	f	1	1081
-4437	2	FP2	2023-03-17	17:00:00	\N	f	1	1081
-4438	3	FP3	2023-03-18	13:30:00	\N	f	1	1081
+4429	1	FP1	2023-03-03	11:30:00	\N	f	1	1080
+4430	2	FP2	2023-03-03	15:00:00	\N	f	1	1080
+4431	3	FP3	2023-03-04	11:30:00	\N	f	1	1080
+4432	7	R	2023-03-19	17:00:00	\N	f	22	1081
 4433	4	Q1	2023-03-18	17:00:00	\N	f	1	1081
 4434	5	Q2	2023-03-18	17:00:00	\N	f	1	1081
 4435	6	Q3	2023-03-18	17:00:00	\N	f	1	1081
-4432	7	R	2023-03-19	17:00:00	\N	f	22	1081
-4443	1	FP1	2023-03-31	01:30:00	\N	f	1	1082
-4444	2	FP2	2023-03-31	05:00:00	\N	f	1	1082
-4445	3	FP3	2023-04-01	01:30:00	\N	f	1	1082
+4436	1	FP1	2023-03-17	13:30:00	\N	f	1	1081
+4437	2	FP2	2023-03-17	17:00:00	\N	f	1	1081
+4438	3	FP3	2023-03-18	13:30:00	\N	f	1	1081
+4439	7	R	2023-04-02	05:00:00	\N	f	22	1082
 4440	4	Q1	2023-04-01	05:00:00	\N	f	1	1082
 4441	5	Q2	2023-04-01	05:00:00	\N	f	1	1082
 4442	6	Q3	2023-04-01	05:00:00	\N	f	1	1082
-4439	7	R	2023-04-02	05:00:00	\N	f	22	1082
-4450	1	FP1	2023-04-28	09:30:00	\N	f	1	1083
+4443	1	FP1	2023-03-31	01:30:00	\N	f	1	1082
+4444	2	FP2	2023-03-31	05:00:00	\N	f	1	1082
+4445	3	FP3	2023-04-01	01:30:00	\N	f	1	1082
+4446	9	R	2023-04-30	11:00:00	\N	f	22	1083
 4447	2	Q1	2023-04-28	13:00:00	\N	f	1	1083
 4448	3	Q2	2023-04-28	13:00:00	\N	f	1	1083
 4449	4	Q3	2023-04-28	13:00:00	\N	f	1	1083
+4450	1	FP1	2023-04-28	09:30:00	\N	f	1	1083
 4451	5	SQ1	2023-04-29	09:30:00	\N	f	1	1083
 4452	6	SQ2	2023-04-29	09:30:00	\N	f	1	1083
 4453	7	SQ3	2023-04-29	09:30:00	\N	f	1	1083
 4454	8	SR	2023-04-29	13:30:00	\N	f	23	1083
-4446	9	R	2023-04-30	11:00:00	\N	f	22	1083
-4459	1	FP1	2023-05-05	18:00:00	\N	f	1	1084
-4460	2	FP2	2023-05-05	21:30:00	\N	f	1	1084
-4461	3	FP3	2023-05-06	16:30:00	\N	f	1	1084
+4455	7	R	2023-05-07	19:30:00	\N	f	22	1084
 4456	4	Q1	2023-05-06	20:00:00	\N	f	1	1084
 4457	5	Q2	2023-05-06	20:00:00	\N	f	1	1084
 4458	6	Q3	2023-05-06	20:00:00	\N	f	1	1084
-4455	7	R	2023-05-07	19:30:00	\N	f	22	1084
-4466	1	FP1	2023-05-26	11:30:00	\N	f	1	1085
-4467	2	FP2	2023-05-26	15:00:00	\N	f	1	1085
-4468	3	FP3	2023-05-27	10:30:00	\N	f	1	1085
+4459	1	FP1	2023-05-05	18:00:00	\N	f	1	1084
+4460	2	FP2	2023-05-05	21:30:00	\N	f	1	1084
+4461	3	FP3	2023-05-06	16:30:00	\N	f	1	1084
+4462	7	R	2023-05-28	13:00:00	\N	f	22	1085
 4463	4	Q1	2023-05-27	14:00:00	\N	f	1	1085
 4464	5	Q2	2023-05-27	14:00:00	\N	f	1	1085
 4465	6	Q3	2023-05-27	14:00:00	\N	f	1	1085
-4462	7	R	2023-05-28	13:00:00	\N	f	22	1085
-4473	1	FP1	2023-06-02	11:30:00	\N	f	1	1086
-4474	2	FP2	2023-06-02	15:00:00	\N	f	1	1086
-4475	3	FP3	2023-06-03	10:30:00	\N	f	1	1086
+4466	1	FP1	2023-05-26	11:30:00	\N	f	1	1085
+4467	2	FP2	2023-05-26	15:00:00	\N	f	1	1085
+4468	3	FP3	2023-05-27	10:30:00	\N	f	1	1085
+4469	7	R	2023-06-04	13:00:00	\N	f	22	1086
 4470	4	Q1	2023-06-03	14:00:00	\N	f	1	1086
 4471	5	Q2	2023-06-03	14:00:00	\N	f	1	1086
 4472	6	Q3	2023-06-03	14:00:00	\N	f	1	1086
-4469	7	R	2023-06-04	13:00:00	\N	f	22	1086
-4480	1	FP1	2023-06-16	17:30:00	\N	f	1	1087
-4481	2	FP2	2023-06-16	21:00:00	\N	f	1	1087
-4482	3	FP3	2023-06-17	16:30:00	\N	f	1	1087
+4473	1	FP1	2023-06-02	11:30:00	\N	f	1	1086
+4474	2	FP2	2023-06-02	15:00:00	\N	f	1	1086
+4475	3	FP3	2023-06-03	10:30:00	\N	f	1	1086
+4476	7	R	2023-06-18	18:00:00	\N	f	22	1087
 4477	4	Q1	2023-06-17	20:00:00	\N	f	1	1087
 4478	5	Q2	2023-06-17	20:00:00	\N	f	1	1087
 4479	6	Q3	2023-06-17	20:00:00	\N	f	1	1087
-4476	7	R	2023-06-18	18:00:00	\N	f	22	1087
-4487	1	FP1	2023-06-30	11:30:00	\N	f	1	1088
+4480	1	FP1	2023-06-16	17:30:00	\N	f	1	1087
+4481	2	FP2	2023-06-16	21:00:00	\N	f	1	1087
+4482	3	FP3	2023-06-17	16:30:00	\N	f	1	1087
+4483	9	R	2023-07-02	13:00:00	\N	f	22	1088
 4484	2	Q1	2023-06-30	15:00:00	\N	f	1	1088
 4485	3	Q2	2023-06-30	15:00:00	\N	f	1	1088
 4486	4	Q3	2023-06-30	15:00:00	\N	f	1	1088
+4487	1	FP1	2023-06-30	11:30:00	\N	f	1	1088
 4488	5	SQ1	2023-07-01	10:30:00	\N	f	1	1088
 4489	6	SQ2	2023-07-01	10:30:00	\N	f	1	1088
 4490	7	SQ3	2023-07-01	10:30:00	\N	f	1	1088
 4491	8	SR	2023-07-01	14:30:00	\N	f	23	1088
-4483	9	R	2023-07-02	13:00:00	\N	f	22	1088
-4496	1	FP1	2023-07-07	11:30:00	\N	f	1	1089
-4497	2	FP2	2023-07-07	15:00:00	\N	f	1	1089
-4498	3	FP3	2023-07-08	10:30:00	\N	f	1	1089
+4492	7	R	2023-07-09	14:00:00	\N	f	22	1089
 4493	4	Q1	2023-07-08	14:00:00	\N	f	1	1089
 4494	5	Q2	2023-07-08	14:00:00	\N	f	1	1089
 4495	6	Q3	2023-07-08	14:00:00	\N	f	1	1089
-4492	7	R	2023-07-09	14:00:00	\N	f	22	1089
-4503	1	FP1	2023-07-21	11:30:00	\N	f	1	1090
-4504	2	FP2	2023-07-21	15:00:00	\N	f	1	1090
-4505	3	FP3	2023-07-22	10:30:00	\N	f	1	1090
+4496	1	FP1	2023-07-07	11:30:00	\N	f	1	1089
+4497	2	FP2	2023-07-07	15:00:00	\N	f	1	1089
+4498	3	FP3	2023-07-08	10:30:00	\N	f	1	1089
+4499	7	R	2023-07-23	13:00:00	\N	f	22	1090
 4500	4	Q1	2023-07-22	14:00:00	\N	f	1	1090
 4501	5	Q2	2023-07-22	14:00:00	\N	f	1	1090
 4502	6	Q3	2023-07-22	14:00:00	\N	f	1	1090
-4499	7	R	2023-07-23	13:00:00	\N	f	22	1090
-4510	1	FP1	2023-07-28	11:30:00	\N	f	1	1091
+4503	1	FP1	2023-07-21	11:30:00	\N	f	1	1090
+4504	2	FP2	2023-07-21	15:00:00	\N	f	1	1090
+4505	3	FP3	2023-07-22	10:30:00	\N	f	1	1090
+4506	9	R	2023-07-30	13:00:00	\N	f	22	1091
 4507	2	Q1	2023-07-28	15:00:00	\N	f	1	1091
 4508	3	Q2	2023-07-28	15:00:00	\N	f	1	1091
 4509	4	Q3	2023-07-28	15:00:00	\N	f	1	1091
+4510	1	FP1	2023-07-28	11:30:00	\N	f	1	1091
 4511	5	SQ1	2023-07-29	10:30:00	\N	f	1	1091
 4512	6	SQ2	2023-07-29	10:30:00	\N	f	1	1091
 4513	7	SQ3	2023-07-29	10:30:00	\N	f	1	1091
 4514	8	SR	2023-07-29	14:30:00	\N	f	23	1091
-4506	9	R	2023-07-30	13:00:00	\N	f	22	1091
-4519	1	FP1	2023-08-25	10:30:00	\N	f	1	1092
-4520	2	FP2	2023-08-25	14:00:00	\N	f	1	1092
-4521	3	FP3	2023-08-26	09:30:00	\N	f	1	1092
+4515	7	R	2023-08-27	13:00:00	\N	f	22	1092
 4516	4	Q1	2023-08-26	13:00:00	\N	f	1	1092
 4517	5	Q2	2023-08-26	13:00:00	\N	f	1	1092
 4518	6	Q3	2023-08-26	13:00:00	\N	f	1	1092
-4515	7	R	2023-08-27	13:00:00	\N	f	22	1092
-4526	1	FP1	2023-09-01	11:30:00	\N	f	1	1093
-4527	2	FP2	2023-09-01	15:00:00	\N	f	1	1093
-4528	3	FP3	2023-09-02	10:30:00	\N	f	1	1093
+4519	1	FP1	2023-08-25	10:30:00	\N	f	1	1092
+4520	2	FP2	2023-08-25	14:00:00	\N	f	1	1092
+4521	3	FP3	2023-08-26	09:30:00	\N	f	1	1092
+4522	7	R	2023-09-03	13:00:00	\N	f	22	1093
 4523	4	Q1	2023-09-02	14:00:00	\N	f	1	1093
 4524	5	Q2	2023-09-02	14:00:00	\N	f	1	1093
 4525	6	Q3	2023-09-02	14:00:00	\N	f	1	1093
-4522	7	R	2023-09-03	13:00:00	\N	f	22	1093
-4533	1	FP1	2023-09-15	09:30:00	\N	f	1	1094
-4534	2	FP2	2023-09-15	13:00:00	\N	f	1	1094
-4535	3	FP3	2023-09-16	09:30:00	\N	f	1	1094
+4526	1	FP1	2023-09-01	11:30:00	\N	f	1	1093
+4527	2	FP2	2023-09-01	15:00:00	\N	f	1	1093
+4528	3	FP3	2023-09-02	10:30:00	\N	f	1	1093
+4529	7	R	2023-09-17	12:00:00	\N	f	22	1094
 4530	4	Q1	2023-09-16	13:00:00	\N	f	1	1094
 4531	5	Q2	2023-09-16	13:00:00	\N	f	1	1094
 4532	6	Q3	2023-09-16	13:00:00	\N	f	1	1094
-4529	7	R	2023-09-17	12:00:00	\N	f	22	1094
-4540	1	FP1	2023-09-22	02:30:00	\N	f	1	1095
-4541	2	FP2	2023-09-22	06:00:00	\N	f	1	1095
-4542	3	FP3	2023-09-23	02:30:00	\N	f	1	1095
+4533	1	FP1	2023-09-15	09:30:00	\N	f	1	1094
+4534	2	FP2	2023-09-15	13:00:00	\N	f	1	1094
+4535	3	FP3	2023-09-16	09:30:00	\N	f	1	1094
+4536	7	R	2023-09-24	05:00:00	\N	f	22	1095
 4537	4	Q1	2023-09-23	06:00:00	\N	f	1	1095
 4538	5	Q2	2023-09-23	06:00:00	\N	f	1	1095
 4539	6	Q3	2023-09-23	06:00:00	\N	f	1	1095
-4536	7	R	2023-09-24	05:00:00	\N	f	22	1095
-4547	1	FP1	2023-10-06	13:30:00	\N	f	1	1096
+4540	1	FP1	2023-09-22	02:30:00	\N	f	1	1095
+4541	2	FP2	2023-09-22	06:00:00	\N	f	1	1095
+4542	3	FP3	2023-09-23	02:30:00	\N	f	1	1095
+4543	9	R	2023-10-08	17:00:00	\N	f	22	1096
 4544	2	Q1	2023-10-06	17:00:00	\N	f	1	1096
 4545	3	Q2	2023-10-06	17:00:00	\N	f	1	1096
 4546	4	Q3	2023-10-06	17:00:00	\N	f	1	1096
+4547	1	FP1	2023-10-06	13:30:00	\N	f	1	1096
 4548	5	SQ1	2023-10-07	13:00:00	\N	f	1	1096
 4549	6	SQ2	2023-10-07	13:00:00	\N	f	1	1096
 4550	7	SQ3	2023-10-07	13:00:00	\N	f	1	1096
 4551	8	SR	2023-10-07	17:30:00	\N	f	23	1096
-4543	9	R	2023-10-08	17:00:00	\N	f	22	1096
-4556	1	FP1	2023-10-20	17:30:00	\N	f	1	1097
+4552	9	R	2023-10-22	19:00:00	\N	f	22	1097
 4553	2	Q1	2023-10-20	21:00:00	\N	f	1	1097
 4554	3	Q2	2023-10-20	21:00:00	\N	f	1	1097
 4555	4	Q3	2023-10-20	21:00:00	\N	f	1	1097
+4556	1	FP1	2023-10-20	17:30:00	\N	f	1	1097
 4557	5	SQ1	2023-10-21	18:00:00	\N	f	1	1097
 4558	6	SQ2	2023-10-21	18:00:00	\N	f	1	1097
 4559	7	SQ3	2023-10-21	18:00:00	\N	f	1	1097
 4560	8	SR	2023-10-21	22:00:00	\N	f	23	1097
-4552	9	R	2023-10-22	19:00:00	\N	f	22	1097
-4565	1	FP1	2023-10-27	18:30:00	\N	f	1	1098
-4566	2	FP2	2023-10-27	22:00:00	\N	f	1	1098
-4567	3	FP3	2023-10-28	17:30:00	\N	f	1	1098
+4561	7	R	2023-10-29	20:00:00	\N	f	22	1098
 4562	4	Q1	2023-10-28	21:00:00	\N	f	1	1098
 4563	5	Q2	2023-10-28	21:00:00	\N	f	1	1098
 4564	6	Q3	2023-10-28	21:00:00	\N	f	1	1098
-4561	7	R	2023-10-29	20:00:00	\N	f	22	1098
-4572	1	FP1	2023-11-03	14:30:00	\N	f	1	1099
+4565	1	FP1	2023-10-27	18:30:00	\N	f	1	1098
+4566	2	FP2	2023-10-27	22:00:00	\N	f	1	1098
+4567	3	FP3	2023-10-28	17:30:00	\N	f	1	1098
+4568	9	R	2023-11-05	17:00:00	\N	f	22	1099
 4569	2	Q1	2023-11-03	18:00:00	\N	f	1	1099
 4570	3	Q2	2023-11-03	18:00:00	\N	f	1	1099
 4571	4	Q3	2023-11-03	18:00:00	\N	f	1	1099
+4572	1	FP1	2023-11-03	14:30:00	\N	f	1	1099
 4573	5	SQ1	2023-11-04	14:30:00	\N	f	1	1099
 4574	6	SQ2	2023-11-04	14:30:00	\N	f	1	1099
 4575	7	SQ3	2023-11-04	14:30:00	\N	f	1	1099
 4576	8	SR	2023-11-04	18:30:00	\N	f	23	1099
-4568	9	R	2023-11-05	17:00:00	\N	f	22	1099
-4581	1	FP1	2023-11-16	04:30:00	\N	f	1	1100
-4582	2	FP2	2023-11-16	08:00:00	\N	f	1	1100
-4583	3	FP3	2023-11-17	04:30:00	\N	f	1	1100
+4577	7	R	2023-11-19	06:00:00	\N	f	22	1100
 4578	4	Q1	2023-11-17	08:00:00	\N	f	1	1100
 4579	5	Q2	2023-11-17	08:00:00	\N	f	1	1100
 4580	6	Q3	2023-11-17	08:00:00	\N	f	1	1100
-4577	7	R	2023-11-19	06:00:00	\N	f	22	1100
-4588	1	FP1	2023-11-24	09:30:00	\N	f	1	1101
-4589	2	FP2	2023-11-24	13:00:00	\N	f	1	1101
-4590	3	FP3	2023-11-25	10:30:00	\N	f	1	1101
+4581	1	FP1	2023-11-16	04:30:00	\N	f	1	1100
+4582	2	FP2	2023-11-16	08:00:00	\N	f	1	1100
+4583	3	FP3	2023-11-17	04:30:00	\N	f	1	1100
+4584	7	R	2023-11-26	13:00:00	\N	f	22	1101
 4585	4	Q1	2023-11-25	14:00:00	\N	f	1	1101
 4586	5	Q2	2023-11-25	14:00:00	\N	f	1	1101
 4587	6	Q3	2023-11-25	14:00:00	\N	f	1	1101
-4584	7	R	2023-11-26	13:00:00	\N	f	22	1101
-4595	1	FP1	2024-02-29	11:30:00	\N	f	1	1102
-4596	2	FP2	2024-02-29	15:00:00	\N	f	1	1102
-4597	3	FP3	2024-03-01	12:30:00	\N	f	1	1102
+4588	1	FP1	2023-11-24	09:30:00	\N	f	1	1101
+4589	2	FP2	2023-11-24	13:00:00	\N	f	1	1101
+4590	3	FP3	2023-11-25	10:30:00	\N	f	1	1101
+4591	7	R	2024-03-02	15:00:00	\N	f	22	1102
 4592	4	Q1	2024-03-01	16:00:00	\N	f	1	1102
 4593	5	Q2	2024-03-01	16:00:00	\N	f	1	1102
 4594	6	Q3	2024-03-01	16:00:00	\N	f	1	1102
-4591	7	R	2024-03-02	15:00:00	\N	f	22	1102
-4602	1	FP1	2024-03-07	13:30:00	\N	f	1	1103
-4603	2	FP2	2024-03-07	17:00:00	\N	f	1	1103
-4604	3	FP3	2024-03-08	13:30:00	\N	f	1	1103
+4595	1	FP1	2024-02-29	11:30:00	\N	f	1	1102
+4596	2	FP2	2024-02-29	15:00:00	\N	f	1	1102
+4597	3	FP3	2024-03-01	12:30:00	\N	f	1	1102
+4598	7	R	2024-03-09	17:00:00	\N	f	22	1103
 4599	4	Q1	2024-03-08	17:00:00	\N	f	1	1103
 4600	5	Q2	2024-03-08	17:00:00	\N	f	1	1103
 4601	6	Q3	2024-03-08	17:00:00	\N	f	1	1103
-4598	7	R	2024-03-09	17:00:00	\N	f	22	1103
-4609	1	FP1	2024-03-22	01:30:00	\N	f	1	1104
-4610	2	FP2	2024-03-22	05:00:00	\N	f	1	1104
-4611	3	FP3	2024-03-23	01:30:00	\N	f	1	1104
+4602	1	FP1	2024-03-07	13:30:00	\N	f	1	1103
+4603	2	FP2	2024-03-07	17:00:00	\N	f	1	1103
+4604	3	FP3	2024-03-08	13:30:00	\N	f	1	1103
+4605	7	R	2024-03-24	04:00:00	\N	f	22	1104
 4606	4	Q1	2024-03-23	05:00:00	\N	f	1	1104
 4607	5	Q2	2024-03-23	05:00:00	\N	f	1	1104
 4608	6	Q3	2024-03-23	05:00:00	\N	f	1	1104
-4605	7	R	2024-03-24	04:00:00	\N	f	22	1104
-4616	1	FP1	2024-04-05	02:30:00	\N	f	1	1105
-4617	2	FP2	2024-04-05	06:00:00	\N	f	1	1105
-4618	3	FP3	2024-04-06	02:30:00	\N	f	1	1105
+4609	1	FP1	2024-03-22	01:30:00	\N	f	1	1104
+4610	2	FP2	2024-03-22	05:00:00	\N	f	1	1104
+4611	3	FP3	2024-03-23	01:30:00	\N	f	1	1104
+4612	7	R	2024-04-07	05:00:00	\N	f	22	1105
 4613	4	Q1	2024-04-06	06:00:00	\N	f	1	1105
 4614	5	Q2	2024-04-06	06:00:00	\N	f	1	1105
 4615	6	Q3	2024-04-06	06:00:00	\N	f	1	1105
-4612	7	R	2024-04-07	05:00:00	\N	f	22	1105
+4616	1	FP1	2024-04-05	02:30:00	\N	f	1	1105
+4617	2	FP2	2024-04-05	06:00:00	\N	f	1	1105
+4618	3	FP3	2024-04-06	02:30:00	\N	f	1	1105
+4619	9	R	2024-04-21	07:00:00	\N	f	22	1106
+4620	6	Q1	2024-04-20	07:00:00	\N	f	1	1106
+4621	7	Q2	2024-04-20	07:00:00	\N	f	1	1106
+4622	8	Q3	2024-04-20	07:00:00	\N	f	1	1106
 4623	1	FP1	2024-04-19	03:30:00	\N	f	1	1106
 4624	2	SQ1	2024-04-19	07:30:00	\N	f	1	1106
 4625	3	SQ2	2024-04-19	07:30:00	\N	f	1	1106
 4626	4	SQ3	2024-04-19	07:30:00	\N	f	1	1106
 4627	5	SR	2024-04-20	03:00:00	\N	f	23	1106
-4620	6	Q1	2024-04-20	07:00:00	\N	f	1	1106
-4621	7	Q2	2024-04-20	07:00:00	\N	f	1	1106
-4622	8	Q3	2024-04-20	07:00:00	\N	f	1	1106
-4619	9	R	2024-04-21	07:00:00	\N	f	22	1106
+4628	9	R	2024-05-05	20:00:00	\N	f	22	1107
+4629	6	Q1	2024-05-04	20:00:00	\N	f	1	1107
+4630	7	Q2	2024-05-04	20:00:00	\N	f	1	1107
+4631	8	Q3	2024-05-04	20:00:00	\N	f	1	1107
 4632	1	FP1	2024-05-03	16:30:00	\N	f	1	1107
 4633	2	SQ1	2024-05-03	20:30:00	\N	f	1	1107
 4634	3	SQ2	2024-05-03	20:30:00	\N	f	1	1107
 4635	4	SQ3	2024-05-03	20:30:00	\N	f	1	1107
 4636	5	SR	2024-05-04	16:00:00	\N	f	23	1107
-4629	6	Q1	2024-05-04	20:00:00	\N	f	1	1107
-4630	7	Q2	2024-05-04	20:00:00	\N	f	1	1107
-4631	8	Q3	2024-05-04	20:00:00	\N	f	1	1107
-4628	9	R	2024-05-05	20:00:00	\N	f	22	1107
-4641	1	FP1	2024-05-17	11:30:00	\N	f	1	1108
-4642	2	FP2	2024-05-17	15:00:00	\N	f	1	1108
-4643	3	FP3	2024-05-18	10:30:00	\N	f	1	1108
+4637	7	R	2024-05-19	13:00:00	\N	f	22	1108
 4638	4	Q1	2024-05-18	14:00:00	\N	f	1	1108
 4639	5	Q2	2024-05-18	14:00:00	\N	f	1	1108
 4640	6	Q3	2024-05-18	14:00:00	\N	f	1	1108
-4637	7	R	2024-05-19	13:00:00	\N	f	22	1108
-4648	1	FP1	2024-05-24	11:30:00	\N	f	1	1109
-4649	2	FP2	2024-05-24	15:00:00	\N	f	1	1109
-4650	3	FP3	2024-05-25	10:30:00	\N	f	1	1109
+4641	1	FP1	2024-05-17	11:30:00	\N	f	1	1108
+4642	2	FP2	2024-05-17	15:00:00	\N	f	1	1108
+4643	3	FP3	2024-05-18	10:30:00	\N	f	1	1108
+4644	7	R	2024-05-26	13:00:00	\N	f	22	1109
 4645	4	Q1	2024-05-25	14:00:00	\N	f	1	1109
 4646	5	Q2	2024-05-25	14:00:00	\N	f	1	1109
 4647	6	Q3	2024-05-25	14:00:00	\N	f	1	1109
-4644	7	R	2024-05-26	13:00:00	\N	f	22	1109
-4655	1	FP1	2024-06-07	17:30:00	\N	f	1	1110
-4656	2	FP2	2024-06-07	21:00:00	\N	f	1	1110
-4657	3	FP3	2024-06-08	16:30:00	\N	f	1	1110
+4648	1	FP1	2024-05-24	11:30:00	\N	f	1	1109
+4649	2	FP2	2024-05-24	15:00:00	\N	f	1	1109
+4650	3	FP3	2024-05-25	10:30:00	\N	f	1	1109
+4651	7	R	2024-06-09	18:00:00	\N	f	22	1110
 4652	4	Q1	2024-06-08	20:00:00	\N	f	1	1110
 4653	5	Q2	2024-06-08	20:00:00	\N	f	1	1110
 4654	6	Q3	2024-06-08	20:00:00	\N	f	1	1110
-4651	7	R	2024-06-09	18:00:00	\N	f	22	1110
-4662	1	FP1	2024-06-21	11:30:00	\N	f	1	1111
-4663	2	FP2	2024-06-21	15:00:00	\N	f	1	1111
-4664	3	FP3	2024-06-22	10:30:00	\N	f	1	1111
+4655	1	FP1	2024-06-07	17:30:00	\N	f	1	1110
+4656	2	FP2	2024-06-07	21:00:00	\N	f	1	1110
+4657	3	FP3	2024-06-08	16:30:00	\N	f	1	1110
+4658	7	R	2024-06-23	13:00:00	\N	f	22	1111
 4659	4	Q1	2024-06-22	14:00:00	\N	f	1	1111
 4660	5	Q2	2024-06-22	14:00:00	\N	f	1	1111
 4661	6	Q3	2024-06-22	14:00:00	\N	f	1	1111
-4658	7	R	2024-06-23	13:00:00	\N	f	22	1111
+4662	1	FP1	2024-06-21	11:30:00	\N	f	1	1111
+4663	2	FP2	2024-06-21	15:00:00	\N	f	1	1111
+4664	3	FP3	2024-06-22	10:30:00	\N	f	1	1111
+4665	9	R	2024-06-30	13:00:00	\N	f	22	1112
+4666	6	Q1	2024-06-29	14:00:00	\N	f	1	1112
+4667	7	Q2	2024-06-29	14:00:00	\N	f	1	1112
+4668	8	Q3	2024-06-29	14:00:00	\N	f	1	1112
 4669	1	FP1	2024-06-28	10:30:00	\N	f	1	1112
 4670	2	SQ1	2024-06-28	14:30:00	\N	f	1	1112
 4671	3	SQ2	2024-06-28	14:30:00	\N	f	1	1112
 4672	4	SQ3	2024-06-28	14:30:00	\N	f	1	1112
 4673	5	SR	2024-06-29	10:00:00	\N	f	23	1112
-4666	6	Q1	2024-06-29	14:00:00	\N	f	1	1112
-4667	7	Q2	2024-06-29	14:00:00	\N	f	1	1112
-4668	8	Q3	2024-06-29	14:00:00	\N	f	1	1112
-4665	9	R	2024-06-30	13:00:00	\N	f	22	1112
-4678	1	FP1	2024-07-05	11:30:00	\N	f	1	1113
-4679	2	FP2	2024-07-05	15:00:00	\N	f	1	1113
-4680	3	FP3	2024-07-06	10:30:00	\N	f	1	1113
+4674	7	R	2024-07-07	14:00:00	\N	f	22	1113
 4675	4	Q1	2024-07-06	14:00:00	\N	f	1	1113
 4676	5	Q2	2024-07-06	14:00:00	\N	f	1	1113
 4677	6	Q3	2024-07-06	14:00:00	\N	f	1	1113
-4674	7	R	2024-07-07	14:00:00	\N	f	22	1113
-4685	1	FP1	2024-07-19	11:30:00	\N	f	1	1114
-4686	2	FP2	2024-07-19	15:00:00	\N	f	1	1114
-4687	3	FP3	2024-07-20	10:30:00	\N	f	1	1114
+4678	1	FP1	2024-07-05	11:30:00	\N	f	1	1113
+4679	2	FP2	2024-07-05	15:00:00	\N	f	1	1113
+4680	3	FP3	2024-07-06	10:30:00	\N	f	1	1113
+4681	7	R	2024-07-21	13:00:00	\N	f	22	1114
 4682	4	Q1	2024-07-20	14:00:00	\N	f	1	1114
 4683	5	Q2	2024-07-20	14:00:00	\N	f	1	1114
 4684	6	Q3	2024-07-20	14:00:00	\N	f	1	1114
-4681	7	R	2024-07-21	13:00:00	\N	f	22	1114
-4692	1	FP1	2024-07-26	11:30:00	\N	f	1	1115
-4693	2	FP2	2024-07-26	15:00:00	\N	f	1	1115
-4694	3	FP3	2024-07-27	10:30:00	\N	f	1	1115
+4685	1	FP1	2024-07-19	11:30:00	\N	f	1	1114
+4686	2	FP2	2024-07-19	15:00:00	\N	f	1	1114
+4687	3	FP3	2024-07-20	10:30:00	\N	f	1	1114
+4688	7	R	2024-07-28	13:00:00	\N	f	22	1115
 4689	4	Q1	2024-07-27	14:00:00	\N	f	1	1115
 4690	5	Q2	2024-07-27	14:00:00	\N	f	1	1115
 4691	6	Q3	2024-07-27	14:00:00	\N	f	1	1115
-4688	7	R	2024-07-28	13:00:00	\N	f	22	1115
-4699	1	FP1	2024-08-23	10:30:00	\N	f	1	1116
-4700	2	FP2	2024-08-23	14:00:00	\N	f	1	1116
-4701	3	FP3	2024-08-24	09:30:00	\N	f	1	1116
+4692	1	FP1	2024-07-26	11:30:00	\N	f	1	1115
+4693	2	FP2	2024-07-26	15:00:00	\N	f	1	1115
+4694	3	FP3	2024-07-27	10:30:00	\N	f	1	1115
+4695	7	R	2024-08-25	13:00:00	\N	f	22	1116
 4696	4	Q1	2024-08-24	13:00:00	\N	f	1	1116
 4697	5	Q2	2024-08-24	13:00:00	\N	f	1	1116
 4698	6	Q3	2024-08-24	13:00:00	\N	f	1	1116
-4695	7	R	2024-08-25	13:00:00	\N	f	22	1116
-4706	1	FP1	2024-08-30	11:30:00	\N	f	1	1117
-4707	2	FP2	2024-08-30	15:00:00	\N	f	1	1117
-4708	3	FP3	2024-08-31	10:30:00	\N	f	1	1117
+4699	1	FP1	2024-08-23	10:30:00	\N	f	1	1116
+4700	2	FP2	2024-08-23	14:00:00	\N	f	1	1116
+4701	3	FP3	2024-08-24	09:30:00	\N	f	1	1116
+4702	7	R	2024-09-01	13:00:00	\N	f	22	1117
 4703	4	Q1	2024-08-31	14:00:00	\N	f	1	1117
 4704	5	Q2	2024-08-31	14:00:00	\N	f	1	1117
 4705	6	Q3	2024-08-31	14:00:00	\N	f	1	1117
-4702	7	R	2024-09-01	13:00:00	\N	f	22	1117
-4713	1	FP1	2024-09-13	09:30:00	\N	f	1	1118
-4714	2	FP2	2024-09-13	13:00:00	\N	f	1	1118
-4715	3	FP3	2024-09-14	08:30:00	\N	f	1	1118
+4706	1	FP1	2024-08-30	11:30:00	\N	f	1	1117
+4707	2	FP2	2024-08-30	15:00:00	\N	f	1	1117
+4708	3	FP3	2024-08-31	10:30:00	\N	f	1	1117
+4709	7	R	2024-09-15	11:00:00	\N	f	22	1118
 4710	4	Q1	2024-09-14	12:00:00	\N	f	1	1118
 4711	5	Q2	2024-09-14	12:00:00	\N	f	1	1118
 4712	6	Q3	2024-09-14	12:00:00	\N	f	1	1118
-4709	7	R	2024-09-15	11:00:00	\N	f	22	1118
-4720	1	FP1	2024-09-20	09:30:00	\N	f	1	1119
-4721	2	FP2	2024-09-20	13:00:00	\N	f	1	1119
-4722	3	FP3	2024-09-21	09:30:00	\N	f	1	1119
+4713	1	FP1	2024-09-13	09:30:00	\N	f	1	1118
+4714	2	FP2	2024-09-13	13:00:00	\N	f	1	1118
+4715	3	FP3	2024-09-14	08:30:00	\N	f	1	1118
+4716	7	R	2024-09-22	12:00:00	\N	f	22	1119
 4717	4	Q1	2024-09-21	13:00:00	\N	f	1	1119
 4718	5	Q2	2024-09-21	13:00:00	\N	f	1	1119
 4719	6	Q3	2024-09-21	13:00:00	\N	f	1	1119
-4716	7	R	2024-09-22	12:00:00	\N	f	22	1119
+4720	1	FP1	2024-09-20	09:30:00	\N	f	1	1119
+4721	2	FP2	2024-09-20	13:00:00	\N	f	1	1119
+4722	3	FP3	2024-09-21	09:30:00	\N	f	1	1119
+4723	9	R	2024-10-20	19:00:00	\N	f	22	1120
+4724	6	Q1	2024-10-19	22:00:00	\N	f	1	1120
+4725	7	Q2	2024-10-19	22:00:00	\N	f	1	1120
+4726	8	Q3	2024-10-19	22:00:00	\N	f	1	1120
 4727	1	FP1	2024-10-18	17:30:00	\N	f	1	1120
 4728	2	SQ1	2024-10-18	21:30:00	\N	f	1	1120
 4729	3	SQ2	2024-10-18	21:30:00	\N	f	1	1120
 4730	4	SQ3	2024-10-18	21:30:00	\N	f	1	1120
 4731	5	SR	2024-10-19	18:00:00	\N	f	23	1120
-4724	6	Q1	2024-10-19	22:00:00	\N	f	1	1120
-4725	7	Q2	2024-10-19	22:00:00	\N	f	1	1120
-4726	8	Q3	2024-10-19	22:00:00	\N	f	1	1120
-4723	9	R	2024-10-20	19:00:00	\N	f	22	1120
-4736	1	FP1	2024-10-25	18:30:00	\N	f	1	1121
-4737	2	FP2	2024-10-25	22:00:00	\N	f	1	1121
-4738	3	FP3	2024-10-26	17:30:00	\N	f	1	1121
+4732	7	R	2024-10-27	20:00:00	\N	f	22	1121
 4733	4	Q1	2024-10-26	21:00:00	\N	f	1	1121
 4734	5	Q2	2024-10-26	21:00:00	\N	f	1	1121
 4735	6	Q3	2024-10-26	21:00:00	\N	f	1	1121
-4732	7	R	2024-10-27	20:00:00	\N	f	22	1121
+4736	1	FP1	2024-10-25	18:30:00	\N	f	1	1121
+4737	2	FP2	2024-10-25	22:00:00	\N	f	1	1121
+4738	3	FP3	2024-10-26	17:30:00	\N	f	1	1121
+4739	9	R	2024-11-03	17:00:00	\N	f	22	1122
+4740	6	Q1	2024-11-02	18:00:00	\N	f	1	1122
+4741	7	Q2	2024-11-02	18:00:00	\N	f	1	1122
+4742	8	Q3	2024-11-02	18:00:00	\N	f	1	1122
 4743	1	FP1	2024-11-01	14:30:00	\N	f	1	1122
 4744	2	SQ1	2024-11-01	18:30:00	\N	f	1	1122
 4745	3	SQ2	2024-11-01	18:30:00	\N	f	1	1122
 4746	4	SQ3	2024-11-01	18:30:00	\N	f	1	1122
 4747	5	SR	2024-11-02	14:00:00	\N	f	23	1122
-4740	6	Q1	2024-11-02	18:00:00	\N	f	1	1122
-4741	7	Q2	2024-11-02	18:00:00	\N	f	1	1122
-4742	8	Q3	2024-11-02	18:00:00	\N	f	1	1122
-4739	9	R	2024-11-03	17:00:00	\N	f	22	1122
-4752	1	FP1	2024-11-21	02:30:00	\N	f	1	1123
-4753	2	FP2	2024-11-21	06:00:00	\N	f	1	1123
-4754	3	FP3	2024-11-22	02:30:00	\N	f	1	1123
+4748	7	R	2024-11-23	06:00:00	\N	f	22	1123
 4749	4	Q1	2024-11-22	06:00:00	\N	f	1	1123
 4750	5	Q2	2024-11-22	06:00:00	\N	f	1	1123
 4751	6	Q3	2024-11-22	06:00:00	\N	f	1	1123
-4748	7	R	2024-11-23	06:00:00	\N	f	22	1123
+4752	1	FP1	2024-11-21	02:30:00	\N	f	1	1123
+4753	2	FP2	2024-11-21	06:00:00	\N	f	1	1123
+4754	3	FP3	2024-11-22	02:30:00	\N	f	1	1123
+4755	9	R	2024-12-01	16:00:00	\N	f	22	1124
+4756	6	Q1	2024-11-30	18:00:00	\N	f	1	1124
+4757	7	Q2	2024-11-30	18:00:00	\N	f	1	1124
+4758	8	Q3	2024-11-30	18:00:00	\N	f	1	1124
 4759	1	FP1	2024-11-29	13:30:00	\N	f	1	1124
 4760	2	SQ1	2024-11-29	17:30:00	\N	f	1	1124
 4761	3	SQ2	2024-11-29	17:30:00	\N	f	1	1124
 4762	4	SQ3	2024-11-29	17:30:00	\N	f	1	1124
-4763	5	SR	2024-11-30	13:00:00	\N	f	23	1124
-4756	6	Q1	2024-11-30	17:00:00	\N	f	1	1124
-4757	7	Q2	2024-11-30	17:00:00	\N	f	1	1124
-4758	8	Q3	2024-11-30	17:00:00	\N	f	1	1124
-4755	9	R	2024-12-01	17:00:00	\N	f	22	1124
-4768	1	FP1	2024-12-06	09:30:00	\N	f	1	1125
-4769	2	FP2	2024-12-06	13:00:00	\N	f	1	1125
-4770	3	FP3	2024-12-07	10:30:00	\N	f	1	1125
+4763	5	SR	2024-11-30	14:00:00	\N	f	23	1124
+4764	7	R	2024-12-08	13:00:00	\N	f	22	1125
 4765	4	Q1	2024-12-07	14:00:00	\N	f	1	1125
 4766	5	Q2	2024-12-07	14:00:00	\N	f	1	1125
 4767	6	Q3	2024-12-07	14:00:00	\N	f	1	1125
-4764	7	R	2024-12-08	13:00:00	\N	f	22	1125
-3	\N	QB	1950-05-12	\N	\N	f	1	1
-6	\N	QB	1950-05-20	\N	\N	f	1	2
-9	\N	QB	1950-05-29	\N	\N	f	1	3
-12	\N	QB	1950-06-03	\N	\N	f	1	4
-15	\N	QB	1950-06-17	\N	\N	f	1	5
-18	\N	QB	1950-07-01	\N	\N	f	1	6
-21	\N	QB	1950-09-02	\N	\N	f	1	7
-24	\N	QB	1951-05-26	\N	\N	f	1	8
-27	\N	QB	1951-05-29	\N	\N	f	1	9
-30	\N	QB	1951-06-16	\N	\N	f	1	10
-33	\N	QB	1951-06-30	\N	\N	f	1	11
-36	\N	QB	1951-07-13	\N	\N	f	1	12
-39	\N	QB	1951-07-28	\N	\N	f	1	13
-42	\N	QB	1951-09-15	\N	\N	f	1	14
-45	\N	QB	1951-10-27	\N	\N	f	1	15
-48	\N	QB	1952-05-17	\N	\N	f	1	16
-51	\N	QB	1952-05-29	\N	\N	f	1	17
-54	\N	QB	1952-06-21	\N	\N	f	1	18
-57	\N	QB	1952-07-05	\N	\N	f	1	19
-60	\N	QB	1952-07-18	\N	\N	f	1	20
-63	\N	QB	1952-08-02	\N	\N	f	1	21
-66	\N	QB	1952-08-16	\N	\N	f	1	22
-69	\N	QB	1952-09-06	\N	\N	f	1	23
-72	\N	QB	1953-01-17	\N	\N	f	1	24
-75	\N	QB	1953-05-29	\N	\N	f	1	25
-78	\N	QB	1953-06-06	\N	\N	f	1	26
-81	\N	QB	1953-06-20	\N	\N	f	1	27
-84	\N	QB	1953-07-04	\N	\N	f	1	28
-87	\N	QB	1953-07-17	\N	\N	f	1	29
-90	\N	QB	1953-08-01	\N	\N	f	1	30
-93	\N	QB	1953-08-22	\N	\N	f	1	31
-96	\N	QB	1953-09-12	\N	\N	f	1	32
-99	\N	QB	1954-01-16	\N	\N	f	1	33
-102	\N	QB	1954-05-30	\N	\N	f	1	34
-105	\N	QB	1954-06-19	\N	\N	f	1	35
-108	\N	QB	1954-07-03	\N	\N	f	1	36
-111	\N	QB	1954-07-16	\N	\N	f	1	37
-114	\N	QB	1954-07-31	\N	\N	f	1	38
-117	\N	QB	1954-08-21	\N	\N	f	1	39
-120	\N	QB	1954-09-04	\N	\N	f	1	40
-123	\N	QB	1954-10-23	\N	\N	f	1	41
-126	\N	QB	1955-01-15	\N	\N	f	1	42
-129	\N	QB	1955-05-21	\N	\N	f	1	43
-132	\N	QB	1955-05-29	\N	\N	f	1	44
-135	\N	QB	1955-06-04	\N	\N	f	1	45
-138	\N	QB	1955-06-18	\N	\N	f	1	46
-141	\N	QB	1955-07-15	\N	\N	f	1	47
-144	\N	QB	1955-09-10	\N	\N	f	1	48
-147	\N	QB	1956-01-21	\N	\N	f	1	49
-150	\N	QB	1956-05-12	\N	\N	f	1	50
-153	\N	QB	1956-05-29	\N	\N	f	1	51
-156	\N	QB	1956-06-02	\N	\N	f	1	52
-159	\N	QB	1956-06-30	\N	\N	f	1	53
-162	\N	QB	1956-07-13	\N	\N	f	1	54
-165	\N	QB	1956-08-04	\N	\N	f	1	55
-168	\N	QB	1956-09-01	\N	\N	f	1	56
-171	\N	QB	1957-01-12	\N	\N	f	1	57
-174	\N	QB	1957-05-18	\N	\N	f	1	58
-177	\N	QB	1957-05-29	\N	\N	f	1	59
-180	\N	QB	1957-07-06	\N	\N	f	1	60
-183	\N	QB	1957-07-19	\N	\N	f	1	61
-186	\N	QB	1957-08-03	\N	\N	f	1	62
-189	\N	QB	1957-08-17	\N	\N	f	1	63
-192	\N	QB	1957-09-07	\N	\N	f	1	64
-195	\N	QB	1958-01-18	\N	\N	f	1	65
-198	\N	QB	1958-05-17	\N	\N	f	1	66
-201	\N	QB	1958-05-25	\N	\N	f	1	67
-204	\N	QB	1958-05-29	\N	\N	f	1	68
-207	\N	QB	1958-06-14	\N	\N	f	1	69
-210	\N	QB	1958-07-05	\N	\N	f	1	70
-213	\N	QB	1958-07-18	\N	\N	f	1	71
-216	\N	QB	1958-08-02	\N	\N	f	1	72
-219	\N	QB	1958-08-23	\N	\N	f	1	73
-222	\N	QB	1958-09-06	\N	\N	f	1	74
-225	\N	QB	1958-10-18	\N	\N	f	1	75
-228	\N	QB	1959-05-09	\N	\N	f	1	76
-231	\N	QB	1959-05-29	\N	\N	f	1	77
-234	\N	QB	1959-05-30	\N	\N	f	1	78
-237	\N	QB	1959-07-04	\N	\N	f	1	79
-240	\N	QB	1959-07-17	\N	\N	f	1	80
-243	\N	QB	1959-08-01	\N	\N	f	1	81
-246	\N	QB	1959-08-22	\N	\N	f	1	82
-249	\N	QB	1959-09-12	\N	\N	f	1	83
-252	\N	QB	1959-12-11	\N	\N	f	1	84
-255	\N	QB	1960-02-06	\N	\N	f	1	85
-258	\N	QB	1960-05-28	\N	\N	f	1	86
-261	\N	QB	1960-05-29	\N	\N	f	1	87
-264	\N	QB	1960-06-05	\N	\N	f	1	88
-267	\N	QB	1960-06-18	\N	\N	f	1	89
-270	\N	QB	1960-07-02	\N	\N	f	1	90
-273	\N	QB	1960-07-15	\N	\N	f	1	91
-276	\N	QB	1960-08-13	\N	\N	f	1	92
-279	\N	QB	1960-09-03	\N	\N	f	1	93
-282	\N	QB	1960-11-19	\N	\N	f	1	94
-285	\N	QB	1961-05-13	\N	\N	f	1	95
-288	\N	QB	1961-05-21	\N	\N	f	1	96
-291	\N	QB	1961-06-17	\N	\N	f	1	97
-294	\N	QB	1961-07-01	\N	\N	f	1	98
-297	\N	QB	1961-07-14	\N	\N	f	1	99
-300	\N	QB	1961-08-05	\N	\N	f	1	100
-303	\N	QB	1961-09-09	\N	\N	f	1	101
-306	\N	QB	1961-10-07	\N	\N	f	1	102
-309	\N	QB	1962-05-19	\N	\N	f	1	103
-312	\N	QB	1962-06-02	\N	\N	f	1	104
-315	\N	QB	1962-06-16	\N	\N	f	1	105
-318	\N	QB	1962-07-07	\N	\N	f	1	106
-321	\N	QB	1962-07-20	\N	\N	f	1	107
-324	\N	QB	1962-08-04	\N	\N	f	1	108
-327	\N	QB	1962-09-15	\N	\N	f	1	109
-330	\N	QB	1962-10-06	\N	\N	f	1	110
-333	\N	QB	1962-12-28	\N	\N	f	1	111
-336	\N	QB	1963-05-25	\N	\N	f	1	112
-339	\N	QB	1963-06-08	\N	\N	f	1	113
-342	\N	QB	1963-06-22	\N	\N	f	1	114
-345	\N	QB	1963-06-29	\N	\N	f	1	115
-348	\N	QB	1963-07-19	\N	\N	f	1	116
-351	\N	QB	1963-08-03	\N	\N	f	1	117
-354	\N	QB	1963-09-07	\N	\N	f	1	118
-357	\N	QB	1963-10-05	\N	\N	f	1	119
-360	\N	QB	1963-10-26	\N	\N	f	1	120
-363	\N	QB	1963-12-27	\N	\N	f	1	121
-366	\N	QB	1964-05-09	\N	\N	f	1	122
-369	\N	QB	1964-05-23	\N	\N	f	1	123
-372	\N	QB	1964-06-13	\N	\N	f	1	124
-375	\N	QB	1964-06-27	\N	\N	f	1	125
-378	\N	QB	1964-07-10	\N	\N	f	1	126
-381	\N	QB	1964-08-01	\N	\N	f	1	127
-384	\N	QB	1964-08-22	\N	\N	f	1	128
-387	\N	QB	1964-09-05	\N	\N	f	1	129
-390	\N	QB	1964-10-03	\N	\N	f	1	130
-393	\N	QB	1964-10-24	\N	\N	f	1	131
-396	\N	QB	1964-12-31	\N	\N	f	1	132
-399	\N	QB	1965-05-29	\N	\N	f	1	133
-402	\N	QB	1965-06-12	\N	\N	f	1	134
-405	\N	QB	1965-06-26	\N	\N	f	1	135
-408	\N	QB	1965-07-09	\N	\N	f	1	136
-411	\N	QB	1965-07-17	\N	\N	f	1	137
-414	\N	QB	1965-07-31	\N	\N	f	1	138
-417	\N	QB	1965-09-11	\N	\N	f	1	139
-420	\N	QB	1965-10-02	\N	\N	f	1	140
-423	\N	QB	1965-10-23	\N	\N	f	1	141
-426	\N	QB	1966-05-21	\N	\N	f	1	142
-429	\N	QB	1966-06-11	\N	\N	f	1	143
-432	\N	QB	1966-07-02	\N	\N	f	1	144
-435	\N	QB	1966-07-15	\N	\N	f	1	145
-438	\N	QB	1966-07-23	\N	\N	f	1	146
-441	\N	QB	1966-08-06	\N	\N	f	1	147
-444	\N	QB	1966-09-03	\N	\N	f	1	148
-447	\N	QB	1966-10-01	\N	\N	f	1	149
-450	\N	QB	1966-10-22	\N	\N	f	1	150
-453	\N	QB	1967-01-01	\N	\N	f	1	151
-456	\N	QB	1967-05-06	\N	\N	f	1	152
-459	\N	QB	1967-06-03	\N	\N	f	1	153
-462	\N	QB	1967-06-17	\N	\N	f	1	154
-465	\N	QB	1967-07-01	\N	\N	f	1	155
-468	\N	QB	1967-07-14	\N	\N	f	1	156
-471	\N	QB	1967-08-05	\N	\N	f	1	157
-474	\N	QB	1967-08-26	\N	\N	f	1	158
-477	\N	QB	1967-09-09	\N	\N	f	1	159
-480	\N	QB	1967-09-30	\N	\N	f	1	160
-483	\N	QB	1967-10-21	\N	\N	f	1	161
-486	\N	QB	1967-12-31	\N	\N	f	1	162
-489	\N	QB	1968-05-11	\N	\N	f	1	163
-492	\N	QB	1968-05-25	\N	\N	f	1	164
-495	\N	QB	1968-06-08	\N	\N	f	1	165
-498	\N	QB	1968-06-22	\N	\N	f	1	166
-501	\N	QB	1968-07-06	\N	\N	f	1	167
-504	\N	QB	1968-07-19	\N	\N	f	1	168
-507	\N	QB	1968-08-03	\N	\N	f	1	169
-510	\N	QB	1968-09-07	\N	\N	f	1	170
-513	\N	QB	1968-09-21	\N	\N	f	1	171
-516	\N	QB	1968-10-05	\N	\N	f	1	172
-519	\N	QB	1968-11-02	\N	\N	f	1	173
-522	\N	QB	1969-02-28	\N	\N	f	1	174
-525	\N	QB	1969-05-03	\N	\N	f	1	175
-528	\N	QB	1969-05-17	\N	\N	f	1	176
-531	\N	QB	1969-06-20	\N	\N	f	1	177
-534	\N	QB	1969-07-05	\N	\N	f	1	178
-537	\N	QB	1969-07-18	\N	\N	f	1	179
-540	\N	QB	1969-08-02	\N	\N	f	1	180
-543	\N	QB	1969-09-06	\N	\N	f	1	181
-546	\N	QB	1969-09-19	\N	\N	f	1	182
-549	\N	QB	1969-10-04	\N	\N	f	1	183
-552	\N	QB	1969-10-18	\N	\N	f	1	184
-555	\N	QB	1970-03-06	\N	\N	f	1	185
-558	\N	QB	1970-04-18	\N	\N	f	1	186
-561	\N	QB	1970-05-09	\N	\N	f	1	187
-564	\N	QB	1970-06-06	\N	\N	f	1	188
-567	\N	QB	1970-06-20	\N	\N	f	1	189
-570	\N	QB	1970-07-04	\N	\N	f	1	190
-573	\N	QB	1970-07-17	\N	\N	f	1	191
-576	\N	QB	1970-08-01	\N	\N	f	1	192
-579	\N	QB	1970-08-15	\N	\N	f	1	193
-582	\N	QB	1970-09-05	\N	\N	f	1	194
-585	\N	QB	1970-09-19	\N	\N	f	1	195
-588	\N	QB	1970-10-03	\N	\N	f	1	196
-591	\N	QB	1970-10-24	\N	\N	f	1	197
-594	\N	QB	1971-03-05	\N	\N	f	1	198
-597	\N	QB	1971-04-17	\N	\N	f	1	199
-600	\N	QB	1971-05-22	\N	\N	f	1	200
-603	\N	QB	1971-06-19	\N	\N	f	1	201
-606	\N	QB	1971-07-03	\N	\N	f	1	202
-609	\N	QB	1971-07-16	\N	\N	f	1	203
-612	\N	QB	1971-07-31	\N	\N	f	1	204
-615	\N	QB	1971-08-14	\N	\N	f	1	205
-618	\N	QB	1971-09-04	\N	\N	f	1	206
-621	\N	QB	1971-09-18	\N	\N	f	1	207
-624	\N	QB	1971-10-02	\N	\N	f	1	208
-627	\N	QB	1972-01-22	\N	\N	f	1	209
-630	\N	QB	1972-03-03	\N	\N	f	1	210
-633	\N	QB	1972-04-30	\N	\N	f	1	211
-636	\N	QB	1972-05-13	\N	\N	f	1	212
-639	\N	QB	1972-06-03	\N	\N	f	1	213
-642	\N	QB	1972-07-01	\N	\N	f	1	214
-645	\N	QB	1972-07-14	\N	\N	f	1	215
-648	\N	QB	1972-07-29	\N	\N	f	1	216
-651	\N	QB	1972-08-12	\N	\N	f	1	217
-654	\N	QB	1972-09-09	\N	\N	f	1	218
-657	\N	QB	1972-09-23	\N	\N	f	1	219
-660	\N	QB	1972-10-07	\N	\N	f	1	220
-663	\N	QB	1973-01-27	\N	\N	f	1	221
-666	\N	QB	1973-02-10	\N	\N	f	1	222
-669	\N	QB	1973-03-02	\N	\N	f	1	223
-672	\N	QB	1973-04-28	\N	\N	f	1	224
-675	\N	QB	1973-05-19	\N	\N	f	1	225
-678	\N	QB	1973-06-02	\N	\N	f	1	226
-681	\N	QB	1973-06-16	\N	\N	f	1	227
-684	\N	QB	1973-06-30	\N	\N	f	1	228
-687	\N	QB	1973-07-13	\N	\N	f	1	229
-690	\N	QB	1973-07-28	\N	\N	f	1	230
-693	\N	QB	1973-08-04	\N	\N	f	1	231
-696	\N	QB	1973-08-18	\N	\N	f	1	232
-699	\N	QB	1973-09-08	\N	\N	f	1	233
-702	\N	QB	1973-09-22	\N	\N	f	1	234
-705	\N	QB	1973-10-06	\N	\N	f	1	235
-708	\N	QB	1974-01-12	\N	\N	f	1	236
-711	\N	QB	1974-01-26	\N	\N	f	1	237
-714	\N	QB	1974-03-29	\N	\N	f	1	238
-717	\N	QB	1974-04-27	\N	\N	f	1	239
-720	\N	QB	1974-05-11	\N	\N	f	1	240
-723	\N	QB	1974-05-25	\N	\N	f	1	241
-726	\N	QB	1974-06-08	\N	\N	f	1	242
-729	\N	QB	1974-06-22	\N	\N	f	1	243
-732	\N	QB	1974-07-06	\N	\N	f	1	244
-735	\N	QB	1974-07-19	\N	\N	f	1	245
-738	\N	QB	1974-08-03	\N	\N	f	1	246
-741	\N	QB	1974-08-17	\N	\N	f	1	247
-744	\N	QB	1974-09-07	\N	\N	f	1	248
-747	\N	QB	1974-09-21	\N	\N	f	1	249
-750	\N	QB	1974-10-05	\N	\N	f	1	250
-753	\N	QB	1975-01-11	\N	\N	f	1	251
-756	\N	QB	1975-01-25	\N	\N	f	1	252
-759	\N	QB	1975-02-28	\N	\N	f	1	253
-762	\N	QB	1975-04-26	\N	\N	f	1	254
-765	\N	QB	1975-05-10	\N	\N	f	1	255
-768	\N	QB	1975-05-24	\N	\N	f	1	256
-771	\N	QB	1975-06-07	\N	\N	f	1	257
-774	\N	QB	1975-06-21	\N	\N	f	1	258
-777	\N	QB	1975-07-05	\N	\N	f	1	259
-780	\N	QB	1975-07-18	\N	\N	f	1	260
-783	\N	QB	1975-08-02	\N	\N	f	1	261
-786	\N	QB	1975-08-16	\N	\N	f	1	262
-789	\N	QB	1975-09-06	\N	\N	f	1	263
-792	\N	QB	1975-10-04	\N	\N	f	1	264
-795	\N	QB	1976-01-24	\N	\N	f	1	265
-798	\N	QB	1976-03-05	\N	\N	f	1	266
-801	\N	QB	1976-03-27	\N	\N	f	1	267
-804	\N	QB	1976-05-01	\N	\N	f	1	268
-807	\N	QB	1976-05-15	\N	\N	f	1	269
-810	\N	QB	1976-05-29	\N	\N	f	1	270
-813	\N	QB	1976-06-12	\N	\N	f	1	271
-816	\N	QB	1976-07-03	\N	\N	f	1	272
-819	\N	QB	1976-07-17	\N	\N	f	1	273
-822	\N	QB	1976-07-31	\N	\N	f	1	274
-825	\N	QB	1976-08-14	\N	\N	f	1	275
-828	\N	QB	1976-08-28	\N	\N	f	1	276
-831	\N	QB	1976-09-11	\N	\N	f	1	277
-834	\N	QB	1976-10-02	\N	\N	f	1	278
-837	\N	QB	1976-10-09	\N	\N	f	1	279
-840	\N	QB	1976-10-23	\N	\N	f	1	280
-843	\N	QB	1977-01-08	\N	\N	f	1	281
-846	\N	QB	1977-01-22	\N	\N	f	1	282
-849	\N	QB	1977-03-04	\N	\N	f	1	283
-852	\N	QB	1977-04-02	\N	\N	f	1	284
-855	\N	QB	1977-05-07	\N	\N	f	1	285
-858	\N	QB	1977-05-21	\N	\N	f	1	286
-861	\N	QB	1977-06-04	\N	\N	f	1	287
-864	\N	QB	1977-06-18	\N	\N	f	1	288
-867	\N	QB	1977-07-02	\N	\N	f	1	289
-870	\N	QB	1977-07-15	\N	\N	f	1	290
-873	\N	QB	1977-07-30	\N	\N	f	1	291
-876	\N	QB	1977-08-13	\N	\N	f	1	292
-879	\N	QB	1977-08-27	\N	\N	f	1	293
-882	\N	QB	1977-09-10	\N	\N	f	1	294
-885	\N	QB	1977-10-01	\N	\N	f	1	295
-888	\N	QB	1977-10-08	\N	\N	f	1	296
-891	\N	QB	1977-10-22	\N	\N	f	1	297
-894	\N	QB	1978-01-14	\N	\N	f	1	298
-897	\N	QB	1978-01-28	\N	\N	f	1	299
-900	\N	QB	1978-03-03	\N	\N	f	1	300
-903	\N	QB	1978-04-01	\N	\N	f	1	301
-906	\N	QB	1978-05-06	\N	\N	f	1	302
-909	\N	QB	1978-05-20	\N	\N	f	1	303
-912	\N	QB	1978-06-03	\N	\N	f	1	304
-915	\N	QB	1978-06-16	\N	\N	f	1	305
-918	\N	QB	1978-07-01	\N	\N	f	1	306
-921	\N	QB	1978-07-15	\N	\N	f	1	307
-924	\N	QB	1978-07-29	\N	\N	f	1	308
-927	\N	QB	1978-08-12	\N	\N	f	1	309
-930	\N	QB	1978-08-26	\N	\N	f	1	310
-933	\N	QB	1978-09-09	\N	\N	f	1	311
-936	\N	QB	1978-09-30	\N	\N	f	1	312
-939	\N	QB	1978-10-07	\N	\N	f	1	313
-942	\N	QB	1979-01-20	\N	\N	f	1	314
-945	\N	QB	1979-02-03	\N	\N	f	1	315
-948	\N	QB	1979-03-02	\N	\N	f	1	316
-951	\N	QB	1979-04-07	\N	\N	f	1	317
-954	\N	QB	1979-04-28	\N	\N	f	1	318
-957	\N	QB	1979-05-12	\N	\N	f	1	319
-960	\N	QB	1979-05-26	\N	\N	f	1	320
-963	\N	QB	1979-06-30	\N	\N	f	1	321
-966	\N	QB	1979-07-13	\N	\N	f	1	322
-969	\N	QB	1979-07-28	\N	\N	f	1	323
-972	\N	QB	1979-08-11	\N	\N	f	1	324
-975	\N	QB	1979-08-25	\N	\N	f	1	325
-978	\N	QB	1979-09-08	\N	\N	f	1	326
-981	\N	QB	1979-09-29	\N	\N	f	1	327
-984	\N	QB	1979-10-06	\N	\N	f	1	328
-987	\N	QB	1980-01-12	\N	\N	f	1	329
-990	\N	QB	1980-01-26	\N	\N	f	1	330
-993	\N	QB	1980-02-29	\N	\N	f	1	331
-996	\N	QB	1980-03-29	\N	\N	f	1	332
-999	\N	QB	1980-05-03	\N	\N	f	1	333
-1002	\N	QB	1980-05-17	\N	\N	f	1	334
-1005	\N	QB	1980-06-28	\N	\N	f	1	335
-1008	\N	QB	1980-07-12	\N	\N	f	1	336
-1011	\N	QB	1980-08-09	\N	\N	f	1	337
-1014	\N	QB	1980-08-16	\N	\N	f	1	338
-1017	\N	QB	1980-08-30	\N	\N	f	1	339
-1020	\N	QB	1980-09-13	\N	\N	f	1	340
-1023	\N	QB	1980-09-27	\N	\N	f	1	341
-1026	\N	QB	1980-10-04	\N	\N	f	1	342
-1029	\N	QB	1981-03-14	\N	\N	f	1	343
-1032	\N	QB	1981-03-28	\N	\N	f	1	344
-1035	\N	QB	1981-04-11	\N	\N	f	1	345
-1038	\N	QB	1981-05-02	\N	\N	f	1	346
-1041	\N	QB	1981-05-16	\N	\N	f	1	347
-1044	\N	QB	1981-05-30	\N	\N	f	1	348
-1047	\N	QB	1981-06-20	\N	\N	f	1	349
-1050	\N	QB	1981-07-04	\N	\N	f	1	350
-1053	\N	QB	1981-07-17	\N	\N	f	1	351
-1056	\N	QB	1981-08-01	\N	\N	f	1	352
-1059	\N	QB	1981-08-15	\N	\N	f	1	353
-1062	\N	QB	1981-08-29	\N	\N	f	1	354
-1065	\N	QB	1981-09-12	\N	\N	f	1	355
-1068	\N	QB	1981-09-26	\N	\N	f	1	356
-1071	\N	QB	1981-10-16	\N	\N	f	1	357
-1074	\N	QB	1982-01-22	\N	\N	f	1	358
-1077	\N	QB	1982-03-20	\N	\N	f	1	359
-1080	\N	QB	1982-04-03	\N	\N	f	1	360
-1083	\N	QB	1982-04-24	\N	\N	f	1	361
-1086	\N	QB	1982-05-08	\N	\N	f	1	362
-1089	\N	QB	1982-05-22	\N	\N	f	1	363
-1092	\N	QB	1982-06-05	\N	\N	f	1	364
-1095	\N	QB	1982-06-12	\N	\N	f	1	365
-1098	\N	QB	1982-07-02	\N	\N	f	1	366
-1101	\N	QB	1982-07-17	\N	\N	f	1	367
-1104	\N	QB	1982-07-24	\N	\N	f	1	368
-1107	\N	QB	1982-08-07	\N	\N	f	1	369
-1110	\N	QB	1982-08-14	\N	\N	f	1	370
-1113	\N	QB	1982-08-28	\N	\N	f	1	371
-1116	\N	QB	1982-09-11	\N	\N	f	1	372
-1119	\N	QB	1982-09-24	\N	\N	f	1	373
-1122	\N	QB	1983-03-12	\N	\N	f	1	374
-1125	\N	QB	1983-03-26	\N	\N	f	1	375
-1128	\N	QB	1983-04-16	\N	\N	f	1	376
-1131	\N	QB	1983-04-30	\N	\N	f	1	377
-1134	\N	QB	1983-05-14	\N	\N	f	1	378
-1137	\N	QB	1983-05-21	\N	\N	f	1	379
-1140	\N	QB	1983-06-04	\N	\N	f	1	380
-1143	\N	QB	1983-06-11	\N	\N	f	1	381
-1146	\N	QB	1983-07-15	\N	\N	f	1	382
-1149	\N	QB	1983-08-06	\N	\N	f	1	383
-1152	\N	QB	1983-08-13	\N	\N	f	1	384
-1155	\N	QB	1983-08-27	\N	\N	f	1	385
-1158	\N	QB	1983-09-10	\N	\N	f	1	386
-1161	\N	QB	1983-09-24	\N	\N	f	1	387
-1164	\N	QB	1983-10-14	\N	\N	f	1	388
-1167	\N	QB	1984-03-24	\N	\N	f	1	389
-1170	\N	QB	1984-04-06	\N	\N	f	1	390
-1173	\N	QB	1984-04-28	\N	\N	f	1	391
-1176	\N	QB	1984-05-05	\N	\N	f	1	392
-1179	\N	QB	1984-05-19	\N	\N	f	1	393
-1182	\N	QB	1984-06-02	\N	\N	f	1	394
-1185	\N	QB	1984-06-16	\N	\N	f	1	395
-1188	\N	QB	1984-06-23	\N	\N	f	1	396
-1191	\N	QB	1984-07-07	\N	\N	f	1	397
-1194	\N	QB	1984-07-21	\N	\N	f	1	398
-1197	\N	QB	1984-08-04	\N	\N	f	1	399
-1200	\N	QB	1984-08-18	\N	\N	f	1	400
-1203	\N	QB	1984-08-25	\N	\N	f	1	401
-1206	\N	QB	1984-09-08	\N	\N	f	1	402
-1209	\N	QB	1984-10-06	\N	\N	f	1	403
-1212	\N	QB	1984-10-20	\N	\N	f	1	404
-1215	\N	QB	1985-04-06	\N	\N	f	1	405
-1218	\N	QB	1985-04-20	\N	\N	f	1	406
-1221	\N	QB	1985-05-04	\N	\N	f	1	407
-1224	\N	QB	1985-05-18	\N	\N	f	1	408
-1227	\N	QB	1985-06-15	\N	\N	f	1	409
-1230	\N	QB	1985-06-22	\N	\N	f	1	410
-1233	\N	QB	1985-07-06	\N	\N	f	1	411
-1236	\N	QB	1985-07-20	\N	\N	f	1	412
-1239	\N	QB	1985-08-03	\N	\N	f	1	413
-1242	\N	QB	1985-08-17	\N	\N	f	1	414
-1245	\N	QB	1985-08-24	\N	\N	f	1	415
-1248	\N	QB	1985-09-07	\N	\N	f	1	416
-1251	\N	QB	1985-09-14	\N	\N	f	1	417
-1254	\N	QB	1985-10-05	\N	\N	f	1	418
-1257	\N	QB	1985-10-18	\N	\N	f	1	419
-1260	\N	QB	1985-11-02	\N	\N	f	1	420
-1263	\N	QB	1986-03-22	\N	\N	f	1	421
-1266	\N	QB	1986-04-12	\N	\N	f	1	422
-1269	\N	QB	1986-04-26	\N	\N	f	1	423
-1272	\N	QB	1986-05-10	\N	\N	f	1	424
-1275	\N	QB	1986-05-24	\N	\N	f	1	425
-1278	\N	QB	1986-06-14	\N	\N	f	1	426
-1281	\N	QB	1986-06-21	\N	\N	f	1	427
-1284	\N	QB	1986-07-05	\N	\N	f	1	428
-1287	\N	QB	1986-07-12	\N	\N	f	1	429
-1290	\N	QB	1986-07-26	\N	\N	f	1	430
-1293	\N	QB	1986-08-09	\N	\N	f	1	431
-1296	\N	QB	1986-08-16	\N	\N	f	1	432
-1299	\N	QB	1986-09-06	\N	\N	f	1	433
-1302	\N	QB	1986-09-20	\N	\N	f	1	434
-1305	\N	QB	1986-10-11	\N	\N	f	1	435
-1308	\N	QB	1986-10-25	\N	\N	f	1	436
-1311	\N	QB	1987-04-11	\N	\N	f	1	437
-1314	\N	QB	1987-05-02	\N	\N	f	1	438
-1317	\N	QB	1987-05-16	\N	\N	f	1	439
-1320	\N	QB	1987-05-30	\N	\N	f	1	440
-1323	\N	QB	1987-06-20	\N	\N	f	1	441
-1326	\N	QB	1987-07-04	\N	\N	f	1	442
-1329	\N	QB	1987-07-11	\N	\N	f	1	443
-1332	\N	QB	1987-07-25	\N	\N	f	1	444
-1335	\N	QB	1987-08-08	\N	\N	f	1	445
-1338	\N	QB	1987-08-15	\N	\N	f	1	446
-1341	\N	QB	1987-09-05	\N	\N	f	1	447
-1344	\N	QB	1987-09-19	\N	\N	f	1	448
-1347	\N	QB	1987-09-26	\N	\N	f	1	449
-1350	\N	QB	1987-10-17	\N	\N	f	1	450
-1353	\N	QB	1987-10-31	\N	\N	f	1	451
-1356	\N	QB	1987-11-14	\N	\N	f	1	452
-1359	\N	QB	1988-04-02	\N	\N	f	1	453
-1362	\N	QB	1988-04-30	\N	\N	f	1	454
-1365	\N	QB	1988-05-14	\N	\N	f	1	455
-1368	\N	QB	1988-05-28	\N	\N	f	1	456
-1371	\N	QB	1988-06-11	\N	\N	f	1	457
-1374	\N	QB	1988-06-18	\N	\N	f	1	458
-1377	\N	QB	1988-07-02	\N	\N	f	1	459
-1380	\N	QB	1988-07-09	\N	\N	f	1	460
-1383	\N	QB	1988-07-23	\N	\N	f	1	461
-1386	\N	QB	1988-08-06	\N	\N	f	1	462
-1389	\N	QB	1988-08-27	\N	\N	f	1	463
-1392	\N	QB	1988-09-10	\N	\N	f	1	464
-1395	\N	QB	1988-09-24	\N	\N	f	1	465
-1398	\N	QB	1988-10-01	\N	\N	f	1	466
-1401	\N	QB	1988-10-29	\N	\N	f	1	467
-1404	\N	QB	1988-11-12	\N	\N	f	1	468
-1407	\N	QB	1989-03-25	\N	\N	f	1	469
-1410	\N	QB	1989-04-22	\N	\N	f	1	470
-1413	\N	QB	1989-05-06	\N	\N	f	1	471
-1416	\N	QB	1989-05-27	\N	\N	f	1	472
-1419	\N	QB	1989-06-03	\N	\N	f	1	473
-1422	\N	QB	1989-06-17	\N	\N	f	1	474
-1425	\N	QB	1989-07-08	\N	\N	f	1	475
-1428	\N	QB	1989-07-15	\N	\N	f	1	476
-1431	\N	QB	1989-07-29	\N	\N	f	1	477
-1434	\N	QB	1989-08-12	\N	\N	f	1	478
-1437	\N	QB	1989-08-26	\N	\N	f	1	479
-1440	\N	QB	1989-09-09	\N	\N	f	1	480
-1443	\N	QB	1989-09-23	\N	\N	f	1	481
-1446	\N	QB	1989-09-30	\N	\N	f	1	482
-1449	\N	QB	1989-10-21	\N	\N	f	1	483
-1452	\N	QB	1989-11-04	\N	\N	f	1	484
-1455	\N	QB	1990-03-10	\N	\N	f	1	485
-1458	\N	QB	1990-03-24	\N	\N	f	1	486
-1461	\N	QB	1990-05-12	\N	\N	f	1	487
-1464	\N	QB	1990-05-26	\N	\N	f	1	488
-1467	\N	QB	1990-06-09	\N	\N	f	1	489
-1470	\N	QB	1990-06-23	\N	\N	f	1	490
-1473	\N	QB	1990-07-07	\N	\N	f	1	491
-1476	\N	QB	1990-07-14	\N	\N	f	1	492
-1479	\N	QB	1990-07-28	\N	\N	f	1	493
-1482	\N	QB	1990-08-11	\N	\N	f	1	494
-1485	\N	QB	1990-08-25	\N	\N	f	1	495
-1488	\N	QB	1990-09-08	\N	\N	f	1	496
-1491	\N	QB	1990-09-22	\N	\N	f	1	497
-1494	\N	QB	1990-09-29	\N	\N	f	1	498
-1497	\N	QB	1990-10-20	\N	\N	f	1	499
-1500	\N	QB	1990-11-03	\N	\N	f	1	500
-1503	\N	QB	1991-03-09	\N	\N	f	1	501
-1506	\N	QB	1991-03-23	\N	\N	f	1	502
-1509	\N	QB	1991-04-27	\N	\N	f	1	503
-1512	\N	QB	1991-05-11	\N	\N	f	1	504
-1515	\N	QB	1991-06-01	\N	\N	f	1	505
-1518	\N	QB	1991-06-15	\N	\N	f	1	506
-1521	\N	QB	1991-07-06	\N	\N	f	1	507
-1524	\N	QB	1991-07-13	\N	\N	f	1	508
-1527	\N	QB	1991-07-27	\N	\N	f	1	509
-1530	\N	QB	1991-08-10	\N	\N	f	1	510
-1533	\N	QB	1991-08-24	\N	\N	f	1	511
-1536	\N	QB	1991-09-07	\N	\N	f	1	512
-1539	\N	QB	1991-09-21	\N	\N	f	1	513
-1542	\N	QB	1991-09-28	\N	\N	f	1	514
-1545	\N	QB	1991-10-19	\N	\N	f	1	515
-1548	\N	QB	1991-11-02	\N	\N	f	1	516
-1551	\N	QB	1992-02-29	\N	\N	f	1	517
-1554	\N	QB	1992-03-21	\N	\N	f	1	518
-1557	\N	QB	1992-04-04	\N	\N	f	1	519
-1560	\N	QB	1992-05-02	\N	\N	f	1	520
-1563	\N	QB	1992-05-16	\N	\N	f	1	521
-1566	\N	QB	1992-05-30	\N	\N	f	1	522
-1569	\N	QB	1992-06-13	\N	\N	f	1	523
-1572	\N	QB	1992-07-04	\N	\N	f	1	524
-1575	\N	QB	1992-07-11	\N	\N	f	1	525
-1578	\N	QB	1992-07-25	\N	\N	f	1	526
-1581	\N	QB	1992-08-15	\N	\N	f	1	527
-1584	\N	QB	1992-08-29	\N	\N	f	1	528
-1587	\N	QB	1992-09-12	\N	\N	f	1	529
-1590	\N	QB	1992-09-26	\N	\N	f	1	530
-1593	\N	QB	1992-10-24	\N	\N	f	1	531
-1596	\N	QB	1992-11-07	\N	\N	f	1	532
-1599	\N	QB	1993-03-13	\N	\N	f	1	533
-1602	\N	QB	1993-03-27	\N	\N	f	1	534
-1605	\N	QB	1993-04-10	\N	\N	f	1	535
-1608	\N	QB	1993-04-24	\N	\N	f	1	536
-1611	\N	QB	1993-05-08	\N	\N	f	1	537
-1614	\N	QB	1993-05-22	\N	\N	f	1	538
-1617	\N	QB	1993-06-12	\N	\N	f	1	539
-1620	\N	QB	1993-07-03	\N	\N	f	1	540
-1623	\N	QB	1993-07-10	\N	\N	f	1	541
-1626	\N	QB	1993-07-24	\N	\N	f	1	542
-1629	\N	QB	1993-08-14	\N	\N	f	1	543
-1632	\N	QB	1993-08-28	\N	\N	f	1	544
-1635	\N	QB	1993-09-11	\N	\N	f	1	545
-1638	\N	QB	1993-09-25	\N	\N	f	1	546
-1641	\N	QB	1993-10-23	\N	\N	f	1	547
-1644	\N	QB	1993-11-06	\N	\N	f	1	548
-1647	\N	QB	1994-03-26	\N	\N	f	1	549
-1650	\N	QB	1994-04-16	\N	\N	f	1	550
-1653	\N	QB	1994-04-30	\N	\N	f	1	551
-1656	\N	QB	1994-05-14	\N	\N	f	1	552
-1659	\N	QB	1994-05-28	\N	\N	f	1	553
-1662	\N	QB	1994-06-11	\N	\N	f	1	554
-1665	\N	QB	1994-07-02	\N	\N	f	1	555
-1668	\N	QB	1994-07-09	\N	\N	f	1	556
-1671	\N	QB	1994-07-30	\N	\N	f	1	557
-1674	\N	QB	1994-08-13	\N	\N	f	1	558
-1677	\N	QB	1994-08-27	\N	\N	f	1	559
-1680	\N	QB	1994-09-10	\N	\N	f	1	560
-1683	\N	QB	1994-09-24	\N	\N	f	1	561
-1686	\N	QB	1994-10-15	\N	\N	f	1	562
-1689	\N	QB	1994-11-05	\N	\N	f	1	563
-1692	\N	QB	1994-11-12	\N	\N	f	1	564
-1695	\N	QB	1995-03-25	\N	\N	f	1	565
-1698	\N	QB	1995-04-08	\N	\N	f	1	566
-1701	\N	QB	1995-04-29	\N	\N	f	1	567
-1704	\N	QB	1995-05-13	\N	\N	f	1	568
-1707	\N	QB	1995-05-27	\N	\N	f	1	569
-1710	\N	QB	1995-06-10	\N	\N	f	1	570
-1713	\N	QB	1995-07-01	\N	\N	f	1	571
-1716	\N	QB	1995-07-15	\N	\N	f	1	572
-1719	\N	QB	1995-07-29	\N	\N	f	1	573
-1722	\N	QB	1995-08-12	\N	\N	f	1	574
-1725	\N	QB	1995-08-26	\N	\N	f	1	575
-1728	\N	QB	1995-09-09	\N	\N	f	1	576
-1731	\N	QB	1995-09-23	\N	\N	f	1	577
-1734	\N	QB	1995-09-30	\N	\N	f	1	578
-1737	\N	QB	1995-10-21	\N	\N	f	1	579
-1740	\N	QB	1995-10-28	\N	\N	f	1	580
-1743	\N	QB	1995-11-11	\N	\N	f	1	581
+4768	1	FP1	2024-12-06	09:30:00	\N	f	1	1125
+4769	2	FP2	2024-12-06	13:00:00	\N	f	1	1125
+4770	3	FP3	2024-12-07	10:30:00	\N	f	1	1125
+4771	1	FP1	2025-03-14	01:30:00	\N	f	1	1126
+4772	2	FP2	2025-03-14	05:00:00	\N	f	1	1126
+4773	3	FP3	2025-03-15	01:30:00	\N	f	1	1126
+4774	4	Q1	2025-03-15	05:00:00	\N	f	1	1126
+4775	5	Q2	2025-03-15	05:00:00	\N	f	1	1126
+4776	6	Q3	2025-03-15	05:00:00	\N	f	1	1126
+4777	7	R	2025-03-16	04:00:00	58	f	24	1126
+4778	1	FP1	2025-03-21	03:30:00	\N	f	1	1127
+4779	2	SQ1	2025-03-21	07:30:00	\N	f	1	1127
+4780	3	SQ2	2025-03-21	07:30:00	\N	f	1	1127
+4781	4	SQ3	2025-03-21	07:30:00	\N	f	1	1127
+4782	5	SR	2025-03-22	03:00:00	\N	f	23	1127
+4783	6	Q1	2025-03-22	07:00:00	\N	f	1	1127
+4784	7	Q2	2025-03-22	07:00:00	\N	f	1	1127
+4785	8	Q3	2025-03-22	07:00:00	\N	f	1	1127
+4786	9	R	2025-03-23	07:00:00	56	f	24	1127
+4787	1	FP1	2025-04-04	02:30:00	\N	f	1	1128
+4788	2	FP2	2025-04-04	06:00:00	\N	f	1	1128
+4789	3	FP3	2025-04-05	02:30:00	\N	f	1	1128
+4790	4	Q1	2025-04-05	06:00:00	\N	f	1	1128
+4791	5	Q2	2025-04-05	06:00:00	\N	f	1	1128
+4792	6	Q3	2025-04-05	06:00:00	\N	f	1	1128
+4793	7	R	2025-04-06	05:00:00	53	f	24	1128
+4794	1	FP1	2025-04-11	11:30:00	\N	f	1	1129
+4795	2	FP2	2025-04-11	15:00:00	\N	f	1	1129
+4796	3	FP3	2025-04-12	12:30:00	\N	f	1	1129
+4797	4	Q1	2025-04-12	16:00:00	\N	f	1	1129
+4798	5	Q2	2025-04-12	16:00:00	\N	f	1	1129
+4799	6	Q3	2025-04-12	16:00:00	\N	f	1	1129
+4800	7	R	2025-04-13	15:00:00	57	f	24	1129
+4801	1	FP1	2025-04-18	13:30:00	\N	f	1	1130
+4802	2	FP2	2025-04-18	17:00:00	\N	f	1	1130
+4803	3	FP3	2025-04-19	13:30:00	\N	f	1	1130
+4804	4	Q1	2025-04-19	17:00:00	\N	f	1	1130
+4805	5	Q2	2025-04-19	17:00:00	\N	f	1	1130
+4806	6	Q3	2025-04-19	17:00:00	\N	f	1	1130
+4807	7	R	2025-04-20	17:00:00	50	f	24	1130
+4808	1	FP1	2025-05-02	16:30:00	\N	f	1	1131
+4809	2	SQ1	2025-05-02	20:30:00	\N	f	1	1131
+4810	3	SQ2	2025-05-02	20:30:00	\N	f	1	1131
+4811	4	SQ3	2025-05-02	20:30:00	\N	f	1	1131
+4812	5	SR	2025-05-03	16:00:00	\N	f	23	1131
+4813	6	Q1	2025-05-03	20:00:00	\N	f	1	1131
+4814	7	Q2	2025-05-03	20:00:00	\N	f	1	1131
+4815	8	Q3	2025-05-03	20:00:00	\N	f	1	1131
+4816	9	R	2025-05-04	20:00:00	57	f	24	1131
+4817	1	FP1	2025-05-16	11:30:00	\N	f	1	1132
+4818	2	FP2	2025-05-16	15:00:00	\N	f	1	1132
+4819	3	FP3	2025-05-17	10:30:00	\N	f	1	1132
+4820	4	Q1	2025-05-17	14:00:00	\N	f	1	1132
+4821	5	Q2	2025-05-17	14:00:00	\N	f	1	1132
+4822	6	Q3	2025-05-17	14:00:00	\N	f	1	1132
+4823	7	R	2025-05-18	13:00:00	63	f	24	1132
+4824	1	FP1	2025-05-23	11:30:00	\N	f	1	1133
+4825	2	FP2	2025-05-23	15:00:00	\N	f	1	1133
+4826	3	FP3	2025-05-24	10:30:00	\N	f	1	1133
+4827	4	Q1	2025-05-24	14:00:00	\N	f	1	1133
+4828	5	Q2	2025-05-24	14:00:00	\N	f	1	1133
+4829	6	Q3	2025-05-24	14:00:00	\N	f	1	1133
+4830	7	R	2025-05-25	13:00:00	78	f	24	1133
+4831	1	FP1	2025-05-30	11:30:00	\N	f	1	1134
+4832	2	FP2	2025-05-30	15:00:00	\N	f	1	1134
+4833	3	FP3	2025-05-31	10:30:00	\N	f	1	1134
+4834	4	Q1	2025-05-31	14:00:00	\N	f	1	1134
+4835	5	Q2	2025-05-31	14:00:00	\N	f	1	1134
+4836	6	Q3	2025-05-31	14:00:00	\N	f	1	1134
+4837	7	R	2025-06-01	13:00:00	66	f	24	1134
+4838	1	FP1	2025-06-13	17:30:00	\N	f	1	1135
+4839	2	FP2	2025-06-13	21:00:00	\N	f	1	1135
+4840	3	FP3	2025-06-14	16:30:00	\N	f	1	1135
+4841	4	Q1	2025-06-14	20:00:00	\N	f	1	1135
+4842	5	Q2	2025-06-14	20:00:00	\N	f	1	1135
+4843	6	Q3	2025-06-14	20:00:00	\N	f	1	1135
+4844	7	R	2025-06-15	18:00:00	70	f	24	1135
+4845	1	FP1	2025-06-27	11:30:00	\N	f	1	1136
+4846	2	FP2	2025-06-27	15:00:00	\N	f	1	1136
+4847	3	FP3	2025-06-28	10:30:00	\N	f	1	1136
+4848	4	Q1	2025-06-28	14:00:00	\N	f	1	1136
+4849	5	Q2	2025-06-28	14:00:00	\N	f	1	1136
+4850	6	Q3	2025-06-28	14:00:00	\N	f	1	1136
+4851	7	R	2025-06-29	13:00:00	71	f	24	1136
+4852	1	FP1	2025-07-04	11:30:00	\N	f	1	1137
+4853	2	FP2	2025-07-04	15:00:00	\N	f	1	1137
+4854	3	FP3	2025-07-05	10:30:00	\N	f	1	1137
+4855	4	Q1	2025-07-05	14:00:00	\N	f	1	1137
+4856	5	Q2	2025-07-05	14:00:00	\N	f	1	1137
+4857	6	Q3	2025-07-05	14:00:00	\N	f	1	1137
+4858	7	R	2025-07-06	14:00:00	52	f	24	1137
+4859	1	FP1	2025-07-25	10:30:00	\N	f	1	1138
+4860	2	SQ1	2025-07-25	14:30:00	\N	f	1	1138
+4861	3	SQ2	2025-07-25	14:30:00	\N	f	1	1138
+4862	4	SQ3	2025-07-25	14:30:00	\N	f	1	1138
+4863	5	SR	2025-07-26	10:00:00	\N	f	23	1138
+4864	6	Q1	2025-07-26	14:00:00	\N	f	1	1138
+4865	7	Q2	2025-07-26	14:00:00	\N	f	1	1138
+4866	8	Q3	2025-07-26	14:00:00	\N	f	1	1138
+4867	9	R	2025-07-27	13:00:00	44	f	24	1138
+4868	1	FP1	2025-08-01	11:30:00	\N	f	1	1139
+4869	2	FP2	2025-08-01	15:00:00	\N	f	1	1139
+4870	3	FP3	2025-08-02	10:30:00	\N	f	1	1139
+4871	4	Q1	2025-08-02	14:00:00	\N	f	1	1139
+4872	5	Q2	2025-08-02	14:00:00	\N	f	1	1139
+4873	6	Q3	2025-08-02	14:00:00	\N	f	1	1139
+4874	7	R	2025-08-03	13:00:00	70	f	24	1139
+4875	1	FP1	2025-08-29	10:30:00	\N	f	1	1140
+4876	2	FP2	2025-08-29	14:00:00	\N	f	1	1140
+4877	3	FP3	2025-08-30	09:30:00	\N	f	1	1140
+4878	4	Q1	2025-08-30	13:00:00	\N	f	1	1140
+4879	5	Q2	2025-08-30	13:00:00	\N	f	1	1140
+4880	6	Q3	2025-08-30	13:00:00	\N	f	1	1140
+4881	7	R	2025-08-31	13:00:00	72	f	24	1140
+4882	1	FP1	2025-09-05	11:30:00	\N	f	1	1141
+4883	2	FP2	2025-09-05	15:00:00	\N	f	1	1141
+4884	3	FP3	2025-09-06	10:30:00	\N	f	1	1141
+4885	4	Q1	2025-09-06	14:00:00	\N	f	1	1141
+4886	5	Q2	2025-09-06	14:00:00	\N	f	1	1141
+4887	6	Q3	2025-09-06	14:00:00	\N	f	1	1141
+4888	7	R	2025-09-07	13:00:00	53	f	24	1141
+4889	1	FP1	2025-09-19	08:30:00	\N	f	1	1142
+4890	2	FP2	2025-09-19	12:00:00	\N	f	1	1142
+4891	3	FP3	2025-09-20	08:30:00	\N	f	1	1142
+4892	4	Q1	2025-09-20	12:00:00	\N	f	1	1142
+4893	5	Q2	2025-09-20	12:00:00	\N	f	1	1142
+4894	6	Q3	2025-09-20	12:00:00	\N	f	1	1142
+4895	7	R	2025-09-21	11:00:00	51	f	24	1142
+4896	1	FP1	2025-10-03	09:30:00	\N	f	1	1143
+4897	2	FP2	2025-10-03	13:00:00	\N	f	1	1143
+4898	3	FP3	2025-10-04	09:30:00	\N	f	1	1143
+4899	4	Q1	2025-10-04	13:00:00	\N	f	1	1143
+4900	5	Q2	2025-10-04	13:00:00	\N	f	1	1143
+4901	6	Q3	2025-10-04	13:00:00	\N	f	1	1143
+4902	7	R	2025-10-05	12:00:00	62	f	24	1143
+4903	1	FP1	2025-10-17	17:30:00	\N	f	1	1144
+4904	2	SQ1	2025-10-17	21:30:00	\N	f	1	1144
+4905	3	SQ2	2025-10-17	21:30:00	\N	f	1	1144
+4906	4	SQ3	2025-10-17	21:30:00	\N	f	1	1144
+4907	5	SR	2025-10-18	17:00:00	\N	f	23	1144
+4908	6	Q1	2025-10-18	21:00:00	\N	f	1	1144
+4909	7	Q2	2025-10-18	21:00:00	\N	f	1	1144
+4910	1	FP1	2025-10-24	18:30:00	\N	f	1	1145
+4911	2	FP2	2025-10-24	22:00:00	\N	f	1	1145
+4912	3	FP3	2025-10-25	17:30:00	\N	f	1	1145
+4913	4	Q1	2025-10-25	21:00:00	\N	f	1	1145
+4914	5	Q2	2025-10-25	21:00:00	\N	f	1	1145
+4915	6	Q3	2025-10-25	21:00:00	\N	f	1	1145
+4916	7	R	2025-10-26	20:00:00	71	f	24	1145
+4917	1	FP1	2025-11-07	14:30:00	\N	f	1	1146
+4918	2	SQ1	2025-11-07	18:30:00	\N	f	1	1146
+4919	3	SQ2	2025-11-07	18:30:00	\N	f	1	1146
+4920	4	SQ3	2025-11-07	18:30:00	\N	f	1	1146
+4921	5	SR	2025-11-08	14:00:00	\N	f	23	1146
+4922	6	Q1	2025-11-08	18:00:00	\N	f	1	1146
+4923	7	Q2	2025-11-08	18:00:00	\N	f	1	1146
+4924	8	Q3	2025-11-08	18:00:00	\N	f	1	1146
+4925	9	R	2025-11-09	17:00:00	71	f	24	1146
+4926	1	FP1	2025-11-21	00:30:00	\N	f	1	1147
+4927	2	FP2	2025-11-21	04:00:00	\N	f	1	1147
+4928	3	FP3	2025-11-22	00:30:00	\N	f	1	1147
+4929	4	Q1	2025-11-22	04:00:00	\N	f	1	1147
+4930	5	Q2	2025-11-22	04:00:00	\N	f	1	1147
+4931	6	Q3	2025-11-22	04:00:00	\N	f	1	1147
+4932	7	R	2025-11-23	04:00:00	50	f	24	1147
+4933	1	FP1	2025-11-28	13:30:00	\N	f	1	1148
+4934	2	SQ1	2025-11-28	17:30:00	\N	f	1	1148
+4935	3	SQ2	2025-11-28	17:30:00	\N	f	1	1148
+4936	4	SQ3	2025-11-28	17:30:00	\N	f	1	1148
+4937	5	SR	2025-11-29	14:00:00	\N	f	23	1148
+4938	6	Q1	2025-11-29	18:00:00	\N	f	1	1148
+4939	7	Q2	2025-11-29	18:00:00	\N	f	1	1148
+4940	8	Q3	2025-11-29	18:00:00	\N	f	1	1148
+4941	9	R	2025-11-30	16:00:00	57	f	24	1148
+4942	1	FP1	2025-12-05	09:30:00	\N	f	1	1149
+4943	2	FP2	2025-12-05	13:00:00	\N	f	1	1149
+4944	3	FP3	2025-12-06	10:30:00	\N	f	1	1149
+4945	4	Q1	2025-12-06	14:00:00	\N	f	1	1149
+4946	5	Q2	2025-12-06	14:00:00	\N	f	1	1149
+4947	6	Q3	2025-12-06	14:00:00	\N	f	1	1149
+4948	7	R	2025-12-07	13:00:00	58	f	24	1149
+4949	8	Q3	2025-10-18	21:00:00	\N	f	1	1144
+4950	9	R	2025-10-19	19:00:00	56	f	24	1144
 \.
 
 
@@ -7471,8 +7536,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 58	\N	58	1	14
 59	\N	59	1	2
 60	\N	60	1	13
-61	\N	62	1	12
-62	\N	61	1	12
+61	\N	61	1	12
+62	\N	62	1	12
 63	\N	63	1	10
 64	\N	64	1	10
 65	\N	65	1	10
@@ -7520,8 +7585,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 107	\N	85	2	26
 108	\N	40	2	10
 109	\N	86	2	10
-110	\N	87	2	10
-111	\N	48	2	10
+110	\N	48	2	10
+111	\N	87	2	10
 112	\N	88	2	33
 113	\N	89	2	29
 114	\N	59	2	23
@@ -7689,8 +7754,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 276	\N	160	3	26
 277	\N	161	3	26
 278	\N	26	3	6
-279	\N	162	3	2
-280	\N	109	3	2
+279	\N	109	3	2
+280	\N	162	3	2
 281	\N	163	3	25
 282	\N	132	3	8
 283	\N	27	3	2
@@ -7720,18 +7785,18 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 307	\N	171	4	7
 308	\N	99	4	10
 309	\N	123	4	10
-310	\N	65	4	10
-311	\N	46	4	10
+310	\N	46	4	10
+311	\N	65	4	10
 312	\N	63	4	10
 313	\N	43	4	10
 314	\N	48	4	10
 315	\N	172	4	10
-316	\N	128	4	10
-317	\N	58	4	10
+316	\N	58	4	10
+317	\N	128	4	10
 318	\N	173	4	20
-319	\N	50	4	28
+319	\N	38	4	28
 320	\N	95	4	28
-321	\N	38	4	28
+321	\N	50	4	28
 322	\N	51	4	10
 323	\N	91	4	10
 324	\N	130	4	10
@@ -7739,15 +7804,15 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 326	\N	87	4	28
 327	\N	124	4	29
 328	\N	35	4	10
-329	\N	88	4	10
-330	\N	97	4	10
+329	\N	97	4	10
+330	\N	88	4	10
 331	\N	67	4	10
-332	\N	174	4	10
-333	\N	41	4	10
+332	\N	41	4	10
+333	\N	174	4	10
 334	\N	175	4	10
-335	\N	54	4	10
+335	\N	176	4	10
 336	\N	57	4	10
-337	\N	176	4	10
+337	\N	54	4	10
 338	\N	129	4	28
 339	\N	86	4	43
 340	\N	44	4	28
@@ -7840,27 +7905,27 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 427	\N	99	5	10
 428	\N	124	5	28
 429	\N	48	5	10
-430	\N	46	5	10
-431	\N	49	5	10
+430	\N	49	5	10
+431	\N	46	5	10
 432	\N	86	5	10
 433	\N	63	5	10
 434	\N	177	5	47
-435	\N	43	5	10
-436	\N	55	5	10
+435	\N	55	5	10
+436	\N	43	5	10
 437	\N	202	5	10
 438	\N	178	5	20
-439	\N	34	5	10
+439	\N	51	5	10
 440	\N	123	5	10
-441	\N	88	5	10
-442	\N	51	5	10
-443	\N	65	5	10
+441	\N	34	5	10
+442	\N	65	5	10
+443	\N	88	5	10
 444	\N	95	5	28
 445	\N	41	5	28
 446	\N	87	5	28
 447	\N	129	5	10
-448	\N	175	5	10
+448	\N	38	5	10
 449	\N	64	5	10
-450	\N	38	5	10
+450	\N	175	5	10
 451	\N	173	5	10
 452	\N	125	5	46
 453	\N	203	5	20
@@ -7872,17 +7937,17 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 459	\N	97	5	30
 460	\N	128	5	30
 461	\N	50	5	10
-462	\N	172	5	22
-463	\N	88	5	22
+462	\N	88	5	22
+463	\N	172	5	22
 464	\N	176	5	22
-465	\N	130	5	29
-466	\N	88	5	29
+465	\N	88	5	29
+466	\N	130	5	29
 467	\N	172	5	10
 468	\N	44	5	10
-469	\N	206	5	31
-470	\N	54	5	31
-471	\N	127	5	29
-472	\N	207	5	29
+469	\N	54	5	31
+470	\N	206	5	31
+471	\N	207	5	29
+472	\N	127	5	29
 473	\N	208	5	10
 474	\N	82	5	2
 475	\N	101	5	36
@@ -7927,23 +7992,23 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 514	\N	24	5	51
 515	\N	26	5	51
 516	\N	13	6	48
-517	\N	29	6	6
+517	\N	1	6	6
 518	\N	27	6	6
-519	\N	1	6	6
+519	\N	29	6	6
 520	\N	198	6	6
-521	\N	82	6	48
-522	\N	185	6	48
+521	\N	185	6	48
+522	\N	82	6	48
 523	\N	209	6	48
 524	\N	179	6	2
 525	\N	31	6	2
 526	\N	114	6	2
 527	\N	196	6	2
 528	\N	197	6	2
-529	\N	218	6	2
-530	\N	169	6	2
+529	\N	169	6	2
+530	\N	218	6	2
 531	\N	221	6	36
-532	\N	26	6	51
-533	\N	222	6	51
+532	\N	222	6	51
+533	\N	26	6	51
 534	\N	223	6	2
 535	\N	24	6	51
 536	\N	164	6	36
@@ -7965,8 +8030,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 552	\N	38	6	10
 553	\N	51	6	10
 554	\N	176	6	28
-555	\N	208	6	10
-556	\N	41	6	10
+555	\N	41	6	10
+556	\N	208	6	10
 557	\N	88	6	10
 558	\N	226	6	10
 559	\N	205	6	10
@@ -8035,8 +8100,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 622	\N	222	7	6
 623	\N	27	7	2
 624	\N	234	7	36
-625	\N	101	7	36
-626	\N	164	7	36
+625	\N	164	7	36
+626	\N	101	7	36
 627	\N	224	7	2
 628	\N	214	7	2
 629	\N	28	7	36
@@ -8117,11 +8182,11 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 704	\N	114	8	2
 705	\N	169	8	2
 706	\N	31	8	2
-707	\N	27	8	6
-708	\N	250	8	6
-709	\N	224	8	6
-710	\N	259	8	6
-711	\N	119	8	6
+707	\N	250	8	6
+708	\N	27	8	6
+709	\N	259	8	6
+710	\N	119	8	6
+711	\N	224	8	6
 712	\N	257	8	2
 713	\N	82	8	2
 714	\N	260	8	6
@@ -8541,8 +8606,8 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 1128	\N	271	12	65
 1129	\N	362	12	74
 1130	\N	322	12	77
-1131	\N	183	12	76
-1132	\N	82	12	76
+1131	\N	82	12	76
+1132	\N	183	12	76
 1133	\N	327	12	74
 1134	\N	363	12	74
 1135	\N	364	12	60
@@ -10962,21 +11027,40 @@ COPY public.formula_one_teamdriver (id, role, driver_id, season_id, team_id) FRO
 3549	\N	859	75	6
 3550	\N	860	75	141
 3551	\N	859	75	207
+3552	\N	858	75	211
+3553	\N	861	75	210
+3554	0	861	76	210
+3555	0	841	76	210
+3556	0	763	76	64
+3557	0	840	76	64
+3558	0	843	76	6
+3559	0	795	76	6
+3560	0	838	76	207
+3561	0	859	76	207
+3562	0	862	76	182
+3563	0	845	76	117
+3564	0	857	76	117
+3565	0	863	76	48
+3566	0	847	76	48
+3567	0	864	76	211
+3568	0	851	76	211
+3569	0	831	76	191
+3570	0	858	76	191
+3571	0	846	76	141
+3572	0	830	76	141
+3573	0	807	76	182
+3574	2	863	75	48
+3577	\N	858	76	211
+3578	\N	851	76	191
+3613	\N	860	76	210
 \.
-
-
---
--- Name: ergast_status_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.ergast_status_id_seq', 1, false);
 
 
 --
 -- Name: formula_one_baseteam_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_baseteam_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_baseteam_id_seq', 1, true);
 
 
 --
@@ -10997,66 +11081,68 @@ SELECT pg_catalog.setval('public.formula_one_championshipsystem_id_seq', 10, tru
 -- Name: formula_one_circuit_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_circuit_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_circuit_id_seq', 77, true);
 
 
 --
 -- Name: formula_one_driver_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_driver_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_driver_id_seq', 864, true);
 
 
 --
 -- Name: formula_one_penalty_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_penalty_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_penalty_id_seq', 1, true);
 
 
 --
 -- Name: formula_one_pointsystem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_pointsystem_id_seq', 23, true);
+SELECT pg_catalog.setval('public.formula_one_pointsystem_id_seq', 24, true);
 
 
 --
 -- Name: formula_one_round_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_round_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_round_id_seq', 1149, true);
 
 
 --
 -- Name: formula_one_season_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_season_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_season_id_seq', 76, true);
 
 
 --
 -- Name: formula_one_session_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_session_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_session_id_seq', 4950, true);
 
 
 --
 -- Name: formula_one_team_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_team_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_team_id_seq', 212, true);
 
 
 --
 -- Name: formula_one_teamdriver_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.formula_one_teamdriver_id_seq', 1, false);
+SELECT pg_catalog.setval('public.formula_one_teamdriver_id_seq', 3613, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
+
+\unrestrict IzS8VJIjOxrqkjnw9Dpc398n7UpP9DIIh5pOdtakkkcLKcpcUJxRfjKH08Vc0nT
 
