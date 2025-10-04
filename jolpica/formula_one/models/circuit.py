@@ -2,13 +2,13 @@ from typing import TYPE_CHECKING
 
 from django.db import models
 
-from ..utils import generate_api_id
+from .mixins import ApiIDMixin
 
 if TYPE_CHECKING:
     from . import Round
 
 
-class Circuit(models.Model):
+class Circuit(ApiIDMixin, models.Model):
     """Round venue information"""
 
     ID_PREFIX = "circuit"
@@ -16,7 +16,7 @@ class Circuit(models.Model):
     id = models.BigAutoField(primary_key=True)
     rounds: models.QuerySet["Round"]
 
-    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
+    api_id = models.CharField(max_length=64, unique=True, db_index=True)
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255)
     locality = models.CharField(max_length=255, null=True, blank=True)
@@ -26,11 +26,6 @@ class Circuit(models.Model):
     longitude = models.FloatField(null=True, blank=True)
     altitude = models.FloatField(null=True, blank=True)
     wikipedia = models.URLField(max_length=255, null=True, blank=True)
-
-    def save(self, *args, **kwargs) -> None:
-        if not self.api_id:
-            self.api_id = generate_api_id(self.ID_PREFIX)
-        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.name}"

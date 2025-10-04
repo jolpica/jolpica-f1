@@ -4,14 +4,14 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
-from ..utils import generate_api_id
+from .mixins import ApiIDMixin
 
 if TYPE_CHECKING:
     from . import Session, SessionEntry
     from .managed_views import DriverChampionship, TeamChampionship
 
 
-class Round(models.Model):
+class Round(ApiIDMixin, models.Model):
     """Race event information relevent to all sessions"""
 
     ID_PREFIX = "round"
@@ -27,7 +27,7 @@ class Round(models.Model):
     driver_championships: models.QuerySet[DriverChampionship]
     team_championships: models.QuerySet[TeamChampionship]
 
-    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
+    api_id = models.CharField(max_length=64, unique=True, db_index=True)
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     date = models.DateField(null=True, blank=True)
@@ -40,16 +40,11 @@ class Round(models.Model):
             models.UniqueConstraint(fields=["season", "number"], name="round_unique_season_number")
         ]
 
-    def save(self, *args, **kwargs) -> None:
-        if not self.api_id:
-            self.api_id = generate_api_id(self.ID_PREFIX)
-        super().save(*args, **kwargs)
-
     def __str__(self) -> str:
         return f"{self.season.year} {self.name}"
 
 
-class RoundEntry(models.Model):
+class RoundEntry(ApiIDMixin, models.Model):
     """All data relating to a driver racing for a specific team for a race"""
 
     ID_PREFIX = "roundentry"
@@ -60,18 +55,13 @@ class RoundEntry(models.Model):
     sessions: models.QuerySet[Session]
     session_entries: models.QuerySet[SessionEntry]
 
-    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
+    api_id = models.CharField(max_length=64, unique=True, db_index=True)
     car_number = models.PositiveSmallIntegerField(null=True, blank=True)
 
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["round", "team_driver", "car_number"], name="round_entry_unique")
         ]
-
-    def save(self, *args, **kwargs) -> None:
-        if not self.api_id:
-            self.api_id = generate_api_id(self.ID_PREFIX)
-        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.team_driver} - {self.round}"
