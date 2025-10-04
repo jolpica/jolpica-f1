@@ -1,7 +1,7 @@
 import logging
 from collections import defaultdict
 
-from django.db import IntegrityError, models
+from django.db import IntegrityError
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.standings import update_championship_standings_in_db
@@ -110,21 +110,8 @@ class JSONModelImporter:
 
                 # Prepare defaults for both create and update operations
                 # Exclude any fields that are in unique_fields to avoid conflicts
-                defaults = {}
-                create_defaults = {}
-
-                for field in model_import.update_fields:
-                    if field in unique_fields:
-                        continue
-                    value = getattr(ins, field)
-                    # For foreign keys, use _id field to pass pk directly
-                    field_obj = model_import.model_class._meta.get_field(field)  # type: ignore[attr-defined]
-                    if isinstance(field_obj, models.ForeignKey) and hasattr(value, "pk"):
-                        # Put foreign keys in both defaults (for updates) and create_defaults (for creates)
-                        defaults[f"{field}_id"] = value.pk
-                        create_defaults[f"{field}_id"] = value.pk
-                    else:
-                        defaults[field] = value
+                defaults = {field: getattr(ins, field) for field in model_import.update_fields}
+                create_defaults = {field: getattr(ins, field) for field in model_import.update_fields}
 
                 # Add api_id to create_defaults ONLY (never update)
                 if "api_id" not in model_import.update_fields and hasattr(ins, "api_id"):
