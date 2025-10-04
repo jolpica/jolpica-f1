@@ -1,4 +1,4 @@
-from . import managed_views
+from . import managed_views, mixins
 from .circuit import Circuit
 from .driver import Driver
 from .lap import Lap
@@ -50,4 +50,5 @@ __all__ = [
     "TeamDriver",
     "TeamDriverRole",
     "managed_views",
+    "mixins",
 ]

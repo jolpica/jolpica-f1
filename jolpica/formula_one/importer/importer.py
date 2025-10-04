@@ -4,6 +4,7 @@ from collections import defaultdict
 from django.db import IntegrityError
 
 from jolpica.formula_one import models as f1
+from jolpica.formula_one.models.mixins import ApiIDMixin
 from jolpica.formula_one.standings import update_championship_standings_in_db
 from jolpica.formula_one.utils import generate_api_id
 
@@ -107,8 +108,8 @@ class JSONModelImporter:
                 create_defaults = {field: getattr(ins, field) for field in model_import.update_fields}
 
                 if "api_id" not in model_import.update_fields and hasattr(ins, "api_id") and ins.api_id is None:
-                    if hasattr(model_import.model_class, "ID_PREFIX"):
-                        ins.api_id = generate_api_id(model_import.model_class.ID_PREFIX)  # type: ignore[attr-defined]
+                    if issubclass(model_import.model_class, ApiIDMixin):
+                        ins.api_id = generate_api_id(model_import.model_class.get_id_prefix())
                         # Newly created objects need to have api_id set
                         create_defaults["api_id"] = ins.api_id
 

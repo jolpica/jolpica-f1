@@ -41,7 +41,6 @@ def populate_api_ids(apps, schema_editor):
     for model_name, prefix in model_prefixes.items():
         Model = apps.get_model("formula_one", model_name)
 
-        # Fetch PKs in batches using values_list with iterator
         pks = Model.objects.filter(api_id__isnull=True).values_list("pk", flat=True).all()
         updated_models = (Model(pk=pk, api_id=generate_api_id(prefix)) for pk in pks)
 
