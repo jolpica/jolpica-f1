@@ -1,10 +1,11 @@
 import logging
 from collections import defaultdict
 
-from django.db import IntegrityError
+from django.db import IntegrityError, models
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.standings import update_championship_standings_in_db
+from jolpica.formula_one.utils import generate_api_id
 
 from .deserialisers import DeserialisationResult, DeserialiserFactory, ModelImport, ModelLookupCache
 
@@ -102,10 +103,38 @@ class JSONModelImporter:
                 if isinstance(ins, f1.PitStop) and ins.lap and f1.PitStop.objects.filter(lap=ins.lap).exists():
                     unique_fields = {"lap": ins.lap}
 
+                # Generate api_id if not present and model has ID_PREFIX
+                if not hasattr(ins, "api_id") or not ins.api_id:
+                    if hasattr(model_import.model_class, "ID_PREFIX"):
+                        ins.api_id = generate_api_id(model_import.model_class.ID_PREFIX)  # type: ignore[attr-defined]
+
+                # Prepare defaults for both create and update operations
+                # Exclude any fields that are in unique_fields to avoid conflicts
+                defaults = {}
+                create_defaults = {}
+
+                for field in model_import.update_fields:
+                    if field in unique_fields:
+                        continue
+                    value = getattr(ins, field)
+                    # For foreign keys, use _id field to pass pk directly
+                    field_obj = model_import.model_class._meta.get_field(field)  # type: ignore[attr-defined]
+                    if isinstance(field_obj, models.ForeignKey) and hasattr(value, "pk"):
+                        # Put foreign keys in both defaults (for updates) and create_defaults (for creates)
+                        defaults[f"{field}_id"] = value.pk
+                        create_defaults[f"{field}_id"] = value.pk
+                    else:
+                        defaults[field] = value
+
+                # Add api_id to create_defaults ONLY (never update)
+                if "api_id" not in model_import.update_fields and hasattr(ins, "api_id"):
+                    create_defaults["api_id"] = ins.api_id
+
                 try:
                     updated_ins, is_created = model_import.model_class.objects.update_or_create(  # type: ignore[attr-defined]
                         **unique_fields,
-                        defaults={field: getattr(ins, field) for field in model_import.update_fields},
+                        defaults=defaults,
+                        create_defaults=create_defaults,
                     )
                 except IntegrityError as ex:
                     values = {key: val for key, val in vars(ins).items() if not key.startswith("_")}
