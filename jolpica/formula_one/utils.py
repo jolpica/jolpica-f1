@@ -1,5 +1,21 @@
+import secrets
+import string
 from collections import Counter
 from datetime import timedelta
+
+
+def generate_api_id(model_prefix: str) -> str:
+    """Generate unique API ID with format: {lowercaseletters}_{8_alphanumeric}
+
+    Args:
+        model_prefix: Lowercase letters only prefix (e.g., "driver", "pitstop", "roundentry")
+
+    Returns:
+        API ID string (e.g., "driver_aB3xK9mP", "pitstop_Xy5nM2pQ")
+    """
+    alphabet = string.ascii_letters + string.digits
+    random_suffix = "".join(secrets.choice(alphabet) for _ in range(8))
+    return f"{model_prefix}_{random_suffix}"
 
 
 def calculate_championship_points(

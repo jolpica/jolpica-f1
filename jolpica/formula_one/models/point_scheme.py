@@ -2,6 +2,8 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
+from ..utils import generate_api_id
+
 if TYPE_CHECKING:
     from . import Season, Session
 
@@ -52,9 +54,12 @@ class SharedDrivePointScheme(models.IntegerChoices):
 class PointSystem(models.Model):
     """Session point calculation rules"""
 
+    ID_PREFIX = "pointsystem"
+
     id = models.BigAutoField(primary_key=True)
     sessions: models.QuerySet["Session"]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
     driver_position_points = models.PositiveSmallIntegerField(choices=PositionPointScheme.choices)
@@ -82,6 +87,11 @@ class PointSystem(models.Model):
                 name="point_system_unique",
             )
         ]
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.name}"
@@ -126,9 +136,12 @@ class PointsPerSessionChampionshipScheme(models.IntegerChoices):
 class ChampionshipSystem(models.Model):
     """Drivers and Team Championship score calculation rules"""
 
+    ID_PREFIX = "championshipsystem"
+
     id = models.BigAutoField(primary_key=True)
     seasons: models.QuerySet["Season"]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     name = models.CharField(max_length=255, null=True, blank=True)
 
@@ -156,6 +169,11 @@ class ChampionshipSystem(models.Model):
             )
         ]
 
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
+
     def __str__(self) -> str:
         return f"{self.name}"
 
@@ -175,6 +193,8 @@ class ChampionshipAdjustmentType(models.IntegerChoices):
 class ChampionshipAdjustment(models.Model):
     """Adjustments such as Disqualifications and Exclusions from Driver/Team Championships"""
 
+    ID_PREFIX = "championshipadjustment"
+
     id = models.BigAutoField(primary_key=True)
 
     season = models.ForeignKey("formula_one.Season", on_delete=models.CASCADE, related_name="championship_adjustments")
@@ -184,7 +204,13 @@ class ChampionshipAdjustment(models.Model):
     team = models.ForeignKey(
         "formula_one.Team", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     adjustment = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices)
     points = models.FloatField(
         null=True, blank=True, help_text="Points to deduct if POINT_DEDUCTION adjustment, otherwise null"
     )
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)

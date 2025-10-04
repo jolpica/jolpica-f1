@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING, ClassVar
 
 from django.db import models
 
+from ..utils import generate_api_id
+
 if TYPE_CHECKING:
     from . import Lap, PitStop
     from .managed_views import DriverChampionship, TeamChampionship
@@ -32,6 +34,8 @@ class SessionType(models.TextChoices):
 class Session(models.Model):
     """Information about a scheduled session where cars are on track"""
 
+    ID_PREFIX = "session"
+
     id = models.BigAutoField(primary_key=True)
     round = models.ForeignKey("formula_one.Round", on_delete=models.CASCADE, related_name="sessions")
     number = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -43,6 +47,7 @@ class Session(models.Model):
     driver_championships: models.QuerySet[DriverChampionship]
     team_championships: models.QuerySet[TeamChampionship]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     type = models.CharField(max_length=3, choices=SessionType.choices)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
@@ -54,6 +59,11 @@ class Session(models.Model):
             models.UniqueConstraint(fields=["round", "number"], name="session_unique_number_round"),
         ]
         ordering = ["date", "time", "type"]
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.round} - {SessionType(self.type).label}"
@@ -75,6 +85,8 @@ class SessionStatus(models.IntegerChoices):
 class SessionEntry(models.Model):
     """All information for a round entry for the session"""
 
+    ID_PREFIX = "sessionentry"
+
     id = models.BigAutoField(primary_key=True)
     session = models.ForeignKey("Session", on_delete=models.CASCADE, related_name="session_entries")
     round_entry = models.ForeignKey("RoundEntry", on_delete=models.CASCADE, related_name="session_entries")
@@ -83,6 +95,7 @@ class SessionEntry(models.Model):
     penalties: models.QuerySet[Penalty]
     served_penalities: models.QuerySet[Penalty]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     is_classified = models.BooleanField(null=True, blank=True)
     status = models.PositiveSmallIntegerField(choices=SessionStatus.choices, null=True, blank=True)
@@ -100,12 +113,19 @@ class SessionEntry(models.Model):
             models.UniqueConstraint(fields=["session", "round_entry"], name="session_entry_unique_session_round_entry"),
         ]
 
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
+
     def __str__(self) -> str:
         return f"{self.session} - {self.round_entry}"
 
 
 class Penalty(models.Model):
     """Penalty given/served in an entry's session"""
+
+    ID_PREFIX = "penalty"
 
     id = models.BigAutoField(primary_key=True)
     earned = models.ForeignKey(
@@ -115,10 +135,16 @@ class Penalty(models.Model):
         "SessionEntry", on_delete=models.SET_NULL, null=True, blank=True, related_name="served_penalties"
     )
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     license_points = models.PositiveSmallIntegerField(null=True, blank=True)
     position = models.PositiveSmallIntegerField(null=True, blank=True)
     time = models.DurationField(null=True, blank=True)
     is_time_served_in_pit = models.BooleanField(null=True, blank=True)
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.earned}"

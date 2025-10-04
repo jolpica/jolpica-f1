@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from django.db import models
 
+from ..utils import generate_api_id
+
 if TYPE_CHECKING:
     from . import ChampionshipAdjustment, Season, Team, TeamDriver
     from .managed_views import DriverChampionship, TeamChampionship
@@ -14,6 +16,8 @@ class Driver(models.Model):
 
     May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions."""
 
+    ID_PREFIX = "driver"
+
     id = models.BigAutoField(primary_key=True)
     teams: models.QuerySet[Team]
     seasons: models.QuerySet[Season]
@@ -22,6 +26,7 @@ class Driver(models.Model):
     driver_championships: models.QuerySet[DriverChampionship]
     team_championships: models.QuerySet[TeamChampionship]
 
+    api_id = models.CharField(max_length=64, unique=True, null=True, blank=True, db_index=True)
     reference = models.CharField(max_length=32, unique=True, null=True, blank=True)
     forename = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
@@ -31,6 +36,11 @@ class Driver(models.Model):
     permanent_car_number = models.PositiveSmallIntegerField(null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
     wikipedia = models.URLField(max_length=255, null=True, blank=True)
+
+    def save(self, *args, **kwargs) -> None:
+        if not self.api_id:
+            self.api_id = generate_api_id(self.ID_PREFIX)
+        super().save(*args, **kwargs)
 
     def __str__(self) -> str:
         return f"{self.forename} {self.surname}"
