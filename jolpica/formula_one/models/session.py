@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import datetime
 from typing import TYPE_CHECKING, ClassVar
-from zoneinfo import ZoneInfo
 
 from django.db import models
 from timezone_field import TimeZoneField
@@ -86,7 +85,7 @@ class Session(ApiIDMixin, models.Model):
             Local datetime if both timestamp and timezone are set, None otherwise
         """
         if self.timestamp and self.timezone:
-            return self.timestamp.astimezone(ZoneInfo(str(self.timezone)))
+            return self.timestamp.astimezone(self.timezone)
         return None
 
 

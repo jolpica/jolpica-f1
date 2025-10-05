@@ -41,6 +41,9 @@ class ScheduleSession(BaseModel):
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")
     timestamp: datetime.datetime | None = None
+    timezone: str | None = None
+    has_time_data: bool = False
+    local_timestamp: datetime.datetime | None = None
 
 
 class ScheduleRound(BaseModel):
