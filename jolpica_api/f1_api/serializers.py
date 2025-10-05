@@ -8,6 +8,10 @@ class SessionSerializer(serializers.Serializer):
     type = serializers.CharField(read_only=True)
     type_display = serializers.CharField(source="get_type_display", read_only=True)
     timestamp = serializers.DateTimeField(read_only=True)
+    timezone = serializers.CharField(read_only=True)
+    has_time_data = serializers.BooleanField(read_only=True)
+    # Must use CharField instead of DateTimeField as otherwise it will display as UTC
+    local_timestamp = serializers.CharField(read_only=True)
 
     def to_representation(self, instance):
         """
@@ -176,6 +180,9 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
             "type",
             "type_display",
             "timestamp",
+            "timezone",
+            "local_timestamp",
+            "has_time_data",
         ]
 
     def get_url(self, obj):
