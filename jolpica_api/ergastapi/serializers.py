@@ -67,24 +67,20 @@ class BaseRaceSerializer(ErgastModelSerializer):
     time = serializers.SerializerMethodField(method_name="get_time")
 
     def get_date(self, race: Round) -> str | None:
-        date = None
         for session in race.sessions.all():
             if session.type == SessionType.RACE:
-                date = session.date
-        if date:
-            return str(date)
-        else:
-            return None
+                if session.timestamp:
+                    return str(session.timestamp.date())
+                return None
+        return None
 
     def get_time(self, race: Round) -> str | None:
-        time = None
         for session in race.sessions.all():
             if session.type == SessionType.RACE:
-                time = session.time
-        if time:
-            return f"{time}Z"
-        else:
-            return None
+                if session.timestamp and session.has_time_data:
+                    return f"{session.timestamp.time()}Z"
+                return None
+        return None
 
     class Meta:
         model = Round
@@ -117,13 +113,12 @@ class RaceSerializer(BaseRaceSerializer):
             if sess.type == session_type:
                 session = sess
                 break
-        if session is None or (session.time is None and session.date is None):
+        if session is None or session.timestamp is None:
             return None
         time = {}
-        if session.date:
-            time["date"] = str(session.date)
-        if session.time:
-            time["time"] = f"{session.time}Z"
+        time["date"] = str(session.timestamp.date())
+        if session.has_time_data:
+            time["time"] = f"{session.timestamp.time()}Z"
 
         return time
 

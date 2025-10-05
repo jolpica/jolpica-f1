@@ -49,8 +49,6 @@ class Session(ApiIDMixin, models.Model):
 
     api_id = models.CharField(max_length=64, unique=True, db_index=True)
     type = models.CharField(max_length=3, choices=SessionType.choices)
-    date = models.DateField(null=True, blank=True)
-    time = models.TimeField(null=True, blank=True)
     timestamp = models.DateTimeField(
         null=True,
         blank=True,
@@ -67,7 +65,7 @@ class Session(ApiIDMixin, models.Model):
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["round", "number"], name="session_unique_number_round"),
         ]
-        ordering = ["date", "time", "type"]
+        ordering = ["timestamp", "type"]
 
     def __str__(self) -> str:
         return f"{self.round} - {SessionType(self.type).label}"
