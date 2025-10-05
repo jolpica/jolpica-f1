@@ -51,6 +51,15 @@ class Session(ApiIDMixin, models.Model):
     type = models.CharField(max_length=3, choices=SessionType.choices)
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
+    timestamp = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="UTC datetime of the session start. If time is unknown, uses midnight (00:00:00 UTC).",
+    )
+    has_time_data = models.BooleanField(
+        default=False,
+        help_text="Indicates whether the timestamp includes actual time data or just date with default midnight time.",
+    )
     scheduled_laps = models.PositiveSmallIntegerField(null=True, blank=True)
     is_cancelled = models.BooleanField(default=False)
 

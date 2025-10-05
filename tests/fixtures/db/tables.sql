@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict aeeWhQ8ZvbqcfZzWV6S4d6WGelgQqC9wHWBYsxTEcckgAxa44l2JuhNnoE6EelR
+\restrict df9UXHVdKeXzhNIKbM09QDZgMqmokheAIz6c12IL9grRweLkskq9hKtH2rwdxzd
 
 -- Dumped from database version 16.9 (Debian 16.9-1.pgdg120+1)
 -- Dumped by pg_dump version 16.10 (Debian 16.10-1.pgdg11+1)
@@ -2517,4957 +2517,4957 @@ COPY public.formula_one_round (id, number, name, date, race_number, wikipedia, i
 -- Data for Name: formula_one_session; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.formula_one_session (id, number, type, date, "time", scheduled_laps, is_cancelled, point_system_id, round_id, api_id) FROM stdin;
-1	2	R	1950-05-13	\N	\N	f	2	1	session_8sj3ZIRr
-2	1	QB	1950-05-11	\N	\N	f	1	1	session_wekmWw64
-3	\N	QB	1950-05-12	\N	\N	f	1	1	session_OqpKUX18
-4	2	R	1950-05-21	\N	\N	f	2	2	session_j3NT8Tq8
-5	1	QB	1950-05-18	\N	\N	f	1	2	session_GLkBhJ5b
-6	\N	QB	1950-05-20	\N	\N	f	1	2	session_b9y2DorS
-7	2	R	1950-05-30	\N	\N	f	2	3	session_03lTVpug
-8	1	QB	1950-05-28	\N	\N	f	1	3	session_kScTG1aw
-9	\N	QB	1950-05-29	\N	\N	f	1	3	session_OYp10s64
-10	2	R	1950-06-04	\N	\N	f	2	4	session_kRQMn8kL
-11	1	QB	1950-06-02	\N	\N	f	1	4	session_0jacirA6
-12	\N	QB	1950-06-03	\N	\N	f	1	4	session_7JIAbxeO
-13	2	R	1950-06-18	\N	\N	f	2	5	session_nPfJZRH0
-14	1	QB	1950-06-16	\N	\N	f	1	5	session_s8uKbySV
-15	\N	QB	1950-06-17	\N	\N	f	1	5	session_eUSUcggs
-16	2	R	1950-07-02	\N	\N	f	2	6	session_yio0F6vG
-17	1	QB	1950-06-30	\N	\N	f	1	6	session_0sYxR12x
-18	\N	QB	1950-07-01	\N	\N	f	1	6	session_deDxZlWg
-19	2	R	1950-09-03	\N	\N	f	2	7	session_MWraMu23
-20	1	QB	1950-09-01	\N	\N	f	1	7	session_eX5qIlBP
-21	\N	QB	1950-09-02	\N	\N	f	1	7	session_E6Re62TT
-22	2	R	1951-05-27	\N	\N	f	2	8	session_d7Wgqsjd
-23	1	QB	1951-05-25	\N	\N	f	1	8	session_ST6lVxsE
-24	\N	QB	1951-05-26	\N	\N	f	1	8	session_EvcDklnd
-25	2	R	1951-05-30	\N	\N	f	2	9	session_PP4tcRPv
-26	1	QB	1951-05-28	\N	\N	f	1	9	session_TAqZZ2CL
-27	\N	QB	1951-05-29	\N	\N	f	1	9	session_Lq6lagMu
-28	2	R	1951-06-17	\N	\N	f	2	10	session_rm9c1y6l
-29	1	QB	1951-06-15	\N	\N	f	1	10	session_NdlH6XJx
-30	\N	QB	1951-06-16	\N	\N	f	1	10	session_OFDDL8rZ
-31	2	R	1951-07-01	\N	\N	f	2	11	session_pd1Bj5Ys
-32	1	QB	1951-06-29	\N	\N	f	1	11	session_qJ6ZWDXT
-33	\N	QB	1951-06-30	\N	\N	f	1	11	session_a2dIoqCV
-34	2	R	1951-07-14	\N	\N	f	2	12	session_5fRh0dni
-35	1	QB	1951-07-12	\N	\N	f	1	12	session_3cyPIG6Q
-36	\N	QB	1951-07-13	\N	\N	f	1	12	session_V30jgDRJ
-37	2	R	1951-07-29	\N	\N	f	2	13	session_aUryL4oE
-38	1	QB	1951-07-27	\N	\N	f	1	13	session_Q5YVtvll
-39	\N	QB	1951-07-28	\N	\N	f	1	13	session_wfY8tBXY
-40	2	R	1951-09-16	\N	\N	f	2	14	session_yxwLHNj2
-41	1	QB	1951-09-14	\N	\N	f	1	14	session_pXne1b90
-42	\N	QB	1951-09-15	\N	\N	f	1	14	session_3UxsHw7t
-43	2	R	1951-10-28	\N	\N	f	2	15	session_RSd3UNeB
-44	1	QB	1951-10-26	\N	\N	f	1	15	session_R1VvOxX1
-45	\N	QB	1951-10-27	\N	\N	f	1	15	session_iaxNKquU
-46	2	R	1952-05-18	\N	\N	f	2	16	session_rUElI65t
-47	1	QB	1952-05-16	\N	\N	f	1	16	session_k2pkiayA
-48	\N	QB	1952-05-17	\N	\N	f	1	16	session_YLNS6oUP
-49	2	R	1952-05-30	\N	\N	f	2	17	session_W04ToMiv
-50	1	QB	1952-05-28	\N	\N	f	1	17	session_ao1wN9fK
-51	\N	QB	1952-05-29	\N	\N	f	1	17	session_TcWydMeg
-52	2	R	1952-06-22	\N	\N	f	2	18	session_NUHfL6y8
-53	1	QB	1952-06-20	\N	\N	f	1	18	session_DlkKc5my
-54	\N	QB	1952-06-21	\N	\N	f	1	18	session_rjiaScYL
-55	2	R	1952-07-06	\N	\N	f	2	19	session_ZfgyDEpE
-56	1	QB	1952-07-04	\N	\N	f	1	19	session_aOAuioAD
-57	\N	QB	1952-07-05	\N	\N	f	1	19	session_QNk8BdQl
-58	2	R	1952-07-19	\N	\N	f	2	20	session_HbIJFl1D
-59	1	QB	1952-07-17	\N	\N	f	1	20	session_G30x9e3j
-60	\N	QB	1952-07-18	\N	\N	f	1	20	session_5wGA6X8D
-61	2	R	1952-08-03	\N	\N	f	2	21	session_wSWhSVR7
-62	1	QB	1952-08-01	\N	\N	f	1	21	session_H71LuVGS
-63	\N	QB	1952-08-02	\N	\N	f	1	21	session_zaPcHspT
-64	2	R	1952-08-17	\N	\N	f	2	22	session_xRz2JwC8
-65	1	QB	1952-08-15	\N	\N	f	1	22	session_bMYRPDvq
-66	\N	QB	1952-08-16	\N	\N	f	1	22	session_jMqyj2fh
-67	2	R	1952-09-07	\N	\N	f	2	23	session_D4nTmGZZ
-68	1	QB	1952-09-05	\N	\N	f	1	23	session_rZpt36tY
-69	\N	QB	1952-09-06	\N	\N	f	1	23	session_AiXoDsIO
-70	2	R	1953-01-18	\N	\N	f	2	24	session_ZJy9B6LS
-71	1	QB	1953-01-16	\N	\N	f	1	24	session_9SZkbUiw
-72	\N	QB	1953-01-17	\N	\N	f	1	24	session_THK1o6au
-73	2	R	1953-05-30	\N	\N	f	2	25	session_GFpV085h
-74	1	QB	1953-05-28	\N	\N	f	1	25	session_05uYIY5F
-75	\N	QB	1953-05-29	\N	\N	f	1	25	session_hQygrFVn
-76	2	R	1953-06-07	\N	\N	f	2	26	session_FMTcIofV
-77	1	QB	1953-06-05	\N	\N	f	1	26	session_vzhjox0z
-78	\N	QB	1953-06-06	\N	\N	f	1	26	session_39894opb
-79	2	R	1953-06-21	\N	\N	f	2	27	session_GW7NfwpW
-80	1	QB	1953-06-19	\N	\N	f	1	27	session_79XA4riG
-81	\N	QB	1953-06-20	\N	\N	f	1	27	session_C3prgbHF
-82	2	R	1953-07-05	\N	\N	f	2	28	session_pVE6Bjz6
-83	1	QB	1953-07-03	\N	\N	f	1	28	session_A9atxu6y
-84	\N	QB	1953-07-04	\N	\N	f	1	28	session_WGLibNh9
-85	2	R	1953-07-18	\N	\N	f	2	29	session_5E4WnxHi
-86	1	QB	1953-07-16	\N	\N	f	1	29	session_uzvOvszk
-87	\N	QB	1953-07-17	\N	\N	f	1	29	session_pTSjP6QQ
-88	2	R	1953-08-02	\N	\N	f	2	30	session_I5wjgD8G
-89	1	QB	1953-07-31	\N	\N	f	1	30	session_grnQ7ZCx
-90	\N	QB	1953-08-01	\N	\N	f	1	30	session_1cehTR8U
-91	2	R	1953-08-23	\N	\N	f	2	31	session_WRJDTEM6
-92	1	QB	1953-08-21	\N	\N	f	1	31	session_cypi6gMA
-93	\N	QB	1953-08-22	\N	\N	f	1	31	session_eWuqdqFB
-94	2	R	1953-09-13	\N	\N	f	2	32	session_xhaWhwBS
-95	1	QB	1953-09-11	\N	\N	f	1	32	session_CcRFUgUk
-96	\N	QB	1953-09-12	\N	\N	f	1	32	session_xB5kzDlt
-97	2	R	1954-01-17	\N	\N	f	3	33	session_pWaDgfkm
-98	1	QB	1954-01-15	\N	\N	f	1	33	session_Cry0hkGu
-99	\N	QB	1954-01-16	\N	\N	f	1	33	session_KChpWruK
-100	2	R	1954-05-31	\N	\N	f	3	34	session_sfQSNxXv
-101	1	QB	1954-05-29	\N	\N	f	1	34	session_wSVdaGqt
-102	\N	QB	1954-05-30	\N	\N	f	1	34	session_IFyZe9gl
-103	2	R	1954-06-20	\N	\N	f	3	35	session_dKytAPEz
-104	1	QB	1954-06-18	\N	\N	f	1	35	session_mz3ngqhG
-105	\N	QB	1954-06-19	\N	\N	f	1	35	session_KKnOfXAW
-106	2	R	1954-07-04	\N	\N	f	3	36	session_ygKWVO9w
-107	1	QB	1954-07-02	\N	\N	f	1	36	session_F4CuFFzN
-108	\N	QB	1954-07-03	\N	\N	f	1	36	session_DrwnutGs
-109	2	R	1954-07-17	\N	\N	f	3	37	session_Vju4eEb6
-110	1	QB	1954-07-15	\N	\N	f	1	37	session_AVKrcuKa
-111	\N	QB	1954-07-16	\N	\N	f	1	37	session_6BDiGbjL
-112	2	R	1954-08-01	\N	\N	f	3	38	session_If04UCG7
-113	1	QB	1954-07-30	\N	\N	f	1	38	session_9JOHzSxe
-114	\N	QB	1954-07-31	\N	\N	f	1	38	session_4SB1GZjt
-115	2	R	1954-08-22	\N	\N	f	3	39	session_ewa1uVlP
-116	1	QB	1954-08-20	\N	\N	f	1	39	session_IJbOsIRi
-117	\N	QB	1954-08-21	\N	\N	f	1	39	session_ulvbHiGN
-118	2	R	1954-09-05	\N	\N	f	3	40	session_G2XdZsLx
-119	1	QB	1954-09-03	\N	\N	f	1	40	session_z1VR1d7c
-120	\N	QB	1954-09-04	\N	\N	f	1	40	session_IXKGVMr1
-121	2	R	1954-10-24	\N	\N	f	3	41	session_d9FcDc8a
-122	1	QB	1954-10-22	\N	\N	f	1	41	session_tA2cNBuK
-123	\N	QB	1954-10-23	\N	\N	f	1	41	session_qDfvXHFz
-124	2	R	1955-01-16	\N	\N	f	4	42	session_igoSZUdn
-125	1	QB	1955-01-14	\N	\N	f	1	42	session_OJkXFcPV
-126	\N	QB	1955-01-15	\N	\N	f	1	42	session_5NDI8tiY
-127	2	R	1955-05-22	\N	\N	f	4	43	session_PMLk80w7
-128	1	QB	1955-05-19	\N	\N	f	1	43	session_9Ke2oY9W
-129	\N	QB	1955-05-21	\N	\N	f	1	43	session_0UafpSO5
-130	2	R	1955-05-30	\N	\N	f	4	44	session_EPmzoE4x
-131	1	QB	1955-05-28	\N	\N	f	1	44	session_MZAV1wgq
-132	\N	QB	1955-05-29	\N	\N	f	1	44	session_Ty3CMNyQ
-133	2	R	1955-06-05	\N	\N	f	4	45	session_VLDJlxTM
-134	1	QB	1955-06-03	\N	\N	f	1	45	session_l8i53mwB
-135	\N	QB	1955-06-04	\N	\N	f	1	45	session_3DPLgagm
-136	2	R	1955-06-19	\N	\N	f	4	46	session_4sGBiLBc
-137	1	QB	1955-06-17	\N	\N	f	1	46	session_VfqS1Dmu
-138	\N	QB	1955-06-18	\N	\N	f	1	46	session_oOD7aBHJ
-139	2	R	1955-07-16	\N	\N	f	4	47	session_ywOZ5ziF
-140	1	QB	1955-07-14	\N	\N	f	1	47	session_7TLCoJUN
-141	\N	QB	1955-07-15	\N	\N	f	1	47	session_TjlLIdDZ
-142	2	R	1955-09-11	\N	\N	f	4	48	session_6u11zUZh
-143	1	QB	1955-09-09	\N	\N	f	1	48	session_v7RQFl9m
-144	\N	QB	1955-09-10	\N	\N	f	1	48	session_ghhYdy7R
-145	2	R	1956-01-22	\N	\N	f	5	49	session_FQQBuCym
-146	1	QB	1956-01-20	\N	\N	f	1	49	session_flgJxeok
-147	\N	QB	1956-01-21	\N	\N	f	1	49	session_EtZCVUwY
-148	2	R	1956-05-13	\N	\N	f	5	50	session_46R8bmDh
-149	1	QB	1956-05-10	\N	\N	f	1	50	session_EncFsbHW
-150	\N	QB	1956-05-12	\N	\N	f	1	50	session_pPToHxKL
-151	2	R	1956-05-30	\N	\N	f	5	51	session_iWCJt5kf
-152	1	QB	1956-05-28	\N	\N	f	1	51	session_mQGMRTzB
-153	\N	QB	1956-05-29	\N	\N	f	1	51	session_Z27lwix2
-154	2	R	1956-06-03	\N	\N	f	5	52	session_aPMOPoKD
-155	1	QB	1956-06-01	\N	\N	f	1	52	session_HyB1aZ8L
-156	\N	QB	1956-06-02	\N	\N	f	1	52	session_qPyV9jkI
-157	2	R	1956-07-01	\N	\N	f	5	53	session_atguHfvj
-158	1	QB	1956-06-29	\N	\N	f	1	53	session_F8OWz4mP
-159	\N	QB	1956-06-30	\N	\N	f	1	53	session_Utsvi1GQ
-160	2	R	1956-07-14	\N	\N	f	5	54	session_YRBWTZ3P
-161	1	QB	1956-07-12	\N	\N	f	1	54	session_vBxv774I
-162	\N	QB	1956-07-13	\N	\N	f	1	54	session_xoghvYEn
-163	2	R	1956-08-05	\N	\N	f	5	55	session_ZNcH8lSr
-164	1	QB	1956-08-03	\N	\N	f	1	55	session_iHBPyUlF
-165	\N	QB	1956-08-04	\N	\N	f	1	55	session_AunoUUMg
-166	2	R	1956-09-02	\N	\N	f	5	56	session_JEngSCgf
-167	1	QB	1956-08-31	\N	\N	f	1	56	session_5rB4N4HB
-168	\N	QB	1956-09-01	\N	\N	f	1	56	session_VuiXoUc9
-169	2	R	1957-01-13	\N	\N	f	5	57	session_qwwdoXCk
-170	1	QB	1957-01-11	\N	\N	f	1	57	session_hbj4P0oc
-171	\N	QB	1957-01-12	\N	\N	f	1	57	session_5TDsGqie
-172	2	R	1957-05-19	\N	\N	f	5	58	session_iucMPfwX
-173	1	QB	1957-05-16	\N	\N	f	1	58	session_E9VY7OKU
-174	\N	QB	1957-05-18	\N	\N	f	1	58	session_2UdhJEJa
-175	2	R	1957-05-30	\N	\N	f	5	59	session_8Rfz7jFX
-176	1	QB	1957-05-28	\N	\N	f	1	59	session_k1CYb9Ip
-177	\N	QB	1957-05-29	\N	\N	f	1	59	session_P7BVRuFR
-178	2	R	1957-07-07	\N	\N	f	5	60	session_wderWej5
-179	1	QB	1957-07-05	\N	\N	f	1	60	session_LSjaLKSy
-180	\N	QB	1957-07-06	\N	\N	f	1	60	session_yLNkxFEe
-181	2	R	1957-07-20	\N	\N	f	5	61	session_jOwWtXrJ
-182	1	QB	1957-07-18	\N	\N	f	1	61	session_p0d4udxS
-183	\N	QB	1957-07-19	\N	\N	f	1	61	session_IBmDIcsm
-184	2	R	1957-08-04	\N	\N	f	5	62	session_25qRWsGN
-185	1	QB	1957-08-02	\N	\N	f	1	62	session_BFSb53G7
-186	\N	QB	1957-08-03	\N	\N	f	1	62	session_7Q1zMJfn
-187	2	R	1957-08-18	\N	\N	f	5	63	session_xPRuECxM
-188	1	QB	1957-08-16	\N	\N	f	1	63	session_5JWUm4t9
-189	\N	QB	1957-08-17	\N	\N	f	1	63	session_jrrtfnWJ
-190	2	R	1957-09-08	\N	\N	f	5	64	session_Owxs0hIX
-191	1	QB	1957-09-06	\N	\N	f	1	64	session_DhwSVUNB
-192	\N	QB	1957-09-07	\N	\N	f	1	64	session_74AXixP1
-193	2	R	1958-01-19	\N	\N	f	6	65	session_8VZ53DWE
-194	1	QB	1958-01-17	\N	\N	f	1	65	session_67bkUzAi
-195	\N	QB	1958-01-18	\N	\N	f	1	65	session_CYSXpOf1
-196	2	R	1958-05-18	\N	\N	f	6	66	session_EAlINvew
-197	1	QB	1958-05-15	\N	\N	f	1	66	session_UiduB0Qm
-198	\N	QB	1958-05-17	\N	\N	f	1	66	session_MAlqhTxx
-199	2	R	1958-05-26	\N	\N	f	6	67	session_RAVgyTyg
-200	1	QB	1958-05-24	\N	\N	f	1	67	session_sZOhnrDM
-201	\N	QB	1958-05-25	\N	\N	f	1	67	session_nkHlYmgu
-202	2	R	1958-05-30	\N	\N	f	7	68	session_o8PXYtwJ
-203	1	QB	1958-05-28	\N	\N	f	1	68	session_IzqrozvP
-204	\N	QB	1958-05-29	\N	\N	f	1	68	session_ELCPzwZF
-205	2	R	1958-06-15	\N	\N	f	6	69	session_HIFT72p4
-206	1	QB	1958-06-13	\N	\N	f	1	69	session_27BFZ4GK
-207	\N	QB	1958-06-14	\N	\N	f	1	69	session_xT5jf4HN
-208	2	R	1958-07-06	\N	\N	f	6	70	session_hbVxITxS
-209	1	QB	1958-07-04	\N	\N	f	1	70	session_k2K6kgYv
-210	\N	QB	1958-07-05	\N	\N	f	1	70	session_lLMlQkRf
-211	2	R	1958-07-19	\N	\N	f	6	71	session_SfSIXTat
-212	1	QB	1958-07-17	\N	\N	f	1	71	session_V6TtZPQy
-213	\N	QB	1958-07-18	\N	\N	f	1	71	session_vdNOpA24
-214	2	R	1958-08-03	\N	\N	f	6	72	session_Vg9zbOzC
-215	1	QB	1958-08-01	\N	\N	f	1	72	session_VxxHBOb4
-216	\N	QB	1958-08-02	\N	\N	f	1	72	session_wV6FtRLK
-217	2	R	1958-08-24	\N	\N	f	6	73	session_U2NJF1cZ
-218	1	QB	1958-08-22	\N	\N	f	1	73	session_cSCEWGg4
-219	\N	QB	1958-08-23	\N	\N	f	1	73	session_4xt0hBgM
-220	2	R	1958-09-07	\N	\N	f	6	74	session_aHqwHw8s
-221	1	QB	1958-09-05	\N	\N	f	1	74	session_RMJucMMV
-222	\N	QB	1958-09-06	\N	\N	f	1	74	session_iG0AVVCx
-223	2	R	1958-10-19	\N	\N	f	6	75	session_unYKDsov
-224	1	QB	1958-10-17	\N	\N	f	1	75	session_Jb0YqpS6
-225	\N	QB	1958-10-18	\N	\N	f	1	75	session_5RGhiwIz
-226	2	R	1959-05-10	\N	\N	f	6	76	session_M7oKbhZZ
-227	1	QB	1959-05-07	\N	\N	f	1	76	session_WVLGlXx9
-228	\N	QB	1959-05-09	\N	\N	f	1	76	session_A90ydIjH
-229	2	R	1959-05-30	\N	\N	f	7	77	session_gxCno0PO
-230	1	QB	1959-05-28	\N	\N	f	1	77	session_HrVFFQMJ
-231	\N	QB	1959-05-29	\N	\N	f	1	77	session_CQ0FQkCr
-232	2	R	1959-05-31	\N	\N	f	6	78	session_Drap105o
-233	1	QB	1959-05-29	\N	\N	f	1	78	session_GyLpMGBe
-234	\N	QB	1959-05-30	\N	\N	f	1	78	session_3J8mHUZQ
-235	2	R	1959-07-05	\N	\N	f	6	79	session_J6Yw77dZ
-236	1	QB	1959-07-03	\N	\N	f	1	79	session_x7Ch1wdu
-237	\N	QB	1959-07-04	\N	\N	f	1	79	session_T9Vahfh4
-238	2	R	1959-07-18	\N	\N	f	6	80	session_bGW24c2N
-239	1	QB	1959-07-16	\N	\N	f	1	80	session_KVTtE7qe
-240	\N	QB	1959-07-17	\N	\N	f	1	80	session_vtt95ypi
-241	2	R	1959-08-02	\N	\N	f	6	81	session_Qj3QtYXn
-242	1	QB	1959-07-31	\N	\N	f	1	81	session_4gG2aIFq
-243	\N	QB	1959-08-01	\N	\N	f	1	81	session_nfrIZVaV
-244	2	R	1959-08-23	\N	\N	f	6	82	session_QlUBgo5D
-245	1	QB	1959-08-21	\N	\N	f	1	82	session_eTN5ROWo
-246	\N	QB	1959-08-22	\N	\N	f	1	82	session_DOcBUHlm
-247	2	R	1959-09-13	\N	\N	f	6	83	session_6ouFycTq
-248	1	QB	1959-09-11	\N	\N	f	1	83	session_r55GBlML
-249	\N	QB	1959-09-12	\N	\N	f	1	83	session_76yFafTw
-250	2	R	1959-12-12	\N	\N	f	6	84	session_0ICdMwRu
-251	1	QB	1959-12-10	\N	\N	f	1	84	session_gKLZOrJH
-252	\N	QB	1959-12-11	\N	\N	f	1	84	session_dqd8t9ga
-253	2	R	1960-02-07	\N	\N	f	8	85	session_ZNbyvFB9
-254	1	QB	1960-02-05	\N	\N	f	1	85	session_HBbbd0re
-255	\N	QB	1960-02-06	\N	\N	f	1	85	session_iBXL1Nnl
-256	2	R	1960-05-29	\N	\N	f	8	86	session_YCqeNHxU
-257	1	QB	1960-05-26	\N	\N	f	1	86	session_BdxeKne6
-258	\N	QB	1960-05-28	\N	\N	f	1	86	session_bSlfrskd
-259	2	R	1960-05-30	\N	\N	f	9	87	session_5bwgKKxF
-260	1	QB	1960-05-28	\N	\N	f	1	87	session_GdUv5odq
-261	\N	QB	1960-05-29	\N	\N	f	1	87	session_4urnxhx6
-262	2	R	1960-06-06	\N	\N	f	8	88	session_wB8ldLKq
-263	1	QB	1960-06-04	\N	\N	f	1	88	session_xmwBNffa
-264	\N	QB	1960-06-05	\N	\N	f	1	88	session_I9RO08RP
-265	2	R	1960-06-19	\N	\N	f	8	89	session_MAcOUbVH
-266	1	QB	1960-06-17	\N	\N	f	1	89	session_mhUOUcvf
-267	\N	QB	1960-06-18	\N	\N	f	1	89	session_7xI6ErV6
-268	2	R	1960-07-03	\N	\N	f	8	90	session_tuAZoprm
-269	1	QB	1960-07-01	\N	\N	f	1	90	session_ywtwGOKs
-270	\N	QB	1960-07-02	\N	\N	f	1	90	session_kHk3E8dp
-271	2	R	1960-07-16	\N	\N	f	8	91	session_T9gktOBx
-272	1	QB	1960-07-14	\N	\N	f	1	91	session_eWKlEcci
-273	\N	QB	1960-07-15	\N	\N	f	1	91	session_8p8hRE22
-274	2	R	1960-08-14	\N	\N	f	8	92	session_kZ7Cdlp4
-275	1	QB	1960-08-12	\N	\N	f	1	92	session_oolpIqVv
-276	\N	QB	1960-08-13	\N	\N	f	1	92	session_GHYDWlFY
-277	2	R	1960-09-04	\N	\N	f	8	93	session_DVotqkut
-278	1	QB	1960-09-02	\N	\N	f	1	93	session_dp8WDJ4E
-279	\N	QB	1960-09-03	\N	\N	f	1	93	session_Pzsork6Y
-280	2	R	1960-11-20	\N	\N	f	8	94	session_6wsDZchk
-281	1	QB	1960-11-18	\N	\N	f	1	94	session_whx0dkvB
-282	\N	QB	1960-11-19	\N	\N	f	1	94	session_SAlaAIYo
-283	2	R	1961-05-14	\N	\N	f	10	95	session_GbFp8s4E
-284	1	QB	1961-05-11	\N	\N	f	1	95	session_zw5ZMk6f
-285	\N	QB	1961-05-13	\N	\N	f	1	95	session_KvdLZstJ
-286	2	R	1961-05-22	\N	\N	f	10	96	session_50Du0HWn
-287	1	QB	1961-05-20	\N	\N	f	1	96	session_xC8XZQAe
-288	\N	QB	1961-05-21	\N	\N	f	1	96	session_2VPoykHz
-289	2	R	1961-06-18	\N	\N	f	10	97	session_P7Gcgc9g
-290	1	QB	1961-06-16	\N	\N	f	1	97	session_leoWcF5B
-291	\N	QB	1961-06-17	\N	\N	f	1	97	session_1a8BSXU5
-292	2	R	1961-07-02	\N	\N	f	10	98	session_e96OITTS
-293	1	QB	1961-06-30	\N	\N	f	1	98	session_PoTsyQw1
-294	\N	QB	1961-07-01	\N	\N	f	1	98	session_CNvbpv5i
-295	2	R	1961-07-15	\N	\N	f	10	99	session_NJTWlyJW
-296	1	QB	1961-07-13	\N	\N	f	1	99	session_ypOxV5Mc
-297	\N	QB	1961-07-14	\N	\N	f	1	99	session_iCbFe9ja
-298	2	R	1961-08-06	\N	\N	f	10	100	session_gd7RjKoK
-299	1	QB	1961-08-04	\N	\N	f	1	100	session_lAjY1FxW
-300	\N	QB	1961-08-05	\N	\N	f	1	100	session_Sxe2pWGH
-301	2	R	1961-09-10	\N	\N	f	10	101	session_KnA1oGYp
-302	1	QB	1961-09-08	\N	\N	f	1	101	session_H72o003w
-303	\N	QB	1961-09-09	\N	\N	f	1	101	session_L5fgiPDe
-304	2	R	1961-10-08	\N	\N	f	10	102	session_w0HEsTOa
-305	1	QB	1961-10-06	\N	\N	f	1	102	session_I0W0NA2l
-306	\N	QB	1961-10-07	\N	\N	f	1	102	session_AZL7Krci
-307	2	R	1962-05-20	\N	\N	f	11	103	session_i0ZKNwKS
-308	1	QB	1962-05-18	\N	\N	f	1	103	session_KkaEE3Be
-309	\N	QB	1962-05-19	\N	\N	f	1	103	session_wR29HRco
-310	2	R	1962-06-03	\N	\N	f	11	104	session_8CV54PL6
-311	1	QB	1962-05-31	\N	\N	f	1	104	session_1rFu6854
-312	\N	QB	1962-06-02	\N	\N	f	1	104	session_rXiwr3wh
-313	2	R	1962-06-17	\N	\N	f	11	105	session_lRjsDf3X
-314	1	QB	1962-06-15	\N	\N	f	1	105	session_3TQ0TcG4
-315	\N	QB	1962-06-16	\N	\N	f	1	105	session_hNMqBP1M
-316	2	R	1962-07-08	\N	\N	f	11	106	session_TzcWFKkj
-317	1	QB	1962-07-06	\N	\N	f	1	106	session_Bco2ucF6
-318	\N	QB	1962-07-07	\N	\N	f	1	106	session_87NhzWeG
-319	2	R	1962-07-21	\N	\N	f	11	107	session_xcdG0JCO
-320	1	QB	1962-07-19	\N	\N	f	1	107	session_Asf5DQpY
-321	\N	QB	1962-07-20	\N	\N	f	1	107	session_PfV98V6j
-322	2	R	1962-08-05	\N	\N	f	11	108	session_4fLJtm0a
-323	1	QB	1962-08-03	\N	\N	f	1	108	session_2E7faR7s
-324	\N	QB	1962-08-04	\N	\N	f	1	108	session_iJJjtvzU
-325	2	R	1962-09-16	\N	\N	f	11	109	session_4UchtAWc
-326	1	QB	1962-09-14	\N	\N	f	1	109	session_MBS2u25u
-327	\N	QB	1962-09-15	\N	\N	f	1	109	session_u6zwJdkE
-328	2	R	1962-10-07	\N	\N	f	11	110	session_G3gtjSWg
-329	1	QB	1962-10-05	\N	\N	f	1	110	session_pz9PBiE7
-330	\N	QB	1962-10-06	\N	\N	f	1	110	session_LPXJ7uTi
-331	2	R	1962-12-29	\N	\N	f	11	111	session_xQZaJRyK
-332	1	QB	1962-12-27	\N	\N	f	1	111	session_V07TfiOr
-333	\N	QB	1962-12-28	\N	\N	f	1	111	session_VSpjk8Mk
-334	2	R	1963-05-26	\N	\N	f	11	112	session_NZAG0KpM
-335	1	QB	1963-05-23	\N	\N	f	1	112	session_BySwoUJI
-336	\N	QB	1963-05-25	\N	\N	f	1	112	session_lDybVP61
-337	2	R	1963-06-09	\N	\N	f	11	113	session_KuvVBtzB
-338	1	QB	1963-06-07	\N	\N	f	1	113	session_WWhdxsYy
-339	\N	QB	1963-06-08	\N	\N	f	1	113	session_JEt9RO7i
-340	2	R	1963-06-23	\N	\N	f	11	114	session_lQyPfO5S
-341	1	QB	1963-06-21	\N	\N	f	1	114	session_PT77d3vI
-342	\N	QB	1963-06-22	\N	\N	f	1	114	session_ss2VEQDJ
-343	2	R	1963-06-30	\N	\N	f	11	115	session_gzgfFXK4
-344	1	QB	1963-06-28	\N	\N	f	1	115	session_3VpXoT8a
-345	\N	QB	1963-06-29	\N	\N	f	1	115	session_OhVfGr3M
-346	2	R	1963-07-20	\N	\N	f	11	116	session_prcps1iQ
-347	1	QB	1963-07-18	\N	\N	f	1	116	session_j3hGOeRB
-348	\N	QB	1963-07-19	\N	\N	f	1	116	session_Vp0AMrrD
-349	2	R	1963-08-04	\N	\N	f	11	117	session_YfH1Updh
-350	1	QB	1963-08-02	\N	\N	f	1	117	session_UrLOgJrF
-351	\N	QB	1963-08-03	\N	\N	f	1	117	session_NgOFqcNQ
-352	2	R	1963-09-08	\N	\N	f	11	118	session_HgfTvqsW
-353	1	QB	1963-09-06	\N	\N	f	1	118	session_Ufcfj1n1
-354	\N	QB	1963-09-07	\N	\N	f	1	118	session_tBLEyz2p
-355	2	R	1963-10-06	\N	\N	f	11	119	session_w5osyl7G
-356	1	QB	1963-10-04	\N	\N	f	1	119	session_MpJDj78I
-357	\N	QB	1963-10-05	\N	\N	f	1	119	session_KYeJFCJK
-358	2	R	1963-10-27	\N	\N	f	11	120	session_hr2xF3HS
-359	1	QB	1963-10-25	\N	\N	f	1	120	session_61HhIuQk
-360	\N	QB	1963-10-26	\N	\N	f	1	120	session_wqcexGwB
-361	2	R	1963-12-28	\N	\N	f	11	121	session_UcyW0ynG
-362	1	QB	1963-12-26	\N	\N	f	1	121	session_0bLieK6O
-363	\N	QB	1963-12-27	\N	\N	f	1	121	session_2lbVa9fg
-364	2	R	1964-05-10	\N	\N	f	11	122	session_81vXavzL
-365	1	QB	1964-05-07	\N	\N	f	1	122	session_RK6kjlHE
-366	\N	QB	1964-05-09	\N	\N	f	1	122	session_hC5OeM9y
-367	2	R	1964-05-24	\N	\N	f	11	123	session_j5vss9nk
-368	1	QB	1964-05-22	\N	\N	f	1	123	session_lZvhKxKC
-369	\N	QB	1964-05-23	\N	\N	f	1	123	session_4rgyTq3S
-370	2	R	1964-06-14	\N	\N	f	11	124	session_kuHAiUk5
-371	1	QB	1964-06-12	\N	\N	f	1	124	session_JDVBx0Y0
-372	\N	QB	1964-06-13	\N	\N	f	1	124	session_gyUglC2j
-373	2	R	1964-06-28	\N	\N	f	11	125	session_gs0ao6XN
-374	1	QB	1964-06-26	\N	\N	f	1	125	session_whZBly1G
-375	\N	QB	1964-06-27	\N	\N	f	1	125	session_XDE6qKbq
-376	2	R	1964-07-11	\N	\N	f	11	126	session_4mQgDphN
-377	1	QB	1964-07-09	\N	\N	f	1	126	session_Ta5M7edY
-378	\N	QB	1964-07-10	\N	\N	f	1	126	session_1lQXsguD
-379	2	R	1964-08-02	\N	\N	f	11	127	session_weWiworl
-380	1	QB	1964-07-31	\N	\N	f	1	127	session_01agdSgS
-381	\N	QB	1964-08-01	\N	\N	f	1	127	session_DQTPQAy2
-382	2	R	1964-08-23	\N	\N	f	11	128	session_GUkMDRPC
-383	1	QB	1964-08-21	\N	\N	f	1	128	session_EXVygcu9
-384	\N	QB	1964-08-22	\N	\N	f	1	128	session_sctg3Y1x
-385	2	R	1964-09-06	\N	\N	f	11	129	session_3q7LytXO
-386	1	QB	1964-09-04	\N	\N	f	1	129	session_8ZTX8mlZ
-387	\N	QB	1964-09-05	\N	\N	f	1	129	session_GbI6P5wd
-388	2	R	1964-10-04	\N	\N	f	11	130	session_xBVwvTEi
-389	1	QB	1964-10-02	\N	\N	f	1	130	session_FMaSO5jw
-390	\N	QB	1964-10-03	\N	\N	f	1	130	session_DqVvHcUe
-391	2	R	1964-10-25	\N	\N	f	11	131	session_4JkG79FY
-392	1	QB	1964-10-23	\N	\N	f	1	131	session_sb7hOogv
-393	\N	QB	1964-10-24	\N	\N	f	1	131	session_aym8HUIJ
-394	2	R	1965-01-01	\N	\N	f	11	132	session_IiTmccR2
-395	1	QB	1964-12-30	\N	\N	f	1	132	session_675ioAxX
-396	\N	QB	1964-12-31	\N	\N	f	1	132	session_7m0Mwiac
-397	2	R	1965-05-30	\N	\N	f	11	133	session_3zjdevpx
-398	1	QB	1965-05-27	\N	\N	f	1	133	session_EnwcjG5c
-399	\N	QB	1965-05-29	\N	\N	f	1	133	session_4O3Hpq5b
-400	2	R	1965-06-13	\N	\N	f	11	134	session_jTMVonAn
-401	1	QB	1965-06-11	\N	\N	f	1	134	session_zJQlsZMo
-402	\N	QB	1965-06-12	\N	\N	f	1	134	session_yeHn2bHS
-403	2	R	1965-06-27	\N	\N	f	11	135	session_bwqQa9U3
-404	1	QB	1965-06-25	\N	\N	f	1	135	session_T1ZecNNa
-405	\N	QB	1965-06-26	\N	\N	f	1	135	session_dGAOqyYg
-406	2	R	1965-07-10	\N	\N	f	11	136	session_pedAqpvu
-407	1	QB	1965-07-08	\N	\N	f	1	136	session_rqY4JBWs
-408	\N	QB	1965-07-09	\N	\N	f	1	136	session_lSq4NYK6
-409	2	R	1965-07-18	\N	\N	f	11	137	session_WQgybkDk
-410	1	QB	1965-07-16	\N	\N	f	1	137	session_xSXCCMkf
-411	\N	QB	1965-07-17	\N	\N	f	1	137	session_FaHXP5Wd
-412	2	R	1965-08-01	\N	\N	f	11	138	session_PYJX0rFA
-413	1	QB	1965-07-30	\N	\N	f	1	138	session_EzH8KYOE
-414	\N	QB	1965-07-31	\N	\N	f	1	138	session_egNKRn7W
-415	2	R	1965-09-12	\N	\N	f	11	139	session_6qw7Gxcs
-416	1	QB	1965-09-10	\N	\N	f	1	139	session_jSqIJz8s
-417	\N	QB	1965-09-11	\N	\N	f	1	139	session_uC40jaAF
-418	2	R	1965-10-03	\N	\N	f	11	140	session_7mhlid7e
-419	1	QB	1965-10-01	\N	\N	f	1	140	session_fjemCn8S
-420	\N	QB	1965-10-02	\N	\N	f	1	140	session_gSTuTvDj
-421	2	R	1965-10-24	\N	\N	f	11	141	session_uHVtXxE3
-422	1	QB	1965-10-22	\N	\N	f	1	141	session_7vNMjhf3
-423	\N	QB	1965-10-23	\N	\N	f	1	141	session_Jp4qnev7
-424	2	R	1966-05-22	\N	\N	f	11	142	session_aOabDZVT
-425	1	QB	1966-05-19	\N	\N	f	1	142	session_U5Zr7Vzi
-426	\N	QB	1966-05-21	\N	\N	f	1	142	session_GxTIwHwR
-427	2	R	1966-06-12	\N	\N	f	11	143	session_lrDtlh8U
-428	1	QB	1966-06-10	\N	\N	f	1	143	session_VgjNfFdZ
-429	\N	QB	1966-06-11	\N	\N	f	1	143	session_j4LfqWzW
-430	2	R	1966-07-03	\N	\N	f	11	144	session_S3AzpU5M
-431	1	QB	1966-07-01	\N	\N	f	1	144	session_EXnQaWBo
-432	\N	QB	1966-07-02	\N	\N	f	1	144	session_qNxqKkwA
-433	2	R	1966-07-16	\N	\N	f	11	145	session_cjnXZhax
-434	1	QB	1966-07-14	\N	\N	f	1	145	session_BNsFHmQn
-435	\N	QB	1966-07-15	\N	\N	f	1	145	session_X6dZdxBa
-436	2	R	1966-07-24	\N	\N	f	11	146	session_kyeGbdOP
-437	1	QB	1966-07-22	\N	\N	f	1	146	session_OtXmgtgL
-438	\N	QB	1966-07-23	\N	\N	f	1	146	session_gBoYiZ78
-439	2	R	1966-08-07	\N	\N	f	11	147	session_yQ5VoT55
-440	1	QB	1966-08-05	\N	\N	f	1	147	session_9LXCsMU8
-441	\N	QB	1966-08-06	\N	\N	f	1	147	session_m1KL4ZgN
-442	2	R	1966-09-04	\N	\N	f	11	148	session_lbBvK6T5
-443	1	QB	1966-09-02	\N	\N	f	1	148	session_0xYWH6OP
-444	\N	QB	1966-09-03	\N	\N	f	1	148	session_ZaUHmos6
-445	2	R	1966-10-02	\N	\N	f	11	149	session_a9DF71Dw
-446	1	QB	1966-09-30	\N	\N	f	1	149	session_Gf5x6Llt
-447	\N	QB	1966-10-01	\N	\N	f	1	149	session_eESBH0bS
-448	2	R	1966-10-23	\N	\N	f	11	150	session_xd0Xu2Xf
-449	1	QB	1966-10-21	\N	\N	f	1	150	session_5opo7mKw
-450	\N	QB	1966-10-22	\N	\N	f	1	150	session_JBqB9nei
-451	2	R	1967-01-02	\N	\N	f	11	151	session_UlegZ0Tm
-452	1	QB	1966-12-31	\N	\N	f	1	151	session_wXaH59vt
-453	\N	QB	1967-01-01	\N	\N	f	1	151	session_F5VoTIsG
-454	2	R	1967-05-07	\N	\N	f	11	152	session_wWi4ANlP
-455	1	QB	1967-05-04	\N	\N	f	1	152	session_IsLvhCmK
-456	\N	QB	1967-05-06	\N	\N	f	1	152	session_eu7R8xNO
-457	2	R	1967-06-04	\N	\N	f	11	153	session_0JXzTnDP
-458	1	QB	1967-06-02	\N	\N	f	1	153	session_RDD7GREs
-459	\N	QB	1967-06-03	\N	\N	f	1	153	session_WrMo0SBn
-460	2	R	1967-06-18	\N	\N	f	11	154	session_CWmTQQMk
-461	1	QB	1967-06-16	\N	\N	f	1	154	session_AXuuDuyr
-462	\N	QB	1967-06-17	\N	\N	f	1	154	session_10wu0Lpd
-463	2	R	1967-07-02	\N	\N	f	11	155	session_xaa2a6xt
-464	1	QB	1967-06-30	\N	\N	f	1	155	session_8LP9a3OL
-465	\N	QB	1967-07-01	\N	\N	f	1	155	session_bX6jhQIr
-466	2	R	1967-07-15	\N	\N	f	11	156	session_sP96UBrf
-467	1	QB	1967-07-13	\N	\N	f	1	156	session_AGkmNZtD
-468	\N	QB	1967-07-14	\N	\N	f	1	156	session_zVSxVn9D
-469	2	R	1967-08-06	\N	\N	f	11	157	session_RF2JFS6A
-470	1	QB	1967-08-04	\N	\N	f	1	157	session_LUvTMj42
-471	\N	QB	1967-08-05	\N	\N	f	1	157	session_TyukAAWq
-472	2	R	1967-08-27	\N	\N	f	11	158	session_Jmai6N0J
-473	1	QB	1967-08-25	\N	\N	f	1	158	session_cXjVrl2M
-474	\N	QB	1967-08-26	\N	\N	f	1	158	session_qdOKxhdI
-475	2	R	1967-09-10	\N	\N	f	11	159	session_BcHNjZcf
-476	1	QB	1967-09-08	\N	\N	f	1	159	session_ISsNC67V
-477	\N	QB	1967-09-09	\N	\N	f	1	159	session_iPIJQg0Q
-478	2	R	1967-10-01	\N	\N	f	11	160	session_XUB94ttl
-479	1	QB	1967-09-29	\N	\N	f	1	160	session_PGumyfvA
-480	\N	QB	1967-09-30	\N	\N	f	1	160	session_Wf794dEJ
-481	2	R	1967-10-22	\N	\N	f	11	161	session_SKNTBRWW
-482	1	QB	1967-10-20	\N	\N	f	1	161	session_XXrvosVn
-483	\N	QB	1967-10-21	\N	\N	f	1	161	session_PL64oHAo
-484	2	R	1968-01-01	\N	\N	f	11	162	session_faqD5aoQ
-485	1	QB	1967-12-30	\N	\N	f	1	162	session_okSyfHSO
-486	\N	QB	1967-12-31	\N	\N	f	1	162	session_2FYgCBz3
-487	2	R	1968-05-12	\N	\N	f	11	163	session_xJ239CvL
-488	1	QB	1968-05-10	\N	\N	f	1	163	session_ww2Wcyst
-489	\N	QB	1968-05-11	\N	\N	f	1	163	session_wyBzxo42
-490	2	R	1968-05-26	\N	\N	f	11	164	session_x1Jlf2oo
-491	1	QB	1968-05-23	\N	\N	f	1	164	session_iM6WRpXv
-492	\N	QB	1968-05-25	\N	\N	f	1	164	session_xXagKZpm
-493	2	R	1968-06-09	\N	\N	f	11	165	session_ZFTLP2dm
-494	1	QB	1968-06-07	\N	\N	f	1	165	session_IlDrGUoY
-495	\N	QB	1968-06-08	\N	\N	f	1	165	session_XoDKxcdG
-496	2	R	1968-06-23	\N	\N	f	11	166	session_nmupSwdA
-497	1	QB	1968-06-21	\N	\N	f	1	166	session_8OVjLTO7
-498	\N	QB	1968-06-22	\N	\N	f	1	166	session_nXQpncHs
-499	2	R	1968-07-07	\N	\N	f	11	167	session_kGbdclHo
-500	1	QB	1968-07-05	\N	\N	f	1	167	session_vxaffLgZ
-501	\N	QB	1968-07-06	\N	\N	f	1	167	session_9bRNlUBl
-502	2	R	1968-07-20	\N	\N	f	11	168	session_ylCOtdvQ
-503	1	QB	1968-07-18	\N	\N	f	1	168	session_IKPMdCaA
-504	\N	QB	1968-07-19	\N	\N	f	1	168	session_zsg0ISIL
-505	2	R	1968-08-04	\N	\N	f	11	169	session_MkiGXvsF
-506	1	QB	1968-08-02	\N	\N	f	1	169	session_rWfL75Al
-507	\N	QB	1968-08-03	\N	\N	f	1	169	session_EfJahBwT
-508	2	R	1968-09-08	\N	\N	f	11	170	session_vpmQZ0wI
-509	1	QB	1968-09-06	\N	\N	f	1	170	session_Lit0t9Yg
-510	\N	QB	1968-09-07	\N	\N	f	1	170	session_trZ89EVF
-511	2	R	1968-09-22	\N	\N	f	11	171	session_sacYYBsz
-512	1	QB	1968-09-20	\N	\N	f	1	171	session_MSNxIP7p
-513	\N	QB	1968-09-21	\N	\N	f	1	171	session_ftxV2vWE
-514	2	R	1968-10-06	\N	\N	f	11	172	session_7IsPcVYo
-515	1	QB	1968-10-04	\N	\N	f	1	172	session_Qy6qA8v0
-516	\N	QB	1968-10-05	\N	\N	f	1	172	session_5PRpE7Nv
-517	2	R	1968-11-03	\N	\N	f	11	173	session_puRFM6k7
-518	1	QB	1968-11-01	\N	\N	f	1	173	session_7pjStcox
-519	\N	QB	1968-11-02	\N	\N	f	1	173	session_VmjkkKM4
-520	2	R	1969-03-01	\N	\N	f	11	174	session_SbEePcC9
-521	1	QB	1969-02-27	\N	\N	f	1	174	session_Jr829RDF
-522	\N	QB	1969-02-28	\N	\N	f	1	174	session_En5hnEiN
-523	2	R	1969-05-04	\N	\N	f	11	175	session_PTBhfGSv
-524	1	QB	1969-05-02	\N	\N	f	1	175	session_JGFbdEF7
-525	\N	QB	1969-05-03	\N	\N	f	1	175	session_ZwqzczMx
-526	2	R	1969-05-18	\N	\N	f	11	176	session_Ub9aK38p
-527	1	QB	1969-05-15	\N	\N	f	1	176	session_PToResJJ
-528	\N	QB	1969-05-17	\N	\N	f	1	176	session_qoXcvXSr
-529	2	R	1969-06-21	\N	\N	f	11	177	session_U58da3Se
-530	1	QB	1969-06-19	\N	\N	f	1	177	session_S1OrH4rP
-531	\N	QB	1969-06-20	\N	\N	f	1	177	session_42mhaRL3
-532	2	R	1969-07-06	\N	\N	f	11	178	session_AQMzmPg6
-533	1	QB	1969-07-04	\N	\N	f	1	178	session_v8KvEsI8
-534	\N	QB	1969-07-05	\N	\N	f	1	178	session_OYK5Q6Fc
-535	2	R	1969-07-19	\N	\N	f	11	179	session_6hKL4ZEE
-536	1	QB	1969-07-17	\N	\N	f	1	179	session_Fs7GZ9Bx
-537	\N	QB	1969-07-18	\N	\N	f	1	179	session_5tfakOYx
-538	2	R	1969-08-03	\N	\N	f	11	180	session_AedWFXBa
-539	1	QB	1969-08-01	\N	\N	f	1	180	session_0zF9Xnbl
-540	\N	QB	1969-08-02	\N	\N	f	1	180	session_iMP0A62l
-541	2	R	1969-09-07	\N	\N	f	11	181	session_hnZuHSaH
-542	1	QB	1969-09-05	\N	\N	f	1	181	session_lqxSpSGw
-543	\N	QB	1969-09-06	\N	\N	f	1	181	session_UGprSGf5
-544	2	R	1969-09-20	\N	\N	f	11	182	session_KN5SIOqx
-545	1	QB	1969-09-18	\N	\N	f	1	182	session_SCdEkDmi
-546	\N	QB	1969-09-19	\N	\N	f	1	182	session_3h5i2arQ
-547	2	R	1969-10-05	\N	\N	f	11	183	session_duPErtmz
-548	1	QB	1969-10-03	\N	\N	f	1	183	session_NoZdzUML
-549	\N	QB	1969-10-04	\N	\N	f	1	183	session_QvhTXbj3
-550	2	R	1969-10-19	\N	\N	f	11	184	session_fUVcKfa0
-551	1	QB	1969-10-17	\N	\N	f	1	184	session_2CuMvv79
-552	\N	QB	1969-10-18	\N	\N	f	1	184	session_wArGTKEk
-553	2	R	1970-03-07	\N	\N	f	11	185	session_LHiORbpv
-554	1	QB	1970-03-05	\N	\N	f	1	185	session_ywpYOh0r
-555	\N	QB	1970-03-06	\N	\N	f	1	185	session_PfYNGqW2
-556	2	R	1970-04-19	\N	\N	f	11	186	session_5tagljYY
-557	1	QB	1970-04-17	\N	\N	f	1	186	session_0eva3O91
-558	\N	QB	1970-04-18	\N	\N	f	1	186	session_XJBpf6wu
-559	2	R	1970-05-10	\N	\N	f	11	187	session_39G2uE6v
-560	1	QB	1970-05-07	\N	\N	f	1	187	session_Es9g4r6z
-561	\N	QB	1970-05-09	\N	\N	f	1	187	session_HtrcyjQj
-562	2	R	1970-06-07	\N	\N	f	11	188	session_Xyd1roqH
-563	1	QB	1970-06-05	\N	\N	f	1	188	session_nlhjb7OW
-564	\N	QB	1970-06-06	\N	\N	f	1	188	session_2LlF7G2Q
-565	2	R	1970-06-21	\N	\N	f	11	189	session_p0WcQtwt
-566	1	QB	1970-06-19	\N	\N	f	1	189	session_B1jraGMu
-567	\N	QB	1970-06-20	\N	\N	f	1	189	session_3HO8I4ur
-568	2	R	1970-07-05	\N	\N	f	11	190	session_j84L8oHp
-569	1	QB	1970-07-03	\N	\N	f	1	190	session_RIdxnK7O
-570	\N	QB	1970-07-04	\N	\N	f	1	190	session_eA7FSIQk
-571	2	R	1970-07-18	\N	\N	f	11	191	session_p83qIj6b
-572	1	QB	1970-07-16	\N	\N	f	1	191	session_byoZW4Zv
-573	\N	QB	1970-07-17	\N	\N	f	1	191	session_WPAKAwHG
-574	2	R	1970-08-02	\N	\N	f	11	192	session_RD6uQUVp
-575	1	QB	1970-07-31	\N	\N	f	1	192	session_rIyn5juy
-576	\N	QB	1970-08-01	\N	\N	f	1	192	session_kiFca8BI
-577	2	R	1970-08-16	\N	\N	f	11	193	session_tZ8FgmWj
-578	1	QB	1970-08-14	\N	\N	f	1	193	session_Xc7LHAFK
-579	\N	QB	1970-08-15	\N	\N	f	1	193	session_GXh76lIm
-580	2	R	1970-09-06	\N	\N	f	11	194	session_XcrWsNCA
-581	1	QB	1970-09-04	\N	\N	f	1	194	session_uS62coYS
-582	\N	QB	1970-09-05	\N	\N	f	1	194	session_r2eNHNS9
-583	2	R	1970-09-20	\N	\N	f	11	195	session_eWKc38Rv
-584	1	QB	1970-09-18	\N	\N	f	1	195	session_gyPMbVem
-585	\N	QB	1970-09-19	\N	\N	f	1	195	session_u1fOJCIU
-586	2	R	1970-10-04	\N	\N	f	11	196	session_ge7ebKlg
-587	1	QB	1970-10-02	\N	\N	f	1	196	session_QjzPNfbo
-588	\N	QB	1970-10-03	\N	\N	f	1	196	session_aI2kSark
-589	2	R	1970-10-25	\N	\N	f	11	197	session_QfMADVVc
-590	1	QB	1970-10-23	\N	\N	f	1	197	session_tiC2kTOr
-591	\N	QB	1970-10-24	\N	\N	f	1	197	session_16ZvCely
-592	2	R	1971-03-06	\N	\N	f	11	198	session_NdXylKsz
-593	1	QB	1971-03-04	\N	\N	f	1	198	session_5ei2hoOt
-594	\N	QB	1971-03-05	\N	\N	f	1	198	session_SR3bLbl6
-595	2	R	1971-04-18	\N	\N	f	11	199	session_BUg1qNe1
-596	1	QB	1971-04-16	\N	\N	f	1	199	session_aS7pHdyu
-597	\N	QB	1971-04-17	\N	\N	f	1	199	session_C8D2eCwK
-598	2	R	1971-05-23	\N	\N	f	11	200	session_O020oAk5
-599	1	QB	1971-05-20	\N	\N	f	1	200	session_gYEKEWqy
-600	\N	QB	1971-05-22	\N	\N	f	1	200	session_cQeeeRWx
-601	2	R	1971-06-20	\N	\N	f	11	201	session_ivsdA7YN
-602	1	QB	1971-06-18	\N	\N	f	1	201	session_l7lxZBNg
-603	\N	QB	1971-06-19	\N	\N	f	1	201	session_5QlKUS1d
-604	2	R	1971-07-04	\N	\N	f	11	202	session_5rIjdIy8
-605	1	QB	1971-07-02	\N	\N	f	1	202	session_m22YwD9h
-606	\N	QB	1971-07-03	\N	\N	f	1	202	session_fdavPb2o
-607	2	R	1971-07-17	\N	\N	f	11	203	session_dUdTY9Lt
-608	1	QB	1971-07-15	\N	\N	f	1	203	session_xJWhMNj4
-609	\N	QB	1971-07-16	\N	\N	f	1	203	session_MRVCrhHM
-610	2	R	1971-08-01	\N	\N	f	11	204	session_qxPyu3ss
-611	1	QB	1971-07-30	\N	\N	f	1	204	session_yEp5iAmC
-612	\N	QB	1971-07-31	\N	\N	f	1	204	session_TwyRDeYZ
-613	2	R	1971-08-15	\N	\N	f	11	205	session_41HAlHbp
-614	1	QB	1971-08-13	\N	\N	f	1	205	session_KvM6AZzk
-615	\N	QB	1971-08-14	\N	\N	f	1	205	session_CAN75tkB
-616	2	R	1971-09-05	\N	\N	f	11	206	session_9GWpPqzM
-617	1	QB	1971-09-03	\N	\N	f	1	206	session_28sTkKY5
-618	\N	QB	1971-09-04	\N	\N	f	1	206	session_CdbGAaIO
-619	2	R	1971-09-19	\N	\N	f	11	207	session_uRvCCNA8
-620	1	QB	1971-09-17	\N	\N	f	1	207	session_G32RauwU
-621	\N	QB	1971-09-18	\N	\N	f	1	207	session_ks1wRKoZ
-622	2	R	1971-10-03	\N	\N	f	11	208	session_9k3sIBA7
-623	1	QB	1971-10-01	\N	\N	f	1	208	session_RLjsmarC
-624	\N	QB	1971-10-02	\N	\N	f	1	208	session_CxKWM9i2
-625	2	R	1972-01-23	\N	\N	f	11	209	session_VP30JIy5
-626	1	QB	1972-01-21	\N	\N	f	1	209	session_gvs5DTJ4
-627	\N	QB	1972-01-22	\N	\N	f	1	209	session_91B3lBw1
-628	2	R	1972-03-04	\N	\N	f	11	210	session_ZYMumT2a
-629	1	QB	1972-03-02	\N	\N	f	1	210	session_1SJIKbiJ
-630	\N	QB	1972-03-03	\N	\N	f	1	210	session_47c6KWzv
-631	2	R	1972-05-01	\N	\N	f	11	211	session_FbT0yiHf
-632	1	QB	1972-04-29	\N	\N	f	1	211	session_194fHbzp
-633	\N	QB	1972-04-30	\N	\N	f	1	211	session_zCdYNVNV
-634	2	R	1972-05-14	\N	\N	f	11	212	session_ZnOzGBM7
-635	1	QB	1972-05-11	\N	\N	f	1	212	session_9fO9IRGC
-636	\N	QB	1972-05-13	\N	\N	f	1	212	session_VOc5cqu7
-637	2	R	1972-06-04	\N	\N	f	11	213	session_1axx2Snl
-638	1	QB	1972-06-02	\N	\N	f	1	213	session_rmjtxTFf
-639	\N	QB	1972-06-03	\N	\N	f	1	213	session_DYPvjmk5
-640	2	R	1972-07-02	\N	\N	f	11	214	session_Cjwmf0Rn
-641	1	QB	1972-06-30	\N	\N	f	1	214	session_icjNocdj
-642	\N	QB	1972-07-01	\N	\N	f	1	214	session_9oxz5MaV
-643	2	R	1972-07-15	\N	\N	f	11	215	session_iWXNEcPs
-644	1	QB	1972-07-13	\N	\N	f	1	215	session_KDvCbKvc
-645	\N	QB	1972-07-14	\N	\N	f	1	215	session_68QlJWSG
-646	2	R	1972-07-30	\N	\N	f	11	216	session_1KeXy92W
-647	1	QB	1972-07-28	\N	\N	f	1	216	session_KFDQOBdc
-648	\N	QB	1972-07-29	\N	\N	f	1	216	session_5FM7fY2C
-649	2	R	1972-08-13	\N	\N	f	11	217	session_7sYHx2gv
-650	1	QB	1972-08-11	\N	\N	f	1	217	session_J36KydYM
-651	\N	QB	1972-08-12	\N	\N	f	1	217	session_c2Fr8cEj
-652	2	R	1972-09-10	\N	\N	f	11	218	session_DVrINaS4
-653	1	QB	1972-09-08	\N	\N	f	1	218	session_3p3qMAZ9
-654	\N	QB	1972-09-09	\N	\N	f	1	218	session_2JCWcA9R
-655	2	R	1972-09-24	\N	\N	f	11	219	session_C5DxHbjO
-656	1	QB	1972-09-22	\N	\N	f	1	219	session_cGbXyeyl
-657	\N	QB	1972-09-23	\N	\N	f	1	219	session_xMDBPdeq
-658	2	R	1972-10-08	\N	\N	f	11	220	session_9NZwWOaK
-659	1	QB	1972-10-06	\N	\N	f	1	220	session_cFgXsTLR
-660	\N	QB	1972-10-07	\N	\N	f	1	220	session_g7KmoQjb
-661	2	R	1973-01-28	\N	\N	f	11	221	session_yDMVBKz7
-662	1	QB	1973-01-26	\N	\N	f	1	221	session_k1byN4QN
-663	\N	QB	1973-01-27	\N	\N	f	1	221	session_Hom5IHYQ
-664	2	R	1973-02-11	\N	\N	f	11	222	session_5bSKmIjz
-665	1	QB	1973-02-09	\N	\N	f	1	222	session_TNbnmFD0
-666	\N	QB	1973-02-10	\N	\N	f	1	222	session_7G10Xri6
-667	2	R	1973-03-03	\N	\N	f	11	223	session_fHGNGbgd
-668	1	QB	1973-03-01	\N	\N	f	1	223	session_7rC0ySRR
-669	\N	QB	1973-03-02	\N	\N	f	1	223	session_4Z7kKPCc
-670	2	R	1973-04-29	\N	\N	f	11	224	session_tL7pNGv4
-671	1	QB	1973-04-27	\N	\N	f	1	224	session_BefJlzKE
-672	\N	QB	1973-04-28	\N	\N	f	1	224	session_3LnzU3Rl
-673	2	R	1973-05-20	\N	\N	f	11	225	session_6aYN77F2
-674	1	QB	1973-05-18	\N	\N	f	1	225	session_rrvSCqcf
-675	\N	QB	1973-05-19	\N	\N	f	1	225	session_uqpeioeh
-676	2	R	1973-06-03	\N	\N	f	11	226	session_Jf1BrZ4t
-677	1	QB	1973-05-31	\N	\N	f	1	226	session_eIPv6Rg2
-678	\N	QB	1973-06-02	\N	\N	f	1	226	session_5FRFJnua
-679	2	R	1973-06-17	\N	\N	f	11	227	session_aKRZhXtE
-680	1	QB	1973-06-15	\N	\N	f	1	227	session_kj8Worcc
-681	\N	QB	1973-06-16	\N	\N	f	1	227	session_axTx0KXJ
-682	2	R	1973-07-01	\N	\N	f	11	228	session_cnqsEu2M
-683	1	QB	1973-06-29	\N	\N	f	1	228	session_BIW9i3a1
-684	\N	QB	1973-06-30	\N	\N	f	1	228	session_Veisrt9S
-685	2	R	1973-07-14	\N	\N	f	11	229	session_lJTvGGYN
-686	1	QB	1973-07-12	\N	\N	f	1	229	session_KsQjANYJ
-687	\N	QB	1973-07-13	\N	\N	f	1	229	session_MWR2IpAp
-688	2	R	1973-07-29	\N	\N	f	11	230	session_sE28bDdq
-689	1	QB	1973-07-27	\N	\N	f	1	230	session_vfvr4Wso
-690	\N	QB	1973-07-28	\N	\N	f	1	230	session_qdLvgvEj
-691	2	R	1973-08-05	\N	\N	f	11	231	session_ZCOgrBzd
-692	1	QB	1973-08-03	\N	\N	f	1	231	session_O8mCp7bQ
-693	\N	QB	1973-08-04	\N	\N	f	1	231	session_yK8ZeCfT
-694	2	R	1973-08-19	\N	\N	f	11	232	session_hh3aBT6k
-695	1	QB	1973-08-17	\N	\N	f	1	232	session_LWFCWdQa
-696	\N	QB	1973-08-18	\N	\N	f	1	232	session_lWEzFZUd
-697	2	R	1973-09-09	\N	\N	f	11	233	session_rd6n6y93
-698	1	QB	1973-09-07	\N	\N	f	1	233	session_hAHhEanK
-699	\N	QB	1973-09-08	\N	\N	f	1	233	session_qp6HbYy0
-700	2	R	1973-09-23	\N	\N	f	11	234	session_6FaIL2LC
-701	1	QB	1973-09-21	\N	\N	f	1	234	session_1SwduNi4
-702	\N	QB	1973-09-22	\N	\N	f	1	234	session_gJCUKmwq
-703	2	R	1973-10-07	\N	\N	f	11	235	session_aCwMw9M1
-704	1	QB	1973-10-05	\N	\N	f	1	235	session_sAeqxXiZ
-705	\N	QB	1973-10-06	\N	\N	f	1	235	session_9yVMagoU
-706	2	R	1974-01-13	\N	\N	f	11	236	session_YS6TrG7K
-707	1	QB	1974-01-11	\N	\N	f	1	236	session_wtgxmS7P
-708	\N	QB	1974-01-12	\N	\N	f	1	236	session_28T0BEbq
-709	2	R	1974-01-27	\N	\N	f	11	237	session_cfUA5UD2
-710	1	QB	1974-01-25	\N	\N	f	1	237	session_QV7n2jIg
-711	\N	QB	1974-01-26	\N	\N	f	1	237	session_eIL5uYkd
-712	2	R	1974-03-30	\N	\N	f	11	238	session_EY99Mf24
-713	1	QB	1974-03-28	\N	\N	f	1	238	session_ZdTlFS0o
-714	\N	QB	1974-03-29	\N	\N	f	1	238	session_l3fInVQ6
-715	2	R	1974-04-28	\N	\N	f	11	239	session_RDfAOcxy
-716	1	QB	1974-04-26	\N	\N	f	1	239	session_rIBb1Qfk
-717	\N	QB	1974-04-27	\N	\N	f	1	239	session_NzC6Tbtj
-718	2	R	1974-05-12	\N	\N	f	11	240	session_vJUJzpTk
-719	1	QB	1974-05-10	\N	\N	f	1	240	session_d7nEHPtW
-720	\N	QB	1974-05-11	\N	\N	f	1	240	session_bauGwvhq
-721	2	R	1974-05-26	\N	\N	f	11	241	session_mEjwvJyb
-722	1	QB	1974-05-23	\N	\N	f	1	241	session_e1w7BeWF
-723	\N	QB	1974-05-25	\N	\N	f	1	241	session_2HKYmLoO
-724	2	R	1974-06-09	\N	\N	f	11	242	session_r2KnxDhQ
-725	1	QB	1974-06-07	\N	\N	f	1	242	session_GFt8glYh
-726	\N	QB	1974-06-08	\N	\N	f	1	242	session_0YGfi38y
-727	2	R	1974-06-23	\N	\N	f	11	243	session_iqSvgcy6
-728	1	QB	1974-06-21	\N	\N	f	1	243	session_5Mv7wKh7
-729	\N	QB	1974-06-22	\N	\N	f	1	243	session_maJvouMf
-730	2	R	1974-07-07	\N	\N	f	11	244	session_akOnFdwz
-731	1	QB	1974-07-05	\N	\N	f	1	244	session_tRS0BTf7
-732	\N	QB	1974-07-06	\N	\N	f	1	244	session_cwx3GcKj
-733	2	R	1974-07-20	\N	\N	f	11	245	session_5Jn9xNT9
-734	1	QB	1974-07-18	\N	\N	f	1	245	session_JZew9gGJ
-735	\N	QB	1974-07-19	\N	\N	f	1	245	session_BRK3Zb4c
-736	2	R	1974-08-04	\N	\N	f	11	246	session_nFKCFMO8
-737	1	QB	1974-08-02	\N	\N	f	1	246	session_mGjihbWw
-738	\N	QB	1974-08-03	\N	\N	f	1	246	session_ed2gSGHb
-739	2	R	1974-08-18	\N	\N	f	11	247	session_R8NQnmSl
-740	1	QB	1974-08-16	\N	\N	f	1	247	session_eho3fY0Y
-741	\N	QB	1974-08-17	\N	\N	f	1	247	session_8vw49CKf
-742	2	R	1974-09-08	\N	\N	f	11	248	session_k37xuuSH
-743	1	QB	1974-09-06	\N	\N	f	1	248	session_EqEbJgvI
-744	\N	QB	1974-09-07	\N	\N	f	1	248	session_cpgHDDo1
-745	2	R	1974-09-22	\N	\N	f	11	249	session_bAV4mRKS
-746	1	QB	1974-09-20	\N	\N	f	1	249	session_UrqXxoJB
-747	\N	QB	1974-09-21	\N	\N	f	1	249	session_kUxAX3su
-748	2	R	1974-10-06	\N	\N	f	11	250	session_SVrvmaKR
-749	1	QB	1974-10-04	\N	\N	f	1	250	session_y3FE7fgP
-750	\N	QB	1974-10-05	\N	\N	f	1	250	session_39AHmZqc
-751	2	R	1975-01-12	\N	\N	f	12	251	session_rQXFQVZO
-752	1	QB	1975-01-10	\N	\N	f	1	251	session_FzfFiDkQ
-753	\N	QB	1975-01-11	\N	\N	f	1	251	session_XoKFpEbZ
-754	2	R	1975-01-26	\N	\N	f	12	252	session_wydT5L8P
-755	1	QB	1975-01-24	\N	\N	f	1	252	session_14PQCGOD
-756	\N	QB	1975-01-25	\N	\N	f	1	252	session_2QRgi0WP
-757	2	R	1975-03-01	\N	\N	f	12	253	session_cb5IsYzm
-758	1	QB	1975-02-27	\N	\N	f	1	253	session_GekRCcqr
-759	\N	QB	1975-02-28	\N	\N	f	1	253	session_tvJuNzT9
-760	2	R	1975-04-27	\N	\N	f	12	254	session_KotWEdds
-761	1	QB	1975-04-25	\N	\N	f	1	254	session_3gDz6Sua
-762	\N	QB	1975-04-26	\N	\N	f	1	254	session_HXvfKzLY
-763	2	R	1975-05-11	\N	\N	f	12	255	session_gbIh5nlR
-764	1	QB	1975-05-08	\N	\N	f	1	255	session_RcRZWWxI
-765	\N	QB	1975-05-10	\N	\N	f	1	255	session_w4SksrrG
-766	2	R	1975-05-25	\N	\N	f	12	256	session_lNRvsHlW
-767	1	QB	1975-05-23	\N	\N	f	1	256	session_nLG1gdT6
-768	\N	QB	1975-05-24	\N	\N	f	1	256	session_dufXhofw
-769	2	R	1975-06-08	\N	\N	f	12	257	session_RW3AGKBk
-770	1	QB	1975-06-06	\N	\N	f	1	257	session_zB5ykmyD
-771	\N	QB	1975-06-07	\N	\N	f	1	257	session_fHj33S4s
-772	2	R	1975-06-22	\N	\N	f	12	258	session_tuxvjtaL
-773	1	QB	1975-06-20	\N	\N	f	1	258	session_bpkCCMLj
-774	\N	QB	1975-06-21	\N	\N	f	1	258	session_Tf5pbo01
-775	2	R	1975-07-06	\N	\N	f	12	259	session_i2pFsfLn
-776	1	QB	1975-07-04	\N	\N	f	1	259	session_nwkLbMtp
-777	\N	QB	1975-07-05	\N	\N	f	1	259	session_jZNyLZ8J
-778	2	R	1975-07-19	\N	\N	f	12	260	session_J8tlOPeN
-779	1	QB	1975-07-17	\N	\N	f	1	260	session_PYsZd7zc
-780	\N	QB	1975-07-18	\N	\N	f	1	260	session_ReuqkiXc
-781	2	R	1975-08-03	\N	\N	f	12	261	session_RyFxztdu
-782	1	QB	1975-08-01	\N	\N	f	1	261	session_poN6OPMH
-783	\N	QB	1975-08-02	\N	\N	f	1	261	session_sw0ChxA2
-784	2	R	1975-08-17	\N	\N	f	12	262	session_z4VXg98z
-785	1	QB	1975-08-15	\N	\N	f	1	262	session_uyOlY27V
-786	\N	QB	1975-08-16	\N	\N	f	1	262	session_KbbeT8xi
-787	2	R	1975-09-07	\N	\N	f	12	263	session_gV23O2vE
-788	1	QB	1975-09-05	\N	\N	f	1	263	session_oR7l22mp
-789	\N	QB	1975-09-06	\N	\N	f	1	263	session_zPTMJJpD
-790	2	R	1975-10-05	\N	\N	f	12	264	session_DZWAe18N
-791	1	QB	1975-10-03	\N	\N	f	1	264	session_uT7abQqm
-792	\N	QB	1975-10-04	\N	\N	f	1	264	session_8swt7XCb
-793	2	R	1976-01-25	\N	\N	f	12	265	session_AUCKG1gD
-794	1	QB	1976-01-23	\N	\N	f	1	265	session_skNOphCD
-795	\N	QB	1976-01-24	\N	\N	f	1	265	session_Fky6p5t1
-796	2	R	1976-03-06	\N	\N	f	12	266	session_fR4xkGXC
-797	1	QB	1976-03-04	\N	\N	f	1	266	session_lB8ilwVK
-798	\N	QB	1976-03-05	\N	\N	f	1	266	session_NFr22wmm
-799	2	R	1976-03-28	\N	\N	f	12	267	session_2u4LBtD9
-800	1	QB	1976-03-26	\N	\N	f	1	267	session_J9UvSN8Y
-801	\N	QB	1976-03-27	\N	\N	f	1	267	session_OFZIOTUU
-802	2	R	1976-05-02	\N	\N	f	12	268	session_2fO3juSQ
-803	1	QB	1976-04-30	\N	\N	f	1	268	session_ej7LsiQq
-804	\N	QB	1976-05-01	\N	\N	f	1	268	session_Ya6qVmlV
-805	2	R	1976-05-16	\N	\N	f	12	269	session_4QG4Nahz
-806	1	QB	1976-05-14	\N	\N	f	1	269	session_2zW9bVzh
-807	\N	QB	1976-05-15	\N	\N	f	1	269	session_QMK3eIXg
-808	2	R	1976-05-30	\N	\N	f	12	270	session_pNoBTlvn
-809	1	QB	1976-05-27	\N	\N	f	1	270	session_h3NYcG1z
-810	\N	QB	1976-05-29	\N	\N	f	1	270	session_OCRfeWJe
-811	2	R	1976-06-13	\N	\N	f	12	271	session_dEclaV1L
-812	1	QB	1976-06-11	\N	\N	f	1	271	session_3YGhzbuC
-813	\N	QB	1976-06-12	\N	\N	f	1	271	session_K3DVRRco
-814	2	R	1976-07-04	\N	\N	f	12	272	session_AaJ45Cah
-815	1	QB	1976-07-02	\N	\N	f	1	272	session_OoBr99TK
-816	\N	QB	1976-07-03	\N	\N	f	1	272	session_oxU5BOOg
-817	2	R	1976-07-18	\N	\N	f	12	273	session_3sE4ZggS
-818	1	QB	1976-07-16	\N	\N	f	1	273	session_AFBy3CUb
-819	\N	QB	1976-07-17	\N	\N	f	1	273	session_HnXulXeo
-820	2	R	1976-08-01	\N	\N	f	12	274	session_SjT2l2Co
-821	1	QB	1976-07-30	\N	\N	f	1	274	session_Bi3ihBgu
-822	\N	QB	1976-07-31	\N	\N	f	1	274	session_rDXLEiYN
-823	2	R	1976-08-15	\N	\N	f	12	275	session_M5Y1HCYG
-824	1	QB	1976-08-13	\N	\N	f	1	275	session_cVKyf5IE
-825	\N	QB	1976-08-14	\N	\N	f	1	275	session_HWgVWuSL
-826	2	R	1976-08-29	\N	\N	f	12	276	session_sVtQEFMH
-827	1	QB	1976-08-27	\N	\N	f	1	276	session_LPvAIse5
-828	\N	QB	1976-08-28	\N	\N	f	1	276	session_fNXcDyPj
-829	2	R	1976-09-12	\N	\N	f	12	277	session_95gxp6IC
-830	1	QB	1976-09-10	\N	\N	f	1	277	session_0v8g5jYC
-831	\N	QB	1976-09-11	\N	\N	f	1	277	session_0WdT9us1
-832	2	R	1976-10-03	\N	\N	f	12	278	session_NzencQ1h
-833	1	QB	1976-10-01	\N	\N	f	1	278	session_qwUp1HhW
-834	\N	QB	1976-10-02	\N	\N	f	1	278	session_rQBz1ZNq
-835	2	R	1976-10-10	\N	\N	f	12	279	session_ifGLO0wW
-836	1	QB	1976-10-08	\N	\N	f	1	279	session_6d2WTye5
-837	\N	QB	1976-10-09	\N	\N	f	1	279	session_PJUN4SNE
-838	2	R	1976-10-24	\N	\N	f	12	280	session_Y9b1MSNp
-839	1	QB	1976-10-22	\N	\N	f	1	280	session_8NXdJYXn
-840	\N	QB	1976-10-23	\N	\N	f	1	280	session_X6Y2xIkl
-841	2	R	1977-01-09	\N	\N	f	12	281	session_vRa0WIst
-842	1	QB	1977-01-07	\N	\N	f	1	281	session_nAK1Zc7X
-843	\N	QB	1977-01-08	\N	\N	f	1	281	session_pS1mSqxc
-844	2	R	1977-01-23	\N	\N	f	12	282	session_Lq3OYvVq
-845	1	QB	1977-01-21	\N	\N	f	1	282	session_v6twtZ9R
-846	\N	QB	1977-01-22	\N	\N	f	1	282	session_na6eAZkz
-847	2	R	1977-03-05	\N	\N	f	12	283	session_NrfhRfkj
-848	1	QB	1977-03-03	\N	\N	f	1	283	session_tEOwX2D2
-849	\N	QB	1977-03-04	\N	\N	f	1	283	session_KOC6Tog4
-850	2	R	1977-04-03	\N	\N	f	12	284	session_Dst3IIlA
-851	1	QB	1977-04-01	\N	\N	f	1	284	session_qP2mpgnR
-852	\N	QB	1977-04-02	\N	\N	f	1	284	session_QqsUwywk
-853	2	R	1977-05-08	\N	\N	f	12	285	session_pv1IgLM2
-854	1	QB	1977-05-06	\N	\N	f	1	285	session_uGxbAfgO
-855	\N	QB	1977-05-07	\N	\N	f	1	285	session_BgTnmU0h
-856	2	R	1977-05-22	\N	\N	f	12	286	session_A8MokGzn
-857	1	QB	1977-05-19	\N	\N	f	1	286	session_zpXQ5X9B
-858	\N	QB	1977-05-21	\N	\N	f	1	286	session_IllbwhGu
-859	2	R	1977-06-05	\N	\N	f	12	287	session_OS61GF9R
-860	1	QB	1977-06-03	\N	\N	f	1	287	session_M2yTOPLZ
-861	\N	QB	1977-06-04	\N	\N	f	1	287	session_3lTGVauz
-862	2	R	1977-06-19	\N	\N	f	12	288	session_77FCv767
-863	1	QB	1977-06-17	\N	\N	f	1	288	session_sTmhKtec
-864	\N	QB	1977-06-18	\N	\N	f	1	288	session_q95kUfSN
-865	2	R	1977-07-03	\N	\N	f	12	289	session_4kFgnRVC
-866	1	QB	1977-07-01	\N	\N	f	1	289	session_POvHbXKQ
-867	\N	QB	1977-07-02	\N	\N	f	1	289	session_osD2iKg8
-868	2	R	1977-07-16	\N	\N	f	12	290	session_wUc1etu9
-869	1	QB	1977-07-14	\N	\N	f	1	290	session_E7joRqUO
-870	\N	QB	1977-07-15	\N	\N	f	1	290	session_NQV8bQlX
-871	2	R	1977-07-31	\N	\N	f	12	291	session_z1UCCjKs
-872	1	QB	1977-07-29	\N	\N	f	1	291	session_GKq1cRNb
-873	\N	QB	1977-07-30	\N	\N	f	1	291	session_cUNDke6l
-874	2	R	1977-08-14	\N	\N	f	12	292	session_cDyF86lR
-875	1	QB	1977-08-12	\N	\N	f	1	292	session_QtHXITMv
-876	\N	QB	1977-08-13	\N	\N	f	1	292	session_T44P1WlH
-877	2	R	1977-08-28	\N	\N	f	12	293	session_G5iM3uIZ
-878	1	QB	1977-08-26	\N	\N	f	1	293	session_1v2qkSwX
-879	\N	QB	1977-08-27	\N	\N	f	1	293	session_IzonOIEg
-880	2	R	1977-09-11	\N	\N	f	12	294	session_3dLdKmM2
-881	1	QB	1977-09-09	\N	\N	f	1	294	session_uwMayAp4
-882	\N	QB	1977-09-10	\N	\N	f	1	294	session_ZqUF637r
-883	2	R	1977-10-02	\N	\N	f	12	295	session_tNEtlyKQ
-884	1	QB	1977-09-30	\N	\N	f	1	295	session_xvfwh3Yp
-885	\N	QB	1977-10-01	\N	\N	f	1	295	session_VYp2Ot4S
-886	2	R	1977-10-09	\N	\N	f	12	296	session_FlayjKKN
-887	1	QB	1977-10-07	\N	\N	f	1	296	session_URdKVT91
-888	\N	QB	1977-10-08	\N	\N	f	1	296	session_WrF8WAP9
-889	2	R	1977-10-23	\N	\N	f	12	297	session_v3mYOBNt
-890	1	QB	1977-10-21	\N	\N	f	1	297	session_X9ayiwHW
-891	\N	QB	1977-10-22	\N	\N	f	1	297	session_V05nwbIF
-892	2	R	1978-01-15	\N	\N	f	12	298	session_PrAs2F6E
-893	1	QB	1978-01-13	\N	\N	f	1	298	session_05oaGyC4
-894	\N	QB	1978-01-14	\N	\N	f	1	298	session_n0qcadnV
-895	2	R	1978-01-29	\N	\N	f	12	299	session_0QSZrrwh
-896	1	QB	1978-01-27	\N	\N	f	1	299	session_NE7El4A2
-897	\N	QB	1978-01-28	\N	\N	f	1	299	session_NOSDKKRG
-898	2	R	1978-03-04	\N	\N	f	12	300	session_p1BlfUav
-899	1	QB	1978-03-02	\N	\N	f	1	300	session_8CVhTlQu
-900	\N	QB	1978-03-03	\N	\N	f	1	300	session_W8tRa5zi
-901	2	R	1978-04-02	\N	\N	f	12	301	session_eEqMP4aj
-902	1	QB	1978-03-31	\N	\N	f	1	301	session_uV1xPkxX
-903	\N	QB	1978-04-01	\N	\N	f	1	301	session_WrJkn1tj
-904	2	R	1978-05-07	\N	\N	f	12	302	session_1QBCVaQJ
-905	1	QB	1978-05-04	\N	\N	f	1	302	session_f9JBfcNX
-906	\N	QB	1978-05-06	\N	\N	f	1	302	session_R8YGx3KK
-907	2	R	1978-05-21	\N	\N	f	12	303	session_NPOq46TA
-908	1	QB	1978-05-19	\N	\N	f	1	303	session_nBpe4uRR
-909	\N	QB	1978-05-20	\N	\N	f	1	303	session_DztvlYJx
-910	2	R	1978-06-04	\N	\N	f	12	304	session_3i9sNLyO
-911	1	QB	1978-06-02	\N	\N	f	1	304	session_qsB1Offk
-912	\N	QB	1978-06-03	\N	\N	f	1	304	session_mCazAurp
-913	2	R	1978-06-17	\N	\N	f	12	305	session_axgtaxrc
-914	1	QB	1978-06-15	\N	\N	f	1	305	session_IAyg9baU
-915	\N	QB	1978-06-16	\N	\N	f	1	305	session_dfx3nrXG
-916	2	R	1978-07-02	\N	\N	f	12	306	session_CHz9eIgV
-917	1	QB	1978-06-30	\N	\N	f	1	306	session_XdsueJ01
-918	\N	QB	1978-07-01	\N	\N	f	1	306	session_A3yyoyjX
-919	2	R	1978-07-16	\N	\N	f	12	307	session_6Cm7HCXH
-920	1	QB	1978-07-14	\N	\N	f	1	307	session_efrlHwlq
-921	\N	QB	1978-07-15	\N	\N	f	1	307	session_EWpD9hOF
-922	2	R	1978-07-30	\N	\N	f	12	308	session_Cvoy32Vh
-923	1	QB	1978-07-28	\N	\N	f	1	308	session_9w8nIO4s
-924	\N	QB	1978-07-29	\N	\N	f	1	308	session_eSdUHQfy
-925	2	R	1978-08-13	\N	\N	f	12	309	session_6GJZfJip
-926	1	QB	1978-08-11	\N	\N	f	1	309	session_b9uaVvU1
-927	\N	QB	1978-08-12	\N	\N	f	1	309	session_a7I4xGqy
-928	2	R	1978-08-27	\N	\N	f	12	310	session_Js5TXe38
-929	1	QB	1978-08-25	\N	\N	f	1	310	session_mJ0vUASE
-930	\N	QB	1978-08-26	\N	\N	f	1	310	session_eqDt5GQh
-931	2	R	1978-09-10	\N	\N	f	12	311	session_R6WpLC8i
-932	1	QB	1978-09-08	\N	\N	f	1	311	session_59dizZ4O
-933	\N	QB	1978-09-09	\N	\N	f	1	311	session_6RSUTfI8
-934	2	R	1978-10-01	\N	\N	f	12	312	session_x2Q4YXLo
-935	1	QB	1978-09-29	\N	\N	f	1	312	session_Pz6bNvsw
-936	\N	QB	1978-09-30	\N	\N	f	1	312	session_aNRqich5
-937	2	R	1978-10-08	\N	\N	f	12	313	session_HM5XzB14
-938	1	QB	1978-10-06	\N	\N	f	1	313	session_NabrNero
-939	\N	QB	1978-10-07	\N	\N	f	1	313	session_dRX2KmHG
-940	2	R	1979-01-21	\N	\N	f	12	314	session_FdzNoAc7
-941	1	QB	1979-01-19	\N	\N	f	1	314	session_7hgjdK2Q
-942	\N	QB	1979-01-20	\N	\N	f	1	314	session_iKlhIsL0
-943	2	R	1979-02-04	\N	\N	f	12	315	session_WSPULZXh
-944	1	QB	1979-02-02	\N	\N	f	1	315	session_pWKp3Ewc
-945	\N	QB	1979-02-03	\N	\N	f	1	315	session_zJ1Jl2nM
-946	2	R	1979-03-03	\N	\N	f	12	316	session_2epoFi5Y
-947	1	QB	1979-03-01	\N	\N	f	1	316	session_DeZ7alBw
-948	\N	QB	1979-03-02	\N	\N	f	1	316	session_xGHwFOqy
-949	2	R	1979-04-08	\N	\N	f	12	317	session_vXVI4tL6
-950	1	QB	1979-04-06	\N	\N	f	1	317	session_bDnO2ajK
-951	\N	QB	1979-04-07	\N	\N	f	1	317	session_cl71fkUW
-952	2	R	1979-04-29	\N	\N	f	12	318	session_DPTw6uRq
-953	1	QB	1979-04-27	\N	\N	f	1	318	session_aBvjMNCO
-954	\N	QB	1979-04-28	\N	\N	f	1	318	session_nTLauRD2
-955	2	R	1979-05-13	\N	\N	f	12	319	session_WbFDs6Lf
-956	1	QB	1979-05-11	\N	\N	f	1	319	session_02aWaYGg
-957	\N	QB	1979-05-12	\N	\N	f	1	319	session_YaytaKyu
-958	2	R	1979-05-27	\N	\N	f	12	320	session_vTQRBGYE
-959	1	QB	1979-05-24	\N	\N	f	1	320	session_fSDDbCwE
-960	\N	QB	1979-05-26	\N	\N	f	1	320	session_LKBdzRIx
-961	2	R	1979-07-01	\N	\N	f	12	321	session_8dDIc9Pn
-962	1	QB	1979-06-29	\N	\N	f	1	321	session_NPE1DyjM
-963	\N	QB	1979-06-30	\N	\N	f	1	321	session_5Sbk8CRM
-964	2	R	1979-07-14	\N	\N	f	12	322	session_OOTzngEc
-965	1	QB	1979-07-12	\N	\N	f	1	322	session_UWYrRuDA
-966	\N	QB	1979-07-13	\N	\N	f	1	322	session_eLEiYh4U
-967	2	R	1979-07-29	\N	\N	f	12	323	session_y2WVbkMu
-968	1	QB	1979-07-27	\N	\N	f	1	323	session_zjwMUftp
-969	\N	QB	1979-07-28	\N	\N	f	1	323	session_Qn41Vrmx
-970	2	R	1979-08-12	\N	\N	f	12	324	session_HxIkiC6C
-971	1	QB	1979-08-10	\N	\N	f	1	324	session_i0FZYC59
-972	\N	QB	1979-08-11	\N	\N	f	1	324	session_LtGaBF9D
-973	2	R	1979-08-26	\N	\N	f	12	325	session_TKbuug10
-974	1	QB	1979-08-24	\N	\N	f	1	325	session_1gbYE9p3
-975	\N	QB	1979-08-25	\N	\N	f	1	325	session_2Ji9tzIb
-976	2	R	1979-09-09	\N	\N	f	12	326	session_SW0WHKJa
-977	1	QB	1979-09-07	\N	\N	f	1	326	session_BnXFpMDe
-978	\N	QB	1979-09-08	\N	\N	f	1	326	session_IEfTveE9
-979	2	R	1979-09-30	\N	\N	f	12	327	session_Z2OAhiXA
-980	1	QB	1979-09-28	\N	\N	f	1	327	session_faWrX0cA
-981	\N	QB	1979-09-29	\N	\N	f	1	327	session_wLyidzbq
-982	2	R	1979-10-07	\N	\N	f	12	328	session_OAhzzk8F
-983	1	QB	1979-10-05	\N	\N	f	1	328	session_Lj4exErz
-984	\N	QB	1979-10-06	\N	\N	f	1	328	session_1Bls7HkB
-985	2	R	1980-01-13	\N	\N	f	13	329	session_bdyusYMe
-986	1	QB	1980-01-11	\N	\N	f	1	329	session_JMIyRYRK
-987	\N	QB	1980-01-12	\N	\N	f	1	329	session_cR3aP8Ks
-988	2	R	1980-01-27	\N	\N	f	13	330	session_MR0nAxEL
-989	1	QB	1980-01-25	\N	\N	f	1	330	session_RY3O1SZ4
-990	\N	QB	1980-01-26	\N	\N	f	1	330	session_hXug3NJ3
-991	2	R	1980-03-01	\N	\N	f	13	331	session_FWVftg63
-992	1	QB	1980-02-28	\N	\N	f	1	331	session_XQVLumrE
-993	\N	QB	1980-02-29	\N	\N	f	1	331	session_YhWSPUU0
-994	2	R	1980-03-30	\N	\N	f	13	332	session_XHd7Cq84
-995	1	QB	1980-03-28	\N	\N	f	1	332	session_fwFySXcB
-996	\N	QB	1980-03-29	\N	\N	f	1	332	session_ND124kVS
-997	2	R	1980-05-04	\N	\N	f	13	333	session_4WW8yGBv
-998	1	QB	1980-05-02	\N	\N	f	1	333	session_ajfvoaxn
-999	\N	QB	1980-05-03	\N	\N	f	1	333	session_itZokSU9
-1000	2	R	1980-05-18	\N	\N	f	13	334	session_mSkH3fMo
-1001	1	QB	1980-05-15	\N	\N	f	1	334	session_0f9IVCMe
-1002	\N	QB	1980-05-17	\N	\N	f	1	334	session_AZaGQBHO
-1003	2	R	1980-06-29	\N	\N	f	13	335	session_JEVsHOLV
-1004	1	QB	1980-06-27	\N	\N	f	1	335	session_pYvW8e7V
-1005	\N	QB	1980-06-28	\N	\N	f	1	335	session_DiWYZUyT
-1006	2	R	1980-07-13	\N	\N	f	13	336	session_bMKF1qc3
-1007	1	QB	1980-07-11	\N	\N	f	1	336	session_GvJUiwG0
-1008	\N	QB	1980-07-12	\N	\N	f	1	336	session_hL25S6oP
-1009	2	R	1980-08-10	\N	\N	f	13	337	session_5pxNpl2k
-1010	1	QB	1980-08-08	\N	\N	f	1	337	session_tEDEn302
-1011	\N	QB	1980-08-09	\N	\N	f	1	337	session_z5MA2mST
-1012	2	R	1980-08-17	\N	\N	f	13	338	session_Cr9g9AEO
-1013	1	QB	1980-08-15	\N	\N	f	1	338	session_uVDuQOYi
-1014	\N	QB	1980-08-16	\N	\N	f	1	338	session_j2DcUCcu
-1015	2	R	1980-08-31	\N	\N	f	13	339	session_tX7EKj26
-1016	1	QB	1980-08-29	\N	\N	f	1	339	session_6roqdwU2
-1017	\N	QB	1980-08-30	\N	\N	f	1	339	session_EW2CKnj1
-1018	2	R	1980-09-14	\N	\N	f	13	340	session_TRw9Aadq
-1019	1	QB	1980-09-12	\N	\N	f	1	340	session_xjl5xJEW
-1020	\N	QB	1980-09-13	\N	\N	f	1	340	session_NNT3bmtA
-1021	2	R	1980-09-28	\N	\N	f	13	341	session_Xw5Hj7iz
-1022	1	QB	1980-09-26	\N	\N	f	1	341	session_PgJTLuV9
-1023	\N	QB	1980-09-27	\N	\N	f	1	341	session_If7bP5L2
-1024	2	R	1980-10-05	\N	\N	f	13	342	session_GVM6fLEU
-1025	1	QB	1980-10-03	\N	\N	f	1	342	session_mDx2To9h
-1026	\N	QB	1980-10-04	\N	\N	f	1	342	session_H8I4SRS4
-1027	2	R	1981-03-15	\N	\N	f	13	343	session_EkgwP3pu
-1028	1	QB	1981-03-13	\N	\N	f	1	343	session_NGvB0CU8
-1029	\N	QB	1981-03-14	\N	\N	f	1	343	session_dFPb2zeu
-1030	2	R	1981-03-29	\N	\N	f	13	344	session_iarF9kEX
-1031	1	QB	1981-03-27	\N	\N	f	1	344	session_lkq7Dazy
-1032	\N	QB	1981-03-28	\N	\N	f	1	344	session_NjTCb6sc
-1033	2	R	1981-04-12	\N	\N	f	13	345	session_4LWKV7Gc
-1034	1	QB	1981-04-10	\N	\N	f	1	345	session_Y6WHDvWQ
-1035	\N	QB	1981-04-11	\N	\N	f	1	345	session_62Nn9yv0
-1036	2	R	1981-05-03	\N	\N	f	13	346	session_LZLvFDMw
-1037	1	QB	1981-05-01	\N	\N	f	1	346	session_RFpqQTrH
-1038	\N	QB	1981-05-02	\N	\N	f	1	346	session_8OhvUNOu
-1039	2	R	1981-05-17	\N	\N	f	13	347	session_WkcKnTvv
-1040	1	QB	1981-05-15	\N	\N	f	1	347	session_1DjezkrZ
-1041	\N	QB	1981-05-16	\N	\N	f	1	347	session_6HM3CquD
-1042	2	R	1981-05-31	\N	\N	f	13	348	session_9wEv3Y0b
-1043	1	QB	1981-05-28	\N	\N	f	1	348	session_qOnoyjUF
-1044	\N	QB	1981-05-30	\N	\N	f	1	348	session_JVIcABUE
-1045	2	R	1981-06-21	\N	\N	f	13	349	session_zdH5hbIX
-1046	1	QB	1981-06-19	\N	\N	f	1	349	session_0xJVYPDr
-1047	\N	QB	1981-06-20	\N	\N	f	1	349	session_nYRqJyDb
-1048	2	R	1981-07-05	\N	\N	f	13	350	session_bqigxtqp
-1049	1	QB	1981-07-03	\N	\N	f	1	350	session_KKmzWWSX
-1050	\N	QB	1981-07-04	\N	\N	f	1	350	session_qYMO5Hqc
-1051	2	R	1981-07-18	\N	\N	f	13	351	session_0CjBvmPj
-1052	1	QB	1981-07-16	\N	\N	f	1	351	session_wSJqaN2T
-1053	\N	QB	1981-07-17	\N	\N	f	1	351	session_8TgePDWL
-1054	2	R	1981-08-02	\N	\N	f	13	352	session_520uzFEd
-1055	1	QB	1981-07-31	\N	\N	f	1	352	session_AvRYWyJX
-1056	\N	QB	1981-08-01	\N	\N	f	1	352	session_atc20IDF
-1057	2	R	1981-08-16	\N	\N	f	13	353	session_qdUZ29au
-1058	1	QB	1981-08-14	\N	\N	f	1	353	session_wLsJwsP6
-1059	\N	QB	1981-08-15	\N	\N	f	1	353	session_8cdLG6JB
-1060	2	R	1981-08-30	\N	\N	f	13	354	session_zJaqYB6U
-1061	1	QB	1981-08-28	\N	\N	f	1	354	session_EoNl1aJO
-1062	\N	QB	1981-08-29	\N	\N	f	1	354	session_0nqAv1Ro
-1063	2	R	1981-09-13	\N	\N	f	13	355	session_BPhwIsZT
-1064	1	QB	1981-09-11	\N	\N	f	1	355	session_sC6zQtlv
-1065	\N	QB	1981-09-12	\N	\N	f	1	355	session_VyZdEj9y
-1066	2	R	1981-09-27	\N	\N	f	13	356	session_UlN0JniU
-1067	1	QB	1981-09-25	\N	\N	f	1	356	session_RYoW2DX6
-1068	\N	QB	1981-09-26	\N	\N	f	1	356	session_U5cDLkBX
-1069	2	R	1981-10-17	\N	\N	f	13	357	session_fyLfhAY2
-1070	1	QB	1981-10-15	\N	\N	f	1	357	session_OCLy3qtb
-1071	\N	QB	1981-10-16	\N	\N	f	1	357	session_387s77Ip
-1072	2	R	1982-01-23	\N	\N	f	13	358	session_VUdwt7Nt
-1073	1	QB	1982-01-21	\N	\N	f	1	358	session_IviOUQL4
-1074	\N	QB	1982-01-22	\N	\N	f	1	358	session_8IYrLTGi
-1075	2	R	1982-03-21	\N	\N	f	13	359	session_aGDM8kzF
-1076	1	QB	1982-03-19	\N	\N	f	1	359	session_AZ4T3KYn
-1077	\N	QB	1982-03-20	\N	\N	f	1	359	session_wND8hdi9
-1078	2	R	1982-04-04	\N	\N	f	13	360	session_bIcDXP8a
-1079	1	QB	1982-04-02	\N	\N	f	1	360	session_K697W9Ul
-1080	\N	QB	1982-04-03	\N	\N	f	1	360	session_acjLacDP
-1081	2	R	1982-04-25	\N	\N	f	13	361	session_tm6rSzWi
-1082	1	QB	1982-04-23	\N	\N	f	1	361	session_guV7CUyI
-1083	\N	QB	1982-04-24	\N	\N	f	1	361	session_mHOPswqn
-1084	2	R	1982-05-09	\N	\N	f	13	362	session_qYdTkU8J
-1085	1	QB	1982-05-07	\N	\N	f	1	362	session_SH7Cvxqv
-1086	\N	QB	1982-05-08	\N	\N	f	1	362	session_VINF4EW8
-1087	2	R	1982-05-23	\N	\N	f	13	363	session_RQdKO7yL
-1088	1	QB	1982-05-20	\N	\N	f	1	363	session_VQojo44O
-1089	\N	QB	1982-05-22	\N	\N	f	1	363	session_kAxrnBnT
-1090	2	R	1982-06-06	\N	\N	f	13	364	session_zdHdycJ2
-1091	1	QB	1982-06-04	\N	\N	f	1	364	session_RoR3K2UD
-1092	\N	QB	1982-06-05	\N	\N	f	1	364	session_XmzzeLKG
-1093	2	R	1982-06-13	\N	\N	f	13	365	session_bxgzUOh1
-1094	1	QB	1982-06-11	\N	\N	f	1	365	session_nbMGrgYt
-1095	\N	QB	1982-06-12	\N	\N	f	1	365	session_O2Sb76Bl
-1096	2	R	1982-07-03	\N	\N	f	13	366	session_TignPgmT
-1097	1	QB	1982-07-01	\N	\N	f	1	366	session_YKeK95eD
-1098	\N	QB	1982-07-02	\N	\N	f	1	366	session_L1vjhGmN
-1099	2	R	1982-07-18	\N	\N	f	13	367	session_V2cxy109
-1100	1	QB	1982-07-16	\N	\N	f	1	367	session_NhuKsVx0
-1101	\N	QB	1982-07-17	\N	\N	f	1	367	session_DEIwMhM9
-1102	2	R	1982-07-25	\N	\N	f	13	368	session_g4N2ZhEf
-1103	1	QB	1982-07-23	\N	\N	f	1	368	session_DUnwLeBS
-1104	\N	QB	1982-07-24	\N	\N	f	1	368	session_OoDvCsJN
-1105	2	R	1982-08-08	\N	\N	f	13	369	session_3Vm2tqCm
-1106	1	QB	1982-08-06	\N	\N	f	1	369	session_XhVSV1hE
-1107	\N	QB	1982-08-07	\N	\N	f	1	369	session_qMnUpiTq
-1108	2	R	1982-08-15	\N	\N	f	13	370	session_qq7mAtn8
-1109	1	QB	1982-08-13	\N	\N	f	1	370	session_IgoG7vIv
-1110	\N	QB	1982-08-14	\N	\N	f	1	370	session_UGcOMZBa
-1111	2	R	1982-08-29	\N	\N	f	13	371	session_T3OBTttP
-1112	1	QB	1982-08-27	\N	\N	f	1	371	session_wLy74mEd
-1113	\N	QB	1982-08-28	\N	\N	f	1	371	session_9dmoqMKW
-1114	2	R	1982-09-12	\N	\N	f	13	372	session_eG5fIOjQ
-1115	1	QB	1982-09-10	\N	\N	f	1	372	session_ADNf8GWu
-1116	\N	QB	1982-09-11	\N	\N	f	1	372	session_aUfcgm79
-1117	2	R	1982-09-25	\N	\N	f	13	373	session_tUtsR3AT
-1118	1	QB	1982-09-23	\N	\N	f	1	373	session_nLiQbpkZ
-1119	\N	QB	1982-09-24	\N	\N	f	1	373	session_RoDUadxc
-1120	2	R	1983-03-13	\N	\N	f	13	374	session_ZoHfRiCh
-1121	1	QB	1983-03-11	\N	\N	f	1	374	session_keEaMFWN
-1122	\N	QB	1983-03-12	\N	\N	f	1	374	session_A6QxN4iI
-1123	2	R	1983-03-27	\N	\N	f	13	375	session_k4dkIczB
-1124	1	QB	1983-03-25	\N	\N	f	1	375	session_dfNmVD65
-1125	\N	QB	1983-03-26	\N	\N	f	1	375	session_f8Tr3VsK
-1126	2	R	1983-04-17	\N	\N	f	13	376	session_godfqApu
-1127	1	QB	1983-04-15	\N	\N	f	1	376	session_J2j53zI3
-1128	\N	QB	1983-04-16	\N	\N	f	1	376	session_m5i7zPmD
-1129	2	R	1983-05-01	\N	\N	f	13	377	session_EMbaLAQw
-1130	1	QB	1983-04-29	\N	\N	f	1	377	session_FqsNguzI
-1131	\N	QB	1983-04-30	\N	\N	f	1	377	session_Li6aaZP4
-1132	2	R	1983-05-15	\N	\N	f	13	378	session_XwNZQetf
-1133	1	QB	1983-05-12	\N	\N	f	1	378	session_ZwuirPVP
-1134	\N	QB	1983-05-14	\N	\N	f	1	378	session_zVrAC7tw
-1135	2	R	1983-05-22	\N	\N	f	13	379	session_PwpDUau3
-1136	1	QB	1983-05-20	\N	\N	f	1	379	session_sZrdnxe0
-1137	\N	QB	1983-05-21	\N	\N	f	1	379	session_VzTN9q9o
-1138	2	R	1983-06-05	\N	\N	f	13	380	session_i5oC0rVk
-1139	1	QB	1983-06-03	\N	\N	f	1	380	session_Xzuv65ic
-1140	\N	QB	1983-06-04	\N	\N	f	1	380	session_7WfwqMoD
-1141	2	R	1983-06-12	\N	\N	f	13	381	session_mrXug5BL
-1142	1	QB	1983-06-10	\N	\N	f	1	381	session_Ch166s7X
-1143	\N	QB	1983-06-11	\N	\N	f	1	381	session_rspvR30W
-1144	2	R	1983-07-16	\N	\N	f	13	382	session_moo7OAIQ
-1145	1	QB	1983-07-14	\N	\N	f	1	382	session_7g7LCSZQ
-1146	\N	QB	1983-07-15	\N	\N	f	1	382	session_Dl9WIq9Z
-1147	2	R	1983-08-07	\N	\N	f	13	383	session_Tb9GZq02
-1148	1	QB	1983-08-05	\N	\N	f	1	383	session_5K3LXEtT
-1149	\N	QB	1983-08-06	\N	\N	f	1	383	session_jqNxDLsK
-1150	2	R	1983-08-14	\N	\N	f	13	384	session_79kGKS3O
-1151	1	QB	1983-08-12	\N	\N	f	1	384	session_CJctWSmW
-1152	\N	QB	1983-08-13	\N	\N	f	1	384	session_hHN32tDU
-1153	2	R	1983-08-28	\N	\N	f	13	385	session_h9a3NZJB
-1154	1	QB	1983-08-26	\N	\N	f	1	385	session_Cns3OwSX
-1155	\N	QB	1983-08-27	\N	\N	f	1	385	session_LxQSB104
-1156	2	R	1983-09-11	\N	\N	f	13	386	session_x5s8v62I
-1157	1	QB	1983-09-09	\N	\N	f	1	386	session_cdJ9W3Vo
-1158	\N	QB	1983-09-10	\N	\N	f	1	386	session_yQlnVYKk
-1159	2	R	1983-09-25	\N	\N	f	13	387	session_0n9lTQef
-1160	1	QB	1983-09-23	\N	\N	f	1	387	session_GqSntCFI
-1161	\N	QB	1983-09-24	\N	\N	f	1	387	session_uyDOSjZy
-1162	2	R	1983-10-15	\N	\N	f	13	388	session_m0HIQ2h6
-1163	1	QB	1983-10-13	\N	\N	f	1	388	session_CpEIrY3M
-1164	\N	QB	1983-10-14	\N	\N	f	1	388	session_1401hxhB
-1165	2	R	1984-03-25	\N	\N	f	13	389	session_DLNhVuUY
-1166	1	QB	1984-03-23	\N	\N	f	1	389	session_ih0ajomX
-1167	\N	QB	1984-03-24	\N	\N	f	1	389	session_fxAOVekf
-1168	2	R	1984-04-07	\N	\N	f	13	390	session_WB2Hr2R6
-1169	1	QB	1984-04-05	\N	\N	f	1	390	session_mBuXRP4D
-1170	\N	QB	1984-04-06	\N	\N	f	1	390	session_09QZJpX1
-1171	2	R	1984-04-29	\N	\N	f	13	391	session_1nXWSca2
-1172	1	QB	1984-04-27	\N	\N	f	1	391	session_QKZlEPPI
-1173	\N	QB	1984-04-28	\N	\N	f	1	391	session_b4deKfhZ
-1174	2	R	1984-05-06	\N	\N	f	13	392	session_BowF4vI2
-1175	1	QB	1984-05-04	\N	\N	f	1	392	session_mFKKokSJ
-1176	\N	QB	1984-05-05	\N	\N	f	1	392	session_1ciNvPSH
-1177	2	R	1984-05-20	\N	\N	f	13	393	session_RJFTOybm
-1178	1	QB	1984-05-18	\N	\N	f	1	393	session_xYrY1SV7
-1179	\N	QB	1984-05-19	\N	\N	f	1	393	session_ZI7eE3Tm
-1180	2	R	1984-06-03	\N	\N	f	13	394	session_SBTTPyUL
-1181	1	QB	1984-05-31	\N	\N	f	1	394	session_9j5pyeNj
-1182	\N	QB	1984-06-02	\N	\N	f	1	394	session_hrt6WxYI
-1183	2	R	1984-06-17	\N	\N	f	13	395	session_dvK4Zic4
-1184	1	QB	1984-06-15	\N	\N	f	1	395	session_qllDODKU
-1185	\N	QB	1984-06-16	\N	\N	f	1	395	session_0Ti0aAi9
-1186	2	R	1984-06-24	\N	\N	f	13	396	session_nOU7vaNc
-1187	1	QB	1984-06-22	\N	\N	f	1	396	session_vg2eGWFm
-1188	\N	QB	1984-06-23	\N	\N	f	1	396	session_WDQZtdpF
-1189	2	R	1984-07-08	\N	\N	f	13	397	session_shX52A9b
-1190	1	QB	1984-07-06	\N	\N	f	1	397	session_JMvYSR4w
-1191	\N	QB	1984-07-07	\N	\N	f	1	397	session_eubFJaNB
-1192	2	R	1984-07-22	\N	\N	f	13	398	session_Bz7wJhpV
-1193	1	QB	1984-07-20	\N	\N	f	1	398	session_RUNGmevh
-1194	\N	QB	1984-07-21	\N	\N	f	1	398	session_8PkTbGjz
-1195	2	R	1984-08-05	\N	\N	f	13	399	session_KwXTzzJt
-1196	1	QB	1984-08-03	\N	\N	f	1	399	session_Z5zo3ywC
-1197	\N	QB	1984-08-04	\N	\N	f	1	399	session_zofuMx1R
-1198	2	R	1984-08-19	\N	\N	f	13	400	session_uAMHOphN
-1199	1	QB	1984-08-17	\N	\N	f	1	400	session_ZQyzjMVY
-1200	\N	QB	1984-08-18	\N	\N	f	1	400	session_jrFrzt2P
-1201	2	R	1984-08-26	\N	\N	f	13	401	session_nXlHMh0o
-1202	1	QB	1984-08-24	\N	\N	f	1	401	session_8W0mJ1u2
-1203	\N	QB	1984-08-25	\N	\N	f	1	401	session_unktVG5l
-1204	2	R	1984-09-09	\N	\N	f	13	402	session_AUf4yhn0
-1205	1	QB	1984-09-07	\N	\N	f	1	402	session_fpX4fjLj
-1206	\N	QB	1984-09-08	\N	\N	f	1	402	session_BItZVn02
-1207	2	R	1984-10-07	\N	\N	f	13	403	session_00Mpk9A5
-1208	1	QB	1984-10-05	\N	\N	f	1	403	session_2ErhdXHO
-1209	\N	QB	1984-10-06	\N	\N	f	1	403	session_zlRPeTZ9
-1210	2	R	1984-10-21	\N	\N	f	13	404	session_SHculTsv
-1211	1	QB	1984-10-19	\N	\N	f	1	404	session_VKIAtYCi
-1212	\N	QB	1984-10-20	\N	\N	f	1	404	session_ECzxsp4C
-1213	2	R	1985-04-07	\N	\N	f	13	405	session_lYq1nAZO
-1214	1	QB	1985-04-05	\N	\N	f	1	405	session_UvcLGNO5
-1215	\N	QB	1985-04-06	\N	\N	f	1	405	session_Soalh6Wk
-1216	2	R	1985-04-21	\N	\N	f	13	406	session_O9xorh72
-1217	1	QB	1985-04-19	\N	\N	f	1	406	session_F6hlfaUC
-1218	\N	QB	1985-04-20	\N	\N	f	1	406	session_BU0GTJld
-1219	2	R	1985-05-05	\N	\N	f	13	407	session_Br8flEkX
-1220	1	QB	1985-05-03	\N	\N	f	1	407	session_K61NL0uP
-1221	\N	QB	1985-05-04	\N	\N	f	1	407	session_kbpkCg7J
-1222	2	R	1985-05-19	\N	\N	f	13	408	session_Om5QPpaM
-1223	1	QB	1985-05-16	\N	\N	f	1	408	session_a1vtQikn
-1224	\N	QB	1985-05-18	\N	\N	f	1	408	session_E6NJQVDe
-1225	2	R	1985-06-16	\N	\N	f	13	409	session_6Ezh1FM1
-1226	1	QB	1985-06-14	\N	\N	f	1	409	session_r5rfMnIe
-1227	\N	QB	1985-06-15	\N	\N	f	1	409	session_C8GoJBH8
-1228	2	R	1985-06-23	\N	\N	f	13	410	session_j9cBJBOI
-1229	1	QB	1985-06-21	\N	\N	f	1	410	session_k9TSdErK
-1230	\N	QB	1985-06-22	\N	\N	f	1	410	session_FqIgT2YB
-1231	2	R	1985-07-07	\N	\N	f	13	411	session_xWYmVzcG
-1232	1	QB	1985-07-05	\N	\N	f	1	411	session_8z9BMBY5
-1233	\N	QB	1985-07-06	\N	\N	f	1	411	session_hyaharrr
-1234	2	R	1985-07-21	\N	\N	f	13	412	session_smjutz4B
-1235	1	QB	1985-07-19	\N	\N	f	1	412	session_y9YKk1PZ
-1236	\N	QB	1985-07-20	\N	\N	f	1	412	session_6W8A5SJJ
-1237	2	R	1985-08-04	\N	\N	f	13	413	session_FM3UHXTB
-1238	1	QB	1985-08-02	\N	\N	f	1	413	session_iqeQaGoh
-1239	\N	QB	1985-08-03	\N	\N	f	1	413	session_8SLkurkS
-1240	2	R	1985-08-18	\N	\N	f	13	414	session_X2FykVku
-1241	1	QB	1985-08-16	\N	\N	f	1	414	session_k89oRXBH
-1242	\N	QB	1985-08-17	\N	\N	f	1	414	session_WLzD5vag
-1243	2	R	1985-08-25	\N	\N	f	13	415	session_bGBhXiK5
-1244	1	QB	1985-08-23	\N	\N	f	1	415	session_NdTjrKZB
-1245	\N	QB	1985-08-24	\N	\N	f	1	415	session_tNfKs5NW
-1246	2	R	1985-09-08	\N	\N	f	13	416	session_HcvLofH4
-1247	1	QB	1985-09-06	\N	\N	f	1	416	session_jGP0s3Vf
-1248	\N	QB	1985-09-07	\N	\N	f	1	416	session_dmKOxzEL
-1249	2	R	1985-09-15	\N	\N	f	13	417	session_WgnToq0u
-1250	1	QB	1985-09-13	\N	\N	f	1	417	session_Oe5ACtPM
-1251	\N	QB	1985-09-14	\N	\N	f	1	417	session_dW4VGvap
-1252	2	R	1985-10-06	\N	\N	f	13	418	session_BDKGU1n1
-1253	1	QB	1985-10-04	\N	\N	f	1	418	session_naPKzGXs
-1254	\N	QB	1985-10-05	\N	\N	f	1	418	session_TsCSOkwF
-1255	2	R	1985-10-19	\N	\N	f	13	419	session_V2ry2uu8
-1256	1	QB	1985-10-17	\N	\N	f	1	419	session_HVqqURBO
-1257	\N	QB	1985-10-18	\N	\N	f	1	419	session_jsI6FvuJ
-1258	2	R	1985-11-03	\N	\N	f	13	420	session_XrhEgSNg
-1259	1	QB	1985-11-01	\N	\N	f	1	420	session_iDJDiFLJ
-1260	\N	QB	1985-11-02	\N	\N	f	1	420	session_HbZIAtUL
-1261	2	R	1986-03-23	\N	\N	f	13	421	session_LGh0jyfJ
-1262	1	QB	1986-03-21	\N	\N	f	1	421	session_eRTzWkWY
-1263	\N	QB	1986-03-22	\N	\N	f	1	421	session_HnsWBasy
-1264	2	R	1986-04-13	\N	\N	f	13	422	session_K0TkvChk
-1265	1	QB	1986-04-11	\N	\N	f	1	422	session_Wh9y5fPZ
-1266	\N	QB	1986-04-12	\N	\N	f	1	422	session_Z2dgEfl8
-1267	2	R	1986-04-27	\N	\N	f	13	423	session_EOy1LNoV
-1268	1	QB	1986-04-25	\N	\N	f	1	423	session_ZuAHPOkw
-1269	\N	QB	1986-04-26	\N	\N	f	1	423	session_LPvbgOUL
-1270	2	R	1986-05-11	\N	\N	f	13	424	session_IfAvfDPA
-1271	1	QB	1986-05-08	\N	\N	f	1	424	session_Dd6odEPR
-1272	\N	QB	1986-05-10	\N	\N	f	1	424	session_6EpbVhVm
-1273	2	R	1986-05-25	\N	\N	f	13	425	session_rfNJI2Ia
-1274	1	QB	1986-05-23	\N	\N	f	1	425	session_XIHdkNRq
-1275	\N	QB	1986-05-24	\N	\N	f	1	425	session_bZGIb1Xv
-1276	2	R	1986-06-15	\N	\N	f	13	426	session_G6VwOhCx
-1277	1	QB	1986-06-13	\N	\N	f	1	426	session_d9jrhS19
-1278	\N	QB	1986-06-14	\N	\N	f	1	426	session_zWetvRWx
-1279	2	R	1986-06-22	\N	\N	f	13	427	session_15C0c4nl
-1280	1	QB	1986-06-20	\N	\N	f	1	427	session_5dNpqfDv
-1281	\N	QB	1986-06-21	\N	\N	f	1	427	session_al3kLNQ3
-1282	2	R	1986-07-06	\N	\N	f	13	428	session_SK5QkpRM
-1283	1	QB	1986-07-04	\N	\N	f	1	428	session_3Fq6FrfP
-1284	\N	QB	1986-07-05	\N	\N	f	1	428	session_stAgiTgd
-1285	2	R	1986-07-13	\N	\N	f	13	429	session_ezEa01pA
-1286	1	QB	1986-07-11	\N	\N	f	1	429	session_Retd3YDJ
-1287	\N	QB	1986-07-12	\N	\N	f	1	429	session_nTK7tKJN
-1288	2	R	1986-07-27	\N	\N	f	13	430	session_MqZsZb3r
-1289	1	QB	1986-07-25	\N	\N	f	1	430	session_MOcTxhOD
-1290	\N	QB	1986-07-26	\N	\N	f	1	430	session_wBxyoIAZ
-1291	2	R	1986-08-10	\N	\N	f	13	431	session_6bvpqiEY
-1292	1	QB	1986-08-08	\N	\N	f	1	431	session_BzGCHALt
-1293	\N	QB	1986-08-09	\N	\N	f	1	431	session_VMwWIsjj
-1294	2	R	1986-08-17	\N	\N	f	13	432	session_MT9cvf8F
-1295	1	QB	1986-08-15	\N	\N	f	1	432	session_QGePm14f
-1296	\N	QB	1986-08-16	\N	\N	f	1	432	session_zWgUgZhY
-1297	2	R	1986-09-07	\N	\N	f	13	433	session_FoZN5UAZ
-1298	1	QB	1986-09-05	\N	\N	f	1	433	session_YxtWZ97q
-1299	\N	QB	1986-09-06	\N	\N	f	1	433	session_dW5108bf
-1300	2	R	1986-09-21	\N	\N	f	13	434	session_aBfDo2l0
-1301	1	QB	1986-09-19	\N	\N	f	1	434	session_i5G7fpuk
-1302	\N	QB	1986-09-20	\N	\N	f	1	434	session_7d3kYzy1
-1303	2	R	1986-10-12	\N	\N	f	13	435	session_41XxBpbN
-1304	1	QB	1986-10-10	\N	\N	f	1	435	session_iAfSTT2j
-1305	\N	QB	1986-10-11	\N	\N	f	1	435	session_lRpYQZQr
-1306	2	R	1986-10-26	\N	\N	f	13	436	session_ml3HSf7w
-1307	1	QB	1986-10-24	\N	\N	f	1	436	session_RkFY1wAD
-1308	\N	QB	1986-10-25	\N	\N	f	1	436	session_JZJnAJgB
-1309	2	R	1987-04-12	\N	\N	f	13	437	session_JjFNCray
-1310	1	QB	1987-04-10	\N	\N	f	1	437	session_eO2Rqqbn
-1311	\N	QB	1987-04-11	\N	\N	f	1	437	session_h1cjkkco
-1312	2	R	1987-05-03	\N	\N	f	13	438	session_rUwkIxjc
-1313	1	QB	1987-05-01	\N	\N	f	1	438	session_RrRITGNG
-1314	\N	QB	1987-05-02	\N	\N	f	1	438	session_PPuMLeQv
-1315	2	R	1987-05-17	\N	\N	f	13	439	session_KFZsAqjA
-1316	1	QB	1987-05-15	\N	\N	f	1	439	session_0ndDpEbE
-1317	\N	QB	1987-05-16	\N	\N	f	1	439	session_tWSyQZWH
-1318	2	R	1987-05-31	\N	\N	f	13	440	session_SOKJTClr
-1319	1	QB	1987-05-28	\N	\N	f	1	440	session_bgrY6UQf
-1320	\N	QB	1987-05-30	\N	\N	f	1	440	session_yborQGCE
-1321	2	R	1987-06-21	\N	\N	f	13	441	session_wV2Qn2p5
-1322	1	QB	1987-06-19	\N	\N	f	1	441	session_TnH6F3vy
-1323	\N	QB	1987-06-20	\N	\N	f	1	441	session_WbJ83thZ
-1324	2	R	1987-07-05	\N	\N	f	13	442	session_NqEMtBrq
-1325	1	QB	1987-07-03	\N	\N	f	1	442	session_VWZfJDqV
-1326	\N	QB	1987-07-04	\N	\N	f	1	442	session_rzlGQiZC
-1327	2	R	1987-07-12	\N	\N	f	13	443	session_A9ouGCKD
-1328	1	QB	1987-07-10	\N	\N	f	1	443	session_vCiJN9a6
-1329	\N	QB	1987-07-11	\N	\N	f	1	443	session_HywUl16r
-1330	2	R	1987-07-26	\N	\N	f	13	444	session_i9Poy7dq
-1331	1	QB	1987-07-24	\N	\N	f	1	444	session_brqHMhn0
-1332	\N	QB	1987-07-25	\N	\N	f	1	444	session_dOHqnrjY
-1333	2	R	1987-08-09	\N	\N	f	13	445	session_L3xC1gVs
-1334	1	QB	1987-08-07	\N	\N	f	1	445	session_5FHAJZLe
-1335	\N	QB	1987-08-08	\N	\N	f	1	445	session_snYd2WRF
-1336	2	R	1987-08-16	\N	\N	f	13	446	session_9DUwP4Hm
-1337	1	QB	1987-08-14	\N	\N	f	1	446	session_FjkEp7kr
-1338	\N	QB	1987-08-15	\N	\N	f	1	446	session_IdKc9xNR
-1339	2	R	1987-09-06	\N	\N	f	13	447	session_koR203ui
-1340	1	QB	1987-09-04	\N	\N	f	1	447	session_YRoWI0Zo
-1341	\N	QB	1987-09-05	\N	\N	f	1	447	session_MLP4Tf5O
-1342	2	R	1987-09-20	\N	\N	f	13	448	session_e7dJaAiJ
-1343	1	QB	1987-09-18	\N	\N	f	1	448	session_mRoijrQn
-1344	\N	QB	1987-09-19	\N	\N	f	1	448	session_KW609p0P
-1345	2	R	1987-09-27	\N	\N	f	13	449	session_nQ2sRm8i
-1346	1	QB	1987-09-25	\N	\N	f	1	449	session_pfotERWs
-1347	\N	QB	1987-09-26	\N	\N	f	1	449	session_UWETYj0w
-1348	2	R	1987-10-18	\N	\N	f	13	450	session_QOgV7s4z
-1349	1	QB	1987-10-16	\N	\N	f	1	450	session_Res8AFzK
-1350	\N	QB	1987-10-17	\N	\N	f	1	450	session_LVIP9Jq4
-1351	2	R	1987-11-01	\N	\N	f	13	451	session_Ts202NRv
-1352	1	QB	1987-10-30	\N	\N	f	1	451	session_sek00RNe
-1353	\N	QB	1987-10-31	\N	\N	f	1	451	session_hQ0OHMgk
-1354	2	R	1987-11-15	\N	\N	f	13	452	session_O35rLpos
-1355	1	QB	1987-11-13	\N	\N	f	1	452	session_qvaSr252
-1356	\N	QB	1987-11-14	\N	\N	f	1	452	session_vjgEMYjD
-1357	2	R	1988-04-03	\N	\N	f	13	453	session_4uOwC3b5
-1358	1	QB	1988-04-01	\N	\N	f	1	453	session_5BVjZD91
-1359	\N	QB	1988-04-02	\N	\N	f	1	453	session_l0tqqG56
-1360	2	R	1988-05-01	\N	\N	f	13	454	session_3hov4T2X
-1361	1	QB	1988-04-29	\N	\N	f	1	454	session_mZG8arjn
-1362	\N	QB	1988-04-30	\N	\N	f	1	454	session_sX0ZuMCr
-1363	2	R	1988-05-15	\N	\N	f	13	455	session_8O4moRK9
-1364	1	QB	1988-05-12	\N	\N	f	1	455	session_NBckKdCU
-1365	\N	QB	1988-05-14	\N	\N	f	1	455	session_kp4vqsk7
-1366	2	R	1988-05-29	\N	\N	f	13	456	session_K7ZqIARG
-1367	1	QB	1988-05-27	\N	\N	f	1	456	session_gzzPyc1u
-1368	\N	QB	1988-05-28	\N	\N	f	1	456	session_Mp7h8lTr
-1369	2	R	1988-06-12	\N	\N	f	13	457	session_srPhP4TV
-1370	1	QB	1988-06-10	\N	\N	f	1	457	session_B886UFH9
-1371	\N	QB	1988-06-11	\N	\N	f	1	457	session_M91o6TP4
-1372	2	R	1988-06-19	\N	\N	f	13	458	session_htvvDoUZ
-1373	1	QB	1988-06-17	\N	\N	f	1	458	session_wcHs77bt
-1374	\N	QB	1988-06-18	\N	\N	f	1	458	session_Hm8UxwzI
-1375	2	R	1988-07-03	\N	\N	f	13	459	session_93YFdnDG
-1376	1	QB	1988-07-01	\N	\N	f	1	459	session_Xz4I65v7
-1377	\N	QB	1988-07-02	\N	\N	f	1	459	session_Z7CIVPaX
-1378	2	R	1988-07-10	\N	\N	f	13	460	session_k1q63j7o
-1379	1	QB	1988-07-08	\N	\N	f	1	460	session_2jTtOeHs
-1380	\N	QB	1988-07-09	\N	\N	f	1	460	session_njQjRcLD
-1381	2	R	1988-07-24	\N	\N	f	13	461	session_wxyM6tCG
-1382	1	QB	1988-07-22	\N	\N	f	1	461	session_liJ6YlSh
-1383	\N	QB	1988-07-23	\N	\N	f	1	461	session_ydnMAh2x
-1384	2	R	1988-08-07	\N	\N	f	13	462	session_KKF6XWWk
-1385	1	QB	1988-08-05	\N	\N	f	1	462	session_owpbDbiN
-1386	\N	QB	1988-08-06	\N	\N	f	1	462	session_y0sfT9R9
-1387	2	R	1988-08-28	\N	\N	f	13	463	session_I0XALoE7
-1388	1	QB	1988-08-26	\N	\N	f	1	463	session_owzkDsUw
-1389	\N	QB	1988-08-27	\N	\N	f	1	463	session_SzTPsrRa
-1390	2	R	1988-09-11	\N	\N	f	13	464	session_oqxESq0Z
-1391	1	QB	1988-09-09	\N	\N	f	1	464	session_BrRxwEc6
-1392	\N	QB	1988-09-10	\N	\N	f	1	464	session_ca6OlPsJ
-1393	2	R	1988-09-25	\N	\N	f	13	465	session_PIA6Y6ou
-1394	1	QB	1988-09-23	\N	\N	f	1	465	session_EHYomA0m
-1395	\N	QB	1988-09-24	\N	\N	f	1	465	session_uVZfaC7W
-1396	2	R	1988-10-02	\N	\N	f	13	466	session_OkHa77BI
-1397	1	QB	1988-09-30	\N	\N	f	1	466	session_NRNr8JsL
-1398	\N	QB	1988-10-01	\N	\N	f	1	466	session_NveqDZwB
-1399	2	R	1988-10-30	\N	\N	f	13	467	session_gstwG6Mu
-1400	1	QB	1988-10-28	\N	\N	f	1	467	session_hgLII32E
-1401	\N	QB	1988-10-29	\N	\N	f	1	467	session_JFo19peG
-1402	2	R	1988-11-13	\N	\N	f	13	468	session_DgEpziIt
-1403	1	QB	1988-11-11	\N	\N	f	1	468	session_3EEt4zRv
-1404	\N	QB	1988-11-12	\N	\N	f	1	468	session_FHgnaY5B
-1405	2	R	1989-03-26	\N	\N	f	13	469	session_Pnt0hnC1
-1406	1	QB	1989-03-24	\N	\N	f	1	469	session_6q3q2AL4
-1407	\N	QB	1989-03-25	\N	\N	f	1	469	session_hNr7rp2Q
-1408	2	R	1989-04-23	\N	\N	f	13	470	session_HmoI7KHA
-1409	1	QB	1989-04-21	\N	\N	f	1	470	session_7yiNC6gQ
-1410	\N	QB	1989-04-22	\N	\N	f	1	470	session_PTwgN0RI
-1411	2	R	1989-05-07	\N	\N	f	13	471	session_4VUKXNox
-1412	1	QB	1989-05-04	\N	\N	f	1	471	session_tuXTADcp
-1413	\N	QB	1989-05-06	\N	\N	f	1	471	session_BUqT0BmW
-1414	2	R	1989-05-28	\N	\N	f	13	472	session_rVSXqLG4
-1415	1	QB	1989-05-26	\N	\N	f	1	472	session_ZJa7anqQ
-1416	\N	QB	1989-05-27	\N	\N	f	1	472	session_JETaRtIb
-1417	2	R	1989-06-04	\N	\N	f	13	473	session_bunDcTxD
-1418	1	QB	1989-06-02	\N	\N	f	1	473	session_wwTwta6l
-1419	\N	QB	1989-06-03	\N	\N	f	1	473	session_yGrZhUYc
-1420	2	R	1989-06-18	\N	\N	f	13	474	session_YmQbIcZf
-1421	1	QB	1989-06-16	\N	\N	f	1	474	session_Yh0ARlU0
-1422	\N	QB	1989-06-17	\N	\N	f	1	474	session_cYL3BtOR
-1423	2	R	1989-07-09	\N	\N	f	13	475	session_p9klDebU
-1424	1	QB	1989-07-07	\N	\N	f	1	475	session_cPb3KvSV
-1425	\N	QB	1989-07-08	\N	\N	f	1	475	session_PwygYJlg
-1426	2	R	1989-07-16	\N	\N	f	13	476	session_5Fw491vg
-1427	1	QB	1989-07-14	\N	\N	f	1	476	session_NTZpbJi9
-1428	\N	QB	1989-07-15	\N	\N	f	1	476	session_me4StdcS
-1429	2	R	1989-07-30	\N	\N	f	13	477	session_o4uHJwY6
-1430	1	QB	1989-07-28	\N	\N	f	1	477	session_N0po6YgH
-1431	\N	QB	1989-07-29	\N	\N	f	1	477	session_6bwDS92h
-1432	2	R	1989-08-13	\N	\N	f	13	478	session_jTw7wRcA
-1433	1	QB	1989-08-11	\N	\N	f	1	478	session_6cE59gKP
-1434	\N	QB	1989-08-12	\N	\N	f	1	478	session_ij0wOIi3
-1435	2	R	1989-08-27	\N	\N	f	13	479	session_6ST9IdHd
-1436	1	QB	1989-08-25	\N	\N	f	1	479	session_a62S0twQ
-1437	\N	QB	1989-08-26	\N	\N	f	1	479	session_d84XaTQJ
-1438	2	R	1989-09-10	\N	\N	f	13	480	session_Jrgh8dsu
-1439	1	QB	1989-09-08	\N	\N	f	1	480	session_O3FtIV4c
-1440	\N	QB	1989-09-09	\N	\N	f	1	480	session_bBSJmdZC
-1441	2	R	1989-09-24	\N	\N	f	13	481	session_gAEniRPP
-1442	1	QB	1989-09-22	\N	\N	f	1	481	session_AI88tUj6
-1443	\N	QB	1989-09-23	\N	\N	f	1	481	session_fbSez5MP
-1444	2	R	1989-10-01	\N	\N	f	13	482	session_afAK4aFB
-1445	1	QB	1989-09-29	\N	\N	f	1	482	session_uLxEqlb7
-1446	\N	QB	1989-09-30	\N	\N	f	1	482	session_nckgoQIv
-1447	2	R	1989-10-22	\N	\N	f	13	483	session_IK344iB4
-1448	1	QB	1989-10-20	\N	\N	f	1	483	session_Yt0zIQx5
-1449	\N	QB	1989-10-21	\N	\N	f	1	483	session_MB6Cr7Bf
-1450	2	R	1989-11-05	\N	\N	f	13	484	session_SJjoLdVV
-1451	1	QB	1989-11-03	\N	\N	f	1	484	session_qqVHpyME
-1452	\N	QB	1989-11-04	\N	\N	f	1	484	session_ywbnfgNt
-1453	2	R	1990-03-11	\N	\N	f	13	485	session_JMLUguKo
-1454	1	QB	1990-03-09	\N	\N	f	1	485	session_hTjSNzER
-1455	\N	QB	1990-03-10	\N	\N	f	1	485	session_YaOIAE2v
-1456	2	R	1990-03-25	\N	\N	f	13	486	session_0O5D1oW0
-1457	1	QB	1990-03-23	\N	\N	f	1	486	session_L1K8s3uo
-1458	\N	QB	1990-03-24	\N	\N	f	1	486	session_4ASlS5c0
-1459	2	R	1990-05-13	\N	\N	f	13	487	session_dFmgBkiT
-1460	1	QB	1990-05-11	\N	\N	f	1	487	session_nSVisZWv
-1461	\N	QB	1990-05-12	\N	\N	f	1	487	session_XJ3EpLPC
-1462	2	R	1990-05-27	\N	\N	f	13	488	session_yd86V0lj
-1463	1	QB	1990-05-24	\N	\N	f	1	488	session_q6yyWbZV
-1464	\N	QB	1990-05-26	\N	\N	f	1	488	session_vuxfK7Ds
-1465	2	R	1990-06-10	\N	\N	f	13	489	session_wUS6Pic6
-1466	1	QB	1990-06-08	\N	\N	f	1	489	session_1CPRlojo
-1467	\N	QB	1990-06-09	\N	\N	f	1	489	session_HPKiVxT6
-1468	2	R	1990-06-24	\N	\N	f	13	490	session_yeRWWLq7
-1469	1	QB	1990-06-22	\N	\N	f	1	490	session_xTcGGqxB
-1470	\N	QB	1990-06-23	\N	\N	f	1	490	session_ElYkVlXU
-1471	2	R	1990-07-08	\N	\N	f	13	491	session_T16mH7bv
-1472	1	QB	1990-07-06	\N	\N	f	1	491	session_9YLwcWjT
-1473	\N	QB	1990-07-07	\N	\N	f	1	491	session_DqiArVA7
-1474	2	R	1990-07-15	\N	\N	f	13	492	session_HaRj9o5a
-1475	1	QB	1990-07-13	\N	\N	f	1	492	session_dUkRxA5T
-1476	\N	QB	1990-07-14	\N	\N	f	1	492	session_oTI3Oyhl
-1477	2	R	1990-07-29	\N	\N	f	13	493	session_kgJIsV98
-1478	1	QB	1990-07-27	\N	\N	f	1	493	session_blhVFy4N
-1479	\N	QB	1990-07-28	\N	\N	f	1	493	session_bO56Guxc
-1480	2	R	1990-08-12	\N	\N	f	13	494	session_n0llafWv
-1481	1	QB	1990-08-10	\N	\N	f	1	494	session_FImkAIdr
-1482	\N	QB	1990-08-11	\N	\N	f	1	494	session_laDFdyGt
-1483	2	R	1990-08-26	\N	\N	f	13	495	session_JBBSV2OF
-1484	1	QB	1990-08-24	\N	\N	f	1	495	session_YhUOYJrZ
-1485	\N	QB	1990-08-25	\N	\N	f	1	495	session_eNL6CWc4
-1486	2	R	1990-09-09	\N	\N	f	13	496	session_wkUthcci
-1487	1	QB	1990-09-07	\N	\N	f	1	496	session_wLsBeVF0
-1488	\N	QB	1990-09-08	\N	\N	f	1	496	session_5llYgQlJ
-1489	2	R	1990-09-23	\N	\N	f	13	497	session_Jhwya7bl
-1490	1	QB	1990-09-21	\N	\N	f	1	497	session_j3e86Xg4
-1491	\N	QB	1990-09-22	\N	\N	f	1	497	session_ui2aA41E
-1492	2	R	1990-09-30	\N	\N	f	13	498	session_qHoaz8Wf
-1493	1	QB	1990-09-28	\N	\N	f	1	498	session_lucbH1vZ
-1494	\N	QB	1990-09-29	\N	\N	f	1	498	session_F4rltBnU
-1495	2	R	1990-10-21	\N	\N	f	13	499	session_VmC5dis3
-1496	1	QB	1990-10-19	\N	\N	f	1	499	session_p9C8TPVp
-1497	\N	QB	1990-10-20	\N	\N	f	1	499	session_gG19Pvm2
-1498	2	R	1990-11-04	\N	\N	f	13	500	session_WK71pCO8
-1499	1	QB	1990-11-02	\N	\N	f	1	500	session_ku3nxz2x
-1500	\N	QB	1990-11-03	\N	\N	f	1	500	session_Pwl9moza
-1501	2	R	1991-03-10	\N	\N	f	14	501	session_hUfn0YKs
-1502	1	QB	1991-03-08	\N	\N	f	1	501	session_pi9V1fx4
-1503	\N	QB	1991-03-09	\N	\N	f	1	501	session_guzHNnSe
-1504	2	R	1991-03-24	\N	\N	f	14	502	session_H7Q0inh5
-1505	1	QB	1991-03-22	\N	\N	f	1	502	session_1l3lhvs6
-1506	\N	QB	1991-03-23	\N	\N	f	1	502	session_X0G8eKZx
-1507	2	R	1991-04-28	\N	\N	f	14	503	session_nrRLRQIY
-1508	1	QB	1991-04-26	\N	\N	f	1	503	session_LSYkjhpX
-1509	\N	QB	1991-04-27	\N	\N	f	1	503	session_nFfottsN
-1510	2	R	1991-05-12	\N	\N	f	14	504	session_feH10TOR
-1511	1	QB	1991-05-09	\N	\N	f	1	504	session_hGlJaZG2
-1512	\N	QB	1991-05-11	\N	\N	f	1	504	session_80a0absm
-1513	2	R	1991-06-02	\N	\N	f	14	505	session_L2Za2a4a
-1514	1	QB	1991-05-31	\N	\N	f	1	505	session_DCtKfNGq
-1515	\N	QB	1991-06-01	\N	\N	f	1	505	session_AVZ2Hwtb
-1516	2	R	1991-06-16	\N	\N	f	14	506	session_3z9DM6DB
-1517	1	QB	1991-06-14	\N	\N	f	1	506	session_eoNWek3m
-1518	\N	QB	1991-06-15	\N	\N	f	1	506	session_vzCbNcjc
-1519	2	R	1991-07-07	\N	\N	f	14	507	session_6aUEfYKU
-1520	1	QB	1991-07-05	\N	\N	f	1	507	session_rnhmXSiL
-1521	\N	QB	1991-07-06	\N	\N	f	1	507	session_9eHsI26X
-1522	2	R	1991-07-14	\N	\N	f	14	508	session_a8q7M5eL
-1523	1	QB	1991-07-12	\N	\N	f	1	508	session_4fJBpncn
-1524	\N	QB	1991-07-13	\N	\N	f	1	508	session_G2qhXgs3
-1525	2	R	1991-07-28	\N	\N	f	14	509	session_G38ThWQE
-1526	1	QB	1991-07-26	\N	\N	f	1	509	session_zyKDAQ3N
-1527	\N	QB	1991-07-27	\N	\N	f	1	509	session_LAXpZE7C
-1528	2	R	1991-08-11	\N	\N	f	14	510	session_udjDI8JT
-1529	1	QB	1991-08-09	\N	\N	f	1	510	session_u48uil0I
-1530	\N	QB	1991-08-10	\N	\N	f	1	510	session_jJpL0oe8
-1531	2	R	1991-08-25	\N	\N	f	14	511	session_NMOEdxe9
-1532	1	QB	1991-08-23	\N	\N	f	1	511	session_OUHHk8Si
-1533	\N	QB	1991-08-24	\N	\N	f	1	511	session_PLBNo1Vc
-1534	2	R	1991-09-08	\N	\N	f	14	512	session_toEwKktW
-1535	1	QB	1991-09-06	\N	\N	f	1	512	session_doBGYA2x
-1536	\N	QB	1991-09-07	\N	\N	f	1	512	session_IT8Lxep1
-1537	2	R	1991-09-22	\N	\N	f	14	513	session_ykUBaggx
-1538	1	QB	1991-09-20	\N	\N	f	1	513	session_rWD11zfd
-1539	\N	QB	1991-09-21	\N	\N	f	1	513	session_dsEo17cr
-1540	2	R	1991-09-29	\N	\N	f	14	514	session_buxJB1gy
-1541	1	QB	1991-09-27	\N	\N	f	1	514	session_BGLhD2XJ
-1542	\N	QB	1991-09-28	\N	\N	f	1	514	session_78dcNjrz
-1543	2	R	1991-10-20	\N	\N	f	14	515	session_jHpPA2OE
-1544	1	QB	1991-10-18	\N	\N	f	1	515	session_D6eG35M8
-1545	\N	QB	1991-10-19	\N	\N	f	1	515	session_TtbFKfOs
-1546	2	R	1991-11-03	\N	\N	f	14	516	session_hscRVY6n
-1547	1	QB	1991-11-01	\N	\N	f	1	516	session_vJ91Recw
-1548	\N	QB	1991-11-02	\N	\N	f	1	516	session_kIops5NJ
-1549	2	R	1992-03-01	\N	\N	f	14	517	session_LOfqvatA
-1550	1	QB	1992-02-28	\N	\N	f	1	517	session_ZRRpIAHK
-1551	\N	QB	1992-02-29	\N	\N	f	1	517	session_Xi4cUw6U
-1552	2	R	1992-03-22	\N	\N	f	14	518	session_jGMM0h7f
-1553	1	QB	1992-03-20	\N	\N	f	1	518	session_CXeQ0V5b
-1554	\N	QB	1992-03-21	\N	\N	f	1	518	session_OZgBsUFU
-1555	2	R	1992-04-05	\N	\N	f	14	519	session_hWMmrHt2
-1556	1	QB	1992-04-03	\N	\N	f	1	519	session_sqmaXabW
-1557	\N	QB	1992-04-04	\N	\N	f	1	519	session_6YpizKzI
-1558	2	R	1992-05-03	\N	\N	f	14	520	session_8dUWvnO0
-1559	1	QB	1992-05-01	\N	\N	f	1	520	session_DsPHRa68
-1560	\N	QB	1992-05-02	\N	\N	f	1	520	session_m6X7I5YF
-1561	2	R	1992-05-17	\N	\N	f	14	521	session_UL4VDcLY
-1562	1	QB	1992-05-15	\N	\N	f	1	521	session_BwdDFrvT
-1563	\N	QB	1992-05-16	\N	\N	f	1	521	session_FxHnRnCf
-1564	2	R	1992-05-31	\N	\N	f	14	522	session_7i8RDFYA
-1565	1	QB	1992-05-28	\N	\N	f	1	522	session_UTXGQyjs
-1566	\N	QB	1992-05-30	\N	\N	f	1	522	session_Sjh9odat
-1567	2	R	1992-06-14	\N	\N	f	14	523	session_jSXwOLQ0
-1568	1	QB	1992-06-12	\N	\N	f	1	523	session_T7pQcdPH
-1569	\N	QB	1992-06-13	\N	\N	f	1	523	session_7OWD7iN8
-1570	2	R	1992-07-05	\N	\N	f	14	524	session_EuIsvh0G
-1571	1	QB	1992-07-03	\N	\N	f	1	524	session_DuVbnI7a
-1572	\N	QB	1992-07-04	\N	\N	f	1	524	session_ZJFNa0oI
-1573	2	R	1992-07-12	\N	\N	f	14	525	session_Ksff7PyQ
-1574	1	QB	1992-07-10	\N	\N	f	1	525	session_g2o4JICU
-1575	\N	QB	1992-07-11	\N	\N	f	1	525	session_6WMQ60FO
-1576	2	R	1992-07-26	\N	\N	f	14	526	session_xYYtjFnm
-1577	1	QB	1992-07-24	\N	\N	f	1	526	session_3qdZ5aMN
-1578	\N	QB	1992-07-25	\N	\N	f	1	526	session_k8Dxfptl
-1579	2	R	1992-08-16	\N	\N	f	14	527	session_bmQGKRay
-1580	1	QB	1992-08-14	\N	\N	f	1	527	session_7bOfZcyQ
-1581	\N	QB	1992-08-15	\N	\N	f	1	527	session_aFAnZlYJ
-1582	2	R	1992-08-30	\N	\N	f	14	528	session_ahVK44yB
-1583	1	QB	1992-08-28	\N	\N	f	1	528	session_8DXng4GD
-1584	\N	QB	1992-08-29	\N	\N	f	1	528	session_xo5Isq41
-1585	2	R	1992-09-13	\N	\N	f	14	529	session_aiSTWaDM
-1586	1	QB	1992-09-11	\N	\N	f	1	529	session_wJ3dAwe6
-1587	\N	QB	1992-09-12	\N	\N	f	1	529	session_5Hoqu35o
-1588	2	R	1992-09-27	\N	\N	f	14	530	session_i5Plcm0D
-1589	1	QB	1992-09-25	\N	\N	f	1	530	session_n1a6zY8r
-1590	\N	QB	1992-09-26	\N	\N	f	1	530	session_LzOR4zlw
-1591	2	R	1992-10-25	\N	\N	f	14	531	session_DxR7O4eJ
-1592	1	QB	1992-10-23	\N	\N	f	1	531	session_qcWGl3T0
-1593	\N	QB	1992-10-24	\N	\N	f	1	531	session_HXNhKuLT
-1594	2	R	1992-11-08	\N	\N	f	14	532	session_zGNRCfmE
-1595	1	QB	1992-11-06	\N	\N	f	1	532	session_aVY7afJ7
-1596	\N	QB	1992-11-07	\N	\N	f	1	532	session_Cc2ltGQF
-1597	2	R	1993-03-14	\N	\N	f	14	533	session_agpuqI2H
-1598	1	QB	1993-03-12	\N	\N	f	1	533	session_fQslFCQg
-1599	\N	QB	1993-03-13	\N	\N	f	1	533	session_ricDK8ih
-1600	2	R	1993-03-28	\N	\N	f	14	534	session_tDa8Fuz1
-1601	1	QB	1993-03-26	\N	\N	f	1	534	session_r8rIs1vT
-1602	\N	QB	1993-03-27	\N	\N	f	1	534	session_uzc3fjB0
-1603	2	R	1993-04-11	\N	\N	f	14	535	session_UgaAMXnM
-1604	1	QB	1993-04-09	\N	\N	f	1	535	session_PodU5XFU
-1605	\N	QB	1993-04-10	\N	\N	f	1	535	session_DlTDML3w
-1606	2	R	1993-04-25	\N	\N	f	14	536	session_zeUpBfYC
-1607	1	QB	1993-04-23	\N	\N	f	1	536	session_mAKkpkRj
-1608	\N	QB	1993-04-24	\N	\N	f	1	536	session_j7qK6JWC
-1609	2	R	1993-05-09	\N	\N	f	14	537	session_erZQxIfD
-1610	1	QB	1993-05-07	\N	\N	f	1	537	session_UpFflnhb
-1611	\N	QB	1993-05-08	\N	\N	f	1	537	session_KzaoC1OE
-1612	2	R	1993-05-23	\N	\N	f	14	538	session_GZIG1xo2
-1613	1	QB	1993-05-20	\N	\N	f	1	538	session_xDD4T0CO
-1614	\N	QB	1993-05-22	\N	\N	f	1	538	session_68EBaNSm
-1615	2	R	1993-06-13	\N	\N	f	14	539	session_nXbm8Wge
-1616	1	QB	1993-06-11	\N	\N	f	1	539	session_lMEOWODp
-1617	\N	QB	1993-06-12	\N	\N	f	1	539	session_kPx3w5ud
-1618	2	R	1993-07-04	\N	\N	f	14	540	session_nmSvZwP1
-1619	1	QB	1993-07-02	\N	\N	f	1	540	session_kvdUvicd
-1620	\N	QB	1993-07-03	\N	\N	f	1	540	session_Pp4RGI3C
-1621	2	R	1993-07-11	\N	\N	f	14	541	session_EWLHeysT
-1622	1	QB	1993-07-09	\N	\N	f	1	541	session_TFkDY2dt
-1623	\N	QB	1993-07-10	\N	\N	f	1	541	session_k5nfEYZ3
-1624	2	R	1993-07-25	\N	\N	f	14	542	session_6KpZFuTK
-1625	1	QB	1993-07-23	\N	\N	f	1	542	session_cXeMQclZ
-1626	\N	QB	1993-07-24	\N	\N	f	1	542	session_BEfc7hCS
-1627	2	R	1993-08-15	\N	\N	f	14	543	session_Ok17KC6W
-1628	1	QB	1993-08-13	\N	\N	f	1	543	session_SpsRLIrw
-1629	\N	QB	1993-08-14	\N	\N	f	1	543	session_RM75wTv1
-1630	2	R	1993-08-29	\N	\N	f	14	544	session_4azX06xd
-1631	1	QB	1993-08-27	\N	\N	f	1	544	session_PiywILbw
-1632	\N	QB	1993-08-28	\N	\N	f	1	544	session_UYwUSXBs
-1633	2	R	1993-09-12	\N	\N	f	14	545	session_K4s7tFJj
-1634	1	QB	1993-09-10	\N	\N	f	1	545	session_bHn9IeMI
-1635	\N	QB	1993-09-11	\N	\N	f	1	545	session_nimTbpMP
-1636	2	R	1993-09-26	\N	\N	f	14	546	session_YNvPkEiS
-1637	1	QB	1993-09-24	\N	\N	f	1	546	session_y2McaQjV
-1638	\N	QB	1993-09-25	\N	\N	f	1	546	session_OPJiP6PD
-1639	2	R	1993-10-24	\N	\N	f	14	547	session_zHrN7kWT
-1640	1	QB	1993-10-22	\N	\N	f	1	547	session_ATrbifCo
-1641	\N	QB	1993-10-23	\N	\N	f	1	547	session_1jdukA39
-1642	2	R	1993-11-07	\N	\N	f	14	548	session_tNoFRiAK
-1643	1	QB	1993-11-05	\N	\N	f	1	548	session_l7DGA331
-1644	\N	QB	1993-11-06	\N	\N	f	1	548	session_OSEYOXDG
-1645	2	R	1994-03-27	\N	\N	f	14	549	session_Q1VWABfu
-1646	1	QB	1994-03-25	\N	\N	f	1	549	session_sHUZK44m
-1647	\N	QB	1994-03-26	\N	\N	f	1	549	session_Uh3XPsPl
-1648	2	R	1994-04-17	\N	\N	f	14	550	session_XIigOl1w
-1649	1	QB	1994-04-15	\N	\N	f	1	550	session_jn0qw1VB
-1650	\N	QB	1994-04-16	\N	\N	f	1	550	session_zSQZj3Pm
-1651	2	R	1994-05-01	\N	\N	f	14	551	session_rr9wFKdO
-1652	1	QB	1994-04-29	\N	\N	f	1	551	session_UO5ORSYI
-1653	\N	QB	1994-04-30	\N	\N	f	1	551	session_XBWUu9FF
-1654	2	R	1994-05-15	\N	\N	f	14	552	session_yp9dimV5
-1655	1	QB	1994-05-12	\N	\N	f	1	552	session_sBH1Lbru
-1656	\N	QB	1994-05-14	\N	\N	f	1	552	session_5f9HN7NU
-1657	2	R	1994-05-29	\N	\N	f	14	553	session_Rlx6n5lh
-1658	1	QB	1994-05-27	\N	\N	f	1	553	session_YDFxJz1G
-1659	\N	QB	1994-05-28	\N	\N	f	1	553	session_8EuYthlK
-1660	2	R	1994-06-12	\N	\N	f	14	554	session_Rn1Bb2DE
-1661	1	QB	1994-06-10	\N	\N	f	1	554	session_f30wms7o
-1662	\N	QB	1994-06-11	\N	\N	f	1	554	session_Yno5Ofap
-1663	2	R	1994-07-03	\N	\N	f	14	555	session_gL1wkCt0
-1664	1	QB	1994-07-01	\N	\N	f	1	555	session_JbqdKbg4
-1665	\N	QB	1994-07-02	\N	\N	f	1	555	session_AVU5dBoM
-1666	2	R	1994-07-10	\N	\N	f	14	556	session_qqrsTgzg
-1667	1	QB	1994-07-08	\N	\N	f	1	556	session_eEbxS5gY
-1668	\N	QB	1994-07-09	\N	\N	f	1	556	session_rSX92kMc
-1669	2	R	1994-07-31	\N	\N	f	14	557	session_2wKeVh1b
-1670	1	QB	1994-07-29	\N	\N	f	1	557	session_Em4c4tIV
-1671	\N	QB	1994-07-30	\N	\N	f	1	557	session_AdTRgCxE
-1672	2	R	1994-08-14	\N	\N	f	14	558	session_NoEw3BXJ
-1673	1	QB	1994-08-12	\N	\N	f	1	558	session_byf5HBL6
-1674	\N	QB	1994-08-13	\N	\N	f	1	558	session_xiMnZ0CE
-1675	2	R	1994-08-28	\N	\N	f	14	559	session_KWlfbzEO
-1676	1	QB	1994-08-26	\N	\N	f	1	559	session_FCWa2vSP
-1677	\N	QB	1994-08-27	\N	\N	f	1	559	session_i06qZLcF
-1678	2	R	1994-09-11	\N	\N	f	14	560	session_5BYGJkll
-1679	1	QB	1994-09-09	\N	\N	f	1	560	session_2KvLL6EO
-1680	\N	QB	1994-09-10	\N	\N	f	1	560	session_v6Sh3w0l
-1681	2	R	1994-09-25	\N	\N	f	14	561	session_oVv0BJAX
-1682	1	QB	1994-09-23	\N	\N	f	1	561	session_1MSRQSod
-1683	\N	QB	1994-09-24	\N	\N	f	1	561	session_ZptZl8RB
-1684	2	R	1994-10-16	\N	\N	f	14	562	session_2xZd9wdT
-1685	1	QB	1994-10-14	\N	\N	f	1	562	session_NGz2KL38
-1686	\N	QB	1994-10-15	\N	\N	f	1	562	session_SoNN6AZx
-1687	2	R	1994-11-06	\N	\N	f	14	563	session_wSY1Ufy7
-1688	1	QB	1994-11-04	\N	\N	f	1	563	session_L9I2zw3d
-1689	\N	QB	1994-11-05	\N	\N	f	1	563	session_R6icztEp
-1690	2	R	1994-11-13	\N	\N	f	14	564	session_fH4J0EtY
-1691	1	QB	1994-11-11	\N	\N	f	1	564	session_k0kLhT6W
-1692	\N	QB	1994-11-12	\N	\N	f	1	564	session_ycSbK0z9
-1693	2	R	1995-03-26	\N	\N	f	14	565	session_HcFD1n5r
-1694	1	QB	1995-03-24	\N	\N	f	1	565	session_4E2LDbvb
-1695	\N	QB	1995-03-25	\N	\N	f	1	565	session_XvxCtbB0
-1696	2	R	1995-04-09	\N	\N	f	14	566	session_0aK5GWvA
-1697	1	QB	1995-04-07	\N	\N	f	1	566	session_nlJ3s9Hb
-1698	\N	QB	1995-04-08	\N	\N	f	1	566	session_oB3OAive
-1699	2	R	1995-04-30	\N	\N	f	14	567	session_YKx9UV25
-1700	1	QB	1995-04-28	\N	\N	f	1	567	session_naYLY0Wo
-1701	\N	QB	1995-04-29	\N	\N	f	1	567	session_9PjsAi6Q
-1702	2	R	1995-05-14	\N	\N	f	14	568	session_Il4ze8h8
-1703	1	QB	1995-05-12	\N	\N	f	1	568	session_jgeo0loj
-1704	\N	QB	1995-05-13	\N	\N	f	1	568	session_o36Pxdxt
-1705	2	R	1995-05-28	\N	\N	f	14	569	session_EoiLM0Go
-1706	1	QB	1995-05-25	\N	\N	f	1	569	session_pborhlkx
-1707	\N	QB	1995-05-27	\N	\N	f	1	569	session_ebvdugFp
-1708	2	R	1995-06-11	\N	\N	f	14	570	session_kgNQy3pd
-1709	1	QB	1995-06-09	\N	\N	f	1	570	session_rvoQrz4I
-1710	\N	QB	1995-06-10	\N	\N	f	1	570	session_OqKWFN5w
-1711	2	R	1995-07-02	\N	\N	f	14	571	session_bmsViKaY
-1712	1	QB	1995-06-30	\N	\N	f	1	571	session_lFMNbJ41
-1713	\N	QB	1995-07-01	\N	\N	f	1	571	session_sgaEW6BZ
-1714	2	R	1995-07-16	\N	\N	f	14	572	session_2ruFSvdb
-1715	1	QB	1995-07-14	\N	\N	f	1	572	session_xaHOk5pc
-1716	\N	QB	1995-07-15	\N	\N	f	1	572	session_pxEMdUJN
-1717	2	R	1995-07-30	\N	\N	f	14	573	session_Dv12Eh7s
-1718	1	QB	1995-07-28	\N	\N	f	1	573	session_Xy8ddU1k
-1719	\N	QB	1995-07-29	\N	\N	f	1	573	session_ogNXysKy
-1720	2	R	1995-08-13	\N	\N	f	14	574	session_qgg1C65M
-1721	1	QB	1995-08-11	\N	\N	f	1	574	session_bLbzWQTA
-1722	\N	QB	1995-08-12	\N	\N	f	1	574	session_koLlIl4v
-1723	2	R	1995-08-27	\N	\N	f	14	575	session_W5jgth79
-1724	1	QB	1995-08-25	\N	\N	f	1	575	session_E2Xlss3N
-1725	\N	QB	1995-08-26	\N	\N	f	1	575	session_qiO1o8G6
-1726	2	R	1995-09-10	\N	\N	f	14	576	session_2IYpYFON
-1727	1	QB	1995-09-08	\N	\N	f	1	576	session_Ojw1QbPH
-1728	\N	QB	1995-09-09	\N	\N	f	1	576	session_w8t9eXaF
-1729	2	R	1995-09-24	\N	\N	f	14	577	session_0MtK5nse
-1730	1	QB	1995-09-22	\N	\N	f	1	577	session_WFIIqj2T
-1731	\N	QB	1995-09-23	\N	\N	f	1	577	session_4wfWXb9X
-1732	2	R	1995-10-01	\N	\N	f	14	578	session_wx9D1SPt
-1733	1	QB	1995-09-29	\N	\N	f	1	578	session_4dxfu6iu
-1734	\N	QB	1995-09-30	\N	\N	f	1	578	session_5jUbeq2w
-1735	2	R	1995-10-22	\N	\N	f	14	579	session_IteCVZ8O
-1736	1	QB	1995-10-20	\N	\N	f	1	579	session_i0PdLQOB
-1737	\N	QB	1995-10-21	\N	\N	f	1	579	session_DXu8ofuq
-1738	2	R	1995-10-29	\N	\N	f	14	580	session_E6eXN2Qy
-1739	1	QB	1995-10-27	\N	\N	f	1	580	session_pCPnM0YJ
-1740	\N	QB	1995-10-28	\N	\N	f	1	580	session_jtuIMtHC
-1741	2	R	1995-11-12	\N	\N	f	14	581	session_zUWBqZDM
-1742	1	QB	1995-11-10	\N	\N	f	1	581	session_76hDsIcm
-1743	\N	QB	1995-11-11	\N	\N	f	1	581	session_1ZvuhDJ7
-1744	2	R	1996-03-10	\N	\N	f	14	582	session_llb72bOh
-1745	1	QB	1996-03-09	\N	\N	f	1	582	session_UgUWuo3h
-1746	2	R	1996-03-31	\N	\N	f	14	583	session_gShiwTPb
-1747	1	QB	1996-03-30	\N	\N	f	1	583	session_lWn5CELP
-1748	2	R	1996-04-07	\N	\N	f	14	584	session_PH3eWJKI
-1749	1	QB	1996-04-06	\N	\N	f	1	584	session_6NPERyAj
-1750	2	R	1996-04-28	\N	\N	f	14	585	session_ryVWNJVU
-1751	1	QB	1996-04-27	\N	\N	f	1	585	session_8rHFtHb7
-1752	2	R	1996-05-05	\N	\N	f	14	586	session_yQq8xst6
-1753	1	QB	1996-05-04	\N	\N	f	1	586	session_KmhrVZJv
-1754	2	R	1996-05-19	\N	\N	f	14	587	session_1qBCzRsh
-1755	1	QB	1996-05-18	\N	\N	f	1	587	session_ODJzWuPA
-1756	2	R	1996-06-02	\N	\N	f	14	588	session_apjS89LI
-1757	1	QB	1996-06-01	\N	\N	f	1	588	session_TgHCILR8
-1758	2	R	1996-06-16	\N	\N	f	14	589	session_OIrzIZat
-1759	1	QB	1996-06-15	\N	\N	f	1	589	session_pooLL7iL
-1760	2	R	1996-06-30	\N	\N	f	14	590	session_NIYjgpFG
-1761	1	QB	1996-06-29	\N	\N	f	1	590	session_K1cmF6ZS
-1762	2	R	1996-07-14	\N	\N	f	14	591	session_HaljznbW
-1763	1	QB	1996-07-13	\N	\N	f	1	591	session_N1Xjze3L
-1764	2	R	1996-07-28	\N	\N	f	14	592	session_39ExFP0h
-1765	1	QB	1996-07-27	\N	\N	f	1	592	session_XrDD61ia
-1766	2	R	1996-08-11	\N	\N	f	14	593	session_e7osfi5e
-1767	1	QB	1996-08-10	\N	\N	f	1	593	session_AosDrNPS
-1768	2	R	1996-08-25	\N	\N	f	14	594	session_PYzXwVfJ
-1769	1	QB	1996-08-24	\N	\N	f	1	594	session_u2xkBT5X
-1770	2	R	1996-09-08	\N	\N	f	14	595	session_LF95Pnci
-1771	1	QB	1996-09-07	\N	\N	f	1	595	session_EjQ5MJYh
-1772	2	R	1996-09-22	\N	\N	f	14	596	session_mSihiMuI
-1773	1	QB	1996-09-21	\N	\N	f	1	596	session_kRt4oudh
-1774	2	R	1996-10-13	\N	\N	f	14	597	session_a9jSr2gv
-1775	1	QB	1996-10-12	\N	\N	f	1	597	session_2GuigRnu
-1776	2	R	1997-03-09	\N	\N	f	14	598	session_9M4U5Vg4
-1777	1	QB	1997-03-08	\N	\N	f	1	598	session_6rlgbAdv
-1778	2	R	1997-03-30	\N	\N	f	14	599	session_dUf7d8UI
-1779	1	QB	1997-03-29	\N	\N	f	1	599	session_pgXDWXkj
-1780	2	R	1997-04-13	\N	\N	f	14	600	session_XOSe2D8q
-1781	1	QB	1997-04-12	\N	\N	f	1	600	session_Jg6ISI9Q
-1782	2	R	1997-04-27	\N	\N	f	14	601	session_IgcpN2E8
-1783	1	QB	1997-04-26	\N	\N	f	1	601	session_LgTNcVdt
-1784	2	R	1997-05-11	\N	\N	f	14	602	session_YfzcndD3
-1785	1	QB	1997-05-10	\N	\N	f	1	602	session_OfJ2UXKM
-1786	2	R	1997-05-25	\N	\N	f	14	603	session_hqXiuMd8
-1787	1	QB	1997-05-24	\N	\N	f	1	603	session_CD3mGnLH
-1788	2	R	1997-06-15	\N	\N	f	14	604	session_NmEMO3UL
-1789	1	QB	1997-06-14	\N	\N	f	1	604	session_wOsv0Xkj
-1790	2	R	1997-06-29	\N	\N	f	14	605	session_cVxsCuOQ
-1791	1	QB	1997-06-28	\N	\N	f	1	605	session_pFUPGwmk
-1792	2	R	1997-07-13	\N	\N	f	14	606	session_13OH1rT7
-1793	1	QB	1997-07-12	\N	\N	f	1	606	session_aawU4Y4L
-1794	2	R	1997-07-27	\N	\N	f	14	607	session_iwdRnzEp
-1795	1	QB	1997-07-26	\N	\N	f	1	607	session_AzYYY7Jo
-1796	2	R	1997-08-10	\N	\N	f	14	608	session_G0uXIGFo
-1797	1	QB	1997-08-09	\N	\N	f	1	608	session_1ce9kd4A
-1798	2	R	1997-08-24	\N	\N	f	14	609	session_qkeTx8QL
-1799	1	QB	1997-08-23	\N	\N	f	1	609	session_JWnP6V03
-1800	2	R	1997-09-07	\N	\N	f	14	610	session_mZA9fUk8
-1801	1	QB	1997-09-06	\N	\N	f	1	610	session_J8LUt81C
-1802	2	R	1997-09-21	\N	\N	f	14	611	session_nsFP3abU
-1803	1	QB	1997-09-20	\N	\N	f	1	611	session_JqMe6IC3
-1804	2	R	1997-09-28	\N	\N	f	14	612	session_2POgtsNf
-1805	1	QB	1997-09-27	\N	\N	f	1	612	session_yYWhYxIv
-1806	2	R	1997-10-12	\N	\N	f	14	613	session_vmnbEAaT
-1807	1	QB	1997-10-11	\N	\N	f	1	613	session_clMPq8pK
-1808	2	R	1997-10-26	\N	\N	f	14	614	session_tpj2dzN2
-1809	1	QB	1997-10-25	\N	\N	f	1	614	session_afoTGbWA
-1810	2	R	1998-03-08	\N	\N	f	14	615	session_4S1tcxcL
-1811	1	QB	1998-03-07	\N	\N	f	1	615	session_AJCDfw5a
-1812	2	R	1998-03-29	\N	\N	f	14	616	session_FMv8mOol
-1813	1	QB	1998-03-28	\N	\N	f	1	616	session_AQgk0LeL
-1814	2	R	1998-04-12	\N	\N	f	14	617	session_CxLMGDiA
-1815	1	QB	1998-04-11	\N	\N	f	1	617	session_rtMLbt8z
-1816	2	R	1998-04-26	\N	\N	f	14	618	session_hblDE4GP
-1817	1	QB	1998-04-25	\N	\N	f	1	618	session_iGqEKxOV
-1818	2	R	1998-05-10	\N	\N	f	14	619	session_bOlJX2lZ
-1819	1	QB	1998-05-09	\N	\N	f	1	619	session_9SqJqLPE
-1820	2	R	1998-05-24	\N	\N	f	14	620	session_kObB0xqM
-1821	1	QB	1998-05-23	\N	\N	f	1	620	session_iyXtjXb5
-1822	2	R	1998-06-07	\N	\N	f	14	621	session_AqiRUTKg
-1823	1	QB	1998-06-06	\N	\N	f	1	621	session_FrpGR61b
-1824	2	R	1998-06-28	\N	\N	f	14	622	session_QbyYdIiV
-1825	1	QB	1998-06-27	\N	\N	f	1	622	session_OOI9LopN
-1826	2	R	1998-07-12	\N	\N	f	14	623	session_yUlh8cJo
-1827	1	QB	1998-07-11	\N	\N	f	1	623	session_eHu7oZwk
-1828	2	R	1998-07-26	\N	\N	f	14	624	session_wYxFaMXQ
-1829	1	QB	1998-07-25	\N	\N	f	1	624	session_cxMG7PVn
-1830	2	R	1998-08-02	\N	\N	f	14	625	session_J4c6zGic
-1831	1	QB	1998-08-01	\N	\N	f	1	625	session_jhYAPzfm
-1832	2	R	1998-08-16	\N	\N	f	14	626	session_TZTeQcrB
-1833	1	QB	1998-08-15	\N	\N	f	1	626	session_LytILKkv
-1834	2	R	1998-08-30	\N	\N	f	14	627	session_31beNZyJ
-1835	1	QB	1998-08-29	\N	\N	f	1	627	session_GeQsAcvn
-1836	2	R	1998-09-13	\N	\N	f	14	628	session_RuKkS5ld
-1837	1	QB	1998-09-12	\N	\N	f	1	628	session_9j2nqP9R
-1838	2	R	1998-09-27	\N	\N	f	14	629	session_v9v7WEc8
-1839	1	QB	1998-09-26	\N	\N	f	1	629	session_iPEBUPhq
-1840	2	R	1998-11-01	\N	\N	f	14	630	session_7dvJWjFg
-1841	1	QB	1998-10-31	\N	\N	f	1	630	session_0TyFb4l7
-1842	2	R	1999-03-07	\N	\N	f	14	631	session_xJp7r8cv
-1843	1	QB	1999-03-06	\N	\N	f	1	631	session_9yLXHf1f
-1844	2	R	1999-04-11	\N	\N	f	14	632	session_uoHhqMxz
-1845	1	QB	1999-04-10	\N	\N	f	1	632	session_Dlzt7Maf
-1846	2	R	1999-05-02	\N	\N	f	14	633	session_h2cvQTZ8
-1847	1	QB	1999-05-01	\N	\N	f	1	633	session_aEaM37jF
-1848	2	R	1999-05-16	\N	\N	f	14	634	session_ZSDClK97
-1849	1	QB	1999-05-15	\N	\N	f	1	634	session_BP3zvyTY
-1850	2	R	1999-05-30	\N	\N	f	14	635	session_hCcLWQkT
-1851	1	QB	1999-05-29	\N	\N	f	1	635	session_pmDchLR7
-1852	2	R	1999-06-13	\N	\N	f	14	636	session_Ho4OGzo9
-1853	1	QB	1999-06-12	\N	\N	f	1	636	session_Udrcz6Qg
-1854	2	R	1999-06-27	\N	\N	f	14	637	session_ApEJFzF7
-1855	1	QB	1999-06-26	\N	\N	f	1	637	session_z78qjJxi
-1856	2	R	1999-07-11	\N	\N	f	14	638	session_4gXVFpIu
-1857	1	QB	1999-07-10	\N	\N	f	1	638	session_cCtNoH86
-1858	2	R	1999-07-25	\N	\N	f	14	639	session_MJqng93f
-1859	1	QB	1999-07-24	\N	\N	f	1	639	session_e9QsM6i4
-1860	2	R	1999-08-01	\N	\N	f	14	640	session_RmdyjSHX
-1861	1	QB	1999-07-31	\N	\N	f	1	640	session_bOKRmpVf
-1862	2	R	1999-08-15	\N	\N	f	14	641	session_kNGRZzh9
-1863	1	QB	1999-08-14	\N	\N	f	1	641	session_LjsKdqSY
-1864	2	R	1999-08-29	\N	\N	f	14	642	session_vhQje7Nu
-1865	1	QB	1999-08-28	\N	\N	f	1	642	session_BywQxVcX
-1866	2	R	1999-09-12	\N	\N	f	14	643	session_LE3yaS4Q
-1867	1	QB	1999-09-11	\N	\N	f	1	643	session_Ft7EgqjX
-1868	2	R	1999-09-26	\N	\N	f	14	644	session_0zMQFF0K
-1869	1	QB	1999-09-25	\N	\N	f	1	644	session_oHfUHBQN
-1870	2	R	1999-10-17	\N	\N	f	14	645	session_5qlWlBMA
-1871	1	QB	1999-10-16	\N	\N	f	1	645	session_6jSyu05R
-1872	2	R	1999-10-31	\N	\N	f	14	646	session_nRUlL8C8
-1873	1	QB	1999-10-30	\N	\N	f	1	646	session_EAxloeUz
-1874	2	R	2000-03-12	\N	\N	f	14	647	session_As4VZprz
-1875	1	QB	2000-03-11	\N	\N	f	1	647	session_9c11Vw4p
-1876	2	R	2000-03-26	\N	\N	f	14	648	session_Twcz0GqP
-1877	1	QB	2000-03-25	\N	\N	f	1	648	session_nNXceLUj
-1878	2	R	2000-04-09	\N	\N	f	14	649	session_fvMEHnl4
-1879	1	QB	2000-04-08	\N	\N	f	1	649	session_DNndcaou
-1880	2	R	2000-04-23	\N	\N	f	14	650	session_DlkYHM5R
-1881	1	QB	2000-04-22	\N	\N	f	1	650	session_9b8BTt4S
-1882	2	R	2000-05-07	\N	\N	f	14	651	session_Yp55dKkx
-1883	1	QB	2000-05-06	\N	\N	f	1	651	session_k398mPjW
-1884	2	R	2000-05-21	\N	\N	f	14	652	session_GZavEiom
-1885	1	QB	2000-05-20	\N	\N	f	1	652	session_NrYAef8R
-1886	2	R	2000-06-04	\N	\N	f	14	653	session_DHU8XE1E
-1887	1	QB	2000-06-03	\N	\N	f	1	653	session_he5b7GOS
-1888	2	R	2000-06-18	\N	\N	f	14	654	session_B2GtkOTi
-1889	1	QB	2000-06-17	\N	\N	f	1	654	session_XDJ1H0G7
-1890	2	R	2000-07-02	\N	\N	f	14	655	session_IepQcgiZ
-1891	1	QB	2000-07-01	\N	\N	f	1	655	session_5jyYuGLp
-1892	2	R	2000-07-16	\N	\N	f	14	656	session_C5rlRxML
-1893	1	QB	2000-07-15	\N	\N	f	1	656	session_VfNtBMWu
-1894	2	R	2000-07-30	\N	\N	f	14	657	session_Vy3x9C3D
-1895	1	QB	2000-07-29	\N	\N	f	1	657	session_YclxJH0h
-1896	2	R	2000-08-13	\N	\N	f	14	658	session_JWtVZgKn
-1897	1	QB	2000-08-12	\N	\N	f	1	658	session_klUbbYq9
-1898	2	R	2000-08-27	\N	\N	f	14	659	session_HIOwh9JB
-1899	1	QB	2000-08-26	\N	\N	f	1	659	session_6FpbQgqO
-1900	2	R	2000-09-10	\N	\N	f	14	660	session_YtfiYta5
-1901	1	QB	2000-09-09	\N	\N	f	1	660	session_hfiP6Zpd
-1902	2	R	2000-09-24	\N	\N	f	14	661	session_WdkAHRn8
-1903	1	QB	2000-09-23	\N	\N	f	1	661	session_bv2CKisj
-1904	2	R	2000-10-08	\N	\N	f	14	662	session_jWbD8Xug
-1905	1	QB	2000-10-07	\N	\N	f	1	662	session_7ODLl9zH
-1906	2	R	2000-10-22	\N	\N	f	14	663	session_JBfSPB2w
-1907	1	QB	2000-10-21	\N	\N	f	1	663	session_M0lEE994
-1908	2	R	2001-03-04	\N	\N	f	14	664	session_eWigyqnR
-1909	1	QB	2001-03-03	\N	\N	f	1	664	session_Ld1Rqn5k
-1910	2	R	2001-03-18	\N	\N	f	14	665	session_pLB7j6FJ
-1911	1	QB	2001-03-17	\N	\N	f	1	665	session_enXlO61G
-1912	2	R	2001-04-01	\N	\N	f	14	666	session_DCtlwOd5
-1913	1	QB	2001-03-31	\N	\N	f	1	666	session_Z1d95gkN
-1914	2	R	2001-04-15	\N	\N	f	14	667	session_T7en0niz
-1915	1	QB	2001-04-14	\N	\N	f	1	667	session_VoSV47Gd
-1916	2	R	2001-04-29	\N	\N	f	14	668	session_DyOBlmzw
-1917	1	QB	2001-04-28	\N	\N	f	1	668	session_NyaazsDV
-1918	2	R	2001-05-13	\N	\N	f	14	669	session_jSzuuPUl
-1919	1	QB	2001-05-12	\N	\N	f	1	669	session_sk8i33t8
-1920	2	R	2001-05-27	\N	\N	f	14	670	session_jLRcsgOZ
-1921	1	QB	2001-05-26	\N	\N	f	1	670	session_DUSLu7rG
-1922	2	R	2001-06-10	\N	\N	f	14	671	session_2PRFP4wH
-1923	1	QB	2001-06-09	\N	\N	f	1	671	session_F4zgv17P
-1924	2	R	2001-06-24	\N	\N	f	14	672	session_Tdtj9pQT
-1925	1	QB	2001-06-23	\N	\N	f	1	672	session_FqFliSpK
-1926	2	R	2001-07-01	\N	\N	f	14	673	session_nQX5r3Zi
-1927	1	QB	2001-06-30	\N	\N	f	1	673	session_O1LOrqil
-1928	2	R	2001-07-15	\N	\N	f	14	674	session_o18XjPFR
-1929	1	QB	2001-07-14	\N	\N	f	1	674	session_WdUCRRxB
-1930	2	R	2001-07-29	\N	\N	f	14	675	session_6xCABKTM
-1931	1	QB	2001-07-28	\N	\N	f	1	675	session_wvuqlPus
-1932	2	R	2001-08-19	\N	\N	f	14	676	session_vg3sep2i
-1933	1	QB	2001-08-18	\N	\N	f	1	676	session_PDeYuEmN
-1934	2	R	2001-09-02	\N	\N	f	14	677	session_zTAApkak
-1935	1	QB	2001-09-01	\N	\N	f	1	677	session_zfrDuzSQ
-1936	2	R	2001-09-16	\N	\N	f	14	678	session_22Qg69JM
-1937	1	QB	2001-09-15	\N	\N	f	1	678	session_HXTR7oGT
-1938	2	R	2001-09-30	\N	\N	f	14	679	session_Rzf7I7tY
-1939	1	QB	2001-09-29	\N	\N	f	1	679	session_KaFRisFS
-1940	2	R	2001-10-14	\N	\N	f	14	680	session_G7PMCFf8
-1941	1	QB	2001-10-13	\N	\N	f	1	680	session_MUPERFXi
-1942	2	R	2002-03-03	\N	\N	f	14	681	session_fY8leThy
-1943	1	QB	2002-03-02	\N	\N	f	1	681	session_SNU4MusV
-1944	2	R	2002-03-17	\N	\N	f	14	682	session_rdDyvgQR
-1945	1	QB	2002-03-16	\N	\N	f	1	682	session_ac7F4Jfz
-1946	2	R	2002-03-31	\N	\N	f	14	683	session_ICSOREGh
-1947	1	QB	2002-03-30	\N	\N	f	1	683	session_WS3CbkGL
-1948	2	R	2002-04-14	\N	\N	f	14	684	session_JNdA3m48
-1949	1	QB	2002-04-13	\N	\N	f	1	684	session_6f6HybNl
-1950	2	R	2002-04-28	\N	\N	f	14	685	session_9ADnEfJ6
-1951	1	QB	2002-04-27	\N	\N	f	1	685	session_3vhD9EuD
-1952	2	R	2002-05-12	\N	\N	f	14	686	session_VaufhC6d
-1953	1	QB	2002-05-11	\N	\N	f	1	686	session_9P2vILey
-1954	2	R	2002-05-26	\N	\N	f	14	687	session_LWiw4QMB
-1955	1	QB	2002-05-25	\N	\N	f	1	687	session_ecu9EBk0
-1956	2	R	2002-06-09	\N	\N	f	14	688	session_5VVxqJPw
-1957	1	QB	2002-06-08	\N	\N	f	1	688	session_L3ufigYm
-1958	2	R	2002-06-23	\N	\N	f	14	689	session_U0b7Rqhv
-1959	1	QB	2002-06-22	\N	\N	f	1	689	session_pLVA7zf6
-1960	2	R	2002-07-07	\N	\N	f	14	690	session_8LcvRgVA
-1961	1	QB	2002-07-06	\N	\N	f	1	690	session_O3IPHLr4
-1962	2	R	2002-07-21	\N	\N	f	14	691	session_NunKHJVN
-1963	1	QB	2002-07-20	\N	\N	f	1	691	session_IGK54ZtO
-1964	2	R	2002-07-28	\N	\N	f	14	692	session_Mrf3HoZU
-1965	1	QB	2002-07-27	\N	\N	f	1	692	session_JQt4qlci
-1966	2	R	2002-08-18	\N	\N	f	14	693	session_eNUXS8PA
-1967	1	QB	2002-08-17	\N	\N	f	1	693	session_JGwLH94V
-1968	2	R	2002-09-01	\N	\N	f	14	694	session_RcbNhfY2
-1969	1	QB	2002-08-31	\N	\N	f	1	694	session_wnxdQxUp
-1970	2	R	2002-09-15	\N	\N	f	14	695	session_6JNddb7L
-1971	1	QB	2002-09-14	\N	\N	f	1	695	session_NzCRAdK4
-1972	2	R	2002-09-29	\N	\N	f	14	696	session_P4MVftfk
-1973	1	QB	2002-09-28	\N	\N	f	1	696	session_AksyObAm
-1974	2	R	2002-10-13	\N	\N	f	14	697	session_TpTEJ3wt
-1975	1	QB	2002-10-12	\N	\N	f	1	697	session_MMAc0U5Z
-1976	3	R	2003-03-09	\N	\N	f	15	698	session_f10xoiZC
-1977	1	QO	2003-03-07	\N	\N	f	1	698	session_ucLZSQnv
-1978	2	QB	2003-03-08	\N	\N	f	1	698	session_uuGw9Bqs
-1979	3	R	2003-03-23	\N	\N	f	15	699	session_nQKHw8Ub
-1980	1	QO	2003-03-21	\N	\N	f	1	699	session_AKVhIj18
-1981	2	QB	2003-03-22	\N	\N	f	1	699	session_En4J0Rth
-1982	3	R	2003-04-06	\N	\N	f	15	700	session_yW81YaSj
-1983	1	QO	2003-04-04	\N	\N	f	1	700	session_1qeFBoRM
-1984	2	QB	2003-04-05	\N	\N	f	1	700	session_FKBIhbpq
-1985	3	R	2003-04-20	\N	\N	f	15	701	session_scf1IZTd
-1986	1	QO	2003-04-18	\N	\N	f	1	701	session_a93XT8GE
-1987	2	QB	2003-04-19	\N	\N	f	1	701	session_95xbAY4V
-1988	3	R	2003-05-04	\N	\N	f	15	702	session_o6dpETv0
-1989	1	QO	2003-05-02	\N	\N	f	1	702	session_Nd5KhohG
-1990	2	QB	2003-05-03	\N	\N	f	1	702	session_vr4DU7Vd
-1991	3	R	2003-05-18	\N	\N	f	15	703	session_tDqKcxvC
-1992	1	QO	2003-05-16	\N	\N	f	1	703	session_yHIFOFJ4
-1993	2	QB	2003-05-17	\N	\N	f	1	703	session_MPKaN5or
-1994	3	R	2003-06-01	\N	\N	f	15	704	session_rVWucEOS
-1995	1	QO	2003-05-29	\N	\N	f	1	704	session_mtJDpw45
-1996	2	QB	2003-05-31	\N	\N	f	1	704	session_QPT8Bub5
-1997	3	R	2003-06-15	\N	\N	f	15	705	session_cAm15bj9
-1998	1	QO	2003-06-13	\N	\N	f	1	705	session_5P37IMtb
-1999	2	QB	2003-06-14	\N	\N	f	1	705	session_mCi3XdTi
-2000	3	R	2003-06-29	\N	\N	f	15	706	session_RmP9hKbT
-2001	1	QO	2003-06-27	\N	\N	f	1	706	session_5WgnudUk
-2002	2	QB	2003-06-28	\N	\N	f	1	706	session_7wFKA1Jg
-2003	3	R	2003-07-06	\N	\N	f	15	707	session_eiSjCIYP
-2004	1	QO	2003-07-04	\N	\N	f	1	707	session_pbvqkXxF
-2005	2	QB	2003-07-05	\N	\N	f	1	707	session_mTgRUc3g
-2006	3	R	2003-07-20	\N	\N	f	15	708	session_QUupedLB
-2007	1	QO	2003-07-18	\N	\N	f	1	708	session_B9GF8ohV
-2008	2	QB	2003-07-19	\N	\N	f	1	708	session_XNMhlSgL
-2009	3	R	2003-08-03	\N	\N	f	15	709	session_1FgdZxBB
-2010	1	QO	2003-08-01	\N	\N	f	1	709	session_K3uWK0fx
-2011	2	QB	2003-08-02	\N	\N	f	1	709	session_3KENy7vY
-2012	3	R	2003-08-24	\N	\N	f	15	710	session_iFuTkkrA
-2013	1	QO	2003-08-22	\N	\N	f	1	710	session_EojorlU8
-2014	2	QB	2003-08-23	\N	\N	f	1	710	session_ZghxHVFT
-2015	3	R	2003-09-14	\N	\N	f	15	711	session_4YfsBsEz
-2016	1	QO	2003-09-12	\N	\N	f	1	711	session_x2kTFTi4
-2017	2	QB	2003-09-13	\N	\N	f	1	711	session_1adlscko
-2018	3	R	2003-09-28	\N	\N	f	15	712	session_QaIATWWQ
-2019	1	QO	2003-09-26	\N	\N	f	1	712	session_BBNmC8Xj
-2020	2	QB	2003-09-27	\N	\N	f	1	712	session_MA60JP8q
-2021	3	R	2003-10-12	\N	\N	f	15	713	session_SjSc4bI5
-2022	1	QO	2003-10-10	\N	\N	f	1	713	session_M4CH3MFF
-2023	2	QB	2003-10-11	\N	\N	f	1	713	session_rhR0PfuM
-2024	3	R	2004-03-07	\N	\N	f	15	714	session_A0bB2u3i
-2025	1	QO	2004-03-06	\N	\N	f	1	714	session_cXqXVuAT
-2026	2	QB	2004-03-06	\N	\N	f	1	714	session_M1umFWeG
-2027	3	R	2004-03-21	\N	\N	f	15	715	session_xXYVKyf8
-2028	1	QO	2004-03-20	\N	\N	f	1	715	session_h7CVyklM
-2029	2	QB	2004-03-20	\N	\N	f	1	715	session_wxPrMlmi
-2030	3	R	2004-04-04	\N	\N	f	15	716	session_tBmEaUCC
-2031	1	QO	2004-04-03	\N	\N	f	1	716	session_HfcJvpiy
-2032	2	QB	2004-04-03	\N	\N	f	1	716	session_Y4PeXXs2
-2033	3	R	2004-04-25	\N	\N	f	15	717	session_vN7emHhp
-2034	1	QO	2004-04-24	\N	\N	f	1	717	session_tSJuPI7Y
-2035	2	QB	2004-04-24	\N	\N	f	1	717	session_jCVYtGH1
-2036	3	R	2004-05-09	\N	\N	f	15	718	session_jIRVDiH2
-2037	1	QO	2004-05-08	\N	\N	f	1	718	session_lJ0T0pBU
-2038	2	QB	2004-05-08	\N	\N	f	1	718	session_tObpTTD5
-2039	3	R	2004-05-23	\N	\N	f	15	719	session_A5PiUOFj
-2040	1	QO	2004-05-22	\N	\N	f	1	719	session_c3bFeykm
-2041	2	QB	2004-05-22	\N	\N	f	1	719	session_rX5noDaq
-2042	3	R	2004-05-30	\N	\N	f	15	720	session_QpoFsC4d
-2043	1	QO	2004-05-29	\N	\N	f	1	720	session_oWSHyukg
-2044	2	QB	2004-05-29	\N	\N	f	1	720	session_oZsdkizM
-2045	3	R	2004-06-13	\N	\N	f	15	721	session_ulcccaLQ
-2046	1	QO	2004-06-12	\N	\N	f	1	721	session_33byIRXK
-2047	2	QB	2004-06-12	\N	\N	f	1	721	session_5dhWZdqE
-2048	3	R	2004-06-20	\N	\N	f	15	722	session_alLrF25X
-2049	1	QO	2004-06-19	\N	\N	f	1	722	session_siUzxrLk
-2050	2	QB	2004-06-19	\N	\N	f	1	722	session_kf0186IN
-2051	3	R	2004-07-04	\N	\N	f	15	723	session_k7wa5nJL
-2052	1	QO	2004-07-03	\N	\N	f	1	723	session_leml563c
-2053	2	QB	2004-07-03	\N	\N	f	1	723	session_hr7V82nc
-2054	3	R	2004-07-11	\N	\N	f	15	724	session_68uPa2sj
-2055	1	QO	2004-07-10	\N	\N	f	1	724	session_sL7HSnsX
-2056	2	QB	2004-07-10	\N	\N	f	1	724	session_jtpR4lLe
-2057	3	R	2004-07-25	\N	\N	f	15	725	session_4FaPA1Ge
-2058	1	QO	2004-07-24	\N	\N	f	1	725	session_Dt73m07d
-2059	2	QB	2004-07-24	\N	\N	f	1	725	session_w68CPLgZ
-2060	3	R	2004-08-15	\N	\N	f	15	726	session_qghb7Kxg
-2061	1	QO	2004-08-14	\N	\N	f	1	726	session_F1j0CMMm
-2062	2	QB	2004-08-14	\N	\N	f	1	726	session_hgQcZv01
-2063	3	R	2004-08-29	\N	\N	f	15	727	session_iYEgKldp
-2064	1	QO	2004-08-28	\N	\N	f	1	727	session_kEV4NluC
-2065	2	QB	2004-08-28	\N	\N	f	1	727	session_xyYDNQ0u
-2066	3	R	2004-09-12	\N	\N	f	15	728	session_GKUMMgem
-2067	1	QO	2004-09-11	\N	\N	f	1	728	session_qrjGY4cD
-2068	2	QB	2004-09-11	\N	\N	f	1	728	session_gZxJl7fO
-2069	3	R	2004-09-26	\N	\N	f	15	729	session_wAhhfOGU
-2070	1	QO	2004-09-25	\N	\N	f	1	729	session_wxPNEFvD
-2071	2	QB	2004-09-25	\N	\N	f	1	729	session_LljkGUHR
-2072	3	R	2004-10-10	\N	\N	f	15	730	session_HloZWbS3
-2073	1	QO	2004-10-09	\N	\N	f	1	730	session_Y70mG4xt
-2074	2	QB	2004-10-09	\N	\N	f	1	730	session_Fh9YsIVr
-2075	3	R	2004-10-24	\N	\N	f	15	731	session_0wbgat1j
-2076	1	QO	2004-10-23	\N	\N	f	1	731	session_OmyEoY99
-2077	2	QB	2004-10-23	\N	\N	f	1	731	session_BhuwjnJX
-2078	2	R	2005-03-06	14:00:00	\N	f	15	732	session_MoldpPWx
-2079	1	QA	2005-03-05	\N	\N	f	1	732	session_PqQ9Q2tn
-2080	3	QA	2005-03-06	\N	\N	f	1	732	session_VQ2fMZZ0
-2081	2	R	2005-03-20	15:00:00	\N	f	15	733	session_yLKBv7Ng
-2082	1	QA	2005-03-19	\N	\N	f	1	733	session_UfTuy6LB
-2083	3	QA	2005-03-20	\N	\N	f	1	733	session_a7rkoWJk
-2084	2	R	2005-04-03	14:30:00	\N	f	15	734	session_Ay0MTviJ
-2085	1	QA	2005-04-02	\N	\N	f	1	734	session_WXaevU2J
-2086	3	QA	2005-04-03	\N	\N	f	1	734	session_yQ3WQjj2
-2087	2	R	2005-04-24	14:00:00	\N	f	15	735	session_f8YgTagq
-2088	1	QA	2005-04-23	\N	\N	f	1	735	session_aXfo6tEV
-2089	3	QA	2005-04-24	\N	\N	f	1	735	session_rM0jTPRe
-2090	2	R	2005-05-08	14:00:00	\N	f	15	736	session_i56sLAFT
-2091	1	QA	2005-05-07	\N	\N	f	1	736	session_DIuYJ1J6
-2092	3	QA	2005-05-08	\N	\N	f	1	736	session_Q40eR6EE
-2093	2	R	2005-05-22	14:00:00	\N	f	15	737	session_FfiVRL6r
-2094	1	QA	2005-05-21	\N	\N	f	1	737	session_UDIOd3cJ
-2095	3	QA	2005-05-22	\N	\N	f	1	737	session_SEaJD9vM
-2096	2	R	2005-05-29	14:00:00	\N	f	15	738	session_n2m9kCnY
-2097	1	QB	2005-05-28	\N	\N	f	1	738	session_pdVW5OtO
-2098	2	R	2005-06-12	13:00:00	\N	f	15	739	session_QNpteLlU
-2099	1	QB	2005-06-11	\N	\N	f	1	739	session_H25vKou5
-2100	2	R	2005-06-19	14:00:00	\N	f	15	740	session_SzkuvZwO
-2101	1	QB	2005-06-18	\N	\N	f	1	740	session_50Zw91pC
-2102	2	R	2005-07-03	14:00:00	\N	f	15	741	session_MNJe6Oha
-2103	1	QB	2005-07-02	\N	\N	f	1	741	session_3EvHVZTX
-2104	2	R	2005-07-10	14:00:00	\N	f	15	742	session_cF1laKeX
-2105	1	QB	2005-07-09	\N	\N	f	1	742	session_O6Qmfnsv
-2106	2	R	2005-07-24	14:00:00	\N	f	15	743	session_QxiS4FpS
-2107	1	QB	2005-07-23	\N	\N	f	1	743	session_Viy6f7cI
-2108	2	R	2005-07-31	14:00:00	\N	f	15	744	session_HI0bNL5b
-2109	1	QB	2005-07-30	\N	\N	f	1	744	session_iBAKQlz5
-2110	2	R	2005-08-21	15:00:00	\N	f	15	745	session_GvecgpSU
-2111	1	QB	2005-08-20	\N	\N	f	1	745	session_1YYYK7mA
-2112	2	R	2005-09-04	14:00:00	\N	f	15	746	session_yZBBskbS
-2113	1	QB	2005-09-03	\N	\N	f	1	746	session_26QDATwh
-2114	2	R	2005-09-11	14:00:00	\N	f	15	747	session_EKzhBwxf
-2115	1	QB	2005-09-10	\N	\N	f	1	747	session_DgFNzdOI
-2116	2	R	2005-09-25	14:00:00	\N	f	15	748	session_piv9a2ob
-2117	1	QB	2005-09-24	\N	\N	f	1	748	session_LHU5NJRa
-2118	2	R	2005-10-09	14:00:00	\N	f	15	749	session_YKSVzaML
-2119	1	QB	2005-10-08	\N	\N	f	1	749	session_VZbP06Zm
-2120	2	R	2005-10-16	14:00:00	\N	f	15	750	session_OanKLaoD
-2121	1	QB	2005-10-15	\N	\N	f	1	750	session_gXRT3Y78
-2122	7	R	2006-03-12	14:30:00	\N	f	15	751	session_uiMAf6DB
-2123	3	Q1	2006-03-11	\N	\N	f	1	751	session_Uv7plpwB
-2124	4	Q2	2006-03-11	\N	\N	f	1	751	session_V8XS5iDy
-2125	5	Q3	2006-03-11	\N	\N	f	1	751	session_EEfKkotM
-2126	1	FP1	2006-03-10	\N	\N	f	1	751	session_kAVVAXJd
-2127	2	FP2	2006-03-10	\N	\N	f	1	751	session_WH35YkWd
-2128	6	FP3	2006-03-11	\N	\N	f	1	751	session_cpUHespL
-2129	7	R	2006-03-19	15:00:00	\N	f	15	752	session_CbWQ6v6N
-2130	3	Q1	2006-03-18	\N	\N	f	1	752	session_B4BMU5lE
-2131	4	Q2	2006-03-18	\N	\N	f	1	752	session_mNY8Wn4p
-2132	5	Q3	2006-03-18	\N	\N	f	1	752	session_qJvISWLU
-2133	1	FP1	2006-03-17	\N	\N	f	1	752	session_5vqzo1LD
-2134	2	FP2	2006-03-17	\N	\N	f	1	752	session_VD4qzcl0
-2135	6	FP3	2006-03-18	\N	\N	f	1	752	session_kJXiLXjV
-2136	7	R	2006-04-02	14:00:00	\N	f	15	753	session_aY7MsNLE
-2137	3	Q1	2006-04-01	\N	\N	f	1	753	session_js5Cp2qq
-2138	4	Q2	2006-04-01	\N	\N	f	1	753	session_xA4h61Kh
-2139	5	Q3	2006-04-01	\N	\N	f	1	753	session_RJr6lPC7
-2140	1	FP1	2006-03-31	\N	\N	f	1	753	session_viTEa4fQ
-2141	2	FP2	2006-03-31	\N	\N	f	1	753	session_XjC28zdo
-2142	6	FP3	2006-04-01	\N	\N	f	1	753	session_PPOfDzZt
-2143	7	R	2006-04-23	14:00:00	\N	f	15	754	session_gihoFUYO
-2144	3	Q1	2006-04-22	\N	\N	f	1	754	session_qxxgSrQV
-2145	4	Q2	2006-04-22	\N	\N	f	1	754	session_FrXB5JcG
-2146	5	Q3	2006-04-22	\N	\N	f	1	754	session_8Jtq3Ver
-2147	1	FP1	2006-04-21	\N	\N	f	1	754	session_DY4VbNga
-2148	2	FP2	2006-04-21	\N	\N	f	1	754	session_gKLCvRJ3
-2149	6	FP3	2006-04-22	\N	\N	f	1	754	session_5hoKvx27
-2150	7	R	2006-05-07	14:00:00	\N	f	15	755	session_N7zTV7UM
-2151	3	Q1	2006-05-06	\N	\N	f	1	755	session_HXzqHUVb
-2152	4	Q2	2006-05-06	\N	\N	f	1	755	session_r7wD1uwr
-2153	5	Q3	2006-05-06	\N	\N	f	1	755	session_RR0JccQp
-2154	1	FP1	2006-05-05	\N	\N	f	1	755	session_HOk1ciYf
-2155	2	FP2	2006-05-05	\N	\N	f	1	755	session_7HqOns6w
-2156	6	FP3	2006-05-06	\N	\N	f	1	755	session_ab0eZ338
-2157	7	R	2006-05-14	14:00:00	\N	f	15	756	session_L99Qlhd2
-2158	3	Q1	2006-05-13	\N	\N	f	1	756	session_NKlTmY9q
-2159	4	Q2	2006-05-13	\N	\N	f	1	756	session_GZkplGj0
-2160	5	Q3	2006-05-13	\N	\N	f	1	756	session_oFMbNvx6
-2161	1	FP1	2006-05-12	\N	\N	f	1	756	session_XhKa2j5V
-2162	2	FP2	2006-05-12	\N	\N	f	1	756	session_MK6MrQuM
-2163	6	FP3	2006-05-13	\N	\N	f	1	756	session_kbI2e9Y0
-2164	7	R	2006-05-28	14:00:00	\N	f	15	757	session_sArdYxe9
-2165	3	Q1	2006-05-27	\N	\N	f	1	757	session_ii0S6c8Y
-2166	4	Q2	2006-05-27	\N	\N	f	1	757	session_omq4SfZx
-2167	5	Q3	2006-05-27	\N	\N	f	1	757	session_eaTRsGVL
-2168	1	FP1	2006-05-25	\N	\N	f	1	757	session_tkKtnODN
-2169	2	FP2	2006-05-25	\N	\N	f	1	757	session_TdAJUcuv
-2170	6	FP3	2006-05-27	\N	\N	f	1	757	session_IedYZvzS
-2171	7	R	2006-06-11	12:00:00	\N	f	15	758	session_4zXjUWli
-2172	3	Q1	2006-06-10	\N	\N	f	1	758	session_nefPpWrV
-2173	4	Q2	2006-06-10	\N	\N	f	1	758	session_CiCm2nQu
-2174	5	Q3	2006-06-10	\N	\N	f	1	758	session_OFvt5PhZ
-2175	1	FP1	2006-06-09	\N	\N	f	1	758	session_Npq7vAWw
-2176	2	FP2	2006-06-09	\N	\N	f	1	758	session_1ODizjwY
-2177	6	FP3	2006-06-10	\N	\N	f	1	758	session_gzGIUgTp
-2178	7	R	2006-06-25	13:00:00	\N	f	15	759	session_fTeLqYLb
-2179	3	Q1	2006-06-24	\N	\N	f	1	759	session_uNKChrma
-2180	4	Q2	2006-06-24	\N	\N	f	1	759	session_SWHGkrlv
-2181	5	Q3	2006-06-24	\N	\N	f	1	759	session_yCS5kbkQ
-2182	1	FP1	2006-06-23	\N	\N	f	1	759	session_lvPlYwhZ
-2183	2	FP2	2006-06-23	\N	\N	f	1	759	session_Eai3jnYi
-2184	6	FP3	2006-06-24	\N	\N	f	1	759	session_9HxG8Ykh
-2185	7	R	2006-07-02	14:00:00	\N	f	15	760	session_o01PUzz5
-2186	3	Q1	2006-07-01	\N	\N	f	1	760	session_N8KQYxYj
-2187	4	Q2	2006-07-01	\N	\N	f	1	760	session_5gGwz2RZ
-2188	5	Q3	2006-07-01	\N	\N	f	1	760	session_8BFFo1oC
-2189	1	FP1	2006-06-30	\N	\N	f	1	760	session_sZSDZI2K
-2190	2	FP2	2006-06-30	\N	\N	f	1	760	session_KXoszzxY
-2191	6	FP3	2006-07-01	\N	\N	f	1	760	session_GGObY2ZR
-2192	7	R	2006-07-16	14:00:00	\N	f	15	761	session_MimVI9Hq
-2193	3	Q1	2006-07-15	\N	\N	f	1	761	session_pk2sjlBH
-2194	4	Q2	2006-07-15	\N	\N	f	1	761	session_0Cmx2jap
-2195	5	Q3	2006-07-15	\N	\N	f	1	761	session_WAzfbJgz
-2196	1	FP1	2006-07-14	\N	\N	f	1	761	session_L1LHaG6i
-2197	2	FP2	2006-07-14	\N	\N	f	1	761	session_AlNMzigL
-2198	6	FP3	2006-07-15	\N	\N	f	1	761	session_b78GWVwE
-2199	7	R	2006-07-30	14:00:00	\N	f	15	762	session_MjMe5Fyd
-2200	3	Q1	2006-07-29	\N	\N	f	1	762	session_hZLjUPJB
-2201	4	Q2	2006-07-29	\N	\N	f	1	762	session_CoOSrU9o
-2202	5	Q3	2006-07-29	\N	\N	f	1	762	session_nnU5gP96
-2203	1	FP1	2006-07-28	\N	\N	f	1	762	session_kED32gFN
-2204	2	FP2	2006-07-28	\N	\N	f	1	762	session_NhaeyFRJ
-2205	6	FP3	2006-07-29	\N	\N	f	1	762	session_yHlkQJyq
-2206	7	R	2006-08-06	14:00:00	\N	f	15	763	session_hz4dz3pG
-2207	3	Q1	2006-08-05	\N	\N	f	1	763	session_oqshJoTI
-2208	4	Q2	2006-08-05	\N	\N	f	1	763	session_RHfayxkT
-2209	5	Q3	2006-08-05	\N	\N	f	1	763	session_lqgrYUwS
-2210	1	FP1	2006-08-04	\N	\N	f	1	763	session_tjHvkotj
-2211	2	FP2	2006-08-04	\N	\N	f	1	763	session_nQeixsfe
-2212	6	FP3	2006-08-05	\N	\N	f	1	763	session_vcgP3MNj
-2213	7	R	2006-08-27	15:00:00	\N	f	15	764	session_8vVtd49j
-2214	3	Q1	2006-08-26	\N	\N	f	1	764	session_iNjs4JIu
-2215	4	Q2	2006-08-26	\N	\N	f	1	764	session_SeMGNrUP
-2216	5	Q3	2006-08-26	\N	\N	f	1	764	session_CpsQBrP2
-2217	1	FP1	2006-08-25	\N	\N	f	1	764	session_uRzcSy8H
-2218	2	FP2	2006-08-25	\N	\N	f	1	764	session_1JVTrQrJ
-2219	6	FP3	2006-08-26	\N	\N	f	1	764	session_yCO06m27
-2220	7	R	2006-09-10	14:00:00	\N	f	15	765	session_pvV3WXCZ
-2221	3	Q1	2006-09-09	\N	\N	f	1	765	session_5raQhIGe
-2222	4	Q2	2006-09-09	\N	\N	f	1	765	session_Z73heYyq
-2223	5	Q3	2006-09-09	\N	\N	f	1	765	session_Qn5q31lf
-2224	1	FP1	2006-09-08	\N	\N	f	1	765	session_6cJ90OAs
-2225	2	FP2	2006-09-08	\N	\N	f	1	765	session_z23PQTba
-2226	6	FP3	2006-09-09	\N	\N	f	1	765	session_Z57uFPv4
-2227	7	R	2006-10-01	14:00:00	\N	f	15	766	session_4ZidR33N
-2228	3	Q1	2006-09-30	\N	\N	f	1	766	session_S0bq5NLG
-2229	4	Q2	2006-09-30	\N	\N	f	1	766	session_cOh6EWUj
-2230	5	Q3	2006-09-30	\N	\N	f	1	766	session_ruRk1EjJ
-2231	1	FP1	2006-09-29	\N	\N	f	1	766	session_jVWF0fnx
-2232	2	FP2	2006-09-29	\N	\N	f	1	766	session_T8rsLWel
-2233	6	FP3	2006-09-30	\N	\N	f	1	766	session_iuPKElT8
-2234	7	R	2006-10-08	14:00:00	\N	f	15	767	session_5Hp7ITJD
-2235	3	Q1	2006-10-07	\N	\N	f	1	767	session_a4dNYLFp
-2236	4	Q2	2006-10-07	\N	\N	f	1	767	session_a0xL5Fz3
-2237	5	Q3	2006-10-07	\N	\N	f	1	767	session_vqrfIeNa
-2238	1	FP1	2006-10-06	\N	\N	f	1	767	session_rvwZA2R4
-2239	2	FP2	2006-10-06	\N	\N	f	1	767	session_2vkL5RzN
-2240	6	FP3	2006-10-07	\N	\N	f	1	767	session_EVXAFI4d
-2241	7	R	2006-10-22	14:00:00	\N	f	15	768	session_rL0ampea
-2242	3	Q1	2006-10-21	\N	\N	f	1	768	session_BPp1AwEW
-2243	4	Q2	2006-10-21	\N	\N	f	1	768	session_x8SOiBbv
-2244	5	Q3	2006-10-21	\N	\N	f	1	768	session_c6KnVSse
-2245	1	FP1	2006-10-20	\N	\N	f	1	768	session_TuZUNdsL
-2246	2	FP2	2006-10-20	\N	\N	f	1	768	session_v2srCYYu
-2247	6	FP3	2006-10-21	\N	\N	f	1	768	session_xbnfiAyX
-2248	7	R	2007-03-18	03:00:00	\N	f	15	769	session_7xUOuUv7
-2249	3	Q1	2007-03-17	\N	\N	f	1	769	session_jFL3hkKT
-2250	4	Q2	2007-03-17	\N	\N	f	1	769	session_D2UJJBK1
-2251	5	Q3	2007-03-17	\N	\N	f	1	769	session_ITXHhass
-2252	1	FP1	2007-03-16	\N	\N	f	1	769	session_MiMmgv1g
-2253	2	FP2	2007-03-16	\N	\N	f	1	769	session_UJ5UY44d
-2254	6	FP3	2007-03-17	\N	\N	f	1	769	session_qB8fAQVO
-2255	7	R	2007-04-08	07:00:00	\N	f	15	770	session_DTJqB1c5
-2256	3	Q1	2007-04-07	\N	\N	f	1	770	session_K6wLWXYe
-2257	4	Q2	2007-04-07	\N	\N	f	1	770	session_dmOMxvMf
-2258	5	Q3	2007-04-07	\N	\N	f	1	770	session_boYPwfq2
-2259	1	FP1	2007-04-06	\N	\N	f	1	770	session_fPmnOfoP
-2260	2	FP2	2007-04-06	\N	\N	f	1	770	session_m2tOBYBO
-2261	6	FP3	2007-04-07	\N	\N	f	1	770	session_zjYfZALm
-2262	7	R	2007-04-15	11:30:00	\N	f	15	771	session_cTTrizeg
-2263	3	Q1	2007-04-14	\N	\N	f	1	771	session_haYD6a6d
-2264	4	Q2	2007-04-14	\N	\N	f	1	771	session_VJ5pI0QK
-2265	5	Q3	2007-04-14	\N	\N	f	1	771	session_BDHfHtep
-2266	1	FP1	2007-04-13	\N	\N	f	1	771	session_UKZN34MD
-2267	2	FP2	2007-04-13	\N	\N	f	1	771	session_rldDlu2Y
-2268	6	FP3	2007-04-14	\N	\N	f	1	771	session_bkeumw72
-2269	7	R	2007-05-13	12:00:00	\N	f	15	772	session_R0Jek3qI
-2270	3	Q1	2007-05-12	\N	\N	f	1	772	session_McxfuGrw
-2271	4	Q2	2007-05-12	\N	\N	f	1	772	session_Y1UaZz6s
-2272	5	Q3	2007-05-12	\N	\N	f	1	772	session_mMdSlOrI
-2273	1	FP1	2007-05-11	\N	\N	f	1	772	session_8Jjvp2hQ
-2274	2	FP2	2007-05-11	\N	\N	f	1	772	session_IzIumjw5
-2275	6	FP3	2007-05-12	\N	\N	f	1	772	session_dlX1bfX1
-2276	7	R	2007-05-27	12:00:00	\N	f	15	773	session_E4oUkwev
-2277	3	Q1	2007-05-26	\N	\N	f	1	773	session_JeB8BYOr
-2278	4	Q2	2007-05-26	\N	\N	f	1	773	session_NQV65lIT
-2279	5	Q3	2007-05-26	\N	\N	f	1	773	session_bNH6PYky
-2280	1	FP1	2007-05-24	\N	\N	f	1	773	session_5om0WUpK
-2281	2	FP2	2007-05-24	\N	\N	f	1	773	session_pSdZ46Oy
-2282	6	FP3	2007-05-26	\N	\N	f	1	773	session_5p6uDk80
-2283	7	R	2007-06-10	17:00:00	\N	f	15	774	session_cdtc8xLj
-2284	3	Q1	2007-06-09	\N	\N	f	1	774	session_TPZOqMNR
-2285	4	Q2	2007-06-09	\N	\N	f	1	774	session_JlcTGbPp
-2286	5	Q3	2007-06-09	\N	\N	f	1	774	session_trYGBdVg
-2287	1	FP1	2007-06-08	\N	\N	f	1	774	session_f44IENZe
-2288	2	FP2	2007-06-08	\N	\N	f	1	774	session_iT695JoQ
-2289	6	FP3	2007-06-09	\N	\N	f	1	774	session_3EqMhcc2
-2290	7	R	2007-06-17	17:00:00	\N	f	15	775	session_CTU7KNb4
-2291	3	Q1	2007-06-16	\N	\N	f	1	775	session_LAV5Vm7o
-2292	4	Q2	2007-06-16	\N	\N	f	1	775	session_SSu8DLpT
-2293	5	Q3	2007-06-16	\N	\N	f	1	775	session_R9kmA2yY
-2294	1	FP1	2007-06-15	\N	\N	f	1	775	session_OX9SyzAm
-2295	2	FP2	2007-06-15	\N	\N	f	1	775	session_DcthZXTh
-2296	6	FP3	2007-06-16	\N	\N	f	1	775	session_atj6zo87
-2297	7	R	2007-07-01	12:00:00	\N	f	15	776	session_VzEf09Q0
-2298	3	Q1	2007-06-30	\N	\N	f	1	776	session_6IdOlNGW
-2299	4	Q2	2007-06-30	\N	\N	f	1	776	session_6IFCkY43
-2300	5	Q3	2007-06-30	\N	\N	f	1	776	session_jmcZk77v
-2301	1	FP1	2007-06-29	\N	\N	f	1	776	session_uopbGsrt
-2302	2	FP2	2007-06-29	\N	\N	f	1	776	session_jV3oyCQo
-2303	6	FP3	2007-06-30	\N	\N	f	1	776	session_TsZVlOUF
-2304	7	R	2007-07-08	12:00:00	\N	f	15	777	session_NorNsL6n
-2305	3	Q1	2007-07-07	\N	\N	f	1	777	session_EtRwaj3w
-2306	4	Q2	2007-07-07	\N	\N	f	1	777	session_bhYtNeXH
-2307	5	Q3	2007-07-07	\N	\N	f	1	777	session_xfA5R5B8
-2308	1	FP1	2007-07-06	\N	\N	f	1	777	session_rlYNRj4Y
-2309	2	FP2	2007-07-06	\N	\N	f	1	777	session_wUARKcC3
-2310	6	FP3	2007-07-07	\N	\N	f	1	777	session_NBMVHtgU
-2311	7	R	2007-07-22	12:00:00	\N	f	15	778	session_lqzjD07r
-2312	3	Q1	2007-07-21	\N	\N	f	1	778	session_ACUdOvMY
-2313	4	Q2	2007-07-21	\N	\N	f	1	778	session_l4xJDoff
-2314	5	Q3	2007-07-21	\N	\N	f	1	778	session_z6SStXRP
-2315	1	FP1	2007-07-20	\N	\N	f	1	778	session_j5sXtRZU
-2316	2	FP2	2007-07-20	\N	\N	f	1	778	session_RNOky4cb
-2317	6	FP3	2007-07-21	\N	\N	f	1	778	session_ACrJfcJf
-2318	7	R	2007-08-05	12:00:00	\N	f	15	779	session_ER7l69Vj
-2319	3	Q1	2007-08-04	\N	\N	f	1	779	session_DgoLxYJa
-2320	4	Q2	2007-08-04	\N	\N	f	1	779	session_WhnZEp6P
-2321	5	Q3	2007-08-04	\N	\N	f	1	779	session_JXtmL9EI
-2322	1	FP1	2007-08-03	\N	\N	f	1	779	session_oBJ2sp12
-2323	2	FP2	2007-08-03	\N	\N	f	1	779	session_9auKCE4f
-2324	6	FP3	2007-08-04	\N	\N	f	1	779	session_dpNwAlhd
-2325	7	R	2007-08-26	12:00:00	\N	f	15	780	session_X6cVnN4C
-2326	3	Q1	2007-08-25	\N	\N	f	1	780	session_emjifx4o
-2327	4	Q2	2007-08-25	\N	\N	f	1	780	session_VqkD4kJM
-2328	5	Q3	2007-08-25	\N	\N	f	1	780	session_EQiLrhpq
-2329	1	FP1	2007-08-24	\N	\N	f	1	780	session_Vs5yk7vJ
-2330	2	FP2	2007-08-24	\N	\N	f	1	780	session_tQTaWvft
-2331	6	FP3	2007-08-25	\N	\N	f	1	780	session_BQC2Jx5o
-2332	7	R	2007-09-09	12:00:00	\N	f	15	781	session_IlRXZWPE
-2333	3	Q1	2007-09-08	\N	\N	f	1	781	session_lU7qobvt
-2334	4	Q2	2007-09-08	\N	\N	f	1	781	session_WstupfDY
-2335	5	Q3	2007-09-08	\N	\N	f	1	781	session_nclqE42J
-2336	1	FP1	2007-09-07	\N	\N	f	1	781	session_Zr45O0t8
-2337	2	FP2	2007-09-07	\N	\N	f	1	781	session_CO8endhx
-2338	6	FP3	2007-09-08	\N	\N	f	1	781	session_mWNXDjJK
-2339	7	R	2007-09-16	12:00:00	\N	f	15	782	session_2TmsOJKl
-2340	3	Q1	2007-09-15	\N	\N	f	1	782	session_FISROGey
-2341	4	Q2	2007-09-15	\N	\N	f	1	782	session_WIKbFzsr
-2342	5	Q3	2007-09-15	\N	\N	f	1	782	session_dFRIF5JM
-2343	1	FP1	2007-09-14	\N	\N	f	1	782	session_osCLfw7M
-2344	2	FP2	2007-09-14	\N	\N	f	1	782	session_YRmAtEi0
-2345	6	FP3	2007-09-15	\N	\N	f	1	782	session_KmUXApet
-2346	7	R	2007-09-30	04:30:00	\N	f	15	783	session_dlfSTHDo
-2347	3	Q1	2007-09-29	\N	\N	f	1	783	session_InLbvT6d
-2348	4	Q2	2007-09-29	\N	\N	f	1	783	session_uIJO3Ker
-2349	5	Q3	2007-09-29	\N	\N	f	1	783	session_eCEzCnoI
-2350	1	FP1	2007-09-28	\N	\N	f	1	783	session_V0smJxkg
-2351	2	FP2	2007-09-28	\N	\N	f	1	783	session_9DXMrZk9
-2352	6	FP3	2007-09-29	\N	\N	f	1	783	session_s7dLAG6I
-2353	7	R	2007-10-07	06:00:00	\N	f	15	784	session_yasfeBq5
-2354	3	Q1	2007-10-06	\N	\N	f	1	784	session_LNOZAPEM
-2355	4	Q2	2007-10-06	\N	\N	f	1	784	session_UDrcyczu
-2356	5	Q3	2007-10-06	\N	\N	f	1	784	session_5ElJGrwe
-2357	1	FP1	2007-10-05	\N	\N	f	1	784	session_s8x9ySg9
-2358	2	FP2	2007-10-05	\N	\N	f	1	784	session_MBaZEbfC
-2359	6	FP3	2007-10-06	\N	\N	f	1	784	session_wRkg6LHa
-2360	7	R	2007-10-21	16:00:00	\N	f	15	785	session_40MfGUZb
-2361	3	Q1	2007-10-20	\N	\N	f	1	785	session_7PMVRQD0
-2362	4	Q2	2007-10-20	\N	\N	f	1	785	session_FpFFWg7c
-2363	5	Q3	2007-10-20	\N	\N	f	1	785	session_mq86gFhI
-2364	1	FP1	2007-10-19	\N	\N	f	1	785	session_os9ALDzR
-2365	2	FP2	2007-10-19	\N	\N	f	1	785	session_1wGjylTi
-2366	6	FP3	2007-10-20	\N	\N	f	1	785	session_XSQfzpbn
-2367	7	R	2008-03-16	04:30:00	\N	f	15	786	session_eJ1MrwpM
-2368	3	Q1	2008-03-15	\N	\N	f	1	786	session_MpnoE0nF
-2369	4	Q2	2008-03-15	\N	\N	f	1	786	session_EoD73EKW
-2370	5	Q3	2008-03-15	\N	\N	f	1	786	session_reBsrDrL
-2371	1	FP1	2008-03-14	\N	\N	f	1	786	session_fih4SRnz
-2372	2	FP2	2008-03-14	\N	\N	f	1	786	session_45mNiN8a
-2373	6	FP3	2008-03-15	\N	\N	f	1	786	session_FmaCFzqV
-2374	7	R	2008-03-23	07:00:00	\N	f	15	787	session_3eleXRWL
-2375	3	Q1	2008-03-22	\N	\N	f	1	787	session_XKAc6tSX
-2376	4	Q2	2008-03-22	\N	\N	f	1	787	session_Ep8O3vBt
-2377	5	Q3	2008-03-22	\N	\N	f	1	787	session_JUunnG5n
-2378	1	FP1	2008-03-21	\N	\N	f	1	787	session_iFWRUSDd
-2379	2	FP2	2008-03-21	\N	\N	f	1	787	session_3M5agDOZ
-2380	6	FP3	2008-03-22	\N	\N	f	1	787	session_KCf8JcN0
-2381	7	R	2008-04-06	11:30:00	\N	f	15	788	session_Zp9nGQyD
-2382	3	Q1	2008-04-05	\N	\N	f	1	788	session_j2hhq30k
-2383	4	Q2	2008-04-05	\N	\N	f	1	788	session_goagNQAj
-2384	5	Q3	2008-04-05	\N	\N	f	1	788	session_mW6DyCYZ
-2385	1	FP1	2008-04-04	\N	\N	f	1	788	session_h9c2Yhaf
-2386	2	FP2	2008-04-04	\N	\N	f	1	788	session_6tqB7QLp
-2387	6	FP3	2008-04-05	\N	\N	f	1	788	session_KEeXPGY4
-2388	7	R	2008-04-27	12:00:00	\N	f	15	789	session_a1JnwboW
-2389	3	Q1	2008-04-26	\N	\N	f	1	789	session_doPwOx0y
-2390	4	Q2	2008-04-26	\N	\N	f	1	789	session_0o0lgUQL
-2391	5	Q3	2008-04-26	\N	\N	f	1	789	session_NxEu1iXp
-2392	1	FP1	2008-04-25	\N	\N	f	1	789	session_f6Pydsbp
-2393	2	FP2	2008-04-25	\N	\N	f	1	789	session_t8oKrPCZ
-2394	6	FP3	2008-04-26	\N	\N	f	1	789	session_rSMvAPky
-2395	7	R	2008-05-11	12:00:00	\N	f	15	790	session_2H8Tg50Z
-2396	3	Q1	2008-05-10	\N	\N	f	1	790	session_q4va6d9k
-2397	4	Q2	2008-05-10	\N	\N	f	1	790	session_hjGx1bx3
-2398	5	Q3	2008-05-10	\N	\N	f	1	790	session_Lg4gkm4m
-2399	1	FP1	2008-05-09	\N	\N	f	1	790	session_EpJzMMou
-2400	2	FP2	2008-05-09	\N	\N	f	1	790	session_3j18FfpK
-2401	6	FP3	2008-05-10	\N	\N	f	1	790	session_eXMrBeFh
-2402	7	R	2008-05-25	12:00:00	\N	f	15	791	session_UxetT8iZ
-2403	3	Q1	2008-05-24	\N	\N	f	1	791	session_pd8xGYOq
-2404	4	Q2	2008-05-24	\N	\N	f	1	791	session_gxQC90pA
-2405	5	Q3	2008-05-24	\N	\N	f	1	791	session_Jvrrc6xQ
-2406	1	FP1	2008-05-22	\N	\N	f	1	791	session_CTyAp7mK
-2407	2	FP2	2008-05-22	\N	\N	f	1	791	session_7MURAEC0
-2408	6	FP3	2008-05-24	\N	\N	f	1	791	session_Ow5K7Zmi
-2409	7	R	2008-06-08	17:00:00	\N	f	15	792	session_z4rAvsO3
-2410	3	Q1	2008-06-07	\N	\N	f	1	792	session_oEUoRJfe
-2411	4	Q2	2008-06-07	\N	\N	f	1	792	session_iX42UKuB
-2412	5	Q3	2008-06-07	\N	\N	f	1	792	session_eA4Bwdt6
-2413	1	FP1	2008-06-06	\N	\N	f	1	792	session_mjJyCvZ8
-2414	2	FP2	2008-06-06	\N	\N	f	1	792	session_QeLi7U7F
-2415	6	FP3	2008-06-07	\N	\N	f	1	792	session_NrhnlOX1
-2416	7	R	2008-06-22	12:00:00	\N	f	15	793	session_AYluR8di
-2417	3	Q1	2008-06-21	\N	\N	f	1	793	session_rR8xQn50
-2418	4	Q2	2008-06-21	\N	\N	f	1	793	session_WxBbFHKp
-2419	5	Q3	2008-06-21	\N	\N	f	1	793	session_Re2LECWm
-2420	1	FP1	2008-06-20	\N	\N	f	1	793	session_8qshIS7m
-2421	2	FP2	2008-06-20	\N	\N	f	1	793	session_MJQgjBf0
-2422	6	FP3	2008-06-21	\N	\N	f	1	793	session_9HrBqUWN
-2423	7	R	2008-07-06	12:00:00	\N	f	15	794	session_QYmwtnYa
-2424	3	Q1	2008-07-05	\N	\N	f	1	794	session_BQqo0T6y
-2425	4	Q2	2008-07-05	\N	\N	f	1	794	session_nGrZU5La
-2426	5	Q3	2008-07-05	\N	\N	f	1	794	session_S7bPLzA9
-2427	1	FP1	2008-07-04	\N	\N	f	1	794	session_MspKagp9
-2428	2	FP2	2008-07-04	\N	\N	f	1	794	session_bt4TxE0P
-2429	6	FP3	2008-07-05	\N	\N	f	1	794	session_iVPud995
-2430	7	R	2008-07-20	12:00:00	\N	f	15	795	session_KAlpiptc
-2431	3	Q1	2008-07-19	\N	\N	f	1	795	session_y4gL2MTU
-2432	4	Q2	2008-07-19	\N	\N	f	1	795	session_CgDdKGna
-2433	5	Q3	2008-07-19	\N	\N	f	1	795	session_rjqe3gZd
-2434	1	FP1	2008-07-18	\N	\N	f	1	795	session_96K8WIWL
-2435	2	FP2	2008-07-18	\N	\N	f	1	795	session_VAk6aFGZ
-2436	6	FP3	2008-07-19	\N	\N	f	1	795	session_qAEXwK8n
-2437	7	R	2008-08-03	12:00:00	\N	f	15	796	session_oikKkKty
-2438	3	Q1	2008-08-02	\N	\N	f	1	796	session_duVhVFU0
-2439	4	Q2	2008-08-02	\N	\N	f	1	796	session_0u5nH7hs
-2440	5	Q3	2008-08-02	\N	\N	f	1	796	session_cUCDxYCu
-2441	1	FP1	2008-08-01	\N	\N	f	1	796	session_fTuo5bkJ
-2442	2	FP2	2008-08-01	\N	\N	f	1	796	session_Tgi8MpGL
-2443	6	FP3	2008-08-02	\N	\N	f	1	796	session_ho10khkD
-2444	7	R	2008-08-24	12:00:00	\N	f	15	797	session_IKimu7V4
-2445	3	Q1	2008-08-23	\N	\N	f	1	797	session_1QusCK7n
-2446	4	Q2	2008-08-23	\N	\N	f	1	797	session_FnRpcwAW
-2447	5	Q3	2008-08-23	\N	\N	f	1	797	session_CCLp4goU
-2448	1	FP1	2008-08-22	\N	\N	f	1	797	session_R7HOQrpH
-2449	2	FP2	2008-08-22	\N	\N	f	1	797	session_jwTL2k1z
-2450	6	FP3	2008-08-23	\N	\N	f	1	797	session_Dgv7By2h
-2451	7	R	2008-09-07	12:00:00	\N	f	15	798	session_mCM3epE0
-2452	3	Q1	2008-09-06	\N	\N	f	1	798	session_CboPz2Lo
-2453	4	Q2	2008-09-06	\N	\N	f	1	798	session_WOs0S8Zc
-2454	5	Q3	2008-09-06	\N	\N	f	1	798	session_sKIAlS0e
-2455	1	FP1	2008-09-05	\N	\N	f	1	798	session_RgeLg77X
-2456	2	FP2	2008-09-05	\N	\N	f	1	798	session_6Bkzcyea
-2457	6	FP3	2008-09-06	\N	\N	f	1	798	session_od9cwLDY
-2458	7	R	2008-09-14	12:00:00	\N	f	15	799	session_Iy2trtwz
-2459	3	Q1	2008-09-13	\N	\N	f	1	799	session_WEWi3j0w
-2460	4	Q2	2008-09-13	\N	\N	f	1	799	session_xoH1M4xG
-2461	5	Q3	2008-09-13	\N	\N	f	1	799	session_INhCHgxC
-2462	1	FP1	2008-09-12	\N	\N	f	1	799	session_oTlqWTjZ
-2463	2	FP2	2008-09-12	\N	\N	f	1	799	session_5kpUfaJG
-2464	6	FP3	2008-09-13	\N	\N	f	1	799	session_nHPkRuQA
-2465	7	R	2008-09-28	12:00:00	\N	f	15	800	session_bpco48Dy
-2466	3	Q1	2008-09-27	\N	\N	f	1	800	session_SGlgGe82
-2467	4	Q2	2008-09-27	\N	\N	f	1	800	session_XJvrG395
-2468	5	Q3	2008-09-27	\N	\N	f	1	800	session_JuNtanCo
-2469	1	FP1	2008-09-26	\N	\N	f	1	800	session_kiGlhLQG
-2470	2	FP2	2008-09-26	\N	\N	f	1	800	session_A1WYWQzl
-2471	6	FP3	2008-09-27	\N	\N	f	1	800	session_YRD8sxSw
-2472	7	R	2008-10-12	04:30:00	\N	f	15	801	session_GO5Sb3FQ
-2473	3	Q1	2008-10-11	\N	\N	f	1	801	session_Kb3DJJh3
-2474	4	Q2	2008-10-11	\N	\N	f	1	801	session_vLlROXaO
-2475	5	Q3	2008-10-11	\N	\N	f	1	801	session_iiErK0C0
-2476	1	FP1	2008-10-10	\N	\N	f	1	801	session_VOvKr2Ys
-2477	2	FP2	2008-10-10	\N	\N	f	1	801	session_dByX8CrX
-2478	6	FP3	2008-10-11	\N	\N	f	1	801	session_DrKvW75J
-2479	7	R	2008-10-19	07:00:00	\N	f	15	802	session_be8N5VpF
-2480	3	Q1	2008-10-18	\N	\N	f	1	802	session_ZQOSOGdh
-2481	4	Q2	2008-10-18	\N	\N	f	1	802	session_apUiuLRa
-2482	5	Q3	2008-10-18	\N	\N	f	1	802	session_vOszgy3E
-2483	1	FP1	2008-10-17	\N	\N	f	1	802	session_W5oGQWXb
-2484	2	FP2	2008-10-17	\N	\N	f	1	802	session_yu6eDLv8
-2485	6	FP3	2008-10-18	\N	\N	f	1	802	session_XKhpmG0L
-2486	7	R	2008-11-02	17:00:00	\N	f	15	803	session_Fp1nqN2l
-2487	3	Q1	2008-11-01	\N	\N	f	1	803	session_AYPTmKLe
-2488	4	Q2	2008-11-01	\N	\N	f	1	803	session_kjYsHtXJ
-2489	5	Q3	2008-11-01	\N	\N	f	1	803	session_uoqKEhbp
-2490	1	FP1	2008-10-31	\N	\N	f	1	803	session_FFLTw3PX
-2491	2	FP2	2008-10-31	\N	\N	f	1	803	session_jHbkGI5I
-2492	6	FP3	2008-11-01	\N	\N	f	1	803	session_7iroDyTD
-2493	7	R	2009-03-29	06:00:00	\N	f	15	804	session_47u7RtBV
-2494	3	Q1	2009-03-28	\N	\N	f	1	804	session_iB5cug1F
-2495	4	Q2	2009-03-28	\N	\N	f	1	804	session_TP2n5Gil
-2496	5	Q3	2009-03-28	\N	\N	f	1	804	session_PZrKfV8D
-2497	1	FP1	2009-03-27	\N	\N	f	1	804	session_qP7wu4Oa
-2498	2	FP2	2009-03-27	\N	\N	f	1	804	session_mL1H4syj
-2499	6	FP3	2009-03-28	\N	\N	f	1	804	session_AQNdPJYh
-2500	7	R	2009-04-05	09:00:00	\N	f	15	805	session_31YAOeyH
-2501	3	Q1	2009-04-04	\N	\N	f	1	805	session_z6GBNKlf
-2502	4	Q2	2009-04-04	\N	\N	f	1	805	session_ujnnCQ3j
-2503	5	Q3	2009-04-04	\N	\N	f	1	805	session_v0ZNtv4H
-2504	1	FP1	2009-04-03	\N	\N	f	1	805	session_jPr6OtD1
-2505	2	FP2	2009-04-03	\N	\N	f	1	805	session_tmzoFBcq
-2506	6	FP3	2009-04-04	\N	\N	f	1	805	session_tcBJOoOP
-2507	7	R	2009-04-19	07:00:00	\N	f	15	806	session_3o2nyBi2
-2508	3	Q1	2009-04-18	\N	\N	f	1	806	session_2qr5Ii4v
-2509	4	Q2	2009-04-18	\N	\N	f	1	806	session_7u8RUEhR
-2510	5	Q3	2009-04-18	\N	\N	f	1	806	session_LzhD0p4v
-2511	1	FP1	2009-04-17	\N	\N	f	1	806	session_XlOzXLDi
-2512	2	FP2	2009-04-17	\N	\N	f	1	806	session_js64vOro
-2513	6	FP3	2009-04-18	\N	\N	f	1	806	session_rgPzDY9f
-2514	7	R	2009-04-26	12:00:00	\N	f	15	807	session_w8fQoUfK
-2515	3	Q1	2009-04-25	\N	\N	f	1	807	session_FmycS9rg
-2516	4	Q2	2009-04-25	\N	\N	f	1	807	session_dVIHsZ9i
-2517	5	Q3	2009-04-25	\N	\N	f	1	807	session_uAXFrKdg
-2518	1	FP1	2009-04-24	\N	\N	f	1	807	session_eh6fuUOI
-2519	2	FP2	2009-04-24	\N	\N	f	1	807	session_7p5VdKhN
-2520	6	FP3	2009-04-25	\N	\N	f	1	807	session_6SlZDvp7
-2521	7	R	2009-05-10	12:00:00	\N	f	15	808	session_3N6MO20B
-2522	3	Q1	2009-05-09	\N	\N	f	1	808	session_kaoQluV0
-2523	4	Q2	2009-05-09	\N	\N	f	1	808	session_6kL07ZrN
-2524	5	Q3	2009-05-09	\N	\N	f	1	808	session_qAPfw58i
-2525	1	FP1	2009-05-08	\N	\N	f	1	808	session_IIhmZWRO
-2526	2	FP2	2009-05-08	\N	\N	f	1	808	session_EgvsGmy9
-2527	6	FP3	2009-05-09	\N	\N	f	1	808	session_9rX8FO79
-2528	7	R	2009-05-24	12:00:00	\N	f	15	809	session_WUV1ggXD
-2529	3	Q1	2009-05-23	\N	\N	f	1	809	session_YRZrcJtR
-2530	4	Q2	2009-05-23	\N	\N	f	1	809	session_1u7Va0rX
-2531	5	Q3	2009-05-23	\N	\N	f	1	809	session_GKOVvFOo
-2532	1	FP1	2009-05-21	\N	\N	f	1	809	session_FYUR4I4s
-2533	2	FP2	2009-05-21	\N	\N	f	1	809	session_cYydwfZ4
-2534	6	FP3	2009-05-23	\N	\N	f	1	809	session_D1mQzwcQ
-2535	7	R	2009-06-07	12:00:00	\N	f	15	810	session_qF6fMVCC
-2536	3	Q1	2009-06-06	\N	\N	f	1	810	session_05JRFYTd
-2537	4	Q2	2009-06-06	\N	\N	f	1	810	session_QZVcFUoL
-2538	5	Q3	2009-06-06	\N	\N	f	1	810	session_kcIojXoy
-2539	1	FP1	2009-06-05	\N	\N	f	1	810	session_eLKWBR6o
-2540	2	FP2	2009-06-05	\N	\N	f	1	810	session_pRNJTI3p
-2541	6	FP3	2009-06-06	\N	\N	f	1	810	session_WYLPy5Ok
-2542	7	R	2009-06-21	12:00:00	\N	f	15	811	session_yYTJmPsS
-2543	3	Q1	2009-06-20	\N	\N	f	1	811	session_otLJL21a
-2544	4	Q2	2009-06-20	\N	\N	f	1	811	session_gZv4DwXG
-2545	5	Q3	2009-06-20	\N	\N	f	1	811	session_yhIcWRYW
-2546	1	FP1	2009-06-19	\N	\N	f	1	811	session_arEB7JCF
-2547	2	FP2	2009-06-19	\N	\N	f	1	811	session_MpSJd8I9
-2548	6	FP3	2009-06-20	\N	\N	f	1	811	session_fiYiM7If
-2549	7	R	2009-07-12	12:00:00	\N	f	15	812	session_WmYq9g34
-2550	3	Q1	2009-07-11	\N	\N	f	1	812	session_kbRi7kYQ
-2551	4	Q2	2009-07-11	\N	\N	f	1	812	session_vbB2legG
-2552	5	Q3	2009-07-11	\N	\N	f	1	812	session_IDRtciOG
-2553	1	FP1	2009-07-10	\N	\N	f	1	812	session_yIqJ0e3W
-2554	2	FP2	2009-07-10	\N	\N	f	1	812	session_3WPwIGsB
-2555	6	FP3	2009-07-11	\N	\N	f	1	812	session_jhI6768U
-2556	7	R	2009-07-26	12:00:00	\N	f	15	813	session_EmgxM0Il
-2557	3	Q1	2009-07-25	\N	\N	f	1	813	session_t6ynqy3J
-2558	4	Q2	2009-07-25	\N	\N	f	1	813	session_7ju4Xyti
-2559	5	Q3	2009-07-25	\N	\N	f	1	813	session_smFjH0Or
-2560	1	FP1	2009-07-24	\N	\N	f	1	813	session_POYOsjHb
-2561	2	FP2	2009-07-24	\N	\N	f	1	813	session_8WTMk9kE
-2562	6	FP3	2009-07-25	\N	\N	f	1	813	session_TMxibzjG
-2563	7	R	2009-08-23	12:00:00	\N	f	15	814	session_53EQlJqd
-2564	3	Q1	2009-08-22	\N	\N	f	1	814	session_l5wKwsdU
-2565	4	Q2	2009-08-22	\N	\N	f	1	814	session_308saJ79
-2566	5	Q3	2009-08-22	\N	\N	f	1	814	session_HO20IWG7
-2567	1	FP1	2009-08-21	\N	\N	f	1	814	session_8aUF4QkA
-2568	2	FP2	2009-08-21	\N	\N	f	1	814	session_K0jpChiG
-2569	6	FP3	2009-08-22	\N	\N	f	1	814	session_LsRpxgo8
-2570	7	R	2009-08-30	12:00:00	\N	f	15	815	session_JcUbyLqG
-2571	3	Q1	2009-08-29	\N	\N	f	1	815	session_YipjH2B0
-2572	4	Q2	2009-08-29	\N	\N	f	1	815	session_jdknoJtr
-2573	5	Q3	2009-08-29	\N	\N	f	1	815	session_A0f53Zsw
-2574	1	FP1	2009-08-28	\N	\N	f	1	815	session_8Aj8ou8H
-2575	2	FP2	2009-08-28	\N	\N	f	1	815	session_ZcNSfPSk
-2576	6	FP3	2009-08-29	\N	\N	f	1	815	session_sTWBQoqP
-2577	7	R	2009-09-13	12:00:00	\N	f	15	816	session_BkU9IBj5
-2578	3	Q1	2009-09-12	\N	\N	f	1	816	session_VLzJbnFq
-2579	4	Q2	2009-09-12	\N	\N	f	1	816	session_rMwuTyqc
-2580	5	Q3	2009-09-12	\N	\N	f	1	816	session_Nb90KMze
-2581	1	FP1	2009-09-11	\N	\N	f	1	816	session_iYbr4EE7
-2582	2	FP2	2009-09-11	\N	\N	f	1	816	session_f9Jr4WTT
-2583	6	FP3	2009-09-12	\N	\N	f	1	816	session_l7oIaWRl
-2584	7	R	2009-09-27	12:00:00	\N	f	15	817	session_F6uK6L5y
-2585	3	Q1	2009-09-26	\N	\N	f	1	817	session_FWTj2doc
-2586	4	Q2	2009-09-26	\N	\N	f	1	817	session_lqeNEFZ3
-2587	5	Q3	2009-09-26	\N	\N	f	1	817	session_zVUnafPm
-2588	1	FP1	2009-09-25	\N	\N	f	1	817	session_m1VrECZN
-2589	2	FP2	2009-09-25	\N	\N	f	1	817	session_PrvhvJTi
-2590	6	FP3	2009-09-26	\N	\N	f	1	817	session_bkwcdL2N
-2591	7	R	2009-10-04	05:00:00	\N	f	15	818	session_rXV1SpOb
-2592	3	Q1	2009-10-03	\N	\N	f	1	818	session_Q7DdcnQj
-2593	4	Q2	2009-10-03	\N	\N	f	1	818	session_SozwIlbR
-2594	5	Q3	2009-10-03	\N	\N	f	1	818	session_367bAASU
-2595	1	FP1	2009-10-02	\N	\N	f	1	818	session_jNqcmx6X
-2596	2	FP2	2009-10-02	\N	\N	f	1	818	session_Ofb6RIrG
-2597	6	FP3	2009-10-03	\N	\N	f	1	818	session_w6E4QzZ2
-2598	7	R	2009-10-18	16:00:00	\N	f	15	819	session_ruFlCgm3
-2599	3	Q1	2009-10-17	\N	\N	f	1	819	session_1CVPAipl
-2600	4	Q2	2009-10-17	\N	\N	f	1	819	session_eXnKQA4A
-2601	5	Q3	2009-10-17	\N	\N	f	1	819	session_aDHwWyYx
-2602	1	FP1	2009-10-16	\N	\N	f	1	819	session_eQ9Ps7Jq
-2603	2	FP2	2009-10-16	\N	\N	f	1	819	session_0aqi12rN
-2604	6	FP3	2009-10-17	\N	\N	f	1	819	session_DbfouRN2
-2605	7	R	2009-11-01	11:00:00	\N	f	15	820	session_AMLpCTWS
-2606	3	Q1	2009-10-31	\N	\N	f	1	820	session_LWkkO1CV
-2607	4	Q2	2009-10-31	\N	\N	f	1	820	session_GzYF6Y46
-2608	5	Q3	2009-10-31	\N	\N	f	1	820	session_SHcEEcB6
-2609	1	FP1	2009-10-30	\N	\N	f	1	820	session_0rce7MfP
-2610	2	FP2	2009-10-30	\N	\N	f	1	820	session_JwoI48vW
-2611	6	FP3	2009-10-31	\N	\N	f	1	820	session_SCWnwcwj
-2612	7	R	2010-03-14	12:00:00	\N	f	16	821	session_oKBHd474
-2613	3	Q1	2010-03-13	\N	\N	f	1	821	session_p0NjZKkE
-2614	4	Q2	2010-03-13	\N	\N	f	1	821	session_cjC2Am8e
-2615	5	Q3	2010-03-13	\N	\N	f	1	821	session_l2hsPSl8
-2616	1	FP1	2010-03-12	\N	\N	f	1	821	session_jpYu1MXC
-2617	2	FP2	2010-03-12	\N	\N	f	1	821	session_VJTuu4jj
-2618	6	FP3	2010-03-13	\N	\N	f	1	821	session_OxuvoUxd
-2619	7	R	2010-03-28	06:00:00	\N	f	16	822	session_NxypGgut
-2620	3	Q1	2010-03-27	\N	\N	f	1	822	session_vYeF2Ama
-2621	4	Q2	2010-03-27	\N	\N	f	1	822	session_8T4rBx2i
-2622	5	Q3	2010-03-27	\N	\N	f	1	822	session_P6QtAi9j
-2623	1	FP1	2010-03-26	\N	\N	f	1	822	session_N9V0DkY9
-2624	2	FP2	2010-03-26	\N	\N	f	1	822	session_UZGoPIZq
-2625	6	FP3	2010-03-27	\N	\N	f	1	822	session_qY0oNENK
-2626	7	R	2010-04-04	08:00:00	\N	f	16	823	session_D8AsSPvf
-2627	3	Q1	2010-04-03	\N	\N	f	1	823	session_HrzVtWVF
-2628	4	Q2	2010-04-03	\N	\N	f	1	823	session_nIfIUdnW
-2629	5	Q3	2010-04-03	\N	\N	f	1	823	session_oI2YpzVB
-2630	1	FP1	2010-04-02	\N	\N	f	1	823	session_Q8tgkXpr
-2631	2	FP2	2010-04-02	\N	\N	f	1	823	session_7ZmtaNZ0
-2632	6	FP3	2010-04-03	\N	\N	f	1	823	session_AoYm3zeT
-2633	7	R	2010-04-18	06:00:00	\N	f	16	824	session_ZFqbUfeq
-2634	3	Q1	2010-04-17	\N	\N	f	1	824	session_qyt05OEL
-2635	4	Q2	2010-04-17	\N	\N	f	1	824	session_Hshw8Gvc
-2636	5	Q3	2010-04-17	\N	\N	f	1	824	session_bdu9hoRH
-2637	1	FP1	2010-04-16	\N	\N	f	1	824	session_O2CCxwTn
-2638	2	FP2	2010-04-16	\N	\N	f	1	824	session_wyobEwbw
-2639	6	FP3	2010-04-17	\N	\N	f	1	824	session_hBYkx0s2
-2640	7	R	2010-05-09	12:00:00	\N	f	16	825	session_8L1hY8HL
-2641	3	Q1	2010-05-08	\N	\N	f	1	825	session_3ZPTtHZP
-2642	4	Q2	2010-05-08	\N	\N	f	1	825	session_fYwz3QxZ
-2643	5	Q3	2010-05-08	\N	\N	f	1	825	session_5vdCP5Ew
-2644	1	FP1	2010-05-07	\N	\N	f	1	825	session_i5qLlBih
-2645	2	FP2	2010-05-07	\N	\N	f	1	825	session_2RsU2V8o
-2646	6	FP3	2010-05-08	\N	\N	f	1	825	session_aeivMZEQ
-2647	7	R	2010-05-16	12:00:00	\N	f	16	826	session_uK1sBsiZ
-2648	3	Q1	2010-05-15	\N	\N	f	1	826	session_blm8esI9
-2649	4	Q2	2010-05-15	\N	\N	f	1	826	session_6UKFG9fT
-2650	5	Q3	2010-05-15	\N	\N	f	1	826	session_9nED8h7S
-2651	1	FP1	2010-05-13	\N	\N	f	1	826	session_IBfVfafv
-2652	2	FP2	2010-05-13	\N	\N	f	1	826	session_Jx8bXaIz
-2653	6	FP3	2010-05-15	\N	\N	f	1	826	session_hgOog5aJ
-2654	7	R	2010-05-30	11:00:00	\N	f	16	827	session_Ja8kWv8e
-2655	3	Q1	2010-05-29	\N	\N	f	1	827	session_Wbx2882p
-2656	4	Q2	2010-05-29	\N	\N	f	1	827	session_0rI56aUH
-2657	5	Q3	2010-05-29	\N	\N	f	1	827	session_yRqp3JSn
-2658	1	FP1	2010-05-28	\N	\N	f	1	827	session_Ns0Fn455
-2659	2	FP2	2010-05-28	\N	\N	f	1	827	session_TenmH7fc
-2660	6	FP3	2010-05-29	\N	\N	f	1	827	session_lNGVE9aQ
-2661	7	R	2010-06-13	16:00:00	\N	f	16	828	session_xM1LvFGF
-2662	3	Q1	2010-06-12	\N	\N	f	1	828	session_TLI3R8Kv
-2663	4	Q2	2010-06-12	\N	\N	f	1	828	session_j6SS4Xig
-2664	5	Q3	2010-06-12	\N	\N	f	1	828	session_WKvvAmbf
-2665	1	FP1	2010-06-11	\N	\N	f	1	828	session_oClMdMze
-2666	2	FP2	2010-06-11	\N	\N	f	1	828	session_QgcQsjnF
-2667	6	FP3	2010-06-12	\N	\N	f	1	828	session_lCNCEG3X
-2668	7	R	2010-06-27	12:00:00	\N	f	16	829	session_2NsfVCVo
-2669	3	Q1	2010-06-26	\N	\N	f	1	829	session_FSaBwWXn
-2670	4	Q2	2010-06-26	\N	\N	f	1	829	session_w3iNfKJq
-2671	5	Q3	2010-06-26	\N	\N	f	1	829	session_km8tkvyX
-2672	1	FP1	2010-06-25	\N	\N	f	1	829	session_phZlI10m
-2673	2	FP2	2010-06-25	\N	\N	f	1	829	session_rabsopfD
-2674	6	FP3	2010-06-26	\N	\N	f	1	829	session_sHavkIXM
-2675	7	R	2010-07-11	12:00:00	\N	f	16	830	session_aueyT2hV
-2676	3	Q1	2010-07-10	\N	\N	f	1	830	session_78wSVgZI
-2677	4	Q2	2010-07-10	\N	\N	f	1	830	session_6b5ayNRU
-2678	5	Q3	2010-07-10	\N	\N	f	1	830	session_jQtZKIWv
-2679	1	FP1	2010-07-09	\N	\N	f	1	830	session_YNMRmNIq
-2680	2	FP2	2010-07-09	\N	\N	f	1	830	session_3UOsR449
-2681	6	FP3	2010-07-10	\N	\N	f	1	830	session_uYYoCH74
-2682	7	R	2010-07-25	12:00:00	\N	f	16	831	session_2i0VVHKW
-2683	3	Q1	2010-07-24	\N	\N	f	1	831	session_yrNhWhlb
-2684	4	Q2	2010-07-24	\N	\N	f	1	831	session_xYbnZK9R
-2685	5	Q3	2010-07-24	\N	\N	f	1	831	session_f9MSlth3
-2686	1	FP1	2010-07-23	\N	\N	f	1	831	session_Oa9QpfbV
-2687	2	FP2	2010-07-23	\N	\N	f	1	831	session_sJD5vBa5
-2688	6	FP3	2010-07-24	\N	\N	f	1	831	session_wZEGZflS
-2689	7	R	2010-08-01	12:00:00	\N	f	16	832	session_Oee1qRCB
-2690	3	Q1	2010-07-31	\N	\N	f	1	832	session_J2M71PRu
-2691	4	Q2	2010-07-31	\N	\N	f	1	832	session_TEeUqMtZ
-2692	5	Q3	2010-07-31	\N	\N	f	1	832	session_8nwubcWR
-2693	1	FP1	2010-07-30	\N	\N	f	1	832	session_PxsLpO3N
-2694	2	FP2	2010-07-30	\N	\N	f	1	832	session_uVjszx7P
-2695	6	FP3	2010-07-31	\N	\N	f	1	832	session_ERgRL3KJ
-2696	7	R	2010-08-29	12:00:00	\N	f	16	833	session_26YKlbE1
-2697	3	Q1	2010-08-28	\N	\N	f	1	833	session_Y0ECOyeS
-2698	4	Q2	2010-08-28	\N	\N	f	1	833	session_8UUfT4LT
-2699	5	Q3	2010-08-28	\N	\N	f	1	833	session_pVfFmy7l
-2700	1	FP1	2010-08-27	\N	\N	f	1	833	session_tybwwWyx
-2701	2	FP2	2010-08-27	\N	\N	f	1	833	session_YXbjiKjz
-2702	6	FP3	2010-08-28	\N	\N	f	1	833	session_Z13fWc0t
-2703	7	R	2010-09-12	12:00:00	\N	f	16	834	session_kPN34gAz
-2704	3	Q1	2010-09-11	\N	\N	f	1	834	session_auulKdmR
-2705	4	Q2	2010-09-11	\N	\N	f	1	834	session_kUWmUDiu
-2706	5	Q3	2010-09-11	\N	\N	f	1	834	session_mdeJf0JV
-2707	1	FP1	2010-09-10	\N	\N	f	1	834	session_ckkE1AHI
-2708	2	FP2	2010-09-10	\N	\N	f	1	834	session_IMpVHr31
-2709	6	FP3	2010-09-11	\N	\N	f	1	834	session_TWXdYfwU
-2710	7	R	2010-09-26	12:00:00	\N	f	16	835	session_iPIqF20z
-2711	3	Q1	2010-09-25	\N	\N	f	1	835	session_nLrobkp0
-2712	4	Q2	2010-09-25	\N	\N	f	1	835	session_V0CeytIU
-2713	5	Q3	2010-09-25	\N	\N	f	1	835	session_tdBtBOpN
-2714	1	FP1	2010-09-24	\N	\N	f	1	835	session_GMNgxuKI
-2715	2	FP2	2010-09-24	\N	\N	f	1	835	session_Jnu02iSZ
-2716	6	FP3	2010-09-25	\N	\N	f	1	835	session_Yrkzb3vq
-2717	7	R	2010-10-10	06:00:00	\N	f	16	836	session_KGRNRLKP
-2718	3	Q1	2010-10-09	\N	\N	f	1	836	session_ALDJ2rek
-2719	4	Q2	2010-10-09	\N	\N	f	1	836	session_5kaMINpB
-2720	5	Q3	2010-10-09	\N	\N	f	1	836	session_eUPivMdt
-2721	1	FP1	2010-10-08	\N	\N	f	1	836	session_Ygmqa1na
-2722	2	FP2	2010-10-08	\N	\N	f	1	836	session_I0KhVART
-2723	6	FP3	2010-10-09	\N	\N	f	1	836	session_8d3iyZYb
-2724	7	R	2010-10-24	05:00:00	\N	f	16	837	session_jCqfOsWQ
-2725	3	Q1	2010-10-23	\N	\N	f	1	837	session_KXGiU11W
-2726	4	Q2	2010-10-23	\N	\N	f	1	837	session_M5ubbXsR
-2727	5	Q3	2010-10-23	\N	\N	f	1	837	session_OuIPPRkv
-2728	1	FP1	2010-10-22	\N	\N	f	1	837	session_dIbtIlXd
-2729	2	FP2	2010-10-22	\N	\N	f	1	837	session_6M7KgCDd
-2730	6	FP3	2010-10-23	\N	\N	f	1	837	session_2BYnklCB
-2731	7	R	2010-11-07	16:00:00	\N	f	16	838	session_btcJqXOl
-2732	3	Q1	2010-11-06	\N	\N	f	1	838	session_sxx8P2UI
-2733	4	Q2	2010-11-06	\N	\N	f	1	838	session_xZm5LWeM
-2734	5	Q3	2010-11-06	\N	\N	f	1	838	session_2j0q725d
-2735	1	FP1	2010-11-05	\N	\N	f	1	838	session_32ZsaYI6
-2736	2	FP2	2010-11-05	\N	\N	f	1	838	session_U7HQwapw
-2737	6	FP3	2010-11-06	\N	\N	f	1	838	session_UkEdFbC7
-2738	7	R	2010-11-14	13:00:00	\N	f	16	839	session_NpxCHbO6
-2739	3	Q1	2010-11-13	\N	\N	f	1	839	session_VonJVev5
-2740	4	Q2	2010-11-13	\N	\N	f	1	839	session_JOgktpFi
-2741	5	Q3	2010-11-13	\N	\N	f	1	839	session_6xjGDEuz
-2742	1	FP1	2010-11-12	\N	\N	f	1	839	session_OOjPHRCp
-2743	2	FP2	2010-11-12	\N	\N	f	1	839	session_jlqH0mbZ
-2744	6	FP3	2010-11-13	\N	\N	f	1	839	session_s0xmINk8
-2745	7	R	2011-03-27	06:00:00	\N	f	16	840	session_uIDCiqGa
-2746	3	Q1	2011-03-26	\N	\N	f	1	840	session_Blgy9A0W
-2747	4	Q2	2011-03-26	\N	\N	f	1	840	session_KtRgT8r4
-2748	5	Q3	2011-03-26	\N	\N	f	1	840	session_z88dkfCm
-2749	1	FP1	2011-03-25	\N	\N	f	1	840	session_CIjfJyXy
-2750	2	FP2	2011-03-25	\N	\N	f	1	840	session_aUTNHJXj
-2751	6	FP3	2011-03-26	\N	\N	f	1	840	session_Y7ZcjWXx
-2752	7	R	2011-04-10	08:00:00	\N	f	16	841	session_ToW13J4m
-2753	3	Q1	2011-04-09	\N	\N	f	1	841	session_D4YMti8J
-2754	4	Q2	2011-04-09	\N	\N	f	1	841	session_55uHqJpK
-2755	5	Q3	2011-04-09	\N	\N	f	1	841	session_bar4WRtX
-2756	1	FP1	2011-04-08	\N	\N	f	1	841	session_7nx3FzSb
-2757	2	FP2	2011-04-08	\N	\N	f	1	841	session_ao3S0ElN
-2758	6	FP3	2011-04-09	\N	\N	f	1	841	session_meLcmtZe
-2759	7	R	2011-04-17	07:00:00	\N	f	16	842	session_9qVqu8QY
-2760	3	Q1	2011-04-16	\N	\N	f	1	842	session_fNQLEOti
-2761	4	Q2	2011-04-16	\N	\N	f	1	842	session_8H6fUAb6
-2762	5	Q3	2011-04-16	\N	\N	f	1	842	session_GpTxQhBo
-2763	1	FP1	2011-04-15	\N	\N	f	1	842	session_1HEjeD5F
-2764	2	FP2	2011-04-15	\N	\N	f	1	842	session_LKoLxYo8
-2765	6	FP3	2011-04-16	\N	\N	f	1	842	session_bubforLn
-2766	7	R	2011-05-08	12:00:00	\N	f	16	843	session_cLKYVpjT
-2767	3	Q1	2011-05-07	\N	\N	f	1	843	session_uG9fl7Uy
-2768	4	Q2	2011-05-07	\N	\N	f	1	843	session_pALYt8qf
-2769	5	Q3	2011-05-07	\N	\N	f	1	843	session_HaUa5ogQ
-2770	1	FP1	2011-05-06	\N	\N	f	1	843	session_MRZdR80y
-2771	2	FP2	2011-05-06	\N	\N	f	1	843	session_TwLkZLXK
-2772	6	FP3	2011-05-07	\N	\N	f	1	843	session_I46L4I4x
-2773	7	R	2011-05-22	12:00:00	\N	f	16	844	session_sM124o8F
-2774	3	Q1	2011-05-21	\N	\N	f	1	844	session_lVPz1qI8
-2775	4	Q2	2011-05-21	\N	\N	f	1	844	session_xMLN1MaK
-2776	5	Q3	2011-05-21	\N	\N	f	1	844	session_PyzdQMlC
-2777	1	FP1	2011-05-20	\N	\N	f	1	844	session_GxQFYhJV
-2778	2	FP2	2011-05-20	\N	\N	f	1	844	session_dlGh48lk
-2779	6	FP3	2011-05-21	\N	\N	f	1	844	session_zm44WuLU
-2780	7	R	2011-05-29	12:00:00	\N	f	16	845	session_2fz2ZRU6
-2781	3	Q1	2011-05-28	\N	\N	f	1	845	session_RDBVrexV
-2782	4	Q2	2011-05-28	\N	\N	f	1	845	session_dCghUBtg
-2783	5	Q3	2011-05-28	\N	\N	f	1	845	session_91EZ7Xvk
-2784	1	FP1	2011-05-26	\N	\N	f	1	845	session_CSIsDPGs
-2785	2	FP2	2011-05-26	\N	\N	f	1	845	session_Y6s8eprY
-2786	6	FP3	2011-05-28	\N	\N	f	1	845	session_FMQenkPX
-2787	7	R	2011-06-12	17:00:00	\N	f	16	846	session_l1PQM9Do
-2788	3	Q1	2011-06-11	\N	\N	f	1	846	session_6laAqJZ4
-2789	4	Q2	2011-06-11	\N	\N	f	1	846	session_RrDXOMZ5
-2790	5	Q3	2011-06-11	\N	\N	f	1	846	session_dDwrak9s
-2791	1	FP1	2011-06-10	\N	\N	f	1	846	session_5LshGCVt
-2792	2	FP2	2011-06-10	\N	\N	f	1	846	session_Bd31RMym
-2793	6	FP3	2011-06-11	\N	\N	f	1	846	session_tgNr3RDu
-2794	7	R	2011-06-26	12:00:00	\N	f	16	847	session_JVegWhCA
-2795	3	Q1	2011-06-25	\N	\N	f	1	847	session_3gPopuwL
-2796	4	Q2	2011-06-25	\N	\N	f	1	847	session_5x7H4CG0
-2797	5	Q3	2011-06-25	\N	\N	f	1	847	session_BCb5Rj6S
-2798	1	FP1	2011-06-24	\N	\N	f	1	847	session_GJaozQRl
-2799	2	FP2	2011-06-24	\N	\N	f	1	847	session_7vif3LIc
-2800	6	FP3	2011-06-25	\N	\N	f	1	847	session_RJ4IyUqG
-2801	7	R	2011-07-10	12:00:00	\N	f	16	848	session_HVdILIfB
-2802	3	Q1	2011-07-09	\N	\N	f	1	848	session_PFonqbao
-2803	4	Q2	2011-07-09	\N	\N	f	1	848	session_MshdLJz6
-2804	5	Q3	2011-07-09	\N	\N	f	1	848	session_QIcRVrfO
-2805	1	FP1	2011-07-08	\N	\N	f	1	848	session_Y9s0xq4O
-2806	2	FP2	2011-07-08	\N	\N	f	1	848	session_sqDMPfDv
-2807	6	FP3	2011-07-09	\N	\N	f	1	848	session_R2G1zlun
-2808	7	R	2011-07-24	12:00:00	\N	f	16	849	session_dFbz2ZqR
-2809	3	Q1	2011-07-23	\N	\N	f	1	849	session_FpqrSskg
-2810	4	Q2	2011-07-23	\N	\N	f	1	849	session_3hgUKF5S
-2811	5	Q3	2011-07-23	\N	\N	f	1	849	session_zjZ1eOsw
-2812	1	FP1	2011-07-22	\N	\N	f	1	849	session_Ryd3whou
-2813	2	FP2	2011-07-22	\N	\N	f	1	849	session_LSZNMxm8
-2814	6	FP3	2011-07-23	\N	\N	f	1	849	session_siXdBfmc
-2815	7	R	2011-07-31	12:00:00	\N	f	16	850	session_6AH2pu1u
-2816	3	Q1	2011-07-30	\N	\N	f	1	850	session_wQ46j9qU
-2817	4	Q2	2011-07-30	\N	\N	f	1	850	session_5tILtMa9
-2818	5	Q3	2011-07-30	\N	\N	f	1	850	session_Qkjo9u64
-2819	1	FP1	2011-07-29	\N	\N	f	1	850	session_KcbGfjyv
-2820	2	FP2	2011-07-29	\N	\N	f	1	850	session_cNV9jjS0
-2821	6	FP3	2011-07-30	\N	\N	f	1	850	session_hm8G9Vf0
-2822	7	R	2011-08-28	12:00:00	\N	f	16	851	session_lNru72le
-2823	3	Q1	2011-08-27	\N	\N	f	1	851	session_LHvysquS
-2824	4	Q2	2011-08-27	\N	\N	f	1	851	session_TLwzdHxF
-2825	5	Q3	2011-08-27	\N	\N	f	1	851	session_e74xUVpK
-2826	1	FP1	2011-08-26	\N	\N	f	1	851	session_rWhs7xH0
-2827	2	FP2	2011-08-26	\N	\N	f	1	851	session_hJqYRX1d
-2828	6	FP3	2011-08-27	\N	\N	f	1	851	session_umQf18gR
-2829	7	R	2011-09-11	12:00:00	\N	f	16	852	session_lHthL6PS
-2830	3	Q1	2011-09-10	\N	\N	f	1	852	session_U9sLGxqw
-2831	4	Q2	2011-09-10	\N	\N	f	1	852	session_C0AjtiqR
-2832	5	Q3	2011-09-10	\N	\N	f	1	852	session_oXqo3PpF
-2833	1	FP1	2011-09-09	\N	\N	f	1	852	session_NF2zkyFz
-2834	2	FP2	2011-09-09	\N	\N	f	1	852	session_2rmTDvsl
-2835	6	FP3	2011-09-10	\N	\N	f	1	852	session_C8i49XKb
-2836	7	R	2011-09-25	12:00:00	\N	f	16	853	session_94lWuIXl
-2837	3	Q1	2011-09-24	\N	\N	f	1	853	session_KknY8s7J
-2838	4	Q2	2011-09-24	\N	\N	f	1	853	session_9qXr5i3g
-2839	5	Q3	2011-09-24	\N	\N	f	1	853	session_vhqN7lAi
-2840	1	FP1	2011-09-23	\N	\N	f	1	853	session_zQRVB0m1
-2841	2	FP2	2011-09-23	\N	\N	f	1	853	session_BpvvLjGD
-2842	6	FP3	2011-09-24	\N	\N	f	1	853	session_IKqxovbf
-2843	7	R	2011-10-09	06:00:00	\N	f	16	854	session_5f8hxjpL
-2844	3	Q1	2011-10-08	\N	\N	f	1	854	session_1ogLpNvy
-2845	4	Q2	2011-10-08	\N	\N	f	1	854	session_449uSvKs
-2846	5	Q3	2011-10-08	\N	\N	f	1	854	session_7gZF1bSa
-2847	1	FP1	2011-10-07	\N	\N	f	1	854	session_0qrivXu2
-2848	2	FP2	2011-10-07	\N	\N	f	1	854	session_340XA6C8
-2849	6	FP3	2011-10-08	\N	\N	f	1	854	session_OaEfPGyz
-2850	7	R	2011-10-16	06:00:00	\N	f	16	855	session_Kyw8vHR6
-2851	3	Q1	2011-10-15	\N	\N	f	1	855	session_JPtFadWf
-2852	4	Q2	2011-10-15	\N	\N	f	1	855	session_Z8f91UHW
-2853	5	Q3	2011-10-15	\N	\N	f	1	855	session_0snzFnls
-2854	1	FP1	2011-10-14	\N	\N	f	1	855	session_ACbCY869
-2855	2	FP2	2011-10-14	\N	\N	f	1	855	session_JnppgCtK
-2856	6	FP3	2011-10-15	\N	\N	f	1	855	session_htozJgbz
-2857	7	R	2011-10-30	09:30:00	\N	f	16	856	session_HSCe4QXT
-2858	3	Q1	2011-10-29	\N	\N	f	1	856	session_cVOWxKWF
-2859	4	Q2	2011-10-29	\N	\N	f	1	856	session_HnQApofg
-2860	5	Q3	2011-10-29	\N	\N	f	1	856	session_7jKUdmyM
-2861	1	FP1	2011-10-28	\N	\N	f	1	856	session_DtpmgB7R
-2862	2	FP2	2011-10-28	\N	\N	f	1	856	session_SR3bwbwD
-2863	6	FP3	2011-10-29	\N	\N	f	1	856	session_aVoiXu83
-2864	7	R	2011-11-13	13:00:00	\N	f	16	857	session_soXmet4o
-2865	3	Q1	2011-11-12	\N	\N	f	1	857	session_U7xfV5q1
-2866	4	Q2	2011-11-12	\N	\N	f	1	857	session_K5JIQtSh
-2867	5	Q3	2011-11-12	\N	\N	f	1	857	session_zEcjDW0z
-2868	1	FP1	2011-11-11	\N	\N	f	1	857	session_a1tdy1HX
-2869	2	FP2	2011-11-11	\N	\N	f	1	857	session_EkRXxsOK
-2870	6	FP3	2011-11-12	\N	\N	f	1	857	session_Rp64sdNI
-2871	7	R	2011-11-27	16:00:00	\N	f	16	858	session_sDbvnaTk
-2872	3	Q1	2011-11-26	\N	\N	f	1	858	session_45gpXJnD
-2873	4	Q2	2011-11-26	\N	\N	f	1	858	session_wkBwPXON
-2874	5	Q3	2011-11-26	\N	\N	f	1	858	session_06VFWi2P
-2875	1	FP1	2011-11-25	\N	\N	f	1	858	session_7gf68g2D
-2876	2	FP2	2011-11-25	\N	\N	f	1	858	session_L5KrLQ5F
-2877	6	FP3	2011-11-26	\N	\N	f	1	858	session_kqDdejhm
-2878	7	R	2012-03-18	06:00:00	\N	f	16	859	session_LRCeeLKm
-2879	3	Q1	2012-03-17	\N	\N	f	1	859	session_rDBjpusK
-2880	4	Q2	2012-03-17	\N	\N	f	1	859	session_bfIdgIDt
-2881	5	Q3	2012-03-17	\N	\N	f	1	859	session_ncR6XqDc
-2882	1	FP1	2012-03-16	\N	\N	f	1	859	session_z7i99G8C
-2883	2	FP2	2012-03-16	\N	\N	f	1	859	session_Uc5lOz23
-2884	6	FP3	2012-03-17	\N	\N	f	1	859	session_hsrGCaJ6
-2885	7	R	2012-03-25	08:00:00	\N	f	16	860	session_BJkGkVBs
-2886	3	Q1	2012-03-24	\N	\N	f	1	860	session_e94sa2bt
-2887	4	Q2	2012-03-24	\N	\N	f	1	860	session_R2zXhn0I
-2888	5	Q3	2012-03-24	\N	\N	f	1	860	session_6ElRP8a5
-2889	1	FP1	2012-03-23	\N	\N	f	1	860	session_sd7emoBw
-2890	2	FP2	2012-03-23	\N	\N	f	1	860	session_R156Vx8g
-2891	6	FP3	2012-03-24	\N	\N	f	1	860	session_brZgPxK6
-2892	7	R	2012-04-15	07:00:00	\N	f	16	861	session_EREBDEof
-2893	3	Q1	2012-04-14	\N	\N	f	1	861	session_eVDhP6rX
-2894	4	Q2	2012-04-14	\N	\N	f	1	861	session_4ZAgEkdG
-2895	5	Q3	2012-04-14	\N	\N	f	1	861	session_Nvl03SvH
-2896	1	FP1	2012-04-13	\N	\N	f	1	861	session_yjnJAjZ1
-2897	2	FP2	2012-04-13	\N	\N	f	1	861	session_0Z9regJx
-2898	6	FP3	2012-04-14	\N	\N	f	1	861	session_OIrERGM3
-2899	7	R	2012-04-22	12:00:00	\N	f	16	862	session_IcQTy2av
-2900	3	Q1	2012-04-21	\N	\N	f	1	862	session_t7dXiJdF
-2901	4	Q2	2012-04-21	\N	\N	f	1	862	session_Ygw00l8l
-2902	5	Q3	2012-04-21	\N	\N	f	1	862	session_FhXnbbun
-2903	1	FP1	2012-04-20	\N	\N	f	1	862	session_pljXYdoV
-2904	2	FP2	2012-04-20	\N	\N	f	1	862	session_j1WsspxG
-2905	6	FP3	2012-04-21	\N	\N	f	1	862	session_rMxlXXNx
-2906	7	R	2012-05-13	12:00:00	\N	f	16	863	session_nEMB2Cig
-2907	3	Q1	2012-05-12	\N	\N	f	1	863	session_yChN7QE8
-2908	4	Q2	2012-05-12	\N	\N	f	1	863	session_99Z8OJ4B
-2909	5	Q3	2012-05-12	\N	\N	f	1	863	session_VHvZgvTe
-2910	1	FP1	2012-05-11	\N	\N	f	1	863	session_F1V28xGf
-2911	2	FP2	2012-05-11	\N	\N	f	1	863	session_ht60vm7F
-2912	6	FP3	2012-05-12	\N	\N	f	1	863	session_D3hCw65u
-2913	7	R	2012-05-27	12:00:00	\N	f	16	864	session_zacLItcO
-2914	3	Q1	2012-05-26	\N	\N	f	1	864	session_3Ogf2eK4
-2915	4	Q2	2012-05-26	\N	\N	f	1	864	session_b7zPckGe
-2916	5	Q3	2012-05-26	\N	\N	f	1	864	session_xhAdDMKS
-2917	1	FP1	2012-05-24	\N	\N	f	1	864	session_alSVWwRO
-2918	2	FP2	2012-05-24	\N	\N	f	1	864	session_x1tVMmpN
-2919	6	FP3	2012-05-26	\N	\N	f	1	864	session_RwE0QjsF
-2920	7	R	2012-06-10	18:00:00	\N	f	16	865	session_uARROhQt
-2921	3	Q1	2012-06-09	\N	\N	f	1	865	session_7w1NtT0U
-2922	4	Q2	2012-06-09	\N	\N	f	1	865	session_PzAv2Pbs
-2923	5	Q3	2012-06-09	\N	\N	f	1	865	session_HarMNpAO
-2924	1	FP1	2012-06-08	\N	\N	f	1	865	session_o7IVLdI2
-2925	2	FP2	2012-06-08	\N	\N	f	1	865	session_fizrejcK
-2926	6	FP3	2012-06-09	\N	\N	f	1	865	session_mPGChVY3
-2927	7	R	2012-06-24	12:00:00	\N	f	16	866	session_Vae2u2vG
-2928	3	Q1	2012-06-23	\N	\N	f	1	866	session_R28oWdvp
-2929	4	Q2	2012-06-23	\N	\N	f	1	866	session_VnHTzGkA
-2930	5	Q3	2012-06-23	\N	\N	f	1	866	session_LlKtw3FF
-2931	1	FP1	2012-06-22	\N	\N	f	1	866	session_fG0HQALG
-2932	2	FP2	2012-06-22	\N	\N	f	1	866	session_3lwMPY1K
-2933	6	FP3	2012-06-23	\N	\N	f	1	866	session_UGPANVWi
-2934	7	R	2012-07-08	12:00:00	\N	f	16	867	session_iCB8UEKB
-2935	3	Q1	2012-07-07	\N	\N	f	1	867	session_ea4lEjG5
-2936	4	Q2	2012-07-07	\N	\N	f	1	867	session_ZTlNsODq
-2937	5	Q3	2012-07-07	\N	\N	f	1	867	session_6VV0U8jO
-2938	1	FP1	2012-07-06	\N	\N	f	1	867	session_BNcjNfa6
-2939	2	FP2	2012-07-06	\N	\N	f	1	867	session_unlJoU9h
-2940	6	FP3	2012-07-07	\N	\N	f	1	867	session_nN7nP6Uv
-2941	7	R	2012-07-22	12:00:00	\N	f	16	868	session_rRtAgjEP
-2942	3	Q1	2012-07-21	\N	\N	f	1	868	session_x9B7MY0W
-2943	4	Q2	2012-07-21	\N	\N	f	1	868	session_tjzczyXL
-2944	5	Q3	2012-07-21	\N	\N	f	1	868	session_5U6Nbjyu
-2945	1	FP1	2012-07-20	\N	\N	f	1	868	session_b2VUJHAz
-2946	2	FP2	2012-07-20	\N	\N	f	1	868	session_9KouEmWG
-2947	6	FP3	2012-07-21	\N	\N	f	1	868	session_AOzz7exT
-2948	7	R	2012-07-29	12:00:00	\N	f	16	869	session_EM5QKEfa
-2949	3	Q1	2012-07-28	\N	\N	f	1	869	session_NGw1tn8S
-2950	4	Q2	2012-07-28	\N	\N	f	1	869	session_hSFLViOm
-2951	5	Q3	2012-07-28	\N	\N	f	1	869	session_I62ydGNG
-2952	1	FP1	2012-07-27	\N	\N	f	1	869	session_VJu5xAim
-2953	2	FP2	2012-07-27	\N	\N	f	1	869	session_lWyuwys0
-2954	6	FP3	2012-07-28	\N	\N	f	1	869	session_JPQs4ewv
-2955	7	R	2012-09-02	12:00:00	\N	f	16	870	session_qDukz8xC
-2956	3	Q1	2012-09-01	\N	\N	f	1	870	session_21B5Qgdr
-2957	4	Q2	2012-09-01	\N	\N	f	1	870	session_vGKdCHD0
-2958	5	Q3	2012-09-01	\N	\N	f	1	870	session_hVZmLguM
-2959	1	FP1	2012-08-31	\N	\N	f	1	870	session_D7DLU04x
-2960	2	FP2	2012-08-31	\N	\N	f	1	870	session_4DO82rWe
-2961	6	FP3	2012-09-01	\N	\N	f	1	870	session_ZndZDuf0
-2962	7	R	2012-09-09	12:00:00	\N	f	16	871	session_nDI8zOpQ
-2963	3	Q1	2012-09-08	\N	\N	f	1	871	session_cz7ymJS5
-2964	4	Q2	2012-09-08	\N	\N	f	1	871	session_Q6Weu2V2
-2965	5	Q3	2012-09-08	\N	\N	f	1	871	session_SBReTdsJ
-2966	1	FP1	2012-09-07	\N	\N	f	1	871	session_nd6gStQy
-2967	2	FP2	2012-09-07	\N	\N	f	1	871	session_gNBm0Aw2
-2968	6	FP3	2012-09-08	\N	\N	f	1	871	session_hpwVeLkz
-2969	7	R	2012-09-23	12:00:00	\N	f	16	872	session_oYAG8Wof
-2970	3	Q1	2012-09-22	\N	\N	f	1	872	session_1mBfmc1b
-2971	4	Q2	2012-09-22	\N	\N	f	1	872	session_dOdmQEZF
-2972	5	Q3	2012-09-22	\N	\N	f	1	872	session_xWhxS3O3
-2973	1	FP1	2012-09-21	\N	\N	f	1	872	session_gxODBH8s
-2974	2	FP2	2012-09-21	\N	\N	f	1	872	session_fX3ae58k
-2975	6	FP3	2012-09-22	\N	\N	f	1	872	session_ZVV7mSCa
-2976	7	R	2012-10-07	06:00:00	\N	f	16	873	session_O6kM60XY
-2977	3	Q1	2012-10-06	\N	\N	f	1	873	session_vXQNhVlB
-2978	4	Q2	2012-10-06	\N	\N	f	1	873	session_Qb1xh1a4
-2979	5	Q3	2012-10-06	\N	\N	f	1	873	session_UOKAc9SU
-2980	1	FP1	2012-10-05	\N	\N	f	1	873	session_OibspSHe
-2981	2	FP2	2012-10-05	\N	\N	f	1	873	session_r9acUMC9
-2982	6	FP3	2012-10-06	\N	\N	f	1	873	session_9FEPuKDs
-2983	7	R	2012-10-14	06:00:00	\N	f	16	874	session_jP3hVTGu
-2984	3	Q1	2012-10-13	\N	\N	f	1	874	session_Z4Kh3I8O
-2985	4	Q2	2012-10-13	\N	\N	f	1	874	session_xEnyZTlr
-2986	5	Q3	2012-10-13	\N	\N	f	1	874	session_xEYyyv4E
-2987	1	FP1	2012-10-12	\N	\N	f	1	874	session_9tukvs7l
-2988	2	FP2	2012-10-12	\N	\N	f	1	874	session_GxU2TymC
-2989	6	FP3	2012-10-13	\N	\N	f	1	874	session_dL60aUzk
-2990	7	R	2012-10-28	09:30:00	\N	f	16	875	session_80EQzzZ8
-2991	3	Q1	2012-10-27	\N	\N	f	1	875	session_7aD6Ghrx
-2992	4	Q2	2012-10-27	\N	\N	f	1	875	session_PKsGHlxY
-2993	5	Q3	2012-10-27	\N	\N	f	1	875	session_1Oo7IQ5l
-2994	1	FP1	2012-10-26	\N	\N	f	1	875	session_xrtVnIMv
-2995	2	FP2	2012-10-26	\N	\N	f	1	875	session_9J4aF9vX
-2996	6	FP3	2012-10-27	\N	\N	f	1	875	session_Zgaj80Yw
-2997	7	R	2012-11-04	13:00:00	\N	f	16	876	session_48Yf9rMU
-2998	3	Q1	2012-11-03	\N	\N	f	1	876	session_fUiTtWOl
-2999	4	Q2	2012-11-03	\N	\N	f	1	876	session_abTaiQ7j
-3000	5	Q3	2012-11-03	\N	\N	f	1	876	session_wEgONST7
-3001	1	FP1	2012-11-02	\N	\N	f	1	876	session_zD8MC4Xg
-3002	2	FP2	2012-11-02	\N	\N	f	1	876	session_iANtQO8E
-3003	6	FP3	2012-11-03	\N	\N	f	1	876	session_mtawYdWb
-3004	7	R	2012-11-18	19:00:00	\N	f	16	877	session_Ymph2aNO
-3005	3	Q1	2012-11-17	\N	\N	f	1	877	session_EGjEHUJw
-3006	4	Q2	2012-11-17	\N	\N	f	1	877	session_XJu4NE9h
-3007	5	Q3	2012-11-17	\N	\N	f	1	877	session_d5h33ee9
-3008	1	FP1	2012-11-16	\N	\N	f	1	877	session_fN6EWMo9
-3009	2	FP2	2012-11-16	\N	\N	f	1	877	session_6GBrk2gc
-3010	6	FP3	2012-11-17	\N	\N	f	1	877	session_d7E1p1Qq
-3011	7	R	2012-11-25	16:00:00	\N	f	16	878	session_MejpPVV8
-3012	3	Q1	2012-11-24	\N	\N	f	1	878	session_aC6HchlW
-3013	4	Q2	2012-11-24	\N	\N	f	1	878	session_vS3hxCa5
-3014	5	Q3	2012-11-24	\N	\N	f	1	878	session_MvjFdJy4
-3015	1	FP1	2012-11-23	\N	\N	f	1	878	session_lUuVeGzh
-3016	2	FP2	2012-11-23	\N	\N	f	1	878	session_gh0F22D8
-3017	6	FP3	2012-11-24	\N	\N	f	1	878	session_wjfVKLEs
-3018	7	R	2013-03-17	06:00:00	\N	f	16	879	session_cV67Ease
-3019	3	Q1	2013-03-16	\N	\N	f	1	879	session_HEZCs54w
-3020	4	Q2	2013-03-16	\N	\N	f	1	879	session_dYADqDjq
-3021	5	Q3	2013-03-16	\N	\N	f	1	879	session_DqIu5dAx
-3022	1	FP1	2013-03-15	\N	\N	f	1	879	session_xuMRelJe
-3023	2	FP2	2013-03-15	\N	\N	f	1	879	session_K2miZc6H
-3024	6	FP3	2013-03-16	\N	\N	f	1	879	session_Ci4xzb5I
-3025	7	R	2013-03-24	08:00:00	\N	f	16	880	session_Ccz3Y8n8
-3026	3	Q1	2013-03-23	\N	\N	f	1	880	session_J0WfCMEt
-3027	4	Q2	2013-03-23	\N	\N	f	1	880	session_8t6RoGdz
-3028	5	Q3	2013-03-23	\N	\N	f	1	880	session_VygD52ZU
-3029	1	FP1	2013-03-22	\N	\N	f	1	880	session_bnQyLxp5
-3030	2	FP2	2013-03-22	\N	\N	f	1	880	session_LmYYj6tO
-3031	6	FP3	2013-03-23	\N	\N	f	1	880	session_cwUmJhuu
-3032	7	R	2013-04-14	07:00:00	\N	f	16	881	session_4SL75OMe
-3033	3	Q1	2013-04-13	\N	\N	f	1	881	session_8F8v0Aid
-3034	4	Q2	2013-04-13	\N	\N	f	1	881	session_gN8NgFDB
-3035	5	Q3	2013-04-13	\N	\N	f	1	881	session_mgfWxbK1
-3036	1	FP1	2013-04-12	\N	\N	f	1	881	session_jTdOca7V
-3037	2	FP2	2013-04-12	\N	\N	f	1	881	session_FtaAxQeT
-3038	6	FP3	2013-04-13	\N	\N	f	1	881	session_F51PFEp1
-3039	7	R	2013-04-21	12:00:00	\N	f	16	882	session_fe3gXGCp
-3040	3	Q1	2013-04-20	\N	\N	f	1	882	session_4TakY4Qu
-3041	4	Q2	2013-04-20	\N	\N	f	1	882	session_6ChXUDZ3
-3042	5	Q3	2013-04-20	\N	\N	f	1	882	session_XXernH42
-3043	1	FP1	2013-04-19	\N	\N	f	1	882	session_5soLAiS2
-3044	2	FP2	2013-04-19	\N	\N	f	1	882	session_LRUSbgdG
-3045	6	FP3	2013-04-20	\N	\N	f	1	882	session_0RbDHRs3
-3046	7	R	2013-05-12	12:00:00	\N	f	16	883	session_tgC1WOiM
-3047	3	Q1	2013-05-11	\N	\N	f	1	883	session_63WfDViI
-3048	4	Q2	2013-05-11	\N	\N	f	1	883	session_Jff9yZQV
-3049	5	Q3	2013-05-11	\N	\N	f	1	883	session_411GIoUW
-3050	1	FP1	2013-05-10	\N	\N	f	1	883	session_N398DDIZ
-3051	2	FP2	2013-05-10	\N	\N	f	1	883	session_fgxP1CSt
-3052	6	FP3	2013-05-11	\N	\N	f	1	883	session_zsy1WJD6
-3053	7	R	2013-05-26	12:00:00	\N	f	16	884	session_qZM2XLrM
-3054	3	Q1	2013-05-25	\N	\N	f	1	884	session_2ZSN25Jx
-3055	4	Q2	2013-05-25	\N	\N	f	1	884	session_EYOpX2Mc
-3056	5	Q3	2013-05-25	\N	\N	f	1	884	session_BxqNegYV
-3057	1	FP1	2013-05-23	\N	\N	f	1	884	session_nbEqfsCA
-3058	2	FP2	2013-05-23	\N	\N	f	1	884	session_awnemfSQ
-3059	6	FP3	2013-05-25	\N	\N	f	1	884	session_qHYJIloz
-3060	7	R	2013-06-09	18:00:00	\N	f	16	885	session_mry0TmAw
-3061	3	Q1	2013-06-08	\N	\N	f	1	885	session_TXQREbrh
-3062	4	Q2	2013-06-08	\N	\N	f	1	885	session_nJmFqe2W
-3063	5	Q3	2013-06-08	\N	\N	f	1	885	session_FD0LFJA1
-3064	1	FP1	2013-06-07	\N	\N	f	1	885	session_WNl0zdZ9
-3065	2	FP2	2013-06-07	\N	\N	f	1	885	session_xpxXeZxF
-3066	6	FP3	2013-06-08	\N	\N	f	1	885	session_tmRz1iZt
-3067	7	R	2013-06-30	12:00:00	\N	f	16	886	session_iGY2NVIL
-3068	3	Q1	2013-06-29	\N	\N	f	1	886	session_0N9ZlBL1
-3069	4	Q2	2013-06-29	\N	\N	f	1	886	session_NAlbWwyc
-3070	5	Q3	2013-06-29	\N	\N	f	1	886	session_X9IMeBUZ
-3071	1	FP1	2013-06-28	\N	\N	f	1	886	session_vVnPI6Xp
-3072	2	FP2	2013-06-28	\N	\N	f	1	886	session_glkXPAng
-3073	6	FP3	2013-06-29	\N	\N	f	1	886	session_6fTaTYDA
-3074	7	R	2013-07-07	12:00:00	\N	f	16	887	session_y3ofe7bw
-3075	3	Q1	2013-07-06	\N	\N	f	1	887	session_j39MjUTk
-3076	4	Q2	2013-07-06	\N	\N	f	1	887	session_2V7TXnQI
-3077	5	Q3	2013-07-06	\N	\N	f	1	887	session_t7KYXPez
-3078	1	FP1	2013-07-05	\N	\N	f	1	887	session_II1dZSvm
-3079	2	FP2	2013-07-05	\N	\N	f	1	887	session_gumboLLB
-3080	6	FP3	2013-07-06	\N	\N	f	1	887	session_zaoTu1ff
-3081	7	R	2013-07-28	12:00:00	\N	f	16	888	session_sYO1c3y5
-3082	3	Q1	2013-07-27	\N	\N	f	1	888	session_dxGqYftA
-3083	4	Q2	2013-07-27	\N	\N	f	1	888	session_5ZUAH1VT
-3084	5	Q3	2013-07-27	\N	\N	f	1	888	session_nxRug88f
-3085	1	FP1	2013-07-26	\N	\N	f	1	888	session_gbmxQPZN
-3086	2	FP2	2013-07-26	\N	\N	f	1	888	session_AY4mJCB2
-3087	6	FP3	2013-07-27	\N	\N	f	1	888	session_laVF4qWW
-3088	7	R	2013-08-25	12:00:00	\N	f	16	889	session_nJLH53XR
-3089	3	Q1	2013-08-24	\N	\N	f	1	889	session_4RjcfG0a
-3090	4	Q2	2013-08-24	\N	\N	f	1	889	session_Qt1Ql4RY
-3091	5	Q3	2013-08-24	\N	\N	f	1	889	session_SsD9vBps
-3092	1	FP1	2013-08-23	\N	\N	f	1	889	session_2ggXZUD7
-3093	2	FP2	2013-08-23	\N	\N	f	1	889	session_JjRG489n
-3094	6	FP3	2013-08-24	\N	\N	f	1	889	session_IGfQidwE
-3095	7	R	2013-09-08	12:00:00	\N	f	16	890	session_gReoTWpt
-3096	3	Q1	2013-09-07	\N	\N	f	1	890	session_oxm62V1r
-3097	4	Q2	2013-09-07	\N	\N	f	1	890	session_EaGiYT9J
-3098	5	Q3	2013-09-07	\N	\N	f	1	890	session_Lbc8BvXx
-3099	1	FP1	2013-09-06	\N	\N	f	1	890	session_kcE3gxiE
-3100	2	FP2	2013-09-06	\N	\N	f	1	890	session_R7ObgRel
-3101	6	FP3	2013-09-07	\N	\N	f	1	890	session_ISA3bbkk
-3102	7	R	2013-09-22	12:00:00	\N	f	16	891	session_AZwZ0Kkr
-3103	3	Q1	2013-09-21	\N	\N	f	1	891	session_VKSD2mFW
-3104	4	Q2	2013-09-21	\N	\N	f	1	891	session_BM3C5AG7
-3105	5	Q3	2013-09-21	\N	\N	f	1	891	session_IyKwHbJX
-3106	1	FP1	2013-09-20	\N	\N	f	1	891	session_HB1fhEGE
-3107	2	FP2	2013-09-20	\N	\N	f	1	891	session_NVVMJcRd
-3108	6	FP3	2013-09-21	\N	\N	f	1	891	session_ccuSgBSi
-3109	7	R	2013-10-06	06:00:00	\N	f	16	892	session_KQ8AIl0O
-3110	3	Q1	2013-10-05	\N	\N	f	1	892	session_XNXVy5lG
-3111	4	Q2	2013-10-05	\N	\N	f	1	892	session_KQ2sQ66e
-3112	5	Q3	2013-10-05	\N	\N	f	1	892	session_AMjYGlKZ
-3113	1	FP1	2013-10-04	\N	\N	f	1	892	session_6LatyPLL
-3114	2	FP2	2013-10-04	\N	\N	f	1	892	session_7QeYlJnY
-3115	6	FP3	2013-10-05	\N	\N	f	1	892	session_2gGbGYsf
-3116	7	R	2013-10-13	06:00:00	\N	f	16	893	session_Yjuy56Lz
-3117	3	Q1	2013-10-12	\N	\N	f	1	893	session_fy2TPRfh
-3118	4	Q2	2013-10-12	\N	\N	f	1	893	session_4sw6uDQe
-3119	5	Q3	2013-10-12	\N	\N	f	1	893	session_ZX2296L3
-3120	1	FP1	2013-10-11	\N	\N	f	1	893	session_ssNCgKH1
-3121	2	FP2	2013-10-11	\N	\N	f	1	893	session_rxMWzmay
-3122	6	FP3	2013-10-12	\N	\N	f	1	893	session_64l3zXQA
-3123	7	R	2013-10-27	09:30:00	\N	f	16	894	session_6CfOnbaj
-3124	3	Q1	2013-10-26	\N	\N	f	1	894	session_r2kXqWsK
-3125	4	Q2	2013-10-26	\N	\N	f	1	894	session_8esbX3jI
-3126	5	Q3	2013-10-26	\N	\N	f	1	894	session_XYov2OlZ
-3127	1	FP1	2013-10-25	\N	\N	f	1	894	session_rxXSqLIb
-3128	2	FP2	2013-10-25	\N	\N	f	1	894	session_eLiYmHnW
-3129	6	FP3	2013-10-26	\N	\N	f	1	894	session_ugrAugBk
-3130	7	R	2013-11-03	13:00:00	\N	f	16	895	session_fbo1X1fF
-3131	3	Q1	2013-11-02	\N	\N	f	1	895	session_aaIyH1WO
-3132	4	Q2	2013-11-02	\N	\N	f	1	895	session_7oL60VTA
-3133	5	Q3	2013-11-02	\N	\N	f	1	895	session_oSGWCVmB
-3134	1	FP1	2013-11-01	\N	\N	f	1	895	session_OYLirzc5
-3135	2	FP2	2013-11-01	\N	\N	f	1	895	session_5xR76hCk
-3136	6	FP3	2013-11-02	\N	\N	f	1	895	session_V2P4PYo1
-3137	7	R	2013-11-17	19:00:00	\N	f	16	896	session_k8DF7EKo
-3138	3	Q1	2013-11-16	\N	\N	f	1	896	session_8yK1x9F2
-3139	4	Q2	2013-11-16	\N	\N	f	1	896	session_nPr41JM8
-3140	5	Q3	2013-11-16	\N	\N	f	1	896	session_c7AuMUBA
-3141	1	FP1	2013-11-15	\N	\N	f	1	896	session_AzaWP0nA
-3142	2	FP2	2013-11-15	\N	\N	f	1	896	session_RtLwM1By
-3143	6	FP3	2013-11-16	\N	\N	f	1	896	session_1Kt1OQqi
-3144	7	R	2013-11-24	16:00:00	\N	f	16	897	session_MWajbaLQ
-3145	3	Q1	2013-11-23	\N	\N	f	1	897	session_W962uFAG
-3146	4	Q2	2013-11-23	\N	\N	f	1	897	session_oF7efYn1
-3147	5	Q3	2013-11-23	\N	\N	f	1	897	session_j0IdqpTU
-3148	1	FP1	2013-11-22	\N	\N	f	1	897	session_VQjcfjjE
-3149	2	FP2	2013-11-22	\N	\N	f	1	897	session_cTxnGpZA
-3150	6	FP3	2013-11-23	\N	\N	f	1	897	session_GodqyLng
-3151	7	R	2014-03-16	06:00:00	\N	f	16	898	session_ibaZACdd
-3152	3	Q1	2014-03-15	\N	\N	f	1	898	session_IOTb4tN9
-3153	4	Q2	2014-03-15	\N	\N	f	1	898	session_FVN4VCf6
-3154	5	Q3	2014-03-15	\N	\N	f	1	898	session_NHluh8Px
-3155	1	FP1	2014-03-14	\N	\N	f	1	898	session_XXDgy7EY
-3156	2	FP2	2014-03-14	\N	\N	f	1	898	session_bIZZozKb
-3157	6	FP3	2014-03-15	\N	\N	f	1	898	session_yDaYI1kM
-3158	7	R	2014-03-30	08:00:00	\N	f	16	899	session_rYBPRp65
-3159	3	Q1	2014-03-29	\N	\N	f	1	899	session_YRrCmFqW
-3160	4	Q2	2014-03-29	\N	\N	f	1	899	session_CaNcRk65
-3161	5	Q3	2014-03-29	\N	\N	f	1	899	session_MkOxkoVX
-3162	1	FP1	2014-03-28	\N	\N	f	1	899	session_QwWOZeKa
-3163	2	FP2	2014-03-28	\N	\N	f	1	899	session_sBNMmNiS
-3164	6	FP3	2014-03-29	\N	\N	f	1	899	session_SS5ofyLu
-3165	7	R	2014-04-06	15:00:00	\N	f	16	900	session_tVZcUkqA
-3166	3	Q1	2014-04-05	\N	\N	f	1	900	session_uInUmeXa
-3167	4	Q2	2014-04-05	\N	\N	f	1	900	session_KXkSbdux
-3168	5	Q3	2014-04-05	\N	\N	f	1	900	session_TfbHSnxU
-3169	1	FP1	2014-04-04	\N	\N	f	1	900	session_o7hqUeNU
-3170	2	FP2	2014-04-04	\N	\N	f	1	900	session_sBorH0v9
-3171	6	FP3	2014-04-05	\N	\N	f	1	900	session_rFDuYy0V
-3172	7	R	2014-04-20	07:00:00	\N	f	16	901	session_BoeMYoqp
-3173	3	Q1	2014-04-19	\N	\N	f	1	901	session_12eMY1zb
-3174	4	Q2	2014-04-19	\N	\N	f	1	901	session_k9ysofs6
-3175	5	Q3	2014-04-19	\N	\N	f	1	901	session_Nl3XWagb
-3176	1	FP1	2014-04-18	\N	\N	f	1	901	session_E6wRawHY
-3177	2	FP2	2014-04-18	\N	\N	f	1	901	session_gXLowUb1
-3178	6	FP3	2014-04-19	\N	\N	f	1	901	session_zhtY7YYG
-3179	7	R	2014-05-11	12:00:00	\N	f	16	902	session_SNSjYmO8
-3180	3	Q1	2014-05-10	\N	\N	f	1	902	session_MllYmAUm
-3181	4	Q2	2014-05-10	\N	\N	f	1	902	session_bfEXDIFo
-3182	5	Q3	2014-05-10	\N	\N	f	1	902	session_v5h2rtGa
-3183	1	FP1	2014-05-09	\N	\N	f	1	902	session_XW5Wp8Tc
-3184	2	FP2	2014-05-09	\N	\N	f	1	902	session_QcVJLPfS
-3185	6	FP3	2014-05-10	\N	\N	f	1	902	session_UfdxVzTK
-3186	7	R	2014-05-25	12:00:00	\N	f	16	903	session_RK28JEpB
-3187	3	Q1	2014-05-24	\N	\N	f	1	903	session_GLAGd1yB
-3188	4	Q2	2014-05-24	\N	\N	f	1	903	session_IEGqfBmX
-3189	5	Q3	2014-05-24	\N	\N	f	1	903	session_lg93ejpd
-3190	1	FP1	2014-05-22	\N	\N	f	1	903	session_nfJPKESm
-3191	2	FP2	2014-05-22	\N	\N	f	1	903	session_0uXb76yD
-3192	6	FP3	2014-05-24	\N	\N	f	1	903	session_kCjGydLh
-3193	7	R	2014-06-08	18:00:00	\N	f	16	904	session_VJMPgT0Q
-3194	3	Q1	2014-06-07	\N	\N	f	1	904	session_IGVD6mF9
-3195	4	Q2	2014-06-07	\N	\N	f	1	904	session_AAsk6h05
-3196	5	Q3	2014-06-07	\N	\N	f	1	904	session_X9hlacAX
-3197	1	FP1	2014-06-06	\N	\N	f	1	904	session_eDG0WJdg
-3198	2	FP2	2014-06-06	\N	\N	f	1	904	session_kz99EVAS
-3199	6	FP3	2014-06-07	\N	\N	f	1	904	session_EbqWMNyJ
-3200	7	R	2014-06-22	12:00:00	\N	f	16	905	session_rVyrCGjB
-3201	3	Q1	2014-06-21	\N	\N	f	1	905	session_EoBLytii
-3202	4	Q2	2014-06-21	\N	\N	f	1	905	session_VUiM0XXe
-3203	5	Q3	2014-06-21	\N	\N	f	1	905	session_a862B2lR
-3204	1	FP1	2014-06-20	\N	\N	f	1	905	session_GhXfgTdo
-3205	2	FP2	2014-06-20	\N	\N	f	1	905	session_cOm4ddob
-3206	6	FP3	2014-06-21	\N	\N	f	1	905	session_5b7TuCSW
-3207	7	R	2014-07-06	12:00:00	\N	f	16	906	session_RouPbdon
-3208	3	Q1	2014-07-05	\N	\N	f	1	906	session_r8VShVsw
-3209	4	Q2	2014-07-05	\N	\N	f	1	906	session_QvvzTEqZ
-3210	5	Q3	2014-07-05	\N	\N	f	1	906	session_ElONobmv
-3211	1	FP1	2014-07-04	\N	\N	f	1	906	session_TQxRENpR
-3212	2	FP2	2014-07-04	\N	\N	f	1	906	session_UVa2thQm
-3213	6	FP3	2014-07-05	\N	\N	f	1	906	session_f4STpBiV
-3214	7	R	2014-07-20	12:00:00	\N	f	16	907	session_QomsT5si
-3215	3	Q1	2014-07-19	\N	\N	f	1	907	session_CxV5UApb
-3216	4	Q2	2014-07-19	\N	\N	f	1	907	session_yfnusRRG
-3217	5	Q3	2014-07-19	\N	\N	f	1	907	session_tW9ChfTh
-3218	1	FP1	2014-07-18	\N	\N	f	1	907	session_W0ibvcPl
-3219	2	FP2	2014-07-18	\N	\N	f	1	907	session_SjIuV5fd
-3220	6	FP3	2014-07-19	\N	\N	f	1	907	session_UNQntM1Q
-3221	7	R	2014-07-27	12:00:00	\N	f	16	908	session_ev0PGsQS
-3222	3	Q1	2014-07-26	\N	\N	f	1	908	session_4EiXb1Ae
-3223	4	Q2	2014-07-26	\N	\N	f	1	908	session_X00tDgrX
-3224	5	Q3	2014-07-26	\N	\N	f	1	908	session_q8chNJZi
-3225	1	FP1	2014-07-25	\N	\N	f	1	908	session_7KcqBv6x
-3226	2	FP2	2014-07-25	\N	\N	f	1	908	session_VGLqCiu0
-3227	6	FP3	2014-07-26	\N	\N	f	1	908	session_4MPdwRsw
-3228	7	R	2014-08-24	12:00:00	\N	f	16	909	session_LJPY7JvN
-3229	3	Q1	2014-08-23	\N	\N	f	1	909	session_vhpejDSe
-3230	4	Q2	2014-08-23	\N	\N	f	1	909	session_Mlg1nUmd
-3231	5	Q3	2014-08-23	\N	\N	f	1	909	session_X93adcvt
-3232	1	FP1	2014-08-22	\N	\N	f	1	909	session_Bw63D1Ob
-3233	2	FP2	2014-08-22	\N	\N	f	1	909	session_LXhclGXX
-3234	6	FP3	2014-08-23	\N	\N	f	1	909	session_j04fv7sz
-3235	7	R	2014-09-07	12:00:00	\N	f	16	910	session_Im2vdhzy
-3236	3	Q1	2014-09-06	\N	\N	f	1	910	session_gpckSjrZ
-3237	4	Q2	2014-09-06	\N	\N	f	1	910	session_tPkPJkSb
-3238	5	Q3	2014-09-06	\N	\N	f	1	910	session_bApGLxEw
-3239	1	FP1	2014-09-05	\N	\N	f	1	910	session_0Zg4jWrB
-3240	2	FP2	2014-09-05	\N	\N	f	1	910	session_Zimuu0XJ
-3241	6	FP3	2014-09-06	\N	\N	f	1	910	session_sn7qRhVT
-3242	7	R	2014-09-21	12:00:00	\N	f	16	911	session_bPZrQkh6
-3243	3	Q1	2014-09-20	\N	\N	f	1	911	session_KtAhU2T0
-3244	4	Q2	2014-09-20	\N	\N	f	1	911	session_vIaTtWOr
-3245	5	Q3	2014-09-20	\N	\N	f	1	911	session_82WQM8sG
-3246	1	FP1	2014-09-19	\N	\N	f	1	911	session_jo2PxgUc
-3247	2	FP2	2014-09-19	\N	\N	f	1	911	session_k8vDBpdt
-3248	6	FP3	2014-09-20	\N	\N	f	1	911	session_oW0Rltji
-3249	7	R	2014-10-05	06:00:00	\N	f	16	912	session_UB0Pr7Ek
-3250	3	Q1	2014-10-04	\N	\N	f	1	912	session_XSHyIpPK
-3251	4	Q2	2014-10-04	\N	\N	f	1	912	session_ncsNRJfS
-3252	5	Q3	2014-10-04	\N	\N	f	1	912	session_8c2qdp6t
-3253	1	FP1	2014-10-03	\N	\N	f	1	912	session_yXhE6hLR
-3254	2	FP2	2014-10-03	\N	\N	f	1	912	session_2LNBFbXI
-3255	6	FP3	2014-10-04	\N	\N	f	1	912	session_afxnjaHr
-3256	7	R	2014-10-12	11:00:00	\N	f	16	913	session_zcPU0lGa
-3257	3	Q1	2014-10-11	\N	\N	f	1	913	session_qpbdGWy4
-3258	4	Q2	2014-10-11	\N	\N	f	1	913	session_GZF3Qmzg
-3259	5	Q3	2014-10-11	\N	\N	f	1	913	session_dEyiIMA2
-3260	1	FP1	2014-10-10	\N	\N	f	1	913	session_TPFmk36c
-3261	2	FP2	2014-10-10	\N	\N	f	1	913	session_CTDte2u8
-3262	6	FP3	2014-10-11	\N	\N	f	1	913	session_ts59AGon
-3263	7	R	2014-11-02	20:00:00	\N	f	16	914	session_TR5gZFDc
-3264	3	Q1	2014-11-01	\N	\N	f	1	914	session_Ehj5cvkd
-3265	4	Q2	2014-11-01	\N	\N	f	1	914	session_CKysZ2xb
-3266	5	Q3	2014-11-01	\N	\N	f	1	914	session_RLhPf1dP
-3267	1	FP1	2014-10-31	\N	\N	f	1	914	session_N0XM2MyC
-3268	2	FP2	2014-10-31	\N	\N	f	1	914	session_JstRNtz8
-3269	6	FP3	2014-11-01	\N	\N	f	1	914	session_7oyByUhT
-3270	7	R	2014-11-09	16:00:00	\N	f	16	915	session_mqqgTc1M
-3271	3	Q1	2014-11-08	\N	\N	f	1	915	session_1JUUmqiS
-3272	4	Q2	2014-11-08	\N	\N	f	1	915	session_0tw6M8rf
-3273	5	Q3	2014-11-08	\N	\N	f	1	915	session_JWrGqRCJ
-3274	1	FP1	2014-11-07	\N	\N	f	1	915	session_5o7V0Uyn
-3275	2	FP2	2014-11-07	\N	\N	f	1	915	session_ZSK6hDGe
-3276	6	FP3	2014-11-08	\N	\N	f	1	915	session_t9UpYGyN
-3277	7	R	2014-11-23	13:00:00	\N	f	16	916	session_lcw60767
-3278	3	Q1	2014-11-22	\N	\N	f	1	916	session_iwf4jL1u
-3279	4	Q2	2014-11-22	\N	\N	f	1	916	session_uUdL2CmF
-3280	5	Q3	2014-11-22	\N	\N	f	1	916	session_m5abYY9H
-3281	1	FP1	2014-11-21	\N	\N	f	1	916	session_IxNWIRoC
-3282	2	FP2	2014-11-21	\N	\N	f	1	916	session_mE0Lml3G
-3283	6	FP3	2014-11-22	\N	\N	f	1	916	session_C3DrqTkZ
-3284	7	R	2015-03-15	05:00:00	\N	f	16	917	session_rPU8qTPR
-3285	3	Q1	2015-03-14	\N	\N	f	1	917	session_9zI9b7e3
-3286	4	Q2	2015-03-14	\N	\N	f	1	917	session_BAcOmDKh
-3287	5	Q3	2015-03-14	\N	\N	f	1	917	session_egpDnrOe
-3288	1	FP1	2015-03-13	\N	\N	f	1	917	session_gAQ6n0Z0
-3289	2	FP2	2015-03-13	\N	\N	f	1	917	session_TyD0pU1L
-3290	6	FP3	2015-03-14	\N	\N	f	1	917	session_uv90c9On
-3291	7	R	2015-03-29	07:00:00	\N	f	16	918	session_kLKkNo6c
-3292	3	Q1	2015-03-28	\N	\N	f	1	918	session_iWzCoMYD
-3293	4	Q2	2015-03-28	\N	\N	f	1	918	session_cv2nDIRR
-3294	5	Q3	2015-03-28	\N	\N	f	1	918	session_GQvTp8eq
-3295	1	FP1	2015-03-27	\N	\N	f	1	918	session_ItxDiyNp
-3296	2	FP2	2015-03-27	\N	\N	f	1	918	session_4ZFYNfjW
-3297	6	FP3	2015-03-28	\N	\N	f	1	918	session_ELQKvdTs
-3298	7	R	2015-04-12	06:00:00	\N	f	16	919	session_J8k1JQt7
-3299	3	Q1	2015-04-11	\N	\N	f	1	919	session_RMSY4F0N
-3300	4	Q2	2015-04-11	\N	\N	f	1	919	session_u7e6NM7J
-3301	5	Q3	2015-04-11	\N	\N	f	1	919	session_2zOpQ8iY
-3302	1	FP1	2015-04-10	\N	\N	f	1	919	session_U61pBPeA
-3303	2	FP2	2015-04-10	\N	\N	f	1	919	session_UW62ZSwZ
-3304	6	FP3	2015-04-11	\N	\N	f	1	919	session_kzuPCSKu
-3305	7	R	2015-04-19	15:00:00	\N	f	16	920	session_XrOHMMOk
-3306	3	Q1	2015-04-18	\N	\N	f	1	920	session_eGQ25Ayc
-3307	4	Q2	2015-04-18	\N	\N	f	1	920	session_BWypciLi
-3308	5	Q3	2015-04-18	\N	\N	f	1	920	session_pATkXgxO
-3309	1	FP1	2015-04-17	\N	\N	f	1	920	session_L66ELHaj
-3310	2	FP2	2015-04-17	\N	\N	f	1	920	session_I4mdlP9x
-3311	6	FP3	2015-04-18	\N	\N	f	1	920	session_yXqNIhTS
-3312	7	R	2015-05-10	12:00:00	\N	f	16	921	session_2xJFmLTz
-3313	3	Q1	2015-05-09	\N	\N	f	1	921	session_jqnBYrNk
-3314	4	Q2	2015-05-09	\N	\N	f	1	921	session_KMsaWa5m
-3315	5	Q3	2015-05-09	\N	\N	f	1	921	session_k9IR7S4y
-3316	1	FP1	2015-05-08	\N	\N	f	1	921	session_i0DSC0qb
-3317	2	FP2	2015-05-08	\N	\N	f	1	921	session_2wnTuGR1
-3318	6	FP3	2015-05-09	\N	\N	f	1	921	session_ARfVWar4
-3319	7	R	2015-05-24	12:00:00	\N	f	16	922	session_wt6SKy1p
-3320	3	Q1	2015-05-23	\N	\N	f	1	922	session_ZEzXk097
-3321	4	Q2	2015-05-23	\N	\N	f	1	922	session_3qYINsko
-3322	5	Q3	2015-05-23	\N	\N	f	1	922	session_7vMhO9Zl
-3323	1	FP1	2015-05-21	\N	\N	f	1	922	session_YYvbF9gJ
-3324	2	FP2	2015-05-21	\N	\N	f	1	922	session_9kkrf8xC
-3325	6	FP3	2015-05-23	\N	\N	f	1	922	session_berizycE
-3326	7	R	2015-06-07	18:00:00	\N	f	16	923	session_Ku4s7cpf
-3327	3	Q1	2015-06-06	\N	\N	f	1	923	session_pnV2w2Kw
-3328	4	Q2	2015-06-06	\N	\N	f	1	923	session_XVQhCOef
-3329	5	Q3	2015-06-06	\N	\N	f	1	923	session_x54KAdEt
-3330	1	FP1	2015-06-05	\N	\N	f	1	923	session_YCYYa64H
-3331	2	FP2	2015-06-05	\N	\N	f	1	923	session_xm3cesHR
-3332	6	FP3	2015-06-06	\N	\N	f	1	923	session_GKFPTTGX
-3333	7	R	2015-06-21	12:00:00	\N	f	16	924	session_Fsoey7Np
-3334	3	Q1	2015-06-20	\N	\N	f	1	924	session_loduoPpW
-3335	4	Q2	2015-06-20	\N	\N	f	1	924	session_PmHc8aJP
-3336	5	Q3	2015-06-20	\N	\N	f	1	924	session_3cSMALba
-3337	1	FP1	2015-06-19	\N	\N	f	1	924	session_gJxcRiie
-3338	2	FP2	2015-06-19	\N	\N	f	1	924	session_eNbKukfg
-3339	6	FP3	2015-06-20	\N	\N	f	1	924	session_kVAz2lBn
-3340	7	R	2015-07-05	12:00:00	\N	f	16	925	session_JLgDsdQY
-3341	3	Q1	2015-07-04	\N	\N	f	1	925	session_OWFy5hXH
-3342	4	Q2	2015-07-04	\N	\N	f	1	925	session_vQWhiklA
-3343	5	Q3	2015-07-04	\N	\N	f	1	925	session_Fb2mmcay
-3344	1	FP1	2015-07-03	\N	\N	f	1	925	session_hv3TnoRS
-3345	2	FP2	2015-07-03	\N	\N	f	1	925	session_DQUchDcM
-3346	6	FP3	2015-07-04	\N	\N	f	1	925	session_AB8NhoN5
-3347	7	R	2015-07-26	12:00:00	\N	f	16	926	session_HhEn9U0t
-3348	3	Q1	2015-07-25	\N	\N	f	1	926	session_uAF8JBrA
-3349	4	Q2	2015-07-25	\N	\N	f	1	926	session_E3wm0BEZ
-3350	5	Q3	2015-07-25	\N	\N	f	1	926	session_em7JZRBM
-3351	1	FP1	2015-07-24	\N	\N	f	1	926	session_AUZEjbPN
-3352	2	FP2	2015-07-24	\N	\N	f	1	926	session_4t8K3aa7
-3353	6	FP3	2015-07-25	\N	\N	f	1	926	session_p9931ZAC
-3354	7	R	2015-08-23	12:00:00	\N	f	16	927	session_UIaVOy5r
-3355	3	Q1	2015-08-22	\N	\N	f	1	927	session_xwD01oTl
-3356	4	Q2	2015-08-22	\N	\N	f	1	927	session_YPMHAdzG
-3357	5	Q3	2015-08-22	\N	\N	f	1	927	session_WqT2UtJj
-3358	1	FP1	2015-08-21	\N	\N	f	1	927	session_EQ63Svag
-3359	2	FP2	2015-08-21	\N	\N	f	1	927	session_4UXZyKAc
-3360	6	FP3	2015-08-22	\N	\N	f	1	927	session_yu3HtUsV
-3361	7	R	2015-09-06	12:00:00	\N	f	16	928	session_ETJfXgWW
-3362	3	Q1	2015-09-05	\N	\N	f	1	928	session_OUf2EFxu
-3363	4	Q2	2015-09-05	\N	\N	f	1	928	session_G6yiYxSQ
-3364	5	Q3	2015-09-05	\N	\N	f	1	928	session_fFGTTUcF
-3365	1	FP1	2015-09-04	\N	\N	f	1	928	session_dnpjl4kQ
-3366	2	FP2	2015-09-04	\N	\N	f	1	928	session_9iSO6lv9
-3367	6	FP3	2015-09-05	\N	\N	f	1	928	session_d1Oxe5C9
-3368	7	R	2015-09-20	12:00:00	\N	f	16	929	session_vyExGt0G
-3369	3	Q1	2015-09-19	\N	\N	f	1	929	session_0JelEC8k
-3370	4	Q2	2015-09-19	\N	\N	f	1	929	session_izKPtvRB
-3371	5	Q3	2015-09-19	\N	\N	f	1	929	session_mSTqqgNz
-3372	1	FP1	2015-09-18	\N	\N	f	1	929	session_VBhQLBa7
-3373	2	FP2	2015-09-18	\N	\N	f	1	929	session_ahTlusQj
-3374	6	FP3	2015-09-19	\N	\N	f	1	929	session_psJ2Yx6b
-3375	7	R	2015-09-27	05:00:00	\N	f	16	930	session_sSpR0Af2
-3376	3	Q1	2015-09-26	\N	\N	f	1	930	session_Vawf6TLt
-3377	4	Q2	2015-09-26	\N	\N	f	1	930	session_w4lGLGwf
-3378	5	Q3	2015-09-26	\N	\N	f	1	930	session_w3w3K5MU
-3379	1	FP1	2015-09-25	\N	\N	f	1	930	session_Z7bbLk3x
-3380	2	FP2	2015-09-25	\N	\N	f	1	930	session_7SVBZfaQ
-3381	6	FP3	2015-09-26	\N	\N	f	1	930	session_fD9CTMVt
-3382	7	R	2015-10-11	11:00:00	\N	f	16	931	session_gZedYgWj
-3383	3	Q1	2015-10-10	\N	\N	f	1	931	session_dWsoLed5
-3384	4	Q2	2015-10-10	\N	\N	f	1	931	session_pacMU9zS
-3385	5	Q3	2015-10-10	\N	\N	f	1	931	session_8hEvNQsX
-3386	1	FP1	2015-10-09	\N	\N	f	1	931	session_zHXAll5X
-3387	2	FP2	2015-10-09	\N	\N	f	1	931	session_iCsmROgF
-3388	6	FP3	2015-10-10	\N	\N	f	1	931	session_Lyx67Q8m
-3389	7	R	2015-10-25	19:00:00	\N	f	16	932	session_5JwZGi1E
-3390	3	Q1	2015-10-24	\N	\N	f	1	932	session_DvgPmK8m
-3391	4	Q2	2015-10-24	\N	\N	f	1	932	session_pgSEeUBB
-3392	5	Q3	2015-10-24	\N	\N	f	1	932	session_DlgYHhCQ
-3393	1	FP1	2015-10-23	\N	\N	f	1	932	session_1QsFcI55
-3394	2	FP2	2015-10-23	\N	\N	f	1	932	session_UQq1OhyK
-3395	6	FP3	2015-10-24	\N	\N	f	1	932	session_t5adqhak
-3396	7	R	2015-11-01	19:00:00	\N	f	16	933	session_YSLEm4su
-3397	3	Q1	2015-10-31	\N	\N	f	1	933	session_FHumtO3x
-3398	4	Q2	2015-10-31	\N	\N	f	1	933	session_K5Qkq4xx
-3399	5	Q3	2015-10-31	\N	\N	f	1	933	session_9jtmWkVE
-3400	1	FP1	2015-10-30	\N	\N	f	1	933	session_VU6uicdv
-3401	2	FP2	2015-10-30	\N	\N	f	1	933	session_ph8nlo8A
-3402	6	FP3	2015-10-31	\N	\N	f	1	933	session_j69ZFQIm
-3403	7	R	2015-11-15	16:00:00	\N	f	16	934	session_K5xU80vl
-3404	3	Q1	2015-11-14	\N	\N	f	1	934	session_en3ElMyT
-3405	4	Q2	2015-11-14	\N	\N	f	1	934	session_tn7ahOqw
-3406	5	Q3	2015-11-14	\N	\N	f	1	934	session_xBFklqRU
-3407	1	FP1	2015-11-13	\N	\N	f	1	934	session_EaZozT4P
-3408	2	FP2	2015-11-13	\N	\N	f	1	934	session_kPgCCp2L
-3409	6	FP3	2015-11-14	\N	\N	f	1	934	session_jLuhx2nr
-3410	7	R	2015-11-29	13:00:00	\N	f	16	935	session_vF2MtQZJ
-3411	3	Q1	2015-11-28	\N	\N	f	1	935	session_f4OIw5w2
-3412	4	Q2	2015-11-28	\N	\N	f	1	935	session_9Pga3SR7
-3413	5	Q3	2015-11-28	\N	\N	f	1	935	session_biaYFvBg
-3414	1	FP1	2015-11-27	\N	\N	f	1	935	session_FajHVo3p
-3415	2	FP2	2015-11-27	\N	\N	f	1	935	session_P8NLQfWF
-3416	6	FP3	2015-11-28	\N	\N	f	1	935	session_4PIR9wAv
-3417	7	R	2016-03-20	05:00:00	\N	f	16	936	session_RtRLo1jq
-3418	3	Q1	2016-03-19	\N	\N	f	1	936	session_7np4XyYN
-3419	4	Q2	2016-03-19	\N	\N	f	1	936	session_0jjBUgpI
-3420	5	Q3	2016-03-19	\N	\N	f	1	936	session_3s3DCfiQ
-3421	1	FP1	2016-03-18	\N	\N	f	1	936	session_vOzwrAn3
-3422	2	FP2	2016-03-18	\N	\N	f	1	936	session_rqSQyfeV
-3423	6	FP3	2016-03-19	\N	\N	f	1	936	session_bfKlRm6I
-3424	7	R	2016-04-03	15:00:00	\N	f	16	937	session_7S3rdrhy
-3425	3	Q1	2016-04-02	\N	\N	f	1	937	session_OEYruKFL
-3426	4	Q2	2016-04-02	\N	\N	f	1	937	session_NcINk01N
-3427	5	Q3	2016-04-02	\N	\N	f	1	937	session_OKxGryxi
-3428	1	FP1	2016-04-01	\N	\N	f	1	937	session_A38AbRhS
-3429	2	FP2	2016-04-01	\N	\N	f	1	937	session_dYX78B7G
-3430	6	FP3	2016-04-02	\N	\N	f	1	937	session_1B4A7Em5
-3431	7	R	2016-04-17	06:00:00	\N	f	16	938	session_HIkS9GXw
-3432	3	Q1	2016-04-16	\N	\N	f	1	938	session_LYIBBEwo
-3433	4	Q2	2016-04-16	\N	\N	f	1	938	session_lM7kM3iR
-3434	5	Q3	2016-04-16	\N	\N	f	1	938	session_M60eyT2F
-3435	1	FP1	2016-04-15	\N	\N	f	1	938	session_zdGuGwaY
-3436	2	FP2	2016-04-15	\N	\N	f	1	938	session_ny8Hv2ku
-3437	6	FP3	2016-04-16	\N	\N	f	1	938	session_WmcCrjPn
-3438	7	R	2016-05-01	12:00:00	\N	f	16	939	session_fr2BZdjm
-3439	3	Q1	2016-04-30	\N	\N	f	1	939	session_xEVtzn9y
-3440	4	Q2	2016-04-30	\N	\N	f	1	939	session_gmw1bOup
-3441	5	Q3	2016-04-30	\N	\N	f	1	939	session_C3HDy8lz
-3442	1	FP1	2016-04-29	\N	\N	f	1	939	session_BhxQ84zE
-3443	2	FP2	2016-04-29	\N	\N	f	1	939	session_SuEPJZCQ
-3444	6	FP3	2016-04-30	\N	\N	f	1	939	session_q0NW15Yr
-3445	7	R	2016-05-15	12:00:00	\N	f	16	940	session_7dVRv3gd
-3446	3	Q1	2016-05-14	\N	\N	f	1	940	session_cjVCFqeZ
-3447	4	Q2	2016-05-14	\N	\N	f	1	940	session_rdeMV4b0
-3448	5	Q3	2016-05-14	\N	\N	f	1	940	session_acXBH5My
-3449	1	FP1	2016-05-13	\N	\N	f	1	940	session_r5EkHuNN
-3450	2	FP2	2016-05-13	\N	\N	f	1	940	session_ALXJpKqo
-3451	6	FP3	2016-05-14	\N	\N	f	1	940	session_8MquSWVo
-3452	7	R	2016-05-29	12:00:00	\N	f	16	941	session_93cbRjCR
-3453	3	Q1	2016-05-28	\N	\N	f	1	941	session_XODaxXTa
-3454	4	Q2	2016-05-28	\N	\N	f	1	941	session_UERpMs0p
-3455	5	Q3	2016-05-28	\N	\N	f	1	941	session_ASEWT4Pb
-3456	1	FP1	2016-05-26	\N	\N	f	1	941	session_z1Xxnx9M
-3457	2	FP2	2016-05-26	\N	\N	f	1	941	session_UN6L1DPc
-3458	6	FP3	2016-05-28	\N	\N	f	1	941	session_yBlTRctH
-3459	7	R	2016-06-12	18:00:00	\N	f	16	942	session_LAqsExjP
-3460	3	Q1	2016-06-11	\N	\N	f	1	942	session_zIw8RHU7
-3461	4	Q2	2016-06-11	\N	\N	f	1	942	session_U2xv5ZP2
-3462	5	Q3	2016-06-11	\N	\N	f	1	942	session_9qCrtshc
-3463	1	FP1	2016-06-10	\N	\N	f	1	942	session_bjghkCW3
-3464	2	FP2	2016-06-10	\N	\N	f	1	942	session_ynnxPUt3
-3465	6	FP3	2016-06-11	\N	\N	f	1	942	session_KaX3rqvI
-3466	7	R	2016-06-19	13:00:00	\N	f	16	943	session_SfAYhRES
-3467	3	Q1	2016-06-18	\N	\N	f	1	943	session_kV405Mrw
-3468	4	Q2	2016-06-18	\N	\N	f	1	943	session_Wg7rAHf9
-3469	5	Q3	2016-06-18	\N	\N	f	1	943	session_fceWIQC2
-3470	1	FP1	2016-06-17	\N	\N	f	1	943	session_DEhmE90O
-3471	2	FP2	2016-06-17	\N	\N	f	1	943	session_vSIcDk7d
-3472	6	FP3	2016-06-18	\N	\N	f	1	943	session_qBo9N5FA
-3473	7	R	2016-07-03	12:00:00	\N	f	16	944	session_kXsttCcu
-3474	3	Q1	2016-07-02	\N	\N	f	1	944	session_DbD6ymbM
-3475	4	Q2	2016-07-02	\N	\N	f	1	944	session_3heF0Pwf
-3476	5	Q3	2016-07-02	\N	\N	f	1	944	session_FCxIaTWt
-3477	1	FP1	2016-07-01	\N	\N	f	1	944	session_Eye0goqB
-3478	2	FP2	2016-07-01	\N	\N	f	1	944	session_3chTwprC
-3479	6	FP3	2016-07-02	\N	\N	f	1	944	session_QZtUOIGY
-3480	7	R	2016-07-10	12:00:00	\N	f	16	945	session_QOqgpQOy
-3481	3	Q1	2016-07-09	\N	\N	f	1	945	session_v1gSSQFz
-3482	4	Q2	2016-07-09	\N	\N	f	1	945	session_iGhF49cA
-3483	5	Q3	2016-07-09	\N	\N	f	1	945	session_rLqqG4yG
-3484	1	FP1	2016-07-08	\N	\N	f	1	945	session_Fgl2FmeJ
-3485	2	FP2	2016-07-08	\N	\N	f	1	945	session_iB0jqRP7
-3486	6	FP3	2016-07-09	\N	\N	f	1	945	session_kVgnDvTO
-3487	7	R	2016-07-24	12:00:00	\N	f	16	946	session_hB6EP6kE
-3488	3	Q1	2016-07-23	\N	\N	f	1	946	session_8EZPrCVc
-3489	4	Q2	2016-07-23	\N	\N	f	1	946	session_zxUnoNZ7
-3490	5	Q3	2016-07-23	\N	\N	f	1	946	session_9W1iWLqQ
-3491	1	FP1	2016-07-22	\N	\N	f	1	946	session_1FBS3o0A
-3492	2	FP2	2016-07-22	\N	\N	f	1	946	session_lZxRyEK0
-3493	6	FP3	2016-07-23	\N	\N	f	1	946	session_USNtdOzB
-3494	7	R	2016-07-31	12:00:00	\N	f	16	947	session_S1RWNqrm
-3495	3	Q1	2016-07-30	\N	\N	f	1	947	session_WghZynHh
-3496	4	Q2	2016-07-30	\N	\N	f	1	947	session_wX6wGxpd
-3497	5	Q3	2016-07-30	\N	\N	f	1	947	session_hR9xqclm
-3498	1	FP1	2016-07-29	\N	\N	f	1	947	session_SoFUspg9
-3499	2	FP2	2016-07-29	\N	\N	f	1	947	session_6pcdaits
-3500	6	FP3	2016-07-30	\N	\N	f	1	947	session_Q9e3AW7v
-3501	7	R	2016-08-28	12:00:00	\N	f	16	948	session_MCc0UpET
-3502	3	Q1	2016-08-27	\N	\N	f	1	948	session_yawR5eft
-3503	4	Q2	2016-08-27	\N	\N	f	1	948	session_58zllHrR
-3504	5	Q3	2016-08-27	\N	\N	f	1	948	session_XIxHdpiy
-3505	1	FP1	2016-08-26	\N	\N	f	1	948	session_OyNZNjQF
-3506	2	FP2	2016-08-26	\N	\N	f	1	948	session_RH90zIop
-3507	6	FP3	2016-08-27	\N	\N	f	1	948	session_QWo80TvB
-3508	7	R	2016-09-04	12:00:00	\N	f	16	949	session_nBLvclDO
-3509	3	Q1	2016-09-03	\N	\N	f	1	949	session_4sBDeBVD
-3510	4	Q2	2016-09-03	\N	\N	f	1	949	session_Ke4puwF8
-3511	5	Q3	2016-09-03	\N	\N	f	1	949	session_WLm9hXET
-3512	1	FP1	2016-09-02	\N	\N	f	1	949	session_UuchKQgF
-3513	2	FP2	2016-09-02	\N	\N	f	1	949	session_8NaH5Elf
-3514	6	FP3	2016-09-03	\N	\N	f	1	949	session_N6f2LRdh
-3515	7	R	2016-09-18	12:00:00	\N	f	16	950	session_USnhHXUR
-3516	3	Q1	2016-09-17	\N	\N	f	1	950	session_AQqfJ4Is
-3517	4	Q2	2016-09-17	\N	\N	f	1	950	session_JpqlYDe1
-3518	5	Q3	2016-09-17	\N	\N	f	1	950	session_4fTS8CgJ
-3519	1	FP1	2016-09-16	\N	\N	f	1	950	session_K9Kqn1Zt
-3520	2	FP2	2016-09-16	\N	\N	f	1	950	session_5ofdWpzB
-3521	6	FP3	2016-09-17	\N	\N	f	1	950	session_0Ostbav0
-3522	7	R	2016-10-02	07:00:00	\N	f	16	951	session_AsqXTdq0
-3523	3	Q1	2016-10-01	\N	\N	f	1	951	session_5ok1zfsM
-3524	4	Q2	2016-10-01	\N	\N	f	1	951	session_67pgQ35U
-3525	5	Q3	2016-10-01	\N	\N	f	1	951	session_aiBkj8p4
-3526	1	FP1	2016-09-30	\N	\N	f	1	951	session_34PfIsnj
-3527	2	FP2	2016-09-30	\N	\N	f	1	951	session_vTYHZYKA
-3528	6	FP3	2016-10-01	\N	\N	f	1	951	session_ZBpKXSCQ
-3529	7	R	2016-10-09	05:00:00	\N	f	16	952	session_Nqu4JshC
-3530	3	Q1	2016-10-08	\N	\N	f	1	952	session_QDrh7nEj
-3531	4	Q2	2016-10-08	\N	\N	f	1	952	session_ECjHKLt5
-3532	5	Q3	2016-10-08	\N	\N	f	1	952	session_FUwGT1CB
-3533	1	FP1	2016-10-07	\N	\N	f	1	952	session_D5gvweLQ
-3534	2	FP2	2016-10-07	\N	\N	f	1	952	session_S60EDrAq
-3535	6	FP3	2016-10-08	\N	\N	f	1	952	session_4q98tA3O
-3536	7	R	2016-10-23	19:00:00	\N	f	16	953	session_mPeTHX3Q
-3537	3	Q1	2016-10-22	\N	\N	f	1	953	session_XmgSUxvj
-3538	4	Q2	2016-10-22	\N	\N	f	1	953	session_DwwWYLmu
-3539	5	Q3	2016-10-22	\N	\N	f	1	953	session_xBOntL5B
-3540	1	FP1	2016-10-21	\N	\N	f	1	953	session_TJdDhsOx
-3541	2	FP2	2016-10-21	\N	\N	f	1	953	session_GxHP02Au
-3542	6	FP3	2016-10-22	\N	\N	f	1	953	session_Ak5rS9T0
-3543	7	R	2016-10-30	19:00:00	\N	f	16	954	session_tP1YXWmL
-3544	3	Q1	2016-10-29	\N	\N	f	1	954	session_dlhFMVGR
-3545	4	Q2	2016-10-29	\N	\N	f	1	954	session_0Q5uADZp
-3546	5	Q3	2016-10-29	\N	\N	f	1	954	session_l2qynAxp
-3547	1	FP1	2016-10-28	\N	\N	f	1	954	session_pGg7cuCb
-3548	2	FP2	2016-10-28	\N	\N	f	1	954	session_NLClxiWx
-3549	6	FP3	2016-10-29	\N	\N	f	1	954	session_6qaoUIB0
-3550	7	R	2016-11-13	16:00:00	\N	f	16	955	session_fKK5GrTu
-3551	3	Q1	2016-11-12	\N	\N	f	1	955	session_VEmIFMAU
-3552	4	Q2	2016-11-12	\N	\N	f	1	955	session_2LJqyK1c
-3553	5	Q3	2016-11-12	\N	\N	f	1	955	session_CGvo1Em0
-3554	1	FP1	2016-11-11	\N	\N	f	1	955	session_cKlpW8VU
-3555	2	FP2	2016-11-11	\N	\N	f	1	955	session_OQDSIRFG
-3556	6	FP3	2016-11-12	\N	\N	f	1	955	session_UI3BUAUD
-3557	7	R	2016-11-27	13:00:00	\N	f	16	956	session_PnLTMLIq
-3558	3	Q1	2016-11-26	\N	\N	f	1	956	session_VyETBeY3
-3559	4	Q2	2016-11-26	\N	\N	f	1	956	session_hFCyj2B4
-3560	5	Q3	2016-11-26	\N	\N	f	1	956	session_iHMDMiJ9
-3561	1	FP1	2016-11-25	\N	\N	f	1	956	session_Cj8V10ks
-3562	2	FP2	2016-11-25	\N	\N	f	1	956	session_JsryFZck
-3563	6	FP3	2016-11-26	\N	\N	f	1	956	session_WucsIK8I
-3564	7	R	2017-03-26	05:00:00	\N	f	16	957	session_YEWxIkQr
-3565	3	Q1	2017-03-25	\N	\N	f	1	957	session_dXGa0Ogg
-3566	4	Q2	2017-03-25	\N	\N	f	1	957	session_1EeRAe1N
-3567	5	Q3	2017-03-25	\N	\N	f	1	957	session_SDY3YswB
-3568	1	FP1	2017-03-24	\N	\N	f	1	957	session_kRygBpnF
-3569	2	FP2	2017-03-24	\N	\N	f	1	957	session_bnQscz7P
-3570	6	FP3	2017-03-25	\N	\N	f	1	957	session_tTvZlIH1
-3571	7	R	2017-04-09	06:00:00	\N	f	16	958	session_BkbBN2uN
-3572	3	Q1	2017-04-08	\N	\N	f	1	958	session_GgKcyJGQ
-3573	4	Q2	2017-04-08	\N	\N	f	1	958	session_o1DL6XTz
-3574	5	Q3	2017-04-08	\N	\N	f	1	958	session_lTYtOvHR
-3575	1	FP1	2017-04-07	\N	\N	f	1	958	session_b87TijAl
-3576	2	FP2	2017-04-07	\N	\N	f	1	958	session_TT9hXpsz
-3577	6	FP3	2017-04-08	\N	\N	f	1	958	session_wu3JDqwQ
-3578	7	R	2017-04-16	15:00:00	\N	f	16	959	session_cUGcFham
-3579	3	Q1	2017-04-15	\N	\N	f	1	959	session_iFNgHa2e
-3580	4	Q2	2017-04-15	\N	\N	f	1	959	session_dMPML4y1
-3581	5	Q3	2017-04-15	\N	\N	f	1	959	session_YIdSPHM6
-3582	1	FP1	2017-04-14	\N	\N	f	1	959	session_OcuOjWpJ
-3583	2	FP2	2017-04-14	\N	\N	f	1	959	session_Zdm7Yicr
-3584	6	FP3	2017-04-15	\N	\N	f	1	959	session_agQ5j1AP
-3585	7	R	2017-04-30	12:00:00	\N	f	16	960	session_5Wdlw3fD
-3586	3	Q1	2017-04-29	\N	\N	f	1	960	session_trCfjzPf
-3587	4	Q2	2017-04-29	\N	\N	f	1	960	session_RRrULIlr
-3588	5	Q3	2017-04-29	\N	\N	f	1	960	session_nbJuCLPw
-3589	1	FP1	2017-04-28	\N	\N	f	1	960	session_SFxZy5Sk
-3590	2	FP2	2017-04-28	\N	\N	f	1	960	session_Q3ESkYU5
-3591	6	FP3	2017-04-29	\N	\N	f	1	960	session_cevwzLjB
-3592	7	R	2017-05-14	12:00:00	\N	f	16	961	session_19layugs
-3593	3	Q1	2017-05-13	\N	\N	f	1	961	session_yZt0qfwr
-3594	4	Q2	2017-05-13	\N	\N	f	1	961	session_ddwo69pJ
-3595	5	Q3	2017-05-13	\N	\N	f	1	961	session_Lw6qvCxH
-3596	1	FP1	2017-05-12	\N	\N	f	1	961	session_YuiASuiJ
-3597	2	FP2	2017-05-12	\N	\N	f	1	961	session_De8XsGI1
-3598	6	FP3	2017-05-13	\N	\N	f	1	961	session_9T2xeDjr
-3599	7	R	2017-05-28	12:00:00	\N	f	16	962	session_TeKzdL1t
-3600	3	Q1	2017-05-27	\N	\N	f	1	962	session_pV1WLruQ
-3601	4	Q2	2017-05-27	\N	\N	f	1	962	session_AlSkdlwN
-3602	5	Q3	2017-05-27	\N	\N	f	1	962	session_AvYLji5m
-3603	1	FP1	2017-05-25	\N	\N	f	1	962	session_6Z97dOiy
-3604	2	FP2	2017-05-25	\N	\N	f	1	962	session_bBCmEjwM
-3605	6	FP3	2017-05-27	\N	\N	f	1	962	session_XfEZ7llb
-3606	7	R	2017-06-11	18:00:00	\N	f	16	963	session_G2kWx5wz
-3607	3	Q1	2017-06-10	\N	\N	f	1	963	session_NhANzg2L
-3608	4	Q2	2017-06-10	\N	\N	f	1	963	session_xDcJ4M8C
-3609	5	Q3	2017-06-10	\N	\N	f	1	963	session_t7RckfEN
-3610	1	FP1	2017-06-09	\N	\N	f	1	963	session_DYwpvNq9
-3611	2	FP2	2017-06-09	\N	\N	f	1	963	session_HVXChCYw
-3612	6	FP3	2017-06-10	\N	\N	f	1	963	session_N4LzlLiF
-3613	7	R	2017-06-25	13:00:00	\N	f	16	964	session_ZuCoV22y
-3614	3	Q1	2017-06-24	\N	\N	f	1	964	session_xSBfDnd9
-3615	4	Q2	2017-06-24	\N	\N	f	1	964	session_ZdIFRsdg
-3616	5	Q3	2017-06-24	\N	\N	f	1	964	session_FXCGDxkn
-3617	1	FP1	2017-06-23	\N	\N	f	1	964	session_G15DQ8cN
-3618	2	FP2	2017-06-23	\N	\N	f	1	964	session_esvy1hvf
-3619	6	FP3	2017-06-24	\N	\N	f	1	964	session_VjbNeSE0
-3620	7	R	2017-07-09	12:00:00	\N	f	16	965	session_bWK42ErU
-3621	3	Q1	2017-07-08	\N	\N	f	1	965	session_3gmujl03
-3622	4	Q2	2017-07-08	\N	\N	f	1	965	session_IOliadN6
-3623	5	Q3	2017-07-08	\N	\N	f	1	965	session_uH74cMKx
-3624	1	FP1	2017-07-07	\N	\N	f	1	965	session_KcI4Kt8Q
-3625	2	FP2	2017-07-07	\N	\N	f	1	965	session_vlan0IDN
-3626	6	FP3	2017-07-08	\N	\N	f	1	965	session_Hufbo7x5
-3627	7	R	2017-07-16	12:00:00	\N	f	16	966	session_dKh0F9Ch
-3628	3	Q1	2017-07-15	\N	\N	f	1	966	session_vltooeu2
-3629	4	Q2	2017-07-15	\N	\N	f	1	966	session_kTSh0ZoY
-3630	5	Q3	2017-07-15	\N	\N	f	1	966	session_QqEW5Rq7
-3631	1	FP1	2017-07-14	\N	\N	f	1	966	session_g0IFl3lN
-3632	2	FP2	2017-07-14	\N	\N	f	1	966	session_WXf5j2D4
-3633	6	FP3	2017-07-15	\N	\N	f	1	966	session_5GRG2EEI
-3634	7	R	2017-07-30	12:00:00	\N	f	16	967	session_aH76sWiD
-3635	3	Q1	2017-07-29	\N	\N	f	1	967	session_3sYUGLJI
-3636	4	Q2	2017-07-29	\N	\N	f	1	967	session_U6bTxLSP
-3637	5	Q3	2017-07-29	\N	\N	f	1	967	session_6FvoJzre
-3638	1	FP1	2017-07-28	\N	\N	f	1	967	session_AQF6Mvsb
-3639	2	FP2	2017-07-28	\N	\N	f	1	967	session_CUcpAYua
-3640	6	FP3	2017-07-29	\N	\N	f	1	967	session_iXmabQAS
-3641	7	R	2017-08-27	12:00:00	\N	f	16	968	session_aBY7K6kb
-3642	3	Q1	2017-08-26	\N	\N	f	1	968	session_fRHPuMBU
-3643	4	Q2	2017-08-26	\N	\N	f	1	968	session_cBf2p5nC
-3644	5	Q3	2017-08-26	\N	\N	f	1	968	session_fcgseXIi
-3645	1	FP1	2017-08-25	\N	\N	f	1	968	session_wgMhEBGx
-3646	2	FP2	2017-08-25	\N	\N	f	1	968	session_sxwgbGwQ
-3647	6	FP3	2017-08-26	\N	\N	f	1	968	session_tx57lL4i
-3648	7	R	2017-09-03	12:00:00	\N	f	16	969	session_8cTOuQ9k
-3649	3	Q1	2017-09-02	\N	\N	f	1	969	session_KKyl42fl
-3650	4	Q2	2017-09-02	\N	\N	f	1	969	session_dX9Jn6UN
-3651	5	Q3	2017-09-02	\N	\N	f	1	969	session_p8tJTsgq
-3652	1	FP1	2017-09-01	\N	\N	f	1	969	session_3ygAiv6y
-3653	2	FP2	2017-09-01	\N	\N	f	1	969	session_rVC64I9S
-3654	6	FP3	2017-09-02	\N	\N	f	1	969	session_YDTDTH9J
-3655	7	R	2017-09-17	12:00:00	\N	f	16	970	session_OJ9hawhd
-3656	3	Q1	2017-09-16	\N	\N	f	1	970	session_9JFjKyCa
-3657	4	Q2	2017-09-16	\N	\N	f	1	970	session_yYvaWOLE
-3658	5	Q3	2017-09-16	\N	\N	f	1	970	session_7elxwTe3
-3659	1	FP1	2017-09-15	\N	\N	f	1	970	session_DVjMcpJJ
-3660	2	FP2	2017-09-15	\N	\N	f	1	970	session_KAS9iXCD
-3661	6	FP3	2017-09-16	\N	\N	f	1	970	session_cd73vIRi
-3662	7	R	2017-10-01	07:00:00	\N	f	16	971	session_LDu5mru2
-3663	3	Q1	2017-09-30	\N	\N	f	1	971	session_igTQMALq
-3664	4	Q2	2017-09-30	\N	\N	f	1	971	session_wbo6Wl72
-3665	5	Q3	2017-09-30	\N	\N	f	1	971	session_LeORQjYd
-3666	1	FP1	2017-09-29	\N	\N	f	1	971	session_qh6RRLkb
-3667	2	FP2	2017-09-29	\N	\N	f	1	971	session_CyN3lYcF
-3668	6	FP3	2017-09-30	\N	\N	f	1	971	session_xjpTnF3y
-3669	7	R	2017-10-08	05:00:00	\N	f	16	972	session_FldNLVI4
-3670	3	Q1	2017-10-07	\N	\N	f	1	972	session_youHdZmJ
-3671	4	Q2	2017-10-07	\N	\N	f	1	972	session_J88s1Wn4
-3672	5	Q3	2017-10-07	\N	\N	f	1	972	session_oneULscC
-3673	1	FP1	2017-10-06	\N	\N	f	1	972	session_ivtcIXnO
-3674	2	FP2	2017-10-06	\N	\N	f	1	972	session_C9Q2TS5r
-3675	6	FP3	2017-10-07	\N	\N	f	1	972	session_aOduKBJL
-3676	7	R	2017-10-22	19:00:00	\N	f	16	973	session_5ryg57Fe
-3677	3	Q1	2017-10-21	\N	\N	f	1	973	session_3ksJEBxn
-3678	4	Q2	2017-10-21	\N	\N	f	1	973	session_CcG71dKi
-3679	5	Q3	2017-10-21	\N	\N	f	1	973	session_aTpm19py
-3680	1	FP1	2017-10-20	\N	\N	f	1	973	session_6X2bJOyc
-3681	2	FP2	2017-10-20	\N	\N	f	1	973	session_ofNdLguY
-3682	6	FP3	2017-10-21	\N	\N	f	1	973	session_yH0pdjoV
-3683	7	R	2017-10-29	19:00:00	\N	f	16	974	session_YdO9lI0Y
-3684	3	Q1	2017-10-28	\N	\N	f	1	974	session_OI1a8t5o
-3685	4	Q2	2017-10-28	\N	\N	f	1	974	session_SEx7Lykf
-3686	5	Q3	2017-10-28	\N	\N	f	1	974	session_95APgUPw
-3687	1	FP1	2017-10-27	\N	\N	f	1	974	session_p7wVPmUH
-3688	2	FP2	2017-10-27	\N	\N	f	1	974	session_Q9UjPwxu
-3689	6	FP3	2017-10-28	\N	\N	f	1	974	session_ZJwYygJW
-3690	7	R	2017-11-12	16:00:00	\N	f	16	975	session_tJdJsgqN
-3691	3	Q1	2017-11-11	\N	\N	f	1	975	session_mhitI8AO
-3692	4	Q2	2017-11-11	\N	\N	f	1	975	session_fTKVd6R8
-3693	5	Q3	2017-11-11	\N	\N	f	1	975	session_W4wMmyty
-3694	1	FP1	2017-11-10	\N	\N	f	1	975	session_xg8nMjhi
-3695	2	FP2	2017-11-10	\N	\N	f	1	975	session_277wrDXT
-3696	6	FP3	2017-11-11	\N	\N	f	1	975	session_hUrFFX31
-3697	7	R	2017-11-26	13:00:00	\N	f	16	976	session_QQHwwzJd
-3698	3	Q1	2017-11-25	\N	\N	f	1	976	session_fQtKHVpu
-3699	4	Q2	2017-11-25	\N	\N	f	1	976	session_Q4LoIPXJ
-3700	5	Q3	2017-11-25	\N	\N	f	1	976	session_fYBEXpMU
-3701	1	FP1	2017-11-24	\N	\N	f	1	976	session_4IXhqwLB
-3702	2	FP2	2017-11-24	\N	\N	f	1	976	session_oynmE1nA
-3703	6	FP3	2017-11-25	\N	\N	f	1	976	session_JRGYeZBe
-3704	7	R	2018-03-25	05:10:00	\N	f	16	977	session_NpcSJeoX
-3705	3	Q1	2018-03-24	\N	\N	f	1	977	session_6JGq3jWS
-3706	4	Q2	2018-03-24	\N	\N	f	1	977	session_Xz0Qz6Ra
-3707	5	Q3	2018-03-24	\N	\N	f	1	977	session_BuHwNFFp
-3708	1	FP1	2018-03-23	\N	\N	f	1	977	session_2UAtrUzd
-3709	2	FP2	2018-03-23	\N	\N	f	1	977	session_vdGpgsLe
-3710	6	FP3	2018-03-24	\N	\N	f	1	977	session_oRSVSJkA
-3711	7	R	2018-04-08	15:10:00	\N	f	16	978	session_5eUuNNjX
-3712	3	Q1	2018-04-07	\N	\N	f	1	978	session_RqpJpCpV
-3713	4	Q2	2018-04-07	\N	\N	f	1	978	session_WHoS7vgg
-3714	5	Q3	2018-04-07	\N	\N	f	1	978	session_hQf3xpr9
-3715	1	FP1	2018-04-06	\N	\N	f	1	978	session_O19o6gjb
-3716	2	FP2	2018-04-06	\N	\N	f	1	978	session_x6EUVVCq
-3717	6	FP3	2018-04-07	\N	\N	f	1	978	session_IdcHuOSR
-3718	7	R	2018-04-15	06:10:00	\N	f	16	979	session_ydfqgR69
-3719	3	Q1	2018-04-14	\N	\N	f	1	979	session_yNvfc1RV
-3720	4	Q2	2018-04-14	\N	\N	f	1	979	session_Sdse9v1f
-3721	5	Q3	2018-04-14	\N	\N	f	1	979	session_CiVtMayn
-3722	1	FP1	2018-04-13	\N	\N	f	1	979	session_FpLnrZZY
-3723	2	FP2	2018-04-13	\N	\N	f	1	979	session_VfroRmKF
-3724	6	FP3	2018-04-14	\N	\N	f	1	979	session_WYx90oRV
-3725	7	R	2018-04-29	12:10:00	\N	f	16	980	session_qVHAufit
-3726	3	Q1	2018-04-28	\N	\N	f	1	980	session_IXB7GdFS
-3727	4	Q2	2018-04-28	\N	\N	f	1	980	session_uOlW3u5r
-3728	5	Q3	2018-04-28	\N	\N	f	1	980	session_2vclDMoq
-3729	1	FP1	2018-04-27	\N	\N	f	1	980	session_iADCiBHd
-3730	2	FP2	2018-04-27	\N	\N	f	1	980	session_GOYJF0FW
-3731	6	FP3	2018-04-28	\N	\N	f	1	980	session_87QqHFiI
-3732	7	R	2018-05-13	13:10:00	\N	f	16	981	session_gF6UaxOI
-3733	3	Q1	2018-05-12	\N	\N	f	1	981	session_VwQHxCqf
-3734	4	Q2	2018-05-12	\N	\N	f	1	981	session_NMSGwmwR
-3735	5	Q3	2018-05-12	\N	\N	f	1	981	session_t5dRpiiK
-3736	1	FP1	2018-05-11	\N	\N	f	1	981	session_J5rsM9WI
-3737	2	FP2	2018-05-11	\N	\N	f	1	981	session_5DyFOqdS
-3738	6	FP3	2018-05-12	\N	\N	f	1	981	session_kRIOajoc
-3739	7	R	2018-05-27	13:10:00	\N	f	16	982	session_NdWLinXy
-3740	3	Q1	2018-05-26	\N	\N	f	1	982	session_a3RINrrp
-3741	4	Q2	2018-05-26	\N	\N	f	1	982	session_6siQUHgK
-3742	5	Q3	2018-05-26	\N	\N	f	1	982	session_iIXGhsZa
-3743	1	FP1	2018-05-24	\N	\N	f	1	982	session_0XjaPaJ3
-3744	2	FP2	2018-05-24	\N	\N	f	1	982	session_F7vBymHh
-3745	6	FP3	2018-05-26	\N	\N	f	1	982	session_JzV9PcMc
-3746	7	R	2018-06-10	18:10:00	\N	f	16	983	session_CXg4X09V
-3747	3	Q1	2018-06-09	\N	\N	f	1	983	session_6bgjbO50
-3748	4	Q2	2018-06-09	\N	\N	f	1	983	session_bPoi1Fvx
-3749	5	Q3	2018-06-09	\N	\N	f	1	983	session_4DpbpUFL
-3750	1	FP1	2018-06-08	\N	\N	f	1	983	session_RnyRapBX
-3751	2	FP2	2018-06-08	\N	\N	f	1	983	session_3LlLH3Xb
-3752	6	FP3	2018-06-09	\N	\N	f	1	983	session_TKnRoUZ9
-3753	7	R	2018-06-24	14:10:00	\N	f	16	984	session_0poaoJtj
-3754	3	Q1	2018-06-23	\N	\N	f	1	984	session_ZJ8KSCn8
-3755	4	Q2	2018-06-23	\N	\N	f	1	984	session_IzsIQKSs
-3756	5	Q3	2018-06-23	\N	\N	f	1	984	session_IXnbUh6x
-3757	1	FP1	2018-06-22	\N	\N	f	1	984	session_I1ysprHB
-3758	2	FP2	2018-06-22	\N	\N	f	1	984	session_VU35WeAG
-3759	6	FP3	2018-06-23	\N	\N	f	1	984	session_TMlZDtX8
-3760	7	R	2018-07-01	13:10:00	\N	f	16	985	session_tUfsVr9l
-3761	3	Q1	2018-06-30	\N	\N	f	1	985	session_nTwCWMt5
-3762	4	Q2	2018-06-30	\N	\N	f	1	985	session_ag91EQbM
-3763	5	Q3	2018-06-30	\N	\N	f	1	985	session_ie7eYC85
-3764	1	FP1	2018-06-29	\N	\N	f	1	985	session_gIajlUUe
-3765	2	FP2	2018-06-29	\N	\N	f	1	985	session_9GAeFSXO
-3766	6	FP3	2018-06-30	\N	\N	f	1	985	session_M7Yn7LC5
-3767	7	R	2018-07-08	13:10:00	\N	f	16	986	session_2yppbRBt
-3768	3	Q1	2018-07-07	\N	\N	f	1	986	session_HJ0ikDMJ
-3769	4	Q2	2018-07-07	\N	\N	f	1	986	session_jqf9TbrX
-3770	5	Q3	2018-07-07	\N	\N	f	1	986	session_YG94Mr68
-3771	1	FP1	2018-07-06	\N	\N	f	1	986	session_VjagA5CX
-3772	2	FP2	2018-07-06	\N	\N	f	1	986	session_Q6y6rc6g
-3773	6	FP3	2018-07-07	\N	\N	f	1	986	session_sLHsob3O
-3774	7	R	2018-07-22	13:10:00	\N	f	16	987	session_FRZ3Kwu0
-3775	3	Q1	2018-07-21	\N	\N	f	1	987	session_qaGBo3it
-3776	4	Q2	2018-07-21	\N	\N	f	1	987	session_7fe1RcjJ
-3777	5	Q3	2018-07-21	\N	\N	f	1	987	session_IX6Ysna6
-3778	1	FP1	2018-07-20	\N	\N	f	1	987	session_EUNXPCV2
-3779	2	FP2	2018-07-20	\N	\N	f	1	987	session_hyJQ7BuP
-3780	6	FP3	2018-07-21	\N	\N	f	1	987	session_T3AIOqGR
-3781	7	R	2018-07-29	13:10:00	\N	f	16	988	session_c8w4Hc3D
-3782	3	Q1	2018-07-28	\N	\N	f	1	988	session_JYvqE9kY
-3783	4	Q2	2018-07-28	\N	\N	f	1	988	session_QWDaJ1ko
-3784	5	Q3	2018-07-28	\N	\N	f	1	988	session_7x5fEYSk
-3785	1	FP1	2018-07-27	\N	\N	f	1	988	session_8EaDOOZe
-3786	2	FP2	2018-07-27	\N	\N	f	1	988	session_pPtrLSmm
-3787	6	FP3	2018-07-28	\N	\N	f	1	988	session_DWMhBuPi
-3788	7	R	2018-08-26	13:10:00	\N	f	16	989	session_4OcbVhYS
-3789	3	Q1	2018-08-25	\N	\N	f	1	989	session_sdcHimZd
-3790	4	Q2	2018-08-25	\N	\N	f	1	989	session_GIVXX1wc
-3791	5	Q3	2018-08-25	\N	\N	f	1	989	session_3IVIxhgf
-3792	1	FP1	2018-08-24	\N	\N	f	1	989	session_1Cjw475m
-3793	2	FP2	2018-08-24	\N	\N	f	1	989	session_4lJD7a0o
-3794	6	FP3	2018-08-25	\N	\N	f	1	989	session_J9tt3Juo
-3795	7	R	2018-09-02	13:10:00	\N	f	16	990	session_aQHic4Li
-3796	3	Q1	2018-09-01	\N	\N	f	1	990	session_bNla32GA
-3797	4	Q2	2018-09-01	\N	\N	f	1	990	session_lc9O6LxU
-3798	5	Q3	2018-09-01	\N	\N	f	1	990	session_pCt8H81M
-3799	1	FP1	2018-08-31	\N	\N	f	1	990	session_CJB325Je
-3800	2	FP2	2018-08-31	\N	\N	f	1	990	session_Q3wEJkgd
-3801	6	FP3	2018-09-01	\N	\N	f	1	990	session_0HPdK6Ni
-3802	7	R	2018-09-16	12:10:00	\N	f	16	991	session_5f0G0ak7
-3803	3	Q1	2018-09-15	\N	\N	f	1	991	session_72BbeOGe
-3804	4	Q2	2018-09-15	\N	\N	f	1	991	session_zhXQFeuW
-3805	5	Q3	2018-09-15	\N	\N	f	1	991	session_cd4NFpg7
-3806	1	FP1	2018-09-14	\N	\N	f	1	991	session_ftKYraxd
-3807	2	FP2	2018-09-14	\N	\N	f	1	991	session_ZxxEp4cl
-3808	6	FP3	2018-09-15	\N	\N	f	1	991	session_hZgfAfwk
-3809	7	R	2018-09-30	11:10:00	\N	f	16	992	session_uGrX6nS2
-3810	3	Q1	2018-09-29	\N	\N	f	1	992	session_N01WoldL
-3811	4	Q2	2018-09-29	\N	\N	f	1	992	session_hVxZtWiS
-3812	5	Q3	2018-09-29	\N	\N	f	1	992	session_Gqm4zc48
-3813	1	FP1	2018-09-28	\N	\N	f	1	992	session_UrIPxCOD
-3814	2	FP2	2018-09-28	\N	\N	f	1	992	session_d5IyZBQm
-3815	6	FP3	2018-09-29	\N	\N	f	1	992	session_sVDH2GSh
-3816	7	R	2018-10-07	05:10:00	\N	f	16	993	session_JH5grwYk
-3817	3	Q1	2018-10-06	\N	\N	f	1	993	session_6nmYx2E4
-3818	4	Q2	2018-10-06	\N	\N	f	1	993	session_cFyLTodH
-3819	5	Q3	2018-10-06	\N	\N	f	1	993	session_yqQUSV7i
-3820	1	FP1	2018-10-05	\N	\N	f	1	993	session_v4Gu26AW
-3821	2	FP2	2018-10-05	\N	\N	f	1	993	session_kMaKfwlM
-3822	6	FP3	2018-10-06	\N	\N	f	1	993	session_B7axqOPe
-3823	7	R	2018-10-21	18:10:00	\N	f	16	994	session_10LnrShQ
-3824	3	Q1	2018-10-20	\N	\N	f	1	994	session_Ubv0jXkg
-3825	4	Q2	2018-10-20	\N	\N	f	1	994	session_HjnwOVZg
-3826	5	Q3	2018-10-20	\N	\N	f	1	994	session_axptAPIP
-3827	1	FP1	2018-10-19	\N	\N	f	1	994	session_8XHCTDmm
-3828	2	FP2	2018-10-19	\N	\N	f	1	994	session_q69mF15h
-3829	6	FP3	2018-10-20	\N	\N	f	1	994	session_g2RTAkUz
-3830	7	R	2018-10-28	19:10:00	\N	f	16	995	session_R7koDouU
-3831	3	Q1	2018-10-27	\N	\N	f	1	995	session_XOzcRnvL
-3832	4	Q2	2018-10-27	\N	\N	f	1	995	session_EK1btdRa
-3833	5	Q3	2018-10-27	\N	\N	f	1	995	session_RQsqFE3Z
-3834	1	FP1	2018-10-26	\N	\N	f	1	995	session_tmWa7JjA
-3835	2	FP2	2018-10-26	\N	\N	f	1	995	session_oJcsKQzP
-3836	6	FP3	2018-10-27	\N	\N	f	1	995	session_mZHWCvSH
-3837	7	R	2018-11-11	17:10:00	\N	f	16	996	session_w7TAKqpj
-3838	3	Q1	2018-11-10	\N	\N	f	1	996	session_3zYSPHhs
-3839	4	Q2	2018-11-10	\N	\N	f	1	996	session_g833DGrt
-3840	5	Q3	2018-11-10	\N	\N	f	1	996	session_2mFWrtLk
-3841	1	FP1	2018-11-09	\N	\N	f	1	996	session_z7xasauS
-3842	2	FP2	2018-11-09	\N	\N	f	1	996	session_eLXGdH39
-3843	6	FP3	2018-11-10	\N	\N	f	1	996	session_VO6GP31F
-3844	7	R	2018-11-25	13:10:00	\N	f	16	997	session_dCGWNgu5
-3845	3	Q1	2018-11-24	\N	\N	f	1	997	session_ibcUZ1GH
-3846	4	Q2	2018-11-24	\N	\N	f	1	997	session_YxEmBQQq
-3847	5	Q3	2018-11-24	\N	\N	f	1	997	session_JqN3G5fX
-3848	1	FP1	2018-11-23	\N	\N	f	1	997	session_CYtLcfz3
-3849	2	FP2	2018-11-23	\N	\N	f	1	997	session_MYv31OmJ
-3850	6	FP3	2018-11-24	\N	\N	f	1	997	session_XfdE90g3
-3851	7	R	2019-03-17	05:10:00	\N	f	18	998	session_tYRQTW0A
-3852	3	Q1	2019-03-16	\N	\N	f	1	998	session_ZH0R9aNO
-3853	4	Q2	2019-03-16	\N	\N	f	1	998	session_9CEwOhXT
-3854	5	Q3	2019-03-16	\N	\N	f	1	998	session_j51GI5nT
-3855	1	FP1	2019-03-15	\N	\N	f	1	998	session_qsguKps7
-3856	2	FP2	2019-03-15	\N	\N	f	1	998	session_ec5GdzSL
-3857	6	FP3	2019-03-16	\N	\N	f	1	998	session_sTcnUjPc
-3858	7	R	2019-03-31	15:10:00	\N	f	18	999	session_UMxhO53d
-3859	3	Q1	2019-03-30	\N	\N	f	1	999	session_er3oZh7z
-3860	4	Q2	2019-03-30	\N	\N	f	1	999	session_JqMuWXAP
-3861	5	Q3	2019-03-30	\N	\N	f	1	999	session_It7FtIY9
-3862	1	FP1	2019-03-29	\N	\N	f	1	999	session_m5DAGRRi
-3863	2	FP2	2019-03-29	\N	\N	f	1	999	session_ea4gjtaB
-3864	6	FP3	2019-03-30	\N	\N	f	1	999	session_bWdvFfTv
-3865	7	R	2019-04-14	06:10:00	\N	f	18	1000	session_0JXSEpXy
-3866	3	Q1	2019-04-13	\N	\N	f	1	1000	session_oSDsdwUr
-3867	4	Q2	2019-04-13	\N	\N	f	1	1000	session_f228DHsD
-3868	5	Q3	2019-04-13	\N	\N	f	1	1000	session_RnolMFxw
-3869	1	FP1	2019-04-12	\N	\N	f	1	1000	session_PmQZo0IP
-3870	2	FP2	2019-04-12	\N	\N	f	1	1000	session_vOIaYmW1
-3871	6	FP3	2019-04-13	\N	\N	f	1	1000	session_qXqk40rW
-3872	7	R	2019-04-28	12:10:00	\N	f	18	1001	session_P3GEXjAJ
-3873	3	Q1	2019-04-27	\N	\N	f	1	1001	session_urltliiy
-3874	4	Q2	2019-04-27	\N	\N	f	1	1001	session_TOKyfBsM
-3875	5	Q3	2019-04-27	\N	\N	f	1	1001	session_AQYWCTaw
-3876	1	FP1	2019-04-26	\N	\N	f	1	1001	session_VcjwQLSb
-3877	2	FP2	2019-04-26	\N	\N	f	1	1001	session_5NN6Cr0z
-3878	6	FP3	2019-04-27	\N	\N	f	1	1001	session_dOjzrG30
-3879	7	R	2019-05-12	13:10:00	\N	f	18	1002	session_qFQg1yuo
-3880	3	Q1	2019-05-11	\N	\N	f	1	1002	session_ueGpZWAs
-3881	4	Q2	2019-05-11	\N	\N	f	1	1002	session_diclpi9X
-3882	5	Q3	2019-05-11	\N	\N	f	1	1002	session_wiw4fH23
-3883	1	FP1	2019-05-10	\N	\N	f	1	1002	session_lIdNsyfv
-3884	2	FP2	2019-05-10	\N	\N	f	1	1002	session_iDGAivuY
-3885	6	FP3	2019-05-11	\N	\N	f	1	1002	session_9y3APRB2
-3886	7	R	2019-05-26	13:10:00	\N	f	18	1003	session_wkuvnd00
-3887	3	Q1	2019-05-25	\N	\N	f	1	1003	session_2tPRhVF7
-3888	4	Q2	2019-05-25	\N	\N	f	1	1003	session_qLUpGxAw
-3889	5	Q3	2019-05-25	\N	\N	f	1	1003	session_GLmKJYKY
-3890	1	FP1	2019-05-23	\N	\N	f	1	1003	session_EibUwyS1
-3891	2	FP2	2019-05-23	\N	\N	f	1	1003	session_ArAgmS9I
-3892	6	FP3	2019-05-25	\N	\N	f	1	1003	session_MKjmkGrl
-3893	7	R	2019-06-09	18:10:00	\N	f	18	1004	session_j82ACwfT
-3894	3	Q1	2019-06-08	\N	\N	f	1	1004	session_Udrc7og1
-3895	4	Q2	2019-06-08	\N	\N	f	1	1004	session_D9c9i4cq
-3896	5	Q3	2019-06-08	\N	\N	f	1	1004	session_0wxAuvMb
-3897	1	FP1	2019-06-07	\N	\N	f	1	1004	session_4kSep86E
-3898	2	FP2	2019-06-07	\N	\N	f	1	1004	session_dgdkjih7
-3899	6	FP3	2019-06-08	\N	\N	f	1	1004	session_hIBcKFxu
-3900	7	R	2019-06-23	13:10:00	\N	f	18	1005	session_Ut3hr9ea
-3901	3	Q1	2019-06-22	\N	\N	f	1	1005	session_4GfqQjTU
-3902	4	Q2	2019-06-22	\N	\N	f	1	1005	session_0RFUea4w
-3903	5	Q3	2019-06-22	\N	\N	f	1	1005	session_NUlTIoPZ
-3904	1	FP1	2019-06-21	\N	\N	f	1	1005	session_4ScqMhK8
-3905	2	FP2	2019-06-21	\N	\N	f	1	1005	session_yHeD8PRU
-3906	6	FP3	2019-06-22	\N	\N	f	1	1005	session_kxtqLJGy
-3907	7	R	2019-06-30	13:10:00	\N	f	18	1006	session_8Pv8Xq69
-3908	3	Q1	2019-06-29	\N	\N	f	1	1006	session_vGFB4CW9
-3909	4	Q2	2019-06-29	\N	\N	f	1	1006	session_uwtNgb9V
-3910	5	Q3	2019-06-29	\N	\N	f	1	1006	session_qNe7jSTd
-3911	1	FP1	2019-06-28	\N	\N	f	1	1006	session_u3VaJFrT
-3912	2	FP2	2019-06-28	\N	\N	f	1	1006	session_IHtpVWKu
-3913	6	FP3	2019-06-29	\N	\N	f	1	1006	session_PL7IG7Qs
-3914	7	R	2019-07-14	13:10:00	\N	f	18	1007	session_AGakvqjW
-3915	3	Q1	2019-07-13	\N	\N	f	1	1007	session_S9axPdYR
-3916	4	Q2	2019-07-13	\N	\N	f	1	1007	session_u982lgit
-3917	5	Q3	2019-07-13	\N	\N	f	1	1007	session_6WhuoVZP
-3918	1	FP1	2019-07-12	\N	\N	f	1	1007	session_f4z2mBhm
-3919	2	FP2	2019-07-12	\N	\N	f	1	1007	session_8aDL5Tv5
-3920	6	FP3	2019-07-13	\N	\N	f	1	1007	session_T2Dg07pP
-3921	7	R	2019-07-28	13:10:00	\N	f	18	1008	session_NJd4qIdT
-3922	3	Q1	2019-07-27	\N	\N	f	1	1008	session_cMRVSlRy
-3923	4	Q2	2019-07-27	\N	\N	f	1	1008	session_7znbPs1K
-3924	5	Q3	2019-07-27	\N	\N	f	1	1008	session_Jtzmq3wo
-3925	1	FP1	2019-07-26	\N	\N	f	1	1008	session_npfvr272
-3926	2	FP2	2019-07-26	\N	\N	f	1	1008	session_vNkTTSL5
-3927	6	FP3	2019-07-27	\N	\N	f	1	1008	session_usPW3Buo
-3928	7	R	2019-08-04	13:10:00	\N	f	18	1009	session_ijRsi0zl
-3929	3	Q1	2019-08-03	\N	\N	f	1	1009	session_7hIEMPBF
-3930	4	Q2	2019-08-03	\N	\N	f	1	1009	session_BR9tz14Z
-3931	5	Q3	2019-08-03	\N	\N	f	1	1009	session_fDh2Bv2L
-3932	1	FP1	2019-08-02	\N	\N	f	1	1009	session_j6YSnR1w
-3933	2	FP2	2019-08-02	\N	\N	f	1	1009	session_Oiiko2sZ
-3934	6	FP3	2019-08-03	\N	\N	f	1	1009	session_AHF8xDEp
-3935	7	R	2019-09-01	13:10:00	\N	f	18	1010	session_X8hdf8zh
-3936	3	Q1	2019-08-31	\N	\N	f	1	1010	session_hQRH4zeR
-3937	4	Q2	2019-08-31	\N	\N	f	1	1010	session_e2tpcEKb
-3938	5	Q3	2019-08-31	\N	\N	f	1	1010	session_M3ReIIWX
-3939	1	FP1	2019-08-30	\N	\N	f	1	1010	session_MwDXzdrP
-3940	2	FP2	2019-08-30	\N	\N	f	1	1010	session_F4tHqKKx
-3941	6	FP3	2019-08-31	\N	\N	f	1	1010	session_sBS6YPBy
-3942	7	R	2019-09-08	13:10:00	\N	f	18	1011	session_lg4zF9NG
-3943	3	Q1	2019-09-07	\N	\N	f	1	1011	session_Fsr4UXKN
-3944	4	Q2	2019-09-07	\N	\N	f	1	1011	session_8IsF27km
-3945	5	Q3	2019-09-07	\N	\N	f	1	1011	session_vIpeMpuL
-3946	1	FP1	2019-09-06	\N	\N	f	1	1011	session_tL2GYQsc
-3947	2	FP2	2019-09-06	\N	\N	f	1	1011	session_IxviJ5m0
-3948	6	FP3	2019-09-07	\N	\N	f	1	1011	session_36uUk6Jn
-3949	7	R	2019-09-22	12:10:00	\N	f	18	1012	session_HXNcjIvs
-3950	3	Q1	2019-09-21	\N	\N	f	1	1012	session_J3Gs8BC1
-3951	4	Q2	2019-09-21	\N	\N	f	1	1012	session_INKDpqVX
-3952	5	Q3	2019-09-21	\N	\N	f	1	1012	session_UCfVajNn
-3953	1	FP1	2019-09-20	\N	\N	f	1	1012	session_8QfhPhUu
-3954	2	FP2	2019-09-20	\N	\N	f	1	1012	session_lNd5FaPE
-3955	6	FP3	2019-09-21	\N	\N	f	1	1012	session_VOhmoew9
-3956	7	R	2019-09-29	11:10:00	\N	f	18	1013	session_90SpDrmI
-3957	3	Q1	2019-09-28	\N	\N	f	1	1013	session_Lma4TgXB
-3958	4	Q2	2019-09-28	\N	\N	f	1	1013	session_rmGIg3j5
-3959	5	Q3	2019-09-28	\N	\N	f	1	1013	session_T7vjDEl3
-3960	1	FP1	2019-09-27	\N	\N	f	1	1013	session_owfQANEg
-3961	2	FP2	2019-09-27	\N	\N	f	1	1013	session_mqIRpTWf
-3962	6	FP3	2019-09-28	\N	\N	f	1	1013	session_2IoVaq2l
-3963	7	R	2019-10-13	05:10:00	\N	f	18	1014	session_itWsCffr
-3964	3	Q1	2019-10-12	\N	\N	f	1	1014	session_RXpgWDqw
-3965	4	Q2	2019-10-12	\N	\N	f	1	1014	session_S9rMu8cQ
-3966	5	Q3	2019-10-12	\N	\N	f	1	1014	session_BxnE7mol
-3967	1	FP1	2019-10-11	\N	\N	f	1	1014	session_hCpxdgJe
-3968	2	FP2	2019-10-11	\N	\N	f	1	1014	session_HMQQBlbl
-3969	6	FP3	2019-10-12	\N	\N	f	1	1014	session_o8dHEb8s
-3970	7	R	2019-10-27	19:10:00	\N	f	18	1015	session_LeDxYgFk
-3971	3	Q1	2019-10-26	\N	\N	f	1	1015	session_UMFkYXRV
-3972	4	Q2	2019-10-26	\N	\N	f	1	1015	session_ktiUAZlq
-3973	5	Q3	2019-10-26	\N	\N	f	1	1015	session_vxhlHg3a
-3974	1	FP1	2019-10-25	\N	\N	f	1	1015	session_Th0yDwlu
-3975	2	FP2	2019-10-25	\N	\N	f	1	1015	session_ftwc6GBH
-3976	6	FP3	2019-10-26	\N	\N	f	1	1015	session_ef2DiXR2
-3977	7	R	2019-11-03	19:10:00	\N	f	18	1016	session_bnq4Mcqg
-3978	3	Q1	2019-11-02	\N	\N	f	1	1016	session_H4bBoL5I
-3979	4	Q2	2019-11-02	\N	\N	f	1	1016	session_xPmTYSvu
-3980	5	Q3	2019-11-02	\N	\N	f	1	1016	session_2sOB3FD1
-3981	1	FP1	2019-11-01	\N	\N	f	1	1016	session_0x8uTn5s
-3982	2	FP2	2019-11-01	\N	\N	f	1	1016	session_mvYpR7xg
-3983	6	FP3	2019-11-02	\N	\N	f	1	1016	session_xY57KCiX
-3984	7	R	2019-11-17	17:10:00	\N	f	18	1017	session_1OwgYsO9
-3985	3	Q1	2019-11-16	\N	\N	f	1	1017	session_3Q4pgav4
-3986	4	Q2	2019-11-16	\N	\N	f	1	1017	session_XgIBFX6e
-3987	5	Q3	2019-11-16	\N	\N	f	1	1017	session_wDu4ZOWW
-3988	1	FP1	2019-11-15	\N	\N	f	1	1017	session_lzpiCpUD
-3989	2	FP2	2019-11-15	\N	\N	f	1	1017	session_F6lyB6HU
-3990	6	FP3	2019-11-16	\N	\N	f	1	1017	session_ny9elaUA
-3991	7	R	2019-12-01	13:10:00	\N	f	18	1018	session_ZFu8ilof
-3992	3	Q1	2019-11-30	\N	\N	f	1	1018	session_enl4k5Ec
-3993	4	Q2	2019-11-30	\N	\N	f	1	1018	session_Nsp40vY1
-3994	5	Q3	2019-11-30	\N	\N	f	1	1018	session_isI17oqK
-3995	1	FP1	2019-11-29	\N	\N	f	1	1018	session_4rvC2XfR
-3996	2	FP2	2019-11-29	\N	\N	f	1	1018	session_fyOXxURZ
-3997	6	FP3	2019-11-30	\N	\N	f	1	1018	session_Nj9OQDiS
-3998	7	R	2020-07-05	13:10:00	\N	f	18	1019	session_XSUo98E3
-3999	3	Q1	2020-07-04	\N	\N	f	1	1019	session_CPVCHF3R
-4000	4	Q2	2020-07-04	\N	\N	f	1	1019	session_lhcDsaS0
-4001	5	Q3	2020-07-04	\N	\N	f	1	1019	session_aprzgxuI
-4002	1	FP1	2020-07-03	\N	\N	f	1	1019	session_euqQMVoS
-4003	2	FP2	2020-07-03	\N	\N	f	1	1019	session_f4DrEQJM
-4004	6	FP3	2020-07-04	\N	\N	f	1	1019	session_GffTC6Qb
-4005	7	R	2020-07-12	13:10:00	\N	f	18	1020	session_ik3r2WjH
-4006	3	Q1	2020-07-11	\N	\N	f	1	1020	session_LBj0P4ph
-4007	4	Q2	2020-07-11	\N	\N	f	1	1020	session_pYhsyjfg
-4008	5	Q3	2020-07-11	\N	\N	f	1	1020	session_90Gy3rmG
-4009	1	FP1	2020-07-10	\N	\N	f	1	1020	session_6TXgTR1M
-4010	2	FP2	2020-07-10	\N	\N	f	1	1020	session_nZvOdbzZ
-4011	6	FP3	2020-07-11	\N	\N	f	1	1020	session_tUXk86Zw
-4012	7	R	2020-07-19	13:10:00	\N	f	18	1021	session_cvEBvUiq
-4013	3	Q1	2020-07-18	\N	\N	f	1	1021	session_bE0GoMdJ
-4014	4	Q2	2020-07-18	\N	\N	f	1	1021	session_WKfsGyF5
-4015	5	Q3	2020-07-18	\N	\N	f	1	1021	session_1ybEwIFu
-4016	1	FP1	2020-07-17	\N	\N	f	1	1021	session_4Jjc8NT0
-4017	2	FP2	2020-07-17	\N	\N	f	1	1021	session_Kxpqln6n
-4018	6	FP3	2020-07-18	\N	\N	f	1	1021	session_caNtjEgT
-4019	7	R	2020-08-02	13:10:00	\N	f	18	1022	session_jBDZNQQf
-4020	3	Q1	2020-08-01	\N	\N	f	1	1022	session_aBcf4NAr
-4021	4	Q2	2020-08-01	\N	\N	f	1	1022	session_Q5XcMEEn
-4022	5	Q3	2020-08-01	\N	\N	f	1	1022	session_nS6dBljK
-4023	1	FP1	2020-07-31	\N	\N	f	1	1022	session_XtEDT6eQ
-4024	2	FP2	2020-07-31	\N	\N	f	1	1022	session_2cAFHJam
-4025	6	FP3	2020-08-01	\N	\N	f	1	1022	session_U0z6veF2
-4026	7	R	2020-08-09	13:10:00	\N	f	18	1023	session_TsFZLxX5
-4027	3	Q1	2020-08-08	\N	\N	f	1	1023	session_At7biA1q
-4028	4	Q2	2020-08-08	\N	\N	f	1	1023	session_Kv88MPJD
-4029	5	Q3	2020-08-08	\N	\N	f	1	1023	session_HBiNmr6i
-4030	1	FP1	2020-08-07	\N	\N	f	1	1023	session_bogbiLZn
-4031	2	FP2	2020-08-07	\N	\N	f	1	1023	session_aSlU6kc2
-4032	6	FP3	2020-08-08	\N	\N	f	1	1023	session_jHZSeXqX
-4033	7	R	2020-08-16	13:10:00	\N	f	18	1024	session_qLnJJ1S3
-4034	3	Q1	2020-08-15	\N	\N	f	1	1024	session_4kRkZ4bW
-4035	4	Q2	2020-08-15	\N	\N	f	1	1024	session_4a5PVpqn
-4036	5	Q3	2020-08-15	\N	\N	f	1	1024	session_fH9vjoY5
-4037	1	FP1	2020-08-14	\N	\N	f	1	1024	session_cx2t9WeY
-4038	2	FP2	2020-08-14	\N	\N	f	1	1024	session_7MqNse3D
-4039	6	FP3	2020-08-15	\N	\N	f	1	1024	session_BRN54OtA
-4040	7	R	2020-08-30	13:10:00	\N	f	18	1025	session_2raitQvf
-4041	3	Q1	2020-08-29	\N	\N	f	1	1025	session_Jy6URC4o
-4042	4	Q2	2020-08-29	\N	\N	f	1	1025	session_ul1x2jdM
-4043	5	Q3	2020-08-29	\N	\N	f	1	1025	session_RjedVNmv
-4044	1	FP1	2020-08-28	\N	\N	f	1	1025	session_qTNkg5ym
-4045	2	FP2	2020-08-28	\N	\N	f	1	1025	session_IHL8phdi
-4046	6	FP3	2020-08-29	\N	\N	f	1	1025	session_NB2br5sl
-4047	7	R	2020-09-06	13:10:00	\N	f	18	1026	session_chkaRmzr
-4048	3	Q1	2020-09-05	\N	\N	f	1	1026	session_TazbYNwT
-4049	4	Q2	2020-09-05	\N	\N	f	1	1026	session_hxQvCv0d
-4050	5	Q3	2020-09-05	\N	\N	f	1	1026	session_9XTV5ilO
-4051	1	FP1	2020-09-04	\N	\N	f	1	1026	session_TeVIB0BU
-4052	2	FP2	2020-09-04	\N	\N	f	1	1026	session_37lZXGVa
-4053	6	FP3	2020-09-05	\N	\N	f	1	1026	session_ecKVUUGE
-4054	7	R	2020-09-13	13:10:00	\N	f	18	1027	session_5Wmsvoax
-4055	3	Q1	2020-09-12	\N	\N	f	1	1027	session_jYGrC7Dc
-4056	4	Q2	2020-09-12	\N	\N	f	1	1027	session_KaaBYLw9
-4057	5	Q3	2020-09-12	\N	\N	f	1	1027	session_WHNtR2RV
-4058	1	FP1	2020-09-11	\N	\N	f	1	1027	session_Q3LCsEhg
-4059	2	FP2	2020-09-11	\N	\N	f	1	1027	session_8cLTi3i2
-4060	6	FP3	2020-09-12	\N	\N	f	1	1027	session_nriWBKtv
-4061	7	R	2020-09-27	11:10:00	\N	f	18	1028	session_BDZO0c7E
-4062	3	Q1	2020-09-26	\N	\N	f	1	1028	session_O3Ima9y7
-4063	4	Q2	2020-09-26	\N	\N	f	1	1028	session_x73jUJ6I
-4064	5	Q3	2020-09-26	\N	\N	f	1	1028	session_GzR5YXVd
-4065	1	FP1	2020-09-25	\N	\N	f	1	1028	session_Ozx8cHVA
-4066	2	FP2	2020-09-25	\N	\N	f	1	1028	session_OStWmu2t
-4067	6	FP3	2020-09-26	\N	\N	f	1	1028	session_uJmpxkWw
-4068	7	R	2020-10-11	13:10:00	\N	f	18	1029	session_NZCSnSpe
-4069	3	Q1	2020-10-10	\N	\N	f	1	1029	session_BvccTw9R
-4070	4	Q2	2020-10-10	\N	\N	f	1	1029	session_Tu5UNpSD
-4071	5	Q3	2020-10-10	\N	\N	f	1	1029	session_42uINAlu
-4072	1	FP1	2020-10-09	\N	\N	f	1	1029	session_kEO4lCcG
-4073	2	FP2	2020-10-09	\N	\N	f	1	1029	session_WYenPDSn
-4074	6	FP3	2020-10-10	\N	\N	f	1	1029	session_OZEdZRUs
-4075	7	R	2020-10-25	12:10:00	\N	f	18	1030	session_k9l5uND5
-4076	3	Q1	2020-10-24	\N	\N	f	1	1030	session_G8O00Hkt
-4077	4	Q2	2020-10-24	\N	\N	f	1	1030	session_ILQsAQpk
-4078	5	Q3	2020-10-24	\N	\N	f	1	1030	session_RGJ6aG0C
-4079	1	FP1	2020-10-23	\N	\N	f	1	1030	session_UuEPCUgV
-4080	2	FP2	2020-10-23	\N	\N	f	1	1030	session_wOxyyqUw
-4081	6	FP3	2020-10-24	\N	\N	f	1	1030	session_kcndzMbN
-4082	7	R	2020-11-01	12:10:00	\N	f	18	1031	session_vIT1ksz9
-4083	3	Q1	2020-10-31	\N	\N	f	1	1031	session_avEQ6vlU
-4084	4	Q2	2020-10-31	\N	\N	f	1	1031	session_C4CxrT1g
-4085	5	Q3	2020-10-31	\N	\N	f	1	1031	session_kbben05x
-4086	1	FP1	2020-10-30	\N	\N	f	1	1031	session_5zrjv7ux
-4087	2	FP2	2020-10-30	\N	\N	f	1	1031	session_CX5kFLvH
-4088	6	FP3	2020-10-31	\N	\N	f	1	1031	session_vxPVo6cQ
-4089	7	R	2020-11-15	10:10:00	\N	f	18	1032	session_BBSkY0fY
-4090	3	Q1	2020-11-14	\N	\N	f	1	1032	session_CrBUWvzA
-4091	4	Q2	2020-11-14	\N	\N	f	1	1032	session_fsW6YcU7
-4092	5	Q3	2020-11-14	\N	\N	f	1	1032	session_fTFyHGPC
-4093	1	FP1	2020-11-13	\N	\N	f	1	1032	session_EsAO1Dg5
-4094	2	FP2	2020-11-13	\N	\N	f	1	1032	session_J4SnepfT
-4095	6	FP3	2020-11-14	\N	\N	f	1	1032	session_pkAznBJB
-4096	7	R	2020-11-29	14:10:00	\N	f	18	1033	session_65avkr0N
-4097	3	Q1	2020-11-28	\N	\N	f	1	1033	session_8cgJy5V9
-4098	4	Q2	2020-11-28	\N	\N	f	1	1033	session_wK7kMZ4r
-4099	5	Q3	2020-11-28	\N	\N	f	1	1033	session_3bpNx4XP
-4100	1	FP1	2020-11-27	\N	\N	f	1	1033	session_reejA2vi
-4101	2	FP2	2020-11-27	\N	\N	f	1	1033	session_xCN1c5dZ
-4102	6	FP3	2020-11-28	\N	\N	f	1	1033	session_HaN6QzuY
-4103	7	R	2020-12-06	17:10:00	\N	f	18	1034	session_EosYAyxd
-4104	3	Q1	2020-12-05	\N	\N	f	1	1034	session_X6LENGt7
-4105	4	Q2	2020-12-05	\N	\N	f	1	1034	session_gRcAhHs2
-4106	5	Q3	2020-12-05	\N	\N	f	1	1034	session_fU0yG3xD
-4107	1	FP1	2020-12-04	\N	\N	f	1	1034	session_2RXkC2KN
-4108	2	FP2	2020-12-04	\N	\N	f	1	1034	session_RGhAumqW
-4109	6	FP3	2020-12-05	\N	\N	f	1	1034	session_XLQOs3am
-4110	7	R	2020-12-13	13:10:00	\N	f	18	1035	session_6a8Q3o0T
-4111	3	Q1	2020-12-12	\N	\N	f	1	1035	session_RijnaeUf
-4112	4	Q2	2020-12-12	\N	\N	f	1	1035	session_oVw3oW8f
-4113	5	Q3	2020-12-12	\N	\N	f	1	1035	session_ydAHpHDH
-4114	1	FP1	2020-12-11	\N	\N	f	1	1035	session_MV1WvzLs
-4115	2	FP2	2020-12-11	\N	\N	f	1	1035	session_TqA8wHIP
-4116	6	FP3	2020-12-12	\N	\N	f	1	1035	session_rrfM6Cza
-4117	7	R	2021-03-28	15:00:00	\N	f	18	1036	session_9q2BS6mw
-4118	3	Q1	2021-03-27	\N	\N	f	1	1036	session_3pQ7W9ZW
-4119	4	Q2	2021-03-27	\N	\N	f	1	1036	session_7c6xP3O4
-4120	5	Q3	2021-03-27	\N	\N	f	1	1036	session_ED83T5x7
-4121	1	FP1	2021-03-26	\N	\N	f	1	1036	session_CiVomkBs
-4122	2	FP2	2021-03-26	\N	\N	f	1	1036	session_r6LT5o1g
-4123	6	FP3	2021-03-27	\N	\N	f	1	1036	session_7je8Dys5
-4124	7	R	2021-04-18	13:00:00	\N	f	18	1037	session_TyA5xiba
-4125	3	Q1	2021-04-17	\N	\N	f	1	1037	session_ihOQ6mEF
-4126	4	Q2	2021-04-17	\N	\N	f	1	1037	session_hmMxvm4U
-4127	5	Q3	2021-04-17	\N	\N	f	1	1037	session_d4H5B4Yh
-4128	1	FP1	2021-04-16	\N	\N	f	1	1037	session_QKn5BFW2
-4129	2	FP2	2021-04-16	\N	\N	f	1	1037	session_Za0mLz5B
-4130	6	FP3	2021-04-17	\N	\N	f	1	1037	session_dwRYqV1F
-4131	7	R	2021-05-02	14:00:00	\N	f	18	1038	session_AJKQH8LF
-4132	3	Q1	2021-05-01	\N	\N	f	1	1038	session_UaHQbdjM
-4133	4	Q2	2021-05-01	\N	\N	f	1	1038	session_YRuWbmEc
-4134	5	Q3	2021-05-01	\N	\N	f	1	1038	session_JTMu087d
-4135	1	FP1	2021-04-30	\N	\N	f	1	1038	session_yZdACB8v
-4136	2	FP2	2021-04-30	\N	\N	f	1	1038	session_TPRrflkg
-4137	6	FP3	2021-05-01	\N	\N	f	1	1038	session_3g7cCE0s
-4138	7	R	2021-05-09	13:00:00	\N	f	18	1039	session_idvk1yj9
-4139	3	Q1	2021-05-08	\N	\N	f	1	1039	session_UHSPGVZa
-4140	4	Q2	2021-05-08	\N	\N	f	1	1039	session_9cIJNQnl
-4141	5	Q3	2021-05-08	\N	\N	f	1	1039	session_Gg9kwMdm
-4142	1	FP1	2021-05-07	\N	\N	f	1	1039	session_Q2aiVIvo
-4143	2	FP2	2021-05-07	\N	\N	f	1	1039	session_uxFmgpGH
-4144	6	FP3	2021-05-08	\N	\N	f	1	1039	session_j4MBxCok
-4145	7	R	2021-05-23	13:00:00	\N	f	18	1040	session_XnaBmgra
-4146	3	Q1	2021-05-22	\N	\N	f	1	1040	session_pUl6WOc5
-4147	4	Q2	2021-05-22	\N	\N	f	1	1040	session_Ex71s2PN
-4148	5	Q3	2021-05-22	\N	\N	f	1	1040	session_hZQpH1xj
-4149	1	FP1	2021-05-21	\N	\N	f	1	1040	session_F8aDbiqQ
-4150	2	FP2	2021-05-21	\N	\N	f	1	1040	session_SPByuQ1e
-4151	6	FP3	2021-05-22	\N	\N	f	1	1040	session_xt1ZrP8T
-4152	7	R	2021-06-06	12:00:00	\N	f	18	1041	session_qKgWocSl
-4153	3	Q1	2021-06-05	\N	\N	f	1	1041	session_ZglwemtD
-4154	4	Q2	2021-06-05	\N	\N	f	1	1041	session_GdMEE0YF
-4155	5	Q3	2021-06-05	\N	\N	f	1	1041	session_kTKX1HLQ
-4156	1	FP1	2021-06-04	\N	\N	f	1	1041	session_aKto1Tcf
-4157	2	FP2	2021-06-04	\N	\N	f	1	1041	session_CqWZvcHi
-4158	6	FP3	2021-06-05	\N	\N	f	1	1041	session_Q9OgzaDC
-4159	7	R	2021-06-20	13:00:00	\N	f	18	1042	session_E64EFrXo
-4160	3	Q1	2021-06-19	\N	\N	f	1	1042	session_lnUVJKrE
-4161	4	Q2	2021-06-19	\N	\N	f	1	1042	session_IyA8OFhG
-4162	5	Q3	2021-06-19	\N	\N	f	1	1042	session_n8IJYGjU
-4163	1	FP1	2021-06-18	\N	\N	f	1	1042	session_LpRgVMND
-4164	2	FP2	2021-06-18	\N	\N	f	1	1042	session_0H1jOzhA
-4165	6	FP3	2021-06-19	\N	\N	f	1	1042	session_xYaQ27Kq
-4166	7	R	2021-06-27	13:00:00	\N	f	18	1043	session_iqu2Uy1L
-4167	3	Q1	2021-06-26	\N	\N	f	1	1043	session_x9c9iMI0
-4168	4	Q2	2021-06-26	\N	\N	f	1	1043	session_5VXqopR7
-4169	5	Q3	2021-06-26	\N	\N	f	1	1043	session_dXcgUeLa
-4170	1	FP1	2021-06-25	\N	\N	f	1	1043	session_EFUqPq3g
-4171	2	FP2	2021-06-25	\N	\N	f	1	1043	session_HsbbrNqm
-4172	6	FP3	2021-06-26	\N	\N	f	1	1043	session_PDaAqovy
-4173	7	R	2021-07-04	13:00:00	\N	f	18	1044	session_9xuEBKZ2
-4174	3	Q1	2021-07-03	\N	\N	f	1	1044	session_jvSyb4gf
-4175	4	Q2	2021-07-03	\N	\N	f	1	1044	session_CIB6TX0g
-4176	5	Q3	2021-07-03	\N	\N	f	1	1044	session_0SJyROhB
-4177	1	FP1	2021-07-02	\N	\N	f	1	1044	session_snO5FmLn
-4178	2	FP2	2021-07-02	\N	\N	f	1	1044	session_5yvpSf5v
-4179	6	FP3	2021-07-03	\N	\N	f	1	1044	session_nzUAE9HR
-4180	7	R	2021-07-18	14:00:00	\N	f	18	1045	session_4Nfij6ck
-4181	1	Q1	2021-07-16	\N	\N	f	1	1045	session_UW4h88sJ
-4182	2	Q2	2021-07-16	\N	\N	f	1	1045	session_3W30fsgE
-4183	3	Q3	2021-07-16	\N	\N	f	1	1045	session_xZWteRXu
-4184	4	FP1	2021-07-16	\N	\N	f	1	1045	session_Q9ZEbaZS
-4185	5	FP2	2021-07-17	\N	\N	f	1	1045	session_7yHAEkjX
-4186	6	SR	2021-07-17	\N	\N	f	19	1045	session_NmjuV5Um
-4187	7	R	2021-08-01	13:00:00	\N	f	18	1046	session_2TmxnUp2
-4188	3	Q1	2021-07-31	\N	\N	f	1	1046	session_0RnMHY1m
-4189	4	Q2	2021-07-31	\N	\N	f	1	1046	session_v8MkLmXw
-4190	5	Q3	2021-07-31	\N	\N	f	1	1046	session_gwA9bRkx
-4191	1	FP1	2021-07-30	\N	\N	f	1	1046	session_747mWocV
-4192	2	FP2	2021-07-30	\N	\N	f	1	1046	session_HtuLzTqF
-4193	6	FP3	2021-07-31	\N	\N	f	1	1046	session_urr5VOH4
-4194	7	R	2021-08-29	13:00:00	\N	f	18	1047	session_EDTISQmc
-4195	3	Q1	2021-08-28	\N	\N	f	1	1047	session_M66anhBN
-4196	4	Q2	2021-08-28	\N	\N	f	1	1047	session_ct06Klkg
-4197	5	Q3	2021-08-28	\N	\N	f	1	1047	session_IoRY2wXW
-4198	1	FP1	2021-08-27	\N	\N	f	1	1047	session_ltBMAJ78
-4199	2	FP2	2021-08-27	\N	\N	f	1	1047	session_iQWsZPhx
-4200	6	FP3	2021-08-28	\N	\N	f	1	1047	session_Y1zOR1Wy
-4201	7	R	2021-09-05	13:00:00	\N	f	18	1048	session_VZAJlw3y
-4202	3	Q1	2021-09-04	\N	\N	f	1	1048	session_2LgIqzfb
-4203	4	Q2	2021-09-04	\N	\N	f	1	1048	session_KfTAlQXU
-4204	5	Q3	2021-09-04	\N	\N	f	1	1048	session_pIkfyDXX
-4205	1	FP1	2021-09-03	\N	\N	f	1	1048	session_rzQvSVnE
-4206	2	FP2	2021-09-03	\N	\N	f	1	1048	session_611leTLZ
-4207	6	FP3	2021-09-04	\N	\N	f	1	1048	session_aAS4r0BZ
-4208	7	R	2021-09-12	13:00:00	\N	f	18	1049	session_FUqPpugO
-4209	1	Q1	2021-09-10	\N	\N	f	1	1049	session_pz8ww3YQ
-4210	2	Q2	2021-09-10	\N	\N	f	1	1049	session_KbqFI13P
-4211	3	Q3	2021-09-10	\N	\N	f	1	1049	session_IJEqsAL4
-4212	4	FP1	2021-09-10	\N	\N	f	1	1049	session_THJlohhc
-4213	5	FP2	2021-09-11	\N	\N	f	1	1049	session_CsWyA7SF
-4214	6	SR	2021-09-11	\N	\N	f	19	1049	session_HV3yLR23
-4215	7	R	2021-09-26	12:00:00	\N	f	18	1050	session_cM3JoE3R
-4216	3	Q1	2021-09-25	\N	\N	f	1	1050	session_70H84est
-4217	4	Q2	2021-09-25	\N	\N	f	1	1050	session_iCVF5USD
-4218	5	Q3	2021-09-25	\N	\N	f	1	1050	session_aCIkP1nI
-4219	1	FP1	2021-09-24	\N	\N	f	1	1050	session_PTjfTHhh
-4220	2	FP2	2021-09-24	\N	\N	f	1	1050	session_l1YpTFWO
-4221	6	FP3	2021-09-25	\N	\N	f	1	1050	session_K1499nvi
-4222	7	R	2021-10-10	12:00:00	\N	f	18	1051	session_UnVYMaYw
-4223	3	Q1	2021-10-09	\N	\N	f	1	1051	session_F0Vsb81U
-4224	4	Q2	2021-10-09	\N	\N	f	1	1051	session_2bFKPlcE
-4225	5	Q3	2021-10-09	\N	\N	f	1	1051	session_wvnY36E0
-4226	1	FP1	2021-10-08	\N	\N	f	1	1051	session_0Q4oDHh4
-4227	2	FP2	2021-10-08	\N	\N	f	1	1051	session_sjavIAIr
-4228	6	FP3	2021-10-09	\N	\N	f	1	1051	session_NtCvDhfH
-4229	7	R	2021-10-24	19:00:00	\N	f	18	1052	session_Nr5haHGC
-4230	3	Q1	2021-10-23	\N	\N	f	1	1052	session_mCfyCFwR
-4231	4	Q2	2021-10-23	\N	\N	f	1	1052	session_5sAbZZfH
-4232	5	Q3	2021-10-23	\N	\N	f	1	1052	session_BLtccaPN
-4233	1	FP1	2021-10-22	\N	\N	f	1	1052	session_5bm5zLgp
-4234	2	FP2	2021-10-22	\N	\N	f	1	1052	session_INkqoc3F
-4235	6	FP3	2021-10-23	\N	\N	f	1	1052	session_LX3ILATG
-4236	7	R	2021-11-07	19:00:00	\N	f	18	1053	session_uKnDbgrh
-4237	3	Q1	2021-11-06	\N	\N	f	1	1053	session_McCEO1W8
-4238	4	Q2	2021-11-06	\N	\N	f	1	1053	session_Y4mwDsUR
-4239	5	Q3	2021-11-06	\N	\N	f	1	1053	session_UZAFxIDk
-4240	1	FP1	2021-11-05	\N	\N	f	1	1053	session_2VrnYS3x
-4241	2	FP2	2021-11-05	\N	\N	f	1	1053	session_Cx5fnbn4
-4242	6	FP3	2021-11-06	\N	\N	f	1	1053	session_u6E0Msg8
-4243	7	R	2021-11-14	17:00:00	\N	f	18	1054	session_AhtE7LPV
-4244	1	Q1	2021-11-12	\N	\N	f	1	1054	session_TzUULswU
-4245	2	Q2	2021-11-12	\N	\N	f	1	1054	session_ayskypTt
-4246	3	Q3	2021-11-12	\N	\N	f	1	1054	session_LIAp7Ipj
-4247	4	FP1	2021-11-12	\N	\N	f	1	1054	session_g9w5KK0M
-4248	5	FP2	2021-11-13	\N	\N	f	1	1054	session_NRPZwcqp
-4249	6	SR	2021-11-13	\N	\N	f	19	1054	session_gOfCM393
-4250	7	R	2021-11-21	14:00:00	\N	f	18	1055	session_hByFnb6j
-4251	3	Q1	2021-11-20	\N	\N	f	1	1055	session_Xvr5aXGq
-4252	4	Q2	2021-11-20	\N	\N	f	1	1055	session_vjETOZoL
-4253	5	Q3	2021-11-20	\N	\N	f	1	1055	session_8QwfmMT5
-4254	1	FP1	2021-11-19	\N	\N	f	1	1055	session_BNWb2wMy
-4255	2	FP2	2021-11-19	\N	\N	f	1	1055	session_16AeIOfG
-4256	6	FP3	2021-11-20	\N	\N	f	1	1055	session_AlxRNGdH
-4257	7	R	2021-12-05	17:30:00	\N	f	18	1056	session_3czlaart
-4258	3	Q1	2021-12-04	\N	\N	f	1	1056	session_VlDcdWlf
-4259	4	Q2	2021-12-04	\N	\N	f	1	1056	session_vKbohpYV
-4260	5	Q3	2021-12-04	\N	\N	f	1	1056	session_E6yJ9eag
-4261	1	FP1	2021-12-03	\N	\N	f	1	1056	session_fRUzPzDT
-4262	2	FP2	2021-12-03	\N	\N	f	1	1056	session_XlQyxHTk
-4263	6	FP3	2021-12-04	\N	\N	f	1	1056	session_5TQjQkXE
-4264	7	R	2021-12-12	13:00:00	\N	f	18	1057	session_CCRKWVbB
-4265	3	Q1	2021-12-11	\N	\N	f	1	1057	session_4sXOmbqe
-4266	4	Q2	2021-12-11	\N	\N	f	1	1057	session_fl94b6Yk
-4267	5	Q3	2021-12-11	\N	\N	f	1	1057	session_xzW7mbFC
-4268	1	FP1	2021-12-10	\N	\N	f	1	1057	session_ais5ySHv
-4269	2	FP2	2021-12-10	\N	\N	f	1	1057	session_eGrtDmZ3
-4270	6	FP3	2021-12-11	\N	\N	f	1	1057	session_zKg4yeqi
-4271	7	R	2022-03-20	15:00:00	\N	f	20	1058	session_eEMwlen8
-4272	4	Q1	2022-03-19	15:00:00	\N	f	1	1058	session_M5I5fQDp
-4273	5	Q2	2022-03-19	15:00:00	\N	f	1	1058	session_1O8v5IDu
-4274	6	Q3	2022-03-19	15:00:00	\N	f	1	1058	session_TODqK2LD
-4275	1	FP1	2022-03-18	12:00:00	\N	f	1	1058	session_BEngdigM
-4276	2	FP2	2022-03-18	15:00:00	\N	f	1	1058	session_31VZRqqc
-4277	3	FP3	2022-03-19	12:00:00	\N	f	1	1058	session_X2K9eZFq
-4278	7	R	2022-03-27	17:00:00	\N	f	20	1059	session_aVBq5axB
-4279	4	Q1	2022-03-26	17:00:00	\N	f	1	1059	session_tqxYKxg7
-4280	5	Q2	2022-03-26	17:00:00	\N	f	1	1059	session_dT03om9B
-4281	6	Q3	2022-03-26	17:00:00	\N	f	1	1059	session_w9f5Rtrg
-4282	1	FP1	2022-03-25	14:00:00	\N	f	1	1059	session_EVh4zkqU
-4283	2	FP2	2022-03-25	17:00:00	\N	f	1	1059	session_4YYm5zGg
-4284	3	FP3	2022-03-26	14:00:00	\N	f	1	1059	session_tvPLgYim
-4285	7	R	2022-04-10	05:00:00	\N	f	20	1060	session_YI64yexk
-4286	4	Q1	2022-04-09	06:00:00	\N	f	1	1060	session_lWs60vqs
-4287	5	Q2	2022-04-09	06:00:00	\N	f	1	1060	session_yIgA56c0
-4288	6	Q3	2022-04-09	06:00:00	\N	f	1	1060	session_iOWZcbf2
-4289	1	FP1	2022-04-08	03:00:00	\N	f	1	1060	session_OKLiBk6f
-4290	2	FP2	2022-04-08	06:00:00	\N	f	1	1060	session_X1tdaF8B
-4291	3	FP3	2022-04-09	03:00:00	\N	f	1	1060	session_ltIgXwh2
-4292	7	R	2022-04-24	13:00:00	\N	f	20	1061	session_YebSWNsS
-4293	2	Q1	2022-04-22	15:00:00	\N	f	1	1061	session_uZhAuvEX
-4294	3	Q2	2022-04-22	15:00:00	\N	f	1	1061	session_ZrfeRTUB
-4295	4	Q3	2022-04-22	15:00:00	\N	f	1	1061	session_xX2m6R9j
-4296	1	FP1	2022-04-22	11:30:00	\N	f	1	1061	session_qb2YuarV
-4297	5	FP2	2022-04-23	10:30:00	\N	f	1	1061	session_HfLNLnbU
-4298	6	SR	2022-04-23	14:30:00	\N	f	21	1061	session_qZKzuMFv
-4299	7	R	2022-05-08	19:30:00	\N	f	20	1062	session_Oa1jDRQV
-4300	4	Q1	2022-05-07	20:00:00	\N	f	1	1062	session_XvgVw70I
-4301	5	Q2	2022-05-07	20:00:00	\N	f	1	1062	session_T8GlVAOz
-4302	6	Q3	2022-05-07	20:00:00	\N	f	1	1062	session_xZrFtcfH
-4303	1	FP1	2022-05-06	18:30:00	\N	f	1	1062	session_7hx9OnJQ
-4304	2	FP2	2022-05-06	21:30:00	\N	f	1	1062	session_LOJrkSls
-4305	3	FP3	2022-05-07	17:00:00	\N	f	1	1062	session_BuqgSJD1
-4306	7	R	2022-05-22	13:00:00	\N	f	20	1063	session_ocKQJHtd
-4307	4	Q1	2022-05-21	14:00:00	\N	f	1	1063	session_jzkmWvZV
-4308	5	Q2	2022-05-21	14:00:00	\N	f	1	1063	session_cNsp0N4i
-4309	6	Q3	2022-05-21	14:00:00	\N	f	1	1063	session_DuVWDDkI
-4310	1	FP1	2022-05-20	12:00:00	\N	f	1	1063	session_AOtaQBGa
-4311	2	FP2	2022-05-20	15:00:00	\N	f	1	1063	session_cAP8IZ0J
-4312	3	FP3	2022-05-21	11:00:00	\N	f	1	1063	session_33vo4hWS
-4313	7	R	2022-05-29	13:00:00	\N	f	20	1064	session_n5Zo1WdK
-4314	4	Q1	2022-05-28	14:00:00	\N	f	1	1064	session_H6kGk7qv
-4315	5	Q2	2022-05-28	14:00:00	\N	f	1	1064	session_MKqaRB7A
-4316	6	Q3	2022-05-28	14:00:00	\N	f	1	1064	session_hqrtsfvq
-4317	1	FP1	2022-05-27	12:00:00	\N	f	1	1064	session_lG6dzAWD
-4318	2	FP2	2022-05-27	15:00:00	\N	f	1	1064	session_WSSD3nR0
-4319	3	FP3	2022-05-28	11:00:00	\N	f	1	1064	session_o5aMcBUi
-4320	7	R	2022-06-12	11:00:00	\N	f	20	1065	session_t9xAvnw5
-4321	4	Q1	2022-06-11	14:00:00	\N	f	1	1065	session_tcD9HQiP
-4322	5	Q2	2022-06-11	14:00:00	\N	f	1	1065	session_CO4z3tws
-4323	6	Q3	2022-06-11	14:00:00	\N	f	1	1065	session_wW0SmPMw
-4324	1	FP1	2022-06-10	11:00:00	\N	f	1	1065	session_5XCqnETV
-4325	2	FP2	2022-06-10	14:00:00	\N	f	1	1065	session_xbIk2Xdq
-4326	3	FP3	2022-06-11	11:00:00	\N	f	1	1065	session_C7ZrR8MI
-4327	7	R	2022-06-19	18:00:00	\N	f	20	1066	session_xge4DDam
-4328	4	Q1	2022-06-18	20:00:00	\N	f	1	1066	session_YtmmKc6y
-4329	5	Q2	2022-06-18	20:00:00	\N	f	1	1066	session_GvEF56K5
-4330	6	Q3	2022-06-18	20:00:00	\N	f	1	1066	session_Hwyz1taO
-4331	1	FP1	2022-06-17	18:00:00	\N	f	1	1066	session_gnsF6Vc4
-4332	2	FP2	2022-06-17	21:00:00	\N	f	1	1066	session_stLqkgaR
-4333	3	FP3	2022-06-18	17:00:00	\N	f	1	1066	session_5uQ7v929
-4334	7	R	2022-07-03	14:00:00	\N	f	20	1067	session_7TrH50Pi
-4335	4	Q1	2022-07-02	14:00:00	\N	f	1	1067	session_lqJGRwNY
-4336	5	Q2	2022-07-02	14:00:00	\N	f	1	1067	session_g8TjCmYt
-4337	6	Q3	2022-07-02	14:00:00	\N	f	1	1067	session_2RjfpDHh
-4338	1	FP1	2022-07-01	12:00:00	\N	f	1	1067	session_cFA2ZEt0
-4339	2	FP2	2022-07-01	15:00:00	\N	f	1	1067	session_VSmFzn5d
-4340	3	FP3	2022-07-02	11:00:00	\N	f	1	1067	session_O6D8M81t
-4341	7	R	2022-07-10	13:00:00	\N	f	20	1068	session_6EVobO7W
-4342	2	Q1	2022-07-08	15:00:00	\N	f	1	1068	session_z2914Vxx
-4343	3	Q2	2022-07-08	15:00:00	\N	f	1	1068	session_9AZgBTn2
-4344	4	Q3	2022-07-08	15:00:00	\N	f	1	1068	session_o0RURYVl
-4345	1	FP1	2022-07-08	11:30:00	\N	f	1	1068	session_hiy97Mj9
-4346	5	FP2	2022-07-09	10:30:00	\N	f	1	1068	session_wPbIdF2C
-4347	6	SR	2022-07-09	14:30:00	\N	f	21	1068	session_fOrUX7hT
-4348	7	R	2022-07-24	13:00:00	\N	f	20	1069	session_ssbBFn6O
-4349	4	Q1	2022-07-23	14:00:00	\N	f	1	1069	session_tcIiYiuB
-4350	5	Q2	2022-07-23	14:00:00	\N	f	1	1069	session_wOPwUZWL
-4351	6	Q3	2022-07-23	14:00:00	\N	f	1	1069	session_nGcjGw0t
-4352	1	FP1	2022-07-22	12:00:00	\N	f	1	1069	session_IS6ywkRc
-4353	2	FP2	2022-07-22	15:00:00	\N	f	1	1069	session_y5l3gx7c
-4354	3	FP3	2022-07-23	11:00:00	\N	f	1	1069	session_eWUI6wex
-4355	7	R	2022-07-31	13:00:00	\N	f	20	1070	session_kgs9y0nU
-4356	4	Q1	2022-07-30	14:00:00	\N	f	1	1070	session_jdUxm014
-4357	5	Q2	2022-07-30	14:00:00	\N	f	1	1070	session_WdWhnDO3
-4358	6	Q3	2022-07-30	14:00:00	\N	f	1	1070	session_8rNHo5Z3
-4359	1	FP1	2022-07-29	12:00:00	\N	f	1	1070	session_PUfyOnN9
-4360	2	FP2	2022-07-29	15:00:00	\N	f	1	1070	session_0je3X84s
-4361	3	FP3	2022-07-30	11:00:00	\N	f	1	1070	session_r1wht4iC
-4362	7	R	2022-08-28	13:00:00	\N	f	20	1071	session_vJlvHFj9
-4363	4	Q1	2022-08-27	14:00:00	\N	f	1	1071	session_bL3tZyM2
-4364	5	Q2	2022-08-27	14:00:00	\N	f	1	1071	session_ojKtqMx3
-4365	6	Q3	2022-08-27	14:00:00	\N	f	1	1071	session_UnoVHukP
-4366	1	FP1	2022-08-26	12:00:00	\N	f	1	1071	session_zYO9FKl4
-4367	2	FP2	2022-08-26	15:00:00	\N	f	1	1071	session_RS1soLjS
-4368	3	FP3	2022-08-27	11:00:00	\N	f	1	1071	session_XSLYkQsM
-4369	7	R	2022-09-04	13:00:00	\N	f	20	1072	session_T4tWxQd7
-4370	4	Q1	2022-09-03	13:00:00	\N	f	1	1072	session_wLfajeNH
-4371	5	Q2	2022-09-03	13:00:00	\N	f	1	1072	session_5PMUKA5W
-4372	6	Q3	2022-09-03	13:00:00	\N	f	1	1072	session_LB0eWctg
-4373	1	FP1	2022-09-02	10:30:00	\N	f	1	1072	session_Tkkk2hwe
-4374	2	FP2	2022-09-02	14:00:00	\N	f	1	1072	session_NKYyRnov
-4375	3	FP3	2022-09-03	10:00:00	\N	f	1	1072	session_Tn5oz2li
-4376	7	R	2022-09-11	13:00:00	\N	f	20	1073	session_qwUKgXMe
-4377	4	Q1	2022-09-10	14:00:00	\N	f	1	1073	session_LDysqbK5
-4378	5	Q2	2022-09-10	14:00:00	\N	f	1	1073	session_y0S0XVdZ
-4379	6	Q3	2022-09-10	14:00:00	\N	f	1	1073	session_vq7ugkxg
-4380	1	FP1	2022-09-09	12:00:00	\N	f	1	1073	session_HPwJmuvA
-4381	2	FP2	2022-09-09	15:00:00	\N	f	1	1073	session_HjoZEwFk
-4382	3	FP3	2022-09-10	11:00:00	\N	f	1	1073	session_ZmykvlsG
-4383	7	R	2022-10-02	12:00:00	\N	f	20	1074	session_rBzbriuz
-4384	4	Q1	2022-10-01	13:00:00	\N	f	1	1074	session_ciQNBwTB
-4385	5	Q2	2022-10-01	13:00:00	\N	f	1	1074	session_Hom7NKdB
-4386	6	Q3	2022-10-01	13:00:00	\N	f	1	1074	session_9kaaZHXk
-4387	1	FP1	2022-09-30	10:00:00	\N	f	1	1074	session_ckQwQYbe
-4388	2	FP2	2022-09-30	13:00:00	\N	f	1	1074	session_CC2V0Q6l
-4389	3	FP3	2022-10-01	10:00:00	\N	f	1	1074	session_1NJXZm4p
-4390	7	R	2022-10-09	05:00:00	\N	f	20	1075	session_ye20dkvC
-4391	4	Q1	2022-10-08	06:00:00	\N	f	1	1075	session_ElKBfyX4
-4392	5	Q2	2022-10-08	06:00:00	\N	f	1	1075	session_eUCuoAF2
-4393	6	Q3	2022-10-08	06:00:00	\N	f	1	1075	session_GR6ROFzG
-4394	1	FP1	2022-10-07	03:00:00	\N	f	1	1075	session_LxX6EgG3
-4395	2	FP2	2022-10-07	06:00:00	\N	f	1	1075	session_QSKrFp6T
-4396	3	FP3	2022-10-08	03:00:00	\N	f	1	1075	session_Bucliya3
-4397	7	R	2022-10-23	19:00:00	\N	f	20	1076	session_FJ5Te5Ds
-4398	4	Q1	2022-10-22	22:00:00	\N	f	1	1076	session_Qfx69iIJ
-4399	5	Q2	2022-10-22	22:00:00	\N	f	1	1076	session_RNTtU4B6
-4400	6	Q3	2022-10-22	22:00:00	\N	f	1	1076	session_DyyMoX2N
-4401	1	FP1	2022-10-21	19:00:00	\N	f	1	1076	session_RvYmShsU
-4402	2	FP2	2022-10-21	22:00:00	\N	f	1	1076	session_DrBqKFl1
-4403	3	FP3	2022-10-22	19:00:00	\N	f	1	1076	session_dBqVb4r6
-4404	7	R	2022-10-30	20:00:00	\N	f	20	1077	session_ndwEvrOM
-4405	4	Q1	2022-10-29	20:00:00	\N	f	1	1077	session_d17tcxDa
-4406	5	Q2	2022-10-29	20:00:00	\N	f	1	1077	session_ftd1DLIo
-4407	6	Q3	2022-10-29	20:00:00	\N	f	1	1077	session_Pnxk6J3J
-4408	1	FP1	2022-10-28	18:00:00	\N	f	1	1077	session_ewCFq6Pf
-4409	2	FP2	2022-10-28	21:00:00	\N	f	1	1077	session_JBbVKGAj
-4410	3	FP3	2022-10-29	17:00:00	\N	f	1	1077	session_G6P8wVXW
-4411	7	R	2022-11-13	18:00:00	\N	f	20	1078	session_PVzIBExw
-4412	2	Q1	2022-11-11	19:00:00	\N	f	1	1078	session_vxpkwxBU
-4413	3	Q2	2022-11-11	19:00:00	\N	f	1	1078	session_Aob1EeXb
-4414	4	Q3	2022-11-11	19:00:00	\N	f	1	1078	session_tyiD9WLX
-4415	1	FP1	2022-11-11	15:30:00	\N	f	1	1078	session_sKnucAXu
-4416	5	FP2	2022-11-12	15:30:00	\N	f	1	1078	session_p9DnnY75
-4417	6	SR	2022-11-12	19:30:00	\N	f	21	1078	session_nUQBWFF3
-4418	7	R	2022-11-20	13:00:00	\N	f	20	1079	session_pPmqZu5O
-4419	4	Q1	2022-11-19	14:00:00	\N	f	1	1079	session_bUeM6FKj
-4420	5	Q2	2022-11-19	14:00:00	\N	f	1	1079	session_Sc9fmlDj
-4421	6	Q3	2022-11-19	14:00:00	\N	f	1	1079	session_Oh6tKXep
-4422	1	FP1	2022-11-18	10:00:00	\N	f	1	1079	session_Nz3oQ2Fw
-4423	2	FP2	2022-11-18	13:00:00	\N	f	1	1079	session_XbUEpCnq
-4424	3	FP3	2022-11-19	11:00:00	\N	f	1	1079	session_9DX6TuNX
-4425	7	R	2023-03-05	15:00:00	\N	f	22	1080	session_WYhvrtIE
-4426	4	Q1	2023-03-04	15:00:00	\N	f	1	1080	session_g3A58yis
-4427	5	Q2	2023-03-04	15:00:00	\N	f	1	1080	session_uN4RdDpI
-4428	6	Q3	2023-03-04	15:00:00	\N	f	1	1080	session_5zJsRXIF
-4429	1	FP1	2023-03-03	11:30:00	\N	f	1	1080	session_LTaFEjdi
-4430	2	FP2	2023-03-03	15:00:00	\N	f	1	1080	session_1eNHxRRN
-4431	3	FP3	2023-03-04	11:30:00	\N	f	1	1080	session_kQSVykvt
-4432	7	R	2023-03-19	17:00:00	\N	f	22	1081	session_lzt77ScV
-4433	4	Q1	2023-03-18	17:00:00	\N	f	1	1081	session_ej6JO5ek
-4434	5	Q2	2023-03-18	17:00:00	\N	f	1	1081	session_XRHIHDQS
-4435	6	Q3	2023-03-18	17:00:00	\N	f	1	1081	session_5Y3jvAjU
-4436	1	FP1	2023-03-17	13:30:00	\N	f	1	1081	session_uG1XxSTW
-4437	2	FP2	2023-03-17	17:00:00	\N	f	1	1081	session_gQFichYB
-4438	3	FP3	2023-03-18	13:30:00	\N	f	1	1081	session_5y3mItaw
-4439	7	R	2023-04-02	05:00:00	\N	f	22	1082	session_7TM22CvK
-4440	4	Q1	2023-04-01	05:00:00	\N	f	1	1082	session_4D3mFWBD
-4441	5	Q2	2023-04-01	05:00:00	\N	f	1	1082	session_bcpRBtkA
-4442	6	Q3	2023-04-01	05:00:00	\N	f	1	1082	session_MNajdWow
-4443	1	FP1	2023-03-31	01:30:00	\N	f	1	1082	session_Ry4rx5r7
-4444	2	FP2	2023-03-31	05:00:00	\N	f	1	1082	session_cdbl0T70
-4445	3	FP3	2023-04-01	01:30:00	\N	f	1	1082	session_A3Srq9zb
-4446	9	R	2023-04-30	11:00:00	\N	f	22	1083	session_Gf0xTZUH
-4447	2	Q1	2023-04-28	13:00:00	\N	f	1	1083	session_1LHJRAq7
-4448	3	Q2	2023-04-28	13:00:00	\N	f	1	1083	session_7LdKfjCK
-4449	4	Q3	2023-04-28	13:00:00	\N	f	1	1083	session_QXErBbRK
-4450	1	FP1	2023-04-28	09:30:00	\N	f	1	1083	session_KrqT3TPQ
-4451	5	SQ1	2023-04-29	09:30:00	\N	f	1	1083	session_MG0GXiBP
-4452	6	SQ2	2023-04-29	09:30:00	\N	f	1	1083	session_4jfCRyeI
-4453	7	SQ3	2023-04-29	09:30:00	\N	f	1	1083	session_15h4pwhu
-4454	8	SR	2023-04-29	13:30:00	\N	f	23	1083	session_JIKvGJnp
-4455	7	R	2023-05-07	19:30:00	\N	f	22	1084	session_xcODoFvt
-4456	4	Q1	2023-05-06	20:00:00	\N	f	1	1084	session_TfAlBzWg
-4457	5	Q2	2023-05-06	20:00:00	\N	f	1	1084	session_iaYkV3kK
-4458	6	Q3	2023-05-06	20:00:00	\N	f	1	1084	session_KsR8LVfI
-4459	1	FP1	2023-05-05	18:00:00	\N	f	1	1084	session_NpjCXG13
-4460	2	FP2	2023-05-05	21:30:00	\N	f	1	1084	session_yMFpbad6
-4461	3	FP3	2023-05-06	16:30:00	\N	f	1	1084	session_qSHZAsva
-4462	7	R	2023-05-28	13:00:00	\N	f	22	1085	session_A4y4IyKd
-4463	4	Q1	2023-05-27	14:00:00	\N	f	1	1085	session_BAnMMwl8
-4464	5	Q2	2023-05-27	14:00:00	\N	f	1	1085	session_S70Huz3P
-4465	6	Q3	2023-05-27	14:00:00	\N	f	1	1085	session_YrqihnT6
-4466	1	FP1	2023-05-26	11:30:00	\N	f	1	1085	session_kzEzydkW
-4467	2	FP2	2023-05-26	15:00:00	\N	f	1	1085	session_LWpSYz6O
-4468	3	FP3	2023-05-27	10:30:00	\N	f	1	1085	session_hSPzGvBD
-4469	7	R	2023-06-04	13:00:00	\N	f	22	1086	session_7KcHwC8Q
-4470	4	Q1	2023-06-03	14:00:00	\N	f	1	1086	session_9jDkPgZM
-4471	5	Q2	2023-06-03	14:00:00	\N	f	1	1086	session_2WJmcVyN
-4472	6	Q3	2023-06-03	14:00:00	\N	f	1	1086	session_I3n3ujaN
-4473	1	FP1	2023-06-02	11:30:00	\N	f	1	1086	session_ZDJHkPK3
-4474	2	FP2	2023-06-02	15:00:00	\N	f	1	1086	session_sV3RTx1A
-4475	3	FP3	2023-06-03	10:30:00	\N	f	1	1086	session_BkfB9SWR
-4476	7	R	2023-06-18	18:00:00	\N	f	22	1087	session_PAxokna3
-4477	4	Q1	2023-06-17	20:00:00	\N	f	1	1087	session_LXRy3ZFQ
-4478	5	Q2	2023-06-17	20:00:00	\N	f	1	1087	session_O9WQMIG7
-4479	6	Q3	2023-06-17	20:00:00	\N	f	1	1087	session_wYBauyjJ
-4480	1	FP1	2023-06-16	17:30:00	\N	f	1	1087	session_j8LJVZ19
-4481	2	FP2	2023-06-16	21:00:00	\N	f	1	1087	session_hksCciNu
-4482	3	FP3	2023-06-17	16:30:00	\N	f	1	1087	session_1i024fC0
-4483	9	R	2023-07-02	13:00:00	\N	f	22	1088	session_T3yoSaSy
-4484	2	Q1	2023-06-30	15:00:00	\N	f	1	1088	session_jwLOH7PJ
-4485	3	Q2	2023-06-30	15:00:00	\N	f	1	1088	session_RyvABdhO
-4486	4	Q3	2023-06-30	15:00:00	\N	f	1	1088	session_SxaoRnyo
-4487	1	FP1	2023-06-30	11:30:00	\N	f	1	1088	session_yTc7Brh1
-4488	5	SQ1	2023-07-01	10:30:00	\N	f	1	1088	session_T021ad4p
-4489	6	SQ2	2023-07-01	10:30:00	\N	f	1	1088	session_0IrGSGqe
-4490	7	SQ3	2023-07-01	10:30:00	\N	f	1	1088	session_cKUBro80
-4491	8	SR	2023-07-01	14:30:00	\N	f	23	1088	session_2L5ICjjo
-4492	7	R	2023-07-09	14:00:00	\N	f	22	1089	session_UNKptQNV
-4493	4	Q1	2023-07-08	14:00:00	\N	f	1	1089	session_sypcoEYn
-4494	5	Q2	2023-07-08	14:00:00	\N	f	1	1089	session_JMSBoO4O
-4495	6	Q3	2023-07-08	14:00:00	\N	f	1	1089	session_m1NcJHmG
-4496	1	FP1	2023-07-07	11:30:00	\N	f	1	1089	session_9WtbInEu
-4497	2	FP2	2023-07-07	15:00:00	\N	f	1	1089	session_6DiXRxk8
-4498	3	FP3	2023-07-08	10:30:00	\N	f	1	1089	session_mluwq7NW
-4499	7	R	2023-07-23	13:00:00	\N	f	22	1090	session_oOHkhBcN
-4500	4	Q1	2023-07-22	14:00:00	\N	f	1	1090	session_5vSeChjN
-4501	5	Q2	2023-07-22	14:00:00	\N	f	1	1090	session_3h96Enbh
-4502	6	Q3	2023-07-22	14:00:00	\N	f	1	1090	session_iWEgYtrK
-4503	1	FP1	2023-07-21	11:30:00	\N	f	1	1090	session_6rE4JfVl
-4504	2	FP2	2023-07-21	15:00:00	\N	f	1	1090	session_uYzHN7kE
-4505	3	FP3	2023-07-22	10:30:00	\N	f	1	1090	session_sKQ7zOwG
-4506	9	R	2023-07-30	13:00:00	\N	f	22	1091	session_5T0ZO7v0
-4507	2	Q1	2023-07-28	15:00:00	\N	f	1	1091	session_zg06bGu3
-4508	3	Q2	2023-07-28	15:00:00	\N	f	1	1091	session_Ykmf2IBr
-4509	4	Q3	2023-07-28	15:00:00	\N	f	1	1091	session_ZQF3ghVb
-4510	1	FP1	2023-07-28	11:30:00	\N	f	1	1091	session_6YG9cfEK
-4511	5	SQ1	2023-07-29	10:30:00	\N	f	1	1091	session_AXOgKRoX
-4512	6	SQ2	2023-07-29	10:30:00	\N	f	1	1091	session_x9NJzFTZ
-4513	7	SQ3	2023-07-29	10:30:00	\N	f	1	1091	session_heNS8rwI
-4514	8	SR	2023-07-29	14:30:00	\N	f	23	1091	session_w4oPv3q6
-4515	7	R	2023-08-27	13:00:00	\N	f	22	1092	session_7avOZJEq
-4516	4	Q1	2023-08-26	13:00:00	\N	f	1	1092	session_2efRka0k
-4517	5	Q2	2023-08-26	13:00:00	\N	f	1	1092	session_DE1FeAmj
-4518	6	Q3	2023-08-26	13:00:00	\N	f	1	1092	session_3TNI3Emv
-4519	1	FP1	2023-08-25	10:30:00	\N	f	1	1092	session_xCVfHSqd
-4520	2	FP2	2023-08-25	14:00:00	\N	f	1	1092	session_n5e69aBy
-4521	3	FP3	2023-08-26	09:30:00	\N	f	1	1092	session_bvDnbYWG
-4522	7	R	2023-09-03	13:00:00	\N	f	22	1093	session_8ZfgfXZP
-4523	4	Q1	2023-09-02	14:00:00	\N	f	1	1093	session_iYFDlg7h
-4524	5	Q2	2023-09-02	14:00:00	\N	f	1	1093	session_ve6tfpbn
-4525	6	Q3	2023-09-02	14:00:00	\N	f	1	1093	session_0AkitEOv
-4526	1	FP1	2023-09-01	11:30:00	\N	f	1	1093	session_nbdLHACG
-4527	2	FP2	2023-09-01	15:00:00	\N	f	1	1093	session_4aBAeStT
-4528	3	FP3	2023-09-02	10:30:00	\N	f	1	1093	session_oAY5k3Vn
-4529	7	R	2023-09-17	12:00:00	\N	f	22	1094	session_3jqDb092
-4530	4	Q1	2023-09-16	13:00:00	\N	f	1	1094	session_sIaGOM5z
-4531	5	Q2	2023-09-16	13:00:00	\N	f	1	1094	session_JM9jH03K
-4532	6	Q3	2023-09-16	13:00:00	\N	f	1	1094	session_hMH6BwJo
-4533	1	FP1	2023-09-15	09:30:00	\N	f	1	1094	session_w7Rm8bGS
-4534	2	FP2	2023-09-15	13:00:00	\N	f	1	1094	session_Dy8u6Waj
-4535	3	FP3	2023-09-16	09:30:00	\N	f	1	1094	session_8nhb2kDW
-4536	7	R	2023-09-24	05:00:00	\N	f	22	1095	session_MYoLmiRh
-4537	4	Q1	2023-09-23	06:00:00	\N	f	1	1095	session_ADNXWEki
-4538	5	Q2	2023-09-23	06:00:00	\N	f	1	1095	session_zuxrMUrv
-4539	6	Q3	2023-09-23	06:00:00	\N	f	1	1095	session_Hg3AJH5O
-4540	1	FP1	2023-09-22	02:30:00	\N	f	1	1095	session_cxDAhWBE
-4541	2	FP2	2023-09-22	06:00:00	\N	f	1	1095	session_cF2L7Dja
-4542	3	FP3	2023-09-23	02:30:00	\N	f	1	1095	session_SkxW2WPI
-4543	9	R	2023-10-08	17:00:00	\N	f	22	1096	session_pJ6EE9Jy
-4544	2	Q1	2023-10-06	17:00:00	\N	f	1	1096	session_D4Goem8X
-4545	3	Q2	2023-10-06	17:00:00	\N	f	1	1096	session_VixSyqQt
-4546	4	Q3	2023-10-06	17:00:00	\N	f	1	1096	session_7bJjDqzg
-4547	1	FP1	2023-10-06	13:30:00	\N	f	1	1096	session_RCtPCYre
-4548	5	SQ1	2023-10-07	13:00:00	\N	f	1	1096	session_H8UWVRHm
-4549	6	SQ2	2023-10-07	13:00:00	\N	f	1	1096	session_KCcdf9hk
-4550	7	SQ3	2023-10-07	13:00:00	\N	f	1	1096	session_leIfyxLL
-4551	8	SR	2023-10-07	17:30:00	\N	f	23	1096	session_SCXWCIoq
-4552	9	R	2023-10-22	19:00:00	\N	f	22	1097	session_GfgZKI28
-4553	2	Q1	2023-10-20	21:00:00	\N	f	1	1097	session_axkmoXiK
-4554	3	Q2	2023-10-20	21:00:00	\N	f	1	1097	session_5qK4W4g0
-4555	4	Q3	2023-10-20	21:00:00	\N	f	1	1097	session_hm8XWg9Y
-4556	1	FP1	2023-10-20	17:30:00	\N	f	1	1097	session_G9eRYPdz
-4557	5	SQ1	2023-10-21	18:00:00	\N	f	1	1097	session_ZsdGEfWi
-4558	6	SQ2	2023-10-21	18:00:00	\N	f	1	1097	session_etFF7T8q
-4559	7	SQ3	2023-10-21	18:00:00	\N	f	1	1097	session_QlPHYkr4
-4560	8	SR	2023-10-21	22:00:00	\N	f	23	1097	session_uo1VT7rT
-4561	7	R	2023-10-29	20:00:00	\N	f	22	1098	session_Qk0QSPp7
-4562	4	Q1	2023-10-28	21:00:00	\N	f	1	1098	session_T2tz1Sk9
-4563	5	Q2	2023-10-28	21:00:00	\N	f	1	1098	session_H5B5oqOc
-4564	6	Q3	2023-10-28	21:00:00	\N	f	1	1098	session_Qjt2CcwF
-4565	1	FP1	2023-10-27	18:30:00	\N	f	1	1098	session_A9VNjI9U
-4566	2	FP2	2023-10-27	22:00:00	\N	f	1	1098	session_xTo1ElJ2
-4567	3	FP3	2023-10-28	17:30:00	\N	f	1	1098	session_vFYqhOyS
-4568	9	R	2023-11-05	17:00:00	\N	f	22	1099	session_UkFWsywu
-4569	2	Q1	2023-11-03	18:00:00	\N	f	1	1099	session_CyxkCRr5
-4570	3	Q2	2023-11-03	18:00:00	\N	f	1	1099	session_4MhNZmcL
-4571	4	Q3	2023-11-03	18:00:00	\N	f	1	1099	session_8K9pzw64
-4572	1	FP1	2023-11-03	14:30:00	\N	f	1	1099	session_AFG8kxJU
-4573	5	SQ1	2023-11-04	14:30:00	\N	f	1	1099	session_414FIgSM
-4574	6	SQ2	2023-11-04	14:30:00	\N	f	1	1099	session_Q6KIQWa3
-4575	7	SQ3	2023-11-04	14:30:00	\N	f	1	1099	session_7J4KRemg
-4576	8	SR	2023-11-04	18:30:00	\N	f	23	1099	session_vZp8eou2
-4577	7	R	2023-11-19	06:00:00	\N	f	22	1100	session_GssSnIcL
-4578	4	Q1	2023-11-17	08:00:00	\N	f	1	1100	session_HQ2rROy9
-4579	5	Q2	2023-11-17	08:00:00	\N	f	1	1100	session_VE2kBhyg
-4580	6	Q3	2023-11-17	08:00:00	\N	f	1	1100	session_7rl5RKAK
-4581	1	FP1	2023-11-16	04:30:00	\N	f	1	1100	session_402AEU4s
-4582	2	FP2	2023-11-16	08:00:00	\N	f	1	1100	session_RaQMBHzf
-4583	3	FP3	2023-11-17	04:30:00	\N	f	1	1100	session_2qIWOIfO
-4584	7	R	2023-11-26	13:00:00	\N	f	22	1101	session_y5d8RPan
-4585	4	Q1	2023-11-25	14:00:00	\N	f	1	1101	session_2qxXR6o6
-4586	5	Q2	2023-11-25	14:00:00	\N	f	1	1101	session_4j5XPe5Y
-4587	6	Q3	2023-11-25	14:00:00	\N	f	1	1101	session_rjbgiG49
-4588	1	FP1	2023-11-24	09:30:00	\N	f	1	1101	session_YnL5Ub2f
-4589	2	FP2	2023-11-24	13:00:00	\N	f	1	1101	session_94GfbSw8
-4590	3	FP3	2023-11-25	10:30:00	\N	f	1	1101	session_Q1H9xTgC
-4591	7	R	2024-03-02	15:00:00	\N	f	22	1102	session_TAmdOOz5
-4592	4	Q1	2024-03-01	16:00:00	\N	f	1	1102	session_2HCrzVCV
-4593	5	Q2	2024-03-01	16:00:00	\N	f	1	1102	session_uGRAULzs
-4594	6	Q3	2024-03-01	16:00:00	\N	f	1	1102	session_05ODp9EX
-4595	1	FP1	2024-02-29	11:30:00	\N	f	1	1102	session_hmmsSTb1
-4596	2	FP2	2024-02-29	15:00:00	\N	f	1	1102	session_MdP4UBZ5
-4597	3	FP3	2024-03-01	12:30:00	\N	f	1	1102	session_E6Fimw7v
-4598	7	R	2024-03-09	17:00:00	\N	f	22	1103	session_WLl6Sf18
-4599	4	Q1	2024-03-08	17:00:00	\N	f	1	1103	session_KZ2WAKxE
-4600	5	Q2	2024-03-08	17:00:00	\N	f	1	1103	session_R0nDe0TK
-4601	6	Q3	2024-03-08	17:00:00	\N	f	1	1103	session_X9EnP0p4
-4602	1	FP1	2024-03-07	13:30:00	\N	f	1	1103	session_GUD0uN6L
-4603	2	FP2	2024-03-07	17:00:00	\N	f	1	1103	session_WdgDKgZf
-4604	3	FP3	2024-03-08	13:30:00	\N	f	1	1103	session_tgymc8af
-4605	7	R	2024-03-24	04:00:00	\N	f	22	1104	session_V3M4XCXM
-4606	4	Q1	2024-03-23	05:00:00	\N	f	1	1104	session_7yk9wrAZ
-4607	5	Q2	2024-03-23	05:00:00	\N	f	1	1104	session_9KnBI02M
-4608	6	Q3	2024-03-23	05:00:00	\N	f	1	1104	session_pWaUCFwQ
-4609	1	FP1	2024-03-22	01:30:00	\N	f	1	1104	session_sQlyzoMt
-4610	2	FP2	2024-03-22	05:00:00	\N	f	1	1104	session_V3QvH5XG
-4611	3	FP3	2024-03-23	01:30:00	\N	f	1	1104	session_8aBHq0aV
-4612	7	R	2024-04-07	05:00:00	\N	f	22	1105	session_XsFZNOnA
-4613	4	Q1	2024-04-06	06:00:00	\N	f	1	1105	session_Ex1pVP1R
-4614	5	Q2	2024-04-06	06:00:00	\N	f	1	1105	session_5qv9Js92
-4615	6	Q3	2024-04-06	06:00:00	\N	f	1	1105	session_AbtlhBCq
-4616	1	FP1	2024-04-05	02:30:00	\N	f	1	1105	session_eKH5AKKe
-4617	2	FP2	2024-04-05	06:00:00	\N	f	1	1105	session_5acULPCk
-4618	3	FP3	2024-04-06	02:30:00	\N	f	1	1105	session_kQ4QbfFn
-4619	9	R	2024-04-21	07:00:00	\N	f	22	1106	session_MyYzQgij
-4620	6	Q1	2024-04-20	07:00:00	\N	f	1	1106	session_JGFVEY9D
-4621	7	Q2	2024-04-20	07:00:00	\N	f	1	1106	session_p9SAUyZZ
-4622	8	Q3	2024-04-20	07:00:00	\N	f	1	1106	session_ebOa46hn
-4623	1	FP1	2024-04-19	03:30:00	\N	f	1	1106	session_5iQ006Ph
-4624	2	SQ1	2024-04-19	07:30:00	\N	f	1	1106	session_wWXQ8VoT
-4625	3	SQ2	2024-04-19	07:30:00	\N	f	1	1106	session_MdBYOOeQ
-4626	4	SQ3	2024-04-19	07:30:00	\N	f	1	1106	session_4UD3pPdR
-4627	5	SR	2024-04-20	03:00:00	\N	f	23	1106	session_qR66TVES
-4628	9	R	2024-05-05	20:00:00	\N	f	22	1107	session_18pZ7zgF
-4629	6	Q1	2024-05-04	20:00:00	\N	f	1	1107	session_wsCT1M5E
-4630	7	Q2	2024-05-04	20:00:00	\N	f	1	1107	session_zZ2RJjeV
-4631	8	Q3	2024-05-04	20:00:00	\N	f	1	1107	session_1vLD2IW7
-4632	1	FP1	2024-05-03	16:30:00	\N	f	1	1107	session_kljaYKNz
-4633	2	SQ1	2024-05-03	20:30:00	\N	f	1	1107	session_xojbosia
-4634	3	SQ2	2024-05-03	20:30:00	\N	f	1	1107	session_eBCjc8iT
-4635	4	SQ3	2024-05-03	20:30:00	\N	f	1	1107	session_cMhYd8La
-4636	5	SR	2024-05-04	16:00:00	\N	f	23	1107	session_TlMZhn3S
-4637	7	R	2024-05-19	13:00:00	\N	f	22	1108	session_VdFMYcbi
-4638	4	Q1	2024-05-18	14:00:00	\N	f	1	1108	session_L7jtAtPh
-4639	5	Q2	2024-05-18	14:00:00	\N	f	1	1108	session_4HthBVVB
-4640	6	Q3	2024-05-18	14:00:00	\N	f	1	1108	session_kfGUAnFW
-4641	1	FP1	2024-05-17	11:30:00	\N	f	1	1108	session_qXGrUcTi
-4642	2	FP2	2024-05-17	15:00:00	\N	f	1	1108	session_bOtlmEBW
-4643	3	FP3	2024-05-18	10:30:00	\N	f	1	1108	session_LDcwH851
-4644	7	R	2024-05-26	13:00:00	\N	f	22	1109	session_onuzzJR0
-4645	4	Q1	2024-05-25	14:00:00	\N	f	1	1109	session_jWPDJ1S7
-4646	5	Q2	2024-05-25	14:00:00	\N	f	1	1109	session_s4U9JY5j
-4647	6	Q3	2024-05-25	14:00:00	\N	f	1	1109	session_Xe21yZcF
-4648	1	FP1	2024-05-24	11:30:00	\N	f	1	1109	session_ZV3I8syI
-4649	2	FP2	2024-05-24	15:00:00	\N	f	1	1109	session_jTDOBNdx
-4650	3	FP3	2024-05-25	10:30:00	\N	f	1	1109	session_eLaPFlFn
-4651	7	R	2024-06-09	18:00:00	\N	f	22	1110	session_UgX1JoWP
-4652	4	Q1	2024-06-08	20:00:00	\N	f	1	1110	session_QtS9MRXt
-4653	5	Q2	2024-06-08	20:00:00	\N	f	1	1110	session_WGvJBuFD
-4654	6	Q3	2024-06-08	20:00:00	\N	f	1	1110	session_RX8HkUPy
-4655	1	FP1	2024-06-07	17:30:00	\N	f	1	1110	session_TuSU6NGa
-4656	2	FP2	2024-06-07	21:00:00	\N	f	1	1110	session_2lXGy1tQ
-4657	3	FP3	2024-06-08	16:30:00	\N	f	1	1110	session_TrBNQuBI
-4658	7	R	2024-06-23	13:00:00	\N	f	22	1111	session_zjCahpun
-4659	4	Q1	2024-06-22	14:00:00	\N	f	1	1111	session_LSsKNcdR
-4660	5	Q2	2024-06-22	14:00:00	\N	f	1	1111	session_IVaY1q68
-4661	6	Q3	2024-06-22	14:00:00	\N	f	1	1111	session_JkSv0ebv
-4662	1	FP1	2024-06-21	11:30:00	\N	f	1	1111	session_lmNTr6d2
-4663	2	FP2	2024-06-21	15:00:00	\N	f	1	1111	session_OlPHuAgx
-4664	3	FP3	2024-06-22	10:30:00	\N	f	1	1111	session_Zm5JfI7C
-4665	9	R	2024-06-30	13:00:00	\N	f	22	1112	session_9Zb4ZOo3
-4666	6	Q1	2024-06-29	14:00:00	\N	f	1	1112	session_X4kDrNlS
-4667	7	Q2	2024-06-29	14:00:00	\N	f	1	1112	session_GvkKZRut
-4668	8	Q3	2024-06-29	14:00:00	\N	f	1	1112	session_YuqxGHMV
-4669	1	FP1	2024-06-28	10:30:00	\N	f	1	1112	session_EEAlZnuK
-4670	2	SQ1	2024-06-28	14:30:00	\N	f	1	1112	session_dbLhlqwf
-4671	3	SQ2	2024-06-28	14:30:00	\N	f	1	1112	session_XQE09qQM
-4672	4	SQ3	2024-06-28	14:30:00	\N	f	1	1112	session_EmrdzoAz
-4673	5	SR	2024-06-29	10:00:00	\N	f	23	1112	session_Vom6afwe
-4674	7	R	2024-07-07	14:00:00	\N	f	22	1113	session_jCKdIIHM
-4675	4	Q1	2024-07-06	14:00:00	\N	f	1	1113	session_4J3dy71w
-4676	5	Q2	2024-07-06	14:00:00	\N	f	1	1113	session_5CrqwT0i
-4677	6	Q3	2024-07-06	14:00:00	\N	f	1	1113	session_r4Z23FRd
-4678	1	FP1	2024-07-05	11:30:00	\N	f	1	1113	session_eh23MVFK
-4679	2	FP2	2024-07-05	15:00:00	\N	f	1	1113	session_CoBzKwJU
-4680	3	FP3	2024-07-06	10:30:00	\N	f	1	1113	session_Wlq98mZm
-4681	7	R	2024-07-21	13:00:00	\N	f	22	1114	session_wQEoAaCE
-4682	4	Q1	2024-07-20	14:00:00	\N	f	1	1114	session_CyxBFwP2
-4683	5	Q2	2024-07-20	14:00:00	\N	f	1	1114	session_AXnFikHM
-4684	6	Q3	2024-07-20	14:00:00	\N	f	1	1114	session_cKDzqii6
-4685	1	FP1	2024-07-19	11:30:00	\N	f	1	1114	session_hX6f39qL
-4686	2	FP2	2024-07-19	15:00:00	\N	f	1	1114	session_AJBF3B7j
-4687	3	FP3	2024-07-20	10:30:00	\N	f	1	1114	session_DT1hAMHr
-4688	7	R	2024-07-28	13:00:00	\N	f	22	1115	session_u8779gmx
-4689	4	Q1	2024-07-27	14:00:00	\N	f	1	1115	session_JWbxjsXQ
-4690	5	Q2	2024-07-27	14:00:00	\N	f	1	1115	session_CVwMlopf
-4691	6	Q3	2024-07-27	14:00:00	\N	f	1	1115	session_xYxCXtBL
-4692	1	FP1	2024-07-26	11:30:00	\N	f	1	1115	session_Js8wFIvK
-4693	2	FP2	2024-07-26	15:00:00	\N	f	1	1115	session_z25kczxA
-4694	3	FP3	2024-07-27	10:30:00	\N	f	1	1115	session_7819VBEQ
-4695	7	R	2024-08-25	13:00:00	\N	f	22	1116	session_VeC6n5LT
-4696	4	Q1	2024-08-24	13:00:00	\N	f	1	1116	session_sDAqWXNC
-4697	5	Q2	2024-08-24	13:00:00	\N	f	1	1116	session_ydhV4gHa
-4698	6	Q3	2024-08-24	13:00:00	\N	f	1	1116	session_UttX7XLM
-4699	1	FP1	2024-08-23	10:30:00	\N	f	1	1116	session_ieNkhXzU
-4700	2	FP2	2024-08-23	14:00:00	\N	f	1	1116	session_etCzrvlF
-4701	3	FP3	2024-08-24	09:30:00	\N	f	1	1116	session_xhZkUWAM
-4702	7	R	2024-09-01	13:00:00	\N	f	22	1117	session_yhk1ZcZ3
-4703	4	Q1	2024-08-31	14:00:00	\N	f	1	1117	session_hyX0ZLUa
-4704	5	Q2	2024-08-31	14:00:00	\N	f	1	1117	session_snK6hRWc
-4705	6	Q3	2024-08-31	14:00:00	\N	f	1	1117	session_EJMe25YI
-4706	1	FP1	2024-08-30	11:30:00	\N	f	1	1117	session_Iez1r0Xq
-4707	2	FP2	2024-08-30	15:00:00	\N	f	1	1117	session_pystorYu
-4708	3	FP3	2024-08-31	10:30:00	\N	f	1	1117	session_TXRvTjFU
-4709	7	R	2024-09-15	11:00:00	\N	f	22	1118	session_qkOlhVQZ
-4710	4	Q1	2024-09-14	12:00:00	\N	f	1	1118	session_IGRrLGcg
-4711	5	Q2	2024-09-14	12:00:00	\N	f	1	1118	session_VbDv7wOn
-4712	6	Q3	2024-09-14	12:00:00	\N	f	1	1118	session_EyIlxy1G
-4713	1	FP1	2024-09-13	09:30:00	\N	f	1	1118	session_Dh8tHTdW
-4714	2	FP2	2024-09-13	13:00:00	\N	f	1	1118	session_m7Jz2Bph
-4715	3	FP3	2024-09-14	08:30:00	\N	f	1	1118	session_idO9x4ER
-4716	7	R	2024-09-22	12:00:00	\N	f	22	1119	session_mtQ0FSmy
-4717	4	Q1	2024-09-21	13:00:00	\N	f	1	1119	session_QBEJcehz
-4718	5	Q2	2024-09-21	13:00:00	\N	f	1	1119	session_9L0uvC93
-4719	6	Q3	2024-09-21	13:00:00	\N	f	1	1119	session_Z4zNndl9
-4720	1	FP1	2024-09-20	09:30:00	\N	f	1	1119	session_FJF1v8s6
-4721	2	FP2	2024-09-20	13:00:00	\N	f	1	1119	session_JEWEezLt
-4722	3	FP3	2024-09-21	09:30:00	\N	f	1	1119	session_1A7GgWJo
-4723	9	R	2024-10-20	19:00:00	\N	f	22	1120	session_g0arYCNV
-4724	6	Q1	2024-10-19	22:00:00	\N	f	1	1120	session_WBZgq5Vt
-4725	7	Q2	2024-10-19	22:00:00	\N	f	1	1120	session_jQNnc9Gi
-4726	8	Q3	2024-10-19	22:00:00	\N	f	1	1120	session_w4gdWB8f
-4727	1	FP1	2024-10-18	17:30:00	\N	f	1	1120	session_CstfnyTO
-4728	2	SQ1	2024-10-18	21:30:00	\N	f	1	1120	session_qGnfuhHV
-4729	3	SQ2	2024-10-18	21:30:00	\N	f	1	1120	session_AjfW7G8l
-4730	4	SQ3	2024-10-18	21:30:00	\N	f	1	1120	session_g6pTJM4y
-4731	5	SR	2024-10-19	18:00:00	\N	f	23	1120	session_ndmZdSkX
-4732	7	R	2024-10-27	20:00:00	\N	f	22	1121	session_h33v1VjK
-4733	4	Q1	2024-10-26	21:00:00	\N	f	1	1121	session_zgqxGSg8
-4734	5	Q2	2024-10-26	21:00:00	\N	f	1	1121	session_9iFp4aZ3
-4735	6	Q3	2024-10-26	21:00:00	\N	f	1	1121	session_t6t9Tngt
-4736	1	FP1	2024-10-25	18:30:00	\N	f	1	1121	session_jozdvOZC
-4737	2	FP2	2024-10-25	22:00:00	\N	f	1	1121	session_tp28yobx
-4738	3	FP3	2024-10-26	17:30:00	\N	f	1	1121	session_nBFmIIoa
-4739	9	R	2024-11-03	17:00:00	\N	f	22	1122	session_hfUuBIal
-4740	6	Q1	2024-11-02	18:00:00	\N	f	1	1122	session_Cv0OE7R1
-4741	7	Q2	2024-11-02	18:00:00	\N	f	1	1122	session_oJui4vKO
-4742	8	Q3	2024-11-02	18:00:00	\N	f	1	1122	session_rIaaHjiV
-4743	1	FP1	2024-11-01	14:30:00	\N	f	1	1122	session_cquZq3YX
-4744	2	SQ1	2024-11-01	18:30:00	\N	f	1	1122	session_Hh7uYY6x
-4745	3	SQ2	2024-11-01	18:30:00	\N	f	1	1122	session_7GyY37Xo
-4746	4	SQ3	2024-11-01	18:30:00	\N	f	1	1122	session_rMJUaEae
-4747	5	SR	2024-11-02	14:00:00	\N	f	23	1122	session_JgU1L1Rv
-4748	7	R	2024-11-23	06:00:00	\N	f	22	1123	session_MsJCLkca
-4749	4	Q1	2024-11-22	06:00:00	\N	f	1	1123	session_ZX0z42xB
-4750	5	Q2	2024-11-22	06:00:00	\N	f	1	1123	session_ix9hjWLd
-4751	6	Q3	2024-11-22	06:00:00	\N	f	1	1123	session_zbPwf9Ih
-4752	1	FP1	2024-11-21	02:30:00	\N	f	1	1123	session_boP7ZLXj
-4753	2	FP2	2024-11-21	06:00:00	\N	f	1	1123	session_h5lBziga
-4754	3	FP3	2024-11-22	02:30:00	\N	f	1	1123	session_k9gPni9M
-4755	9	R	2024-12-01	16:00:00	\N	f	22	1124	session_TgrQTekG
-4756	6	Q1	2024-11-30	18:00:00	\N	f	1	1124	session_a7Jm1ZyP
-4757	7	Q2	2024-11-30	18:00:00	\N	f	1	1124	session_0LG3ercS
-4758	8	Q3	2024-11-30	18:00:00	\N	f	1	1124	session_3j2NcyzN
-4759	1	FP1	2024-11-29	13:30:00	\N	f	1	1124	session_JYxsaiEy
-4760	2	SQ1	2024-11-29	17:30:00	\N	f	1	1124	session_5S1Gdm6b
-4761	3	SQ2	2024-11-29	17:30:00	\N	f	1	1124	session_eI9RH2vZ
-4762	4	SQ3	2024-11-29	17:30:00	\N	f	1	1124	session_yX80BzvL
-4763	5	SR	2024-11-30	14:00:00	\N	f	23	1124	session_qyKRxYMU
-4764	7	R	2024-12-08	13:00:00	\N	f	22	1125	session_fcgTHu2i
-4765	4	Q1	2024-12-07	14:00:00	\N	f	1	1125	session_23fqNnOr
-4766	5	Q2	2024-12-07	14:00:00	\N	f	1	1125	session_bkmM9DLy
-4767	6	Q3	2024-12-07	14:00:00	\N	f	1	1125	session_6zQ6LLFC
-4768	1	FP1	2024-12-06	09:30:00	\N	f	1	1125	session_i07CLWiH
-4769	2	FP2	2024-12-06	13:00:00	\N	f	1	1125	session_eeCzbLUh
-4770	3	FP3	2024-12-07	10:30:00	\N	f	1	1125	session_qeYJdl5L
-4771	1	FP1	2025-03-14	01:30:00	\N	f	1	1126	session_s5C5LCb1
-4772	2	FP2	2025-03-14	05:00:00	\N	f	1	1126	session_pULmYKSo
-4773	3	FP3	2025-03-15	01:30:00	\N	f	1	1126	session_oGRuY94G
-4774	4	Q1	2025-03-15	05:00:00	\N	f	1	1126	session_gO1Z1iEq
-4775	5	Q2	2025-03-15	05:00:00	\N	f	1	1126	session_hWngrlUY
-4776	6	Q3	2025-03-15	05:00:00	\N	f	1	1126	session_DTzUXnEZ
-4777	7	R	2025-03-16	04:00:00	58	f	24	1126	session_Yqc2k17Z
-4778	1	FP1	2025-03-21	03:30:00	\N	f	1	1127	session_X1sv7FSq
-4779	2	SQ1	2025-03-21	07:30:00	\N	f	1	1127	session_vsXcRch7
-4780	3	SQ2	2025-03-21	07:30:00	\N	f	1	1127	session_Kn8MweuQ
-4781	4	SQ3	2025-03-21	07:30:00	\N	f	1	1127	session_NOqAJ1B3
-4782	5	SR	2025-03-22	03:00:00	\N	f	23	1127	session_tJE3ebSO
-4783	6	Q1	2025-03-22	07:00:00	\N	f	1	1127	session_MAGicxn3
-4784	7	Q2	2025-03-22	07:00:00	\N	f	1	1127	session_GiqF2Yig
-4785	8	Q3	2025-03-22	07:00:00	\N	f	1	1127	session_JtuiXd4e
-4786	9	R	2025-03-23	07:00:00	56	f	24	1127	session_niuOeI9X
-4787	1	FP1	2025-04-04	02:30:00	\N	f	1	1128	session_oBd8NFLw
-4788	2	FP2	2025-04-04	06:00:00	\N	f	1	1128	session_A7sIwH1u
-4789	3	FP3	2025-04-05	02:30:00	\N	f	1	1128	session_UP8dO4FA
-4790	4	Q1	2025-04-05	06:00:00	\N	f	1	1128	session_M8FzzzXS
-4791	5	Q2	2025-04-05	06:00:00	\N	f	1	1128	session_IkZyyKqP
-4792	6	Q3	2025-04-05	06:00:00	\N	f	1	1128	session_28r5UY97
-4793	7	R	2025-04-06	05:00:00	53	f	24	1128	session_eOj1pxYB
-4794	1	FP1	2025-04-11	11:30:00	\N	f	1	1129	session_NpNz3cLL
-4795	2	FP2	2025-04-11	15:00:00	\N	f	1	1129	session_tJtzVwFE
-4796	3	FP3	2025-04-12	12:30:00	\N	f	1	1129	session_oXCyez98
-4797	4	Q1	2025-04-12	16:00:00	\N	f	1	1129	session_n23uXp5C
-4798	5	Q2	2025-04-12	16:00:00	\N	f	1	1129	session_0oZaqfDm
-4799	6	Q3	2025-04-12	16:00:00	\N	f	1	1129	session_RivAuxNi
-4800	7	R	2025-04-13	15:00:00	57	f	24	1129	session_KLlrgjAC
-4801	1	FP1	2025-04-18	13:30:00	\N	f	1	1130	session_3zjl4YsZ
-4802	2	FP2	2025-04-18	17:00:00	\N	f	1	1130	session_rHI2GhiI
-4803	3	FP3	2025-04-19	13:30:00	\N	f	1	1130	session_3zO538O1
-4804	4	Q1	2025-04-19	17:00:00	\N	f	1	1130	session_4zk03DYU
-4805	5	Q2	2025-04-19	17:00:00	\N	f	1	1130	session_dAMUK0i1
-4806	6	Q3	2025-04-19	17:00:00	\N	f	1	1130	session_s5oui9AQ
-4807	7	R	2025-04-20	17:00:00	50	f	24	1130	session_pIHOXrxQ
-4808	1	FP1	2025-05-02	16:30:00	\N	f	1	1131	session_2R5BbCUB
-4809	2	SQ1	2025-05-02	20:30:00	\N	f	1	1131	session_SvdzGFpk
-4810	3	SQ2	2025-05-02	20:30:00	\N	f	1	1131	session_fSTTEL8M
-4811	4	SQ3	2025-05-02	20:30:00	\N	f	1	1131	session_m14eXLWK
-4812	5	SR	2025-05-03	16:00:00	\N	f	23	1131	session_3tRW19Fq
-4813	6	Q1	2025-05-03	20:00:00	\N	f	1	1131	session_sZnoM2KJ
-4814	7	Q2	2025-05-03	20:00:00	\N	f	1	1131	session_4mJek7eU
-4815	8	Q3	2025-05-03	20:00:00	\N	f	1	1131	session_GIFrKd3E
-4816	9	R	2025-05-04	20:00:00	57	f	24	1131	session_KkjrO2fg
-4817	1	FP1	2025-05-16	11:30:00	\N	f	1	1132	session_O3wIskxV
-4818	2	FP2	2025-05-16	15:00:00	\N	f	1	1132	session_La8tYfG5
-4819	3	FP3	2025-05-17	10:30:00	\N	f	1	1132	session_h7SyASdx
-4820	4	Q1	2025-05-17	14:00:00	\N	f	1	1132	session_1f9S2t6r
-4821	5	Q2	2025-05-17	14:00:00	\N	f	1	1132	session_LU2cC9MO
-4822	6	Q3	2025-05-17	14:00:00	\N	f	1	1132	session_694fHZJG
-4823	7	R	2025-05-18	13:00:00	63	f	24	1132	session_2mpFx9b5
-4824	1	FP1	2025-05-23	11:30:00	\N	f	1	1133	session_PRHTO4SI
-4825	2	FP2	2025-05-23	15:00:00	\N	f	1	1133	session_Lsf88Noq
-4826	3	FP3	2025-05-24	10:30:00	\N	f	1	1133	session_Qxz5h8Ah
-4827	4	Q1	2025-05-24	14:00:00	\N	f	1	1133	session_1P8oCKS0
-4828	5	Q2	2025-05-24	14:00:00	\N	f	1	1133	session_8WBQis7K
-4829	6	Q3	2025-05-24	14:00:00	\N	f	1	1133	session_mEdzOf6e
-4830	7	R	2025-05-25	13:00:00	78	f	24	1133	session_Cu2SE7zy
-4831	1	FP1	2025-05-30	11:30:00	\N	f	1	1134	session_gaThBqQD
-4832	2	FP2	2025-05-30	15:00:00	\N	f	1	1134	session_3iWofwRf
-4833	3	FP3	2025-05-31	10:30:00	\N	f	1	1134	session_iEy1FAmt
-4834	4	Q1	2025-05-31	14:00:00	\N	f	1	1134	session_0xWmMlna
-4835	5	Q2	2025-05-31	14:00:00	\N	f	1	1134	session_YiBSZKlH
-4836	6	Q3	2025-05-31	14:00:00	\N	f	1	1134	session_ZN0paCCH
-4837	7	R	2025-06-01	13:00:00	66	f	24	1134	session_GKcjbcwP
-4838	1	FP1	2025-06-13	17:30:00	\N	f	1	1135	session_JVfb1UfV
-4839	2	FP2	2025-06-13	21:00:00	\N	f	1	1135	session_uMEIgJzn
-4840	3	FP3	2025-06-14	16:30:00	\N	f	1	1135	session_9ts19wRs
-4841	4	Q1	2025-06-14	20:00:00	\N	f	1	1135	session_ZnSg5EPe
-4842	5	Q2	2025-06-14	20:00:00	\N	f	1	1135	session_xVu1yGS8
-4843	6	Q3	2025-06-14	20:00:00	\N	f	1	1135	session_W0aIxg2c
-4844	7	R	2025-06-15	18:00:00	70	f	24	1135	session_V9pGDdC2
-4845	1	FP1	2025-06-27	11:30:00	\N	f	1	1136	session_B0SV0meR
-4846	2	FP2	2025-06-27	15:00:00	\N	f	1	1136	session_LyyfmcNO
-4847	3	FP3	2025-06-28	10:30:00	\N	f	1	1136	session_41sZvmaS
-4848	4	Q1	2025-06-28	14:00:00	\N	f	1	1136	session_OOjt9Kmn
-4849	5	Q2	2025-06-28	14:00:00	\N	f	1	1136	session_1ddgEhi2
-4850	6	Q3	2025-06-28	14:00:00	\N	f	1	1136	session_CLEIfhGd
-4851	7	R	2025-06-29	13:00:00	71	f	24	1136	session_EUOU3b7h
-4852	1	FP1	2025-07-04	11:30:00	\N	f	1	1137	session_WIqxVT7I
-4853	2	FP2	2025-07-04	15:00:00	\N	f	1	1137	session_mwmKnrcM
-4854	3	FP3	2025-07-05	10:30:00	\N	f	1	1137	session_XpRxUCqS
-4855	4	Q1	2025-07-05	14:00:00	\N	f	1	1137	session_ufi1WgGb
-4856	5	Q2	2025-07-05	14:00:00	\N	f	1	1137	session_ZJtBE2E7
-4857	6	Q3	2025-07-05	14:00:00	\N	f	1	1137	session_GqJH6Zir
-4858	7	R	2025-07-06	14:00:00	52	f	24	1137	session_Tqc6midw
-4859	1	FP1	2025-07-25	10:30:00	\N	f	1	1138	session_Jd3eQ3um
-4860	2	SQ1	2025-07-25	14:30:00	\N	f	1	1138	session_SWfwGRXQ
-4861	3	SQ2	2025-07-25	14:30:00	\N	f	1	1138	session_yQdK7nTT
-4862	4	SQ3	2025-07-25	14:30:00	\N	f	1	1138	session_6J1qliyS
-4863	5	SR	2025-07-26	10:00:00	\N	f	23	1138	session_2tCooKIG
-4864	6	Q1	2025-07-26	14:00:00	\N	f	1	1138	session_pgdgWbHd
-4865	7	Q2	2025-07-26	14:00:00	\N	f	1	1138	session_WTMaywHX
-4866	8	Q3	2025-07-26	14:00:00	\N	f	1	1138	session_0Gy4BbUC
-4867	9	R	2025-07-27	13:00:00	44	f	24	1138	session_aN6sq8kI
-4868	1	FP1	2025-08-01	11:30:00	\N	f	1	1139	session_7Gxnvv80
-4869	2	FP2	2025-08-01	15:00:00	\N	f	1	1139	session_wFqwRSzu
-4870	3	FP3	2025-08-02	10:30:00	\N	f	1	1139	session_FB0d2SYI
-4871	4	Q1	2025-08-02	14:00:00	\N	f	1	1139	session_FoJRJ6sP
-4872	5	Q2	2025-08-02	14:00:00	\N	f	1	1139	session_e8Rbitmy
-4873	6	Q3	2025-08-02	14:00:00	\N	f	1	1139	session_YCfdmw1X
-4874	7	R	2025-08-03	13:00:00	70	f	24	1139	session_HzaPRbOV
-4875	1	FP1	2025-08-29	10:30:00	\N	f	1	1140	session_I5BIZuX6
-4876	2	FP2	2025-08-29	14:00:00	\N	f	1	1140	session_YvhcQEef
-4877	3	FP3	2025-08-30	09:30:00	\N	f	1	1140	session_zqVuCWr3
-4878	4	Q1	2025-08-30	13:00:00	\N	f	1	1140	session_kAGS5ufz
-4879	5	Q2	2025-08-30	13:00:00	\N	f	1	1140	session_ghxa79NH
-4880	6	Q3	2025-08-30	13:00:00	\N	f	1	1140	session_jCK5z62t
-4881	7	R	2025-08-31	13:00:00	72	f	24	1140	session_Yy4ISWvr
-4882	1	FP1	2025-09-05	11:30:00	\N	f	1	1141	session_wUyRJ7oW
-4883	2	FP2	2025-09-05	15:00:00	\N	f	1	1141	session_gLu5GvYP
-4884	3	FP3	2025-09-06	10:30:00	\N	f	1	1141	session_ymgKYmnW
-4885	4	Q1	2025-09-06	14:00:00	\N	f	1	1141	session_DMxcfia0
-4886	5	Q2	2025-09-06	14:00:00	\N	f	1	1141	session_vxqd1B9k
-4887	6	Q3	2025-09-06	14:00:00	\N	f	1	1141	session_Q31ObWGT
-4888	7	R	2025-09-07	13:00:00	53	f	24	1141	session_avG88vHu
-4889	1	FP1	2025-09-19	08:30:00	\N	f	1	1142	session_sJ3gQkqy
-4890	2	FP2	2025-09-19	12:00:00	\N	f	1	1142	session_5BVrzWfR
-4891	3	FP3	2025-09-20	08:30:00	\N	f	1	1142	session_4cpexxqT
-4892	4	Q1	2025-09-20	12:00:00	\N	f	1	1142	session_OV3ORx4w
-4893	5	Q2	2025-09-20	12:00:00	\N	f	1	1142	session_AadexSDu
-4894	6	Q3	2025-09-20	12:00:00	\N	f	1	1142	session_yRXH2UF8
-4895	7	R	2025-09-21	11:00:00	51	f	24	1142	session_TNtWVNu0
-4896	1	FP1	2025-10-03	09:30:00	\N	f	1	1143	session_DlEXOC6n
-4897	2	FP2	2025-10-03	13:00:00	\N	f	1	1143	session_lyQjzi00
-4898	3	FP3	2025-10-04	09:30:00	\N	f	1	1143	session_9l0sezvu
-4899	4	Q1	2025-10-04	13:00:00	\N	f	1	1143	session_qC03Ewq1
-4900	5	Q2	2025-10-04	13:00:00	\N	f	1	1143	session_7WsS87j3
-4901	6	Q3	2025-10-04	13:00:00	\N	f	1	1143	session_kw5oCidU
-4902	7	R	2025-10-05	12:00:00	62	f	24	1143	session_qLIn1RAu
-4903	1	FP1	2025-10-17	17:30:00	\N	f	1	1144	session_17EXX6fb
-4904	2	SQ1	2025-10-17	21:30:00	\N	f	1	1144	session_ZPcSeBBY
-4905	3	SQ2	2025-10-17	21:30:00	\N	f	1	1144	session_N1gXtOoY
-4906	4	SQ3	2025-10-17	21:30:00	\N	f	1	1144	session_b6vAiInO
-4907	5	SR	2025-10-18	17:00:00	\N	f	23	1144	session_rHevTUp2
-4908	6	Q1	2025-10-18	21:00:00	\N	f	1	1144	session_MXIwqlPC
-4909	7	Q2	2025-10-18	21:00:00	\N	f	1	1144	session_of0KAzPQ
-4910	1	FP1	2025-10-24	18:30:00	\N	f	1	1145	session_g3UBfe2y
-4911	2	FP2	2025-10-24	22:00:00	\N	f	1	1145	session_sPWf1Rn3
-4912	3	FP3	2025-10-25	17:30:00	\N	f	1	1145	session_mBI6BxaH
-4913	4	Q1	2025-10-25	21:00:00	\N	f	1	1145	session_gl98Ejgu
-4914	5	Q2	2025-10-25	21:00:00	\N	f	1	1145	session_18x7AxG8
-4915	6	Q3	2025-10-25	21:00:00	\N	f	1	1145	session_tVrj12W2
-4916	7	R	2025-10-26	20:00:00	71	f	24	1145	session_kUlCzvH2
-4917	1	FP1	2025-11-07	14:30:00	\N	f	1	1146	session_SI1U6PYh
-4918	2	SQ1	2025-11-07	18:30:00	\N	f	1	1146	session_IcAA6h2t
-4919	3	SQ2	2025-11-07	18:30:00	\N	f	1	1146	session_O9jqiWX4
-4920	4	SQ3	2025-11-07	18:30:00	\N	f	1	1146	session_IBmZGz57
-4921	5	SR	2025-11-08	14:00:00	\N	f	23	1146	session_neHaau0w
-4922	6	Q1	2025-11-08	18:00:00	\N	f	1	1146	session_WmYnvwvA
-4923	7	Q2	2025-11-08	18:00:00	\N	f	1	1146	session_76xXoLUT
-4924	8	Q3	2025-11-08	18:00:00	\N	f	1	1146	session_NmygkTs6
-4925	9	R	2025-11-09	17:00:00	71	f	24	1146	session_ETpcqxCO
-4926	1	FP1	2025-11-21	00:30:00	\N	f	1	1147	session_ksdCqkmg
-4927	2	FP2	2025-11-21	04:00:00	\N	f	1	1147	session_yQqf13cc
-4928	3	FP3	2025-11-22	00:30:00	\N	f	1	1147	session_q69492P5
-4929	4	Q1	2025-11-22	04:00:00	\N	f	1	1147	session_0JeaMTb9
-4930	5	Q2	2025-11-22	04:00:00	\N	f	1	1147	session_wGtstAPI
-4931	6	Q3	2025-11-22	04:00:00	\N	f	1	1147	session_QVxiBleC
-4932	7	R	2025-11-23	04:00:00	50	f	24	1147	session_IfMtHa40
-4933	1	FP1	2025-11-28	13:30:00	\N	f	1	1148	session_ejwvI1m2
-4934	2	SQ1	2025-11-28	17:30:00	\N	f	1	1148	session_sd4DBaxU
-4935	3	SQ2	2025-11-28	17:30:00	\N	f	1	1148	session_3U9A9GPY
-4936	4	SQ3	2025-11-28	17:30:00	\N	f	1	1148	session_AUvU3bQl
-4937	5	SR	2025-11-29	14:00:00	\N	f	23	1148	session_Rkwf3qxl
-4938	6	Q1	2025-11-29	18:00:00	\N	f	1	1148	session_BHtLDi3j
-4939	7	Q2	2025-11-29	18:00:00	\N	f	1	1148	session_h9TlJYPA
-4940	8	Q3	2025-11-29	18:00:00	\N	f	1	1148	session_EuhGibYe
-4941	9	R	2025-11-30	16:00:00	57	f	24	1148	session_72HE0gPk
-4942	1	FP1	2025-12-05	09:30:00	\N	f	1	1149	session_xX7dvATL
-4943	2	FP2	2025-12-05	13:00:00	\N	f	1	1149	session_sfx4KBjX
-4944	3	FP3	2025-12-06	10:30:00	\N	f	1	1149	session_UsWB229Q
-4945	4	Q1	2025-12-06	14:00:00	\N	f	1	1149	session_Vm9J9Uxn
-4946	5	Q2	2025-12-06	14:00:00	\N	f	1	1149	session_HPxgtbZE
-4947	6	Q3	2025-12-06	14:00:00	\N	f	1	1149	session_kGYIX8C9
-4948	7	R	2025-12-07	13:00:00	58	f	24	1149	session_s6Mp2pAB
-4949	8	Q3	2025-10-18	21:00:00	\N	f	1	1144	session_anVq99Cm
-4950	9	R	2025-10-19	19:00:00	56	f	24	1144	session_wAeaTFVC
+COPY public.formula_one_session (id, number, type, date, "time", scheduled_laps, is_cancelled, point_system_id, round_id, api_id, has_time_data, "timestamp") FROM stdin;
+4905	3	SQ2	2025-10-17	21:30:00	\N	f	1	1144	session_N1gXtOoY	t	2025-10-17 21:30:00+00
+4906	4	SQ3	2025-10-17	21:30:00	\N	f	1	1144	session_b6vAiInO	t	2025-10-17 21:30:00+00
+4907	5	SR	2025-10-18	17:00:00	\N	f	23	1144	session_rHevTUp2	t	2025-10-18 17:00:00+00
+4908	6	Q1	2025-10-18	21:00:00	\N	f	1	1144	session_MXIwqlPC	t	2025-10-18 21:00:00+00
+4909	7	Q2	2025-10-18	21:00:00	\N	f	1	1144	session_of0KAzPQ	t	2025-10-18 21:00:00+00
+4910	1	FP1	2025-10-24	18:30:00	\N	f	1	1145	session_g3UBfe2y	t	2025-10-24 18:30:00+00
+4911	2	FP2	2025-10-24	22:00:00	\N	f	1	1145	session_sPWf1Rn3	t	2025-10-24 22:00:00+00
+4912	3	FP3	2025-10-25	17:30:00	\N	f	1	1145	session_mBI6BxaH	t	2025-10-25 17:30:00+00
+4913	4	Q1	2025-10-25	21:00:00	\N	f	1	1145	session_gl98Ejgu	t	2025-10-25 21:00:00+00
+4914	5	Q2	2025-10-25	21:00:00	\N	f	1	1145	session_18x7AxG8	t	2025-10-25 21:00:00+00
+4915	6	Q3	2025-10-25	21:00:00	\N	f	1	1145	session_tVrj12W2	t	2025-10-25 21:00:00+00
+4916	7	R	2025-10-26	20:00:00	71	f	24	1145	session_kUlCzvH2	t	2025-10-26 20:00:00+00
+4917	1	FP1	2025-11-07	14:30:00	\N	f	1	1146	session_SI1U6PYh	t	2025-11-07 14:30:00+00
+4918	2	SQ1	2025-11-07	18:30:00	\N	f	1	1146	session_IcAA6h2t	t	2025-11-07 18:30:00+00
+4919	3	SQ2	2025-11-07	18:30:00	\N	f	1	1146	session_O9jqiWX4	t	2025-11-07 18:30:00+00
+4920	4	SQ3	2025-11-07	18:30:00	\N	f	1	1146	session_IBmZGz57	t	2025-11-07 18:30:00+00
+4921	5	SR	2025-11-08	14:00:00	\N	f	23	1146	session_neHaau0w	t	2025-11-08 14:00:00+00
+4922	6	Q1	2025-11-08	18:00:00	\N	f	1	1146	session_WmYnvwvA	t	2025-11-08 18:00:00+00
+4923	7	Q2	2025-11-08	18:00:00	\N	f	1	1146	session_76xXoLUT	t	2025-11-08 18:00:00+00
+4924	8	Q3	2025-11-08	18:00:00	\N	f	1	1146	session_NmygkTs6	t	2025-11-08 18:00:00+00
+4925	9	R	2025-11-09	17:00:00	71	f	24	1146	session_ETpcqxCO	t	2025-11-09 17:00:00+00
+4926	1	FP1	2025-11-21	00:30:00	\N	f	1	1147	session_ksdCqkmg	t	2025-11-21 00:30:00+00
+4927	2	FP2	2025-11-21	04:00:00	\N	f	1	1147	session_yQqf13cc	t	2025-11-21 04:00:00+00
+1	2	R	1950-05-13	\N	\N	f	2	1	session_8sj3ZIRr	f	1950-05-13 00:00:00+00
+2	1	QB	1950-05-11	\N	\N	f	1	1	session_wekmWw64	f	1950-05-11 00:00:00+00
+3	\N	QB	1950-05-12	\N	\N	f	1	1	session_OqpKUX18	f	1950-05-12 00:00:00+00
+4	2	R	1950-05-21	\N	\N	f	2	2	session_j3NT8Tq8	f	1950-05-21 00:00:00+00
+5	1	QB	1950-05-18	\N	\N	f	1	2	session_GLkBhJ5b	f	1950-05-18 00:00:00+00
+6	\N	QB	1950-05-20	\N	\N	f	1	2	session_b9y2DorS	f	1950-05-20 00:00:00+00
+7	2	R	1950-05-30	\N	\N	f	2	3	session_03lTVpug	f	1950-05-30 00:00:00+00
+8	1	QB	1950-05-28	\N	\N	f	1	3	session_kScTG1aw	f	1950-05-28 00:00:00+00
+9	\N	QB	1950-05-29	\N	\N	f	1	3	session_OYp10s64	f	1950-05-29 00:00:00+00
+10	2	R	1950-06-04	\N	\N	f	2	4	session_kRQMn8kL	f	1950-06-04 00:00:00+00
+11	1	QB	1950-06-02	\N	\N	f	1	4	session_0jacirA6	f	1950-06-02 00:00:00+00
+12	\N	QB	1950-06-03	\N	\N	f	1	4	session_7JIAbxeO	f	1950-06-03 00:00:00+00
+13	2	R	1950-06-18	\N	\N	f	2	5	session_nPfJZRH0	f	1950-06-18 00:00:00+00
+14	1	QB	1950-06-16	\N	\N	f	1	5	session_s8uKbySV	f	1950-06-16 00:00:00+00
+15	\N	QB	1950-06-17	\N	\N	f	1	5	session_eUSUcggs	f	1950-06-17 00:00:00+00
+16	2	R	1950-07-02	\N	\N	f	2	6	session_yio0F6vG	f	1950-07-02 00:00:00+00
+17	1	QB	1950-06-30	\N	\N	f	1	6	session_0sYxR12x	f	1950-06-30 00:00:00+00
+18	\N	QB	1950-07-01	\N	\N	f	1	6	session_deDxZlWg	f	1950-07-01 00:00:00+00
+19	2	R	1950-09-03	\N	\N	f	2	7	session_MWraMu23	f	1950-09-03 00:00:00+00
+20	1	QB	1950-09-01	\N	\N	f	1	7	session_eX5qIlBP	f	1950-09-01 00:00:00+00
+21	\N	QB	1950-09-02	\N	\N	f	1	7	session_E6Re62TT	f	1950-09-02 00:00:00+00
+22	2	R	1951-05-27	\N	\N	f	2	8	session_d7Wgqsjd	f	1951-05-27 00:00:00+00
+23	1	QB	1951-05-25	\N	\N	f	1	8	session_ST6lVxsE	f	1951-05-25 00:00:00+00
+24	\N	QB	1951-05-26	\N	\N	f	1	8	session_EvcDklnd	f	1951-05-26 00:00:00+00
+25	2	R	1951-05-30	\N	\N	f	2	9	session_PP4tcRPv	f	1951-05-30 00:00:00+00
+26	1	QB	1951-05-28	\N	\N	f	1	9	session_TAqZZ2CL	f	1951-05-28 00:00:00+00
+27	\N	QB	1951-05-29	\N	\N	f	1	9	session_Lq6lagMu	f	1951-05-29 00:00:00+00
+28	2	R	1951-06-17	\N	\N	f	2	10	session_rm9c1y6l	f	1951-06-17 00:00:00+00
+29	1	QB	1951-06-15	\N	\N	f	1	10	session_NdlH6XJx	f	1951-06-15 00:00:00+00
+30	\N	QB	1951-06-16	\N	\N	f	1	10	session_OFDDL8rZ	f	1951-06-16 00:00:00+00
+31	2	R	1951-07-01	\N	\N	f	2	11	session_pd1Bj5Ys	f	1951-07-01 00:00:00+00
+32	1	QB	1951-06-29	\N	\N	f	1	11	session_qJ6ZWDXT	f	1951-06-29 00:00:00+00
+33	\N	QB	1951-06-30	\N	\N	f	1	11	session_a2dIoqCV	f	1951-06-30 00:00:00+00
+34	2	R	1951-07-14	\N	\N	f	2	12	session_5fRh0dni	f	1951-07-14 00:00:00+00
+35	1	QB	1951-07-12	\N	\N	f	1	12	session_3cyPIG6Q	f	1951-07-12 00:00:00+00
+36	\N	QB	1951-07-13	\N	\N	f	1	12	session_V30jgDRJ	f	1951-07-13 00:00:00+00
+37	2	R	1951-07-29	\N	\N	f	2	13	session_aUryL4oE	f	1951-07-29 00:00:00+00
+38	1	QB	1951-07-27	\N	\N	f	1	13	session_Q5YVtvll	f	1951-07-27 00:00:00+00
+39	\N	QB	1951-07-28	\N	\N	f	1	13	session_wfY8tBXY	f	1951-07-28 00:00:00+00
+40	2	R	1951-09-16	\N	\N	f	2	14	session_yxwLHNj2	f	1951-09-16 00:00:00+00
+41	1	QB	1951-09-14	\N	\N	f	1	14	session_pXne1b90	f	1951-09-14 00:00:00+00
+42	\N	QB	1951-09-15	\N	\N	f	1	14	session_3UxsHw7t	f	1951-09-15 00:00:00+00
+43	2	R	1951-10-28	\N	\N	f	2	15	session_RSd3UNeB	f	1951-10-28 00:00:00+00
+44	1	QB	1951-10-26	\N	\N	f	1	15	session_R1VvOxX1	f	1951-10-26 00:00:00+00
+45	\N	QB	1951-10-27	\N	\N	f	1	15	session_iaxNKquU	f	1951-10-27 00:00:00+00
+46	2	R	1952-05-18	\N	\N	f	2	16	session_rUElI65t	f	1952-05-18 00:00:00+00
+47	1	QB	1952-05-16	\N	\N	f	1	16	session_k2pkiayA	f	1952-05-16 00:00:00+00
+48	\N	QB	1952-05-17	\N	\N	f	1	16	session_YLNS6oUP	f	1952-05-17 00:00:00+00
+49	2	R	1952-05-30	\N	\N	f	2	17	session_W04ToMiv	f	1952-05-30 00:00:00+00
+50	1	QB	1952-05-28	\N	\N	f	1	17	session_ao1wN9fK	f	1952-05-28 00:00:00+00
+51	\N	QB	1952-05-29	\N	\N	f	1	17	session_TcWydMeg	f	1952-05-29 00:00:00+00
+52	2	R	1952-06-22	\N	\N	f	2	18	session_NUHfL6y8	f	1952-06-22 00:00:00+00
+53	1	QB	1952-06-20	\N	\N	f	1	18	session_DlkKc5my	f	1952-06-20 00:00:00+00
+54	\N	QB	1952-06-21	\N	\N	f	1	18	session_rjiaScYL	f	1952-06-21 00:00:00+00
+55	2	R	1952-07-06	\N	\N	f	2	19	session_ZfgyDEpE	f	1952-07-06 00:00:00+00
+56	1	QB	1952-07-04	\N	\N	f	1	19	session_aOAuioAD	f	1952-07-04 00:00:00+00
+57	\N	QB	1952-07-05	\N	\N	f	1	19	session_QNk8BdQl	f	1952-07-05 00:00:00+00
+58	2	R	1952-07-19	\N	\N	f	2	20	session_HbIJFl1D	f	1952-07-19 00:00:00+00
+59	1	QB	1952-07-17	\N	\N	f	1	20	session_G30x9e3j	f	1952-07-17 00:00:00+00
+60	\N	QB	1952-07-18	\N	\N	f	1	20	session_5wGA6X8D	f	1952-07-18 00:00:00+00
+61	2	R	1952-08-03	\N	\N	f	2	21	session_wSWhSVR7	f	1952-08-03 00:00:00+00
+62	1	QB	1952-08-01	\N	\N	f	1	21	session_H71LuVGS	f	1952-08-01 00:00:00+00
+63	\N	QB	1952-08-02	\N	\N	f	1	21	session_zaPcHspT	f	1952-08-02 00:00:00+00
+64	2	R	1952-08-17	\N	\N	f	2	22	session_xRz2JwC8	f	1952-08-17 00:00:00+00
+65	1	QB	1952-08-15	\N	\N	f	1	22	session_bMYRPDvq	f	1952-08-15 00:00:00+00
+66	\N	QB	1952-08-16	\N	\N	f	1	22	session_jMqyj2fh	f	1952-08-16 00:00:00+00
+67	2	R	1952-09-07	\N	\N	f	2	23	session_D4nTmGZZ	f	1952-09-07 00:00:00+00
+68	1	QB	1952-09-05	\N	\N	f	1	23	session_rZpt36tY	f	1952-09-05 00:00:00+00
+69	\N	QB	1952-09-06	\N	\N	f	1	23	session_AiXoDsIO	f	1952-09-06 00:00:00+00
+70	2	R	1953-01-18	\N	\N	f	2	24	session_ZJy9B6LS	f	1953-01-18 00:00:00+00
+71	1	QB	1953-01-16	\N	\N	f	1	24	session_9SZkbUiw	f	1953-01-16 00:00:00+00
+72	\N	QB	1953-01-17	\N	\N	f	1	24	session_THK1o6au	f	1953-01-17 00:00:00+00
+73	2	R	1953-05-30	\N	\N	f	2	25	session_GFpV085h	f	1953-05-30 00:00:00+00
+74	1	QB	1953-05-28	\N	\N	f	1	25	session_05uYIY5F	f	1953-05-28 00:00:00+00
+75	\N	QB	1953-05-29	\N	\N	f	1	25	session_hQygrFVn	f	1953-05-29 00:00:00+00
+76	2	R	1953-06-07	\N	\N	f	2	26	session_FMTcIofV	f	1953-06-07 00:00:00+00
+77	1	QB	1953-06-05	\N	\N	f	1	26	session_vzhjox0z	f	1953-06-05 00:00:00+00
+78	\N	QB	1953-06-06	\N	\N	f	1	26	session_39894opb	f	1953-06-06 00:00:00+00
+79	2	R	1953-06-21	\N	\N	f	2	27	session_GW7NfwpW	f	1953-06-21 00:00:00+00
+80	1	QB	1953-06-19	\N	\N	f	1	27	session_79XA4riG	f	1953-06-19 00:00:00+00
+81	\N	QB	1953-06-20	\N	\N	f	1	27	session_C3prgbHF	f	1953-06-20 00:00:00+00
+82	2	R	1953-07-05	\N	\N	f	2	28	session_pVE6Bjz6	f	1953-07-05 00:00:00+00
+83	1	QB	1953-07-03	\N	\N	f	1	28	session_A9atxu6y	f	1953-07-03 00:00:00+00
+84	\N	QB	1953-07-04	\N	\N	f	1	28	session_WGLibNh9	f	1953-07-04 00:00:00+00
+85	2	R	1953-07-18	\N	\N	f	2	29	session_5E4WnxHi	f	1953-07-18 00:00:00+00
+86	1	QB	1953-07-16	\N	\N	f	1	29	session_uzvOvszk	f	1953-07-16 00:00:00+00
+87	\N	QB	1953-07-17	\N	\N	f	1	29	session_pTSjP6QQ	f	1953-07-17 00:00:00+00
+88	2	R	1953-08-02	\N	\N	f	2	30	session_I5wjgD8G	f	1953-08-02 00:00:00+00
+89	1	QB	1953-07-31	\N	\N	f	1	30	session_grnQ7ZCx	f	1953-07-31 00:00:00+00
+90	\N	QB	1953-08-01	\N	\N	f	1	30	session_1cehTR8U	f	1953-08-01 00:00:00+00
+91	2	R	1953-08-23	\N	\N	f	2	31	session_WRJDTEM6	f	1953-08-23 00:00:00+00
+92	1	QB	1953-08-21	\N	\N	f	1	31	session_cypi6gMA	f	1953-08-21 00:00:00+00
+93	\N	QB	1953-08-22	\N	\N	f	1	31	session_eWuqdqFB	f	1953-08-22 00:00:00+00
+94	2	R	1953-09-13	\N	\N	f	2	32	session_xhaWhwBS	f	1953-09-13 00:00:00+00
+95	1	QB	1953-09-11	\N	\N	f	1	32	session_CcRFUgUk	f	1953-09-11 00:00:00+00
+96	\N	QB	1953-09-12	\N	\N	f	1	32	session_xB5kzDlt	f	1953-09-12 00:00:00+00
+97	2	R	1954-01-17	\N	\N	f	3	33	session_pWaDgfkm	f	1954-01-17 00:00:00+00
+98	1	QB	1954-01-15	\N	\N	f	1	33	session_Cry0hkGu	f	1954-01-15 00:00:00+00
+99	\N	QB	1954-01-16	\N	\N	f	1	33	session_KChpWruK	f	1954-01-16 00:00:00+00
+100	2	R	1954-05-31	\N	\N	f	3	34	session_sfQSNxXv	f	1954-05-31 00:00:00+00
+101	1	QB	1954-05-29	\N	\N	f	1	34	session_wSVdaGqt	f	1954-05-29 00:00:00+00
+102	\N	QB	1954-05-30	\N	\N	f	1	34	session_IFyZe9gl	f	1954-05-30 00:00:00+00
+103	2	R	1954-06-20	\N	\N	f	3	35	session_dKytAPEz	f	1954-06-20 00:00:00+00
+104	1	QB	1954-06-18	\N	\N	f	1	35	session_mz3ngqhG	f	1954-06-18 00:00:00+00
+105	\N	QB	1954-06-19	\N	\N	f	1	35	session_KKnOfXAW	f	1954-06-19 00:00:00+00
+106	2	R	1954-07-04	\N	\N	f	3	36	session_ygKWVO9w	f	1954-07-04 00:00:00+00
+107	1	QB	1954-07-02	\N	\N	f	1	36	session_F4CuFFzN	f	1954-07-02 00:00:00+00
+108	\N	QB	1954-07-03	\N	\N	f	1	36	session_DrwnutGs	f	1954-07-03 00:00:00+00
+109	2	R	1954-07-17	\N	\N	f	3	37	session_Vju4eEb6	f	1954-07-17 00:00:00+00
+110	1	QB	1954-07-15	\N	\N	f	1	37	session_AVKrcuKa	f	1954-07-15 00:00:00+00
+111	\N	QB	1954-07-16	\N	\N	f	1	37	session_6BDiGbjL	f	1954-07-16 00:00:00+00
+112	2	R	1954-08-01	\N	\N	f	3	38	session_If04UCG7	f	1954-08-01 00:00:00+00
+113	1	QB	1954-07-30	\N	\N	f	1	38	session_9JOHzSxe	f	1954-07-30 00:00:00+00
+114	\N	QB	1954-07-31	\N	\N	f	1	38	session_4SB1GZjt	f	1954-07-31 00:00:00+00
+115	2	R	1954-08-22	\N	\N	f	3	39	session_ewa1uVlP	f	1954-08-22 00:00:00+00
+116	1	QB	1954-08-20	\N	\N	f	1	39	session_IJbOsIRi	f	1954-08-20 00:00:00+00
+117	\N	QB	1954-08-21	\N	\N	f	1	39	session_ulvbHiGN	f	1954-08-21 00:00:00+00
+118	2	R	1954-09-05	\N	\N	f	3	40	session_G2XdZsLx	f	1954-09-05 00:00:00+00
+119	1	QB	1954-09-03	\N	\N	f	1	40	session_z1VR1d7c	f	1954-09-03 00:00:00+00
+120	\N	QB	1954-09-04	\N	\N	f	1	40	session_IXKGVMr1	f	1954-09-04 00:00:00+00
+121	2	R	1954-10-24	\N	\N	f	3	41	session_d9FcDc8a	f	1954-10-24 00:00:00+00
+122	1	QB	1954-10-22	\N	\N	f	1	41	session_tA2cNBuK	f	1954-10-22 00:00:00+00
+123	\N	QB	1954-10-23	\N	\N	f	1	41	session_qDfvXHFz	f	1954-10-23 00:00:00+00
+124	2	R	1955-01-16	\N	\N	f	4	42	session_igoSZUdn	f	1955-01-16 00:00:00+00
+125	1	QB	1955-01-14	\N	\N	f	1	42	session_OJkXFcPV	f	1955-01-14 00:00:00+00
+126	\N	QB	1955-01-15	\N	\N	f	1	42	session_5NDI8tiY	f	1955-01-15 00:00:00+00
+127	2	R	1955-05-22	\N	\N	f	4	43	session_PMLk80w7	f	1955-05-22 00:00:00+00
+128	1	QB	1955-05-19	\N	\N	f	1	43	session_9Ke2oY9W	f	1955-05-19 00:00:00+00
+129	\N	QB	1955-05-21	\N	\N	f	1	43	session_0UafpSO5	f	1955-05-21 00:00:00+00
+130	2	R	1955-05-30	\N	\N	f	4	44	session_EPmzoE4x	f	1955-05-30 00:00:00+00
+131	1	QB	1955-05-28	\N	\N	f	1	44	session_MZAV1wgq	f	1955-05-28 00:00:00+00
+132	\N	QB	1955-05-29	\N	\N	f	1	44	session_Ty3CMNyQ	f	1955-05-29 00:00:00+00
+133	2	R	1955-06-05	\N	\N	f	4	45	session_VLDJlxTM	f	1955-06-05 00:00:00+00
+134	1	QB	1955-06-03	\N	\N	f	1	45	session_l8i53mwB	f	1955-06-03 00:00:00+00
+135	\N	QB	1955-06-04	\N	\N	f	1	45	session_3DPLgagm	f	1955-06-04 00:00:00+00
+136	2	R	1955-06-19	\N	\N	f	4	46	session_4sGBiLBc	f	1955-06-19 00:00:00+00
+137	1	QB	1955-06-17	\N	\N	f	1	46	session_VfqS1Dmu	f	1955-06-17 00:00:00+00
+138	\N	QB	1955-06-18	\N	\N	f	1	46	session_oOD7aBHJ	f	1955-06-18 00:00:00+00
+139	2	R	1955-07-16	\N	\N	f	4	47	session_ywOZ5ziF	f	1955-07-16 00:00:00+00
+140	1	QB	1955-07-14	\N	\N	f	1	47	session_7TLCoJUN	f	1955-07-14 00:00:00+00
+141	\N	QB	1955-07-15	\N	\N	f	1	47	session_TjlLIdDZ	f	1955-07-15 00:00:00+00
+142	2	R	1955-09-11	\N	\N	f	4	48	session_6u11zUZh	f	1955-09-11 00:00:00+00
+143	1	QB	1955-09-09	\N	\N	f	1	48	session_v7RQFl9m	f	1955-09-09 00:00:00+00
+144	\N	QB	1955-09-10	\N	\N	f	1	48	session_ghhYdy7R	f	1955-09-10 00:00:00+00
+145	2	R	1956-01-22	\N	\N	f	5	49	session_FQQBuCym	f	1956-01-22 00:00:00+00
+146	1	QB	1956-01-20	\N	\N	f	1	49	session_flgJxeok	f	1956-01-20 00:00:00+00
+147	\N	QB	1956-01-21	\N	\N	f	1	49	session_EtZCVUwY	f	1956-01-21 00:00:00+00
+148	2	R	1956-05-13	\N	\N	f	5	50	session_46R8bmDh	f	1956-05-13 00:00:00+00
+149	1	QB	1956-05-10	\N	\N	f	1	50	session_EncFsbHW	f	1956-05-10 00:00:00+00
+150	\N	QB	1956-05-12	\N	\N	f	1	50	session_pPToHxKL	f	1956-05-12 00:00:00+00
+151	2	R	1956-05-30	\N	\N	f	5	51	session_iWCJt5kf	f	1956-05-30 00:00:00+00
+152	1	QB	1956-05-28	\N	\N	f	1	51	session_mQGMRTzB	f	1956-05-28 00:00:00+00
+153	\N	QB	1956-05-29	\N	\N	f	1	51	session_Z27lwix2	f	1956-05-29 00:00:00+00
+154	2	R	1956-06-03	\N	\N	f	5	52	session_aPMOPoKD	f	1956-06-03 00:00:00+00
+155	1	QB	1956-06-01	\N	\N	f	1	52	session_HyB1aZ8L	f	1956-06-01 00:00:00+00
+156	\N	QB	1956-06-02	\N	\N	f	1	52	session_qPyV9jkI	f	1956-06-02 00:00:00+00
+157	2	R	1956-07-01	\N	\N	f	5	53	session_atguHfvj	f	1956-07-01 00:00:00+00
+158	1	QB	1956-06-29	\N	\N	f	1	53	session_F8OWz4mP	f	1956-06-29 00:00:00+00
+159	\N	QB	1956-06-30	\N	\N	f	1	53	session_Utsvi1GQ	f	1956-06-30 00:00:00+00
+160	2	R	1956-07-14	\N	\N	f	5	54	session_YRBWTZ3P	f	1956-07-14 00:00:00+00
+161	1	QB	1956-07-12	\N	\N	f	1	54	session_vBxv774I	f	1956-07-12 00:00:00+00
+162	\N	QB	1956-07-13	\N	\N	f	1	54	session_xoghvYEn	f	1956-07-13 00:00:00+00
+163	2	R	1956-08-05	\N	\N	f	5	55	session_ZNcH8lSr	f	1956-08-05 00:00:00+00
+164	1	QB	1956-08-03	\N	\N	f	1	55	session_iHBPyUlF	f	1956-08-03 00:00:00+00
+165	\N	QB	1956-08-04	\N	\N	f	1	55	session_AunoUUMg	f	1956-08-04 00:00:00+00
+166	2	R	1956-09-02	\N	\N	f	5	56	session_JEngSCgf	f	1956-09-02 00:00:00+00
+167	1	QB	1956-08-31	\N	\N	f	1	56	session_5rB4N4HB	f	1956-08-31 00:00:00+00
+168	\N	QB	1956-09-01	\N	\N	f	1	56	session_VuiXoUc9	f	1956-09-01 00:00:00+00
+169	2	R	1957-01-13	\N	\N	f	5	57	session_qwwdoXCk	f	1957-01-13 00:00:00+00
+170	1	QB	1957-01-11	\N	\N	f	1	57	session_hbj4P0oc	f	1957-01-11 00:00:00+00
+171	\N	QB	1957-01-12	\N	\N	f	1	57	session_5TDsGqie	f	1957-01-12 00:00:00+00
+172	2	R	1957-05-19	\N	\N	f	5	58	session_iucMPfwX	f	1957-05-19 00:00:00+00
+173	1	QB	1957-05-16	\N	\N	f	1	58	session_E9VY7OKU	f	1957-05-16 00:00:00+00
+174	\N	QB	1957-05-18	\N	\N	f	1	58	session_2UdhJEJa	f	1957-05-18 00:00:00+00
+175	2	R	1957-05-30	\N	\N	f	5	59	session_8Rfz7jFX	f	1957-05-30 00:00:00+00
+176	1	QB	1957-05-28	\N	\N	f	1	59	session_k1CYb9Ip	f	1957-05-28 00:00:00+00
+177	\N	QB	1957-05-29	\N	\N	f	1	59	session_P7BVRuFR	f	1957-05-29 00:00:00+00
+178	2	R	1957-07-07	\N	\N	f	5	60	session_wderWej5	f	1957-07-07 00:00:00+00
+179	1	QB	1957-07-05	\N	\N	f	1	60	session_LSjaLKSy	f	1957-07-05 00:00:00+00
+180	\N	QB	1957-07-06	\N	\N	f	1	60	session_yLNkxFEe	f	1957-07-06 00:00:00+00
+181	2	R	1957-07-20	\N	\N	f	5	61	session_jOwWtXrJ	f	1957-07-20 00:00:00+00
+182	1	QB	1957-07-18	\N	\N	f	1	61	session_p0d4udxS	f	1957-07-18 00:00:00+00
+183	\N	QB	1957-07-19	\N	\N	f	1	61	session_IBmDIcsm	f	1957-07-19 00:00:00+00
+184	2	R	1957-08-04	\N	\N	f	5	62	session_25qRWsGN	f	1957-08-04 00:00:00+00
+185	1	QB	1957-08-02	\N	\N	f	1	62	session_BFSb53G7	f	1957-08-02 00:00:00+00
+186	\N	QB	1957-08-03	\N	\N	f	1	62	session_7Q1zMJfn	f	1957-08-03 00:00:00+00
+187	2	R	1957-08-18	\N	\N	f	5	63	session_xPRuECxM	f	1957-08-18 00:00:00+00
+188	1	QB	1957-08-16	\N	\N	f	1	63	session_5JWUm4t9	f	1957-08-16 00:00:00+00
+189	\N	QB	1957-08-17	\N	\N	f	1	63	session_jrrtfnWJ	f	1957-08-17 00:00:00+00
+190	2	R	1957-09-08	\N	\N	f	5	64	session_Owxs0hIX	f	1957-09-08 00:00:00+00
+191	1	QB	1957-09-06	\N	\N	f	1	64	session_DhwSVUNB	f	1957-09-06 00:00:00+00
+192	\N	QB	1957-09-07	\N	\N	f	1	64	session_74AXixP1	f	1957-09-07 00:00:00+00
+193	2	R	1958-01-19	\N	\N	f	6	65	session_8VZ53DWE	f	1958-01-19 00:00:00+00
+194	1	QB	1958-01-17	\N	\N	f	1	65	session_67bkUzAi	f	1958-01-17 00:00:00+00
+195	\N	QB	1958-01-18	\N	\N	f	1	65	session_CYSXpOf1	f	1958-01-18 00:00:00+00
+196	2	R	1958-05-18	\N	\N	f	6	66	session_EAlINvew	f	1958-05-18 00:00:00+00
+197	1	QB	1958-05-15	\N	\N	f	1	66	session_UiduB0Qm	f	1958-05-15 00:00:00+00
+198	\N	QB	1958-05-17	\N	\N	f	1	66	session_MAlqhTxx	f	1958-05-17 00:00:00+00
+199	2	R	1958-05-26	\N	\N	f	6	67	session_RAVgyTyg	f	1958-05-26 00:00:00+00
+200	1	QB	1958-05-24	\N	\N	f	1	67	session_sZOhnrDM	f	1958-05-24 00:00:00+00
+201	\N	QB	1958-05-25	\N	\N	f	1	67	session_nkHlYmgu	f	1958-05-25 00:00:00+00
+202	2	R	1958-05-30	\N	\N	f	7	68	session_o8PXYtwJ	f	1958-05-30 00:00:00+00
+203	1	QB	1958-05-28	\N	\N	f	1	68	session_IzqrozvP	f	1958-05-28 00:00:00+00
+204	\N	QB	1958-05-29	\N	\N	f	1	68	session_ELCPzwZF	f	1958-05-29 00:00:00+00
+205	2	R	1958-06-15	\N	\N	f	6	69	session_HIFT72p4	f	1958-06-15 00:00:00+00
+206	1	QB	1958-06-13	\N	\N	f	1	69	session_27BFZ4GK	f	1958-06-13 00:00:00+00
+207	\N	QB	1958-06-14	\N	\N	f	1	69	session_xT5jf4HN	f	1958-06-14 00:00:00+00
+208	2	R	1958-07-06	\N	\N	f	6	70	session_hbVxITxS	f	1958-07-06 00:00:00+00
+209	1	QB	1958-07-04	\N	\N	f	1	70	session_k2K6kgYv	f	1958-07-04 00:00:00+00
+210	\N	QB	1958-07-05	\N	\N	f	1	70	session_lLMlQkRf	f	1958-07-05 00:00:00+00
+211	2	R	1958-07-19	\N	\N	f	6	71	session_SfSIXTat	f	1958-07-19 00:00:00+00
+212	1	QB	1958-07-17	\N	\N	f	1	71	session_V6TtZPQy	f	1958-07-17 00:00:00+00
+213	\N	QB	1958-07-18	\N	\N	f	1	71	session_vdNOpA24	f	1958-07-18 00:00:00+00
+214	2	R	1958-08-03	\N	\N	f	6	72	session_Vg9zbOzC	f	1958-08-03 00:00:00+00
+215	1	QB	1958-08-01	\N	\N	f	1	72	session_VxxHBOb4	f	1958-08-01 00:00:00+00
+216	\N	QB	1958-08-02	\N	\N	f	1	72	session_wV6FtRLK	f	1958-08-02 00:00:00+00
+217	2	R	1958-08-24	\N	\N	f	6	73	session_U2NJF1cZ	f	1958-08-24 00:00:00+00
+218	1	QB	1958-08-22	\N	\N	f	1	73	session_cSCEWGg4	f	1958-08-22 00:00:00+00
+219	\N	QB	1958-08-23	\N	\N	f	1	73	session_4xt0hBgM	f	1958-08-23 00:00:00+00
+220	2	R	1958-09-07	\N	\N	f	6	74	session_aHqwHw8s	f	1958-09-07 00:00:00+00
+221	1	QB	1958-09-05	\N	\N	f	1	74	session_RMJucMMV	f	1958-09-05 00:00:00+00
+222	\N	QB	1958-09-06	\N	\N	f	1	74	session_iG0AVVCx	f	1958-09-06 00:00:00+00
+223	2	R	1958-10-19	\N	\N	f	6	75	session_unYKDsov	f	1958-10-19 00:00:00+00
+224	1	QB	1958-10-17	\N	\N	f	1	75	session_Jb0YqpS6	f	1958-10-17 00:00:00+00
+225	\N	QB	1958-10-18	\N	\N	f	1	75	session_5RGhiwIz	f	1958-10-18 00:00:00+00
+226	2	R	1959-05-10	\N	\N	f	6	76	session_M7oKbhZZ	f	1959-05-10 00:00:00+00
+227	1	QB	1959-05-07	\N	\N	f	1	76	session_WVLGlXx9	f	1959-05-07 00:00:00+00
+228	\N	QB	1959-05-09	\N	\N	f	1	76	session_A90ydIjH	f	1959-05-09 00:00:00+00
+229	2	R	1959-05-30	\N	\N	f	7	77	session_gxCno0PO	f	1959-05-30 00:00:00+00
+230	1	QB	1959-05-28	\N	\N	f	1	77	session_HrVFFQMJ	f	1959-05-28 00:00:00+00
+231	\N	QB	1959-05-29	\N	\N	f	1	77	session_CQ0FQkCr	f	1959-05-29 00:00:00+00
+232	2	R	1959-05-31	\N	\N	f	6	78	session_Drap105o	f	1959-05-31 00:00:00+00
+233	1	QB	1959-05-29	\N	\N	f	1	78	session_GyLpMGBe	f	1959-05-29 00:00:00+00
+234	\N	QB	1959-05-30	\N	\N	f	1	78	session_3J8mHUZQ	f	1959-05-30 00:00:00+00
+235	2	R	1959-07-05	\N	\N	f	6	79	session_J6Yw77dZ	f	1959-07-05 00:00:00+00
+236	1	QB	1959-07-03	\N	\N	f	1	79	session_x7Ch1wdu	f	1959-07-03 00:00:00+00
+237	\N	QB	1959-07-04	\N	\N	f	1	79	session_T9Vahfh4	f	1959-07-04 00:00:00+00
+238	2	R	1959-07-18	\N	\N	f	6	80	session_bGW24c2N	f	1959-07-18 00:00:00+00
+239	1	QB	1959-07-16	\N	\N	f	1	80	session_KVTtE7qe	f	1959-07-16 00:00:00+00
+240	\N	QB	1959-07-17	\N	\N	f	1	80	session_vtt95ypi	f	1959-07-17 00:00:00+00
+241	2	R	1959-08-02	\N	\N	f	6	81	session_Qj3QtYXn	f	1959-08-02 00:00:00+00
+242	1	QB	1959-07-31	\N	\N	f	1	81	session_4gG2aIFq	f	1959-07-31 00:00:00+00
+243	\N	QB	1959-08-01	\N	\N	f	1	81	session_nfrIZVaV	f	1959-08-01 00:00:00+00
+244	2	R	1959-08-23	\N	\N	f	6	82	session_QlUBgo5D	f	1959-08-23 00:00:00+00
+245	1	QB	1959-08-21	\N	\N	f	1	82	session_eTN5ROWo	f	1959-08-21 00:00:00+00
+246	\N	QB	1959-08-22	\N	\N	f	1	82	session_DOcBUHlm	f	1959-08-22 00:00:00+00
+247	2	R	1959-09-13	\N	\N	f	6	83	session_6ouFycTq	f	1959-09-13 00:00:00+00
+248	1	QB	1959-09-11	\N	\N	f	1	83	session_r55GBlML	f	1959-09-11 00:00:00+00
+249	\N	QB	1959-09-12	\N	\N	f	1	83	session_76yFafTw	f	1959-09-12 00:00:00+00
+250	2	R	1959-12-12	\N	\N	f	6	84	session_0ICdMwRu	f	1959-12-12 00:00:00+00
+251	1	QB	1959-12-10	\N	\N	f	1	84	session_gKLZOrJH	f	1959-12-10 00:00:00+00
+252	\N	QB	1959-12-11	\N	\N	f	1	84	session_dqd8t9ga	f	1959-12-11 00:00:00+00
+253	2	R	1960-02-07	\N	\N	f	8	85	session_ZNbyvFB9	f	1960-02-07 00:00:00+00
+254	1	QB	1960-02-05	\N	\N	f	1	85	session_HBbbd0re	f	1960-02-05 00:00:00+00
+255	\N	QB	1960-02-06	\N	\N	f	1	85	session_iBXL1Nnl	f	1960-02-06 00:00:00+00
+256	2	R	1960-05-29	\N	\N	f	8	86	session_YCqeNHxU	f	1960-05-29 00:00:00+00
+257	1	QB	1960-05-26	\N	\N	f	1	86	session_BdxeKne6	f	1960-05-26 00:00:00+00
+258	\N	QB	1960-05-28	\N	\N	f	1	86	session_bSlfrskd	f	1960-05-28 00:00:00+00
+259	2	R	1960-05-30	\N	\N	f	9	87	session_5bwgKKxF	f	1960-05-30 00:00:00+00
+260	1	QB	1960-05-28	\N	\N	f	1	87	session_GdUv5odq	f	1960-05-28 00:00:00+00
+261	\N	QB	1960-05-29	\N	\N	f	1	87	session_4urnxhx6	f	1960-05-29 00:00:00+00
+262	2	R	1960-06-06	\N	\N	f	8	88	session_wB8ldLKq	f	1960-06-06 00:00:00+00
+263	1	QB	1960-06-04	\N	\N	f	1	88	session_xmwBNffa	f	1960-06-04 00:00:00+00
+264	\N	QB	1960-06-05	\N	\N	f	1	88	session_I9RO08RP	f	1960-06-05 00:00:00+00
+265	2	R	1960-06-19	\N	\N	f	8	89	session_MAcOUbVH	f	1960-06-19 00:00:00+00
+266	1	QB	1960-06-17	\N	\N	f	1	89	session_mhUOUcvf	f	1960-06-17 00:00:00+00
+267	\N	QB	1960-06-18	\N	\N	f	1	89	session_7xI6ErV6	f	1960-06-18 00:00:00+00
+268	2	R	1960-07-03	\N	\N	f	8	90	session_tuAZoprm	f	1960-07-03 00:00:00+00
+269	1	QB	1960-07-01	\N	\N	f	1	90	session_ywtwGOKs	f	1960-07-01 00:00:00+00
+270	\N	QB	1960-07-02	\N	\N	f	1	90	session_kHk3E8dp	f	1960-07-02 00:00:00+00
+271	2	R	1960-07-16	\N	\N	f	8	91	session_T9gktOBx	f	1960-07-16 00:00:00+00
+272	1	QB	1960-07-14	\N	\N	f	1	91	session_eWKlEcci	f	1960-07-14 00:00:00+00
+273	\N	QB	1960-07-15	\N	\N	f	1	91	session_8p8hRE22	f	1960-07-15 00:00:00+00
+274	2	R	1960-08-14	\N	\N	f	8	92	session_kZ7Cdlp4	f	1960-08-14 00:00:00+00
+275	1	QB	1960-08-12	\N	\N	f	1	92	session_oolpIqVv	f	1960-08-12 00:00:00+00
+276	\N	QB	1960-08-13	\N	\N	f	1	92	session_GHYDWlFY	f	1960-08-13 00:00:00+00
+277	2	R	1960-09-04	\N	\N	f	8	93	session_DVotqkut	f	1960-09-04 00:00:00+00
+278	1	QB	1960-09-02	\N	\N	f	1	93	session_dp8WDJ4E	f	1960-09-02 00:00:00+00
+279	\N	QB	1960-09-03	\N	\N	f	1	93	session_Pzsork6Y	f	1960-09-03 00:00:00+00
+280	2	R	1960-11-20	\N	\N	f	8	94	session_6wsDZchk	f	1960-11-20 00:00:00+00
+281	1	QB	1960-11-18	\N	\N	f	1	94	session_whx0dkvB	f	1960-11-18 00:00:00+00
+282	\N	QB	1960-11-19	\N	\N	f	1	94	session_SAlaAIYo	f	1960-11-19 00:00:00+00
+283	2	R	1961-05-14	\N	\N	f	10	95	session_GbFp8s4E	f	1961-05-14 00:00:00+00
+284	1	QB	1961-05-11	\N	\N	f	1	95	session_zw5ZMk6f	f	1961-05-11 00:00:00+00
+285	\N	QB	1961-05-13	\N	\N	f	1	95	session_KvdLZstJ	f	1961-05-13 00:00:00+00
+286	2	R	1961-05-22	\N	\N	f	10	96	session_50Du0HWn	f	1961-05-22 00:00:00+00
+287	1	QB	1961-05-20	\N	\N	f	1	96	session_xC8XZQAe	f	1961-05-20 00:00:00+00
+288	\N	QB	1961-05-21	\N	\N	f	1	96	session_2VPoykHz	f	1961-05-21 00:00:00+00
+289	2	R	1961-06-18	\N	\N	f	10	97	session_P7Gcgc9g	f	1961-06-18 00:00:00+00
+290	1	QB	1961-06-16	\N	\N	f	1	97	session_leoWcF5B	f	1961-06-16 00:00:00+00
+291	\N	QB	1961-06-17	\N	\N	f	1	97	session_1a8BSXU5	f	1961-06-17 00:00:00+00
+292	2	R	1961-07-02	\N	\N	f	10	98	session_e96OITTS	f	1961-07-02 00:00:00+00
+293	1	QB	1961-06-30	\N	\N	f	1	98	session_PoTsyQw1	f	1961-06-30 00:00:00+00
+294	\N	QB	1961-07-01	\N	\N	f	1	98	session_CNvbpv5i	f	1961-07-01 00:00:00+00
+295	2	R	1961-07-15	\N	\N	f	10	99	session_NJTWlyJW	f	1961-07-15 00:00:00+00
+296	1	QB	1961-07-13	\N	\N	f	1	99	session_ypOxV5Mc	f	1961-07-13 00:00:00+00
+297	\N	QB	1961-07-14	\N	\N	f	1	99	session_iCbFe9ja	f	1961-07-14 00:00:00+00
+298	2	R	1961-08-06	\N	\N	f	10	100	session_gd7RjKoK	f	1961-08-06 00:00:00+00
+299	1	QB	1961-08-04	\N	\N	f	1	100	session_lAjY1FxW	f	1961-08-04 00:00:00+00
+300	\N	QB	1961-08-05	\N	\N	f	1	100	session_Sxe2pWGH	f	1961-08-05 00:00:00+00
+301	2	R	1961-09-10	\N	\N	f	10	101	session_KnA1oGYp	f	1961-09-10 00:00:00+00
+302	1	QB	1961-09-08	\N	\N	f	1	101	session_H72o003w	f	1961-09-08 00:00:00+00
+303	\N	QB	1961-09-09	\N	\N	f	1	101	session_L5fgiPDe	f	1961-09-09 00:00:00+00
+304	2	R	1961-10-08	\N	\N	f	10	102	session_w0HEsTOa	f	1961-10-08 00:00:00+00
+305	1	QB	1961-10-06	\N	\N	f	1	102	session_I0W0NA2l	f	1961-10-06 00:00:00+00
+306	\N	QB	1961-10-07	\N	\N	f	1	102	session_AZL7Krci	f	1961-10-07 00:00:00+00
+307	2	R	1962-05-20	\N	\N	f	11	103	session_i0ZKNwKS	f	1962-05-20 00:00:00+00
+308	1	QB	1962-05-18	\N	\N	f	1	103	session_KkaEE3Be	f	1962-05-18 00:00:00+00
+309	\N	QB	1962-05-19	\N	\N	f	1	103	session_wR29HRco	f	1962-05-19 00:00:00+00
+310	2	R	1962-06-03	\N	\N	f	11	104	session_8CV54PL6	f	1962-06-03 00:00:00+00
+311	1	QB	1962-05-31	\N	\N	f	1	104	session_1rFu6854	f	1962-05-31 00:00:00+00
+312	\N	QB	1962-06-02	\N	\N	f	1	104	session_rXiwr3wh	f	1962-06-02 00:00:00+00
+313	2	R	1962-06-17	\N	\N	f	11	105	session_lRjsDf3X	f	1962-06-17 00:00:00+00
+314	1	QB	1962-06-15	\N	\N	f	1	105	session_3TQ0TcG4	f	1962-06-15 00:00:00+00
+315	\N	QB	1962-06-16	\N	\N	f	1	105	session_hNMqBP1M	f	1962-06-16 00:00:00+00
+316	2	R	1962-07-08	\N	\N	f	11	106	session_TzcWFKkj	f	1962-07-08 00:00:00+00
+317	1	QB	1962-07-06	\N	\N	f	1	106	session_Bco2ucF6	f	1962-07-06 00:00:00+00
+318	\N	QB	1962-07-07	\N	\N	f	1	106	session_87NhzWeG	f	1962-07-07 00:00:00+00
+319	2	R	1962-07-21	\N	\N	f	11	107	session_xcdG0JCO	f	1962-07-21 00:00:00+00
+320	1	QB	1962-07-19	\N	\N	f	1	107	session_Asf5DQpY	f	1962-07-19 00:00:00+00
+321	\N	QB	1962-07-20	\N	\N	f	1	107	session_PfV98V6j	f	1962-07-20 00:00:00+00
+322	2	R	1962-08-05	\N	\N	f	11	108	session_4fLJtm0a	f	1962-08-05 00:00:00+00
+323	1	QB	1962-08-03	\N	\N	f	1	108	session_2E7faR7s	f	1962-08-03 00:00:00+00
+324	\N	QB	1962-08-04	\N	\N	f	1	108	session_iJJjtvzU	f	1962-08-04 00:00:00+00
+325	2	R	1962-09-16	\N	\N	f	11	109	session_4UchtAWc	f	1962-09-16 00:00:00+00
+326	1	QB	1962-09-14	\N	\N	f	1	109	session_MBS2u25u	f	1962-09-14 00:00:00+00
+327	\N	QB	1962-09-15	\N	\N	f	1	109	session_u6zwJdkE	f	1962-09-15 00:00:00+00
+328	2	R	1962-10-07	\N	\N	f	11	110	session_G3gtjSWg	f	1962-10-07 00:00:00+00
+329	1	QB	1962-10-05	\N	\N	f	1	110	session_pz9PBiE7	f	1962-10-05 00:00:00+00
+330	\N	QB	1962-10-06	\N	\N	f	1	110	session_LPXJ7uTi	f	1962-10-06 00:00:00+00
+331	2	R	1962-12-29	\N	\N	f	11	111	session_xQZaJRyK	f	1962-12-29 00:00:00+00
+332	1	QB	1962-12-27	\N	\N	f	1	111	session_V07TfiOr	f	1962-12-27 00:00:00+00
+333	\N	QB	1962-12-28	\N	\N	f	1	111	session_VSpjk8Mk	f	1962-12-28 00:00:00+00
+334	2	R	1963-05-26	\N	\N	f	11	112	session_NZAG0KpM	f	1963-05-26 00:00:00+00
+335	1	QB	1963-05-23	\N	\N	f	1	112	session_BySwoUJI	f	1963-05-23 00:00:00+00
+336	\N	QB	1963-05-25	\N	\N	f	1	112	session_lDybVP61	f	1963-05-25 00:00:00+00
+337	2	R	1963-06-09	\N	\N	f	11	113	session_KuvVBtzB	f	1963-06-09 00:00:00+00
+338	1	QB	1963-06-07	\N	\N	f	1	113	session_WWhdxsYy	f	1963-06-07 00:00:00+00
+339	\N	QB	1963-06-08	\N	\N	f	1	113	session_JEt9RO7i	f	1963-06-08 00:00:00+00
+340	2	R	1963-06-23	\N	\N	f	11	114	session_lQyPfO5S	f	1963-06-23 00:00:00+00
+341	1	QB	1963-06-21	\N	\N	f	1	114	session_PT77d3vI	f	1963-06-21 00:00:00+00
+342	\N	QB	1963-06-22	\N	\N	f	1	114	session_ss2VEQDJ	f	1963-06-22 00:00:00+00
+343	2	R	1963-06-30	\N	\N	f	11	115	session_gzgfFXK4	f	1963-06-30 00:00:00+00
+344	1	QB	1963-06-28	\N	\N	f	1	115	session_3VpXoT8a	f	1963-06-28 00:00:00+00
+345	\N	QB	1963-06-29	\N	\N	f	1	115	session_OhVfGr3M	f	1963-06-29 00:00:00+00
+346	2	R	1963-07-20	\N	\N	f	11	116	session_prcps1iQ	f	1963-07-20 00:00:00+00
+347	1	QB	1963-07-18	\N	\N	f	1	116	session_j3hGOeRB	f	1963-07-18 00:00:00+00
+348	\N	QB	1963-07-19	\N	\N	f	1	116	session_Vp0AMrrD	f	1963-07-19 00:00:00+00
+349	2	R	1963-08-04	\N	\N	f	11	117	session_YfH1Updh	f	1963-08-04 00:00:00+00
+350	1	QB	1963-08-02	\N	\N	f	1	117	session_UrLOgJrF	f	1963-08-02 00:00:00+00
+351	\N	QB	1963-08-03	\N	\N	f	1	117	session_NgOFqcNQ	f	1963-08-03 00:00:00+00
+352	2	R	1963-09-08	\N	\N	f	11	118	session_HgfTvqsW	f	1963-09-08 00:00:00+00
+353	1	QB	1963-09-06	\N	\N	f	1	118	session_Ufcfj1n1	f	1963-09-06 00:00:00+00
+354	\N	QB	1963-09-07	\N	\N	f	1	118	session_tBLEyz2p	f	1963-09-07 00:00:00+00
+355	2	R	1963-10-06	\N	\N	f	11	119	session_w5osyl7G	f	1963-10-06 00:00:00+00
+356	1	QB	1963-10-04	\N	\N	f	1	119	session_MpJDj78I	f	1963-10-04 00:00:00+00
+357	\N	QB	1963-10-05	\N	\N	f	1	119	session_KYeJFCJK	f	1963-10-05 00:00:00+00
+358	2	R	1963-10-27	\N	\N	f	11	120	session_hr2xF3HS	f	1963-10-27 00:00:00+00
+359	1	QB	1963-10-25	\N	\N	f	1	120	session_61HhIuQk	f	1963-10-25 00:00:00+00
+360	\N	QB	1963-10-26	\N	\N	f	1	120	session_wqcexGwB	f	1963-10-26 00:00:00+00
+361	2	R	1963-12-28	\N	\N	f	11	121	session_UcyW0ynG	f	1963-12-28 00:00:00+00
+362	1	QB	1963-12-26	\N	\N	f	1	121	session_0bLieK6O	f	1963-12-26 00:00:00+00
+363	\N	QB	1963-12-27	\N	\N	f	1	121	session_2lbVa9fg	f	1963-12-27 00:00:00+00
+364	2	R	1964-05-10	\N	\N	f	11	122	session_81vXavzL	f	1964-05-10 00:00:00+00
+365	1	QB	1964-05-07	\N	\N	f	1	122	session_RK6kjlHE	f	1964-05-07 00:00:00+00
+366	\N	QB	1964-05-09	\N	\N	f	1	122	session_hC5OeM9y	f	1964-05-09 00:00:00+00
+367	2	R	1964-05-24	\N	\N	f	11	123	session_j5vss9nk	f	1964-05-24 00:00:00+00
+368	1	QB	1964-05-22	\N	\N	f	1	123	session_lZvhKxKC	f	1964-05-22 00:00:00+00
+369	\N	QB	1964-05-23	\N	\N	f	1	123	session_4rgyTq3S	f	1964-05-23 00:00:00+00
+370	2	R	1964-06-14	\N	\N	f	11	124	session_kuHAiUk5	f	1964-06-14 00:00:00+00
+371	1	QB	1964-06-12	\N	\N	f	1	124	session_JDVBx0Y0	f	1964-06-12 00:00:00+00
+372	\N	QB	1964-06-13	\N	\N	f	1	124	session_gyUglC2j	f	1964-06-13 00:00:00+00
+373	2	R	1964-06-28	\N	\N	f	11	125	session_gs0ao6XN	f	1964-06-28 00:00:00+00
+374	1	QB	1964-06-26	\N	\N	f	1	125	session_whZBly1G	f	1964-06-26 00:00:00+00
+375	\N	QB	1964-06-27	\N	\N	f	1	125	session_XDE6qKbq	f	1964-06-27 00:00:00+00
+376	2	R	1964-07-11	\N	\N	f	11	126	session_4mQgDphN	f	1964-07-11 00:00:00+00
+377	1	QB	1964-07-09	\N	\N	f	1	126	session_Ta5M7edY	f	1964-07-09 00:00:00+00
+378	\N	QB	1964-07-10	\N	\N	f	1	126	session_1lQXsguD	f	1964-07-10 00:00:00+00
+379	2	R	1964-08-02	\N	\N	f	11	127	session_weWiworl	f	1964-08-02 00:00:00+00
+380	1	QB	1964-07-31	\N	\N	f	1	127	session_01agdSgS	f	1964-07-31 00:00:00+00
+381	\N	QB	1964-08-01	\N	\N	f	1	127	session_DQTPQAy2	f	1964-08-01 00:00:00+00
+382	2	R	1964-08-23	\N	\N	f	11	128	session_GUkMDRPC	f	1964-08-23 00:00:00+00
+383	1	QB	1964-08-21	\N	\N	f	1	128	session_EXVygcu9	f	1964-08-21 00:00:00+00
+384	\N	QB	1964-08-22	\N	\N	f	1	128	session_sctg3Y1x	f	1964-08-22 00:00:00+00
+385	2	R	1964-09-06	\N	\N	f	11	129	session_3q7LytXO	f	1964-09-06 00:00:00+00
+386	1	QB	1964-09-04	\N	\N	f	1	129	session_8ZTX8mlZ	f	1964-09-04 00:00:00+00
+387	\N	QB	1964-09-05	\N	\N	f	1	129	session_GbI6P5wd	f	1964-09-05 00:00:00+00
+388	2	R	1964-10-04	\N	\N	f	11	130	session_xBVwvTEi	f	1964-10-04 00:00:00+00
+389	1	QB	1964-10-02	\N	\N	f	1	130	session_FMaSO5jw	f	1964-10-02 00:00:00+00
+390	\N	QB	1964-10-03	\N	\N	f	1	130	session_DqVvHcUe	f	1964-10-03 00:00:00+00
+391	2	R	1964-10-25	\N	\N	f	11	131	session_4JkG79FY	f	1964-10-25 00:00:00+00
+392	1	QB	1964-10-23	\N	\N	f	1	131	session_sb7hOogv	f	1964-10-23 00:00:00+00
+393	\N	QB	1964-10-24	\N	\N	f	1	131	session_aym8HUIJ	f	1964-10-24 00:00:00+00
+394	2	R	1965-01-01	\N	\N	f	11	132	session_IiTmccR2	f	1965-01-01 00:00:00+00
+395	1	QB	1964-12-30	\N	\N	f	1	132	session_675ioAxX	f	1964-12-30 00:00:00+00
+396	\N	QB	1964-12-31	\N	\N	f	1	132	session_7m0Mwiac	f	1964-12-31 00:00:00+00
+397	2	R	1965-05-30	\N	\N	f	11	133	session_3zjdevpx	f	1965-05-30 00:00:00+00
+398	1	QB	1965-05-27	\N	\N	f	1	133	session_EnwcjG5c	f	1965-05-27 00:00:00+00
+399	\N	QB	1965-05-29	\N	\N	f	1	133	session_4O3Hpq5b	f	1965-05-29 00:00:00+00
+400	2	R	1965-06-13	\N	\N	f	11	134	session_jTMVonAn	f	1965-06-13 00:00:00+00
+401	1	QB	1965-06-11	\N	\N	f	1	134	session_zJQlsZMo	f	1965-06-11 00:00:00+00
+402	\N	QB	1965-06-12	\N	\N	f	1	134	session_yeHn2bHS	f	1965-06-12 00:00:00+00
+403	2	R	1965-06-27	\N	\N	f	11	135	session_bwqQa9U3	f	1965-06-27 00:00:00+00
+404	1	QB	1965-06-25	\N	\N	f	1	135	session_T1ZecNNa	f	1965-06-25 00:00:00+00
+405	\N	QB	1965-06-26	\N	\N	f	1	135	session_dGAOqyYg	f	1965-06-26 00:00:00+00
+406	2	R	1965-07-10	\N	\N	f	11	136	session_pedAqpvu	f	1965-07-10 00:00:00+00
+407	1	QB	1965-07-08	\N	\N	f	1	136	session_rqY4JBWs	f	1965-07-08 00:00:00+00
+408	\N	QB	1965-07-09	\N	\N	f	1	136	session_lSq4NYK6	f	1965-07-09 00:00:00+00
+409	2	R	1965-07-18	\N	\N	f	11	137	session_WQgybkDk	f	1965-07-18 00:00:00+00
+410	1	QB	1965-07-16	\N	\N	f	1	137	session_xSXCCMkf	f	1965-07-16 00:00:00+00
+411	\N	QB	1965-07-17	\N	\N	f	1	137	session_FaHXP5Wd	f	1965-07-17 00:00:00+00
+412	2	R	1965-08-01	\N	\N	f	11	138	session_PYJX0rFA	f	1965-08-01 00:00:00+00
+413	1	QB	1965-07-30	\N	\N	f	1	138	session_EzH8KYOE	f	1965-07-30 00:00:00+00
+414	\N	QB	1965-07-31	\N	\N	f	1	138	session_egNKRn7W	f	1965-07-31 00:00:00+00
+415	2	R	1965-09-12	\N	\N	f	11	139	session_6qw7Gxcs	f	1965-09-12 00:00:00+00
+416	1	QB	1965-09-10	\N	\N	f	1	139	session_jSqIJz8s	f	1965-09-10 00:00:00+00
+417	\N	QB	1965-09-11	\N	\N	f	1	139	session_uC40jaAF	f	1965-09-11 00:00:00+00
+418	2	R	1965-10-03	\N	\N	f	11	140	session_7mhlid7e	f	1965-10-03 00:00:00+00
+419	1	QB	1965-10-01	\N	\N	f	1	140	session_fjemCn8S	f	1965-10-01 00:00:00+00
+420	\N	QB	1965-10-02	\N	\N	f	1	140	session_gSTuTvDj	f	1965-10-02 00:00:00+00
+421	2	R	1965-10-24	\N	\N	f	11	141	session_uHVtXxE3	f	1965-10-24 00:00:00+00
+422	1	QB	1965-10-22	\N	\N	f	1	141	session_7vNMjhf3	f	1965-10-22 00:00:00+00
+423	\N	QB	1965-10-23	\N	\N	f	1	141	session_Jp4qnev7	f	1965-10-23 00:00:00+00
+424	2	R	1966-05-22	\N	\N	f	11	142	session_aOabDZVT	f	1966-05-22 00:00:00+00
+425	1	QB	1966-05-19	\N	\N	f	1	142	session_U5Zr7Vzi	f	1966-05-19 00:00:00+00
+426	\N	QB	1966-05-21	\N	\N	f	1	142	session_GxTIwHwR	f	1966-05-21 00:00:00+00
+427	2	R	1966-06-12	\N	\N	f	11	143	session_lrDtlh8U	f	1966-06-12 00:00:00+00
+428	1	QB	1966-06-10	\N	\N	f	1	143	session_VgjNfFdZ	f	1966-06-10 00:00:00+00
+429	\N	QB	1966-06-11	\N	\N	f	1	143	session_j4LfqWzW	f	1966-06-11 00:00:00+00
+430	2	R	1966-07-03	\N	\N	f	11	144	session_S3AzpU5M	f	1966-07-03 00:00:00+00
+431	1	QB	1966-07-01	\N	\N	f	1	144	session_EXnQaWBo	f	1966-07-01 00:00:00+00
+432	\N	QB	1966-07-02	\N	\N	f	1	144	session_qNxqKkwA	f	1966-07-02 00:00:00+00
+433	2	R	1966-07-16	\N	\N	f	11	145	session_cjnXZhax	f	1966-07-16 00:00:00+00
+434	1	QB	1966-07-14	\N	\N	f	1	145	session_BNsFHmQn	f	1966-07-14 00:00:00+00
+435	\N	QB	1966-07-15	\N	\N	f	1	145	session_X6dZdxBa	f	1966-07-15 00:00:00+00
+436	2	R	1966-07-24	\N	\N	f	11	146	session_kyeGbdOP	f	1966-07-24 00:00:00+00
+437	1	QB	1966-07-22	\N	\N	f	1	146	session_OtXmgtgL	f	1966-07-22 00:00:00+00
+438	\N	QB	1966-07-23	\N	\N	f	1	146	session_gBoYiZ78	f	1966-07-23 00:00:00+00
+439	2	R	1966-08-07	\N	\N	f	11	147	session_yQ5VoT55	f	1966-08-07 00:00:00+00
+440	1	QB	1966-08-05	\N	\N	f	1	147	session_9LXCsMU8	f	1966-08-05 00:00:00+00
+441	\N	QB	1966-08-06	\N	\N	f	1	147	session_m1KL4ZgN	f	1966-08-06 00:00:00+00
+442	2	R	1966-09-04	\N	\N	f	11	148	session_lbBvK6T5	f	1966-09-04 00:00:00+00
+443	1	QB	1966-09-02	\N	\N	f	1	148	session_0xYWH6OP	f	1966-09-02 00:00:00+00
+444	\N	QB	1966-09-03	\N	\N	f	1	148	session_ZaUHmos6	f	1966-09-03 00:00:00+00
+445	2	R	1966-10-02	\N	\N	f	11	149	session_a9DF71Dw	f	1966-10-02 00:00:00+00
+446	1	QB	1966-09-30	\N	\N	f	1	149	session_Gf5x6Llt	f	1966-09-30 00:00:00+00
+447	\N	QB	1966-10-01	\N	\N	f	1	149	session_eESBH0bS	f	1966-10-01 00:00:00+00
+448	2	R	1966-10-23	\N	\N	f	11	150	session_xd0Xu2Xf	f	1966-10-23 00:00:00+00
+449	1	QB	1966-10-21	\N	\N	f	1	150	session_5opo7mKw	f	1966-10-21 00:00:00+00
+450	\N	QB	1966-10-22	\N	\N	f	1	150	session_JBqB9nei	f	1966-10-22 00:00:00+00
+451	2	R	1967-01-02	\N	\N	f	11	151	session_UlegZ0Tm	f	1967-01-02 00:00:00+00
+452	1	QB	1966-12-31	\N	\N	f	1	151	session_wXaH59vt	f	1966-12-31 00:00:00+00
+453	\N	QB	1967-01-01	\N	\N	f	1	151	session_F5VoTIsG	f	1967-01-01 00:00:00+00
+454	2	R	1967-05-07	\N	\N	f	11	152	session_wWi4ANlP	f	1967-05-07 00:00:00+00
+455	1	QB	1967-05-04	\N	\N	f	1	152	session_IsLvhCmK	f	1967-05-04 00:00:00+00
+456	\N	QB	1967-05-06	\N	\N	f	1	152	session_eu7R8xNO	f	1967-05-06 00:00:00+00
+457	2	R	1967-06-04	\N	\N	f	11	153	session_0JXzTnDP	f	1967-06-04 00:00:00+00
+458	1	QB	1967-06-02	\N	\N	f	1	153	session_RDD7GREs	f	1967-06-02 00:00:00+00
+459	\N	QB	1967-06-03	\N	\N	f	1	153	session_WrMo0SBn	f	1967-06-03 00:00:00+00
+460	2	R	1967-06-18	\N	\N	f	11	154	session_CWmTQQMk	f	1967-06-18 00:00:00+00
+461	1	QB	1967-06-16	\N	\N	f	1	154	session_AXuuDuyr	f	1967-06-16 00:00:00+00
+462	\N	QB	1967-06-17	\N	\N	f	1	154	session_10wu0Lpd	f	1967-06-17 00:00:00+00
+463	2	R	1967-07-02	\N	\N	f	11	155	session_xaa2a6xt	f	1967-07-02 00:00:00+00
+464	1	QB	1967-06-30	\N	\N	f	1	155	session_8LP9a3OL	f	1967-06-30 00:00:00+00
+465	\N	QB	1967-07-01	\N	\N	f	1	155	session_bX6jhQIr	f	1967-07-01 00:00:00+00
+466	2	R	1967-07-15	\N	\N	f	11	156	session_sP96UBrf	f	1967-07-15 00:00:00+00
+467	1	QB	1967-07-13	\N	\N	f	1	156	session_AGkmNZtD	f	1967-07-13 00:00:00+00
+468	\N	QB	1967-07-14	\N	\N	f	1	156	session_zVSxVn9D	f	1967-07-14 00:00:00+00
+469	2	R	1967-08-06	\N	\N	f	11	157	session_RF2JFS6A	f	1967-08-06 00:00:00+00
+470	1	QB	1967-08-04	\N	\N	f	1	157	session_LUvTMj42	f	1967-08-04 00:00:00+00
+471	\N	QB	1967-08-05	\N	\N	f	1	157	session_TyukAAWq	f	1967-08-05 00:00:00+00
+472	2	R	1967-08-27	\N	\N	f	11	158	session_Jmai6N0J	f	1967-08-27 00:00:00+00
+473	1	QB	1967-08-25	\N	\N	f	1	158	session_cXjVrl2M	f	1967-08-25 00:00:00+00
+474	\N	QB	1967-08-26	\N	\N	f	1	158	session_qdOKxhdI	f	1967-08-26 00:00:00+00
+475	2	R	1967-09-10	\N	\N	f	11	159	session_BcHNjZcf	f	1967-09-10 00:00:00+00
+476	1	QB	1967-09-08	\N	\N	f	1	159	session_ISsNC67V	f	1967-09-08 00:00:00+00
+477	\N	QB	1967-09-09	\N	\N	f	1	159	session_iPIJQg0Q	f	1967-09-09 00:00:00+00
+478	2	R	1967-10-01	\N	\N	f	11	160	session_XUB94ttl	f	1967-10-01 00:00:00+00
+479	1	QB	1967-09-29	\N	\N	f	1	160	session_PGumyfvA	f	1967-09-29 00:00:00+00
+480	\N	QB	1967-09-30	\N	\N	f	1	160	session_Wf794dEJ	f	1967-09-30 00:00:00+00
+481	2	R	1967-10-22	\N	\N	f	11	161	session_SKNTBRWW	f	1967-10-22 00:00:00+00
+482	1	QB	1967-10-20	\N	\N	f	1	161	session_XXrvosVn	f	1967-10-20 00:00:00+00
+483	\N	QB	1967-10-21	\N	\N	f	1	161	session_PL64oHAo	f	1967-10-21 00:00:00+00
+484	2	R	1968-01-01	\N	\N	f	11	162	session_faqD5aoQ	f	1968-01-01 00:00:00+00
+485	1	QB	1967-12-30	\N	\N	f	1	162	session_okSyfHSO	f	1967-12-30 00:00:00+00
+486	\N	QB	1967-12-31	\N	\N	f	1	162	session_2FYgCBz3	f	1967-12-31 00:00:00+00
+487	2	R	1968-05-12	\N	\N	f	11	163	session_xJ239CvL	f	1968-05-12 00:00:00+00
+488	1	QB	1968-05-10	\N	\N	f	1	163	session_ww2Wcyst	f	1968-05-10 00:00:00+00
+489	\N	QB	1968-05-11	\N	\N	f	1	163	session_wyBzxo42	f	1968-05-11 00:00:00+00
+490	2	R	1968-05-26	\N	\N	f	11	164	session_x1Jlf2oo	f	1968-05-26 00:00:00+00
+491	1	QB	1968-05-23	\N	\N	f	1	164	session_iM6WRpXv	f	1968-05-23 00:00:00+00
+492	\N	QB	1968-05-25	\N	\N	f	1	164	session_xXagKZpm	f	1968-05-25 00:00:00+00
+493	2	R	1968-06-09	\N	\N	f	11	165	session_ZFTLP2dm	f	1968-06-09 00:00:00+00
+494	1	QB	1968-06-07	\N	\N	f	1	165	session_IlDrGUoY	f	1968-06-07 00:00:00+00
+495	\N	QB	1968-06-08	\N	\N	f	1	165	session_XoDKxcdG	f	1968-06-08 00:00:00+00
+496	2	R	1968-06-23	\N	\N	f	11	166	session_nmupSwdA	f	1968-06-23 00:00:00+00
+497	1	QB	1968-06-21	\N	\N	f	1	166	session_8OVjLTO7	f	1968-06-21 00:00:00+00
+498	\N	QB	1968-06-22	\N	\N	f	1	166	session_nXQpncHs	f	1968-06-22 00:00:00+00
+499	2	R	1968-07-07	\N	\N	f	11	167	session_kGbdclHo	f	1968-07-07 00:00:00+00
+500	1	QB	1968-07-05	\N	\N	f	1	167	session_vxaffLgZ	f	1968-07-05 00:00:00+00
+501	\N	QB	1968-07-06	\N	\N	f	1	167	session_9bRNlUBl	f	1968-07-06 00:00:00+00
+502	2	R	1968-07-20	\N	\N	f	11	168	session_ylCOtdvQ	f	1968-07-20 00:00:00+00
+503	1	QB	1968-07-18	\N	\N	f	1	168	session_IKPMdCaA	f	1968-07-18 00:00:00+00
+504	\N	QB	1968-07-19	\N	\N	f	1	168	session_zsg0ISIL	f	1968-07-19 00:00:00+00
+505	2	R	1968-08-04	\N	\N	f	11	169	session_MkiGXvsF	f	1968-08-04 00:00:00+00
+506	1	QB	1968-08-02	\N	\N	f	1	169	session_rWfL75Al	f	1968-08-02 00:00:00+00
+507	\N	QB	1968-08-03	\N	\N	f	1	169	session_EfJahBwT	f	1968-08-03 00:00:00+00
+508	2	R	1968-09-08	\N	\N	f	11	170	session_vpmQZ0wI	f	1968-09-08 00:00:00+00
+509	1	QB	1968-09-06	\N	\N	f	1	170	session_Lit0t9Yg	f	1968-09-06 00:00:00+00
+510	\N	QB	1968-09-07	\N	\N	f	1	170	session_trZ89EVF	f	1968-09-07 00:00:00+00
+511	2	R	1968-09-22	\N	\N	f	11	171	session_sacYYBsz	f	1968-09-22 00:00:00+00
+512	1	QB	1968-09-20	\N	\N	f	1	171	session_MSNxIP7p	f	1968-09-20 00:00:00+00
+513	\N	QB	1968-09-21	\N	\N	f	1	171	session_ftxV2vWE	f	1968-09-21 00:00:00+00
+514	2	R	1968-10-06	\N	\N	f	11	172	session_7IsPcVYo	f	1968-10-06 00:00:00+00
+515	1	QB	1968-10-04	\N	\N	f	1	172	session_Qy6qA8v0	f	1968-10-04 00:00:00+00
+516	\N	QB	1968-10-05	\N	\N	f	1	172	session_5PRpE7Nv	f	1968-10-05 00:00:00+00
+517	2	R	1968-11-03	\N	\N	f	11	173	session_puRFM6k7	f	1968-11-03 00:00:00+00
+518	1	QB	1968-11-01	\N	\N	f	1	173	session_7pjStcox	f	1968-11-01 00:00:00+00
+519	\N	QB	1968-11-02	\N	\N	f	1	173	session_VmjkkKM4	f	1968-11-02 00:00:00+00
+520	2	R	1969-03-01	\N	\N	f	11	174	session_SbEePcC9	f	1969-03-01 00:00:00+00
+521	1	QB	1969-02-27	\N	\N	f	1	174	session_Jr829RDF	f	1969-02-27 00:00:00+00
+522	\N	QB	1969-02-28	\N	\N	f	1	174	session_En5hnEiN	f	1969-02-28 00:00:00+00
+523	2	R	1969-05-04	\N	\N	f	11	175	session_PTBhfGSv	f	1969-05-04 00:00:00+00
+524	1	QB	1969-05-02	\N	\N	f	1	175	session_JGFbdEF7	f	1969-05-02 00:00:00+00
+525	\N	QB	1969-05-03	\N	\N	f	1	175	session_ZwqzczMx	f	1969-05-03 00:00:00+00
+526	2	R	1969-05-18	\N	\N	f	11	176	session_Ub9aK38p	f	1969-05-18 00:00:00+00
+527	1	QB	1969-05-15	\N	\N	f	1	176	session_PToResJJ	f	1969-05-15 00:00:00+00
+528	\N	QB	1969-05-17	\N	\N	f	1	176	session_qoXcvXSr	f	1969-05-17 00:00:00+00
+529	2	R	1969-06-21	\N	\N	f	11	177	session_U58da3Se	f	1969-06-21 00:00:00+00
+530	1	QB	1969-06-19	\N	\N	f	1	177	session_S1OrH4rP	f	1969-06-19 00:00:00+00
+531	\N	QB	1969-06-20	\N	\N	f	1	177	session_42mhaRL3	f	1969-06-20 00:00:00+00
+532	2	R	1969-07-06	\N	\N	f	11	178	session_AQMzmPg6	f	1969-07-06 00:00:00+00
+533	1	QB	1969-07-04	\N	\N	f	1	178	session_v8KvEsI8	f	1969-07-04 00:00:00+00
+534	\N	QB	1969-07-05	\N	\N	f	1	178	session_OYK5Q6Fc	f	1969-07-05 00:00:00+00
+535	2	R	1969-07-19	\N	\N	f	11	179	session_6hKL4ZEE	f	1969-07-19 00:00:00+00
+536	1	QB	1969-07-17	\N	\N	f	1	179	session_Fs7GZ9Bx	f	1969-07-17 00:00:00+00
+537	\N	QB	1969-07-18	\N	\N	f	1	179	session_5tfakOYx	f	1969-07-18 00:00:00+00
+538	2	R	1969-08-03	\N	\N	f	11	180	session_AedWFXBa	f	1969-08-03 00:00:00+00
+539	1	QB	1969-08-01	\N	\N	f	1	180	session_0zF9Xnbl	f	1969-08-01 00:00:00+00
+540	\N	QB	1969-08-02	\N	\N	f	1	180	session_iMP0A62l	f	1969-08-02 00:00:00+00
+541	2	R	1969-09-07	\N	\N	f	11	181	session_hnZuHSaH	f	1969-09-07 00:00:00+00
+542	1	QB	1969-09-05	\N	\N	f	1	181	session_lqxSpSGw	f	1969-09-05 00:00:00+00
+543	\N	QB	1969-09-06	\N	\N	f	1	181	session_UGprSGf5	f	1969-09-06 00:00:00+00
+544	2	R	1969-09-20	\N	\N	f	11	182	session_KN5SIOqx	f	1969-09-20 00:00:00+00
+545	1	QB	1969-09-18	\N	\N	f	1	182	session_SCdEkDmi	f	1969-09-18 00:00:00+00
+546	\N	QB	1969-09-19	\N	\N	f	1	182	session_3h5i2arQ	f	1969-09-19 00:00:00+00
+547	2	R	1969-10-05	\N	\N	f	11	183	session_duPErtmz	f	1969-10-05 00:00:00+00
+548	1	QB	1969-10-03	\N	\N	f	1	183	session_NoZdzUML	f	1969-10-03 00:00:00+00
+549	\N	QB	1969-10-04	\N	\N	f	1	183	session_QvhTXbj3	f	1969-10-04 00:00:00+00
+550	2	R	1969-10-19	\N	\N	f	11	184	session_fUVcKfa0	f	1969-10-19 00:00:00+00
+551	1	QB	1969-10-17	\N	\N	f	1	184	session_2CuMvv79	f	1969-10-17 00:00:00+00
+552	\N	QB	1969-10-18	\N	\N	f	1	184	session_wArGTKEk	f	1969-10-18 00:00:00+00
+553	2	R	1970-03-07	\N	\N	f	11	185	session_LHiORbpv	f	1970-03-07 00:00:00+00
+554	1	QB	1970-03-05	\N	\N	f	1	185	session_ywpYOh0r	f	1970-03-05 00:00:00+00
+555	\N	QB	1970-03-06	\N	\N	f	1	185	session_PfYNGqW2	f	1970-03-06 00:00:00+00
+556	2	R	1970-04-19	\N	\N	f	11	186	session_5tagljYY	f	1970-04-19 00:00:00+00
+557	1	QB	1970-04-17	\N	\N	f	1	186	session_0eva3O91	f	1970-04-17 00:00:00+00
+558	\N	QB	1970-04-18	\N	\N	f	1	186	session_XJBpf6wu	f	1970-04-18 00:00:00+00
+559	2	R	1970-05-10	\N	\N	f	11	187	session_39G2uE6v	f	1970-05-10 00:00:00+00
+560	1	QB	1970-05-07	\N	\N	f	1	187	session_Es9g4r6z	f	1970-05-07 00:00:00+00
+561	\N	QB	1970-05-09	\N	\N	f	1	187	session_HtrcyjQj	f	1970-05-09 00:00:00+00
+562	2	R	1970-06-07	\N	\N	f	11	188	session_Xyd1roqH	f	1970-06-07 00:00:00+00
+563	1	QB	1970-06-05	\N	\N	f	1	188	session_nlhjb7OW	f	1970-06-05 00:00:00+00
+564	\N	QB	1970-06-06	\N	\N	f	1	188	session_2LlF7G2Q	f	1970-06-06 00:00:00+00
+565	2	R	1970-06-21	\N	\N	f	11	189	session_p0WcQtwt	f	1970-06-21 00:00:00+00
+566	1	QB	1970-06-19	\N	\N	f	1	189	session_B1jraGMu	f	1970-06-19 00:00:00+00
+567	\N	QB	1970-06-20	\N	\N	f	1	189	session_3HO8I4ur	f	1970-06-20 00:00:00+00
+568	2	R	1970-07-05	\N	\N	f	11	190	session_j84L8oHp	f	1970-07-05 00:00:00+00
+569	1	QB	1970-07-03	\N	\N	f	1	190	session_RIdxnK7O	f	1970-07-03 00:00:00+00
+570	\N	QB	1970-07-04	\N	\N	f	1	190	session_eA7FSIQk	f	1970-07-04 00:00:00+00
+571	2	R	1970-07-18	\N	\N	f	11	191	session_p83qIj6b	f	1970-07-18 00:00:00+00
+572	1	QB	1970-07-16	\N	\N	f	1	191	session_byoZW4Zv	f	1970-07-16 00:00:00+00
+573	\N	QB	1970-07-17	\N	\N	f	1	191	session_WPAKAwHG	f	1970-07-17 00:00:00+00
+574	2	R	1970-08-02	\N	\N	f	11	192	session_RD6uQUVp	f	1970-08-02 00:00:00+00
+575	1	QB	1970-07-31	\N	\N	f	1	192	session_rIyn5juy	f	1970-07-31 00:00:00+00
+576	\N	QB	1970-08-01	\N	\N	f	1	192	session_kiFca8BI	f	1970-08-01 00:00:00+00
+577	2	R	1970-08-16	\N	\N	f	11	193	session_tZ8FgmWj	f	1970-08-16 00:00:00+00
+578	1	QB	1970-08-14	\N	\N	f	1	193	session_Xc7LHAFK	f	1970-08-14 00:00:00+00
+579	\N	QB	1970-08-15	\N	\N	f	1	193	session_GXh76lIm	f	1970-08-15 00:00:00+00
+580	2	R	1970-09-06	\N	\N	f	11	194	session_XcrWsNCA	f	1970-09-06 00:00:00+00
+581	1	QB	1970-09-04	\N	\N	f	1	194	session_uS62coYS	f	1970-09-04 00:00:00+00
+582	\N	QB	1970-09-05	\N	\N	f	1	194	session_r2eNHNS9	f	1970-09-05 00:00:00+00
+583	2	R	1970-09-20	\N	\N	f	11	195	session_eWKc38Rv	f	1970-09-20 00:00:00+00
+584	1	QB	1970-09-18	\N	\N	f	1	195	session_gyPMbVem	f	1970-09-18 00:00:00+00
+585	\N	QB	1970-09-19	\N	\N	f	1	195	session_u1fOJCIU	f	1970-09-19 00:00:00+00
+586	2	R	1970-10-04	\N	\N	f	11	196	session_ge7ebKlg	f	1970-10-04 00:00:00+00
+587	1	QB	1970-10-02	\N	\N	f	1	196	session_QjzPNfbo	f	1970-10-02 00:00:00+00
+588	\N	QB	1970-10-03	\N	\N	f	1	196	session_aI2kSark	f	1970-10-03 00:00:00+00
+589	2	R	1970-10-25	\N	\N	f	11	197	session_QfMADVVc	f	1970-10-25 00:00:00+00
+590	1	QB	1970-10-23	\N	\N	f	1	197	session_tiC2kTOr	f	1970-10-23 00:00:00+00
+591	\N	QB	1970-10-24	\N	\N	f	1	197	session_16ZvCely	f	1970-10-24 00:00:00+00
+592	2	R	1971-03-06	\N	\N	f	11	198	session_NdXylKsz	f	1971-03-06 00:00:00+00
+593	1	QB	1971-03-04	\N	\N	f	1	198	session_5ei2hoOt	f	1971-03-04 00:00:00+00
+594	\N	QB	1971-03-05	\N	\N	f	1	198	session_SR3bLbl6	f	1971-03-05 00:00:00+00
+595	2	R	1971-04-18	\N	\N	f	11	199	session_BUg1qNe1	f	1971-04-18 00:00:00+00
+596	1	QB	1971-04-16	\N	\N	f	1	199	session_aS7pHdyu	f	1971-04-16 00:00:00+00
+597	\N	QB	1971-04-17	\N	\N	f	1	199	session_C8D2eCwK	f	1971-04-17 00:00:00+00
+598	2	R	1971-05-23	\N	\N	f	11	200	session_O020oAk5	f	1971-05-23 00:00:00+00
+599	1	QB	1971-05-20	\N	\N	f	1	200	session_gYEKEWqy	f	1971-05-20 00:00:00+00
+600	\N	QB	1971-05-22	\N	\N	f	1	200	session_cQeeeRWx	f	1971-05-22 00:00:00+00
+601	2	R	1971-06-20	\N	\N	f	11	201	session_ivsdA7YN	f	1971-06-20 00:00:00+00
+602	1	QB	1971-06-18	\N	\N	f	1	201	session_l7lxZBNg	f	1971-06-18 00:00:00+00
+603	\N	QB	1971-06-19	\N	\N	f	1	201	session_5QlKUS1d	f	1971-06-19 00:00:00+00
+604	2	R	1971-07-04	\N	\N	f	11	202	session_5rIjdIy8	f	1971-07-04 00:00:00+00
+605	1	QB	1971-07-02	\N	\N	f	1	202	session_m22YwD9h	f	1971-07-02 00:00:00+00
+606	\N	QB	1971-07-03	\N	\N	f	1	202	session_fdavPb2o	f	1971-07-03 00:00:00+00
+607	2	R	1971-07-17	\N	\N	f	11	203	session_dUdTY9Lt	f	1971-07-17 00:00:00+00
+608	1	QB	1971-07-15	\N	\N	f	1	203	session_xJWhMNj4	f	1971-07-15 00:00:00+00
+609	\N	QB	1971-07-16	\N	\N	f	1	203	session_MRVCrhHM	f	1971-07-16 00:00:00+00
+610	2	R	1971-08-01	\N	\N	f	11	204	session_qxPyu3ss	f	1971-08-01 00:00:00+00
+611	1	QB	1971-07-30	\N	\N	f	1	204	session_yEp5iAmC	f	1971-07-30 00:00:00+00
+612	\N	QB	1971-07-31	\N	\N	f	1	204	session_TwyRDeYZ	f	1971-07-31 00:00:00+00
+613	2	R	1971-08-15	\N	\N	f	11	205	session_41HAlHbp	f	1971-08-15 00:00:00+00
+614	1	QB	1971-08-13	\N	\N	f	1	205	session_KvM6AZzk	f	1971-08-13 00:00:00+00
+615	\N	QB	1971-08-14	\N	\N	f	1	205	session_CAN75tkB	f	1971-08-14 00:00:00+00
+616	2	R	1971-09-05	\N	\N	f	11	206	session_9GWpPqzM	f	1971-09-05 00:00:00+00
+617	1	QB	1971-09-03	\N	\N	f	1	206	session_28sTkKY5	f	1971-09-03 00:00:00+00
+618	\N	QB	1971-09-04	\N	\N	f	1	206	session_CdbGAaIO	f	1971-09-04 00:00:00+00
+619	2	R	1971-09-19	\N	\N	f	11	207	session_uRvCCNA8	f	1971-09-19 00:00:00+00
+620	1	QB	1971-09-17	\N	\N	f	1	207	session_G32RauwU	f	1971-09-17 00:00:00+00
+621	\N	QB	1971-09-18	\N	\N	f	1	207	session_ks1wRKoZ	f	1971-09-18 00:00:00+00
+622	2	R	1971-10-03	\N	\N	f	11	208	session_9k3sIBA7	f	1971-10-03 00:00:00+00
+623	1	QB	1971-10-01	\N	\N	f	1	208	session_RLjsmarC	f	1971-10-01 00:00:00+00
+624	\N	QB	1971-10-02	\N	\N	f	1	208	session_CxKWM9i2	f	1971-10-02 00:00:00+00
+625	2	R	1972-01-23	\N	\N	f	11	209	session_VP30JIy5	f	1972-01-23 00:00:00+00
+626	1	QB	1972-01-21	\N	\N	f	1	209	session_gvs5DTJ4	f	1972-01-21 00:00:00+00
+627	\N	QB	1972-01-22	\N	\N	f	1	209	session_91B3lBw1	f	1972-01-22 00:00:00+00
+628	2	R	1972-03-04	\N	\N	f	11	210	session_ZYMumT2a	f	1972-03-04 00:00:00+00
+629	1	QB	1972-03-02	\N	\N	f	1	210	session_1SJIKbiJ	f	1972-03-02 00:00:00+00
+630	\N	QB	1972-03-03	\N	\N	f	1	210	session_47c6KWzv	f	1972-03-03 00:00:00+00
+631	2	R	1972-05-01	\N	\N	f	11	211	session_FbT0yiHf	f	1972-05-01 00:00:00+00
+632	1	QB	1972-04-29	\N	\N	f	1	211	session_194fHbzp	f	1972-04-29 00:00:00+00
+633	\N	QB	1972-04-30	\N	\N	f	1	211	session_zCdYNVNV	f	1972-04-30 00:00:00+00
+634	2	R	1972-05-14	\N	\N	f	11	212	session_ZnOzGBM7	f	1972-05-14 00:00:00+00
+635	1	QB	1972-05-11	\N	\N	f	1	212	session_9fO9IRGC	f	1972-05-11 00:00:00+00
+636	\N	QB	1972-05-13	\N	\N	f	1	212	session_VOc5cqu7	f	1972-05-13 00:00:00+00
+637	2	R	1972-06-04	\N	\N	f	11	213	session_1axx2Snl	f	1972-06-04 00:00:00+00
+638	1	QB	1972-06-02	\N	\N	f	1	213	session_rmjtxTFf	f	1972-06-02 00:00:00+00
+639	\N	QB	1972-06-03	\N	\N	f	1	213	session_DYPvjmk5	f	1972-06-03 00:00:00+00
+640	2	R	1972-07-02	\N	\N	f	11	214	session_Cjwmf0Rn	f	1972-07-02 00:00:00+00
+641	1	QB	1972-06-30	\N	\N	f	1	214	session_icjNocdj	f	1972-06-30 00:00:00+00
+642	\N	QB	1972-07-01	\N	\N	f	1	214	session_9oxz5MaV	f	1972-07-01 00:00:00+00
+643	2	R	1972-07-15	\N	\N	f	11	215	session_iWXNEcPs	f	1972-07-15 00:00:00+00
+644	1	QB	1972-07-13	\N	\N	f	1	215	session_KDvCbKvc	f	1972-07-13 00:00:00+00
+645	\N	QB	1972-07-14	\N	\N	f	1	215	session_68QlJWSG	f	1972-07-14 00:00:00+00
+646	2	R	1972-07-30	\N	\N	f	11	216	session_1KeXy92W	f	1972-07-30 00:00:00+00
+647	1	QB	1972-07-28	\N	\N	f	1	216	session_KFDQOBdc	f	1972-07-28 00:00:00+00
+648	\N	QB	1972-07-29	\N	\N	f	1	216	session_5FM7fY2C	f	1972-07-29 00:00:00+00
+649	2	R	1972-08-13	\N	\N	f	11	217	session_7sYHx2gv	f	1972-08-13 00:00:00+00
+650	1	QB	1972-08-11	\N	\N	f	1	217	session_J36KydYM	f	1972-08-11 00:00:00+00
+651	\N	QB	1972-08-12	\N	\N	f	1	217	session_c2Fr8cEj	f	1972-08-12 00:00:00+00
+652	2	R	1972-09-10	\N	\N	f	11	218	session_DVrINaS4	f	1972-09-10 00:00:00+00
+653	1	QB	1972-09-08	\N	\N	f	1	218	session_3p3qMAZ9	f	1972-09-08 00:00:00+00
+654	\N	QB	1972-09-09	\N	\N	f	1	218	session_2JCWcA9R	f	1972-09-09 00:00:00+00
+655	2	R	1972-09-24	\N	\N	f	11	219	session_C5DxHbjO	f	1972-09-24 00:00:00+00
+656	1	QB	1972-09-22	\N	\N	f	1	219	session_cGbXyeyl	f	1972-09-22 00:00:00+00
+657	\N	QB	1972-09-23	\N	\N	f	1	219	session_xMDBPdeq	f	1972-09-23 00:00:00+00
+658	2	R	1972-10-08	\N	\N	f	11	220	session_9NZwWOaK	f	1972-10-08 00:00:00+00
+659	1	QB	1972-10-06	\N	\N	f	1	220	session_cFgXsTLR	f	1972-10-06 00:00:00+00
+660	\N	QB	1972-10-07	\N	\N	f	1	220	session_g7KmoQjb	f	1972-10-07 00:00:00+00
+661	2	R	1973-01-28	\N	\N	f	11	221	session_yDMVBKz7	f	1973-01-28 00:00:00+00
+662	1	QB	1973-01-26	\N	\N	f	1	221	session_k1byN4QN	f	1973-01-26 00:00:00+00
+663	\N	QB	1973-01-27	\N	\N	f	1	221	session_Hom5IHYQ	f	1973-01-27 00:00:00+00
+664	2	R	1973-02-11	\N	\N	f	11	222	session_5bSKmIjz	f	1973-02-11 00:00:00+00
+665	1	QB	1973-02-09	\N	\N	f	1	222	session_TNbnmFD0	f	1973-02-09 00:00:00+00
+666	\N	QB	1973-02-10	\N	\N	f	1	222	session_7G10Xri6	f	1973-02-10 00:00:00+00
+667	2	R	1973-03-03	\N	\N	f	11	223	session_fHGNGbgd	f	1973-03-03 00:00:00+00
+668	1	QB	1973-03-01	\N	\N	f	1	223	session_7rC0ySRR	f	1973-03-01 00:00:00+00
+669	\N	QB	1973-03-02	\N	\N	f	1	223	session_4Z7kKPCc	f	1973-03-02 00:00:00+00
+670	2	R	1973-04-29	\N	\N	f	11	224	session_tL7pNGv4	f	1973-04-29 00:00:00+00
+671	1	QB	1973-04-27	\N	\N	f	1	224	session_BefJlzKE	f	1973-04-27 00:00:00+00
+672	\N	QB	1973-04-28	\N	\N	f	1	224	session_3LnzU3Rl	f	1973-04-28 00:00:00+00
+673	2	R	1973-05-20	\N	\N	f	11	225	session_6aYN77F2	f	1973-05-20 00:00:00+00
+674	1	QB	1973-05-18	\N	\N	f	1	225	session_rrvSCqcf	f	1973-05-18 00:00:00+00
+675	\N	QB	1973-05-19	\N	\N	f	1	225	session_uqpeioeh	f	1973-05-19 00:00:00+00
+676	2	R	1973-06-03	\N	\N	f	11	226	session_Jf1BrZ4t	f	1973-06-03 00:00:00+00
+677	1	QB	1973-05-31	\N	\N	f	1	226	session_eIPv6Rg2	f	1973-05-31 00:00:00+00
+678	\N	QB	1973-06-02	\N	\N	f	1	226	session_5FRFJnua	f	1973-06-02 00:00:00+00
+679	2	R	1973-06-17	\N	\N	f	11	227	session_aKRZhXtE	f	1973-06-17 00:00:00+00
+680	1	QB	1973-06-15	\N	\N	f	1	227	session_kj8Worcc	f	1973-06-15 00:00:00+00
+681	\N	QB	1973-06-16	\N	\N	f	1	227	session_axTx0KXJ	f	1973-06-16 00:00:00+00
+682	2	R	1973-07-01	\N	\N	f	11	228	session_cnqsEu2M	f	1973-07-01 00:00:00+00
+683	1	QB	1973-06-29	\N	\N	f	1	228	session_BIW9i3a1	f	1973-06-29 00:00:00+00
+684	\N	QB	1973-06-30	\N	\N	f	1	228	session_Veisrt9S	f	1973-06-30 00:00:00+00
+685	2	R	1973-07-14	\N	\N	f	11	229	session_lJTvGGYN	f	1973-07-14 00:00:00+00
+686	1	QB	1973-07-12	\N	\N	f	1	229	session_KsQjANYJ	f	1973-07-12 00:00:00+00
+687	\N	QB	1973-07-13	\N	\N	f	1	229	session_MWR2IpAp	f	1973-07-13 00:00:00+00
+688	2	R	1973-07-29	\N	\N	f	11	230	session_sE28bDdq	f	1973-07-29 00:00:00+00
+689	1	QB	1973-07-27	\N	\N	f	1	230	session_vfvr4Wso	f	1973-07-27 00:00:00+00
+690	\N	QB	1973-07-28	\N	\N	f	1	230	session_qdLvgvEj	f	1973-07-28 00:00:00+00
+691	2	R	1973-08-05	\N	\N	f	11	231	session_ZCOgrBzd	f	1973-08-05 00:00:00+00
+692	1	QB	1973-08-03	\N	\N	f	1	231	session_O8mCp7bQ	f	1973-08-03 00:00:00+00
+693	\N	QB	1973-08-04	\N	\N	f	1	231	session_yK8ZeCfT	f	1973-08-04 00:00:00+00
+694	2	R	1973-08-19	\N	\N	f	11	232	session_hh3aBT6k	f	1973-08-19 00:00:00+00
+695	1	QB	1973-08-17	\N	\N	f	1	232	session_LWFCWdQa	f	1973-08-17 00:00:00+00
+696	\N	QB	1973-08-18	\N	\N	f	1	232	session_lWEzFZUd	f	1973-08-18 00:00:00+00
+697	2	R	1973-09-09	\N	\N	f	11	233	session_rd6n6y93	f	1973-09-09 00:00:00+00
+698	1	QB	1973-09-07	\N	\N	f	1	233	session_hAHhEanK	f	1973-09-07 00:00:00+00
+699	\N	QB	1973-09-08	\N	\N	f	1	233	session_qp6HbYy0	f	1973-09-08 00:00:00+00
+700	2	R	1973-09-23	\N	\N	f	11	234	session_6FaIL2LC	f	1973-09-23 00:00:00+00
+701	1	QB	1973-09-21	\N	\N	f	1	234	session_1SwduNi4	f	1973-09-21 00:00:00+00
+702	\N	QB	1973-09-22	\N	\N	f	1	234	session_gJCUKmwq	f	1973-09-22 00:00:00+00
+703	2	R	1973-10-07	\N	\N	f	11	235	session_aCwMw9M1	f	1973-10-07 00:00:00+00
+704	1	QB	1973-10-05	\N	\N	f	1	235	session_sAeqxXiZ	f	1973-10-05 00:00:00+00
+705	\N	QB	1973-10-06	\N	\N	f	1	235	session_9yVMagoU	f	1973-10-06 00:00:00+00
+706	2	R	1974-01-13	\N	\N	f	11	236	session_YS6TrG7K	f	1974-01-13 00:00:00+00
+707	1	QB	1974-01-11	\N	\N	f	1	236	session_wtgxmS7P	f	1974-01-11 00:00:00+00
+708	\N	QB	1974-01-12	\N	\N	f	1	236	session_28T0BEbq	f	1974-01-12 00:00:00+00
+709	2	R	1974-01-27	\N	\N	f	11	237	session_cfUA5UD2	f	1974-01-27 00:00:00+00
+710	1	QB	1974-01-25	\N	\N	f	1	237	session_QV7n2jIg	f	1974-01-25 00:00:00+00
+711	\N	QB	1974-01-26	\N	\N	f	1	237	session_eIL5uYkd	f	1974-01-26 00:00:00+00
+712	2	R	1974-03-30	\N	\N	f	11	238	session_EY99Mf24	f	1974-03-30 00:00:00+00
+713	1	QB	1974-03-28	\N	\N	f	1	238	session_ZdTlFS0o	f	1974-03-28 00:00:00+00
+714	\N	QB	1974-03-29	\N	\N	f	1	238	session_l3fInVQ6	f	1974-03-29 00:00:00+00
+715	2	R	1974-04-28	\N	\N	f	11	239	session_RDfAOcxy	f	1974-04-28 00:00:00+00
+716	1	QB	1974-04-26	\N	\N	f	1	239	session_rIBb1Qfk	f	1974-04-26 00:00:00+00
+717	\N	QB	1974-04-27	\N	\N	f	1	239	session_NzC6Tbtj	f	1974-04-27 00:00:00+00
+718	2	R	1974-05-12	\N	\N	f	11	240	session_vJUJzpTk	f	1974-05-12 00:00:00+00
+719	1	QB	1974-05-10	\N	\N	f	1	240	session_d7nEHPtW	f	1974-05-10 00:00:00+00
+720	\N	QB	1974-05-11	\N	\N	f	1	240	session_bauGwvhq	f	1974-05-11 00:00:00+00
+721	2	R	1974-05-26	\N	\N	f	11	241	session_mEjwvJyb	f	1974-05-26 00:00:00+00
+722	1	QB	1974-05-23	\N	\N	f	1	241	session_e1w7BeWF	f	1974-05-23 00:00:00+00
+723	\N	QB	1974-05-25	\N	\N	f	1	241	session_2HKYmLoO	f	1974-05-25 00:00:00+00
+724	2	R	1974-06-09	\N	\N	f	11	242	session_r2KnxDhQ	f	1974-06-09 00:00:00+00
+725	1	QB	1974-06-07	\N	\N	f	1	242	session_GFt8glYh	f	1974-06-07 00:00:00+00
+726	\N	QB	1974-06-08	\N	\N	f	1	242	session_0YGfi38y	f	1974-06-08 00:00:00+00
+727	2	R	1974-06-23	\N	\N	f	11	243	session_iqSvgcy6	f	1974-06-23 00:00:00+00
+728	1	QB	1974-06-21	\N	\N	f	1	243	session_5Mv7wKh7	f	1974-06-21 00:00:00+00
+729	\N	QB	1974-06-22	\N	\N	f	1	243	session_maJvouMf	f	1974-06-22 00:00:00+00
+730	2	R	1974-07-07	\N	\N	f	11	244	session_akOnFdwz	f	1974-07-07 00:00:00+00
+731	1	QB	1974-07-05	\N	\N	f	1	244	session_tRS0BTf7	f	1974-07-05 00:00:00+00
+732	\N	QB	1974-07-06	\N	\N	f	1	244	session_cwx3GcKj	f	1974-07-06 00:00:00+00
+733	2	R	1974-07-20	\N	\N	f	11	245	session_5Jn9xNT9	f	1974-07-20 00:00:00+00
+734	1	QB	1974-07-18	\N	\N	f	1	245	session_JZew9gGJ	f	1974-07-18 00:00:00+00
+735	\N	QB	1974-07-19	\N	\N	f	1	245	session_BRK3Zb4c	f	1974-07-19 00:00:00+00
+736	2	R	1974-08-04	\N	\N	f	11	246	session_nFKCFMO8	f	1974-08-04 00:00:00+00
+737	1	QB	1974-08-02	\N	\N	f	1	246	session_mGjihbWw	f	1974-08-02 00:00:00+00
+738	\N	QB	1974-08-03	\N	\N	f	1	246	session_ed2gSGHb	f	1974-08-03 00:00:00+00
+739	2	R	1974-08-18	\N	\N	f	11	247	session_R8NQnmSl	f	1974-08-18 00:00:00+00
+740	1	QB	1974-08-16	\N	\N	f	1	247	session_eho3fY0Y	f	1974-08-16 00:00:00+00
+741	\N	QB	1974-08-17	\N	\N	f	1	247	session_8vw49CKf	f	1974-08-17 00:00:00+00
+742	2	R	1974-09-08	\N	\N	f	11	248	session_k37xuuSH	f	1974-09-08 00:00:00+00
+743	1	QB	1974-09-06	\N	\N	f	1	248	session_EqEbJgvI	f	1974-09-06 00:00:00+00
+744	\N	QB	1974-09-07	\N	\N	f	1	248	session_cpgHDDo1	f	1974-09-07 00:00:00+00
+745	2	R	1974-09-22	\N	\N	f	11	249	session_bAV4mRKS	f	1974-09-22 00:00:00+00
+746	1	QB	1974-09-20	\N	\N	f	1	249	session_UrqXxoJB	f	1974-09-20 00:00:00+00
+747	\N	QB	1974-09-21	\N	\N	f	1	249	session_kUxAX3su	f	1974-09-21 00:00:00+00
+748	2	R	1974-10-06	\N	\N	f	11	250	session_SVrvmaKR	f	1974-10-06 00:00:00+00
+749	1	QB	1974-10-04	\N	\N	f	1	250	session_y3FE7fgP	f	1974-10-04 00:00:00+00
+750	\N	QB	1974-10-05	\N	\N	f	1	250	session_39AHmZqc	f	1974-10-05 00:00:00+00
+751	2	R	1975-01-12	\N	\N	f	12	251	session_rQXFQVZO	f	1975-01-12 00:00:00+00
+752	1	QB	1975-01-10	\N	\N	f	1	251	session_FzfFiDkQ	f	1975-01-10 00:00:00+00
+753	\N	QB	1975-01-11	\N	\N	f	1	251	session_XoKFpEbZ	f	1975-01-11 00:00:00+00
+754	2	R	1975-01-26	\N	\N	f	12	252	session_wydT5L8P	f	1975-01-26 00:00:00+00
+755	1	QB	1975-01-24	\N	\N	f	1	252	session_14PQCGOD	f	1975-01-24 00:00:00+00
+756	\N	QB	1975-01-25	\N	\N	f	1	252	session_2QRgi0WP	f	1975-01-25 00:00:00+00
+757	2	R	1975-03-01	\N	\N	f	12	253	session_cb5IsYzm	f	1975-03-01 00:00:00+00
+758	1	QB	1975-02-27	\N	\N	f	1	253	session_GekRCcqr	f	1975-02-27 00:00:00+00
+759	\N	QB	1975-02-28	\N	\N	f	1	253	session_tvJuNzT9	f	1975-02-28 00:00:00+00
+760	2	R	1975-04-27	\N	\N	f	12	254	session_KotWEdds	f	1975-04-27 00:00:00+00
+761	1	QB	1975-04-25	\N	\N	f	1	254	session_3gDz6Sua	f	1975-04-25 00:00:00+00
+762	\N	QB	1975-04-26	\N	\N	f	1	254	session_HXvfKzLY	f	1975-04-26 00:00:00+00
+763	2	R	1975-05-11	\N	\N	f	12	255	session_gbIh5nlR	f	1975-05-11 00:00:00+00
+764	1	QB	1975-05-08	\N	\N	f	1	255	session_RcRZWWxI	f	1975-05-08 00:00:00+00
+765	\N	QB	1975-05-10	\N	\N	f	1	255	session_w4SksrrG	f	1975-05-10 00:00:00+00
+766	2	R	1975-05-25	\N	\N	f	12	256	session_lNRvsHlW	f	1975-05-25 00:00:00+00
+767	1	QB	1975-05-23	\N	\N	f	1	256	session_nLG1gdT6	f	1975-05-23 00:00:00+00
+768	\N	QB	1975-05-24	\N	\N	f	1	256	session_dufXhofw	f	1975-05-24 00:00:00+00
+769	2	R	1975-06-08	\N	\N	f	12	257	session_RW3AGKBk	f	1975-06-08 00:00:00+00
+770	1	QB	1975-06-06	\N	\N	f	1	257	session_zB5ykmyD	f	1975-06-06 00:00:00+00
+771	\N	QB	1975-06-07	\N	\N	f	1	257	session_fHj33S4s	f	1975-06-07 00:00:00+00
+772	2	R	1975-06-22	\N	\N	f	12	258	session_tuxvjtaL	f	1975-06-22 00:00:00+00
+773	1	QB	1975-06-20	\N	\N	f	1	258	session_bpkCCMLj	f	1975-06-20 00:00:00+00
+774	\N	QB	1975-06-21	\N	\N	f	1	258	session_Tf5pbo01	f	1975-06-21 00:00:00+00
+775	2	R	1975-07-06	\N	\N	f	12	259	session_i2pFsfLn	f	1975-07-06 00:00:00+00
+776	1	QB	1975-07-04	\N	\N	f	1	259	session_nwkLbMtp	f	1975-07-04 00:00:00+00
+777	\N	QB	1975-07-05	\N	\N	f	1	259	session_jZNyLZ8J	f	1975-07-05 00:00:00+00
+778	2	R	1975-07-19	\N	\N	f	12	260	session_J8tlOPeN	f	1975-07-19 00:00:00+00
+779	1	QB	1975-07-17	\N	\N	f	1	260	session_PYsZd7zc	f	1975-07-17 00:00:00+00
+780	\N	QB	1975-07-18	\N	\N	f	1	260	session_ReuqkiXc	f	1975-07-18 00:00:00+00
+781	2	R	1975-08-03	\N	\N	f	12	261	session_RyFxztdu	f	1975-08-03 00:00:00+00
+782	1	QB	1975-08-01	\N	\N	f	1	261	session_poN6OPMH	f	1975-08-01 00:00:00+00
+783	\N	QB	1975-08-02	\N	\N	f	1	261	session_sw0ChxA2	f	1975-08-02 00:00:00+00
+784	2	R	1975-08-17	\N	\N	f	12	262	session_z4VXg98z	f	1975-08-17 00:00:00+00
+785	1	QB	1975-08-15	\N	\N	f	1	262	session_uyOlY27V	f	1975-08-15 00:00:00+00
+786	\N	QB	1975-08-16	\N	\N	f	1	262	session_KbbeT8xi	f	1975-08-16 00:00:00+00
+787	2	R	1975-09-07	\N	\N	f	12	263	session_gV23O2vE	f	1975-09-07 00:00:00+00
+788	1	QB	1975-09-05	\N	\N	f	1	263	session_oR7l22mp	f	1975-09-05 00:00:00+00
+789	\N	QB	1975-09-06	\N	\N	f	1	263	session_zPTMJJpD	f	1975-09-06 00:00:00+00
+790	2	R	1975-10-05	\N	\N	f	12	264	session_DZWAe18N	f	1975-10-05 00:00:00+00
+791	1	QB	1975-10-03	\N	\N	f	1	264	session_uT7abQqm	f	1975-10-03 00:00:00+00
+792	\N	QB	1975-10-04	\N	\N	f	1	264	session_8swt7XCb	f	1975-10-04 00:00:00+00
+793	2	R	1976-01-25	\N	\N	f	12	265	session_AUCKG1gD	f	1976-01-25 00:00:00+00
+794	1	QB	1976-01-23	\N	\N	f	1	265	session_skNOphCD	f	1976-01-23 00:00:00+00
+795	\N	QB	1976-01-24	\N	\N	f	1	265	session_Fky6p5t1	f	1976-01-24 00:00:00+00
+796	2	R	1976-03-06	\N	\N	f	12	266	session_fR4xkGXC	f	1976-03-06 00:00:00+00
+797	1	QB	1976-03-04	\N	\N	f	1	266	session_lB8ilwVK	f	1976-03-04 00:00:00+00
+798	\N	QB	1976-03-05	\N	\N	f	1	266	session_NFr22wmm	f	1976-03-05 00:00:00+00
+799	2	R	1976-03-28	\N	\N	f	12	267	session_2u4LBtD9	f	1976-03-28 00:00:00+00
+800	1	QB	1976-03-26	\N	\N	f	1	267	session_J9UvSN8Y	f	1976-03-26 00:00:00+00
+801	\N	QB	1976-03-27	\N	\N	f	1	267	session_OFZIOTUU	f	1976-03-27 00:00:00+00
+802	2	R	1976-05-02	\N	\N	f	12	268	session_2fO3juSQ	f	1976-05-02 00:00:00+00
+803	1	QB	1976-04-30	\N	\N	f	1	268	session_ej7LsiQq	f	1976-04-30 00:00:00+00
+804	\N	QB	1976-05-01	\N	\N	f	1	268	session_Ya6qVmlV	f	1976-05-01 00:00:00+00
+805	2	R	1976-05-16	\N	\N	f	12	269	session_4QG4Nahz	f	1976-05-16 00:00:00+00
+806	1	QB	1976-05-14	\N	\N	f	1	269	session_2zW9bVzh	f	1976-05-14 00:00:00+00
+807	\N	QB	1976-05-15	\N	\N	f	1	269	session_QMK3eIXg	f	1976-05-15 00:00:00+00
+808	2	R	1976-05-30	\N	\N	f	12	270	session_pNoBTlvn	f	1976-05-30 00:00:00+00
+809	1	QB	1976-05-27	\N	\N	f	1	270	session_h3NYcG1z	f	1976-05-27 00:00:00+00
+810	\N	QB	1976-05-29	\N	\N	f	1	270	session_OCRfeWJe	f	1976-05-29 00:00:00+00
+811	2	R	1976-06-13	\N	\N	f	12	271	session_dEclaV1L	f	1976-06-13 00:00:00+00
+812	1	QB	1976-06-11	\N	\N	f	1	271	session_3YGhzbuC	f	1976-06-11 00:00:00+00
+813	\N	QB	1976-06-12	\N	\N	f	1	271	session_K3DVRRco	f	1976-06-12 00:00:00+00
+814	2	R	1976-07-04	\N	\N	f	12	272	session_AaJ45Cah	f	1976-07-04 00:00:00+00
+815	1	QB	1976-07-02	\N	\N	f	1	272	session_OoBr99TK	f	1976-07-02 00:00:00+00
+816	\N	QB	1976-07-03	\N	\N	f	1	272	session_oxU5BOOg	f	1976-07-03 00:00:00+00
+817	2	R	1976-07-18	\N	\N	f	12	273	session_3sE4ZggS	f	1976-07-18 00:00:00+00
+818	1	QB	1976-07-16	\N	\N	f	1	273	session_AFBy3CUb	f	1976-07-16 00:00:00+00
+819	\N	QB	1976-07-17	\N	\N	f	1	273	session_HnXulXeo	f	1976-07-17 00:00:00+00
+820	2	R	1976-08-01	\N	\N	f	12	274	session_SjT2l2Co	f	1976-08-01 00:00:00+00
+821	1	QB	1976-07-30	\N	\N	f	1	274	session_Bi3ihBgu	f	1976-07-30 00:00:00+00
+822	\N	QB	1976-07-31	\N	\N	f	1	274	session_rDXLEiYN	f	1976-07-31 00:00:00+00
+823	2	R	1976-08-15	\N	\N	f	12	275	session_M5Y1HCYG	f	1976-08-15 00:00:00+00
+824	1	QB	1976-08-13	\N	\N	f	1	275	session_cVKyf5IE	f	1976-08-13 00:00:00+00
+825	\N	QB	1976-08-14	\N	\N	f	1	275	session_HWgVWuSL	f	1976-08-14 00:00:00+00
+826	2	R	1976-08-29	\N	\N	f	12	276	session_sVtQEFMH	f	1976-08-29 00:00:00+00
+827	1	QB	1976-08-27	\N	\N	f	1	276	session_LPvAIse5	f	1976-08-27 00:00:00+00
+828	\N	QB	1976-08-28	\N	\N	f	1	276	session_fNXcDyPj	f	1976-08-28 00:00:00+00
+829	2	R	1976-09-12	\N	\N	f	12	277	session_95gxp6IC	f	1976-09-12 00:00:00+00
+830	1	QB	1976-09-10	\N	\N	f	1	277	session_0v8g5jYC	f	1976-09-10 00:00:00+00
+831	\N	QB	1976-09-11	\N	\N	f	1	277	session_0WdT9us1	f	1976-09-11 00:00:00+00
+832	2	R	1976-10-03	\N	\N	f	12	278	session_NzencQ1h	f	1976-10-03 00:00:00+00
+833	1	QB	1976-10-01	\N	\N	f	1	278	session_qwUp1HhW	f	1976-10-01 00:00:00+00
+834	\N	QB	1976-10-02	\N	\N	f	1	278	session_rQBz1ZNq	f	1976-10-02 00:00:00+00
+835	2	R	1976-10-10	\N	\N	f	12	279	session_ifGLO0wW	f	1976-10-10 00:00:00+00
+836	1	QB	1976-10-08	\N	\N	f	1	279	session_6d2WTye5	f	1976-10-08 00:00:00+00
+837	\N	QB	1976-10-09	\N	\N	f	1	279	session_PJUN4SNE	f	1976-10-09 00:00:00+00
+838	2	R	1976-10-24	\N	\N	f	12	280	session_Y9b1MSNp	f	1976-10-24 00:00:00+00
+839	1	QB	1976-10-22	\N	\N	f	1	280	session_8NXdJYXn	f	1976-10-22 00:00:00+00
+840	\N	QB	1976-10-23	\N	\N	f	1	280	session_X6Y2xIkl	f	1976-10-23 00:00:00+00
+841	2	R	1977-01-09	\N	\N	f	12	281	session_vRa0WIst	f	1977-01-09 00:00:00+00
+842	1	QB	1977-01-07	\N	\N	f	1	281	session_nAK1Zc7X	f	1977-01-07 00:00:00+00
+843	\N	QB	1977-01-08	\N	\N	f	1	281	session_pS1mSqxc	f	1977-01-08 00:00:00+00
+844	2	R	1977-01-23	\N	\N	f	12	282	session_Lq3OYvVq	f	1977-01-23 00:00:00+00
+845	1	QB	1977-01-21	\N	\N	f	1	282	session_v6twtZ9R	f	1977-01-21 00:00:00+00
+846	\N	QB	1977-01-22	\N	\N	f	1	282	session_na6eAZkz	f	1977-01-22 00:00:00+00
+847	2	R	1977-03-05	\N	\N	f	12	283	session_NrfhRfkj	f	1977-03-05 00:00:00+00
+848	1	QB	1977-03-03	\N	\N	f	1	283	session_tEOwX2D2	f	1977-03-03 00:00:00+00
+849	\N	QB	1977-03-04	\N	\N	f	1	283	session_KOC6Tog4	f	1977-03-04 00:00:00+00
+850	2	R	1977-04-03	\N	\N	f	12	284	session_Dst3IIlA	f	1977-04-03 00:00:00+00
+851	1	QB	1977-04-01	\N	\N	f	1	284	session_qP2mpgnR	f	1977-04-01 00:00:00+00
+852	\N	QB	1977-04-02	\N	\N	f	1	284	session_QqsUwywk	f	1977-04-02 00:00:00+00
+853	2	R	1977-05-08	\N	\N	f	12	285	session_pv1IgLM2	f	1977-05-08 00:00:00+00
+854	1	QB	1977-05-06	\N	\N	f	1	285	session_uGxbAfgO	f	1977-05-06 00:00:00+00
+855	\N	QB	1977-05-07	\N	\N	f	1	285	session_BgTnmU0h	f	1977-05-07 00:00:00+00
+856	2	R	1977-05-22	\N	\N	f	12	286	session_A8MokGzn	f	1977-05-22 00:00:00+00
+857	1	QB	1977-05-19	\N	\N	f	1	286	session_zpXQ5X9B	f	1977-05-19 00:00:00+00
+858	\N	QB	1977-05-21	\N	\N	f	1	286	session_IllbwhGu	f	1977-05-21 00:00:00+00
+859	2	R	1977-06-05	\N	\N	f	12	287	session_OS61GF9R	f	1977-06-05 00:00:00+00
+860	1	QB	1977-06-03	\N	\N	f	1	287	session_M2yTOPLZ	f	1977-06-03 00:00:00+00
+861	\N	QB	1977-06-04	\N	\N	f	1	287	session_3lTGVauz	f	1977-06-04 00:00:00+00
+862	2	R	1977-06-19	\N	\N	f	12	288	session_77FCv767	f	1977-06-19 00:00:00+00
+863	1	QB	1977-06-17	\N	\N	f	1	288	session_sTmhKtec	f	1977-06-17 00:00:00+00
+864	\N	QB	1977-06-18	\N	\N	f	1	288	session_q95kUfSN	f	1977-06-18 00:00:00+00
+865	2	R	1977-07-03	\N	\N	f	12	289	session_4kFgnRVC	f	1977-07-03 00:00:00+00
+866	1	QB	1977-07-01	\N	\N	f	1	289	session_POvHbXKQ	f	1977-07-01 00:00:00+00
+867	\N	QB	1977-07-02	\N	\N	f	1	289	session_osD2iKg8	f	1977-07-02 00:00:00+00
+868	2	R	1977-07-16	\N	\N	f	12	290	session_wUc1etu9	f	1977-07-16 00:00:00+00
+869	1	QB	1977-07-14	\N	\N	f	1	290	session_E7joRqUO	f	1977-07-14 00:00:00+00
+870	\N	QB	1977-07-15	\N	\N	f	1	290	session_NQV8bQlX	f	1977-07-15 00:00:00+00
+871	2	R	1977-07-31	\N	\N	f	12	291	session_z1UCCjKs	f	1977-07-31 00:00:00+00
+872	1	QB	1977-07-29	\N	\N	f	1	291	session_GKq1cRNb	f	1977-07-29 00:00:00+00
+873	\N	QB	1977-07-30	\N	\N	f	1	291	session_cUNDke6l	f	1977-07-30 00:00:00+00
+874	2	R	1977-08-14	\N	\N	f	12	292	session_cDyF86lR	f	1977-08-14 00:00:00+00
+875	1	QB	1977-08-12	\N	\N	f	1	292	session_QtHXITMv	f	1977-08-12 00:00:00+00
+876	\N	QB	1977-08-13	\N	\N	f	1	292	session_T44P1WlH	f	1977-08-13 00:00:00+00
+877	2	R	1977-08-28	\N	\N	f	12	293	session_G5iM3uIZ	f	1977-08-28 00:00:00+00
+878	1	QB	1977-08-26	\N	\N	f	1	293	session_1v2qkSwX	f	1977-08-26 00:00:00+00
+879	\N	QB	1977-08-27	\N	\N	f	1	293	session_IzonOIEg	f	1977-08-27 00:00:00+00
+880	2	R	1977-09-11	\N	\N	f	12	294	session_3dLdKmM2	f	1977-09-11 00:00:00+00
+881	1	QB	1977-09-09	\N	\N	f	1	294	session_uwMayAp4	f	1977-09-09 00:00:00+00
+882	\N	QB	1977-09-10	\N	\N	f	1	294	session_ZqUF637r	f	1977-09-10 00:00:00+00
+883	2	R	1977-10-02	\N	\N	f	12	295	session_tNEtlyKQ	f	1977-10-02 00:00:00+00
+884	1	QB	1977-09-30	\N	\N	f	1	295	session_xvfwh3Yp	f	1977-09-30 00:00:00+00
+885	\N	QB	1977-10-01	\N	\N	f	1	295	session_VYp2Ot4S	f	1977-10-01 00:00:00+00
+886	2	R	1977-10-09	\N	\N	f	12	296	session_FlayjKKN	f	1977-10-09 00:00:00+00
+887	1	QB	1977-10-07	\N	\N	f	1	296	session_URdKVT91	f	1977-10-07 00:00:00+00
+888	\N	QB	1977-10-08	\N	\N	f	1	296	session_WrF8WAP9	f	1977-10-08 00:00:00+00
+889	2	R	1977-10-23	\N	\N	f	12	297	session_v3mYOBNt	f	1977-10-23 00:00:00+00
+890	1	QB	1977-10-21	\N	\N	f	1	297	session_X9ayiwHW	f	1977-10-21 00:00:00+00
+891	\N	QB	1977-10-22	\N	\N	f	1	297	session_V05nwbIF	f	1977-10-22 00:00:00+00
+892	2	R	1978-01-15	\N	\N	f	12	298	session_PrAs2F6E	f	1978-01-15 00:00:00+00
+893	1	QB	1978-01-13	\N	\N	f	1	298	session_05oaGyC4	f	1978-01-13 00:00:00+00
+894	\N	QB	1978-01-14	\N	\N	f	1	298	session_n0qcadnV	f	1978-01-14 00:00:00+00
+895	2	R	1978-01-29	\N	\N	f	12	299	session_0QSZrrwh	f	1978-01-29 00:00:00+00
+896	1	QB	1978-01-27	\N	\N	f	1	299	session_NE7El4A2	f	1978-01-27 00:00:00+00
+897	\N	QB	1978-01-28	\N	\N	f	1	299	session_NOSDKKRG	f	1978-01-28 00:00:00+00
+898	2	R	1978-03-04	\N	\N	f	12	300	session_p1BlfUav	f	1978-03-04 00:00:00+00
+899	1	QB	1978-03-02	\N	\N	f	1	300	session_8CVhTlQu	f	1978-03-02 00:00:00+00
+900	\N	QB	1978-03-03	\N	\N	f	1	300	session_W8tRa5zi	f	1978-03-03 00:00:00+00
+901	2	R	1978-04-02	\N	\N	f	12	301	session_eEqMP4aj	f	1978-04-02 00:00:00+00
+902	1	QB	1978-03-31	\N	\N	f	1	301	session_uV1xPkxX	f	1978-03-31 00:00:00+00
+903	\N	QB	1978-04-01	\N	\N	f	1	301	session_WrJkn1tj	f	1978-04-01 00:00:00+00
+904	2	R	1978-05-07	\N	\N	f	12	302	session_1QBCVaQJ	f	1978-05-07 00:00:00+00
+905	1	QB	1978-05-04	\N	\N	f	1	302	session_f9JBfcNX	f	1978-05-04 00:00:00+00
+906	\N	QB	1978-05-06	\N	\N	f	1	302	session_R8YGx3KK	f	1978-05-06 00:00:00+00
+907	2	R	1978-05-21	\N	\N	f	12	303	session_NPOq46TA	f	1978-05-21 00:00:00+00
+908	1	QB	1978-05-19	\N	\N	f	1	303	session_nBpe4uRR	f	1978-05-19 00:00:00+00
+909	\N	QB	1978-05-20	\N	\N	f	1	303	session_DztvlYJx	f	1978-05-20 00:00:00+00
+910	2	R	1978-06-04	\N	\N	f	12	304	session_3i9sNLyO	f	1978-06-04 00:00:00+00
+911	1	QB	1978-06-02	\N	\N	f	1	304	session_qsB1Offk	f	1978-06-02 00:00:00+00
+912	\N	QB	1978-06-03	\N	\N	f	1	304	session_mCazAurp	f	1978-06-03 00:00:00+00
+913	2	R	1978-06-17	\N	\N	f	12	305	session_axgtaxrc	f	1978-06-17 00:00:00+00
+914	1	QB	1978-06-15	\N	\N	f	1	305	session_IAyg9baU	f	1978-06-15 00:00:00+00
+915	\N	QB	1978-06-16	\N	\N	f	1	305	session_dfx3nrXG	f	1978-06-16 00:00:00+00
+916	2	R	1978-07-02	\N	\N	f	12	306	session_CHz9eIgV	f	1978-07-02 00:00:00+00
+917	1	QB	1978-06-30	\N	\N	f	1	306	session_XdsueJ01	f	1978-06-30 00:00:00+00
+918	\N	QB	1978-07-01	\N	\N	f	1	306	session_A3yyoyjX	f	1978-07-01 00:00:00+00
+919	2	R	1978-07-16	\N	\N	f	12	307	session_6Cm7HCXH	f	1978-07-16 00:00:00+00
+920	1	QB	1978-07-14	\N	\N	f	1	307	session_efrlHwlq	f	1978-07-14 00:00:00+00
+921	\N	QB	1978-07-15	\N	\N	f	1	307	session_EWpD9hOF	f	1978-07-15 00:00:00+00
+922	2	R	1978-07-30	\N	\N	f	12	308	session_Cvoy32Vh	f	1978-07-30 00:00:00+00
+923	1	QB	1978-07-28	\N	\N	f	1	308	session_9w8nIO4s	f	1978-07-28 00:00:00+00
+924	\N	QB	1978-07-29	\N	\N	f	1	308	session_eSdUHQfy	f	1978-07-29 00:00:00+00
+925	2	R	1978-08-13	\N	\N	f	12	309	session_6GJZfJip	f	1978-08-13 00:00:00+00
+926	1	QB	1978-08-11	\N	\N	f	1	309	session_b9uaVvU1	f	1978-08-11 00:00:00+00
+927	\N	QB	1978-08-12	\N	\N	f	1	309	session_a7I4xGqy	f	1978-08-12 00:00:00+00
+928	2	R	1978-08-27	\N	\N	f	12	310	session_Js5TXe38	f	1978-08-27 00:00:00+00
+929	1	QB	1978-08-25	\N	\N	f	1	310	session_mJ0vUASE	f	1978-08-25 00:00:00+00
+930	\N	QB	1978-08-26	\N	\N	f	1	310	session_eqDt5GQh	f	1978-08-26 00:00:00+00
+931	2	R	1978-09-10	\N	\N	f	12	311	session_R6WpLC8i	f	1978-09-10 00:00:00+00
+932	1	QB	1978-09-08	\N	\N	f	1	311	session_59dizZ4O	f	1978-09-08 00:00:00+00
+933	\N	QB	1978-09-09	\N	\N	f	1	311	session_6RSUTfI8	f	1978-09-09 00:00:00+00
+934	2	R	1978-10-01	\N	\N	f	12	312	session_x2Q4YXLo	f	1978-10-01 00:00:00+00
+935	1	QB	1978-09-29	\N	\N	f	1	312	session_Pz6bNvsw	f	1978-09-29 00:00:00+00
+936	\N	QB	1978-09-30	\N	\N	f	1	312	session_aNRqich5	f	1978-09-30 00:00:00+00
+937	2	R	1978-10-08	\N	\N	f	12	313	session_HM5XzB14	f	1978-10-08 00:00:00+00
+938	1	QB	1978-10-06	\N	\N	f	1	313	session_NabrNero	f	1978-10-06 00:00:00+00
+939	\N	QB	1978-10-07	\N	\N	f	1	313	session_dRX2KmHG	f	1978-10-07 00:00:00+00
+940	2	R	1979-01-21	\N	\N	f	12	314	session_FdzNoAc7	f	1979-01-21 00:00:00+00
+941	1	QB	1979-01-19	\N	\N	f	1	314	session_7hgjdK2Q	f	1979-01-19 00:00:00+00
+942	\N	QB	1979-01-20	\N	\N	f	1	314	session_iKlhIsL0	f	1979-01-20 00:00:00+00
+943	2	R	1979-02-04	\N	\N	f	12	315	session_WSPULZXh	f	1979-02-04 00:00:00+00
+944	1	QB	1979-02-02	\N	\N	f	1	315	session_pWKp3Ewc	f	1979-02-02 00:00:00+00
+945	\N	QB	1979-02-03	\N	\N	f	1	315	session_zJ1Jl2nM	f	1979-02-03 00:00:00+00
+946	2	R	1979-03-03	\N	\N	f	12	316	session_2epoFi5Y	f	1979-03-03 00:00:00+00
+947	1	QB	1979-03-01	\N	\N	f	1	316	session_DeZ7alBw	f	1979-03-01 00:00:00+00
+948	\N	QB	1979-03-02	\N	\N	f	1	316	session_xGHwFOqy	f	1979-03-02 00:00:00+00
+949	2	R	1979-04-08	\N	\N	f	12	317	session_vXVI4tL6	f	1979-04-08 00:00:00+00
+950	1	QB	1979-04-06	\N	\N	f	1	317	session_bDnO2ajK	f	1979-04-06 00:00:00+00
+951	\N	QB	1979-04-07	\N	\N	f	1	317	session_cl71fkUW	f	1979-04-07 00:00:00+00
+952	2	R	1979-04-29	\N	\N	f	12	318	session_DPTw6uRq	f	1979-04-29 00:00:00+00
+953	1	QB	1979-04-27	\N	\N	f	1	318	session_aBvjMNCO	f	1979-04-27 00:00:00+00
+954	\N	QB	1979-04-28	\N	\N	f	1	318	session_nTLauRD2	f	1979-04-28 00:00:00+00
+955	2	R	1979-05-13	\N	\N	f	12	319	session_WbFDs6Lf	f	1979-05-13 00:00:00+00
+956	1	QB	1979-05-11	\N	\N	f	1	319	session_02aWaYGg	f	1979-05-11 00:00:00+00
+957	\N	QB	1979-05-12	\N	\N	f	1	319	session_YaytaKyu	f	1979-05-12 00:00:00+00
+958	2	R	1979-05-27	\N	\N	f	12	320	session_vTQRBGYE	f	1979-05-27 00:00:00+00
+959	1	QB	1979-05-24	\N	\N	f	1	320	session_fSDDbCwE	f	1979-05-24 00:00:00+00
+960	\N	QB	1979-05-26	\N	\N	f	1	320	session_LKBdzRIx	f	1979-05-26 00:00:00+00
+961	2	R	1979-07-01	\N	\N	f	12	321	session_8dDIc9Pn	f	1979-07-01 00:00:00+00
+962	1	QB	1979-06-29	\N	\N	f	1	321	session_NPE1DyjM	f	1979-06-29 00:00:00+00
+963	\N	QB	1979-06-30	\N	\N	f	1	321	session_5Sbk8CRM	f	1979-06-30 00:00:00+00
+964	2	R	1979-07-14	\N	\N	f	12	322	session_OOTzngEc	f	1979-07-14 00:00:00+00
+965	1	QB	1979-07-12	\N	\N	f	1	322	session_UWYrRuDA	f	1979-07-12 00:00:00+00
+966	\N	QB	1979-07-13	\N	\N	f	1	322	session_eLEiYh4U	f	1979-07-13 00:00:00+00
+967	2	R	1979-07-29	\N	\N	f	12	323	session_y2WVbkMu	f	1979-07-29 00:00:00+00
+968	1	QB	1979-07-27	\N	\N	f	1	323	session_zjwMUftp	f	1979-07-27 00:00:00+00
+969	\N	QB	1979-07-28	\N	\N	f	1	323	session_Qn41Vrmx	f	1979-07-28 00:00:00+00
+970	2	R	1979-08-12	\N	\N	f	12	324	session_HxIkiC6C	f	1979-08-12 00:00:00+00
+971	1	QB	1979-08-10	\N	\N	f	1	324	session_i0FZYC59	f	1979-08-10 00:00:00+00
+972	\N	QB	1979-08-11	\N	\N	f	1	324	session_LtGaBF9D	f	1979-08-11 00:00:00+00
+973	2	R	1979-08-26	\N	\N	f	12	325	session_TKbuug10	f	1979-08-26 00:00:00+00
+974	1	QB	1979-08-24	\N	\N	f	1	325	session_1gbYE9p3	f	1979-08-24 00:00:00+00
+975	\N	QB	1979-08-25	\N	\N	f	1	325	session_2Ji9tzIb	f	1979-08-25 00:00:00+00
+976	2	R	1979-09-09	\N	\N	f	12	326	session_SW0WHKJa	f	1979-09-09 00:00:00+00
+977	1	QB	1979-09-07	\N	\N	f	1	326	session_BnXFpMDe	f	1979-09-07 00:00:00+00
+978	\N	QB	1979-09-08	\N	\N	f	1	326	session_IEfTveE9	f	1979-09-08 00:00:00+00
+979	2	R	1979-09-30	\N	\N	f	12	327	session_Z2OAhiXA	f	1979-09-30 00:00:00+00
+980	1	QB	1979-09-28	\N	\N	f	1	327	session_faWrX0cA	f	1979-09-28 00:00:00+00
+981	\N	QB	1979-09-29	\N	\N	f	1	327	session_wLyidzbq	f	1979-09-29 00:00:00+00
+982	2	R	1979-10-07	\N	\N	f	12	328	session_OAhzzk8F	f	1979-10-07 00:00:00+00
+983	1	QB	1979-10-05	\N	\N	f	1	328	session_Lj4exErz	f	1979-10-05 00:00:00+00
+984	\N	QB	1979-10-06	\N	\N	f	1	328	session_1Bls7HkB	f	1979-10-06 00:00:00+00
+985	2	R	1980-01-13	\N	\N	f	13	329	session_bdyusYMe	f	1980-01-13 00:00:00+00
+986	1	QB	1980-01-11	\N	\N	f	1	329	session_JMIyRYRK	f	1980-01-11 00:00:00+00
+987	\N	QB	1980-01-12	\N	\N	f	1	329	session_cR3aP8Ks	f	1980-01-12 00:00:00+00
+988	2	R	1980-01-27	\N	\N	f	13	330	session_MR0nAxEL	f	1980-01-27 00:00:00+00
+989	1	QB	1980-01-25	\N	\N	f	1	330	session_RY3O1SZ4	f	1980-01-25 00:00:00+00
+990	\N	QB	1980-01-26	\N	\N	f	1	330	session_hXug3NJ3	f	1980-01-26 00:00:00+00
+991	2	R	1980-03-01	\N	\N	f	13	331	session_FWVftg63	f	1980-03-01 00:00:00+00
+992	1	QB	1980-02-28	\N	\N	f	1	331	session_XQVLumrE	f	1980-02-28 00:00:00+00
+993	\N	QB	1980-02-29	\N	\N	f	1	331	session_YhWSPUU0	f	1980-02-29 00:00:00+00
+994	2	R	1980-03-30	\N	\N	f	13	332	session_XHd7Cq84	f	1980-03-30 00:00:00+00
+995	1	QB	1980-03-28	\N	\N	f	1	332	session_fwFySXcB	f	1980-03-28 00:00:00+00
+996	\N	QB	1980-03-29	\N	\N	f	1	332	session_ND124kVS	f	1980-03-29 00:00:00+00
+997	2	R	1980-05-04	\N	\N	f	13	333	session_4WW8yGBv	f	1980-05-04 00:00:00+00
+998	1	QB	1980-05-02	\N	\N	f	1	333	session_ajfvoaxn	f	1980-05-02 00:00:00+00
+999	\N	QB	1980-05-03	\N	\N	f	1	333	session_itZokSU9	f	1980-05-03 00:00:00+00
+1000	2	R	1980-05-18	\N	\N	f	13	334	session_mSkH3fMo	f	1980-05-18 00:00:00+00
+1001	1	QB	1980-05-15	\N	\N	f	1	334	session_0f9IVCMe	f	1980-05-15 00:00:00+00
+1002	\N	QB	1980-05-17	\N	\N	f	1	334	session_AZaGQBHO	f	1980-05-17 00:00:00+00
+1003	2	R	1980-06-29	\N	\N	f	13	335	session_JEVsHOLV	f	1980-06-29 00:00:00+00
+1004	1	QB	1980-06-27	\N	\N	f	1	335	session_pYvW8e7V	f	1980-06-27 00:00:00+00
+1005	\N	QB	1980-06-28	\N	\N	f	1	335	session_DiWYZUyT	f	1980-06-28 00:00:00+00
+1006	2	R	1980-07-13	\N	\N	f	13	336	session_bMKF1qc3	f	1980-07-13 00:00:00+00
+1007	1	QB	1980-07-11	\N	\N	f	1	336	session_GvJUiwG0	f	1980-07-11 00:00:00+00
+1008	\N	QB	1980-07-12	\N	\N	f	1	336	session_hL25S6oP	f	1980-07-12 00:00:00+00
+1009	2	R	1980-08-10	\N	\N	f	13	337	session_5pxNpl2k	f	1980-08-10 00:00:00+00
+1010	1	QB	1980-08-08	\N	\N	f	1	337	session_tEDEn302	f	1980-08-08 00:00:00+00
+1011	\N	QB	1980-08-09	\N	\N	f	1	337	session_z5MA2mST	f	1980-08-09 00:00:00+00
+1012	2	R	1980-08-17	\N	\N	f	13	338	session_Cr9g9AEO	f	1980-08-17 00:00:00+00
+1013	1	QB	1980-08-15	\N	\N	f	1	338	session_uVDuQOYi	f	1980-08-15 00:00:00+00
+1014	\N	QB	1980-08-16	\N	\N	f	1	338	session_j2DcUCcu	f	1980-08-16 00:00:00+00
+1015	2	R	1980-08-31	\N	\N	f	13	339	session_tX7EKj26	f	1980-08-31 00:00:00+00
+1016	1	QB	1980-08-29	\N	\N	f	1	339	session_6roqdwU2	f	1980-08-29 00:00:00+00
+1017	\N	QB	1980-08-30	\N	\N	f	1	339	session_EW2CKnj1	f	1980-08-30 00:00:00+00
+1018	2	R	1980-09-14	\N	\N	f	13	340	session_TRw9Aadq	f	1980-09-14 00:00:00+00
+1019	1	QB	1980-09-12	\N	\N	f	1	340	session_xjl5xJEW	f	1980-09-12 00:00:00+00
+1020	\N	QB	1980-09-13	\N	\N	f	1	340	session_NNT3bmtA	f	1980-09-13 00:00:00+00
+1021	2	R	1980-09-28	\N	\N	f	13	341	session_Xw5Hj7iz	f	1980-09-28 00:00:00+00
+1022	1	QB	1980-09-26	\N	\N	f	1	341	session_PgJTLuV9	f	1980-09-26 00:00:00+00
+1023	\N	QB	1980-09-27	\N	\N	f	1	341	session_If7bP5L2	f	1980-09-27 00:00:00+00
+1024	2	R	1980-10-05	\N	\N	f	13	342	session_GVM6fLEU	f	1980-10-05 00:00:00+00
+1025	1	QB	1980-10-03	\N	\N	f	1	342	session_mDx2To9h	f	1980-10-03 00:00:00+00
+1026	\N	QB	1980-10-04	\N	\N	f	1	342	session_H8I4SRS4	f	1980-10-04 00:00:00+00
+1027	2	R	1981-03-15	\N	\N	f	13	343	session_EkgwP3pu	f	1981-03-15 00:00:00+00
+1028	1	QB	1981-03-13	\N	\N	f	1	343	session_NGvB0CU8	f	1981-03-13 00:00:00+00
+1029	\N	QB	1981-03-14	\N	\N	f	1	343	session_dFPb2zeu	f	1981-03-14 00:00:00+00
+1030	2	R	1981-03-29	\N	\N	f	13	344	session_iarF9kEX	f	1981-03-29 00:00:00+00
+1031	1	QB	1981-03-27	\N	\N	f	1	344	session_lkq7Dazy	f	1981-03-27 00:00:00+00
+1032	\N	QB	1981-03-28	\N	\N	f	1	344	session_NjTCb6sc	f	1981-03-28 00:00:00+00
+1033	2	R	1981-04-12	\N	\N	f	13	345	session_4LWKV7Gc	f	1981-04-12 00:00:00+00
+1034	1	QB	1981-04-10	\N	\N	f	1	345	session_Y6WHDvWQ	f	1981-04-10 00:00:00+00
+1035	\N	QB	1981-04-11	\N	\N	f	1	345	session_62Nn9yv0	f	1981-04-11 00:00:00+00
+1036	2	R	1981-05-03	\N	\N	f	13	346	session_LZLvFDMw	f	1981-05-03 00:00:00+00
+1037	1	QB	1981-05-01	\N	\N	f	1	346	session_RFpqQTrH	f	1981-05-01 00:00:00+00
+1038	\N	QB	1981-05-02	\N	\N	f	1	346	session_8OhvUNOu	f	1981-05-02 00:00:00+00
+1039	2	R	1981-05-17	\N	\N	f	13	347	session_WkcKnTvv	f	1981-05-17 00:00:00+00
+1040	1	QB	1981-05-15	\N	\N	f	1	347	session_1DjezkrZ	f	1981-05-15 00:00:00+00
+1041	\N	QB	1981-05-16	\N	\N	f	1	347	session_6HM3CquD	f	1981-05-16 00:00:00+00
+1042	2	R	1981-05-31	\N	\N	f	13	348	session_9wEv3Y0b	f	1981-05-31 00:00:00+00
+1043	1	QB	1981-05-28	\N	\N	f	1	348	session_qOnoyjUF	f	1981-05-28 00:00:00+00
+1044	\N	QB	1981-05-30	\N	\N	f	1	348	session_JVIcABUE	f	1981-05-30 00:00:00+00
+1045	2	R	1981-06-21	\N	\N	f	13	349	session_zdH5hbIX	f	1981-06-21 00:00:00+00
+1046	1	QB	1981-06-19	\N	\N	f	1	349	session_0xJVYPDr	f	1981-06-19 00:00:00+00
+1047	\N	QB	1981-06-20	\N	\N	f	1	349	session_nYRqJyDb	f	1981-06-20 00:00:00+00
+1048	2	R	1981-07-05	\N	\N	f	13	350	session_bqigxtqp	f	1981-07-05 00:00:00+00
+1049	1	QB	1981-07-03	\N	\N	f	1	350	session_KKmzWWSX	f	1981-07-03 00:00:00+00
+1050	\N	QB	1981-07-04	\N	\N	f	1	350	session_qYMO5Hqc	f	1981-07-04 00:00:00+00
+1051	2	R	1981-07-18	\N	\N	f	13	351	session_0CjBvmPj	f	1981-07-18 00:00:00+00
+1052	1	QB	1981-07-16	\N	\N	f	1	351	session_wSJqaN2T	f	1981-07-16 00:00:00+00
+1053	\N	QB	1981-07-17	\N	\N	f	1	351	session_8TgePDWL	f	1981-07-17 00:00:00+00
+1054	2	R	1981-08-02	\N	\N	f	13	352	session_520uzFEd	f	1981-08-02 00:00:00+00
+1055	1	QB	1981-07-31	\N	\N	f	1	352	session_AvRYWyJX	f	1981-07-31 00:00:00+00
+1056	\N	QB	1981-08-01	\N	\N	f	1	352	session_atc20IDF	f	1981-08-01 00:00:00+00
+1057	2	R	1981-08-16	\N	\N	f	13	353	session_qdUZ29au	f	1981-08-16 00:00:00+00
+1058	1	QB	1981-08-14	\N	\N	f	1	353	session_wLsJwsP6	f	1981-08-14 00:00:00+00
+1059	\N	QB	1981-08-15	\N	\N	f	1	353	session_8cdLG6JB	f	1981-08-15 00:00:00+00
+1060	2	R	1981-08-30	\N	\N	f	13	354	session_zJaqYB6U	f	1981-08-30 00:00:00+00
+1061	1	QB	1981-08-28	\N	\N	f	1	354	session_EoNl1aJO	f	1981-08-28 00:00:00+00
+1062	\N	QB	1981-08-29	\N	\N	f	1	354	session_0nqAv1Ro	f	1981-08-29 00:00:00+00
+1063	2	R	1981-09-13	\N	\N	f	13	355	session_BPhwIsZT	f	1981-09-13 00:00:00+00
+1064	1	QB	1981-09-11	\N	\N	f	1	355	session_sC6zQtlv	f	1981-09-11 00:00:00+00
+1065	\N	QB	1981-09-12	\N	\N	f	1	355	session_VyZdEj9y	f	1981-09-12 00:00:00+00
+1066	2	R	1981-09-27	\N	\N	f	13	356	session_UlN0JniU	f	1981-09-27 00:00:00+00
+1067	1	QB	1981-09-25	\N	\N	f	1	356	session_RYoW2DX6	f	1981-09-25 00:00:00+00
+1068	\N	QB	1981-09-26	\N	\N	f	1	356	session_U5cDLkBX	f	1981-09-26 00:00:00+00
+1069	2	R	1981-10-17	\N	\N	f	13	357	session_fyLfhAY2	f	1981-10-17 00:00:00+00
+1070	1	QB	1981-10-15	\N	\N	f	1	357	session_OCLy3qtb	f	1981-10-15 00:00:00+00
+1071	\N	QB	1981-10-16	\N	\N	f	1	357	session_387s77Ip	f	1981-10-16 00:00:00+00
+1072	2	R	1982-01-23	\N	\N	f	13	358	session_VUdwt7Nt	f	1982-01-23 00:00:00+00
+1073	1	QB	1982-01-21	\N	\N	f	1	358	session_IviOUQL4	f	1982-01-21 00:00:00+00
+1074	\N	QB	1982-01-22	\N	\N	f	1	358	session_8IYrLTGi	f	1982-01-22 00:00:00+00
+1075	2	R	1982-03-21	\N	\N	f	13	359	session_aGDM8kzF	f	1982-03-21 00:00:00+00
+1076	1	QB	1982-03-19	\N	\N	f	1	359	session_AZ4T3KYn	f	1982-03-19 00:00:00+00
+1077	\N	QB	1982-03-20	\N	\N	f	1	359	session_wND8hdi9	f	1982-03-20 00:00:00+00
+1078	2	R	1982-04-04	\N	\N	f	13	360	session_bIcDXP8a	f	1982-04-04 00:00:00+00
+1079	1	QB	1982-04-02	\N	\N	f	1	360	session_K697W9Ul	f	1982-04-02 00:00:00+00
+1080	\N	QB	1982-04-03	\N	\N	f	1	360	session_acjLacDP	f	1982-04-03 00:00:00+00
+1081	2	R	1982-04-25	\N	\N	f	13	361	session_tm6rSzWi	f	1982-04-25 00:00:00+00
+1082	1	QB	1982-04-23	\N	\N	f	1	361	session_guV7CUyI	f	1982-04-23 00:00:00+00
+1083	\N	QB	1982-04-24	\N	\N	f	1	361	session_mHOPswqn	f	1982-04-24 00:00:00+00
+1084	2	R	1982-05-09	\N	\N	f	13	362	session_qYdTkU8J	f	1982-05-09 00:00:00+00
+1085	1	QB	1982-05-07	\N	\N	f	1	362	session_SH7Cvxqv	f	1982-05-07 00:00:00+00
+1086	\N	QB	1982-05-08	\N	\N	f	1	362	session_VINF4EW8	f	1982-05-08 00:00:00+00
+1087	2	R	1982-05-23	\N	\N	f	13	363	session_RQdKO7yL	f	1982-05-23 00:00:00+00
+1088	1	QB	1982-05-20	\N	\N	f	1	363	session_VQojo44O	f	1982-05-20 00:00:00+00
+1089	\N	QB	1982-05-22	\N	\N	f	1	363	session_kAxrnBnT	f	1982-05-22 00:00:00+00
+1090	2	R	1982-06-06	\N	\N	f	13	364	session_zdHdycJ2	f	1982-06-06 00:00:00+00
+1091	1	QB	1982-06-04	\N	\N	f	1	364	session_RoR3K2UD	f	1982-06-04 00:00:00+00
+1092	\N	QB	1982-06-05	\N	\N	f	1	364	session_XmzzeLKG	f	1982-06-05 00:00:00+00
+1093	2	R	1982-06-13	\N	\N	f	13	365	session_bxgzUOh1	f	1982-06-13 00:00:00+00
+1094	1	QB	1982-06-11	\N	\N	f	1	365	session_nbMGrgYt	f	1982-06-11 00:00:00+00
+1095	\N	QB	1982-06-12	\N	\N	f	1	365	session_O2Sb76Bl	f	1982-06-12 00:00:00+00
+1096	2	R	1982-07-03	\N	\N	f	13	366	session_TignPgmT	f	1982-07-03 00:00:00+00
+1097	1	QB	1982-07-01	\N	\N	f	1	366	session_YKeK95eD	f	1982-07-01 00:00:00+00
+1098	\N	QB	1982-07-02	\N	\N	f	1	366	session_L1vjhGmN	f	1982-07-02 00:00:00+00
+1099	2	R	1982-07-18	\N	\N	f	13	367	session_V2cxy109	f	1982-07-18 00:00:00+00
+1100	1	QB	1982-07-16	\N	\N	f	1	367	session_NhuKsVx0	f	1982-07-16 00:00:00+00
+1101	\N	QB	1982-07-17	\N	\N	f	1	367	session_DEIwMhM9	f	1982-07-17 00:00:00+00
+1102	2	R	1982-07-25	\N	\N	f	13	368	session_g4N2ZhEf	f	1982-07-25 00:00:00+00
+1103	1	QB	1982-07-23	\N	\N	f	1	368	session_DUnwLeBS	f	1982-07-23 00:00:00+00
+1104	\N	QB	1982-07-24	\N	\N	f	1	368	session_OoDvCsJN	f	1982-07-24 00:00:00+00
+1105	2	R	1982-08-08	\N	\N	f	13	369	session_3Vm2tqCm	f	1982-08-08 00:00:00+00
+1106	1	QB	1982-08-06	\N	\N	f	1	369	session_XhVSV1hE	f	1982-08-06 00:00:00+00
+1107	\N	QB	1982-08-07	\N	\N	f	1	369	session_qMnUpiTq	f	1982-08-07 00:00:00+00
+1108	2	R	1982-08-15	\N	\N	f	13	370	session_qq7mAtn8	f	1982-08-15 00:00:00+00
+1109	1	QB	1982-08-13	\N	\N	f	1	370	session_IgoG7vIv	f	1982-08-13 00:00:00+00
+1110	\N	QB	1982-08-14	\N	\N	f	1	370	session_UGcOMZBa	f	1982-08-14 00:00:00+00
+1111	2	R	1982-08-29	\N	\N	f	13	371	session_T3OBTttP	f	1982-08-29 00:00:00+00
+1112	1	QB	1982-08-27	\N	\N	f	1	371	session_wLy74mEd	f	1982-08-27 00:00:00+00
+1113	\N	QB	1982-08-28	\N	\N	f	1	371	session_9dmoqMKW	f	1982-08-28 00:00:00+00
+1114	2	R	1982-09-12	\N	\N	f	13	372	session_eG5fIOjQ	f	1982-09-12 00:00:00+00
+1115	1	QB	1982-09-10	\N	\N	f	1	372	session_ADNf8GWu	f	1982-09-10 00:00:00+00
+1116	\N	QB	1982-09-11	\N	\N	f	1	372	session_aUfcgm79	f	1982-09-11 00:00:00+00
+1117	2	R	1982-09-25	\N	\N	f	13	373	session_tUtsR3AT	f	1982-09-25 00:00:00+00
+1118	1	QB	1982-09-23	\N	\N	f	1	373	session_nLiQbpkZ	f	1982-09-23 00:00:00+00
+1119	\N	QB	1982-09-24	\N	\N	f	1	373	session_RoDUadxc	f	1982-09-24 00:00:00+00
+1120	2	R	1983-03-13	\N	\N	f	13	374	session_ZoHfRiCh	f	1983-03-13 00:00:00+00
+1121	1	QB	1983-03-11	\N	\N	f	1	374	session_keEaMFWN	f	1983-03-11 00:00:00+00
+1122	\N	QB	1983-03-12	\N	\N	f	1	374	session_A6QxN4iI	f	1983-03-12 00:00:00+00
+1123	2	R	1983-03-27	\N	\N	f	13	375	session_k4dkIczB	f	1983-03-27 00:00:00+00
+1124	1	QB	1983-03-25	\N	\N	f	1	375	session_dfNmVD65	f	1983-03-25 00:00:00+00
+1125	\N	QB	1983-03-26	\N	\N	f	1	375	session_f8Tr3VsK	f	1983-03-26 00:00:00+00
+1126	2	R	1983-04-17	\N	\N	f	13	376	session_godfqApu	f	1983-04-17 00:00:00+00
+1127	1	QB	1983-04-15	\N	\N	f	1	376	session_J2j53zI3	f	1983-04-15 00:00:00+00
+1128	\N	QB	1983-04-16	\N	\N	f	1	376	session_m5i7zPmD	f	1983-04-16 00:00:00+00
+1129	2	R	1983-05-01	\N	\N	f	13	377	session_EMbaLAQw	f	1983-05-01 00:00:00+00
+1130	1	QB	1983-04-29	\N	\N	f	1	377	session_FqsNguzI	f	1983-04-29 00:00:00+00
+1131	\N	QB	1983-04-30	\N	\N	f	1	377	session_Li6aaZP4	f	1983-04-30 00:00:00+00
+1132	2	R	1983-05-15	\N	\N	f	13	378	session_XwNZQetf	f	1983-05-15 00:00:00+00
+1133	1	QB	1983-05-12	\N	\N	f	1	378	session_ZwuirPVP	f	1983-05-12 00:00:00+00
+1134	\N	QB	1983-05-14	\N	\N	f	1	378	session_zVrAC7tw	f	1983-05-14 00:00:00+00
+1135	2	R	1983-05-22	\N	\N	f	13	379	session_PwpDUau3	f	1983-05-22 00:00:00+00
+1136	1	QB	1983-05-20	\N	\N	f	1	379	session_sZrdnxe0	f	1983-05-20 00:00:00+00
+1137	\N	QB	1983-05-21	\N	\N	f	1	379	session_VzTN9q9o	f	1983-05-21 00:00:00+00
+1138	2	R	1983-06-05	\N	\N	f	13	380	session_i5oC0rVk	f	1983-06-05 00:00:00+00
+1139	1	QB	1983-06-03	\N	\N	f	1	380	session_Xzuv65ic	f	1983-06-03 00:00:00+00
+1140	\N	QB	1983-06-04	\N	\N	f	1	380	session_7WfwqMoD	f	1983-06-04 00:00:00+00
+1141	2	R	1983-06-12	\N	\N	f	13	381	session_mrXug5BL	f	1983-06-12 00:00:00+00
+1142	1	QB	1983-06-10	\N	\N	f	1	381	session_Ch166s7X	f	1983-06-10 00:00:00+00
+1143	\N	QB	1983-06-11	\N	\N	f	1	381	session_rspvR30W	f	1983-06-11 00:00:00+00
+1144	2	R	1983-07-16	\N	\N	f	13	382	session_moo7OAIQ	f	1983-07-16 00:00:00+00
+1145	1	QB	1983-07-14	\N	\N	f	1	382	session_7g7LCSZQ	f	1983-07-14 00:00:00+00
+1146	\N	QB	1983-07-15	\N	\N	f	1	382	session_Dl9WIq9Z	f	1983-07-15 00:00:00+00
+1147	2	R	1983-08-07	\N	\N	f	13	383	session_Tb9GZq02	f	1983-08-07 00:00:00+00
+1148	1	QB	1983-08-05	\N	\N	f	1	383	session_5K3LXEtT	f	1983-08-05 00:00:00+00
+1149	\N	QB	1983-08-06	\N	\N	f	1	383	session_jqNxDLsK	f	1983-08-06 00:00:00+00
+1150	2	R	1983-08-14	\N	\N	f	13	384	session_79kGKS3O	f	1983-08-14 00:00:00+00
+1151	1	QB	1983-08-12	\N	\N	f	1	384	session_CJctWSmW	f	1983-08-12 00:00:00+00
+1152	\N	QB	1983-08-13	\N	\N	f	1	384	session_hHN32tDU	f	1983-08-13 00:00:00+00
+1153	2	R	1983-08-28	\N	\N	f	13	385	session_h9a3NZJB	f	1983-08-28 00:00:00+00
+1154	1	QB	1983-08-26	\N	\N	f	1	385	session_Cns3OwSX	f	1983-08-26 00:00:00+00
+1155	\N	QB	1983-08-27	\N	\N	f	1	385	session_LxQSB104	f	1983-08-27 00:00:00+00
+1156	2	R	1983-09-11	\N	\N	f	13	386	session_x5s8v62I	f	1983-09-11 00:00:00+00
+1157	1	QB	1983-09-09	\N	\N	f	1	386	session_cdJ9W3Vo	f	1983-09-09 00:00:00+00
+1158	\N	QB	1983-09-10	\N	\N	f	1	386	session_yQlnVYKk	f	1983-09-10 00:00:00+00
+1159	2	R	1983-09-25	\N	\N	f	13	387	session_0n9lTQef	f	1983-09-25 00:00:00+00
+1160	1	QB	1983-09-23	\N	\N	f	1	387	session_GqSntCFI	f	1983-09-23 00:00:00+00
+1161	\N	QB	1983-09-24	\N	\N	f	1	387	session_uyDOSjZy	f	1983-09-24 00:00:00+00
+1162	2	R	1983-10-15	\N	\N	f	13	388	session_m0HIQ2h6	f	1983-10-15 00:00:00+00
+1163	1	QB	1983-10-13	\N	\N	f	1	388	session_CpEIrY3M	f	1983-10-13 00:00:00+00
+1164	\N	QB	1983-10-14	\N	\N	f	1	388	session_1401hxhB	f	1983-10-14 00:00:00+00
+1165	2	R	1984-03-25	\N	\N	f	13	389	session_DLNhVuUY	f	1984-03-25 00:00:00+00
+1166	1	QB	1984-03-23	\N	\N	f	1	389	session_ih0ajomX	f	1984-03-23 00:00:00+00
+1167	\N	QB	1984-03-24	\N	\N	f	1	389	session_fxAOVekf	f	1984-03-24 00:00:00+00
+1168	2	R	1984-04-07	\N	\N	f	13	390	session_WB2Hr2R6	f	1984-04-07 00:00:00+00
+1169	1	QB	1984-04-05	\N	\N	f	1	390	session_mBuXRP4D	f	1984-04-05 00:00:00+00
+1170	\N	QB	1984-04-06	\N	\N	f	1	390	session_09QZJpX1	f	1984-04-06 00:00:00+00
+1171	2	R	1984-04-29	\N	\N	f	13	391	session_1nXWSca2	f	1984-04-29 00:00:00+00
+1172	1	QB	1984-04-27	\N	\N	f	1	391	session_QKZlEPPI	f	1984-04-27 00:00:00+00
+1173	\N	QB	1984-04-28	\N	\N	f	1	391	session_b4deKfhZ	f	1984-04-28 00:00:00+00
+1174	2	R	1984-05-06	\N	\N	f	13	392	session_BowF4vI2	f	1984-05-06 00:00:00+00
+1175	1	QB	1984-05-04	\N	\N	f	1	392	session_mFKKokSJ	f	1984-05-04 00:00:00+00
+1176	\N	QB	1984-05-05	\N	\N	f	1	392	session_1ciNvPSH	f	1984-05-05 00:00:00+00
+1177	2	R	1984-05-20	\N	\N	f	13	393	session_RJFTOybm	f	1984-05-20 00:00:00+00
+1178	1	QB	1984-05-18	\N	\N	f	1	393	session_xYrY1SV7	f	1984-05-18 00:00:00+00
+1179	\N	QB	1984-05-19	\N	\N	f	1	393	session_ZI7eE3Tm	f	1984-05-19 00:00:00+00
+1180	2	R	1984-06-03	\N	\N	f	13	394	session_SBTTPyUL	f	1984-06-03 00:00:00+00
+1181	1	QB	1984-05-31	\N	\N	f	1	394	session_9j5pyeNj	f	1984-05-31 00:00:00+00
+1182	\N	QB	1984-06-02	\N	\N	f	1	394	session_hrt6WxYI	f	1984-06-02 00:00:00+00
+1183	2	R	1984-06-17	\N	\N	f	13	395	session_dvK4Zic4	f	1984-06-17 00:00:00+00
+1184	1	QB	1984-06-15	\N	\N	f	1	395	session_qllDODKU	f	1984-06-15 00:00:00+00
+1185	\N	QB	1984-06-16	\N	\N	f	1	395	session_0Ti0aAi9	f	1984-06-16 00:00:00+00
+1186	2	R	1984-06-24	\N	\N	f	13	396	session_nOU7vaNc	f	1984-06-24 00:00:00+00
+1187	1	QB	1984-06-22	\N	\N	f	1	396	session_vg2eGWFm	f	1984-06-22 00:00:00+00
+1188	\N	QB	1984-06-23	\N	\N	f	1	396	session_WDQZtdpF	f	1984-06-23 00:00:00+00
+1189	2	R	1984-07-08	\N	\N	f	13	397	session_shX52A9b	f	1984-07-08 00:00:00+00
+1190	1	QB	1984-07-06	\N	\N	f	1	397	session_JMvYSR4w	f	1984-07-06 00:00:00+00
+1191	\N	QB	1984-07-07	\N	\N	f	1	397	session_eubFJaNB	f	1984-07-07 00:00:00+00
+1192	2	R	1984-07-22	\N	\N	f	13	398	session_Bz7wJhpV	f	1984-07-22 00:00:00+00
+1193	1	QB	1984-07-20	\N	\N	f	1	398	session_RUNGmevh	f	1984-07-20 00:00:00+00
+1194	\N	QB	1984-07-21	\N	\N	f	1	398	session_8PkTbGjz	f	1984-07-21 00:00:00+00
+1195	2	R	1984-08-05	\N	\N	f	13	399	session_KwXTzzJt	f	1984-08-05 00:00:00+00
+1196	1	QB	1984-08-03	\N	\N	f	1	399	session_Z5zo3ywC	f	1984-08-03 00:00:00+00
+1197	\N	QB	1984-08-04	\N	\N	f	1	399	session_zofuMx1R	f	1984-08-04 00:00:00+00
+1198	2	R	1984-08-19	\N	\N	f	13	400	session_uAMHOphN	f	1984-08-19 00:00:00+00
+1199	1	QB	1984-08-17	\N	\N	f	1	400	session_ZQyzjMVY	f	1984-08-17 00:00:00+00
+1200	\N	QB	1984-08-18	\N	\N	f	1	400	session_jrFrzt2P	f	1984-08-18 00:00:00+00
+1201	2	R	1984-08-26	\N	\N	f	13	401	session_nXlHMh0o	f	1984-08-26 00:00:00+00
+1202	1	QB	1984-08-24	\N	\N	f	1	401	session_8W0mJ1u2	f	1984-08-24 00:00:00+00
+1203	\N	QB	1984-08-25	\N	\N	f	1	401	session_unktVG5l	f	1984-08-25 00:00:00+00
+1204	2	R	1984-09-09	\N	\N	f	13	402	session_AUf4yhn0	f	1984-09-09 00:00:00+00
+1205	1	QB	1984-09-07	\N	\N	f	1	402	session_fpX4fjLj	f	1984-09-07 00:00:00+00
+1206	\N	QB	1984-09-08	\N	\N	f	1	402	session_BItZVn02	f	1984-09-08 00:00:00+00
+1207	2	R	1984-10-07	\N	\N	f	13	403	session_00Mpk9A5	f	1984-10-07 00:00:00+00
+1208	1	QB	1984-10-05	\N	\N	f	1	403	session_2ErhdXHO	f	1984-10-05 00:00:00+00
+1209	\N	QB	1984-10-06	\N	\N	f	1	403	session_zlRPeTZ9	f	1984-10-06 00:00:00+00
+1210	2	R	1984-10-21	\N	\N	f	13	404	session_SHculTsv	f	1984-10-21 00:00:00+00
+1211	1	QB	1984-10-19	\N	\N	f	1	404	session_VKIAtYCi	f	1984-10-19 00:00:00+00
+1212	\N	QB	1984-10-20	\N	\N	f	1	404	session_ECzxsp4C	f	1984-10-20 00:00:00+00
+1213	2	R	1985-04-07	\N	\N	f	13	405	session_lYq1nAZO	f	1985-04-07 00:00:00+00
+1214	1	QB	1985-04-05	\N	\N	f	1	405	session_UvcLGNO5	f	1985-04-05 00:00:00+00
+1215	\N	QB	1985-04-06	\N	\N	f	1	405	session_Soalh6Wk	f	1985-04-06 00:00:00+00
+1216	2	R	1985-04-21	\N	\N	f	13	406	session_O9xorh72	f	1985-04-21 00:00:00+00
+1217	1	QB	1985-04-19	\N	\N	f	1	406	session_F6hlfaUC	f	1985-04-19 00:00:00+00
+1218	\N	QB	1985-04-20	\N	\N	f	1	406	session_BU0GTJld	f	1985-04-20 00:00:00+00
+1219	2	R	1985-05-05	\N	\N	f	13	407	session_Br8flEkX	f	1985-05-05 00:00:00+00
+1220	1	QB	1985-05-03	\N	\N	f	1	407	session_K61NL0uP	f	1985-05-03 00:00:00+00
+1221	\N	QB	1985-05-04	\N	\N	f	1	407	session_kbpkCg7J	f	1985-05-04 00:00:00+00
+1222	2	R	1985-05-19	\N	\N	f	13	408	session_Om5QPpaM	f	1985-05-19 00:00:00+00
+1223	1	QB	1985-05-16	\N	\N	f	1	408	session_a1vtQikn	f	1985-05-16 00:00:00+00
+1224	\N	QB	1985-05-18	\N	\N	f	1	408	session_E6NJQVDe	f	1985-05-18 00:00:00+00
+1225	2	R	1985-06-16	\N	\N	f	13	409	session_6Ezh1FM1	f	1985-06-16 00:00:00+00
+1226	1	QB	1985-06-14	\N	\N	f	1	409	session_r5rfMnIe	f	1985-06-14 00:00:00+00
+1227	\N	QB	1985-06-15	\N	\N	f	1	409	session_C8GoJBH8	f	1985-06-15 00:00:00+00
+1228	2	R	1985-06-23	\N	\N	f	13	410	session_j9cBJBOI	f	1985-06-23 00:00:00+00
+1229	1	QB	1985-06-21	\N	\N	f	1	410	session_k9TSdErK	f	1985-06-21 00:00:00+00
+1230	\N	QB	1985-06-22	\N	\N	f	1	410	session_FqIgT2YB	f	1985-06-22 00:00:00+00
+1231	2	R	1985-07-07	\N	\N	f	13	411	session_xWYmVzcG	f	1985-07-07 00:00:00+00
+1232	1	QB	1985-07-05	\N	\N	f	1	411	session_8z9BMBY5	f	1985-07-05 00:00:00+00
+1233	\N	QB	1985-07-06	\N	\N	f	1	411	session_hyaharrr	f	1985-07-06 00:00:00+00
+1234	2	R	1985-07-21	\N	\N	f	13	412	session_smjutz4B	f	1985-07-21 00:00:00+00
+1235	1	QB	1985-07-19	\N	\N	f	1	412	session_y9YKk1PZ	f	1985-07-19 00:00:00+00
+1236	\N	QB	1985-07-20	\N	\N	f	1	412	session_6W8A5SJJ	f	1985-07-20 00:00:00+00
+1237	2	R	1985-08-04	\N	\N	f	13	413	session_FM3UHXTB	f	1985-08-04 00:00:00+00
+1238	1	QB	1985-08-02	\N	\N	f	1	413	session_iqeQaGoh	f	1985-08-02 00:00:00+00
+1239	\N	QB	1985-08-03	\N	\N	f	1	413	session_8SLkurkS	f	1985-08-03 00:00:00+00
+1240	2	R	1985-08-18	\N	\N	f	13	414	session_X2FykVku	f	1985-08-18 00:00:00+00
+1241	1	QB	1985-08-16	\N	\N	f	1	414	session_k89oRXBH	f	1985-08-16 00:00:00+00
+1242	\N	QB	1985-08-17	\N	\N	f	1	414	session_WLzD5vag	f	1985-08-17 00:00:00+00
+1243	2	R	1985-08-25	\N	\N	f	13	415	session_bGBhXiK5	f	1985-08-25 00:00:00+00
+1244	1	QB	1985-08-23	\N	\N	f	1	415	session_NdTjrKZB	f	1985-08-23 00:00:00+00
+1245	\N	QB	1985-08-24	\N	\N	f	1	415	session_tNfKs5NW	f	1985-08-24 00:00:00+00
+1246	2	R	1985-09-08	\N	\N	f	13	416	session_HcvLofH4	f	1985-09-08 00:00:00+00
+1247	1	QB	1985-09-06	\N	\N	f	1	416	session_jGP0s3Vf	f	1985-09-06 00:00:00+00
+1248	\N	QB	1985-09-07	\N	\N	f	1	416	session_dmKOxzEL	f	1985-09-07 00:00:00+00
+1249	2	R	1985-09-15	\N	\N	f	13	417	session_WgnToq0u	f	1985-09-15 00:00:00+00
+1250	1	QB	1985-09-13	\N	\N	f	1	417	session_Oe5ACtPM	f	1985-09-13 00:00:00+00
+1251	\N	QB	1985-09-14	\N	\N	f	1	417	session_dW4VGvap	f	1985-09-14 00:00:00+00
+1252	2	R	1985-10-06	\N	\N	f	13	418	session_BDKGU1n1	f	1985-10-06 00:00:00+00
+1253	1	QB	1985-10-04	\N	\N	f	1	418	session_naPKzGXs	f	1985-10-04 00:00:00+00
+1254	\N	QB	1985-10-05	\N	\N	f	1	418	session_TsCSOkwF	f	1985-10-05 00:00:00+00
+1255	2	R	1985-10-19	\N	\N	f	13	419	session_V2ry2uu8	f	1985-10-19 00:00:00+00
+1256	1	QB	1985-10-17	\N	\N	f	1	419	session_HVqqURBO	f	1985-10-17 00:00:00+00
+1257	\N	QB	1985-10-18	\N	\N	f	1	419	session_jsI6FvuJ	f	1985-10-18 00:00:00+00
+1258	2	R	1985-11-03	\N	\N	f	13	420	session_XrhEgSNg	f	1985-11-03 00:00:00+00
+1259	1	QB	1985-11-01	\N	\N	f	1	420	session_iDJDiFLJ	f	1985-11-01 00:00:00+00
+1260	\N	QB	1985-11-02	\N	\N	f	1	420	session_HbZIAtUL	f	1985-11-02 00:00:00+00
+1261	2	R	1986-03-23	\N	\N	f	13	421	session_LGh0jyfJ	f	1986-03-23 00:00:00+00
+1262	1	QB	1986-03-21	\N	\N	f	1	421	session_eRTzWkWY	f	1986-03-21 00:00:00+00
+1263	\N	QB	1986-03-22	\N	\N	f	1	421	session_HnsWBasy	f	1986-03-22 00:00:00+00
+1264	2	R	1986-04-13	\N	\N	f	13	422	session_K0TkvChk	f	1986-04-13 00:00:00+00
+1265	1	QB	1986-04-11	\N	\N	f	1	422	session_Wh9y5fPZ	f	1986-04-11 00:00:00+00
+1266	\N	QB	1986-04-12	\N	\N	f	1	422	session_Z2dgEfl8	f	1986-04-12 00:00:00+00
+1267	2	R	1986-04-27	\N	\N	f	13	423	session_EOy1LNoV	f	1986-04-27 00:00:00+00
+1268	1	QB	1986-04-25	\N	\N	f	1	423	session_ZuAHPOkw	f	1986-04-25 00:00:00+00
+1269	\N	QB	1986-04-26	\N	\N	f	1	423	session_LPvbgOUL	f	1986-04-26 00:00:00+00
+1270	2	R	1986-05-11	\N	\N	f	13	424	session_IfAvfDPA	f	1986-05-11 00:00:00+00
+1271	1	QB	1986-05-08	\N	\N	f	1	424	session_Dd6odEPR	f	1986-05-08 00:00:00+00
+1272	\N	QB	1986-05-10	\N	\N	f	1	424	session_6EpbVhVm	f	1986-05-10 00:00:00+00
+1273	2	R	1986-05-25	\N	\N	f	13	425	session_rfNJI2Ia	f	1986-05-25 00:00:00+00
+1274	1	QB	1986-05-23	\N	\N	f	1	425	session_XIHdkNRq	f	1986-05-23 00:00:00+00
+1275	\N	QB	1986-05-24	\N	\N	f	1	425	session_bZGIb1Xv	f	1986-05-24 00:00:00+00
+1276	2	R	1986-06-15	\N	\N	f	13	426	session_G6VwOhCx	f	1986-06-15 00:00:00+00
+1277	1	QB	1986-06-13	\N	\N	f	1	426	session_d9jrhS19	f	1986-06-13 00:00:00+00
+1278	\N	QB	1986-06-14	\N	\N	f	1	426	session_zWetvRWx	f	1986-06-14 00:00:00+00
+1279	2	R	1986-06-22	\N	\N	f	13	427	session_15C0c4nl	f	1986-06-22 00:00:00+00
+1280	1	QB	1986-06-20	\N	\N	f	1	427	session_5dNpqfDv	f	1986-06-20 00:00:00+00
+1281	\N	QB	1986-06-21	\N	\N	f	1	427	session_al3kLNQ3	f	1986-06-21 00:00:00+00
+1282	2	R	1986-07-06	\N	\N	f	13	428	session_SK5QkpRM	f	1986-07-06 00:00:00+00
+1283	1	QB	1986-07-04	\N	\N	f	1	428	session_3Fq6FrfP	f	1986-07-04 00:00:00+00
+1284	\N	QB	1986-07-05	\N	\N	f	1	428	session_stAgiTgd	f	1986-07-05 00:00:00+00
+1285	2	R	1986-07-13	\N	\N	f	13	429	session_ezEa01pA	f	1986-07-13 00:00:00+00
+1286	1	QB	1986-07-11	\N	\N	f	1	429	session_Retd3YDJ	f	1986-07-11 00:00:00+00
+1287	\N	QB	1986-07-12	\N	\N	f	1	429	session_nTK7tKJN	f	1986-07-12 00:00:00+00
+1288	2	R	1986-07-27	\N	\N	f	13	430	session_MqZsZb3r	f	1986-07-27 00:00:00+00
+1289	1	QB	1986-07-25	\N	\N	f	1	430	session_MOcTxhOD	f	1986-07-25 00:00:00+00
+1290	\N	QB	1986-07-26	\N	\N	f	1	430	session_wBxyoIAZ	f	1986-07-26 00:00:00+00
+1291	2	R	1986-08-10	\N	\N	f	13	431	session_6bvpqiEY	f	1986-08-10 00:00:00+00
+1292	1	QB	1986-08-08	\N	\N	f	1	431	session_BzGCHALt	f	1986-08-08 00:00:00+00
+1293	\N	QB	1986-08-09	\N	\N	f	1	431	session_VMwWIsjj	f	1986-08-09 00:00:00+00
+1294	2	R	1986-08-17	\N	\N	f	13	432	session_MT9cvf8F	f	1986-08-17 00:00:00+00
+1295	1	QB	1986-08-15	\N	\N	f	1	432	session_QGePm14f	f	1986-08-15 00:00:00+00
+1296	\N	QB	1986-08-16	\N	\N	f	1	432	session_zWgUgZhY	f	1986-08-16 00:00:00+00
+1297	2	R	1986-09-07	\N	\N	f	13	433	session_FoZN5UAZ	f	1986-09-07 00:00:00+00
+1298	1	QB	1986-09-05	\N	\N	f	1	433	session_YxtWZ97q	f	1986-09-05 00:00:00+00
+1299	\N	QB	1986-09-06	\N	\N	f	1	433	session_dW5108bf	f	1986-09-06 00:00:00+00
+1300	2	R	1986-09-21	\N	\N	f	13	434	session_aBfDo2l0	f	1986-09-21 00:00:00+00
+1301	1	QB	1986-09-19	\N	\N	f	1	434	session_i5G7fpuk	f	1986-09-19 00:00:00+00
+1302	\N	QB	1986-09-20	\N	\N	f	1	434	session_7d3kYzy1	f	1986-09-20 00:00:00+00
+1303	2	R	1986-10-12	\N	\N	f	13	435	session_41XxBpbN	f	1986-10-12 00:00:00+00
+1304	1	QB	1986-10-10	\N	\N	f	1	435	session_iAfSTT2j	f	1986-10-10 00:00:00+00
+1305	\N	QB	1986-10-11	\N	\N	f	1	435	session_lRpYQZQr	f	1986-10-11 00:00:00+00
+1306	2	R	1986-10-26	\N	\N	f	13	436	session_ml3HSf7w	f	1986-10-26 00:00:00+00
+1307	1	QB	1986-10-24	\N	\N	f	1	436	session_RkFY1wAD	f	1986-10-24 00:00:00+00
+1308	\N	QB	1986-10-25	\N	\N	f	1	436	session_JZJnAJgB	f	1986-10-25 00:00:00+00
+1309	2	R	1987-04-12	\N	\N	f	13	437	session_JjFNCray	f	1987-04-12 00:00:00+00
+1310	1	QB	1987-04-10	\N	\N	f	1	437	session_eO2Rqqbn	f	1987-04-10 00:00:00+00
+1311	\N	QB	1987-04-11	\N	\N	f	1	437	session_h1cjkkco	f	1987-04-11 00:00:00+00
+1312	2	R	1987-05-03	\N	\N	f	13	438	session_rUwkIxjc	f	1987-05-03 00:00:00+00
+1313	1	QB	1987-05-01	\N	\N	f	1	438	session_RrRITGNG	f	1987-05-01 00:00:00+00
+1314	\N	QB	1987-05-02	\N	\N	f	1	438	session_PPuMLeQv	f	1987-05-02 00:00:00+00
+1315	2	R	1987-05-17	\N	\N	f	13	439	session_KFZsAqjA	f	1987-05-17 00:00:00+00
+1316	1	QB	1987-05-15	\N	\N	f	1	439	session_0ndDpEbE	f	1987-05-15 00:00:00+00
+1317	\N	QB	1987-05-16	\N	\N	f	1	439	session_tWSyQZWH	f	1987-05-16 00:00:00+00
+1318	2	R	1987-05-31	\N	\N	f	13	440	session_SOKJTClr	f	1987-05-31 00:00:00+00
+1319	1	QB	1987-05-28	\N	\N	f	1	440	session_bgrY6UQf	f	1987-05-28 00:00:00+00
+1320	\N	QB	1987-05-30	\N	\N	f	1	440	session_yborQGCE	f	1987-05-30 00:00:00+00
+1321	2	R	1987-06-21	\N	\N	f	13	441	session_wV2Qn2p5	f	1987-06-21 00:00:00+00
+1322	1	QB	1987-06-19	\N	\N	f	1	441	session_TnH6F3vy	f	1987-06-19 00:00:00+00
+1323	\N	QB	1987-06-20	\N	\N	f	1	441	session_WbJ83thZ	f	1987-06-20 00:00:00+00
+1324	2	R	1987-07-05	\N	\N	f	13	442	session_NqEMtBrq	f	1987-07-05 00:00:00+00
+1325	1	QB	1987-07-03	\N	\N	f	1	442	session_VWZfJDqV	f	1987-07-03 00:00:00+00
+1326	\N	QB	1987-07-04	\N	\N	f	1	442	session_rzlGQiZC	f	1987-07-04 00:00:00+00
+1327	2	R	1987-07-12	\N	\N	f	13	443	session_A9ouGCKD	f	1987-07-12 00:00:00+00
+1328	1	QB	1987-07-10	\N	\N	f	1	443	session_vCiJN9a6	f	1987-07-10 00:00:00+00
+1329	\N	QB	1987-07-11	\N	\N	f	1	443	session_HywUl16r	f	1987-07-11 00:00:00+00
+1330	2	R	1987-07-26	\N	\N	f	13	444	session_i9Poy7dq	f	1987-07-26 00:00:00+00
+1331	1	QB	1987-07-24	\N	\N	f	1	444	session_brqHMhn0	f	1987-07-24 00:00:00+00
+1332	\N	QB	1987-07-25	\N	\N	f	1	444	session_dOHqnrjY	f	1987-07-25 00:00:00+00
+1333	2	R	1987-08-09	\N	\N	f	13	445	session_L3xC1gVs	f	1987-08-09 00:00:00+00
+1334	1	QB	1987-08-07	\N	\N	f	1	445	session_5FHAJZLe	f	1987-08-07 00:00:00+00
+1335	\N	QB	1987-08-08	\N	\N	f	1	445	session_snYd2WRF	f	1987-08-08 00:00:00+00
+1336	2	R	1987-08-16	\N	\N	f	13	446	session_9DUwP4Hm	f	1987-08-16 00:00:00+00
+1337	1	QB	1987-08-14	\N	\N	f	1	446	session_FjkEp7kr	f	1987-08-14 00:00:00+00
+1338	\N	QB	1987-08-15	\N	\N	f	1	446	session_IdKc9xNR	f	1987-08-15 00:00:00+00
+1339	2	R	1987-09-06	\N	\N	f	13	447	session_koR203ui	f	1987-09-06 00:00:00+00
+1340	1	QB	1987-09-04	\N	\N	f	1	447	session_YRoWI0Zo	f	1987-09-04 00:00:00+00
+1341	\N	QB	1987-09-05	\N	\N	f	1	447	session_MLP4Tf5O	f	1987-09-05 00:00:00+00
+1342	2	R	1987-09-20	\N	\N	f	13	448	session_e7dJaAiJ	f	1987-09-20 00:00:00+00
+1343	1	QB	1987-09-18	\N	\N	f	1	448	session_mRoijrQn	f	1987-09-18 00:00:00+00
+1344	\N	QB	1987-09-19	\N	\N	f	1	448	session_KW609p0P	f	1987-09-19 00:00:00+00
+1345	2	R	1987-09-27	\N	\N	f	13	449	session_nQ2sRm8i	f	1987-09-27 00:00:00+00
+1346	1	QB	1987-09-25	\N	\N	f	1	449	session_pfotERWs	f	1987-09-25 00:00:00+00
+1347	\N	QB	1987-09-26	\N	\N	f	1	449	session_UWETYj0w	f	1987-09-26 00:00:00+00
+1348	2	R	1987-10-18	\N	\N	f	13	450	session_QOgV7s4z	f	1987-10-18 00:00:00+00
+1349	1	QB	1987-10-16	\N	\N	f	1	450	session_Res8AFzK	f	1987-10-16 00:00:00+00
+1350	\N	QB	1987-10-17	\N	\N	f	1	450	session_LVIP9Jq4	f	1987-10-17 00:00:00+00
+1351	2	R	1987-11-01	\N	\N	f	13	451	session_Ts202NRv	f	1987-11-01 00:00:00+00
+1352	1	QB	1987-10-30	\N	\N	f	1	451	session_sek00RNe	f	1987-10-30 00:00:00+00
+1353	\N	QB	1987-10-31	\N	\N	f	1	451	session_hQ0OHMgk	f	1987-10-31 00:00:00+00
+1354	2	R	1987-11-15	\N	\N	f	13	452	session_O35rLpos	f	1987-11-15 00:00:00+00
+1355	1	QB	1987-11-13	\N	\N	f	1	452	session_qvaSr252	f	1987-11-13 00:00:00+00
+1356	\N	QB	1987-11-14	\N	\N	f	1	452	session_vjgEMYjD	f	1987-11-14 00:00:00+00
+1357	2	R	1988-04-03	\N	\N	f	13	453	session_4uOwC3b5	f	1988-04-03 00:00:00+00
+1358	1	QB	1988-04-01	\N	\N	f	1	453	session_5BVjZD91	f	1988-04-01 00:00:00+00
+1359	\N	QB	1988-04-02	\N	\N	f	1	453	session_l0tqqG56	f	1988-04-02 00:00:00+00
+1360	2	R	1988-05-01	\N	\N	f	13	454	session_3hov4T2X	f	1988-05-01 00:00:00+00
+1361	1	QB	1988-04-29	\N	\N	f	1	454	session_mZG8arjn	f	1988-04-29 00:00:00+00
+1362	\N	QB	1988-04-30	\N	\N	f	1	454	session_sX0ZuMCr	f	1988-04-30 00:00:00+00
+1363	2	R	1988-05-15	\N	\N	f	13	455	session_8O4moRK9	f	1988-05-15 00:00:00+00
+1364	1	QB	1988-05-12	\N	\N	f	1	455	session_NBckKdCU	f	1988-05-12 00:00:00+00
+1365	\N	QB	1988-05-14	\N	\N	f	1	455	session_kp4vqsk7	f	1988-05-14 00:00:00+00
+1366	2	R	1988-05-29	\N	\N	f	13	456	session_K7ZqIARG	f	1988-05-29 00:00:00+00
+1367	1	QB	1988-05-27	\N	\N	f	1	456	session_gzzPyc1u	f	1988-05-27 00:00:00+00
+1368	\N	QB	1988-05-28	\N	\N	f	1	456	session_Mp7h8lTr	f	1988-05-28 00:00:00+00
+1369	2	R	1988-06-12	\N	\N	f	13	457	session_srPhP4TV	f	1988-06-12 00:00:00+00
+1370	1	QB	1988-06-10	\N	\N	f	1	457	session_B886UFH9	f	1988-06-10 00:00:00+00
+1371	\N	QB	1988-06-11	\N	\N	f	1	457	session_M91o6TP4	f	1988-06-11 00:00:00+00
+1372	2	R	1988-06-19	\N	\N	f	13	458	session_htvvDoUZ	f	1988-06-19 00:00:00+00
+1373	1	QB	1988-06-17	\N	\N	f	1	458	session_wcHs77bt	f	1988-06-17 00:00:00+00
+1374	\N	QB	1988-06-18	\N	\N	f	1	458	session_Hm8UxwzI	f	1988-06-18 00:00:00+00
+1375	2	R	1988-07-03	\N	\N	f	13	459	session_93YFdnDG	f	1988-07-03 00:00:00+00
+1376	1	QB	1988-07-01	\N	\N	f	1	459	session_Xz4I65v7	f	1988-07-01 00:00:00+00
+1377	\N	QB	1988-07-02	\N	\N	f	1	459	session_Z7CIVPaX	f	1988-07-02 00:00:00+00
+1378	2	R	1988-07-10	\N	\N	f	13	460	session_k1q63j7o	f	1988-07-10 00:00:00+00
+1379	1	QB	1988-07-08	\N	\N	f	1	460	session_2jTtOeHs	f	1988-07-08 00:00:00+00
+1380	\N	QB	1988-07-09	\N	\N	f	1	460	session_njQjRcLD	f	1988-07-09 00:00:00+00
+1381	2	R	1988-07-24	\N	\N	f	13	461	session_wxyM6tCG	f	1988-07-24 00:00:00+00
+1382	1	QB	1988-07-22	\N	\N	f	1	461	session_liJ6YlSh	f	1988-07-22 00:00:00+00
+1383	\N	QB	1988-07-23	\N	\N	f	1	461	session_ydnMAh2x	f	1988-07-23 00:00:00+00
+1384	2	R	1988-08-07	\N	\N	f	13	462	session_KKF6XWWk	f	1988-08-07 00:00:00+00
+1385	1	QB	1988-08-05	\N	\N	f	1	462	session_owpbDbiN	f	1988-08-05 00:00:00+00
+1386	\N	QB	1988-08-06	\N	\N	f	1	462	session_y0sfT9R9	f	1988-08-06 00:00:00+00
+1387	2	R	1988-08-28	\N	\N	f	13	463	session_I0XALoE7	f	1988-08-28 00:00:00+00
+1388	1	QB	1988-08-26	\N	\N	f	1	463	session_owzkDsUw	f	1988-08-26 00:00:00+00
+1389	\N	QB	1988-08-27	\N	\N	f	1	463	session_SzTPsrRa	f	1988-08-27 00:00:00+00
+1390	2	R	1988-09-11	\N	\N	f	13	464	session_oqxESq0Z	f	1988-09-11 00:00:00+00
+1391	1	QB	1988-09-09	\N	\N	f	1	464	session_BrRxwEc6	f	1988-09-09 00:00:00+00
+1392	\N	QB	1988-09-10	\N	\N	f	1	464	session_ca6OlPsJ	f	1988-09-10 00:00:00+00
+1393	2	R	1988-09-25	\N	\N	f	13	465	session_PIA6Y6ou	f	1988-09-25 00:00:00+00
+1394	1	QB	1988-09-23	\N	\N	f	1	465	session_EHYomA0m	f	1988-09-23 00:00:00+00
+1395	\N	QB	1988-09-24	\N	\N	f	1	465	session_uVZfaC7W	f	1988-09-24 00:00:00+00
+1396	2	R	1988-10-02	\N	\N	f	13	466	session_OkHa77BI	f	1988-10-02 00:00:00+00
+1397	1	QB	1988-09-30	\N	\N	f	1	466	session_NRNr8JsL	f	1988-09-30 00:00:00+00
+1398	\N	QB	1988-10-01	\N	\N	f	1	466	session_NveqDZwB	f	1988-10-01 00:00:00+00
+1399	2	R	1988-10-30	\N	\N	f	13	467	session_gstwG6Mu	f	1988-10-30 00:00:00+00
+1400	1	QB	1988-10-28	\N	\N	f	1	467	session_hgLII32E	f	1988-10-28 00:00:00+00
+1401	\N	QB	1988-10-29	\N	\N	f	1	467	session_JFo19peG	f	1988-10-29 00:00:00+00
+1402	2	R	1988-11-13	\N	\N	f	13	468	session_DgEpziIt	f	1988-11-13 00:00:00+00
+1403	1	QB	1988-11-11	\N	\N	f	1	468	session_3EEt4zRv	f	1988-11-11 00:00:00+00
+1404	\N	QB	1988-11-12	\N	\N	f	1	468	session_FHgnaY5B	f	1988-11-12 00:00:00+00
+1405	2	R	1989-03-26	\N	\N	f	13	469	session_Pnt0hnC1	f	1989-03-26 00:00:00+00
+1406	1	QB	1989-03-24	\N	\N	f	1	469	session_6q3q2AL4	f	1989-03-24 00:00:00+00
+1407	\N	QB	1989-03-25	\N	\N	f	1	469	session_hNr7rp2Q	f	1989-03-25 00:00:00+00
+1408	2	R	1989-04-23	\N	\N	f	13	470	session_HmoI7KHA	f	1989-04-23 00:00:00+00
+1409	1	QB	1989-04-21	\N	\N	f	1	470	session_7yiNC6gQ	f	1989-04-21 00:00:00+00
+1410	\N	QB	1989-04-22	\N	\N	f	1	470	session_PTwgN0RI	f	1989-04-22 00:00:00+00
+1411	2	R	1989-05-07	\N	\N	f	13	471	session_4VUKXNox	f	1989-05-07 00:00:00+00
+1412	1	QB	1989-05-04	\N	\N	f	1	471	session_tuXTADcp	f	1989-05-04 00:00:00+00
+1413	\N	QB	1989-05-06	\N	\N	f	1	471	session_BUqT0BmW	f	1989-05-06 00:00:00+00
+1414	2	R	1989-05-28	\N	\N	f	13	472	session_rVSXqLG4	f	1989-05-28 00:00:00+00
+1415	1	QB	1989-05-26	\N	\N	f	1	472	session_ZJa7anqQ	f	1989-05-26 00:00:00+00
+1416	\N	QB	1989-05-27	\N	\N	f	1	472	session_JETaRtIb	f	1989-05-27 00:00:00+00
+1417	2	R	1989-06-04	\N	\N	f	13	473	session_bunDcTxD	f	1989-06-04 00:00:00+00
+1418	1	QB	1989-06-02	\N	\N	f	1	473	session_wwTwta6l	f	1989-06-02 00:00:00+00
+1419	\N	QB	1989-06-03	\N	\N	f	1	473	session_yGrZhUYc	f	1989-06-03 00:00:00+00
+1420	2	R	1989-06-18	\N	\N	f	13	474	session_YmQbIcZf	f	1989-06-18 00:00:00+00
+1421	1	QB	1989-06-16	\N	\N	f	1	474	session_Yh0ARlU0	f	1989-06-16 00:00:00+00
+1422	\N	QB	1989-06-17	\N	\N	f	1	474	session_cYL3BtOR	f	1989-06-17 00:00:00+00
+1423	2	R	1989-07-09	\N	\N	f	13	475	session_p9klDebU	f	1989-07-09 00:00:00+00
+1424	1	QB	1989-07-07	\N	\N	f	1	475	session_cPb3KvSV	f	1989-07-07 00:00:00+00
+1425	\N	QB	1989-07-08	\N	\N	f	1	475	session_PwygYJlg	f	1989-07-08 00:00:00+00
+1426	2	R	1989-07-16	\N	\N	f	13	476	session_5Fw491vg	f	1989-07-16 00:00:00+00
+1427	1	QB	1989-07-14	\N	\N	f	1	476	session_NTZpbJi9	f	1989-07-14 00:00:00+00
+1428	\N	QB	1989-07-15	\N	\N	f	1	476	session_me4StdcS	f	1989-07-15 00:00:00+00
+1429	2	R	1989-07-30	\N	\N	f	13	477	session_o4uHJwY6	f	1989-07-30 00:00:00+00
+1430	1	QB	1989-07-28	\N	\N	f	1	477	session_N0po6YgH	f	1989-07-28 00:00:00+00
+1431	\N	QB	1989-07-29	\N	\N	f	1	477	session_6bwDS92h	f	1989-07-29 00:00:00+00
+1432	2	R	1989-08-13	\N	\N	f	13	478	session_jTw7wRcA	f	1989-08-13 00:00:00+00
+1433	1	QB	1989-08-11	\N	\N	f	1	478	session_6cE59gKP	f	1989-08-11 00:00:00+00
+1434	\N	QB	1989-08-12	\N	\N	f	1	478	session_ij0wOIi3	f	1989-08-12 00:00:00+00
+1435	2	R	1989-08-27	\N	\N	f	13	479	session_6ST9IdHd	f	1989-08-27 00:00:00+00
+1436	1	QB	1989-08-25	\N	\N	f	1	479	session_a62S0twQ	f	1989-08-25 00:00:00+00
+1437	\N	QB	1989-08-26	\N	\N	f	1	479	session_d84XaTQJ	f	1989-08-26 00:00:00+00
+1438	2	R	1989-09-10	\N	\N	f	13	480	session_Jrgh8dsu	f	1989-09-10 00:00:00+00
+1439	1	QB	1989-09-08	\N	\N	f	1	480	session_O3FtIV4c	f	1989-09-08 00:00:00+00
+1440	\N	QB	1989-09-09	\N	\N	f	1	480	session_bBSJmdZC	f	1989-09-09 00:00:00+00
+1441	2	R	1989-09-24	\N	\N	f	13	481	session_gAEniRPP	f	1989-09-24 00:00:00+00
+1442	1	QB	1989-09-22	\N	\N	f	1	481	session_AI88tUj6	f	1989-09-22 00:00:00+00
+1443	\N	QB	1989-09-23	\N	\N	f	1	481	session_fbSez5MP	f	1989-09-23 00:00:00+00
+1444	2	R	1989-10-01	\N	\N	f	13	482	session_afAK4aFB	f	1989-10-01 00:00:00+00
+1445	1	QB	1989-09-29	\N	\N	f	1	482	session_uLxEqlb7	f	1989-09-29 00:00:00+00
+1446	\N	QB	1989-09-30	\N	\N	f	1	482	session_nckgoQIv	f	1989-09-30 00:00:00+00
+1447	2	R	1989-10-22	\N	\N	f	13	483	session_IK344iB4	f	1989-10-22 00:00:00+00
+1448	1	QB	1989-10-20	\N	\N	f	1	483	session_Yt0zIQx5	f	1989-10-20 00:00:00+00
+1449	\N	QB	1989-10-21	\N	\N	f	1	483	session_MB6Cr7Bf	f	1989-10-21 00:00:00+00
+1450	2	R	1989-11-05	\N	\N	f	13	484	session_SJjoLdVV	f	1989-11-05 00:00:00+00
+1451	1	QB	1989-11-03	\N	\N	f	1	484	session_qqVHpyME	f	1989-11-03 00:00:00+00
+1452	\N	QB	1989-11-04	\N	\N	f	1	484	session_ywbnfgNt	f	1989-11-04 00:00:00+00
+1453	2	R	1990-03-11	\N	\N	f	13	485	session_JMLUguKo	f	1990-03-11 00:00:00+00
+1454	1	QB	1990-03-09	\N	\N	f	1	485	session_hTjSNzER	f	1990-03-09 00:00:00+00
+1455	\N	QB	1990-03-10	\N	\N	f	1	485	session_YaOIAE2v	f	1990-03-10 00:00:00+00
+1456	2	R	1990-03-25	\N	\N	f	13	486	session_0O5D1oW0	f	1990-03-25 00:00:00+00
+1457	1	QB	1990-03-23	\N	\N	f	1	486	session_L1K8s3uo	f	1990-03-23 00:00:00+00
+1458	\N	QB	1990-03-24	\N	\N	f	1	486	session_4ASlS5c0	f	1990-03-24 00:00:00+00
+1459	2	R	1990-05-13	\N	\N	f	13	487	session_dFmgBkiT	f	1990-05-13 00:00:00+00
+1460	1	QB	1990-05-11	\N	\N	f	1	487	session_nSVisZWv	f	1990-05-11 00:00:00+00
+1461	\N	QB	1990-05-12	\N	\N	f	1	487	session_XJ3EpLPC	f	1990-05-12 00:00:00+00
+1462	2	R	1990-05-27	\N	\N	f	13	488	session_yd86V0lj	f	1990-05-27 00:00:00+00
+1463	1	QB	1990-05-24	\N	\N	f	1	488	session_q6yyWbZV	f	1990-05-24 00:00:00+00
+1464	\N	QB	1990-05-26	\N	\N	f	1	488	session_vuxfK7Ds	f	1990-05-26 00:00:00+00
+1465	2	R	1990-06-10	\N	\N	f	13	489	session_wUS6Pic6	f	1990-06-10 00:00:00+00
+1466	1	QB	1990-06-08	\N	\N	f	1	489	session_1CPRlojo	f	1990-06-08 00:00:00+00
+1467	\N	QB	1990-06-09	\N	\N	f	1	489	session_HPKiVxT6	f	1990-06-09 00:00:00+00
+1468	2	R	1990-06-24	\N	\N	f	13	490	session_yeRWWLq7	f	1990-06-24 00:00:00+00
+1469	1	QB	1990-06-22	\N	\N	f	1	490	session_xTcGGqxB	f	1990-06-22 00:00:00+00
+1470	\N	QB	1990-06-23	\N	\N	f	1	490	session_ElYkVlXU	f	1990-06-23 00:00:00+00
+1471	2	R	1990-07-08	\N	\N	f	13	491	session_T16mH7bv	f	1990-07-08 00:00:00+00
+1472	1	QB	1990-07-06	\N	\N	f	1	491	session_9YLwcWjT	f	1990-07-06 00:00:00+00
+1473	\N	QB	1990-07-07	\N	\N	f	1	491	session_DqiArVA7	f	1990-07-07 00:00:00+00
+1474	2	R	1990-07-15	\N	\N	f	13	492	session_HaRj9o5a	f	1990-07-15 00:00:00+00
+1475	1	QB	1990-07-13	\N	\N	f	1	492	session_dUkRxA5T	f	1990-07-13 00:00:00+00
+1476	\N	QB	1990-07-14	\N	\N	f	1	492	session_oTI3Oyhl	f	1990-07-14 00:00:00+00
+1477	2	R	1990-07-29	\N	\N	f	13	493	session_kgJIsV98	f	1990-07-29 00:00:00+00
+1478	1	QB	1990-07-27	\N	\N	f	1	493	session_blhVFy4N	f	1990-07-27 00:00:00+00
+1479	\N	QB	1990-07-28	\N	\N	f	1	493	session_bO56Guxc	f	1990-07-28 00:00:00+00
+1480	2	R	1990-08-12	\N	\N	f	13	494	session_n0llafWv	f	1990-08-12 00:00:00+00
+1481	1	QB	1990-08-10	\N	\N	f	1	494	session_FImkAIdr	f	1990-08-10 00:00:00+00
+1482	\N	QB	1990-08-11	\N	\N	f	1	494	session_laDFdyGt	f	1990-08-11 00:00:00+00
+1483	2	R	1990-08-26	\N	\N	f	13	495	session_JBBSV2OF	f	1990-08-26 00:00:00+00
+1484	1	QB	1990-08-24	\N	\N	f	1	495	session_YhUOYJrZ	f	1990-08-24 00:00:00+00
+1485	\N	QB	1990-08-25	\N	\N	f	1	495	session_eNL6CWc4	f	1990-08-25 00:00:00+00
+1486	2	R	1990-09-09	\N	\N	f	13	496	session_wkUthcci	f	1990-09-09 00:00:00+00
+1487	1	QB	1990-09-07	\N	\N	f	1	496	session_wLsBeVF0	f	1990-09-07 00:00:00+00
+1488	\N	QB	1990-09-08	\N	\N	f	1	496	session_5llYgQlJ	f	1990-09-08 00:00:00+00
+1489	2	R	1990-09-23	\N	\N	f	13	497	session_Jhwya7bl	f	1990-09-23 00:00:00+00
+1490	1	QB	1990-09-21	\N	\N	f	1	497	session_j3e86Xg4	f	1990-09-21 00:00:00+00
+1491	\N	QB	1990-09-22	\N	\N	f	1	497	session_ui2aA41E	f	1990-09-22 00:00:00+00
+1492	2	R	1990-09-30	\N	\N	f	13	498	session_qHoaz8Wf	f	1990-09-30 00:00:00+00
+1493	1	QB	1990-09-28	\N	\N	f	1	498	session_lucbH1vZ	f	1990-09-28 00:00:00+00
+1494	\N	QB	1990-09-29	\N	\N	f	1	498	session_F4rltBnU	f	1990-09-29 00:00:00+00
+1495	2	R	1990-10-21	\N	\N	f	13	499	session_VmC5dis3	f	1990-10-21 00:00:00+00
+1496	1	QB	1990-10-19	\N	\N	f	1	499	session_p9C8TPVp	f	1990-10-19 00:00:00+00
+1497	\N	QB	1990-10-20	\N	\N	f	1	499	session_gG19Pvm2	f	1990-10-20 00:00:00+00
+1498	2	R	1990-11-04	\N	\N	f	13	500	session_WK71pCO8	f	1990-11-04 00:00:00+00
+1499	1	QB	1990-11-02	\N	\N	f	1	500	session_ku3nxz2x	f	1990-11-02 00:00:00+00
+1500	\N	QB	1990-11-03	\N	\N	f	1	500	session_Pwl9moza	f	1990-11-03 00:00:00+00
+1501	2	R	1991-03-10	\N	\N	f	14	501	session_hUfn0YKs	f	1991-03-10 00:00:00+00
+1502	1	QB	1991-03-08	\N	\N	f	1	501	session_pi9V1fx4	f	1991-03-08 00:00:00+00
+1503	\N	QB	1991-03-09	\N	\N	f	1	501	session_guzHNnSe	f	1991-03-09 00:00:00+00
+1504	2	R	1991-03-24	\N	\N	f	14	502	session_H7Q0inh5	f	1991-03-24 00:00:00+00
+1505	1	QB	1991-03-22	\N	\N	f	1	502	session_1l3lhvs6	f	1991-03-22 00:00:00+00
+1506	\N	QB	1991-03-23	\N	\N	f	1	502	session_X0G8eKZx	f	1991-03-23 00:00:00+00
+1507	2	R	1991-04-28	\N	\N	f	14	503	session_nrRLRQIY	f	1991-04-28 00:00:00+00
+1508	1	QB	1991-04-26	\N	\N	f	1	503	session_LSYkjhpX	f	1991-04-26 00:00:00+00
+1509	\N	QB	1991-04-27	\N	\N	f	1	503	session_nFfottsN	f	1991-04-27 00:00:00+00
+1510	2	R	1991-05-12	\N	\N	f	14	504	session_feH10TOR	f	1991-05-12 00:00:00+00
+1511	1	QB	1991-05-09	\N	\N	f	1	504	session_hGlJaZG2	f	1991-05-09 00:00:00+00
+1512	\N	QB	1991-05-11	\N	\N	f	1	504	session_80a0absm	f	1991-05-11 00:00:00+00
+1513	2	R	1991-06-02	\N	\N	f	14	505	session_L2Za2a4a	f	1991-06-02 00:00:00+00
+1514	1	QB	1991-05-31	\N	\N	f	1	505	session_DCtKfNGq	f	1991-05-31 00:00:00+00
+1515	\N	QB	1991-06-01	\N	\N	f	1	505	session_AVZ2Hwtb	f	1991-06-01 00:00:00+00
+1516	2	R	1991-06-16	\N	\N	f	14	506	session_3z9DM6DB	f	1991-06-16 00:00:00+00
+1517	1	QB	1991-06-14	\N	\N	f	1	506	session_eoNWek3m	f	1991-06-14 00:00:00+00
+1518	\N	QB	1991-06-15	\N	\N	f	1	506	session_vzCbNcjc	f	1991-06-15 00:00:00+00
+1519	2	R	1991-07-07	\N	\N	f	14	507	session_6aUEfYKU	f	1991-07-07 00:00:00+00
+1520	1	QB	1991-07-05	\N	\N	f	1	507	session_rnhmXSiL	f	1991-07-05 00:00:00+00
+1521	\N	QB	1991-07-06	\N	\N	f	1	507	session_9eHsI26X	f	1991-07-06 00:00:00+00
+1522	2	R	1991-07-14	\N	\N	f	14	508	session_a8q7M5eL	f	1991-07-14 00:00:00+00
+1523	1	QB	1991-07-12	\N	\N	f	1	508	session_4fJBpncn	f	1991-07-12 00:00:00+00
+1524	\N	QB	1991-07-13	\N	\N	f	1	508	session_G2qhXgs3	f	1991-07-13 00:00:00+00
+1525	2	R	1991-07-28	\N	\N	f	14	509	session_G38ThWQE	f	1991-07-28 00:00:00+00
+1526	1	QB	1991-07-26	\N	\N	f	1	509	session_zyKDAQ3N	f	1991-07-26 00:00:00+00
+1527	\N	QB	1991-07-27	\N	\N	f	1	509	session_LAXpZE7C	f	1991-07-27 00:00:00+00
+1528	2	R	1991-08-11	\N	\N	f	14	510	session_udjDI8JT	f	1991-08-11 00:00:00+00
+1529	1	QB	1991-08-09	\N	\N	f	1	510	session_u48uil0I	f	1991-08-09 00:00:00+00
+1530	\N	QB	1991-08-10	\N	\N	f	1	510	session_jJpL0oe8	f	1991-08-10 00:00:00+00
+1531	2	R	1991-08-25	\N	\N	f	14	511	session_NMOEdxe9	f	1991-08-25 00:00:00+00
+1532	1	QB	1991-08-23	\N	\N	f	1	511	session_OUHHk8Si	f	1991-08-23 00:00:00+00
+1533	\N	QB	1991-08-24	\N	\N	f	1	511	session_PLBNo1Vc	f	1991-08-24 00:00:00+00
+1534	2	R	1991-09-08	\N	\N	f	14	512	session_toEwKktW	f	1991-09-08 00:00:00+00
+1535	1	QB	1991-09-06	\N	\N	f	1	512	session_doBGYA2x	f	1991-09-06 00:00:00+00
+1536	\N	QB	1991-09-07	\N	\N	f	1	512	session_IT8Lxep1	f	1991-09-07 00:00:00+00
+1537	2	R	1991-09-22	\N	\N	f	14	513	session_ykUBaggx	f	1991-09-22 00:00:00+00
+1538	1	QB	1991-09-20	\N	\N	f	1	513	session_rWD11zfd	f	1991-09-20 00:00:00+00
+1539	\N	QB	1991-09-21	\N	\N	f	1	513	session_dsEo17cr	f	1991-09-21 00:00:00+00
+1540	2	R	1991-09-29	\N	\N	f	14	514	session_buxJB1gy	f	1991-09-29 00:00:00+00
+1541	1	QB	1991-09-27	\N	\N	f	1	514	session_BGLhD2XJ	f	1991-09-27 00:00:00+00
+1542	\N	QB	1991-09-28	\N	\N	f	1	514	session_78dcNjrz	f	1991-09-28 00:00:00+00
+1543	2	R	1991-10-20	\N	\N	f	14	515	session_jHpPA2OE	f	1991-10-20 00:00:00+00
+1544	1	QB	1991-10-18	\N	\N	f	1	515	session_D6eG35M8	f	1991-10-18 00:00:00+00
+1545	\N	QB	1991-10-19	\N	\N	f	1	515	session_TtbFKfOs	f	1991-10-19 00:00:00+00
+1546	2	R	1991-11-03	\N	\N	f	14	516	session_hscRVY6n	f	1991-11-03 00:00:00+00
+1547	1	QB	1991-11-01	\N	\N	f	1	516	session_vJ91Recw	f	1991-11-01 00:00:00+00
+1548	\N	QB	1991-11-02	\N	\N	f	1	516	session_kIops5NJ	f	1991-11-02 00:00:00+00
+1549	2	R	1992-03-01	\N	\N	f	14	517	session_LOfqvatA	f	1992-03-01 00:00:00+00
+1550	1	QB	1992-02-28	\N	\N	f	1	517	session_ZRRpIAHK	f	1992-02-28 00:00:00+00
+1551	\N	QB	1992-02-29	\N	\N	f	1	517	session_Xi4cUw6U	f	1992-02-29 00:00:00+00
+1552	2	R	1992-03-22	\N	\N	f	14	518	session_jGMM0h7f	f	1992-03-22 00:00:00+00
+1553	1	QB	1992-03-20	\N	\N	f	1	518	session_CXeQ0V5b	f	1992-03-20 00:00:00+00
+1554	\N	QB	1992-03-21	\N	\N	f	1	518	session_OZgBsUFU	f	1992-03-21 00:00:00+00
+1555	2	R	1992-04-05	\N	\N	f	14	519	session_hWMmrHt2	f	1992-04-05 00:00:00+00
+1556	1	QB	1992-04-03	\N	\N	f	1	519	session_sqmaXabW	f	1992-04-03 00:00:00+00
+1557	\N	QB	1992-04-04	\N	\N	f	1	519	session_6YpizKzI	f	1992-04-04 00:00:00+00
+1558	2	R	1992-05-03	\N	\N	f	14	520	session_8dUWvnO0	f	1992-05-03 00:00:00+00
+1559	1	QB	1992-05-01	\N	\N	f	1	520	session_DsPHRa68	f	1992-05-01 00:00:00+00
+1560	\N	QB	1992-05-02	\N	\N	f	1	520	session_m6X7I5YF	f	1992-05-02 00:00:00+00
+1561	2	R	1992-05-17	\N	\N	f	14	521	session_UL4VDcLY	f	1992-05-17 00:00:00+00
+1562	1	QB	1992-05-15	\N	\N	f	1	521	session_BwdDFrvT	f	1992-05-15 00:00:00+00
+1563	\N	QB	1992-05-16	\N	\N	f	1	521	session_FxHnRnCf	f	1992-05-16 00:00:00+00
+1564	2	R	1992-05-31	\N	\N	f	14	522	session_7i8RDFYA	f	1992-05-31 00:00:00+00
+1565	1	QB	1992-05-28	\N	\N	f	1	522	session_UTXGQyjs	f	1992-05-28 00:00:00+00
+1566	\N	QB	1992-05-30	\N	\N	f	1	522	session_Sjh9odat	f	1992-05-30 00:00:00+00
+1567	2	R	1992-06-14	\N	\N	f	14	523	session_jSXwOLQ0	f	1992-06-14 00:00:00+00
+1568	1	QB	1992-06-12	\N	\N	f	1	523	session_T7pQcdPH	f	1992-06-12 00:00:00+00
+1569	\N	QB	1992-06-13	\N	\N	f	1	523	session_7OWD7iN8	f	1992-06-13 00:00:00+00
+1570	2	R	1992-07-05	\N	\N	f	14	524	session_EuIsvh0G	f	1992-07-05 00:00:00+00
+1571	1	QB	1992-07-03	\N	\N	f	1	524	session_DuVbnI7a	f	1992-07-03 00:00:00+00
+1572	\N	QB	1992-07-04	\N	\N	f	1	524	session_ZJFNa0oI	f	1992-07-04 00:00:00+00
+1573	2	R	1992-07-12	\N	\N	f	14	525	session_Ksff7PyQ	f	1992-07-12 00:00:00+00
+1574	1	QB	1992-07-10	\N	\N	f	1	525	session_g2o4JICU	f	1992-07-10 00:00:00+00
+1575	\N	QB	1992-07-11	\N	\N	f	1	525	session_6WMQ60FO	f	1992-07-11 00:00:00+00
+1576	2	R	1992-07-26	\N	\N	f	14	526	session_xYYtjFnm	f	1992-07-26 00:00:00+00
+1577	1	QB	1992-07-24	\N	\N	f	1	526	session_3qdZ5aMN	f	1992-07-24 00:00:00+00
+1578	\N	QB	1992-07-25	\N	\N	f	1	526	session_k8Dxfptl	f	1992-07-25 00:00:00+00
+1579	2	R	1992-08-16	\N	\N	f	14	527	session_bmQGKRay	f	1992-08-16 00:00:00+00
+1580	1	QB	1992-08-14	\N	\N	f	1	527	session_7bOfZcyQ	f	1992-08-14 00:00:00+00
+1581	\N	QB	1992-08-15	\N	\N	f	1	527	session_aFAnZlYJ	f	1992-08-15 00:00:00+00
+1582	2	R	1992-08-30	\N	\N	f	14	528	session_ahVK44yB	f	1992-08-30 00:00:00+00
+1583	1	QB	1992-08-28	\N	\N	f	1	528	session_8DXng4GD	f	1992-08-28 00:00:00+00
+1584	\N	QB	1992-08-29	\N	\N	f	1	528	session_xo5Isq41	f	1992-08-29 00:00:00+00
+1585	2	R	1992-09-13	\N	\N	f	14	529	session_aiSTWaDM	f	1992-09-13 00:00:00+00
+1586	1	QB	1992-09-11	\N	\N	f	1	529	session_wJ3dAwe6	f	1992-09-11 00:00:00+00
+1587	\N	QB	1992-09-12	\N	\N	f	1	529	session_5Hoqu35o	f	1992-09-12 00:00:00+00
+1588	2	R	1992-09-27	\N	\N	f	14	530	session_i5Plcm0D	f	1992-09-27 00:00:00+00
+1589	1	QB	1992-09-25	\N	\N	f	1	530	session_n1a6zY8r	f	1992-09-25 00:00:00+00
+1590	\N	QB	1992-09-26	\N	\N	f	1	530	session_LzOR4zlw	f	1992-09-26 00:00:00+00
+1591	2	R	1992-10-25	\N	\N	f	14	531	session_DxR7O4eJ	f	1992-10-25 00:00:00+00
+1592	1	QB	1992-10-23	\N	\N	f	1	531	session_qcWGl3T0	f	1992-10-23 00:00:00+00
+1593	\N	QB	1992-10-24	\N	\N	f	1	531	session_HXNhKuLT	f	1992-10-24 00:00:00+00
+1594	2	R	1992-11-08	\N	\N	f	14	532	session_zGNRCfmE	f	1992-11-08 00:00:00+00
+1595	1	QB	1992-11-06	\N	\N	f	1	532	session_aVY7afJ7	f	1992-11-06 00:00:00+00
+1596	\N	QB	1992-11-07	\N	\N	f	1	532	session_Cc2ltGQF	f	1992-11-07 00:00:00+00
+1597	2	R	1993-03-14	\N	\N	f	14	533	session_agpuqI2H	f	1993-03-14 00:00:00+00
+1598	1	QB	1993-03-12	\N	\N	f	1	533	session_fQslFCQg	f	1993-03-12 00:00:00+00
+1599	\N	QB	1993-03-13	\N	\N	f	1	533	session_ricDK8ih	f	1993-03-13 00:00:00+00
+1600	2	R	1993-03-28	\N	\N	f	14	534	session_tDa8Fuz1	f	1993-03-28 00:00:00+00
+1601	1	QB	1993-03-26	\N	\N	f	1	534	session_r8rIs1vT	f	1993-03-26 00:00:00+00
+1602	\N	QB	1993-03-27	\N	\N	f	1	534	session_uzc3fjB0	f	1993-03-27 00:00:00+00
+1603	2	R	1993-04-11	\N	\N	f	14	535	session_UgaAMXnM	f	1993-04-11 00:00:00+00
+1604	1	QB	1993-04-09	\N	\N	f	1	535	session_PodU5XFU	f	1993-04-09 00:00:00+00
+1605	\N	QB	1993-04-10	\N	\N	f	1	535	session_DlTDML3w	f	1993-04-10 00:00:00+00
+1606	2	R	1993-04-25	\N	\N	f	14	536	session_zeUpBfYC	f	1993-04-25 00:00:00+00
+1607	1	QB	1993-04-23	\N	\N	f	1	536	session_mAKkpkRj	f	1993-04-23 00:00:00+00
+1608	\N	QB	1993-04-24	\N	\N	f	1	536	session_j7qK6JWC	f	1993-04-24 00:00:00+00
+1609	2	R	1993-05-09	\N	\N	f	14	537	session_erZQxIfD	f	1993-05-09 00:00:00+00
+1610	1	QB	1993-05-07	\N	\N	f	1	537	session_UpFflnhb	f	1993-05-07 00:00:00+00
+1611	\N	QB	1993-05-08	\N	\N	f	1	537	session_KzaoC1OE	f	1993-05-08 00:00:00+00
+1612	2	R	1993-05-23	\N	\N	f	14	538	session_GZIG1xo2	f	1993-05-23 00:00:00+00
+1613	1	QB	1993-05-20	\N	\N	f	1	538	session_xDD4T0CO	f	1993-05-20 00:00:00+00
+1614	\N	QB	1993-05-22	\N	\N	f	1	538	session_68EBaNSm	f	1993-05-22 00:00:00+00
+1615	2	R	1993-06-13	\N	\N	f	14	539	session_nXbm8Wge	f	1993-06-13 00:00:00+00
+1616	1	QB	1993-06-11	\N	\N	f	1	539	session_lMEOWODp	f	1993-06-11 00:00:00+00
+1617	\N	QB	1993-06-12	\N	\N	f	1	539	session_kPx3w5ud	f	1993-06-12 00:00:00+00
+1618	2	R	1993-07-04	\N	\N	f	14	540	session_nmSvZwP1	f	1993-07-04 00:00:00+00
+1619	1	QB	1993-07-02	\N	\N	f	1	540	session_kvdUvicd	f	1993-07-02 00:00:00+00
+1620	\N	QB	1993-07-03	\N	\N	f	1	540	session_Pp4RGI3C	f	1993-07-03 00:00:00+00
+1621	2	R	1993-07-11	\N	\N	f	14	541	session_EWLHeysT	f	1993-07-11 00:00:00+00
+1622	1	QB	1993-07-09	\N	\N	f	1	541	session_TFkDY2dt	f	1993-07-09 00:00:00+00
+1623	\N	QB	1993-07-10	\N	\N	f	1	541	session_k5nfEYZ3	f	1993-07-10 00:00:00+00
+1624	2	R	1993-07-25	\N	\N	f	14	542	session_6KpZFuTK	f	1993-07-25 00:00:00+00
+1625	1	QB	1993-07-23	\N	\N	f	1	542	session_cXeMQclZ	f	1993-07-23 00:00:00+00
+1626	\N	QB	1993-07-24	\N	\N	f	1	542	session_BEfc7hCS	f	1993-07-24 00:00:00+00
+1627	2	R	1993-08-15	\N	\N	f	14	543	session_Ok17KC6W	f	1993-08-15 00:00:00+00
+1628	1	QB	1993-08-13	\N	\N	f	1	543	session_SpsRLIrw	f	1993-08-13 00:00:00+00
+1629	\N	QB	1993-08-14	\N	\N	f	1	543	session_RM75wTv1	f	1993-08-14 00:00:00+00
+1630	2	R	1993-08-29	\N	\N	f	14	544	session_4azX06xd	f	1993-08-29 00:00:00+00
+1631	1	QB	1993-08-27	\N	\N	f	1	544	session_PiywILbw	f	1993-08-27 00:00:00+00
+1632	\N	QB	1993-08-28	\N	\N	f	1	544	session_UYwUSXBs	f	1993-08-28 00:00:00+00
+1633	2	R	1993-09-12	\N	\N	f	14	545	session_K4s7tFJj	f	1993-09-12 00:00:00+00
+1634	1	QB	1993-09-10	\N	\N	f	1	545	session_bHn9IeMI	f	1993-09-10 00:00:00+00
+1635	\N	QB	1993-09-11	\N	\N	f	1	545	session_nimTbpMP	f	1993-09-11 00:00:00+00
+1636	2	R	1993-09-26	\N	\N	f	14	546	session_YNvPkEiS	f	1993-09-26 00:00:00+00
+1637	1	QB	1993-09-24	\N	\N	f	1	546	session_y2McaQjV	f	1993-09-24 00:00:00+00
+1638	\N	QB	1993-09-25	\N	\N	f	1	546	session_OPJiP6PD	f	1993-09-25 00:00:00+00
+1639	2	R	1993-10-24	\N	\N	f	14	547	session_zHrN7kWT	f	1993-10-24 00:00:00+00
+1640	1	QB	1993-10-22	\N	\N	f	1	547	session_ATrbifCo	f	1993-10-22 00:00:00+00
+1641	\N	QB	1993-10-23	\N	\N	f	1	547	session_1jdukA39	f	1993-10-23 00:00:00+00
+1642	2	R	1993-11-07	\N	\N	f	14	548	session_tNoFRiAK	f	1993-11-07 00:00:00+00
+1643	1	QB	1993-11-05	\N	\N	f	1	548	session_l7DGA331	f	1993-11-05 00:00:00+00
+1644	\N	QB	1993-11-06	\N	\N	f	1	548	session_OSEYOXDG	f	1993-11-06 00:00:00+00
+1645	2	R	1994-03-27	\N	\N	f	14	549	session_Q1VWABfu	f	1994-03-27 00:00:00+00
+1646	1	QB	1994-03-25	\N	\N	f	1	549	session_sHUZK44m	f	1994-03-25 00:00:00+00
+1647	\N	QB	1994-03-26	\N	\N	f	1	549	session_Uh3XPsPl	f	1994-03-26 00:00:00+00
+1648	2	R	1994-04-17	\N	\N	f	14	550	session_XIigOl1w	f	1994-04-17 00:00:00+00
+1649	1	QB	1994-04-15	\N	\N	f	1	550	session_jn0qw1VB	f	1994-04-15 00:00:00+00
+1650	\N	QB	1994-04-16	\N	\N	f	1	550	session_zSQZj3Pm	f	1994-04-16 00:00:00+00
+1651	2	R	1994-05-01	\N	\N	f	14	551	session_rr9wFKdO	f	1994-05-01 00:00:00+00
+1652	1	QB	1994-04-29	\N	\N	f	1	551	session_UO5ORSYI	f	1994-04-29 00:00:00+00
+1653	\N	QB	1994-04-30	\N	\N	f	1	551	session_XBWUu9FF	f	1994-04-30 00:00:00+00
+1654	2	R	1994-05-15	\N	\N	f	14	552	session_yp9dimV5	f	1994-05-15 00:00:00+00
+1655	1	QB	1994-05-12	\N	\N	f	1	552	session_sBH1Lbru	f	1994-05-12 00:00:00+00
+1656	\N	QB	1994-05-14	\N	\N	f	1	552	session_5f9HN7NU	f	1994-05-14 00:00:00+00
+1657	2	R	1994-05-29	\N	\N	f	14	553	session_Rlx6n5lh	f	1994-05-29 00:00:00+00
+1658	1	QB	1994-05-27	\N	\N	f	1	553	session_YDFxJz1G	f	1994-05-27 00:00:00+00
+1659	\N	QB	1994-05-28	\N	\N	f	1	553	session_8EuYthlK	f	1994-05-28 00:00:00+00
+1660	2	R	1994-06-12	\N	\N	f	14	554	session_Rn1Bb2DE	f	1994-06-12 00:00:00+00
+1661	1	QB	1994-06-10	\N	\N	f	1	554	session_f30wms7o	f	1994-06-10 00:00:00+00
+1662	\N	QB	1994-06-11	\N	\N	f	1	554	session_Yno5Ofap	f	1994-06-11 00:00:00+00
+1663	2	R	1994-07-03	\N	\N	f	14	555	session_gL1wkCt0	f	1994-07-03 00:00:00+00
+1664	1	QB	1994-07-01	\N	\N	f	1	555	session_JbqdKbg4	f	1994-07-01 00:00:00+00
+1665	\N	QB	1994-07-02	\N	\N	f	1	555	session_AVU5dBoM	f	1994-07-02 00:00:00+00
+1666	2	R	1994-07-10	\N	\N	f	14	556	session_qqrsTgzg	f	1994-07-10 00:00:00+00
+1667	1	QB	1994-07-08	\N	\N	f	1	556	session_eEbxS5gY	f	1994-07-08 00:00:00+00
+1668	\N	QB	1994-07-09	\N	\N	f	1	556	session_rSX92kMc	f	1994-07-09 00:00:00+00
+1669	2	R	1994-07-31	\N	\N	f	14	557	session_2wKeVh1b	f	1994-07-31 00:00:00+00
+1670	1	QB	1994-07-29	\N	\N	f	1	557	session_Em4c4tIV	f	1994-07-29 00:00:00+00
+1671	\N	QB	1994-07-30	\N	\N	f	1	557	session_AdTRgCxE	f	1994-07-30 00:00:00+00
+1672	2	R	1994-08-14	\N	\N	f	14	558	session_NoEw3BXJ	f	1994-08-14 00:00:00+00
+1673	1	QB	1994-08-12	\N	\N	f	1	558	session_byf5HBL6	f	1994-08-12 00:00:00+00
+1674	\N	QB	1994-08-13	\N	\N	f	1	558	session_xiMnZ0CE	f	1994-08-13 00:00:00+00
+1675	2	R	1994-08-28	\N	\N	f	14	559	session_KWlfbzEO	f	1994-08-28 00:00:00+00
+1676	1	QB	1994-08-26	\N	\N	f	1	559	session_FCWa2vSP	f	1994-08-26 00:00:00+00
+1677	\N	QB	1994-08-27	\N	\N	f	1	559	session_i06qZLcF	f	1994-08-27 00:00:00+00
+1678	2	R	1994-09-11	\N	\N	f	14	560	session_5BYGJkll	f	1994-09-11 00:00:00+00
+1679	1	QB	1994-09-09	\N	\N	f	1	560	session_2KvLL6EO	f	1994-09-09 00:00:00+00
+1680	\N	QB	1994-09-10	\N	\N	f	1	560	session_v6Sh3w0l	f	1994-09-10 00:00:00+00
+1681	2	R	1994-09-25	\N	\N	f	14	561	session_oVv0BJAX	f	1994-09-25 00:00:00+00
+1682	1	QB	1994-09-23	\N	\N	f	1	561	session_1MSRQSod	f	1994-09-23 00:00:00+00
+1683	\N	QB	1994-09-24	\N	\N	f	1	561	session_ZptZl8RB	f	1994-09-24 00:00:00+00
+1684	2	R	1994-10-16	\N	\N	f	14	562	session_2xZd9wdT	f	1994-10-16 00:00:00+00
+1685	1	QB	1994-10-14	\N	\N	f	1	562	session_NGz2KL38	f	1994-10-14 00:00:00+00
+1686	\N	QB	1994-10-15	\N	\N	f	1	562	session_SoNN6AZx	f	1994-10-15 00:00:00+00
+1687	2	R	1994-11-06	\N	\N	f	14	563	session_wSY1Ufy7	f	1994-11-06 00:00:00+00
+1688	1	QB	1994-11-04	\N	\N	f	1	563	session_L9I2zw3d	f	1994-11-04 00:00:00+00
+1689	\N	QB	1994-11-05	\N	\N	f	1	563	session_R6icztEp	f	1994-11-05 00:00:00+00
+1690	2	R	1994-11-13	\N	\N	f	14	564	session_fH4J0EtY	f	1994-11-13 00:00:00+00
+1691	1	QB	1994-11-11	\N	\N	f	1	564	session_k0kLhT6W	f	1994-11-11 00:00:00+00
+1692	\N	QB	1994-11-12	\N	\N	f	1	564	session_ycSbK0z9	f	1994-11-12 00:00:00+00
+1693	2	R	1995-03-26	\N	\N	f	14	565	session_HcFD1n5r	f	1995-03-26 00:00:00+00
+1694	1	QB	1995-03-24	\N	\N	f	1	565	session_4E2LDbvb	f	1995-03-24 00:00:00+00
+1695	\N	QB	1995-03-25	\N	\N	f	1	565	session_XvxCtbB0	f	1995-03-25 00:00:00+00
+1696	2	R	1995-04-09	\N	\N	f	14	566	session_0aK5GWvA	f	1995-04-09 00:00:00+00
+1697	1	QB	1995-04-07	\N	\N	f	1	566	session_nlJ3s9Hb	f	1995-04-07 00:00:00+00
+1698	\N	QB	1995-04-08	\N	\N	f	1	566	session_oB3OAive	f	1995-04-08 00:00:00+00
+1699	2	R	1995-04-30	\N	\N	f	14	567	session_YKx9UV25	f	1995-04-30 00:00:00+00
+1700	1	QB	1995-04-28	\N	\N	f	1	567	session_naYLY0Wo	f	1995-04-28 00:00:00+00
+1701	\N	QB	1995-04-29	\N	\N	f	1	567	session_9PjsAi6Q	f	1995-04-29 00:00:00+00
+1702	2	R	1995-05-14	\N	\N	f	14	568	session_Il4ze8h8	f	1995-05-14 00:00:00+00
+1703	1	QB	1995-05-12	\N	\N	f	1	568	session_jgeo0loj	f	1995-05-12 00:00:00+00
+1704	\N	QB	1995-05-13	\N	\N	f	1	568	session_o36Pxdxt	f	1995-05-13 00:00:00+00
+1705	2	R	1995-05-28	\N	\N	f	14	569	session_EoiLM0Go	f	1995-05-28 00:00:00+00
+1706	1	QB	1995-05-25	\N	\N	f	1	569	session_pborhlkx	f	1995-05-25 00:00:00+00
+1707	\N	QB	1995-05-27	\N	\N	f	1	569	session_ebvdugFp	f	1995-05-27 00:00:00+00
+1708	2	R	1995-06-11	\N	\N	f	14	570	session_kgNQy3pd	f	1995-06-11 00:00:00+00
+1709	1	QB	1995-06-09	\N	\N	f	1	570	session_rvoQrz4I	f	1995-06-09 00:00:00+00
+1710	\N	QB	1995-06-10	\N	\N	f	1	570	session_OqKWFN5w	f	1995-06-10 00:00:00+00
+1711	2	R	1995-07-02	\N	\N	f	14	571	session_bmsViKaY	f	1995-07-02 00:00:00+00
+1712	1	QB	1995-06-30	\N	\N	f	1	571	session_lFMNbJ41	f	1995-06-30 00:00:00+00
+1713	\N	QB	1995-07-01	\N	\N	f	1	571	session_sgaEW6BZ	f	1995-07-01 00:00:00+00
+1714	2	R	1995-07-16	\N	\N	f	14	572	session_2ruFSvdb	f	1995-07-16 00:00:00+00
+1715	1	QB	1995-07-14	\N	\N	f	1	572	session_xaHOk5pc	f	1995-07-14 00:00:00+00
+1716	\N	QB	1995-07-15	\N	\N	f	1	572	session_pxEMdUJN	f	1995-07-15 00:00:00+00
+1717	2	R	1995-07-30	\N	\N	f	14	573	session_Dv12Eh7s	f	1995-07-30 00:00:00+00
+1718	1	QB	1995-07-28	\N	\N	f	1	573	session_Xy8ddU1k	f	1995-07-28 00:00:00+00
+1719	\N	QB	1995-07-29	\N	\N	f	1	573	session_ogNXysKy	f	1995-07-29 00:00:00+00
+1720	2	R	1995-08-13	\N	\N	f	14	574	session_qgg1C65M	f	1995-08-13 00:00:00+00
+1721	1	QB	1995-08-11	\N	\N	f	1	574	session_bLbzWQTA	f	1995-08-11 00:00:00+00
+1722	\N	QB	1995-08-12	\N	\N	f	1	574	session_koLlIl4v	f	1995-08-12 00:00:00+00
+1723	2	R	1995-08-27	\N	\N	f	14	575	session_W5jgth79	f	1995-08-27 00:00:00+00
+1724	1	QB	1995-08-25	\N	\N	f	1	575	session_E2Xlss3N	f	1995-08-25 00:00:00+00
+1725	\N	QB	1995-08-26	\N	\N	f	1	575	session_qiO1o8G6	f	1995-08-26 00:00:00+00
+1726	2	R	1995-09-10	\N	\N	f	14	576	session_2IYpYFON	f	1995-09-10 00:00:00+00
+1727	1	QB	1995-09-08	\N	\N	f	1	576	session_Ojw1QbPH	f	1995-09-08 00:00:00+00
+1728	\N	QB	1995-09-09	\N	\N	f	1	576	session_w8t9eXaF	f	1995-09-09 00:00:00+00
+1729	2	R	1995-09-24	\N	\N	f	14	577	session_0MtK5nse	f	1995-09-24 00:00:00+00
+1730	1	QB	1995-09-22	\N	\N	f	1	577	session_WFIIqj2T	f	1995-09-22 00:00:00+00
+1731	\N	QB	1995-09-23	\N	\N	f	1	577	session_4wfWXb9X	f	1995-09-23 00:00:00+00
+1732	2	R	1995-10-01	\N	\N	f	14	578	session_wx9D1SPt	f	1995-10-01 00:00:00+00
+1733	1	QB	1995-09-29	\N	\N	f	1	578	session_4dxfu6iu	f	1995-09-29 00:00:00+00
+1734	\N	QB	1995-09-30	\N	\N	f	1	578	session_5jUbeq2w	f	1995-09-30 00:00:00+00
+1735	2	R	1995-10-22	\N	\N	f	14	579	session_IteCVZ8O	f	1995-10-22 00:00:00+00
+1736	1	QB	1995-10-20	\N	\N	f	1	579	session_i0PdLQOB	f	1995-10-20 00:00:00+00
+1737	\N	QB	1995-10-21	\N	\N	f	1	579	session_DXu8ofuq	f	1995-10-21 00:00:00+00
+1738	2	R	1995-10-29	\N	\N	f	14	580	session_E6eXN2Qy	f	1995-10-29 00:00:00+00
+1739	1	QB	1995-10-27	\N	\N	f	1	580	session_pCPnM0YJ	f	1995-10-27 00:00:00+00
+1740	\N	QB	1995-10-28	\N	\N	f	1	580	session_jtuIMtHC	f	1995-10-28 00:00:00+00
+1741	2	R	1995-11-12	\N	\N	f	14	581	session_zUWBqZDM	f	1995-11-12 00:00:00+00
+1742	1	QB	1995-11-10	\N	\N	f	1	581	session_76hDsIcm	f	1995-11-10 00:00:00+00
+1743	\N	QB	1995-11-11	\N	\N	f	1	581	session_1ZvuhDJ7	f	1995-11-11 00:00:00+00
+1744	2	R	1996-03-10	\N	\N	f	14	582	session_llb72bOh	f	1996-03-10 00:00:00+00
+1745	1	QB	1996-03-09	\N	\N	f	1	582	session_UgUWuo3h	f	1996-03-09 00:00:00+00
+1746	2	R	1996-03-31	\N	\N	f	14	583	session_gShiwTPb	f	1996-03-31 00:00:00+00
+1747	1	QB	1996-03-30	\N	\N	f	1	583	session_lWn5CELP	f	1996-03-30 00:00:00+00
+1748	2	R	1996-04-07	\N	\N	f	14	584	session_PH3eWJKI	f	1996-04-07 00:00:00+00
+1749	1	QB	1996-04-06	\N	\N	f	1	584	session_6NPERyAj	f	1996-04-06 00:00:00+00
+1750	2	R	1996-04-28	\N	\N	f	14	585	session_ryVWNJVU	f	1996-04-28 00:00:00+00
+1751	1	QB	1996-04-27	\N	\N	f	1	585	session_8rHFtHb7	f	1996-04-27 00:00:00+00
+1752	2	R	1996-05-05	\N	\N	f	14	586	session_yQq8xst6	f	1996-05-05 00:00:00+00
+1753	1	QB	1996-05-04	\N	\N	f	1	586	session_KmhrVZJv	f	1996-05-04 00:00:00+00
+1754	2	R	1996-05-19	\N	\N	f	14	587	session_1qBCzRsh	f	1996-05-19 00:00:00+00
+1755	1	QB	1996-05-18	\N	\N	f	1	587	session_ODJzWuPA	f	1996-05-18 00:00:00+00
+1756	2	R	1996-06-02	\N	\N	f	14	588	session_apjS89LI	f	1996-06-02 00:00:00+00
+1757	1	QB	1996-06-01	\N	\N	f	1	588	session_TgHCILR8	f	1996-06-01 00:00:00+00
+1758	2	R	1996-06-16	\N	\N	f	14	589	session_OIrzIZat	f	1996-06-16 00:00:00+00
+1759	1	QB	1996-06-15	\N	\N	f	1	589	session_pooLL7iL	f	1996-06-15 00:00:00+00
+1760	2	R	1996-06-30	\N	\N	f	14	590	session_NIYjgpFG	f	1996-06-30 00:00:00+00
+1761	1	QB	1996-06-29	\N	\N	f	1	590	session_K1cmF6ZS	f	1996-06-29 00:00:00+00
+1762	2	R	1996-07-14	\N	\N	f	14	591	session_HaljznbW	f	1996-07-14 00:00:00+00
+1763	1	QB	1996-07-13	\N	\N	f	1	591	session_N1Xjze3L	f	1996-07-13 00:00:00+00
+1764	2	R	1996-07-28	\N	\N	f	14	592	session_39ExFP0h	f	1996-07-28 00:00:00+00
+1765	1	QB	1996-07-27	\N	\N	f	1	592	session_XrDD61ia	f	1996-07-27 00:00:00+00
+1766	2	R	1996-08-11	\N	\N	f	14	593	session_e7osfi5e	f	1996-08-11 00:00:00+00
+1767	1	QB	1996-08-10	\N	\N	f	1	593	session_AosDrNPS	f	1996-08-10 00:00:00+00
+1768	2	R	1996-08-25	\N	\N	f	14	594	session_PYzXwVfJ	f	1996-08-25 00:00:00+00
+1769	1	QB	1996-08-24	\N	\N	f	1	594	session_u2xkBT5X	f	1996-08-24 00:00:00+00
+1770	2	R	1996-09-08	\N	\N	f	14	595	session_LF95Pnci	f	1996-09-08 00:00:00+00
+1771	1	QB	1996-09-07	\N	\N	f	1	595	session_EjQ5MJYh	f	1996-09-07 00:00:00+00
+1772	2	R	1996-09-22	\N	\N	f	14	596	session_mSihiMuI	f	1996-09-22 00:00:00+00
+1773	1	QB	1996-09-21	\N	\N	f	1	596	session_kRt4oudh	f	1996-09-21 00:00:00+00
+1774	2	R	1996-10-13	\N	\N	f	14	597	session_a9jSr2gv	f	1996-10-13 00:00:00+00
+1775	1	QB	1996-10-12	\N	\N	f	1	597	session_2GuigRnu	f	1996-10-12 00:00:00+00
+1776	2	R	1997-03-09	\N	\N	f	14	598	session_9M4U5Vg4	f	1997-03-09 00:00:00+00
+1777	1	QB	1997-03-08	\N	\N	f	1	598	session_6rlgbAdv	f	1997-03-08 00:00:00+00
+1778	2	R	1997-03-30	\N	\N	f	14	599	session_dUf7d8UI	f	1997-03-30 00:00:00+00
+1779	1	QB	1997-03-29	\N	\N	f	1	599	session_pgXDWXkj	f	1997-03-29 00:00:00+00
+1780	2	R	1997-04-13	\N	\N	f	14	600	session_XOSe2D8q	f	1997-04-13 00:00:00+00
+1781	1	QB	1997-04-12	\N	\N	f	1	600	session_Jg6ISI9Q	f	1997-04-12 00:00:00+00
+1782	2	R	1997-04-27	\N	\N	f	14	601	session_IgcpN2E8	f	1997-04-27 00:00:00+00
+1783	1	QB	1997-04-26	\N	\N	f	1	601	session_LgTNcVdt	f	1997-04-26 00:00:00+00
+1784	2	R	1997-05-11	\N	\N	f	14	602	session_YfzcndD3	f	1997-05-11 00:00:00+00
+1785	1	QB	1997-05-10	\N	\N	f	1	602	session_OfJ2UXKM	f	1997-05-10 00:00:00+00
+1786	2	R	1997-05-25	\N	\N	f	14	603	session_hqXiuMd8	f	1997-05-25 00:00:00+00
+1787	1	QB	1997-05-24	\N	\N	f	1	603	session_CD3mGnLH	f	1997-05-24 00:00:00+00
+1788	2	R	1997-06-15	\N	\N	f	14	604	session_NmEMO3UL	f	1997-06-15 00:00:00+00
+1789	1	QB	1997-06-14	\N	\N	f	1	604	session_wOsv0Xkj	f	1997-06-14 00:00:00+00
+1790	2	R	1997-06-29	\N	\N	f	14	605	session_cVxsCuOQ	f	1997-06-29 00:00:00+00
+1791	1	QB	1997-06-28	\N	\N	f	1	605	session_pFUPGwmk	f	1997-06-28 00:00:00+00
+1792	2	R	1997-07-13	\N	\N	f	14	606	session_13OH1rT7	f	1997-07-13 00:00:00+00
+1793	1	QB	1997-07-12	\N	\N	f	1	606	session_aawU4Y4L	f	1997-07-12 00:00:00+00
+1794	2	R	1997-07-27	\N	\N	f	14	607	session_iwdRnzEp	f	1997-07-27 00:00:00+00
+1795	1	QB	1997-07-26	\N	\N	f	1	607	session_AzYYY7Jo	f	1997-07-26 00:00:00+00
+1796	2	R	1997-08-10	\N	\N	f	14	608	session_G0uXIGFo	f	1997-08-10 00:00:00+00
+1797	1	QB	1997-08-09	\N	\N	f	1	608	session_1ce9kd4A	f	1997-08-09 00:00:00+00
+1798	2	R	1997-08-24	\N	\N	f	14	609	session_qkeTx8QL	f	1997-08-24 00:00:00+00
+1799	1	QB	1997-08-23	\N	\N	f	1	609	session_JWnP6V03	f	1997-08-23 00:00:00+00
+1800	2	R	1997-09-07	\N	\N	f	14	610	session_mZA9fUk8	f	1997-09-07 00:00:00+00
+1801	1	QB	1997-09-06	\N	\N	f	1	610	session_J8LUt81C	f	1997-09-06 00:00:00+00
+1802	2	R	1997-09-21	\N	\N	f	14	611	session_nsFP3abU	f	1997-09-21 00:00:00+00
+1803	1	QB	1997-09-20	\N	\N	f	1	611	session_JqMe6IC3	f	1997-09-20 00:00:00+00
+1804	2	R	1997-09-28	\N	\N	f	14	612	session_2POgtsNf	f	1997-09-28 00:00:00+00
+1805	1	QB	1997-09-27	\N	\N	f	1	612	session_yYWhYxIv	f	1997-09-27 00:00:00+00
+1806	2	R	1997-10-12	\N	\N	f	14	613	session_vmnbEAaT	f	1997-10-12 00:00:00+00
+1807	1	QB	1997-10-11	\N	\N	f	1	613	session_clMPq8pK	f	1997-10-11 00:00:00+00
+1808	2	R	1997-10-26	\N	\N	f	14	614	session_tpj2dzN2	f	1997-10-26 00:00:00+00
+1809	1	QB	1997-10-25	\N	\N	f	1	614	session_afoTGbWA	f	1997-10-25 00:00:00+00
+1810	2	R	1998-03-08	\N	\N	f	14	615	session_4S1tcxcL	f	1998-03-08 00:00:00+00
+1811	1	QB	1998-03-07	\N	\N	f	1	615	session_AJCDfw5a	f	1998-03-07 00:00:00+00
+1812	2	R	1998-03-29	\N	\N	f	14	616	session_FMv8mOol	f	1998-03-29 00:00:00+00
+1813	1	QB	1998-03-28	\N	\N	f	1	616	session_AQgk0LeL	f	1998-03-28 00:00:00+00
+1814	2	R	1998-04-12	\N	\N	f	14	617	session_CxLMGDiA	f	1998-04-12 00:00:00+00
+1815	1	QB	1998-04-11	\N	\N	f	1	617	session_rtMLbt8z	f	1998-04-11 00:00:00+00
+1816	2	R	1998-04-26	\N	\N	f	14	618	session_hblDE4GP	f	1998-04-26 00:00:00+00
+1817	1	QB	1998-04-25	\N	\N	f	1	618	session_iGqEKxOV	f	1998-04-25 00:00:00+00
+1818	2	R	1998-05-10	\N	\N	f	14	619	session_bOlJX2lZ	f	1998-05-10 00:00:00+00
+1819	1	QB	1998-05-09	\N	\N	f	1	619	session_9SqJqLPE	f	1998-05-09 00:00:00+00
+1820	2	R	1998-05-24	\N	\N	f	14	620	session_kObB0xqM	f	1998-05-24 00:00:00+00
+1821	1	QB	1998-05-23	\N	\N	f	1	620	session_iyXtjXb5	f	1998-05-23 00:00:00+00
+1822	2	R	1998-06-07	\N	\N	f	14	621	session_AqiRUTKg	f	1998-06-07 00:00:00+00
+1823	1	QB	1998-06-06	\N	\N	f	1	621	session_FrpGR61b	f	1998-06-06 00:00:00+00
+1824	2	R	1998-06-28	\N	\N	f	14	622	session_QbyYdIiV	f	1998-06-28 00:00:00+00
+1825	1	QB	1998-06-27	\N	\N	f	1	622	session_OOI9LopN	f	1998-06-27 00:00:00+00
+1826	2	R	1998-07-12	\N	\N	f	14	623	session_yUlh8cJo	f	1998-07-12 00:00:00+00
+1827	1	QB	1998-07-11	\N	\N	f	1	623	session_eHu7oZwk	f	1998-07-11 00:00:00+00
+1828	2	R	1998-07-26	\N	\N	f	14	624	session_wYxFaMXQ	f	1998-07-26 00:00:00+00
+1829	1	QB	1998-07-25	\N	\N	f	1	624	session_cxMG7PVn	f	1998-07-25 00:00:00+00
+1830	2	R	1998-08-02	\N	\N	f	14	625	session_J4c6zGic	f	1998-08-02 00:00:00+00
+1831	1	QB	1998-08-01	\N	\N	f	1	625	session_jhYAPzfm	f	1998-08-01 00:00:00+00
+1832	2	R	1998-08-16	\N	\N	f	14	626	session_TZTeQcrB	f	1998-08-16 00:00:00+00
+1833	1	QB	1998-08-15	\N	\N	f	1	626	session_LytILKkv	f	1998-08-15 00:00:00+00
+1834	2	R	1998-08-30	\N	\N	f	14	627	session_31beNZyJ	f	1998-08-30 00:00:00+00
+1835	1	QB	1998-08-29	\N	\N	f	1	627	session_GeQsAcvn	f	1998-08-29 00:00:00+00
+1836	2	R	1998-09-13	\N	\N	f	14	628	session_RuKkS5ld	f	1998-09-13 00:00:00+00
+1837	1	QB	1998-09-12	\N	\N	f	1	628	session_9j2nqP9R	f	1998-09-12 00:00:00+00
+1838	2	R	1998-09-27	\N	\N	f	14	629	session_v9v7WEc8	f	1998-09-27 00:00:00+00
+1839	1	QB	1998-09-26	\N	\N	f	1	629	session_iPEBUPhq	f	1998-09-26 00:00:00+00
+1840	2	R	1998-11-01	\N	\N	f	14	630	session_7dvJWjFg	f	1998-11-01 00:00:00+00
+1841	1	QB	1998-10-31	\N	\N	f	1	630	session_0TyFb4l7	f	1998-10-31 00:00:00+00
+1842	2	R	1999-03-07	\N	\N	f	14	631	session_xJp7r8cv	f	1999-03-07 00:00:00+00
+1843	1	QB	1999-03-06	\N	\N	f	1	631	session_9yLXHf1f	f	1999-03-06 00:00:00+00
+1844	2	R	1999-04-11	\N	\N	f	14	632	session_uoHhqMxz	f	1999-04-11 00:00:00+00
+1845	1	QB	1999-04-10	\N	\N	f	1	632	session_Dlzt7Maf	f	1999-04-10 00:00:00+00
+1846	2	R	1999-05-02	\N	\N	f	14	633	session_h2cvQTZ8	f	1999-05-02 00:00:00+00
+1847	1	QB	1999-05-01	\N	\N	f	1	633	session_aEaM37jF	f	1999-05-01 00:00:00+00
+1848	2	R	1999-05-16	\N	\N	f	14	634	session_ZSDClK97	f	1999-05-16 00:00:00+00
+1849	1	QB	1999-05-15	\N	\N	f	1	634	session_BP3zvyTY	f	1999-05-15 00:00:00+00
+1850	2	R	1999-05-30	\N	\N	f	14	635	session_hCcLWQkT	f	1999-05-30 00:00:00+00
+1851	1	QB	1999-05-29	\N	\N	f	1	635	session_pmDchLR7	f	1999-05-29 00:00:00+00
+1852	2	R	1999-06-13	\N	\N	f	14	636	session_Ho4OGzo9	f	1999-06-13 00:00:00+00
+1853	1	QB	1999-06-12	\N	\N	f	1	636	session_Udrcz6Qg	f	1999-06-12 00:00:00+00
+1854	2	R	1999-06-27	\N	\N	f	14	637	session_ApEJFzF7	f	1999-06-27 00:00:00+00
+1855	1	QB	1999-06-26	\N	\N	f	1	637	session_z78qjJxi	f	1999-06-26 00:00:00+00
+1856	2	R	1999-07-11	\N	\N	f	14	638	session_4gXVFpIu	f	1999-07-11 00:00:00+00
+1857	1	QB	1999-07-10	\N	\N	f	1	638	session_cCtNoH86	f	1999-07-10 00:00:00+00
+1858	2	R	1999-07-25	\N	\N	f	14	639	session_MJqng93f	f	1999-07-25 00:00:00+00
+1859	1	QB	1999-07-24	\N	\N	f	1	639	session_e9QsM6i4	f	1999-07-24 00:00:00+00
+1860	2	R	1999-08-01	\N	\N	f	14	640	session_RmdyjSHX	f	1999-08-01 00:00:00+00
+1861	1	QB	1999-07-31	\N	\N	f	1	640	session_bOKRmpVf	f	1999-07-31 00:00:00+00
+1862	2	R	1999-08-15	\N	\N	f	14	641	session_kNGRZzh9	f	1999-08-15 00:00:00+00
+1863	1	QB	1999-08-14	\N	\N	f	1	641	session_LjsKdqSY	f	1999-08-14 00:00:00+00
+1864	2	R	1999-08-29	\N	\N	f	14	642	session_vhQje7Nu	f	1999-08-29 00:00:00+00
+1865	1	QB	1999-08-28	\N	\N	f	1	642	session_BywQxVcX	f	1999-08-28 00:00:00+00
+1866	2	R	1999-09-12	\N	\N	f	14	643	session_LE3yaS4Q	f	1999-09-12 00:00:00+00
+1867	1	QB	1999-09-11	\N	\N	f	1	643	session_Ft7EgqjX	f	1999-09-11 00:00:00+00
+1868	2	R	1999-09-26	\N	\N	f	14	644	session_0zMQFF0K	f	1999-09-26 00:00:00+00
+1869	1	QB	1999-09-25	\N	\N	f	1	644	session_oHfUHBQN	f	1999-09-25 00:00:00+00
+1870	2	R	1999-10-17	\N	\N	f	14	645	session_5qlWlBMA	f	1999-10-17 00:00:00+00
+1871	1	QB	1999-10-16	\N	\N	f	1	645	session_6jSyu05R	f	1999-10-16 00:00:00+00
+1872	2	R	1999-10-31	\N	\N	f	14	646	session_nRUlL8C8	f	1999-10-31 00:00:00+00
+1873	1	QB	1999-10-30	\N	\N	f	1	646	session_EAxloeUz	f	1999-10-30 00:00:00+00
+1874	2	R	2000-03-12	\N	\N	f	14	647	session_As4VZprz	f	2000-03-12 00:00:00+00
+1875	1	QB	2000-03-11	\N	\N	f	1	647	session_9c11Vw4p	f	2000-03-11 00:00:00+00
+1876	2	R	2000-03-26	\N	\N	f	14	648	session_Twcz0GqP	f	2000-03-26 00:00:00+00
+1877	1	QB	2000-03-25	\N	\N	f	1	648	session_nNXceLUj	f	2000-03-25 00:00:00+00
+1878	2	R	2000-04-09	\N	\N	f	14	649	session_fvMEHnl4	f	2000-04-09 00:00:00+00
+1879	1	QB	2000-04-08	\N	\N	f	1	649	session_DNndcaou	f	2000-04-08 00:00:00+00
+1880	2	R	2000-04-23	\N	\N	f	14	650	session_DlkYHM5R	f	2000-04-23 00:00:00+00
+1881	1	QB	2000-04-22	\N	\N	f	1	650	session_9b8BTt4S	f	2000-04-22 00:00:00+00
+1882	2	R	2000-05-07	\N	\N	f	14	651	session_Yp55dKkx	f	2000-05-07 00:00:00+00
+1883	1	QB	2000-05-06	\N	\N	f	1	651	session_k398mPjW	f	2000-05-06 00:00:00+00
+1884	2	R	2000-05-21	\N	\N	f	14	652	session_GZavEiom	f	2000-05-21 00:00:00+00
+1885	1	QB	2000-05-20	\N	\N	f	1	652	session_NrYAef8R	f	2000-05-20 00:00:00+00
+1886	2	R	2000-06-04	\N	\N	f	14	653	session_DHU8XE1E	f	2000-06-04 00:00:00+00
+1887	1	QB	2000-06-03	\N	\N	f	1	653	session_he5b7GOS	f	2000-06-03 00:00:00+00
+1888	2	R	2000-06-18	\N	\N	f	14	654	session_B2GtkOTi	f	2000-06-18 00:00:00+00
+1889	1	QB	2000-06-17	\N	\N	f	1	654	session_XDJ1H0G7	f	2000-06-17 00:00:00+00
+1890	2	R	2000-07-02	\N	\N	f	14	655	session_IepQcgiZ	f	2000-07-02 00:00:00+00
+1891	1	QB	2000-07-01	\N	\N	f	1	655	session_5jyYuGLp	f	2000-07-01 00:00:00+00
+1892	2	R	2000-07-16	\N	\N	f	14	656	session_C5rlRxML	f	2000-07-16 00:00:00+00
+1893	1	QB	2000-07-15	\N	\N	f	1	656	session_VfNtBMWu	f	2000-07-15 00:00:00+00
+1894	2	R	2000-07-30	\N	\N	f	14	657	session_Vy3x9C3D	f	2000-07-30 00:00:00+00
+1895	1	QB	2000-07-29	\N	\N	f	1	657	session_YclxJH0h	f	2000-07-29 00:00:00+00
+1896	2	R	2000-08-13	\N	\N	f	14	658	session_JWtVZgKn	f	2000-08-13 00:00:00+00
+1897	1	QB	2000-08-12	\N	\N	f	1	658	session_klUbbYq9	f	2000-08-12 00:00:00+00
+1898	2	R	2000-08-27	\N	\N	f	14	659	session_HIOwh9JB	f	2000-08-27 00:00:00+00
+1899	1	QB	2000-08-26	\N	\N	f	1	659	session_6FpbQgqO	f	2000-08-26 00:00:00+00
+1900	2	R	2000-09-10	\N	\N	f	14	660	session_YtfiYta5	f	2000-09-10 00:00:00+00
+1901	1	QB	2000-09-09	\N	\N	f	1	660	session_hfiP6Zpd	f	2000-09-09 00:00:00+00
+1902	2	R	2000-09-24	\N	\N	f	14	661	session_WdkAHRn8	f	2000-09-24 00:00:00+00
+1903	1	QB	2000-09-23	\N	\N	f	1	661	session_bv2CKisj	f	2000-09-23 00:00:00+00
+1904	2	R	2000-10-08	\N	\N	f	14	662	session_jWbD8Xug	f	2000-10-08 00:00:00+00
+1905	1	QB	2000-10-07	\N	\N	f	1	662	session_7ODLl9zH	f	2000-10-07 00:00:00+00
+1906	2	R	2000-10-22	\N	\N	f	14	663	session_JBfSPB2w	f	2000-10-22 00:00:00+00
+1907	1	QB	2000-10-21	\N	\N	f	1	663	session_M0lEE994	f	2000-10-21 00:00:00+00
+1908	2	R	2001-03-04	\N	\N	f	14	664	session_eWigyqnR	f	2001-03-04 00:00:00+00
+1909	1	QB	2001-03-03	\N	\N	f	1	664	session_Ld1Rqn5k	f	2001-03-03 00:00:00+00
+1910	2	R	2001-03-18	\N	\N	f	14	665	session_pLB7j6FJ	f	2001-03-18 00:00:00+00
+1911	1	QB	2001-03-17	\N	\N	f	1	665	session_enXlO61G	f	2001-03-17 00:00:00+00
+1912	2	R	2001-04-01	\N	\N	f	14	666	session_DCtlwOd5	f	2001-04-01 00:00:00+00
+1913	1	QB	2001-03-31	\N	\N	f	1	666	session_Z1d95gkN	f	2001-03-31 00:00:00+00
+1914	2	R	2001-04-15	\N	\N	f	14	667	session_T7en0niz	f	2001-04-15 00:00:00+00
+1915	1	QB	2001-04-14	\N	\N	f	1	667	session_VoSV47Gd	f	2001-04-14 00:00:00+00
+1916	2	R	2001-04-29	\N	\N	f	14	668	session_DyOBlmzw	f	2001-04-29 00:00:00+00
+1917	1	QB	2001-04-28	\N	\N	f	1	668	session_NyaazsDV	f	2001-04-28 00:00:00+00
+1918	2	R	2001-05-13	\N	\N	f	14	669	session_jSzuuPUl	f	2001-05-13 00:00:00+00
+1919	1	QB	2001-05-12	\N	\N	f	1	669	session_sk8i33t8	f	2001-05-12 00:00:00+00
+1920	2	R	2001-05-27	\N	\N	f	14	670	session_jLRcsgOZ	f	2001-05-27 00:00:00+00
+1921	1	QB	2001-05-26	\N	\N	f	1	670	session_DUSLu7rG	f	2001-05-26 00:00:00+00
+1922	2	R	2001-06-10	\N	\N	f	14	671	session_2PRFP4wH	f	2001-06-10 00:00:00+00
+1923	1	QB	2001-06-09	\N	\N	f	1	671	session_F4zgv17P	f	2001-06-09 00:00:00+00
+1924	2	R	2001-06-24	\N	\N	f	14	672	session_Tdtj9pQT	f	2001-06-24 00:00:00+00
+1925	1	QB	2001-06-23	\N	\N	f	1	672	session_FqFliSpK	f	2001-06-23 00:00:00+00
+1926	2	R	2001-07-01	\N	\N	f	14	673	session_nQX5r3Zi	f	2001-07-01 00:00:00+00
+1927	1	QB	2001-06-30	\N	\N	f	1	673	session_O1LOrqil	f	2001-06-30 00:00:00+00
+1928	2	R	2001-07-15	\N	\N	f	14	674	session_o18XjPFR	f	2001-07-15 00:00:00+00
+1929	1	QB	2001-07-14	\N	\N	f	1	674	session_WdUCRRxB	f	2001-07-14 00:00:00+00
+1930	2	R	2001-07-29	\N	\N	f	14	675	session_6xCABKTM	f	2001-07-29 00:00:00+00
+1931	1	QB	2001-07-28	\N	\N	f	1	675	session_wvuqlPus	f	2001-07-28 00:00:00+00
+1932	2	R	2001-08-19	\N	\N	f	14	676	session_vg3sep2i	f	2001-08-19 00:00:00+00
+1933	1	QB	2001-08-18	\N	\N	f	1	676	session_PDeYuEmN	f	2001-08-18 00:00:00+00
+1934	2	R	2001-09-02	\N	\N	f	14	677	session_zTAApkak	f	2001-09-02 00:00:00+00
+1935	1	QB	2001-09-01	\N	\N	f	1	677	session_zfrDuzSQ	f	2001-09-01 00:00:00+00
+1936	2	R	2001-09-16	\N	\N	f	14	678	session_22Qg69JM	f	2001-09-16 00:00:00+00
+1937	1	QB	2001-09-15	\N	\N	f	1	678	session_HXTR7oGT	f	2001-09-15 00:00:00+00
+1938	2	R	2001-09-30	\N	\N	f	14	679	session_Rzf7I7tY	f	2001-09-30 00:00:00+00
+1939	1	QB	2001-09-29	\N	\N	f	1	679	session_KaFRisFS	f	2001-09-29 00:00:00+00
+1940	2	R	2001-10-14	\N	\N	f	14	680	session_G7PMCFf8	f	2001-10-14 00:00:00+00
+1941	1	QB	2001-10-13	\N	\N	f	1	680	session_MUPERFXi	f	2001-10-13 00:00:00+00
+1942	2	R	2002-03-03	\N	\N	f	14	681	session_fY8leThy	f	2002-03-03 00:00:00+00
+1943	1	QB	2002-03-02	\N	\N	f	1	681	session_SNU4MusV	f	2002-03-02 00:00:00+00
+1944	2	R	2002-03-17	\N	\N	f	14	682	session_rdDyvgQR	f	2002-03-17 00:00:00+00
+1945	1	QB	2002-03-16	\N	\N	f	1	682	session_ac7F4Jfz	f	2002-03-16 00:00:00+00
+1946	2	R	2002-03-31	\N	\N	f	14	683	session_ICSOREGh	f	2002-03-31 00:00:00+00
+1947	1	QB	2002-03-30	\N	\N	f	1	683	session_WS3CbkGL	f	2002-03-30 00:00:00+00
+1948	2	R	2002-04-14	\N	\N	f	14	684	session_JNdA3m48	f	2002-04-14 00:00:00+00
+1949	1	QB	2002-04-13	\N	\N	f	1	684	session_6f6HybNl	f	2002-04-13 00:00:00+00
+1950	2	R	2002-04-28	\N	\N	f	14	685	session_9ADnEfJ6	f	2002-04-28 00:00:00+00
+1951	1	QB	2002-04-27	\N	\N	f	1	685	session_3vhD9EuD	f	2002-04-27 00:00:00+00
+1952	2	R	2002-05-12	\N	\N	f	14	686	session_VaufhC6d	f	2002-05-12 00:00:00+00
+1953	1	QB	2002-05-11	\N	\N	f	1	686	session_9P2vILey	f	2002-05-11 00:00:00+00
+1954	2	R	2002-05-26	\N	\N	f	14	687	session_LWiw4QMB	f	2002-05-26 00:00:00+00
+1955	1	QB	2002-05-25	\N	\N	f	1	687	session_ecu9EBk0	f	2002-05-25 00:00:00+00
+1956	2	R	2002-06-09	\N	\N	f	14	688	session_5VVxqJPw	f	2002-06-09 00:00:00+00
+1957	1	QB	2002-06-08	\N	\N	f	1	688	session_L3ufigYm	f	2002-06-08 00:00:00+00
+1958	2	R	2002-06-23	\N	\N	f	14	689	session_U0b7Rqhv	f	2002-06-23 00:00:00+00
+1959	1	QB	2002-06-22	\N	\N	f	1	689	session_pLVA7zf6	f	2002-06-22 00:00:00+00
+1960	2	R	2002-07-07	\N	\N	f	14	690	session_8LcvRgVA	f	2002-07-07 00:00:00+00
+1961	1	QB	2002-07-06	\N	\N	f	1	690	session_O3IPHLr4	f	2002-07-06 00:00:00+00
+1962	2	R	2002-07-21	\N	\N	f	14	691	session_NunKHJVN	f	2002-07-21 00:00:00+00
+1963	1	QB	2002-07-20	\N	\N	f	1	691	session_IGK54ZtO	f	2002-07-20 00:00:00+00
+1964	2	R	2002-07-28	\N	\N	f	14	692	session_Mrf3HoZU	f	2002-07-28 00:00:00+00
+1965	1	QB	2002-07-27	\N	\N	f	1	692	session_JQt4qlci	f	2002-07-27 00:00:00+00
+1966	2	R	2002-08-18	\N	\N	f	14	693	session_eNUXS8PA	f	2002-08-18 00:00:00+00
+1967	1	QB	2002-08-17	\N	\N	f	1	693	session_JGwLH94V	f	2002-08-17 00:00:00+00
+1968	2	R	2002-09-01	\N	\N	f	14	694	session_RcbNhfY2	f	2002-09-01 00:00:00+00
+1969	1	QB	2002-08-31	\N	\N	f	1	694	session_wnxdQxUp	f	2002-08-31 00:00:00+00
+1970	2	R	2002-09-15	\N	\N	f	14	695	session_6JNddb7L	f	2002-09-15 00:00:00+00
+1971	1	QB	2002-09-14	\N	\N	f	1	695	session_NzCRAdK4	f	2002-09-14 00:00:00+00
+1972	2	R	2002-09-29	\N	\N	f	14	696	session_P4MVftfk	f	2002-09-29 00:00:00+00
+1973	1	QB	2002-09-28	\N	\N	f	1	696	session_AksyObAm	f	2002-09-28 00:00:00+00
+1974	2	R	2002-10-13	\N	\N	f	14	697	session_TpTEJ3wt	f	2002-10-13 00:00:00+00
+1975	1	QB	2002-10-12	\N	\N	f	1	697	session_MMAc0U5Z	f	2002-10-12 00:00:00+00
+1976	3	R	2003-03-09	\N	\N	f	15	698	session_f10xoiZC	f	2003-03-09 00:00:00+00
+1977	1	QO	2003-03-07	\N	\N	f	1	698	session_ucLZSQnv	f	2003-03-07 00:00:00+00
+1978	2	QB	2003-03-08	\N	\N	f	1	698	session_uuGw9Bqs	f	2003-03-08 00:00:00+00
+1979	3	R	2003-03-23	\N	\N	f	15	699	session_nQKHw8Ub	f	2003-03-23 00:00:00+00
+1980	1	QO	2003-03-21	\N	\N	f	1	699	session_AKVhIj18	f	2003-03-21 00:00:00+00
+1981	2	QB	2003-03-22	\N	\N	f	1	699	session_En4J0Rth	f	2003-03-22 00:00:00+00
+1982	3	R	2003-04-06	\N	\N	f	15	700	session_yW81YaSj	f	2003-04-06 00:00:00+00
+1983	1	QO	2003-04-04	\N	\N	f	1	700	session_1qeFBoRM	f	2003-04-04 00:00:00+00
+1984	2	QB	2003-04-05	\N	\N	f	1	700	session_FKBIhbpq	f	2003-04-05 00:00:00+00
+1985	3	R	2003-04-20	\N	\N	f	15	701	session_scf1IZTd	f	2003-04-20 00:00:00+00
+1986	1	QO	2003-04-18	\N	\N	f	1	701	session_a93XT8GE	f	2003-04-18 00:00:00+00
+1987	2	QB	2003-04-19	\N	\N	f	1	701	session_95xbAY4V	f	2003-04-19 00:00:00+00
+1988	3	R	2003-05-04	\N	\N	f	15	702	session_o6dpETv0	f	2003-05-04 00:00:00+00
+1989	1	QO	2003-05-02	\N	\N	f	1	702	session_Nd5KhohG	f	2003-05-02 00:00:00+00
+1990	2	QB	2003-05-03	\N	\N	f	1	702	session_vr4DU7Vd	f	2003-05-03 00:00:00+00
+1991	3	R	2003-05-18	\N	\N	f	15	703	session_tDqKcxvC	f	2003-05-18 00:00:00+00
+1992	1	QO	2003-05-16	\N	\N	f	1	703	session_yHIFOFJ4	f	2003-05-16 00:00:00+00
+1993	2	QB	2003-05-17	\N	\N	f	1	703	session_MPKaN5or	f	2003-05-17 00:00:00+00
+1994	3	R	2003-06-01	\N	\N	f	15	704	session_rVWucEOS	f	2003-06-01 00:00:00+00
+1995	1	QO	2003-05-29	\N	\N	f	1	704	session_mtJDpw45	f	2003-05-29 00:00:00+00
+1996	2	QB	2003-05-31	\N	\N	f	1	704	session_QPT8Bub5	f	2003-05-31 00:00:00+00
+1997	3	R	2003-06-15	\N	\N	f	15	705	session_cAm15bj9	f	2003-06-15 00:00:00+00
+1998	1	QO	2003-06-13	\N	\N	f	1	705	session_5P37IMtb	f	2003-06-13 00:00:00+00
+1999	2	QB	2003-06-14	\N	\N	f	1	705	session_mCi3XdTi	f	2003-06-14 00:00:00+00
+2000	3	R	2003-06-29	\N	\N	f	15	706	session_RmP9hKbT	f	2003-06-29 00:00:00+00
+2001	1	QO	2003-06-27	\N	\N	f	1	706	session_5WgnudUk	f	2003-06-27 00:00:00+00
+2002	2	QB	2003-06-28	\N	\N	f	1	706	session_7wFKA1Jg	f	2003-06-28 00:00:00+00
+2003	3	R	2003-07-06	\N	\N	f	15	707	session_eiSjCIYP	f	2003-07-06 00:00:00+00
+2004	1	QO	2003-07-04	\N	\N	f	1	707	session_pbvqkXxF	f	2003-07-04 00:00:00+00
+2005	2	QB	2003-07-05	\N	\N	f	1	707	session_mTgRUc3g	f	2003-07-05 00:00:00+00
+2006	3	R	2003-07-20	\N	\N	f	15	708	session_QUupedLB	f	2003-07-20 00:00:00+00
+2007	1	QO	2003-07-18	\N	\N	f	1	708	session_B9GF8ohV	f	2003-07-18 00:00:00+00
+2008	2	QB	2003-07-19	\N	\N	f	1	708	session_XNMhlSgL	f	2003-07-19 00:00:00+00
+2009	3	R	2003-08-03	\N	\N	f	15	709	session_1FgdZxBB	f	2003-08-03 00:00:00+00
+2010	1	QO	2003-08-01	\N	\N	f	1	709	session_K3uWK0fx	f	2003-08-01 00:00:00+00
+2011	2	QB	2003-08-02	\N	\N	f	1	709	session_3KENy7vY	f	2003-08-02 00:00:00+00
+2012	3	R	2003-08-24	\N	\N	f	15	710	session_iFuTkkrA	f	2003-08-24 00:00:00+00
+2013	1	QO	2003-08-22	\N	\N	f	1	710	session_EojorlU8	f	2003-08-22 00:00:00+00
+2014	2	QB	2003-08-23	\N	\N	f	1	710	session_ZghxHVFT	f	2003-08-23 00:00:00+00
+2015	3	R	2003-09-14	\N	\N	f	15	711	session_4YfsBsEz	f	2003-09-14 00:00:00+00
+2016	1	QO	2003-09-12	\N	\N	f	1	711	session_x2kTFTi4	f	2003-09-12 00:00:00+00
+2017	2	QB	2003-09-13	\N	\N	f	1	711	session_1adlscko	f	2003-09-13 00:00:00+00
+2018	3	R	2003-09-28	\N	\N	f	15	712	session_QaIATWWQ	f	2003-09-28 00:00:00+00
+2019	1	QO	2003-09-26	\N	\N	f	1	712	session_BBNmC8Xj	f	2003-09-26 00:00:00+00
+2020	2	QB	2003-09-27	\N	\N	f	1	712	session_MA60JP8q	f	2003-09-27 00:00:00+00
+2021	3	R	2003-10-12	\N	\N	f	15	713	session_SjSc4bI5	f	2003-10-12 00:00:00+00
+2022	1	QO	2003-10-10	\N	\N	f	1	713	session_M4CH3MFF	f	2003-10-10 00:00:00+00
+2023	2	QB	2003-10-11	\N	\N	f	1	713	session_rhR0PfuM	f	2003-10-11 00:00:00+00
+2024	3	R	2004-03-07	\N	\N	f	15	714	session_A0bB2u3i	f	2004-03-07 00:00:00+00
+2025	1	QO	2004-03-06	\N	\N	f	1	714	session_cXqXVuAT	f	2004-03-06 00:00:00+00
+2026	2	QB	2004-03-06	\N	\N	f	1	714	session_M1umFWeG	f	2004-03-06 00:00:00+00
+2027	3	R	2004-03-21	\N	\N	f	15	715	session_xXYVKyf8	f	2004-03-21 00:00:00+00
+2028	1	QO	2004-03-20	\N	\N	f	1	715	session_h7CVyklM	f	2004-03-20 00:00:00+00
+2029	2	QB	2004-03-20	\N	\N	f	1	715	session_wxPrMlmi	f	2004-03-20 00:00:00+00
+2030	3	R	2004-04-04	\N	\N	f	15	716	session_tBmEaUCC	f	2004-04-04 00:00:00+00
+2031	1	QO	2004-04-03	\N	\N	f	1	716	session_HfcJvpiy	f	2004-04-03 00:00:00+00
+2032	2	QB	2004-04-03	\N	\N	f	1	716	session_Y4PeXXs2	f	2004-04-03 00:00:00+00
+2033	3	R	2004-04-25	\N	\N	f	15	717	session_vN7emHhp	f	2004-04-25 00:00:00+00
+2034	1	QO	2004-04-24	\N	\N	f	1	717	session_tSJuPI7Y	f	2004-04-24 00:00:00+00
+2035	2	QB	2004-04-24	\N	\N	f	1	717	session_jCVYtGH1	f	2004-04-24 00:00:00+00
+2036	3	R	2004-05-09	\N	\N	f	15	718	session_jIRVDiH2	f	2004-05-09 00:00:00+00
+2037	1	QO	2004-05-08	\N	\N	f	1	718	session_lJ0T0pBU	f	2004-05-08 00:00:00+00
+2038	2	QB	2004-05-08	\N	\N	f	1	718	session_tObpTTD5	f	2004-05-08 00:00:00+00
+2039	3	R	2004-05-23	\N	\N	f	15	719	session_A5PiUOFj	f	2004-05-23 00:00:00+00
+2040	1	QO	2004-05-22	\N	\N	f	1	719	session_c3bFeykm	f	2004-05-22 00:00:00+00
+2041	2	QB	2004-05-22	\N	\N	f	1	719	session_rX5noDaq	f	2004-05-22 00:00:00+00
+2042	3	R	2004-05-30	\N	\N	f	15	720	session_QpoFsC4d	f	2004-05-30 00:00:00+00
+2043	1	QO	2004-05-29	\N	\N	f	1	720	session_oWSHyukg	f	2004-05-29 00:00:00+00
+2044	2	QB	2004-05-29	\N	\N	f	1	720	session_oZsdkizM	f	2004-05-29 00:00:00+00
+2045	3	R	2004-06-13	\N	\N	f	15	721	session_ulcccaLQ	f	2004-06-13 00:00:00+00
+2046	1	QO	2004-06-12	\N	\N	f	1	721	session_33byIRXK	f	2004-06-12 00:00:00+00
+2047	2	QB	2004-06-12	\N	\N	f	1	721	session_5dhWZdqE	f	2004-06-12 00:00:00+00
+2048	3	R	2004-06-20	\N	\N	f	15	722	session_alLrF25X	f	2004-06-20 00:00:00+00
+2049	1	QO	2004-06-19	\N	\N	f	1	722	session_siUzxrLk	f	2004-06-19 00:00:00+00
+2050	2	QB	2004-06-19	\N	\N	f	1	722	session_kf0186IN	f	2004-06-19 00:00:00+00
+2051	3	R	2004-07-04	\N	\N	f	15	723	session_k7wa5nJL	f	2004-07-04 00:00:00+00
+2052	1	QO	2004-07-03	\N	\N	f	1	723	session_leml563c	f	2004-07-03 00:00:00+00
+2053	2	QB	2004-07-03	\N	\N	f	1	723	session_hr7V82nc	f	2004-07-03 00:00:00+00
+2054	3	R	2004-07-11	\N	\N	f	15	724	session_68uPa2sj	f	2004-07-11 00:00:00+00
+2055	1	QO	2004-07-10	\N	\N	f	1	724	session_sL7HSnsX	f	2004-07-10 00:00:00+00
+2056	2	QB	2004-07-10	\N	\N	f	1	724	session_jtpR4lLe	f	2004-07-10 00:00:00+00
+2057	3	R	2004-07-25	\N	\N	f	15	725	session_4FaPA1Ge	f	2004-07-25 00:00:00+00
+2058	1	QO	2004-07-24	\N	\N	f	1	725	session_Dt73m07d	f	2004-07-24 00:00:00+00
+2059	2	QB	2004-07-24	\N	\N	f	1	725	session_w68CPLgZ	f	2004-07-24 00:00:00+00
+2060	3	R	2004-08-15	\N	\N	f	15	726	session_qghb7Kxg	f	2004-08-15 00:00:00+00
+2061	1	QO	2004-08-14	\N	\N	f	1	726	session_F1j0CMMm	f	2004-08-14 00:00:00+00
+2062	2	QB	2004-08-14	\N	\N	f	1	726	session_hgQcZv01	f	2004-08-14 00:00:00+00
+2063	3	R	2004-08-29	\N	\N	f	15	727	session_iYEgKldp	f	2004-08-29 00:00:00+00
+2064	1	QO	2004-08-28	\N	\N	f	1	727	session_kEV4NluC	f	2004-08-28 00:00:00+00
+2065	2	QB	2004-08-28	\N	\N	f	1	727	session_xyYDNQ0u	f	2004-08-28 00:00:00+00
+2066	3	R	2004-09-12	\N	\N	f	15	728	session_GKUMMgem	f	2004-09-12 00:00:00+00
+2067	1	QO	2004-09-11	\N	\N	f	1	728	session_qrjGY4cD	f	2004-09-11 00:00:00+00
+2068	2	QB	2004-09-11	\N	\N	f	1	728	session_gZxJl7fO	f	2004-09-11 00:00:00+00
+2069	3	R	2004-09-26	\N	\N	f	15	729	session_wAhhfOGU	f	2004-09-26 00:00:00+00
+2070	1	QO	2004-09-25	\N	\N	f	1	729	session_wxPNEFvD	f	2004-09-25 00:00:00+00
+2071	2	QB	2004-09-25	\N	\N	f	1	729	session_LljkGUHR	f	2004-09-25 00:00:00+00
+2072	3	R	2004-10-10	\N	\N	f	15	730	session_HloZWbS3	f	2004-10-10 00:00:00+00
+2073	1	QO	2004-10-09	\N	\N	f	1	730	session_Y70mG4xt	f	2004-10-09 00:00:00+00
+2074	2	QB	2004-10-09	\N	\N	f	1	730	session_Fh9YsIVr	f	2004-10-09 00:00:00+00
+2075	3	R	2004-10-24	\N	\N	f	15	731	session_0wbgat1j	f	2004-10-24 00:00:00+00
+2076	1	QO	2004-10-23	\N	\N	f	1	731	session_OmyEoY99	f	2004-10-23 00:00:00+00
+2077	2	QB	2004-10-23	\N	\N	f	1	731	session_BhuwjnJX	f	2004-10-23 00:00:00+00
+2078	2	R	2005-03-06	14:00:00	\N	f	15	732	session_MoldpPWx	t	2005-03-06 14:00:00+00
+2079	1	QA	2005-03-05	\N	\N	f	1	732	session_PqQ9Q2tn	f	2005-03-05 00:00:00+00
+2080	3	QA	2005-03-06	\N	\N	f	1	732	session_VQ2fMZZ0	f	2005-03-06 00:00:00+00
+2081	2	R	2005-03-20	15:00:00	\N	f	15	733	session_yLKBv7Ng	t	2005-03-20 15:00:00+00
+2082	1	QA	2005-03-19	\N	\N	f	1	733	session_UfTuy6LB	f	2005-03-19 00:00:00+00
+2083	3	QA	2005-03-20	\N	\N	f	1	733	session_a7rkoWJk	f	2005-03-20 00:00:00+00
+2084	2	R	2005-04-03	14:30:00	\N	f	15	734	session_Ay0MTviJ	t	2005-04-03 14:30:00+00
+2085	1	QA	2005-04-02	\N	\N	f	1	734	session_WXaevU2J	f	2005-04-02 00:00:00+00
+2086	3	QA	2005-04-03	\N	\N	f	1	734	session_yQ3WQjj2	f	2005-04-03 00:00:00+00
+2087	2	R	2005-04-24	14:00:00	\N	f	15	735	session_f8YgTagq	t	2005-04-24 14:00:00+00
+2088	1	QA	2005-04-23	\N	\N	f	1	735	session_aXfo6tEV	f	2005-04-23 00:00:00+00
+2089	3	QA	2005-04-24	\N	\N	f	1	735	session_rM0jTPRe	f	2005-04-24 00:00:00+00
+2090	2	R	2005-05-08	14:00:00	\N	f	15	736	session_i56sLAFT	t	2005-05-08 14:00:00+00
+2091	1	QA	2005-05-07	\N	\N	f	1	736	session_DIuYJ1J6	f	2005-05-07 00:00:00+00
+2092	3	QA	2005-05-08	\N	\N	f	1	736	session_Q40eR6EE	f	2005-05-08 00:00:00+00
+2093	2	R	2005-05-22	14:00:00	\N	f	15	737	session_FfiVRL6r	t	2005-05-22 14:00:00+00
+2094	1	QA	2005-05-21	\N	\N	f	1	737	session_UDIOd3cJ	f	2005-05-21 00:00:00+00
+2095	3	QA	2005-05-22	\N	\N	f	1	737	session_SEaJD9vM	f	2005-05-22 00:00:00+00
+2096	2	R	2005-05-29	14:00:00	\N	f	15	738	session_n2m9kCnY	t	2005-05-29 14:00:00+00
+2097	1	QB	2005-05-28	\N	\N	f	1	738	session_pdVW5OtO	f	2005-05-28 00:00:00+00
+2098	2	R	2005-06-12	13:00:00	\N	f	15	739	session_QNpteLlU	t	2005-06-12 13:00:00+00
+2099	1	QB	2005-06-11	\N	\N	f	1	739	session_H25vKou5	f	2005-06-11 00:00:00+00
+2100	2	R	2005-06-19	14:00:00	\N	f	15	740	session_SzkuvZwO	t	2005-06-19 14:00:00+00
+2101	1	QB	2005-06-18	\N	\N	f	1	740	session_50Zw91pC	f	2005-06-18 00:00:00+00
+2102	2	R	2005-07-03	14:00:00	\N	f	15	741	session_MNJe6Oha	t	2005-07-03 14:00:00+00
+2103	1	QB	2005-07-02	\N	\N	f	1	741	session_3EvHVZTX	f	2005-07-02 00:00:00+00
+2104	2	R	2005-07-10	14:00:00	\N	f	15	742	session_cF1laKeX	t	2005-07-10 14:00:00+00
+2105	1	QB	2005-07-09	\N	\N	f	1	742	session_O6Qmfnsv	f	2005-07-09 00:00:00+00
+2106	2	R	2005-07-24	14:00:00	\N	f	15	743	session_QxiS4FpS	t	2005-07-24 14:00:00+00
+2107	1	QB	2005-07-23	\N	\N	f	1	743	session_Viy6f7cI	f	2005-07-23 00:00:00+00
+2108	2	R	2005-07-31	14:00:00	\N	f	15	744	session_HI0bNL5b	t	2005-07-31 14:00:00+00
+2109	1	QB	2005-07-30	\N	\N	f	1	744	session_iBAKQlz5	f	2005-07-30 00:00:00+00
+2110	2	R	2005-08-21	15:00:00	\N	f	15	745	session_GvecgpSU	t	2005-08-21 15:00:00+00
+2111	1	QB	2005-08-20	\N	\N	f	1	745	session_1YYYK7mA	f	2005-08-20 00:00:00+00
+2112	2	R	2005-09-04	14:00:00	\N	f	15	746	session_yZBBskbS	t	2005-09-04 14:00:00+00
+2113	1	QB	2005-09-03	\N	\N	f	1	746	session_26QDATwh	f	2005-09-03 00:00:00+00
+2114	2	R	2005-09-11	14:00:00	\N	f	15	747	session_EKzhBwxf	t	2005-09-11 14:00:00+00
+2115	1	QB	2005-09-10	\N	\N	f	1	747	session_DgFNzdOI	f	2005-09-10 00:00:00+00
+2116	2	R	2005-09-25	14:00:00	\N	f	15	748	session_piv9a2ob	t	2005-09-25 14:00:00+00
+2117	1	QB	2005-09-24	\N	\N	f	1	748	session_LHU5NJRa	f	2005-09-24 00:00:00+00
+2118	2	R	2005-10-09	14:00:00	\N	f	15	749	session_YKSVzaML	t	2005-10-09 14:00:00+00
+2119	1	QB	2005-10-08	\N	\N	f	1	749	session_VZbP06Zm	f	2005-10-08 00:00:00+00
+2120	2	R	2005-10-16	14:00:00	\N	f	15	750	session_OanKLaoD	t	2005-10-16 14:00:00+00
+2121	1	QB	2005-10-15	\N	\N	f	1	750	session_gXRT3Y78	f	2005-10-15 00:00:00+00
+2122	7	R	2006-03-12	14:30:00	\N	f	15	751	session_uiMAf6DB	t	2006-03-12 14:30:00+00
+2123	3	Q1	2006-03-11	\N	\N	f	1	751	session_Uv7plpwB	f	2006-03-11 00:00:00+00
+2124	4	Q2	2006-03-11	\N	\N	f	1	751	session_V8XS5iDy	f	2006-03-11 00:00:00+00
+2125	5	Q3	2006-03-11	\N	\N	f	1	751	session_EEfKkotM	f	2006-03-11 00:00:00+00
+2126	1	FP1	2006-03-10	\N	\N	f	1	751	session_kAVVAXJd	f	2006-03-10 00:00:00+00
+2127	2	FP2	2006-03-10	\N	\N	f	1	751	session_WH35YkWd	f	2006-03-10 00:00:00+00
+2128	6	FP3	2006-03-11	\N	\N	f	1	751	session_cpUHespL	f	2006-03-11 00:00:00+00
+2129	7	R	2006-03-19	15:00:00	\N	f	15	752	session_CbWQ6v6N	t	2006-03-19 15:00:00+00
+2130	3	Q1	2006-03-18	\N	\N	f	1	752	session_B4BMU5lE	f	2006-03-18 00:00:00+00
+2131	4	Q2	2006-03-18	\N	\N	f	1	752	session_mNY8Wn4p	f	2006-03-18 00:00:00+00
+2132	5	Q3	2006-03-18	\N	\N	f	1	752	session_qJvISWLU	f	2006-03-18 00:00:00+00
+2133	1	FP1	2006-03-17	\N	\N	f	1	752	session_5vqzo1LD	f	2006-03-17 00:00:00+00
+2134	2	FP2	2006-03-17	\N	\N	f	1	752	session_VD4qzcl0	f	2006-03-17 00:00:00+00
+2135	6	FP3	2006-03-18	\N	\N	f	1	752	session_kJXiLXjV	f	2006-03-18 00:00:00+00
+2136	7	R	2006-04-02	14:00:00	\N	f	15	753	session_aY7MsNLE	t	2006-04-02 14:00:00+00
+2137	3	Q1	2006-04-01	\N	\N	f	1	753	session_js5Cp2qq	f	2006-04-01 00:00:00+00
+2138	4	Q2	2006-04-01	\N	\N	f	1	753	session_xA4h61Kh	f	2006-04-01 00:00:00+00
+2139	5	Q3	2006-04-01	\N	\N	f	1	753	session_RJr6lPC7	f	2006-04-01 00:00:00+00
+2140	1	FP1	2006-03-31	\N	\N	f	1	753	session_viTEa4fQ	f	2006-03-31 00:00:00+00
+2141	2	FP2	2006-03-31	\N	\N	f	1	753	session_XjC28zdo	f	2006-03-31 00:00:00+00
+2142	6	FP3	2006-04-01	\N	\N	f	1	753	session_PPOfDzZt	f	2006-04-01 00:00:00+00
+2143	7	R	2006-04-23	14:00:00	\N	f	15	754	session_gihoFUYO	t	2006-04-23 14:00:00+00
+2144	3	Q1	2006-04-22	\N	\N	f	1	754	session_qxxgSrQV	f	2006-04-22 00:00:00+00
+2145	4	Q2	2006-04-22	\N	\N	f	1	754	session_FrXB5JcG	f	2006-04-22 00:00:00+00
+2146	5	Q3	2006-04-22	\N	\N	f	1	754	session_8Jtq3Ver	f	2006-04-22 00:00:00+00
+2147	1	FP1	2006-04-21	\N	\N	f	1	754	session_DY4VbNga	f	2006-04-21 00:00:00+00
+2148	2	FP2	2006-04-21	\N	\N	f	1	754	session_gKLCvRJ3	f	2006-04-21 00:00:00+00
+2149	6	FP3	2006-04-22	\N	\N	f	1	754	session_5hoKvx27	f	2006-04-22 00:00:00+00
+2150	7	R	2006-05-07	14:00:00	\N	f	15	755	session_N7zTV7UM	t	2006-05-07 14:00:00+00
+2151	3	Q1	2006-05-06	\N	\N	f	1	755	session_HXzqHUVb	f	2006-05-06 00:00:00+00
+2152	4	Q2	2006-05-06	\N	\N	f	1	755	session_r7wD1uwr	f	2006-05-06 00:00:00+00
+2153	5	Q3	2006-05-06	\N	\N	f	1	755	session_RR0JccQp	f	2006-05-06 00:00:00+00
+2154	1	FP1	2006-05-05	\N	\N	f	1	755	session_HOk1ciYf	f	2006-05-05 00:00:00+00
+2155	2	FP2	2006-05-05	\N	\N	f	1	755	session_7HqOns6w	f	2006-05-05 00:00:00+00
+2156	6	FP3	2006-05-06	\N	\N	f	1	755	session_ab0eZ338	f	2006-05-06 00:00:00+00
+2157	7	R	2006-05-14	14:00:00	\N	f	15	756	session_L99Qlhd2	t	2006-05-14 14:00:00+00
+2158	3	Q1	2006-05-13	\N	\N	f	1	756	session_NKlTmY9q	f	2006-05-13 00:00:00+00
+2159	4	Q2	2006-05-13	\N	\N	f	1	756	session_GZkplGj0	f	2006-05-13 00:00:00+00
+2160	5	Q3	2006-05-13	\N	\N	f	1	756	session_oFMbNvx6	f	2006-05-13 00:00:00+00
+2161	1	FP1	2006-05-12	\N	\N	f	1	756	session_XhKa2j5V	f	2006-05-12 00:00:00+00
+2162	2	FP2	2006-05-12	\N	\N	f	1	756	session_MK6MrQuM	f	2006-05-12 00:00:00+00
+2163	6	FP3	2006-05-13	\N	\N	f	1	756	session_kbI2e9Y0	f	2006-05-13 00:00:00+00
+2164	7	R	2006-05-28	14:00:00	\N	f	15	757	session_sArdYxe9	t	2006-05-28 14:00:00+00
+2165	3	Q1	2006-05-27	\N	\N	f	1	757	session_ii0S6c8Y	f	2006-05-27 00:00:00+00
+2166	4	Q2	2006-05-27	\N	\N	f	1	757	session_omq4SfZx	f	2006-05-27 00:00:00+00
+2167	5	Q3	2006-05-27	\N	\N	f	1	757	session_eaTRsGVL	f	2006-05-27 00:00:00+00
+2168	1	FP1	2006-05-25	\N	\N	f	1	757	session_tkKtnODN	f	2006-05-25 00:00:00+00
+2169	2	FP2	2006-05-25	\N	\N	f	1	757	session_TdAJUcuv	f	2006-05-25 00:00:00+00
+2170	6	FP3	2006-05-27	\N	\N	f	1	757	session_IedYZvzS	f	2006-05-27 00:00:00+00
+2171	7	R	2006-06-11	12:00:00	\N	f	15	758	session_4zXjUWli	t	2006-06-11 12:00:00+00
+2172	3	Q1	2006-06-10	\N	\N	f	1	758	session_nefPpWrV	f	2006-06-10 00:00:00+00
+2173	4	Q2	2006-06-10	\N	\N	f	1	758	session_CiCm2nQu	f	2006-06-10 00:00:00+00
+2174	5	Q3	2006-06-10	\N	\N	f	1	758	session_OFvt5PhZ	f	2006-06-10 00:00:00+00
+2175	1	FP1	2006-06-09	\N	\N	f	1	758	session_Npq7vAWw	f	2006-06-09 00:00:00+00
+2176	2	FP2	2006-06-09	\N	\N	f	1	758	session_1ODizjwY	f	2006-06-09 00:00:00+00
+2177	6	FP3	2006-06-10	\N	\N	f	1	758	session_gzGIUgTp	f	2006-06-10 00:00:00+00
+2178	7	R	2006-06-25	13:00:00	\N	f	15	759	session_fTeLqYLb	t	2006-06-25 13:00:00+00
+2179	3	Q1	2006-06-24	\N	\N	f	1	759	session_uNKChrma	f	2006-06-24 00:00:00+00
+2180	4	Q2	2006-06-24	\N	\N	f	1	759	session_SWHGkrlv	f	2006-06-24 00:00:00+00
+2181	5	Q3	2006-06-24	\N	\N	f	1	759	session_yCS5kbkQ	f	2006-06-24 00:00:00+00
+2182	1	FP1	2006-06-23	\N	\N	f	1	759	session_lvPlYwhZ	f	2006-06-23 00:00:00+00
+2183	2	FP2	2006-06-23	\N	\N	f	1	759	session_Eai3jnYi	f	2006-06-23 00:00:00+00
+2184	6	FP3	2006-06-24	\N	\N	f	1	759	session_9HxG8Ykh	f	2006-06-24 00:00:00+00
+2185	7	R	2006-07-02	14:00:00	\N	f	15	760	session_o01PUzz5	t	2006-07-02 14:00:00+00
+2186	3	Q1	2006-07-01	\N	\N	f	1	760	session_N8KQYxYj	f	2006-07-01 00:00:00+00
+2187	4	Q2	2006-07-01	\N	\N	f	1	760	session_5gGwz2RZ	f	2006-07-01 00:00:00+00
+2188	5	Q3	2006-07-01	\N	\N	f	1	760	session_8BFFo1oC	f	2006-07-01 00:00:00+00
+2189	1	FP1	2006-06-30	\N	\N	f	1	760	session_sZSDZI2K	f	2006-06-30 00:00:00+00
+2190	2	FP2	2006-06-30	\N	\N	f	1	760	session_KXoszzxY	f	2006-06-30 00:00:00+00
+2191	6	FP3	2006-07-01	\N	\N	f	1	760	session_GGObY2ZR	f	2006-07-01 00:00:00+00
+2192	7	R	2006-07-16	14:00:00	\N	f	15	761	session_MimVI9Hq	t	2006-07-16 14:00:00+00
+2193	3	Q1	2006-07-15	\N	\N	f	1	761	session_pk2sjlBH	f	2006-07-15 00:00:00+00
+2194	4	Q2	2006-07-15	\N	\N	f	1	761	session_0Cmx2jap	f	2006-07-15 00:00:00+00
+2195	5	Q3	2006-07-15	\N	\N	f	1	761	session_WAzfbJgz	f	2006-07-15 00:00:00+00
+2196	1	FP1	2006-07-14	\N	\N	f	1	761	session_L1LHaG6i	f	2006-07-14 00:00:00+00
+2197	2	FP2	2006-07-14	\N	\N	f	1	761	session_AlNMzigL	f	2006-07-14 00:00:00+00
+2198	6	FP3	2006-07-15	\N	\N	f	1	761	session_b78GWVwE	f	2006-07-15 00:00:00+00
+2199	7	R	2006-07-30	14:00:00	\N	f	15	762	session_MjMe5Fyd	t	2006-07-30 14:00:00+00
+2200	3	Q1	2006-07-29	\N	\N	f	1	762	session_hZLjUPJB	f	2006-07-29 00:00:00+00
+2201	4	Q2	2006-07-29	\N	\N	f	1	762	session_CoOSrU9o	f	2006-07-29 00:00:00+00
+2202	5	Q3	2006-07-29	\N	\N	f	1	762	session_nnU5gP96	f	2006-07-29 00:00:00+00
+2203	1	FP1	2006-07-28	\N	\N	f	1	762	session_kED32gFN	f	2006-07-28 00:00:00+00
+2204	2	FP2	2006-07-28	\N	\N	f	1	762	session_NhaeyFRJ	f	2006-07-28 00:00:00+00
+2205	6	FP3	2006-07-29	\N	\N	f	1	762	session_yHlkQJyq	f	2006-07-29 00:00:00+00
+2206	7	R	2006-08-06	14:00:00	\N	f	15	763	session_hz4dz3pG	t	2006-08-06 14:00:00+00
+2207	3	Q1	2006-08-05	\N	\N	f	1	763	session_oqshJoTI	f	2006-08-05 00:00:00+00
+2208	4	Q2	2006-08-05	\N	\N	f	1	763	session_RHfayxkT	f	2006-08-05 00:00:00+00
+2209	5	Q3	2006-08-05	\N	\N	f	1	763	session_lqgrYUwS	f	2006-08-05 00:00:00+00
+2210	1	FP1	2006-08-04	\N	\N	f	1	763	session_tjHvkotj	f	2006-08-04 00:00:00+00
+2211	2	FP2	2006-08-04	\N	\N	f	1	763	session_nQeixsfe	f	2006-08-04 00:00:00+00
+2212	6	FP3	2006-08-05	\N	\N	f	1	763	session_vcgP3MNj	f	2006-08-05 00:00:00+00
+2213	7	R	2006-08-27	15:00:00	\N	f	15	764	session_8vVtd49j	t	2006-08-27 15:00:00+00
+2214	3	Q1	2006-08-26	\N	\N	f	1	764	session_iNjs4JIu	f	2006-08-26 00:00:00+00
+2215	4	Q2	2006-08-26	\N	\N	f	1	764	session_SeMGNrUP	f	2006-08-26 00:00:00+00
+2216	5	Q3	2006-08-26	\N	\N	f	1	764	session_CpsQBrP2	f	2006-08-26 00:00:00+00
+2217	1	FP1	2006-08-25	\N	\N	f	1	764	session_uRzcSy8H	f	2006-08-25 00:00:00+00
+2218	2	FP2	2006-08-25	\N	\N	f	1	764	session_1JVTrQrJ	f	2006-08-25 00:00:00+00
+2219	6	FP3	2006-08-26	\N	\N	f	1	764	session_yCO06m27	f	2006-08-26 00:00:00+00
+2220	7	R	2006-09-10	14:00:00	\N	f	15	765	session_pvV3WXCZ	t	2006-09-10 14:00:00+00
+2221	3	Q1	2006-09-09	\N	\N	f	1	765	session_5raQhIGe	f	2006-09-09 00:00:00+00
+2222	4	Q2	2006-09-09	\N	\N	f	1	765	session_Z73heYyq	f	2006-09-09 00:00:00+00
+2223	5	Q3	2006-09-09	\N	\N	f	1	765	session_Qn5q31lf	f	2006-09-09 00:00:00+00
+2224	1	FP1	2006-09-08	\N	\N	f	1	765	session_6cJ90OAs	f	2006-09-08 00:00:00+00
+2225	2	FP2	2006-09-08	\N	\N	f	1	765	session_z23PQTba	f	2006-09-08 00:00:00+00
+2226	6	FP3	2006-09-09	\N	\N	f	1	765	session_Z57uFPv4	f	2006-09-09 00:00:00+00
+2227	7	R	2006-10-01	14:00:00	\N	f	15	766	session_4ZidR33N	t	2006-10-01 14:00:00+00
+2228	3	Q1	2006-09-30	\N	\N	f	1	766	session_S0bq5NLG	f	2006-09-30 00:00:00+00
+2229	4	Q2	2006-09-30	\N	\N	f	1	766	session_cOh6EWUj	f	2006-09-30 00:00:00+00
+2230	5	Q3	2006-09-30	\N	\N	f	1	766	session_ruRk1EjJ	f	2006-09-30 00:00:00+00
+2231	1	FP1	2006-09-29	\N	\N	f	1	766	session_jVWF0fnx	f	2006-09-29 00:00:00+00
+2232	2	FP2	2006-09-29	\N	\N	f	1	766	session_T8rsLWel	f	2006-09-29 00:00:00+00
+2233	6	FP3	2006-09-30	\N	\N	f	1	766	session_iuPKElT8	f	2006-09-30 00:00:00+00
+2234	7	R	2006-10-08	14:00:00	\N	f	15	767	session_5Hp7ITJD	t	2006-10-08 14:00:00+00
+2235	3	Q1	2006-10-07	\N	\N	f	1	767	session_a4dNYLFp	f	2006-10-07 00:00:00+00
+2236	4	Q2	2006-10-07	\N	\N	f	1	767	session_a0xL5Fz3	f	2006-10-07 00:00:00+00
+2237	5	Q3	2006-10-07	\N	\N	f	1	767	session_vqrfIeNa	f	2006-10-07 00:00:00+00
+2238	1	FP1	2006-10-06	\N	\N	f	1	767	session_rvwZA2R4	f	2006-10-06 00:00:00+00
+2239	2	FP2	2006-10-06	\N	\N	f	1	767	session_2vkL5RzN	f	2006-10-06 00:00:00+00
+2240	6	FP3	2006-10-07	\N	\N	f	1	767	session_EVXAFI4d	f	2006-10-07 00:00:00+00
+2241	7	R	2006-10-22	14:00:00	\N	f	15	768	session_rL0ampea	t	2006-10-22 14:00:00+00
+2242	3	Q1	2006-10-21	\N	\N	f	1	768	session_BPp1AwEW	f	2006-10-21 00:00:00+00
+2243	4	Q2	2006-10-21	\N	\N	f	1	768	session_x8SOiBbv	f	2006-10-21 00:00:00+00
+2244	5	Q3	2006-10-21	\N	\N	f	1	768	session_c6KnVSse	f	2006-10-21 00:00:00+00
+2245	1	FP1	2006-10-20	\N	\N	f	1	768	session_TuZUNdsL	f	2006-10-20 00:00:00+00
+2246	2	FP2	2006-10-20	\N	\N	f	1	768	session_v2srCYYu	f	2006-10-20 00:00:00+00
+2247	6	FP3	2006-10-21	\N	\N	f	1	768	session_xbnfiAyX	f	2006-10-21 00:00:00+00
+2248	7	R	2007-03-18	03:00:00	\N	f	15	769	session_7xUOuUv7	t	2007-03-18 03:00:00+00
+2249	3	Q1	2007-03-17	\N	\N	f	1	769	session_jFL3hkKT	f	2007-03-17 00:00:00+00
+2250	4	Q2	2007-03-17	\N	\N	f	1	769	session_D2UJJBK1	f	2007-03-17 00:00:00+00
+2251	5	Q3	2007-03-17	\N	\N	f	1	769	session_ITXHhass	f	2007-03-17 00:00:00+00
+2252	1	FP1	2007-03-16	\N	\N	f	1	769	session_MiMmgv1g	f	2007-03-16 00:00:00+00
+2253	2	FP2	2007-03-16	\N	\N	f	1	769	session_UJ5UY44d	f	2007-03-16 00:00:00+00
+2254	6	FP3	2007-03-17	\N	\N	f	1	769	session_qB8fAQVO	f	2007-03-17 00:00:00+00
+2255	7	R	2007-04-08	07:00:00	\N	f	15	770	session_DTJqB1c5	t	2007-04-08 07:00:00+00
+2256	3	Q1	2007-04-07	\N	\N	f	1	770	session_K6wLWXYe	f	2007-04-07 00:00:00+00
+2257	4	Q2	2007-04-07	\N	\N	f	1	770	session_dmOMxvMf	f	2007-04-07 00:00:00+00
+2258	5	Q3	2007-04-07	\N	\N	f	1	770	session_boYPwfq2	f	2007-04-07 00:00:00+00
+2259	1	FP1	2007-04-06	\N	\N	f	1	770	session_fPmnOfoP	f	2007-04-06 00:00:00+00
+2260	2	FP2	2007-04-06	\N	\N	f	1	770	session_m2tOBYBO	f	2007-04-06 00:00:00+00
+2261	6	FP3	2007-04-07	\N	\N	f	1	770	session_zjYfZALm	f	2007-04-07 00:00:00+00
+2262	7	R	2007-04-15	11:30:00	\N	f	15	771	session_cTTrizeg	t	2007-04-15 11:30:00+00
+2263	3	Q1	2007-04-14	\N	\N	f	1	771	session_haYD6a6d	f	2007-04-14 00:00:00+00
+2264	4	Q2	2007-04-14	\N	\N	f	1	771	session_VJ5pI0QK	f	2007-04-14 00:00:00+00
+2265	5	Q3	2007-04-14	\N	\N	f	1	771	session_BDHfHtep	f	2007-04-14 00:00:00+00
+2266	1	FP1	2007-04-13	\N	\N	f	1	771	session_UKZN34MD	f	2007-04-13 00:00:00+00
+2267	2	FP2	2007-04-13	\N	\N	f	1	771	session_rldDlu2Y	f	2007-04-13 00:00:00+00
+2268	6	FP3	2007-04-14	\N	\N	f	1	771	session_bkeumw72	f	2007-04-14 00:00:00+00
+2269	7	R	2007-05-13	12:00:00	\N	f	15	772	session_R0Jek3qI	t	2007-05-13 12:00:00+00
+2270	3	Q1	2007-05-12	\N	\N	f	1	772	session_McxfuGrw	f	2007-05-12 00:00:00+00
+2271	4	Q2	2007-05-12	\N	\N	f	1	772	session_Y1UaZz6s	f	2007-05-12 00:00:00+00
+2272	5	Q3	2007-05-12	\N	\N	f	1	772	session_mMdSlOrI	f	2007-05-12 00:00:00+00
+2273	1	FP1	2007-05-11	\N	\N	f	1	772	session_8Jjvp2hQ	f	2007-05-11 00:00:00+00
+2274	2	FP2	2007-05-11	\N	\N	f	1	772	session_IzIumjw5	f	2007-05-11 00:00:00+00
+2275	6	FP3	2007-05-12	\N	\N	f	1	772	session_dlX1bfX1	f	2007-05-12 00:00:00+00
+2276	7	R	2007-05-27	12:00:00	\N	f	15	773	session_E4oUkwev	t	2007-05-27 12:00:00+00
+2277	3	Q1	2007-05-26	\N	\N	f	1	773	session_JeB8BYOr	f	2007-05-26 00:00:00+00
+2278	4	Q2	2007-05-26	\N	\N	f	1	773	session_NQV65lIT	f	2007-05-26 00:00:00+00
+2279	5	Q3	2007-05-26	\N	\N	f	1	773	session_bNH6PYky	f	2007-05-26 00:00:00+00
+2280	1	FP1	2007-05-24	\N	\N	f	1	773	session_5om0WUpK	f	2007-05-24 00:00:00+00
+2281	2	FP2	2007-05-24	\N	\N	f	1	773	session_pSdZ46Oy	f	2007-05-24 00:00:00+00
+2282	6	FP3	2007-05-26	\N	\N	f	1	773	session_5p6uDk80	f	2007-05-26 00:00:00+00
+2283	7	R	2007-06-10	17:00:00	\N	f	15	774	session_cdtc8xLj	t	2007-06-10 17:00:00+00
+2284	3	Q1	2007-06-09	\N	\N	f	1	774	session_TPZOqMNR	f	2007-06-09 00:00:00+00
+2285	4	Q2	2007-06-09	\N	\N	f	1	774	session_JlcTGbPp	f	2007-06-09 00:00:00+00
+2286	5	Q3	2007-06-09	\N	\N	f	1	774	session_trYGBdVg	f	2007-06-09 00:00:00+00
+2287	1	FP1	2007-06-08	\N	\N	f	1	774	session_f44IENZe	f	2007-06-08 00:00:00+00
+2288	2	FP2	2007-06-08	\N	\N	f	1	774	session_iT695JoQ	f	2007-06-08 00:00:00+00
+2289	6	FP3	2007-06-09	\N	\N	f	1	774	session_3EqMhcc2	f	2007-06-09 00:00:00+00
+2290	7	R	2007-06-17	17:00:00	\N	f	15	775	session_CTU7KNb4	t	2007-06-17 17:00:00+00
+2291	3	Q1	2007-06-16	\N	\N	f	1	775	session_LAV5Vm7o	f	2007-06-16 00:00:00+00
+2292	4	Q2	2007-06-16	\N	\N	f	1	775	session_SSu8DLpT	f	2007-06-16 00:00:00+00
+2293	5	Q3	2007-06-16	\N	\N	f	1	775	session_R9kmA2yY	f	2007-06-16 00:00:00+00
+2294	1	FP1	2007-06-15	\N	\N	f	1	775	session_OX9SyzAm	f	2007-06-15 00:00:00+00
+2295	2	FP2	2007-06-15	\N	\N	f	1	775	session_DcthZXTh	f	2007-06-15 00:00:00+00
+2296	6	FP3	2007-06-16	\N	\N	f	1	775	session_atj6zo87	f	2007-06-16 00:00:00+00
+2297	7	R	2007-07-01	12:00:00	\N	f	15	776	session_VzEf09Q0	t	2007-07-01 12:00:00+00
+2298	3	Q1	2007-06-30	\N	\N	f	1	776	session_6IdOlNGW	f	2007-06-30 00:00:00+00
+2299	4	Q2	2007-06-30	\N	\N	f	1	776	session_6IFCkY43	f	2007-06-30 00:00:00+00
+2300	5	Q3	2007-06-30	\N	\N	f	1	776	session_jmcZk77v	f	2007-06-30 00:00:00+00
+2301	1	FP1	2007-06-29	\N	\N	f	1	776	session_uopbGsrt	f	2007-06-29 00:00:00+00
+2302	2	FP2	2007-06-29	\N	\N	f	1	776	session_jV3oyCQo	f	2007-06-29 00:00:00+00
+2303	6	FP3	2007-06-30	\N	\N	f	1	776	session_TsZVlOUF	f	2007-06-30 00:00:00+00
+2304	7	R	2007-07-08	12:00:00	\N	f	15	777	session_NorNsL6n	t	2007-07-08 12:00:00+00
+2305	3	Q1	2007-07-07	\N	\N	f	1	777	session_EtRwaj3w	f	2007-07-07 00:00:00+00
+2306	4	Q2	2007-07-07	\N	\N	f	1	777	session_bhYtNeXH	f	2007-07-07 00:00:00+00
+2307	5	Q3	2007-07-07	\N	\N	f	1	777	session_xfA5R5B8	f	2007-07-07 00:00:00+00
+2308	1	FP1	2007-07-06	\N	\N	f	1	777	session_rlYNRj4Y	f	2007-07-06 00:00:00+00
+2309	2	FP2	2007-07-06	\N	\N	f	1	777	session_wUARKcC3	f	2007-07-06 00:00:00+00
+2310	6	FP3	2007-07-07	\N	\N	f	1	777	session_NBMVHtgU	f	2007-07-07 00:00:00+00
+2311	7	R	2007-07-22	12:00:00	\N	f	15	778	session_lqzjD07r	t	2007-07-22 12:00:00+00
+2312	3	Q1	2007-07-21	\N	\N	f	1	778	session_ACUdOvMY	f	2007-07-21 00:00:00+00
+2313	4	Q2	2007-07-21	\N	\N	f	1	778	session_l4xJDoff	f	2007-07-21 00:00:00+00
+2314	5	Q3	2007-07-21	\N	\N	f	1	778	session_z6SStXRP	f	2007-07-21 00:00:00+00
+2315	1	FP1	2007-07-20	\N	\N	f	1	778	session_j5sXtRZU	f	2007-07-20 00:00:00+00
+2316	2	FP2	2007-07-20	\N	\N	f	1	778	session_RNOky4cb	f	2007-07-20 00:00:00+00
+2317	6	FP3	2007-07-21	\N	\N	f	1	778	session_ACrJfcJf	f	2007-07-21 00:00:00+00
+2318	7	R	2007-08-05	12:00:00	\N	f	15	779	session_ER7l69Vj	t	2007-08-05 12:00:00+00
+2319	3	Q1	2007-08-04	\N	\N	f	1	779	session_DgoLxYJa	f	2007-08-04 00:00:00+00
+2320	4	Q2	2007-08-04	\N	\N	f	1	779	session_WhnZEp6P	f	2007-08-04 00:00:00+00
+2321	5	Q3	2007-08-04	\N	\N	f	1	779	session_JXtmL9EI	f	2007-08-04 00:00:00+00
+2322	1	FP1	2007-08-03	\N	\N	f	1	779	session_oBJ2sp12	f	2007-08-03 00:00:00+00
+2323	2	FP2	2007-08-03	\N	\N	f	1	779	session_9auKCE4f	f	2007-08-03 00:00:00+00
+2324	6	FP3	2007-08-04	\N	\N	f	1	779	session_dpNwAlhd	f	2007-08-04 00:00:00+00
+2325	7	R	2007-08-26	12:00:00	\N	f	15	780	session_X6cVnN4C	t	2007-08-26 12:00:00+00
+2326	3	Q1	2007-08-25	\N	\N	f	1	780	session_emjifx4o	f	2007-08-25 00:00:00+00
+2327	4	Q2	2007-08-25	\N	\N	f	1	780	session_VqkD4kJM	f	2007-08-25 00:00:00+00
+2328	5	Q3	2007-08-25	\N	\N	f	1	780	session_EQiLrhpq	f	2007-08-25 00:00:00+00
+2329	1	FP1	2007-08-24	\N	\N	f	1	780	session_Vs5yk7vJ	f	2007-08-24 00:00:00+00
+2330	2	FP2	2007-08-24	\N	\N	f	1	780	session_tQTaWvft	f	2007-08-24 00:00:00+00
+2331	6	FP3	2007-08-25	\N	\N	f	1	780	session_BQC2Jx5o	f	2007-08-25 00:00:00+00
+2332	7	R	2007-09-09	12:00:00	\N	f	15	781	session_IlRXZWPE	t	2007-09-09 12:00:00+00
+2333	3	Q1	2007-09-08	\N	\N	f	1	781	session_lU7qobvt	f	2007-09-08 00:00:00+00
+2334	4	Q2	2007-09-08	\N	\N	f	1	781	session_WstupfDY	f	2007-09-08 00:00:00+00
+2335	5	Q3	2007-09-08	\N	\N	f	1	781	session_nclqE42J	f	2007-09-08 00:00:00+00
+2336	1	FP1	2007-09-07	\N	\N	f	1	781	session_Zr45O0t8	f	2007-09-07 00:00:00+00
+2337	2	FP2	2007-09-07	\N	\N	f	1	781	session_CO8endhx	f	2007-09-07 00:00:00+00
+2338	6	FP3	2007-09-08	\N	\N	f	1	781	session_mWNXDjJK	f	2007-09-08 00:00:00+00
+2339	7	R	2007-09-16	12:00:00	\N	f	15	782	session_2TmsOJKl	t	2007-09-16 12:00:00+00
+2340	3	Q1	2007-09-15	\N	\N	f	1	782	session_FISROGey	f	2007-09-15 00:00:00+00
+2341	4	Q2	2007-09-15	\N	\N	f	1	782	session_WIKbFzsr	f	2007-09-15 00:00:00+00
+2342	5	Q3	2007-09-15	\N	\N	f	1	782	session_dFRIF5JM	f	2007-09-15 00:00:00+00
+2343	1	FP1	2007-09-14	\N	\N	f	1	782	session_osCLfw7M	f	2007-09-14 00:00:00+00
+2344	2	FP2	2007-09-14	\N	\N	f	1	782	session_YRmAtEi0	f	2007-09-14 00:00:00+00
+2345	6	FP3	2007-09-15	\N	\N	f	1	782	session_KmUXApet	f	2007-09-15 00:00:00+00
+2346	7	R	2007-09-30	04:30:00	\N	f	15	783	session_dlfSTHDo	t	2007-09-30 04:30:00+00
+2347	3	Q1	2007-09-29	\N	\N	f	1	783	session_InLbvT6d	f	2007-09-29 00:00:00+00
+2348	4	Q2	2007-09-29	\N	\N	f	1	783	session_uIJO3Ker	f	2007-09-29 00:00:00+00
+2349	5	Q3	2007-09-29	\N	\N	f	1	783	session_eCEzCnoI	f	2007-09-29 00:00:00+00
+2350	1	FP1	2007-09-28	\N	\N	f	1	783	session_V0smJxkg	f	2007-09-28 00:00:00+00
+2351	2	FP2	2007-09-28	\N	\N	f	1	783	session_9DXMrZk9	f	2007-09-28 00:00:00+00
+2352	6	FP3	2007-09-29	\N	\N	f	1	783	session_s7dLAG6I	f	2007-09-29 00:00:00+00
+2353	7	R	2007-10-07	06:00:00	\N	f	15	784	session_yasfeBq5	t	2007-10-07 06:00:00+00
+2354	3	Q1	2007-10-06	\N	\N	f	1	784	session_LNOZAPEM	f	2007-10-06 00:00:00+00
+2355	4	Q2	2007-10-06	\N	\N	f	1	784	session_UDrcyczu	f	2007-10-06 00:00:00+00
+2356	5	Q3	2007-10-06	\N	\N	f	1	784	session_5ElJGrwe	f	2007-10-06 00:00:00+00
+2357	1	FP1	2007-10-05	\N	\N	f	1	784	session_s8x9ySg9	f	2007-10-05 00:00:00+00
+2358	2	FP2	2007-10-05	\N	\N	f	1	784	session_MBaZEbfC	f	2007-10-05 00:00:00+00
+2359	6	FP3	2007-10-06	\N	\N	f	1	784	session_wRkg6LHa	f	2007-10-06 00:00:00+00
+2360	7	R	2007-10-21	16:00:00	\N	f	15	785	session_40MfGUZb	t	2007-10-21 16:00:00+00
+2361	3	Q1	2007-10-20	\N	\N	f	1	785	session_7PMVRQD0	f	2007-10-20 00:00:00+00
+2362	4	Q2	2007-10-20	\N	\N	f	1	785	session_FpFFWg7c	f	2007-10-20 00:00:00+00
+2363	5	Q3	2007-10-20	\N	\N	f	1	785	session_mq86gFhI	f	2007-10-20 00:00:00+00
+2364	1	FP1	2007-10-19	\N	\N	f	1	785	session_os9ALDzR	f	2007-10-19 00:00:00+00
+2365	2	FP2	2007-10-19	\N	\N	f	1	785	session_1wGjylTi	f	2007-10-19 00:00:00+00
+2366	6	FP3	2007-10-20	\N	\N	f	1	785	session_XSQfzpbn	f	2007-10-20 00:00:00+00
+2367	7	R	2008-03-16	04:30:00	\N	f	15	786	session_eJ1MrwpM	t	2008-03-16 04:30:00+00
+2368	3	Q1	2008-03-15	\N	\N	f	1	786	session_MpnoE0nF	f	2008-03-15 00:00:00+00
+2369	4	Q2	2008-03-15	\N	\N	f	1	786	session_EoD73EKW	f	2008-03-15 00:00:00+00
+2370	5	Q3	2008-03-15	\N	\N	f	1	786	session_reBsrDrL	f	2008-03-15 00:00:00+00
+2371	1	FP1	2008-03-14	\N	\N	f	1	786	session_fih4SRnz	f	2008-03-14 00:00:00+00
+2372	2	FP2	2008-03-14	\N	\N	f	1	786	session_45mNiN8a	f	2008-03-14 00:00:00+00
+2373	6	FP3	2008-03-15	\N	\N	f	1	786	session_FmaCFzqV	f	2008-03-15 00:00:00+00
+2374	7	R	2008-03-23	07:00:00	\N	f	15	787	session_3eleXRWL	t	2008-03-23 07:00:00+00
+2375	3	Q1	2008-03-22	\N	\N	f	1	787	session_XKAc6tSX	f	2008-03-22 00:00:00+00
+2376	4	Q2	2008-03-22	\N	\N	f	1	787	session_Ep8O3vBt	f	2008-03-22 00:00:00+00
+2377	5	Q3	2008-03-22	\N	\N	f	1	787	session_JUunnG5n	f	2008-03-22 00:00:00+00
+2378	1	FP1	2008-03-21	\N	\N	f	1	787	session_iFWRUSDd	f	2008-03-21 00:00:00+00
+2379	2	FP2	2008-03-21	\N	\N	f	1	787	session_3M5agDOZ	f	2008-03-21 00:00:00+00
+2380	6	FP3	2008-03-22	\N	\N	f	1	787	session_KCf8JcN0	f	2008-03-22 00:00:00+00
+2381	7	R	2008-04-06	11:30:00	\N	f	15	788	session_Zp9nGQyD	t	2008-04-06 11:30:00+00
+2382	3	Q1	2008-04-05	\N	\N	f	1	788	session_j2hhq30k	f	2008-04-05 00:00:00+00
+2383	4	Q2	2008-04-05	\N	\N	f	1	788	session_goagNQAj	f	2008-04-05 00:00:00+00
+2384	5	Q3	2008-04-05	\N	\N	f	1	788	session_mW6DyCYZ	f	2008-04-05 00:00:00+00
+2385	1	FP1	2008-04-04	\N	\N	f	1	788	session_h9c2Yhaf	f	2008-04-04 00:00:00+00
+2386	2	FP2	2008-04-04	\N	\N	f	1	788	session_6tqB7QLp	f	2008-04-04 00:00:00+00
+2387	6	FP3	2008-04-05	\N	\N	f	1	788	session_KEeXPGY4	f	2008-04-05 00:00:00+00
+2388	7	R	2008-04-27	12:00:00	\N	f	15	789	session_a1JnwboW	t	2008-04-27 12:00:00+00
+2389	3	Q1	2008-04-26	\N	\N	f	1	789	session_doPwOx0y	f	2008-04-26 00:00:00+00
+2390	4	Q2	2008-04-26	\N	\N	f	1	789	session_0o0lgUQL	f	2008-04-26 00:00:00+00
+2391	5	Q3	2008-04-26	\N	\N	f	1	789	session_NxEu1iXp	f	2008-04-26 00:00:00+00
+2392	1	FP1	2008-04-25	\N	\N	f	1	789	session_f6Pydsbp	f	2008-04-25 00:00:00+00
+2393	2	FP2	2008-04-25	\N	\N	f	1	789	session_t8oKrPCZ	f	2008-04-25 00:00:00+00
+2394	6	FP3	2008-04-26	\N	\N	f	1	789	session_rSMvAPky	f	2008-04-26 00:00:00+00
+2395	7	R	2008-05-11	12:00:00	\N	f	15	790	session_2H8Tg50Z	t	2008-05-11 12:00:00+00
+2396	3	Q1	2008-05-10	\N	\N	f	1	790	session_q4va6d9k	f	2008-05-10 00:00:00+00
+2397	4	Q2	2008-05-10	\N	\N	f	1	790	session_hjGx1bx3	f	2008-05-10 00:00:00+00
+2398	5	Q3	2008-05-10	\N	\N	f	1	790	session_Lg4gkm4m	f	2008-05-10 00:00:00+00
+2399	1	FP1	2008-05-09	\N	\N	f	1	790	session_EpJzMMou	f	2008-05-09 00:00:00+00
+2400	2	FP2	2008-05-09	\N	\N	f	1	790	session_3j18FfpK	f	2008-05-09 00:00:00+00
+2401	6	FP3	2008-05-10	\N	\N	f	1	790	session_eXMrBeFh	f	2008-05-10 00:00:00+00
+2402	7	R	2008-05-25	12:00:00	\N	f	15	791	session_UxetT8iZ	t	2008-05-25 12:00:00+00
+2403	3	Q1	2008-05-24	\N	\N	f	1	791	session_pd8xGYOq	f	2008-05-24 00:00:00+00
+2404	4	Q2	2008-05-24	\N	\N	f	1	791	session_gxQC90pA	f	2008-05-24 00:00:00+00
+2405	5	Q3	2008-05-24	\N	\N	f	1	791	session_Jvrrc6xQ	f	2008-05-24 00:00:00+00
+2406	1	FP1	2008-05-22	\N	\N	f	1	791	session_CTyAp7mK	f	2008-05-22 00:00:00+00
+2407	2	FP2	2008-05-22	\N	\N	f	1	791	session_7MURAEC0	f	2008-05-22 00:00:00+00
+2408	6	FP3	2008-05-24	\N	\N	f	1	791	session_Ow5K7Zmi	f	2008-05-24 00:00:00+00
+2409	7	R	2008-06-08	17:00:00	\N	f	15	792	session_z4rAvsO3	t	2008-06-08 17:00:00+00
+2410	3	Q1	2008-06-07	\N	\N	f	1	792	session_oEUoRJfe	f	2008-06-07 00:00:00+00
+2411	4	Q2	2008-06-07	\N	\N	f	1	792	session_iX42UKuB	f	2008-06-07 00:00:00+00
+2412	5	Q3	2008-06-07	\N	\N	f	1	792	session_eA4Bwdt6	f	2008-06-07 00:00:00+00
+2413	1	FP1	2008-06-06	\N	\N	f	1	792	session_mjJyCvZ8	f	2008-06-06 00:00:00+00
+2414	2	FP2	2008-06-06	\N	\N	f	1	792	session_QeLi7U7F	f	2008-06-06 00:00:00+00
+2415	6	FP3	2008-06-07	\N	\N	f	1	792	session_NrhnlOX1	f	2008-06-07 00:00:00+00
+2416	7	R	2008-06-22	12:00:00	\N	f	15	793	session_AYluR8di	t	2008-06-22 12:00:00+00
+2417	3	Q1	2008-06-21	\N	\N	f	1	793	session_rR8xQn50	f	2008-06-21 00:00:00+00
+2418	4	Q2	2008-06-21	\N	\N	f	1	793	session_WxBbFHKp	f	2008-06-21 00:00:00+00
+2419	5	Q3	2008-06-21	\N	\N	f	1	793	session_Re2LECWm	f	2008-06-21 00:00:00+00
+2420	1	FP1	2008-06-20	\N	\N	f	1	793	session_8qshIS7m	f	2008-06-20 00:00:00+00
+2421	2	FP2	2008-06-20	\N	\N	f	1	793	session_MJQgjBf0	f	2008-06-20 00:00:00+00
+2422	6	FP3	2008-06-21	\N	\N	f	1	793	session_9HrBqUWN	f	2008-06-21 00:00:00+00
+2423	7	R	2008-07-06	12:00:00	\N	f	15	794	session_QYmwtnYa	t	2008-07-06 12:00:00+00
+2424	3	Q1	2008-07-05	\N	\N	f	1	794	session_BQqo0T6y	f	2008-07-05 00:00:00+00
+2425	4	Q2	2008-07-05	\N	\N	f	1	794	session_nGrZU5La	f	2008-07-05 00:00:00+00
+2426	5	Q3	2008-07-05	\N	\N	f	1	794	session_S7bPLzA9	f	2008-07-05 00:00:00+00
+2427	1	FP1	2008-07-04	\N	\N	f	1	794	session_MspKagp9	f	2008-07-04 00:00:00+00
+2428	2	FP2	2008-07-04	\N	\N	f	1	794	session_bt4TxE0P	f	2008-07-04 00:00:00+00
+2429	6	FP3	2008-07-05	\N	\N	f	1	794	session_iVPud995	f	2008-07-05 00:00:00+00
+2430	7	R	2008-07-20	12:00:00	\N	f	15	795	session_KAlpiptc	t	2008-07-20 12:00:00+00
+2431	3	Q1	2008-07-19	\N	\N	f	1	795	session_y4gL2MTU	f	2008-07-19 00:00:00+00
+2432	4	Q2	2008-07-19	\N	\N	f	1	795	session_CgDdKGna	f	2008-07-19 00:00:00+00
+2433	5	Q3	2008-07-19	\N	\N	f	1	795	session_rjqe3gZd	f	2008-07-19 00:00:00+00
+2434	1	FP1	2008-07-18	\N	\N	f	1	795	session_96K8WIWL	f	2008-07-18 00:00:00+00
+2435	2	FP2	2008-07-18	\N	\N	f	1	795	session_VAk6aFGZ	f	2008-07-18 00:00:00+00
+2436	6	FP3	2008-07-19	\N	\N	f	1	795	session_qAEXwK8n	f	2008-07-19 00:00:00+00
+2437	7	R	2008-08-03	12:00:00	\N	f	15	796	session_oikKkKty	t	2008-08-03 12:00:00+00
+2438	3	Q1	2008-08-02	\N	\N	f	1	796	session_duVhVFU0	f	2008-08-02 00:00:00+00
+2439	4	Q2	2008-08-02	\N	\N	f	1	796	session_0u5nH7hs	f	2008-08-02 00:00:00+00
+2440	5	Q3	2008-08-02	\N	\N	f	1	796	session_cUCDxYCu	f	2008-08-02 00:00:00+00
+2441	1	FP1	2008-08-01	\N	\N	f	1	796	session_fTuo5bkJ	f	2008-08-01 00:00:00+00
+2442	2	FP2	2008-08-01	\N	\N	f	1	796	session_Tgi8MpGL	f	2008-08-01 00:00:00+00
+2443	6	FP3	2008-08-02	\N	\N	f	1	796	session_ho10khkD	f	2008-08-02 00:00:00+00
+2444	7	R	2008-08-24	12:00:00	\N	f	15	797	session_IKimu7V4	t	2008-08-24 12:00:00+00
+2445	3	Q1	2008-08-23	\N	\N	f	1	797	session_1QusCK7n	f	2008-08-23 00:00:00+00
+2446	4	Q2	2008-08-23	\N	\N	f	1	797	session_FnRpcwAW	f	2008-08-23 00:00:00+00
+2447	5	Q3	2008-08-23	\N	\N	f	1	797	session_CCLp4goU	f	2008-08-23 00:00:00+00
+2448	1	FP1	2008-08-22	\N	\N	f	1	797	session_R7HOQrpH	f	2008-08-22 00:00:00+00
+2449	2	FP2	2008-08-22	\N	\N	f	1	797	session_jwTL2k1z	f	2008-08-22 00:00:00+00
+2450	6	FP3	2008-08-23	\N	\N	f	1	797	session_Dgv7By2h	f	2008-08-23 00:00:00+00
+2451	7	R	2008-09-07	12:00:00	\N	f	15	798	session_mCM3epE0	t	2008-09-07 12:00:00+00
+2452	3	Q1	2008-09-06	\N	\N	f	1	798	session_CboPz2Lo	f	2008-09-06 00:00:00+00
+2453	4	Q2	2008-09-06	\N	\N	f	1	798	session_WOs0S8Zc	f	2008-09-06 00:00:00+00
+2454	5	Q3	2008-09-06	\N	\N	f	1	798	session_sKIAlS0e	f	2008-09-06 00:00:00+00
+2455	1	FP1	2008-09-05	\N	\N	f	1	798	session_RgeLg77X	f	2008-09-05 00:00:00+00
+2456	2	FP2	2008-09-05	\N	\N	f	1	798	session_6Bkzcyea	f	2008-09-05 00:00:00+00
+2457	6	FP3	2008-09-06	\N	\N	f	1	798	session_od9cwLDY	f	2008-09-06 00:00:00+00
+2458	7	R	2008-09-14	12:00:00	\N	f	15	799	session_Iy2trtwz	t	2008-09-14 12:00:00+00
+2459	3	Q1	2008-09-13	\N	\N	f	1	799	session_WEWi3j0w	f	2008-09-13 00:00:00+00
+2460	4	Q2	2008-09-13	\N	\N	f	1	799	session_xoH1M4xG	f	2008-09-13 00:00:00+00
+2461	5	Q3	2008-09-13	\N	\N	f	1	799	session_INhCHgxC	f	2008-09-13 00:00:00+00
+2462	1	FP1	2008-09-12	\N	\N	f	1	799	session_oTlqWTjZ	f	2008-09-12 00:00:00+00
+2463	2	FP2	2008-09-12	\N	\N	f	1	799	session_5kpUfaJG	f	2008-09-12 00:00:00+00
+2464	6	FP3	2008-09-13	\N	\N	f	1	799	session_nHPkRuQA	f	2008-09-13 00:00:00+00
+2465	7	R	2008-09-28	12:00:00	\N	f	15	800	session_bpco48Dy	t	2008-09-28 12:00:00+00
+2466	3	Q1	2008-09-27	\N	\N	f	1	800	session_SGlgGe82	f	2008-09-27 00:00:00+00
+2467	4	Q2	2008-09-27	\N	\N	f	1	800	session_XJvrG395	f	2008-09-27 00:00:00+00
+2468	5	Q3	2008-09-27	\N	\N	f	1	800	session_JuNtanCo	f	2008-09-27 00:00:00+00
+2469	1	FP1	2008-09-26	\N	\N	f	1	800	session_kiGlhLQG	f	2008-09-26 00:00:00+00
+2470	2	FP2	2008-09-26	\N	\N	f	1	800	session_A1WYWQzl	f	2008-09-26 00:00:00+00
+2471	6	FP3	2008-09-27	\N	\N	f	1	800	session_YRD8sxSw	f	2008-09-27 00:00:00+00
+2472	7	R	2008-10-12	04:30:00	\N	f	15	801	session_GO5Sb3FQ	t	2008-10-12 04:30:00+00
+2473	3	Q1	2008-10-11	\N	\N	f	1	801	session_Kb3DJJh3	f	2008-10-11 00:00:00+00
+2474	4	Q2	2008-10-11	\N	\N	f	1	801	session_vLlROXaO	f	2008-10-11 00:00:00+00
+2475	5	Q3	2008-10-11	\N	\N	f	1	801	session_iiErK0C0	f	2008-10-11 00:00:00+00
+2476	1	FP1	2008-10-10	\N	\N	f	1	801	session_VOvKr2Ys	f	2008-10-10 00:00:00+00
+2477	2	FP2	2008-10-10	\N	\N	f	1	801	session_dByX8CrX	f	2008-10-10 00:00:00+00
+2478	6	FP3	2008-10-11	\N	\N	f	1	801	session_DrKvW75J	f	2008-10-11 00:00:00+00
+2479	7	R	2008-10-19	07:00:00	\N	f	15	802	session_be8N5VpF	t	2008-10-19 07:00:00+00
+2480	3	Q1	2008-10-18	\N	\N	f	1	802	session_ZQOSOGdh	f	2008-10-18 00:00:00+00
+2481	4	Q2	2008-10-18	\N	\N	f	1	802	session_apUiuLRa	f	2008-10-18 00:00:00+00
+2482	5	Q3	2008-10-18	\N	\N	f	1	802	session_vOszgy3E	f	2008-10-18 00:00:00+00
+2483	1	FP1	2008-10-17	\N	\N	f	1	802	session_W5oGQWXb	f	2008-10-17 00:00:00+00
+2484	2	FP2	2008-10-17	\N	\N	f	1	802	session_yu6eDLv8	f	2008-10-17 00:00:00+00
+2485	6	FP3	2008-10-18	\N	\N	f	1	802	session_XKhpmG0L	f	2008-10-18 00:00:00+00
+2486	7	R	2008-11-02	17:00:00	\N	f	15	803	session_Fp1nqN2l	t	2008-11-02 17:00:00+00
+2487	3	Q1	2008-11-01	\N	\N	f	1	803	session_AYPTmKLe	f	2008-11-01 00:00:00+00
+2488	4	Q2	2008-11-01	\N	\N	f	1	803	session_kjYsHtXJ	f	2008-11-01 00:00:00+00
+2489	5	Q3	2008-11-01	\N	\N	f	1	803	session_uoqKEhbp	f	2008-11-01 00:00:00+00
+2490	1	FP1	2008-10-31	\N	\N	f	1	803	session_FFLTw3PX	f	2008-10-31 00:00:00+00
+2491	2	FP2	2008-10-31	\N	\N	f	1	803	session_jHbkGI5I	f	2008-10-31 00:00:00+00
+2492	6	FP3	2008-11-01	\N	\N	f	1	803	session_7iroDyTD	f	2008-11-01 00:00:00+00
+2493	7	R	2009-03-29	06:00:00	\N	f	15	804	session_47u7RtBV	t	2009-03-29 06:00:00+00
+2494	3	Q1	2009-03-28	\N	\N	f	1	804	session_iB5cug1F	f	2009-03-28 00:00:00+00
+2495	4	Q2	2009-03-28	\N	\N	f	1	804	session_TP2n5Gil	f	2009-03-28 00:00:00+00
+2496	5	Q3	2009-03-28	\N	\N	f	1	804	session_PZrKfV8D	f	2009-03-28 00:00:00+00
+2497	1	FP1	2009-03-27	\N	\N	f	1	804	session_qP7wu4Oa	f	2009-03-27 00:00:00+00
+2498	2	FP2	2009-03-27	\N	\N	f	1	804	session_mL1H4syj	f	2009-03-27 00:00:00+00
+2499	6	FP3	2009-03-28	\N	\N	f	1	804	session_AQNdPJYh	f	2009-03-28 00:00:00+00
+2500	7	R	2009-04-05	09:00:00	\N	f	15	805	session_31YAOeyH	t	2009-04-05 09:00:00+00
+2501	3	Q1	2009-04-04	\N	\N	f	1	805	session_z6GBNKlf	f	2009-04-04 00:00:00+00
+2502	4	Q2	2009-04-04	\N	\N	f	1	805	session_ujnnCQ3j	f	2009-04-04 00:00:00+00
+2503	5	Q3	2009-04-04	\N	\N	f	1	805	session_v0ZNtv4H	f	2009-04-04 00:00:00+00
+2504	1	FP1	2009-04-03	\N	\N	f	1	805	session_jPr6OtD1	f	2009-04-03 00:00:00+00
+2505	2	FP2	2009-04-03	\N	\N	f	1	805	session_tmzoFBcq	f	2009-04-03 00:00:00+00
+2506	6	FP3	2009-04-04	\N	\N	f	1	805	session_tcBJOoOP	f	2009-04-04 00:00:00+00
+2507	7	R	2009-04-19	07:00:00	\N	f	15	806	session_3o2nyBi2	t	2009-04-19 07:00:00+00
+2508	3	Q1	2009-04-18	\N	\N	f	1	806	session_2qr5Ii4v	f	2009-04-18 00:00:00+00
+2509	4	Q2	2009-04-18	\N	\N	f	1	806	session_7u8RUEhR	f	2009-04-18 00:00:00+00
+2510	5	Q3	2009-04-18	\N	\N	f	1	806	session_LzhD0p4v	f	2009-04-18 00:00:00+00
+2511	1	FP1	2009-04-17	\N	\N	f	1	806	session_XlOzXLDi	f	2009-04-17 00:00:00+00
+2512	2	FP2	2009-04-17	\N	\N	f	1	806	session_js64vOro	f	2009-04-17 00:00:00+00
+2513	6	FP3	2009-04-18	\N	\N	f	1	806	session_rgPzDY9f	f	2009-04-18 00:00:00+00
+2514	7	R	2009-04-26	12:00:00	\N	f	15	807	session_w8fQoUfK	t	2009-04-26 12:00:00+00
+2515	3	Q1	2009-04-25	\N	\N	f	1	807	session_FmycS9rg	f	2009-04-25 00:00:00+00
+2516	4	Q2	2009-04-25	\N	\N	f	1	807	session_dVIHsZ9i	f	2009-04-25 00:00:00+00
+2517	5	Q3	2009-04-25	\N	\N	f	1	807	session_uAXFrKdg	f	2009-04-25 00:00:00+00
+2518	1	FP1	2009-04-24	\N	\N	f	1	807	session_eh6fuUOI	f	2009-04-24 00:00:00+00
+2519	2	FP2	2009-04-24	\N	\N	f	1	807	session_7p5VdKhN	f	2009-04-24 00:00:00+00
+2520	6	FP3	2009-04-25	\N	\N	f	1	807	session_6SlZDvp7	f	2009-04-25 00:00:00+00
+2521	7	R	2009-05-10	12:00:00	\N	f	15	808	session_3N6MO20B	t	2009-05-10 12:00:00+00
+2522	3	Q1	2009-05-09	\N	\N	f	1	808	session_kaoQluV0	f	2009-05-09 00:00:00+00
+2523	4	Q2	2009-05-09	\N	\N	f	1	808	session_6kL07ZrN	f	2009-05-09 00:00:00+00
+2524	5	Q3	2009-05-09	\N	\N	f	1	808	session_qAPfw58i	f	2009-05-09 00:00:00+00
+2525	1	FP1	2009-05-08	\N	\N	f	1	808	session_IIhmZWRO	f	2009-05-08 00:00:00+00
+2526	2	FP2	2009-05-08	\N	\N	f	1	808	session_EgvsGmy9	f	2009-05-08 00:00:00+00
+2527	6	FP3	2009-05-09	\N	\N	f	1	808	session_9rX8FO79	f	2009-05-09 00:00:00+00
+2528	7	R	2009-05-24	12:00:00	\N	f	15	809	session_WUV1ggXD	t	2009-05-24 12:00:00+00
+2529	3	Q1	2009-05-23	\N	\N	f	1	809	session_YRZrcJtR	f	2009-05-23 00:00:00+00
+2530	4	Q2	2009-05-23	\N	\N	f	1	809	session_1u7Va0rX	f	2009-05-23 00:00:00+00
+2531	5	Q3	2009-05-23	\N	\N	f	1	809	session_GKOVvFOo	f	2009-05-23 00:00:00+00
+2532	1	FP1	2009-05-21	\N	\N	f	1	809	session_FYUR4I4s	f	2009-05-21 00:00:00+00
+2533	2	FP2	2009-05-21	\N	\N	f	1	809	session_cYydwfZ4	f	2009-05-21 00:00:00+00
+2534	6	FP3	2009-05-23	\N	\N	f	1	809	session_D1mQzwcQ	f	2009-05-23 00:00:00+00
+2535	7	R	2009-06-07	12:00:00	\N	f	15	810	session_qF6fMVCC	t	2009-06-07 12:00:00+00
+2536	3	Q1	2009-06-06	\N	\N	f	1	810	session_05JRFYTd	f	2009-06-06 00:00:00+00
+2537	4	Q2	2009-06-06	\N	\N	f	1	810	session_QZVcFUoL	f	2009-06-06 00:00:00+00
+2538	5	Q3	2009-06-06	\N	\N	f	1	810	session_kcIojXoy	f	2009-06-06 00:00:00+00
+2539	1	FP1	2009-06-05	\N	\N	f	1	810	session_eLKWBR6o	f	2009-06-05 00:00:00+00
+2540	2	FP2	2009-06-05	\N	\N	f	1	810	session_pRNJTI3p	f	2009-06-05 00:00:00+00
+2541	6	FP3	2009-06-06	\N	\N	f	1	810	session_WYLPy5Ok	f	2009-06-06 00:00:00+00
+2542	7	R	2009-06-21	12:00:00	\N	f	15	811	session_yYTJmPsS	t	2009-06-21 12:00:00+00
+2543	3	Q1	2009-06-20	\N	\N	f	1	811	session_otLJL21a	f	2009-06-20 00:00:00+00
+2544	4	Q2	2009-06-20	\N	\N	f	1	811	session_gZv4DwXG	f	2009-06-20 00:00:00+00
+2545	5	Q3	2009-06-20	\N	\N	f	1	811	session_yhIcWRYW	f	2009-06-20 00:00:00+00
+2546	1	FP1	2009-06-19	\N	\N	f	1	811	session_arEB7JCF	f	2009-06-19 00:00:00+00
+2547	2	FP2	2009-06-19	\N	\N	f	1	811	session_MpSJd8I9	f	2009-06-19 00:00:00+00
+2548	6	FP3	2009-06-20	\N	\N	f	1	811	session_fiYiM7If	f	2009-06-20 00:00:00+00
+2549	7	R	2009-07-12	12:00:00	\N	f	15	812	session_WmYq9g34	t	2009-07-12 12:00:00+00
+2550	3	Q1	2009-07-11	\N	\N	f	1	812	session_kbRi7kYQ	f	2009-07-11 00:00:00+00
+2551	4	Q2	2009-07-11	\N	\N	f	1	812	session_vbB2legG	f	2009-07-11 00:00:00+00
+2552	5	Q3	2009-07-11	\N	\N	f	1	812	session_IDRtciOG	f	2009-07-11 00:00:00+00
+2553	1	FP1	2009-07-10	\N	\N	f	1	812	session_yIqJ0e3W	f	2009-07-10 00:00:00+00
+2554	2	FP2	2009-07-10	\N	\N	f	1	812	session_3WPwIGsB	f	2009-07-10 00:00:00+00
+2555	6	FP3	2009-07-11	\N	\N	f	1	812	session_jhI6768U	f	2009-07-11 00:00:00+00
+2556	7	R	2009-07-26	12:00:00	\N	f	15	813	session_EmgxM0Il	t	2009-07-26 12:00:00+00
+2557	3	Q1	2009-07-25	\N	\N	f	1	813	session_t6ynqy3J	f	2009-07-25 00:00:00+00
+2558	4	Q2	2009-07-25	\N	\N	f	1	813	session_7ju4Xyti	f	2009-07-25 00:00:00+00
+2559	5	Q3	2009-07-25	\N	\N	f	1	813	session_smFjH0Or	f	2009-07-25 00:00:00+00
+2560	1	FP1	2009-07-24	\N	\N	f	1	813	session_POYOsjHb	f	2009-07-24 00:00:00+00
+2561	2	FP2	2009-07-24	\N	\N	f	1	813	session_8WTMk9kE	f	2009-07-24 00:00:00+00
+2562	6	FP3	2009-07-25	\N	\N	f	1	813	session_TMxibzjG	f	2009-07-25 00:00:00+00
+2563	7	R	2009-08-23	12:00:00	\N	f	15	814	session_53EQlJqd	t	2009-08-23 12:00:00+00
+2564	3	Q1	2009-08-22	\N	\N	f	1	814	session_l5wKwsdU	f	2009-08-22 00:00:00+00
+2565	4	Q2	2009-08-22	\N	\N	f	1	814	session_308saJ79	f	2009-08-22 00:00:00+00
+2566	5	Q3	2009-08-22	\N	\N	f	1	814	session_HO20IWG7	f	2009-08-22 00:00:00+00
+2567	1	FP1	2009-08-21	\N	\N	f	1	814	session_8aUF4QkA	f	2009-08-21 00:00:00+00
+2568	2	FP2	2009-08-21	\N	\N	f	1	814	session_K0jpChiG	f	2009-08-21 00:00:00+00
+2569	6	FP3	2009-08-22	\N	\N	f	1	814	session_LsRpxgo8	f	2009-08-22 00:00:00+00
+2570	7	R	2009-08-30	12:00:00	\N	f	15	815	session_JcUbyLqG	t	2009-08-30 12:00:00+00
+2571	3	Q1	2009-08-29	\N	\N	f	1	815	session_YipjH2B0	f	2009-08-29 00:00:00+00
+2572	4	Q2	2009-08-29	\N	\N	f	1	815	session_jdknoJtr	f	2009-08-29 00:00:00+00
+2573	5	Q3	2009-08-29	\N	\N	f	1	815	session_A0f53Zsw	f	2009-08-29 00:00:00+00
+2574	1	FP1	2009-08-28	\N	\N	f	1	815	session_8Aj8ou8H	f	2009-08-28 00:00:00+00
+2575	2	FP2	2009-08-28	\N	\N	f	1	815	session_ZcNSfPSk	f	2009-08-28 00:00:00+00
+2576	6	FP3	2009-08-29	\N	\N	f	1	815	session_sTWBQoqP	f	2009-08-29 00:00:00+00
+2577	7	R	2009-09-13	12:00:00	\N	f	15	816	session_BkU9IBj5	t	2009-09-13 12:00:00+00
+2578	3	Q1	2009-09-12	\N	\N	f	1	816	session_VLzJbnFq	f	2009-09-12 00:00:00+00
+2579	4	Q2	2009-09-12	\N	\N	f	1	816	session_rMwuTyqc	f	2009-09-12 00:00:00+00
+2580	5	Q3	2009-09-12	\N	\N	f	1	816	session_Nb90KMze	f	2009-09-12 00:00:00+00
+2581	1	FP1	2009-09-11	\N	\N	f	1	816	session_iYbr4EE7	f	2009-09-11 00:00:00+00
+2582	2	FP2	2009-09-11	\N	\N	f	1	816	session_f9Jr4WTT	f	2009-09-11 00:00:00+00
+2583	6	FP3	2009-09-12	\N	\N	f	1	816	session_l7oIaWRl	f	2009-09-12 00:00:00+00
+2584	7	R	2009-09-27	12:00:00	\N	f	15	817	session_F6uK6L5y	t	2009-09-27 12:00:00+00
+2585	3	Q1	2009-09-26	\N	\N	f	1	817	session_FWTj2doc	f	2009-09-26 00:00:00+00
+2586	4	Q2	2009-09-26	\N	\N	f	1	817	session_lqeNEFZ3	f	2009-09-26 00:00:00+00
+2587	5	Q3	2009-09-26	\N	\N	f	1	817	session_zVUnafPm	f	2009-09-26 00:00:00+00
+2588	1	FP1	2009-09-25	\N	\N	f	1	817	session_m1VrECZN	f	2009-09-25 00:00:00+00
+2589	2	FP2	2009-09-25	\N	\N	f	1	817	session_PrvhvJTi	f	2009-09-25 00:00:00+00
+2590	6	FP3	2009-09-26	\N	\N	f	1	817	session_bkwcdL2N	f	2009-09-26 00:00:00+00
+2591	7	R	2009-10-04	05:00:00	\N	f	15	818	session_rXV1SpOb	t	2009-10-04 05:00:00+00
+2592	3	Q1	2009-10-03	\N	\N	f	1	818	session_Q7DdcnQj	f	2009-10-03 00:00:00+00
+2593	4	Q2	2009-10-03	\N	\N	f	1	818	session_SozwIlbR	f	2009-10-03 00:00:00+00
+2594	5	Q3	2009-10-03	\N	\N	f	1	818	session_367bAASU	f	2009-10-03 00:00:00+00
+2595	1	FP1	2009-10-02	\N	\N	f	1	818	session_jNqcmx6X	f	2009-10-02 00:00:00+00
+2596	2	FP2	2009-10-02	\N	\N	f	1	818	session_Ofb6RIrG	f	2009-10-02 00:00:00+00
+2597	6	FP3	2009-10-03	\N	\N	f	1	818	session_w6E4QzZ2	f	2009-10-03 00:00:00+00
+2598	7	R	2009-10-18	16:00:00	\N	f	15	819	session_ruFlCgm3	t	2009-10-18 16:00:00+00
+2599	3	Q1	2009-10-17	\N	\N	f	1	819	session_1CVPAipl	f	2009-10-17 00:00:00+00
+2600	4	Q2	2009-10-17	\N	\N	f	1	819	session_eXnKQA4A	f	2009-10-17 00:00:00+00
+2601	5	Q3	2009-10-17	\N	\N	f	1	819	session_aDHwWyYx	f	2009-10-17 00:00:00+00
+2602	1	FP1	2009-10-16	\N	\N	f	1	819	session_eQ9Ps7Jq	f	2009-10-16 00:00:00+00
+2603	2	FP2	2009-10-16	\N	\N	f	1	819	session_0aqi12rN	f	2009-10-16 00:00:00+00
+2604	6	FP3	2009-10-17	\N	\N	f	1	819	session_DbfouRN2	f	2009-10-17 00:00:00+00
+2605	7	R	2009-11-01	11:00:00	\N	f	15	820	session_AMLpCTWS	t	2009-11-01 11:00:00+00
+2606	3	Q1	2009-10-31	\N	\N	f	1	820	session_LWkkO1CV	f	2009-10-31 00:00:00+00
+2607	4	Q2	2009-10-31	\N	\N	f	1	820	session_GzYF6Y46	f	2009-10-31 00:00:00+00
+2608	5	Q3	2009-10-31	\N	\N	f	1	820	session_SHcEEcB6	f	2009-10-31 00:00:00+00
+2609	1	FP1	2009-10-30	\N	\N	f	1	820	session_0rce7MfP	f	2009-10-30 00:00:00+00
+2610	2	FP2	2009-10-30	\N	\N	f	1	820	session_JwoI48vW	f	2009-10-30 00:00:00+00
+2611	6	FP3	2009-10-31	\N	\N	f	1	820	session_SCWnwcwj	f	2009-10-31 00:00:00+00
+2612	7	R	2010-03-14	12:00:00	\N	f	16	821	session_oKBHd474	t	2010-03-14 12:00:00+00
+2613	3	Q1	2010-03-13	\N	\N	f	1	821	session_p0NjZKkE	f	2010-03-13 00:00:00+00
+2614	4	Q2	2010-03-13	\N	\N	f	1	821	session_cjC2Am8e	f	2010-03-13 00:00:00+00
+2615	5	Q3	2010-03-13	\N	\N	f	1	821	session_l2hsPSl8	f	2010-03-13 00:00:00+00
+2616	1	FP1	2010-03-12	\N	\N	f	1	821	session_jpYu1MXC	f	2010-03-12 00:00:00+00
+2617	2	FP2	2010-03-12	\N	\N	f	1	821	session_VJTuu4jj	f	2010-03-12 00:00:00+00
+2618	6	FP3	2010-03-13	\N	\N	f	1	821	session_OxuvoUxd	f	2010-03-13 00:00:00+00
+2619	7	R	2010-03-28	06:00:00	\N	f	16	822	session_NxypGgut	t	2010-03-28 06:00:00+00
+2620	3	Q1	2010-03-27	\N	\N	f	1	822	session_vYeF2Ama	f	2010-03-27 00:00:00+00
+2621	4	Q2	2010-03-27	\N	\N	f	1	822	session_8T4rBx2i	f	2010-03-27 00:00:00+00
+2622	5	Q3	2010-03-27	\N	\N	f	1	822	session_P6QtAi9j	f	2010-03-27 00:00:00+00
+2623	1	FP1	2010-03-26	\N	\N	f	1	822	session_N9V0DkY9	f	2010-03-26 00:00:00+00
+2624	2	FP2	2010-03-26	\N	\N	f	1	822	session_UZGoPIZq	f	2010-03-26 00:00:00+00
+2625	6	FP3	2010-03-27	\N	\N	f	1	822	session_qY0oNENK	f	2010-03-27 00:00:00+00
+2626	7	R	2010-04-04	08:00:00	\N	f	16	823	session_D8AsSPvf	t	2010-04-04 08:00:00+00
+2627	3	Q1	2010-04-03	\N	\N	f	1	823	session_HrzVtWVF	f	2010-04-03 00:00:00+00
+2628	4	Q2	2010-04-03	\N	\N	f	1	823	session_nIfIUdnW	f	2010-04-03 00:00:00+00
+2629	5	Q3	2010-04-03	\N	\N	f	1	823	session_oI2YpzVB	f	2010-04-03 00:00:00+00
+2630	1	FP1	2010-04-02	\N	\N	f	1	823	session_Q8tgkXpr	f	2010-04-02 00:00:00+00
+2631	2	FP2	2010-04-02	\N	\N	f	1	823	session_7ZmtaNZ0	f	2010-04-02 00:00:00+00
+2632	6	FP3	2010-04-03	\N	\N	f	1	823	session_AoYm3zeT	f	2010-04-03 00:00:00+00
+2633	7	R	2010-04-18	06:00:00	\N	f	16	824	session_ZFqbUfeq	t	2010-04-18 06:00:00+00
+2634	3	Q1	2010-04-17	\N	\N	f	1	824	session_qyt05OEL	f	2010-04-17 00:00:00+00
+2635	4	Q2	2010-04-17	\N	\N	f	1	824	session_Hshw8Gvc	f	2010-04-17 00:00:00+00
+2636	5	Q3	2010-04-17	\N	\N	f	1	824	session_bdu9hoRH	f	2010-04-17 00:00:00+00
+2637	1	FP1	2010-04-16	\N	\N	f	1	824	session_O2CCxwTn	f	2010-04-16 00:00:00+00
+2638	2	FP2	2010-04-16	\N	\N	f	1	824	session_wyobEwbw	f	2010-04-16 00:00:00+00
+2639	6	FP3	2010-04-17	\N	\N	f	1	824	session_hBYkx0s2	f	2010-04-17 00:00:00+00
+2640	7	R	2010-05-09	12:00:00	\N	f	16	825	session_8L1hY8HL	t	2010-05-09 12:00:00+00
+2641	3	Q1	2010-05-08	\N	\N	f	1	825	session_3ZPTtHZP	f	2010-05-08 00:00:00+00
+2642	4	Q2	2010-05-08	\N	\N	f	1	825	session_fYwz3QxZ	f	2010-05-08 00:00:00+00
+2643	5	Q3	2010-05-08	\N	\N	f	1	825	session_5vdCP5Ew	f	2010-05-08 00:00:00+00
+2644	1	FP1	2010-05-07	\N	\N	f	1	825	session_i5qLlBih	f	2010-05-07 00:00:00+00
+2645	2	FP2	2010-05-07	\N	\N	f	1	825	session_2RsU2V8o	f	2010-05-07 00:00:00+00
+2646	6	FP3	2010-05-08	\N	\N	f	1	825	session_aeivMZEQ	f	2010-05-08 00:00:00+00
+2647	7	R	2010-05-16	12:00:00	\N	f	16	826	session_uK1sBsiZ	t	2010-05-16 12:00:00+00
+2648	3	Q1	2010-05-15	\N	\N	f	1	826	session_blm8esI9	f	2010-05-15 00:00:00+00
+2649	4	Q2	2010-05-15	\N	\N	f	1	826	session_6UKFG9fT	f	2010-05-15 00:00:00+00
+2650	5	Q3	2010-05-15	\N	\N	f	1	826	session_9nED8h7S	f	2010-05-15 00:00:00+00
+2651	1	FP1	2010-05-13	\N	\N	f	1	826	session_IBfVfafv	f	2010-05-13 00:00:00+00
+2652	2	FP2	2010-05-13	\N	\N	f	1	826	session_Jx8bXaIz	f	2010-05-13 00:00:00+00
+2653	6	FP3	2010-05-15	\N	\N	f	1	826	session_hgOog5aJ	f	2010-05-15 00:00:00+00
+2654	7	R	2010-05-30	11:00:00	\N	f	16	827	session_Ja8kWv8e	t	2010-05-30 11:00:00+00
+2655	3	Q1	2010-05-29	\N	\N	f	1	827	session_Wbx2882p	f	2010-05-29 00:00:00+00
+2656	4	Q2	2010-05-29	\N	\N	f	1	827	session_0rI56aUH	f	2010-05-29 00:00:00+00
+2657	5	Q3	2010-05-29	\N	\N	f	1	827	session_yRqp3JSn	f	2010-05-29 00:00:00+00
+2658	1	FP1	2010-05-28	\N	\N	f	1	827	session_Ns0Fn455	f	2010-05-28 00:00:00+00
+2659	2	FP2	2010-05-28	\N	\N	f	1	827	session_TenmH7fc	f	2010-05-28 00:00:00+00
+2660	6	FP3	2010-05-29	\N	\N	f	1	827	session_lNGVE9aQ	f	2010-05-29 00:00:00+00
+2661	7	R	2010-06-13	16:00:00	\N	f	16	828	session_xM1LvFGF	t	2010-06-13 16:00:00+00
+2662	3	Q1	2010-06-12	\N	\N	f	1	828	session_TLI3R8Kv	f	2010-06-12 00:00:00+00
+2663	4	Q2	2010-06-12	\N	\N	f	1	828	session_j6SS4Xig	f	2010-06-12 00:00:00+00
+2664	5	Q3	2010-06-12	\N	\N	f	1	828	session_WKvvAmbf	f	2010-06-12 00:00:00+00
+2665	1	FP1	2010-06-11	\N	\N	f	1	828	session_oClMdMze	f	2010-06-11 00:00:00+00
+2666	2	FP2	2010-06-11	\N	\N	f	1	828	session_QgcQsjnF	f	2010-06-11 00:00:00+00
+2667	6	FP3	2010-06-12	\N	\N	f	1	828	session_lCNCEG3X	f	2010-06-12 00:00:00+00
+2668	7	R	2010-06-27	12:00:00	\N	f	16	829	session_2NsfVCVo	t	2010-06-27 12:00:00+00
+2669	3	Q1	2010-06-26	\N	\N	f	1	829	session_FSaBwWXn	f	2010-06-26 00:00:00+00
+2670	4	Q2	2010-06-26	\N	\N	f	1	829	session_w3iNfKJq	f	2010-06-26 00:00:00+00
+2671	5	Q3	2010-06-26	\N	\N	f	1	829	session_km8tkvyX	f	2010-06-26 00:00:00+00
+2672	1	FP1	2010-06-25	\N	\N	f	1	829	session_phZlI10m	f	2010-06-25 00:00:00+00
+2673	2	FP2	2010-06-25	\N	\N	f	1	829	session_rabsopfD	f	2010-06-25 00:00:00+00
+2674	6	FP3	2010-06-26	\N	\N	f	1	829	session_sHavkIXM	f	2010-06-26 00:00:00+00
+2675	7	R	2010-07-11	12:00:00	\N	f	16	830	session_aueyT2hV	t	2010-07-11 12:00:00+00
+2676	3	Q1	2010-07-10	\N	\N	f	1	830	session_78wSVgZI	f	2010-07-10 00:00:00+00
+2677	4	Q2	2010-07-10	\N	\N	f	1	830	session_6b5ayNRU	f	2010-07-10 00:00:00+00
+2678	5	Q3	2010-07-10	\N	\N	f	1	830	session_jQtZKIWv	f	2010-07-10 00:00:00+00
+2679	1	FP1	2010-07-09	\N	\N	f	1	830	session_YNMRmNIq	f	2010-07-09 00:00:00+00
+2680	2	FP2	2010-07-09	\N	\N	f	1	830	session_3UOsR449	f	2010-07-09 00:00:00+00
+2681	6	FP3	2010-07-10	\N	\N	f	1	830	session_uYYoCH74	f	2010-07-10 00:00:00+00
+2682	7	R	2010-07-25	12:00:00	\N	f	16	831	session_2i0VVHKW	t	2010-07-25 12:00:00+00
+2683	3	Q1	2010-07-24	\N	\N	f	1	831	session_yrNhWhlb	f	2010-07-24 00:00:00+00
+2684	4	Q2	2010-07-24	\N	\N	f	1	831	session_xYbnZK9R	f	2010-07-24 00:00:00+00
+2685	5	Q3	2010-07-24	\N	\N	f	1	831	session_f9MSlth3	f	2010-07-24 00:00:00+00
+2686	1	FP1	2010-07-23	\N	\N	f	1	831	session_Oa9QpfbV	f	2010-07-23 00:00:00+00
+2687	2	FP2	2010-07-23	\N	\N	f	1	831	session_sJD5vBa5	f	2010-07-23 00:00:00+00
+2688	6	FP3	2010-07-24	\N	\N	f	1	831	session_wZEGZflS	f	2010-07-24 00:00:00+00
+2689	7	R	2010-08-01	12:00:00	\N	f	16	832	session_Oee1qRCB	t	2010-08-01 12:00:00+00
+2690	3	Q1	2010-07-31	\N	\N	f	1	832	session_J2M71PRu	f	2010-07-31 00:00:00+00
+2691	4	Q2	2010-07-31	\N	\N	f	1	832	session_TEeUqMtZ	f	2010-07-31 00:00:00+00
+2692	5	Q3	2010-07-31	\N	\N	f	1	832	session_8nwubcWR	f	2010-07-31 00:00:00+00
+2693	1	FP1	2010-07-30	\N	\N	f	1	832	session_PxsLpO3N	f	2010-07-30 00:00:00+00
+2694	2	FP2	2010-07-30	\N	\N	f	1	832	session_uVjszx7P	f	2010-07-30 00:00:00+00
+2695	6	FP3	2010-07-31	\N	\N	f	1	832	session_ERgRL3KJ	f	2010-07-31 00:00:00+00
+2696	7	R	2010-08-29	12:00:00	\N	f	16	833	session_26YKlbE1	t	2010-08-29 12:00:00+00
+2697	3	Q1	2010-08-28	\N	\N	f	1	833	session_Y0ECOyeS	f	2010-08-28 00:00:00+00
+2698	4	Q2	2010-08-28	\N	\N	f	1	833	session_8UUfT4LT	f	2010-08-28 00:00:00+00
+2699	5	Q3	2010-08-28	\N	\N	f	1	833	session_pVfFmy7l	f	2010-08-28 00:00:00+00
+2700	1	FP1	2010-08-27	\N	\N	f	1	833	session_tybwwWyx	f	2010-08-27 00:00:00+00
+2701	2	FP2	2010-08-27	\N	\N	f	1	833	session_YXbjiKjz	f	2010-08-27 00:00:00+00
+2702	6	FP3	2010-08-28	\N	\N	f	1	833	session_Z13fWc0t	f	2010-08-28 00:00:00+00
+2703	7	R	2010-09-12	12:00:00	\N	f	16	834	session_kPN34gAz	t	2010-09-12 12:00:00+00
+2704	3	Q1	2010-09-11	\N	\N	f	1	834	session_auulKdmR	f	2010-09-11 00:00:00+00
+2705	4	Q2	2010-09-11	\N	\N	f	1	834	session_kUWmUDiu	f	2010-09-11 00:00:00+00
+2706	5	Q3	2010-09-11	\N	\N	f	1	834	session_mdeJf0JV	f	2010-09-11 00:00:00+00
+2707	1	FP1	2010-09-10	\N	\N	f	1	834	session_ckkE1AHI	f	2010-09-10 00:00:00+00
+2708	2	FP2	2010-09-10	\N	\N	f	1	834	session_IMpVHr31	f	2010-09-10 00:00:00+00
+2709	6	FP3	2010-09-11	\N	\N	f	1	834	session_TWXdYfwU	f	2010-09-11 00:00:00+00
+2710	7	R	2010-09-26	12:00:00	\N	f	16	835	session_iPIqF20z	t	2010-09-26 12:00:00+00
+2711	3	Q1	2010-09-25	\N	\N	f	1	835	session_nLrobkp0	f	2010-09-25 00:00:00+00
+2712	4	Q2	2010-09-25	\N	\N	f	1	835	session_V0CeytIU	f	2010-09-25 00:00:00+00
+2713	5	Q3	2010-09-25	\N	\N	f	1	835	session_tdBtBOpN	f	2010-09-25 00:00:00+00
+2714	1	FP1	2010-09-24	\N	\N	f	1	835	session_GMNgxuKI	f	2010-09-24 00:00:00+00
+2715	2	FP2	2010-09-24	\N	\N	f	1	835	session_Jnu02iSZ	f	2010-09-24 00:00:00+00
+2716	6	FP3	2010-09-25	\N	\N	f	1	835	session_Yrkzb3vq	f	2010-09-25 00:00:00+00
+2717	7	R	2010-10-10	06:00:00	\N	f	16	836	session_KGRNRLKP	t	2010-10-10 06:00:00+00
+2718	3	Q1	2010-10-09	\N	\N	f	1	836	session_ALDJ2rek	f	2010-10-09 00:00:00+00
+2719	4	Q2	2010-10-09	\N	\N	f	1	836	session_5kaMINpB	f	2010-10-09 00:00:00+00
+2720	5	Q3	2010-10-09	\N	\N	f	1	836	session_eUPivMdt	f	2010-10-09 00:00:00+00
+2721	1	FP1	2010-10-08	\N	\N	f	1	836	session_Ygmqa1na	f	2010-10-08 00:00:00+00
+2722	2	FP2	2010-10-08	\N	\N	f	1	836	session_I0KhVART	f	2010-10-08 00:00:00+00
+2723	6	FP3	2010-10-09	\N	\N	f	1	836	session_8d3iyZYb	f	2010-10-09 00:00:00+00
+2724	7	R	2010-10-24	05:00:00	\N	f	16	837	session_jCqfOsWQ	t	2010-10-24 05:00:00+00
+2725	3	Q1	2010-10-23	\N	\N	f	1	837	session_KXGiU11W	f	2010-10-23 00:00:00+00
+2726	4	Q2	2010-10-23	\N	\N	f	1	837	session_M5ubbXsR	f	2010-10-23 00:00:00+00
+2727	5	Q3	2010-10-23	\N	\N	f	1	837	session_OuIPPRkv	f	2010-10-23 00:00:00+00
+2728	1	FP1	2010-10-22	\N	\N	f	1	837	session_dIbtIlXd	f	2010-10-22 00:00:00+00
+2729	2	FP2	2010-10-22	\N	\N	f	1	837	session_6M7KgCDd	f	2010-10-22 00:00:00+00
+2730	6	FP3	2010-10-23	\N	\N	f	1	837	session_2BYnklCB	f	2010-10-23 00:00:00+00
+2731	7	R	2010-11-07	16:00:00	\N	f	16	838	session_btcJqXOl	t	2010-11-07 16:00:00+00
+2732	3	Q1	2010-11-06	\N	\N	f	1	838	session_sxx8P2UI	f	2010-11-06 00:00:00+00
+2733	4	Q2	2010-11-06	\N	\N	f	1	838	session_xZm5LWeM	f	2010-11-06 00:00:00+00
+2734	5	Q3	2010-11-06	\N	\N	f	1	838	session_2j0q725d	f	2010-11-06 00:00:00+00
+2735	1	FP1	2010-11-05	\N	\N	f	1	838	session_32ZsaYI6	f	2010-11-05 00:00:00+00
+2736	2	FP2	2010-11-05	\N	\N	f	1	838	session_U7HQwapw	f	2010-11-05 00:00:00+00
+2737	6	FP3	2010-11-06	\N	\N	f	1	838	session_UkEdFbC7	f	2010-11-06 00:00:00+00
+2738	7	R	2010-11-14	13:00:00	\N	f	16	839	session_NpxCHbO6	t	2010-11-14 13:00:00+00
+2739	3	Q1	2010-11-13	\N	\N	f	1	839	session_VonJVev5	f	2010-11-13 00:00:00+00
+2740	4	Q2	2010-11-13	\N	\N	f	1	839	session_JOgktpFi	f	2010-11-13 00:00:00+00
+2741	5	Q3	2010-11-13	\N	\N	f	1	839	session_6xjGDEuz	f	2010-11-13 00:00:00+00
+2742	1	FP1	2010-11-12	\N	\N	f	1	839	session_OOjPHRCp	f	2010-11-12 00:00:00+00
+2743	2	FP2	2010-11-12	\N	\N	f	1	839	session_jlqH0mbZ	f	2010-11-12 00:00:00+00
+2744	6	FP3	2010-11-13	\N	\N	f	1	839	session_s0xmINk8	f	2010-11-13 00:00:00+00
+2745	7	R	2011-03-27	06:00:00	\N	f	16	840	session_uIDCiqGa	t	2011-03-27 06:00:00+00
+2746	3	Q1	2011-03-26	\N	\N	f	1	840	session_Blgy9A0W	f	2011-03-26 00:00:00+00
+2747	4	Q2	2011-03-26	\N	\N	f	1	840	session_KtRgT8r4	f	2011-03-26 00:00:00+00
+2748	5	Q3	2011-03-26	\N	\N	f	1	840	session_z88dkfCm	f	2011-03-26 00:00:00+00
+2749	1	FP1	2011-03-25	\N	\N	f	1	840	session_CIjfJyXy	f	2011-03-25 00:00:00+00
+2750	2	FP2	2011-03-25	\N	\N	f	1	840	session_aUTNHJXj	f	2011-03-25 00:00:00+00
+2751	6	FP3	2011-03-26	\N	\N	f	1	840	session_Y7ZcjWXx	f	2011-03-26 00:00:00+00
+2752	7	R	2011-04-10	08:00:00	\N	f	16	841	session_ToW13J4m	t	2011-04-10 08:00:00+00
+2753	3	Q1	2011-04-09	\N	\N	f	1	841	session_D4YMti8J	f	2011-04-09 00:00:00+00
+2754	4	Q2	2011-04-09	\N	\N	f	1	841	session_55uHqJpK	f	2011-04-09 00:00:00+00
+2755	5	Q3	2011-04-09	\N	\N	f	1	841	session_bar4WRtX	f	2011-04-09 00:00:00+00
+2756	1	FP1	2011-04-08	\N	\N	f	1	841	session_7nx3FzSb	f	2011-04-08 00:00:00+00
+2757	2	FP2	2011-04-08	\N	\N	f	1	841	session_ao3S0ElN	f	2011-04-08 00:00:00+00
+2758	6	FP3	2011-04-09	\N	\N	f	1	841	session_meLcmtZe	f	2011-04-09 00:00:00+00
+2759	7	R	2011-04-17	07:00:00	\N	f	16	842	session_9qVqu8QY	t	2011-04-17 07:00:00+00
+2760	3	Q1	2011-04-16	\N	\N	f	1	842	session_fNQLEOti	f	2011-04-16 00:00:00+00
+2761	4	Q2	2011-04-16	\N	\N	f	1	842	session_8H6fUAb6	f	2011-04-16 00:00:00+00
+2762	5	Q3	2011-04-16	\N	\N	f	1	842	session_GpTxQhBo	f	2011-04-16 00:00:00+00
+2763	1	FP1	2011-04-15	\N	\N	f	1	842	session_1HEjeD5F	f	2011-04-15 00:00:00+00
+2764	2	FP2	2011-04-15	\N	\N	f	1	842	session_LKoLxYo8	f	2011-04-15 00:00:00+00
+2765	6	FP3	2011-04-16	\N	\N	f	1	842	session_bubforLn	f	2011-04-16 00:00:00+00
+2766	7	R	2011-05-08	12:00:00	\N	f	16	843	session_cLKYVpjT	t	2011-05-08 12:00:00+00
+2767	3	Q1	2011-05-07	\N	\N	f	1	843	session_uG9fl7Uy	f	2011-05-07 00:00:00+00
+2768	4	Q2	2011-05-07	\N	\N	f	1	843	session_pALYt8qf	f	2011-05-07 00:00:00+00
+2769	5	Q3	2011-05-07	\N	\N	f	1	843	session_HaUa5ogQ	f	2011-05-07 00:00:00+00
+2770	1	FP1	2011-05-06	\N	\N	f	1	843	session_MRZdR80y	f	2011-05-06 00:00:00+00
+2771	2	FP2	2011-05-06	\N	\N	f	1	843	session_TwLkZLXK	f	2011-05-06 00:00:00+00
+2772	6	FP3	2011-05-07	\N	\N	f	1	843	session_I46L4I4x	f	2011-05-07 00:00:00+00
+2773	7	R	2011-05-22	12:00:00	\N	f	16	844	session_sM124o8F	t	2011-05-22 12:00:00+00
+2774	3	Q1	2011-05-21	\N	\N	f	1	844	session_lVPz1qI8	f	2011-05-21 00:00:00+00
+2775	4	Q2	2011-05-21	\N	\N	f	1	844	session_xMLN1MaK	f	2011-05-21 00:00:00+00
+2776	5	Q3	2011-05-21	\N	\N	f	1	844	session_PyzdQMlC	f	2011-05-21 00:00:00+00
+2777	1	FP1	2011-05-20	\N	\N	f	1	844	session_GxQFYhJV	f	2011-05-20 00:00:00+00
+2778	2	FP2	2011-05-20	\N	\N	f	1	844	session_dlGh48lk	f	2011-05-20 00:00:00+00
+2779	6	FP3	2011-05-21	\N	\N	f	1	844	session_zm44WuLU	f	2011-05-21 00:00:00+00
+2780	7	R	2011-05-29	12:00:00	\N	f	16	845	session_2fz2ZRU6	t	2011-05-29 12:00:00+00
+2781	3	Q1	2011-05-28	\N	\N	f	1	845	session_RDBVrexV	f	2011-05-28 00:00:00+00
+2782	4	Q2	2011-05-28	\N	\N	f	1	845	session_dCghUBtg	f	2011-05-28 00:00:00+00
+2783	5	Q3	2011-05-28	\N	\N	f	1	845	session_91EZ7Xvk	f	2011-05-28 00:00:00+00
+2784	1	FP1	2011-05-26	\N	\N	f	1	845	session_CSIsDPGs	f	2011-05-26 00:00:00+00
+2785	2	FP2	2011-05-26	\N	\N	f	1	845	session_Y6s8eprY	f	2011-05-26 00:00:00+00
+2786	6	FP3	2011-05-28	\N	\N	f	1	845	session_FMQenkPX	f	2011-05-28 00:00:00+00
+2787	7	R	2011-06-12	17:00:00	\N	f	16	846	session_l1PQM9Do	t	2011-06-12 17:00:00+00
+2788	3	Q1	2011-06-11	\N	\N	f	1	846	session_6laAqJZ4	f	2011-06-11 00:00:00+00
+2789	4	Q2	2011-06-11	\N	\N	f	1	846	session_RrDXOMZ5	f	2011-06-11 00:00:00+00
+2790	5	Q3	2011-06-11	\N	\N	f	1	846	session_dDwrak9s	f	2011-06-11 00:00:00+00
+2791	1	FP1	2011-06-10	\N	\N	f	1	846	session_5LshGCVt	f	2011-06-10 00:00:00+00
+2792	2	FP2	2011-06-10	\N	\N	f	1	846	session_Bd31RMym	f	2011-06-10 00:00:00+00
+2793	6	FP3	2011-06-11	\N	\N	f	1	846	session_tgNr3RDu	f	2011-06-11 00:00:00+00
+2794	7	R	2011-06-26	12:00:00	\N	f	16	847	session_JVegWhCA	t	2011-06-26 12:00:00+00
+2795	3	Q1	2011-06-25	\N	\N	f	1	847	session_3gPopuwL	f	2011-06-25 00:00:00+00
+2796	4	Q2	2011-06-25	\N	\N	f	1	847	session_5x7H4CG0	f	2011-06-25 00:00:00+00
+2797	5	Q3	2011-06-25	\N	\N	f	1	847	session_BCb5Rj6S	f	2011-06-25 00:00:00+00
+2798	1	FP1	2011-06-24	\N	\N	f	1	847	session_GJaozQRl	f	2011-06-24 00:00:00+00
+2799	2	FP2	2011-06-24	\N	\N	f	1	847	session_7vif3LIc	f	2011-06-24 00:00:00+00
+2800	6	FP3	2011-06-25	\N	\N	f	1	847	session_RJ4IyUqG	f	2011-06-25 00:00:00+00
+2801	7	R	2011-07-10	12:00:00	\N	f	16	848	session_HVdILIfB	t	2011-07-10 12:00:00+00
+2802	3	Q1	2011-07-09	\N	\N	f	1	848	session_PFonqbao	f	2011-07-09 00:00:00+00
+2803	4	Q2	2011-07-09	\N	\N	f	1	848	session_MshdLJz6	f	2011-07-09 00:00:00+00
+2804	5	Q3	2011-07-09	\N	\N	f	1	848	session_QIcRVrfO	f	2011-07-09 00:00:00+00
+2805	1	FP1	2011-07-08	\N	\N	f	1	848	session_Y9s0xq4O	f	2011-07-08 00:00:00+00
+2806	2	FP2	2011-07-08	\N	\N	f	1	848	session_sqDMPfDv	f	2011-07-08 00:00:00+00
+2807	6	FP3	2011-07-09	\N	\N	f	1	848	session_R2G1zlun	f	2011-07-09 00:00:00+00
+2808	7	R	2011-07-24	12:00:00	\N	f	16	849	session_dFbz2ZqR	t	2011-07-24 12:00:00+00
+2809	3	Q1	2011-07-23	\N	\N	f	1	849	session_FpqrSskg	f	2011-07-23 00:00:00+00
+2810	4	Q2	2011-07-23	\N	\N	f	1	849	session_3hgUKF5S	f	2011-07-23 00:00:00+00
+2811	5	Q3	2011-07-23	\N	\N	f	1	849	session_zjZ1eOsw	f	2011-07-23 00:00:00+00
+2812	1	FP1	2011-07-22	\N	\N	f	1	849	session_Ryd3whou	f	2011-07-22 00:00:00+00
+2813	2	FP2	2011-07-22	\N	\N	f	1	849	session_LSZNMxm8	f	2011-07-22 00:00:00+00
+2814	6	FP3	2011-07-23	\N	\N	f	1	849	session_siXdBfmc	f	2011-07-23 00:00:00+00
+2815	7	R	2011-07-31	12:00:00	\N	f	16	850	session_6AH2pu1u	t	2011-07-31 12:00:00+00
+2816	3	Q1	2011-07-30	\N	\N	f	1	850	session_wQ46j9qU	f	2011-07-30 00:00:00+00
+2817	4	Q2	2011-07-30	\N	\N	f	1	850	session_5tILtMa9	f	2011-07-30 00:00:00+00
+2818	5	Q3	2011-07-30	\N	\N	f	1	850	session_Qkjo9u64	f	2011-07-30 00:00:00+00
+2819	1	FP1	2011-07-29	\N	\N	f	1	850	session_KcbGfjyv	f	2011-07-29 00:00:00+00
+2820	2	FP2	2011-07-29	\N	\N	f	1	850	session_cNV9jjS0	f	2011-07-29 00:00:00+00
+2821	6	FP3	2011-07-30	\N	\N	f	1	850	session_hm8G9Vf0	f	2011-07-30 00:00:00+00
+2822	7	R	2011-08-28	12:00:00	\N	f	16	851	session_lNru72le	t	2011-08-28 12:00:00+00
+2823	3	Q1	2011-08-27	\N	\N	f	1	851	session_LHvysquS	f	2011-08-27 00:00:00+00
+2824	4	Q2	2011-08-27	\N	\N	f	1	851	session_TLwzdHxF	f	2011-08-27 00:00:00+00
+2825	5	Q3	2011-08-27	\N	\N	f	1	851	session_e74xUVpK	f	2011-08-27 00:00:00+00
+2826	1	FP1	2011-08-26	\N	\N	f	1	851	session_rWhs7xH0	f	2011-08-26 00:00:00+00
+2827	2	FP2	2011-08-26	\N	\N	f	1	851	session_hJqYRX1d	f	2011-08-26 00:00:00+00
+2828	6	FP3	2011-08-27	\N	\N	f	1	851	session_umQf18gR	f	2011-08-27 00:00:00+00
+2829	7	R	2011-09-11	12:00:00	\N	f	16	852	session_lHthL6PS	t	2011-09-11 12:00:00+00
+2830	3	Q1	2011-09-10	\N	\N	f	1	852	session_U9sLGxqw	f	2011-09-10 00:00:00+00
+2831	4	Q2	2011-09-10	\N	\N	f	1	852	session_C0AjtiqR	f	2011-09-10 00:00:00+00
+2832	5	Q3	2011-09-10	\N	\N	f	1	852	session_oXqo3PpF	f	2011-09-10 00:00:00+00
+2833	1	FP1	2011-09-09	\N	\N	f	1	852	session_NF2zkyFz	f	2011-09-09 00:00:00+00
+2834	2	FP2	2011-09-09	\N	\N	f	1	852	session_2rmTDvsl	f	2011-09-09 00:00:00+00
+2835	6	FP3	2011-09-10	\N	\N	f	1	852	session_C8i49XKb	f	2011-09-10 00:00:00+00
+2836	7	R	2011-09-25	12:00:00	\N	f	16	853	session_94lWuIXl	t	2011-09-25 12:00:00+00
+2837	3	Q1	2011-09-24	\N	\N	f	1	853	session_KknY8s7J	f	2011-09-24 00:00:00+00
+2838	4	Q2	2011-09-24	\N	\N	f	1	853	session_9qXr5i3g	f	2011-09-24 00:00:00+00
+2839	5	Q3	2011-09-24	\N	\N	f	1	853	session_vhqN7lAi	f	2011-09-24 00:00:00+00
+2840	1	FP1	2011-09-23	\N	\N	f	1	853	session_zQRVB0m1	f	2011-09-23 00:00:00+00
+2841	2	FP2	2011-09-23	\N	\N	f	1	853	session_BpvvLjGD	f	2011-09-23 00:00:00+00
+2842	6	FP3	2011-09-24	\N	\N	f	1	853	session_IKqxovbf	f	2011-09-24 00:00:00+00
+2843	7	R	2011-10-09	06:00:00	\N	f	16	854	session_5f8hxjpL	t	2011-10-09 06:00:00+00
+2844	3	Q1	2011-10-08	\N	\N	f	1	854	session_1ogLpNvy	f	2011-10-08 00:00:00+00
+2845	4	Q2	2011-10-08	\N	\N	f	1	854	session_449uSvKs	f	2011-10-08 00:00:00+00
+2846	5	Q3	2011-10-08	\N	\N	f	1	854	session_7gZF1bSa	f	2011-10-08 00:00:00+00
+2847	1	FP1	2011-10-07	\N	\N	f	1	854	session_0qrivXu2	f	2011-10-07 00:00:00+00
+2848	2	FP2	2011-10-07	\N	\N	f	1	854	session_340XA6C8	f	2011-10-07 00:00:00+00
+2849	6	FP3	2011-10-08	\N	\N	f	1	854	session_OaEfPGyz	f	2011-10-08 00:00:00+00
+2850	7	R	2011-10-16	06:00:00	\N	f	16	855	session_Kyw8vHR6	t	2011-10-16 06:00:00+00
+2851	3	Q1	2011-10-15	\N	\N	f	1	855	session_JPtFadWf	f	2011-10-15 00:00:00+00
+2852	4	Q2	2011-10-15	\N	\N	f	1	855	session_Z8f91UHW	f	2011-10-15 00:00:00+00
+2853	5	Q3	2011-10-15	\N	\N	f	1	855	session_0snzFnls	f	2011-10-15 00:00:00+00
+2854	1	FP1	2011-10-14	\N	\N	f	1	855	session_ACbCY869	f	2011-10-14 00:00:00+00
+2855	2	FP2	2011-10-14	\N	\N	f	1	855	session_JnppgCtK	f	2011-10-14 00:00:00+00
+2856	6	FP3	2011-10-15	\N	\N	f	1	855	session_htozJgbz	f	2011-10-15 00:00:00+00
+2857	7	R	2011-10-30	09:30:00	\N	f	16	856	session_HSCe4QXT	t	2011-10-30 09:30:00+00
+2858	3	Q1	2011-10-29	\N	\N	f	1	856	session_cVOWxKWF	f	2011-10-29 00:00:00+00
+2859	4	Q2	2011-10-29	\N	\N	f	1	856	session_HnQApofg	f	2011-10-29 00:00:00+00
+2860	5	Q3	2011-10-29	\N	\N	f	1	856	session_7jKUdmyM	f	2011-10-29 00:00:00+00
+2861	1	FP1	2011-10-28	\N	\N	f	1	856	session_DtpmgB7R	f	2011-10-28 00:00:00+00
+2862	2	FP2	2011-10-28	\N	\N	f	1	856	session_SR3bwbwD	f	2011-10-28 00:00:00+00
+2863	6	FP3	2011-10-29	\N	\N	f	1	856	session_aVoiXu83	f	2011-10-29 00:00:00+00
+2864	7	R	2011-11-13	13:00:00	\N	f	16	857	session_soXmet4o	t	2011-11-13 13:00:00+00
+2865	3	Q1	2011-11-12	\N	\N	f	1	857	session_U7xfV5q1	f	2011-11-12 00:00:00+00
+2866	4	Q2	2011-11-12	\N	\N	f	1	857	session_K5JIQtSh	f	2011-11-12 00:00:00+00
+2867	5	Q3	2011-11-12	\N	\N	f	1	857	session_zEcjDW0z	f	2011-11-12 00:00:00+00
+2868	1	FP1	2011-11-11	\N	\N	f	1	857	session_a1tdy1HX	f	2011-11-11 00:00:00+00
+2869	2	FP2	2011-11-11	\N	\N	f	1	857	session_EkRXxsOK	f	2011-11-11 00:00:00+00
+2870	6	FP3	2011-11-12	\N	\N	f	1	857	session_Rp64sdNI	f	2011-11-12 00:00:00+00
+2871	7	R	2011-11-27	16:00:00	\N	f	16	858	session_sDbvnaTk	t	2011-11-27 16:00:00+00
+2872	3	Q1	2011-11-26	\N	\N	f	1	858	session_45gpXJnD	f	2011-11-26 00:00:00+00
+2873	4	Q2	2011-11-26	\N	\N	f	1	858	session_wkBwPXON	f	2011-11-26 00:00:00+00
+2874	5	Q3	2011-11-26	\N	\N	f	1	858	session_06VFWi2P	f	2011-11-26 00:00:00+00
+2875	1	FP1	2011-11-25	\N	\N	f	1	858	session_7gf68g2D	f	2011-11-25 00:00:00+00
+2876	2	FP2	2011-11-25	\N	\N	f	1	858	session_L5KrLQ5F	f	2011-11-25 00:00:00+00
+2877	6	FP3	2011-11-26	\N	\N	f	1	858	session_kqDdejhm	f	2011-11-26 00:00:00+00
+2878	7	R	2012-03-18	06:00:00	\N	f	16	859	session_LRCeeLKm	t	2012-03-18 06:00:00+00
+2879	3	Q1	2012-03-17	\N	\N	f	1	859	session_rDBjpusK	f	2012-03-17 00:00:00+00
+2880	4	Q2	2012-03-17	\N	\N	f	1	859	session_bfIdgIDt	f	2012-03-17 00:00:00+00
+2881	5	Q3	2012-03-17	\N	\N	f	1	859	session_ncR6XqDc	f	2012-03-17 00:00:00+00
+2882	1	FP1	2012-03-16	\N	\N	f	1	859	session_z7i99G8C	f	2012-03-16 00:00:00+00
+2883	2	FP2	2012-03-16	\N	\N	f	1	859	session_Uc5lOz23	f	2012-03-16 00:00:00+00
+2884	6	FP3	2012-03-17	\N	\N	f	1	859	session_hsrGCaJ6	f	2012-03-17 00:00:00+00
+2885	7	R	2012-03-25	08:00:00	\N	f	16	860	session_BJkGkVBs	t	2012-03-25 08:00:00+00
+2886	3	Q1	2012-03-24	\N	\N	f	1	860	session_e94sa2bt	f	2012-03-24 00:00:00+00
+2887	4	Q2	2012-03-24	\N	\N	f	1	860	session_R2zXhn0I	f	2012-03-24 00:00:00+00
+2888	5	Q3	2012-03-24	\N	\N	f	1	860	session_6ElRP8a5	f	2012-03-24 00:00:00+00
+2889	1	FP1	2012-03-23	\N	\N	f	1	860	session_sd7emoBw	f	2012-03-23 00:00:00+00
+2890	2	FP2	2012-03-23	\N	\N	f	1	860	session_R156Vx8g	f	2012-03-23 00:00:00+00
+2891	6	FP3	2012-03-24	\N	\N	f	1	860	session_brZgPxK6	f	2012-03-24 00:00:00+00
+2892	7	R	2012-04-15	07:00:00	\N	f	16	861	session_EREBDEof	t	2012-04-15 07:00:00+00
+2893	3	Q1	2012-04-14	\N	\N	f	1	861	session_eVDhP6rX	f	2012-04-14 00:00:00+00
+2894	4	Q2	2012-04-14	\N	\N	f	1	861	session_4ZAgEkdG	f	2012-04-14 00:00:00+00
+2895	5	Q3	2012-04-14	\N	\N	f	1	861	session_Nvl03SvH	f	2012-04-14 00:00:00+00
+2896	1	FP1	2012-04-13	\N	\N	f	1	861	session_yjnJAjZ1	f	2012-04-13 00:00:00+00
+2897	2	FP2	2012-04-13	\N	\N	f	1	861	session_0Z9regJx	f	2012-04-13 00:00:00+00
+2898	6	FP3	2012-04-14	\N	\N	f	1	861	session_OIrERGM3	f	2012-04-14 00:00:00+00
+2899	7	R	2012-04-22	12:00:00	\N	f	16	862	session_IcQTy2av	t	2012-04-22 12:00:00+00
+2900	3	Q1	2012-04-21	\N	\N	f	1	862	session_t7dXiJdF	f	2012-04-21 00:00:00+00
+2901	4	Q2	2012-04-21	\N	\N	f	1	862	session_Ygw00l8l	f	2012-04-21 00:00:00+00
+2902	5	Q3	2012-04-21	\N	\N	f	1	862	session_FhXnbbun	f	2012-04-21 00:00:00+00
+2903	1	FP1	2012-04-20	\N	\N	f	1	862	session_pljXYdoV	f	2012-04-20 00:00:00+00
+2904	2	FP2	2012-04-20	\N	\N	f	1	862	session_j1WsspxG	f	2012-04-20 00:00:00+00
+2905	6	FP3	2012-04-21	\N	\N	f	1	862	session_rMxlXXNx	f	2012-04-21 00:00:00+00
+2906	7	R	2012-05-13	12:00:00	\N	f	16	863	session_nEMB2Cig	t	2012-05-13 12:00:00+00
+2907	3	Q1	2012-05-12	\N	\N	f	1	863	session_yChN7QE8	f	2012-05-12 00:00:00+00
+2908	4	Q2	2012-05-12	\N	\N	f	1	863	session_99Z8OJ4B	f	2012-05-12 00:00:00+00
+2909	5	Q3	2012-05-12	\N	\N	f	1	863	session_VHvZgvTe	f	2012-05-12 00:00:00+00
+2910	1	FP1	2012-05-11	\N	\N	f	1	863	session_F1V28xGf	f	2012-05-11 00:00:00+00
+2911	2	FP2	2012-05-11	\N	\N	f	1	863	session_ht60vm7F	f	2012-05-11 00:00:00+00
+2912	6	FP3	2012-05-12	\N	\N	f	1	863	session_D3hCw65u	f	2012-05-12 00:00:00+00
+2913	7	R	2012-05-27	12:00:00	\N	f	16	864	session_zacLItcO	t	2012-05-27 12:00:00+00
+2914	3	Q1	2012-05-26	\N	\N	f	1	864	session_3Ogf2eK4	f	2012-05-26 00:00:00+00
+2915	4	Q2	2012-05-26	\N	\N	f	1	864	session_b7zPckGe	f	2012-05-26 00:00:00+00
+2916	5	Q3	2012-05-26	\N	\N	f	1	864	session_xhAdDMKS	f	2012-05-26 00:00:00+00
+2917	1	FP1	2012-05-24	\N	\N	f	1	864	session_alSVWwRO	f	2012-05-24 00:00:00+00
+2918	2	FP2	2012-05-24	\N	\N	f	1	864	session_x1tVMmpN	f	2012-05-24 00:00:00+00
+2919	6	FP3	2012-05-26	\N	\N	f	1	864	session_RwE0QjsF	f	2012-05-26 00:00:00+00
+2920	7	R	2012-06-10	18:00:00	\N	f	16	865	session_uARROhQt	t	2012-06-10 18:00:00+00
+2921	3	Q1	2012-06-09	\N	\N	f	1	865	session_7w1NtT0U	f	2012-06-09 00:00:00+00
+2922	4	Q2	2012-06-09	\N	\N	f	1	865	session_PzAv2Pbs	f	2012-06-09 00:00:00+00
+2923	5	Q3	2012-06-09	\N	\N	f	1	865	session_HarMNpAO	f	2012-06-09 00:00:00+00
+2924	1	FP1	2012-06-08	\N	\N	f	1	865	session_o7IVLdI2	f	2012-06-08 00:00:00+00
+2925	2	FP2	2012-06-08	\N	\N	f	1	865	session_fizrejcK	f	2012-06-08 00:00:00+00
+2926	6	FP3	2012-06-09	\N	\N	f	1	865	session_mPGChVY3	f	2012-06-09 00:00:00+00
+2927	7	R	2012-06-24	12:00:00	\N	f	16	866	session_Vae2u2vG	t	2012-06-24 12:00:00+00
+2928	3	Q1	2012-06-23	\N	\N	f	1	866	session_R28oWdvp	f	2012-06-23 00:00:00+00
+2929	4	Q2	2012-06-23	\N	\N	f	1	866	session_VnHTzGkA	f	2012-06-23 00:00:00+00
+2930	5	Q3	2012-06-23	\N	\N	f	1	866	session_LlKtw3FF	f	2012-06-23 00:00:00+00
+2931	1	FP1	2012-06-22	\N	\N	f	1	866	session_fG0HQALG	f	2012-06-22 00:00:00+00
+2932	2	FP2	2012-06-22	\N	\N	f	1	866	session_3lwMPY1K	f	2012-06-22 00:00:00+00
+2933	6	FP3	2012-06-23	\N	\N	f	1	866	session_UGPANVWi	f	2012-06-23 00:00:00+00
+2934	7	R	2012-07-08	12:00:00	\N	f	16	867	session_iCB8UEKB	t	2012-07-08 12:00:00+00
+2935	3	Q1	2012-07-07	\N	\N	f	1	867	session_ea4lEjG5	f	2012-07-07 00:00:00+00
+2936	4	Q2	2012-07-07	\N	\N	f	1	867	session_ZTlNsODq	f	2012-07-07 00:00:00+00
+2937	5	Q3	2012-07-07	\N	\N	f	1	867	session_6VV0U8jO	f	2012-07-07 00:00:00+00
+2938	1	FP1	2012-07-06	\N	\N	f	1	867	session_BNcjNfa6	f	2012-07-06 00:00:00+00
+2939	2	FP2	2012-07-06	\N	\N	f	1	867	session_unlJoU9h	f	2012-07-06 00:00:00+00
+2940	6	FP3	2012-07-07	\N	\N	f	1	867	session_nN7nP6Uv	f	2012-07-07 00:00:00+00
+2941	7	R	2012-07-22	12:00:00	\N	f	16	868	session_rRtAgjEP	t	2012-07-22 12:00:00+00
+2942	3	Q1	2012-07-21	\N	\N	f	1	868	session_x9B7MY0W	f	2012-07-21 00:00:00+00
+2943	4	Q2	2012-07-21	\N	\N	f	1	868	session_tjzczyXL	f	2012-07-21 00:00:00+00
+2944	5	Q3	2012-07-21	\N	\N	f	1	868	session_5U6Nbjyu	f	2012-07-21 00:00:00+00
+2945	1	FP1	2012-07-20	\N	\N	f	1	868	session_b2VUJHAz	f	2012-07-20 00:00:00+00
+2946	2	FP2	2012-07-20	\N	\N	f	1	868	session_9KouEmWG	f	2012-07-20 00:00:00+00
+2947	6	FP3	2012-07-21	\N	\N	f	1	868	session_AOzz7exT	f	2012-07-21 00:00:00+00
+2948	7	R	2012-07-29	12:00:00	\N	f	16	869	session_EM5QKEfa	t	2012-07-29 12:00:00+00
+2949	3	Q1	2012-07-28	\N	\N	f	1	869	session_NGw1tn8S	f	2012-07-28 00:00:00+00
+2950	4	Q2	2012-07-28	\N	\N	f	1	869	session_hSFLViOm	f	2012-07-28 00:00:00+00
+2951	5	Q3	2012-07-28	\N	\N	f	1	869	session_I62ydGNG	f	2012-07-28 00:00:00+00
+2952	1	FP1	2012-07-27	\N	\N	f	1	869	session_VJu5xAim	f	2012-07-27 00:00:00+00
+2953	2	FP2	2012-07-27	\N	\N	f	1	869	session_lWyuwys0	f	2012-07-27 00:00:00+00
+2954	6	FP3	2012-07-28	\N	\N	f	1	869	session_JPQs4ewv	f	2012-07-28 00:00:00+00
+2955	7	R	2012-09-02	12:00:00	\N	f	16	870	session_qDukz8xC	t	2012-09-02 12:00:00+00
+2956	3	Q1	2012-09-01	\N	\N	f	1	870	session_21B5Qgdr	f	2012-09-01 00:00:00+00
+2957	4	Q2	2012-09-01	\N	\N	f	1	870	session_vGKdCHD0	f	2012-09-01 00:00:00+00
+2958	5	Q3	2012-09-01	\N	\N	f	1	870	session_hVZmLguM	f	2012-09-01 00:00:00+00
+2959	1	FP1	2012-08-31	\N	\N	f	1	870	session_D7DLU04x	f	2012-08-31 00:00:00+00
+2960	2	FP2	2012-08-31	\N	\N	f	1	870	session_4DO82rWe	f	2012-08-31 00:00:00+00
+2961	6	FP3	2012-09-01	\N	\N	f	1	870	session_ZndZDuf0	f	2012-09-01 00:00:00+00
+2962	7	R	2012-09-09	12:00:00	\N	f	16	871	session_nDI8zOpQ	t	2012-09-09 12:00:00+00
+2963	3	Q1	2012-09-08	\N	\N	f	1	871	session_cz7ymJS5	f	2012-09-08 00:00:00+00
+2964	4	Q2	2012-09-08	\N	\N	f	1	871	session_Q6Weu2V2	f	2012-09-08 00:00:00+00
+2965	5	Q3	2012-09-08	\N	\N	f	1	871	session_SBReTdsJ	f	2012-09-08 00:00:00+00
+2966	1	FP1	2012-09-07	\N	\N	f	1	871	session_nd6gStQy	f	2012-09-07 00:00:00+00
+2967	2	FP2	2012-09-07	\N	\N	f	1	871	session_gNBm0Aw2	f	2012-09-07 00:00:00+00
+2968	6	FP3	2012-09-08	\N	\N	f	1	871	session_hpwVeLkz	f	2012-09-08 00:00:00+00
+2969	7	R	2012-09-23	12:00:00	\N	f	16	872	session_oYAG8Wof	t	2012-09-23 12:00:00+00
+2970	3	Q1	2012-09-22	\N	\N	f	1	872	session_1mBfmc1b	f	2012-09-22 00:00:00+00
+2971	4	Q2	2012-09-22	\N	\N	f	1	872	session_dOdmQEZF	f	2012-09-22 00:00:00+00
+2972	5	Q3	2012-09-22	\N	\N	f	1	872	session_xWhxS3O3	f	2012-09-22 00:00:00+00
+2973	1	FP1	2012-09-21	\N	\N	f	1	872	session_gxODBH8s	f	2012-09-21 00:00:00+00
+2974	2	FP2	2012-09-21	\N	\N	f	1	872	session_fX3ae58k	f	2012-09-21 00:00:00+00
+2975	6	FP3	2012-09-22	\N	\N	f	1	872	session_ZVV7mSCa	f	2012-09-22 00:00:00+00
+2976	7	R	2012-10-07	06:00:00	\N	f	16	873	session_O6kM60XY	t	2012-10-07 06:00:00+00
+2977	3	Q1	2012-10-06	\N	\N	f	1	873	session_vXQNhVlB	f	2012-10-06 00:00:00+00
+2978	4	Q2	2012-10-06	\N	\N	f	1	873	session_Qb1xh1a4	f	2012-10-06 00:00:00+00
+2979	5	Q3	2012-10-06	\N	\N	f	1	873	session_UOKAc9SU	f	2012-10-06 00:00:00+00
+2980	1	FP1	2012-10-05	\N	\N	f	1	873	session_OibspSHe	f	2012-10-05 00:00:00+00
+2981	2	FP2	2012-10-05	\N	\N	f	1	873	session_r9acUMC9	f	2012-10-05 00:00:00+00
+2982	6	FP3	2012-10-06	\N	\N	f	1	873	session_9FEPuKDs	f	2012-10-06 00:00:00+00
+2983	7	R	2012-10-14	06:00:00	\N	f	16	874	session_jP3hVTGu	t	2012-10-14 06:00:00+00
+2984	3	Q1	2012-10-13	\N	\N	f	1	874	session_Z4Kh3I8O	f	2012-10-13 00:00:00+00
+2985	4	Q2	2012-10-13	\N	\N	f	1	874	session_xEnyZTlr	f	2012-10-13 00:00:00+00
+2986	5	Q3	2012-10-13	\N	\N	f	1	874	session_xEYyyv4E	f	2012-10-13 00:00:00+00
+2987	1	FP1	2012-10-12	\N	\N	f	1	874	session_9tukvs7l	f	2012-10-12 00:00:00+00
+2988	2	FP2	2012-10-12	\N	\N	f	1	874	session_GxU2TymC	f	2012-10-12 00:00:00+00
+2989	6	FP3	2012-10-13	\N	\N	f	1	874	session_dL60aUzk	f	2012-10-13 00:00:00+00
+2990	7	R	2012-10-28	09:30:00	\N	f	16	875	session_80EQzzZ8	t	2012-10-28 09:30:00+00
+2991	3	Q1	2012-10-27	\N	\N	f	1	875	session_7aD6Ghrx	f	2012-10-27 00:00:00+00
+2992	4	Q2	2012-10-27	\N	\N	f	1	875	session_PKsGHlxY	f	2012-10-27 00:00:00+00
+2993	5	Q3	2012-10-27	\N	\N	f	1	875	session_1Oo7IQ5l	f	2012-10-27 00:00:00+00
+2994	1	FP1	2012-10-26	\N	\N	f	1	875	session_xrtVnIMv	f	2012-10-26 00:00:00+00
+2995	2	FP2	2012-10-26	\N	\N	f	1	875	session_9J4aF9vX	f	2012-10-26 00:00:00+00
+2996	6	FP3	2012-10-27	\N	\N	f	1	875	session_Zgaj80Yw	f	2012-10-27 00:00:00+00
+2997	7	R	2012-11-04	13:00:00	\N	f	16	876	session_48Yf9rMU	t	2012-11-04 13:00:00+00
+2998	3	Q1	2012-11-03	\N	\N	f	1	876	session_fUiTtWOl	f	2012-11-03 00:00:00+00
+2999	4	Q2	2012-11-03	\N	\N	f	1	876	session_abTaiQ7j	f	2012-11-03 00:00:00+00
+3000	5	Q3	2012-11-03	\N	\N	f	1	876	session_wEgONST7	f	2012-11-03 00:00:00+00
+3001	1	FP1	2012-11-02	\N	\N	f	1	876	session_zD8MC4Xg	f	2012-11-02 00:00:00+00
+3002	2	FP2	2012-11-02	\N	\N	f	1	876	session_iANtQO8E	f	2012-11-02 00:00:00+00
+3003	6	FP3	2012-11-03	\N	\N	f	1	876	session_mtawYdWb	f	2012-11-03 00:00:00+00
+3004	7	R	2012-11-18	19:00:00	\N	f	16	877	session_Ymph2aNO	t	2012-11-18 19:00:00+00
+3005	3	Q1	2012-11-17	\N	\N	f	1	877	session_EGjEHUJw	f	2012-11-17 00:00:00+00
+3006	4	Q2	2012-11-17	\N	\N	f	1	877	session_XJu4NE9h	f	2012-11-17 00:00:00+00
+3007	5	Q3	2012-11-17	\N	\N	f	1	877	session_d5h33ee9	f	2012-11-17 00:00:00+00
+3008	1	FP1	2012-11-16	\N	\N	f	1	877	session_fN6EWMo9	f	2012-11-16 00:00:00+00
+3009	2	FP2	2012-11-16	\N	\N	f	1	877	session_6GBrk2gc	f	2012-11-16 00:00:00+00
+3010	6	FP3	2012-11-17	\N	\N	f	1	877	session_d7E1p1Qq	f	2012-11-17 00:00:00+00
+3011	7	R	2012-11-25	16:00:00	\N	f	16	878	session_MejpPVV8	t	2012-11-25 16:00:00+00
+3012	3	Q1	2012-11-24	\N	\N	f	1	878	session_aC6HchlW	f	2012-11-24 00:00:00+00
+3013	4	Q2	2012-11-24	\N	\N	f	1	878	session_vS3hxCa5	f	2012-11-24 00:00:00+00
+3014	5	Q3	2012-11-24	\N	\N	f	1	878	session_MvjFdJy4	f	2012-11-24 00:00:00+00
+3015	1	FP1	2012-11-23	\N	\N	f	1	878	session_lUuVeGzh	f	2012-11-23 00:00:00+00
+3016	2	FP2	2012-11-23	\N	\N	f	1	878	session_gh0F22D8	f	2012-11-23 00:00:00+00
+3017	6	FP3	2012-11-24	\N	\N	f	1	878	session_wjfVKLEs	f	2012-11-24 00:00:00+00
+3018	7	R	2013-03-17	06:00:00	\N	f	16	879	session_cV67Ease	t	2013-03-17 06:00:00+00
+3019	3	Q1	2013-03-16	\N	\N	f	1	879	session_HEZCs54w	f	2013-03-16 00:00:00+00
+3020	4	Q2	2013-03-16	\N	\N	f	1	879	session_dYADqDjq	f	2013-03-16 00:00:00+00
+3021	5	Q3	2013-03-16	\N	\N	f	1	879	session_DqIu5dAx	f	2013-03-16 00:00:00+00
+3022	1	FP1	2013-03-15	\N	\N	f	1	879	session_xuMRelJe	f	2013-03-15 00:00:00+00
+3023	2	FP2	2013-03-15	\N	\N	f	1	879	session_K2miZc6H	f	2013-03-15 00:00:00+00
+3024	6	FP3	2013-03-16	\N	\N	f	1	879	session_Ci4xzb5I	f	2013-03-16 00:00:00+00
+3025	7	R	2013-03-24	08:00:00	\N	f	16	880	session_Ccz3Y8n8	t	2013-03-24 08:00:00+00
+3026	3	Q1	2013-03-23	\N	\N	f	1	880	session_J0WfCMEt	f	2013-03-23 00:00:00+00
+3027	4	Q2	2013-03-23	\N	\N	f	1	880	session_8t6RoGdz	f	2013-03-23 00:00:00+00
+3028	5	Q3	2013-03-23	\N	\N	f	1	880	session_VygD52ZU	f	2013-03-23 00:00:00+00
+3029	1	FP1	2013-03-22	\N	\N	f	1	880	session_bnQyLxp5	f	2013-03-22 00:00:00+00
+3030	2	FP2	2013-03-22	\N	\N	f	1	880	session_LmYYj6tO	f	2013-03-22 00:00:00+00
+3031	6	FP3	2013-03-23	\N	\N	f	1	880	session_cwUmJhuu	f	2013-03-23 00:00:00+00
+3032	7	R	2013-04-14	07:00:00	\N	f	16	881	session_4SL75OMe	t	2013-04-14 07:00:00+00
+3033	3	Q1	2013-04-13	\N	\N	f	1	881	session_8F8v0Aid	f	2013-04-13 00:00:00+00
+3034	4	Q2	2013-04-13	\N	\N	f	1	881	session_gN8NgFDB	f	2013-04-13 00:00:00+00
+3035	5	Q3	2013-04-13	\N	\N	f	1	881	session_mgfWxbK1	f	2013-04-13 00:00:00+00
+3036	1	FP1	2013-04-12	\N	\N	f	1	881	session_jTdOca7V	f	2013-04-12 00:00:00+00
+3037	2	FP2	2013-04-12	\N	\N	f	1	881	session_FtaAxQeT	f	2013-04-12 00:00:00+00
+3038	6	FP3	2013-04-13	\N	\N	f	1	881	session_F51PFEp1	f	2013-04-13 00:00:00+00
+3039	7	R	2013-04-21	12:00:00	\N	f	16	882	session_fe3gXGCp	t	2013-04-21 12:00:00+00
+3040	3	Q1	2013-04-20	\N	\N	f	1	882	session_4TakY4Qu	f	2013-04-20 00:00:00+00
+3041	4	Q2	2013-04-20	\N	\N	f	1	882	session_6ChXUDZ3	f	2013-04-20 00:00:00+00
+3042	5	Q3	2013-04-20	\N	\N	f	1	882	session_XXernH42	f	2013-04-20 00:00:00+00
+3043	1	FP1	2013-04-19	\N	\N	f	1	882	session_5soLAiS2	f	2013-04-19 00:00:00+00
+3044	2	FP2	2013-04-19	\N	\N	f	1	882	session_LRUSbgdG	f	2013-04-19 00:00:00+00
+3045	6	FP3	2013-04-20	\N	\N	f	1	882	session_0RbDHRs3	f	2013-04-20 00:00:00+00
+3046	7	R	2013-05-12	12:00:00	\N	f	16	883	session_tgC1WOiM	t	2013-05-12 12:00:00+00
+3047	3	Q1	2013-05-11	\N	\N	f	1	883	session_63WfDViI	f	2013-05-11 00:00:00+00
+3048	4	Q2	2013-05-11	\N	\N	f	1	883	session_Jff9yZQV	f	2013-05-11 00:00:00+00
+3049	5	Q3	2013-05-11	\N	\N	f	1	883	session_411GIoUW	f	2013-05-11 00:00:00+00
+3050	1	FP1	2013-05-10	\N	\N	f	1	883	session_N398DDIZ	f	2013-05-10 00:00:00+00
+3051	2	FP2	2013-05-10	\N	\N	f	1	883	session_fgxP1CSt	f	2013-05-10 00:00:00+00
+3052	6	FP3	2013-05-11	\N	\N	f	1	883	session_zsy1WJD6	f	2013-05-11 00:00:00+00
+3053	7	R	2013-05-26	12:00:00	\N	f	16	884	session_qZM2XLrM	t	2013-05-26 12:00:00+00
+3054	3	Q1	2013-05-25	\N	\N	f	1	884	session_2ZSN25Jx	f	2013-05-25 00:00:00+00
+3055	4	Q2	2013-05-25	\N	\N	f	1	884	session_EYOpX2Mc	f	2013-05-25 00:00:00+00
+3056	5	Q3	2013-05-25	\N	\N	f	1	884	session_BxqNegYV	f	2013-05-25 00:00:00+00
+3057	1	FP1	2013-05-23	\N	\N	f	1	884	session_nbEqfsCA	f	2013-05-23 00:00:00+00
+3058	2	FP2	2013-05-23	\N	\N	f	1	884	session_awnemfSQ	f	2013-05-23 00:00:00+00
+3059	6	FP3	2013-05-25	\N	\N	f	1	884	session_qHYJIloz	f	2013-05-25 00:00:00+00
+3060	7	R	2013-06-09	18:00:00	\N	f	16	885	session_mry0TmAw	t	2013-06-09 18:00:00+00
+3061	3	Q1	2013-06-08	\N	\N	f	1	885	session_TXQREbrh	f	2013-06-08 00:00:00+00
+3062	4	Q2	2013-06-08	\N	\N	f	1	885	session_nJmFqe2W	f	2013-06-08 00:00:00+00
+3063	5	Q3	2013-06-08	\N	\N	f	1	885	session_FD0LFJA1	f	2013-06-08 00:00:00+00
+3064	1	FP1	2013-06-07	\N	\N	f	1	885	session_WNl0zdZ9	f	2013-06-07 00:00:00+00
+3065	2	FP2	2013-06-07	\N	\N	f	1	885	session_xpxXeZxF	f	2013-06-07 00:00:00+00
+3066	6	FP3	2013-06-08	\N	\N	f	1	885	session_tmRz1iZt	f	2013-06-08 00:00:00+00
+3067	7	R	2013-06-30	12:00:00	\N	f	16	886	session_iGY2NVIL	t	2013-06-30 12:00:00+00
+3068	3	Q1	2013-06-29	\N	\N	f	1	886	session_0N9ZlBL1	f	2013-06-29 00:00:00+00
+3069	4	Q2	2013-06-29	\N	\N	f	1	886	session_NAlbWwyc	f	2013-06-29 00:00:00+00
+3070	5	Q3	2013-06-29	\N	\N	f	1	886	session_X9IMeBUZ	f	2013-06-29 00:00:00+00
+3071	1	FP1	2013-06-28	\N	\N	f	1	886	session_vVnPI6Xp	f	2013-06-28 00:00:00+00
+3072	2	FP2	2013-06-28	\N	\N	f	1	886	session_glkXPAng	f	2013-06-28 00:00:00+00
+3073	6	FP3	2013-06-29	\N	\N	f	1	886	session_6fTaTYDA	f	2013-06-29 00:00:00+00
+3074	7	R	2013-07-07	12:00:00	\N	f	16	887	session_y3ofe7bw	t	2013-07-07 12:00:00+00
+3075	3	Q1	2013-07-06	\N	\N	f	1	887	session_j39MjUTk	f	2013-07-06 00:00:00+00
+3076	4	Q2	2013-07-06	\N	\N	f	1	887	session_2V7TXnQI	f	2013-07-06 00:00:00+00
+3077	5	Q3	2013-07-06	\N	\N	f	1	887	session_t7KYXPez	f	2013-07-06 00:00:00+00
+3078	1	FP1	2013-07-05	\N	\N	f	1	887	session_II1dZSvm	f	2013-07-05 00:00:00+00
+3079	2	FP2	2013-07-05	\N	\N	f	1	887	session_gumboLLB	f	2013-07-05 00:00:00+00
+3080	6	FP3	2013-07-06	\N	\N	f	1	887	session_zaoTu1ff	f	2013-07-06 00:00:00+00
+3081	7	R	2013-07-28	12:00:00	\N	f	16	888	session_sYO1c3y5	t	2013-07-28 12:00:00+00
+3082	3	Q1	2013-07-27	\N	\N	f	1	888	session_dxGqYftA	f	2013-07-27 00:00:00+00
+3083	4	Q2	2013-07-27	\N	\N	f	1	888	session_5ZUAH1VT	f	2013-07-27 00:00:00+00
+3084	5	Q3	2013-07-27	\N	\N	f	1	888	session_nxRug88f	f	2013-07-27 00:00:00+00
+3085	1	FP1	2013-07-26	\N	\N	f	1	888	session_gbmxQPZN	f	2013-07-26 00:00:00+00
+3086	2	FP2	2013-07-26	\N	\N	f	1	888	session_AY4mJCB2	f	2013-07-26 00:00:00+00
+3087	6	FP3	2013-07-27	\N	\N	f	1	888	session_laVF4qWW	f	2013-07-27 00:00:00+00
+3088	7	R	2013-08-25	12:00:00	\N	f	16	889	session_nJLH53XR	t	2013-08-25 12:00:00+00
+3089	3	Q1	2013-08-24	\N	\N	f	1	889	session_4RjcfG0a	f	2013-08-24 00:00:00+00
+3090	4	Q2	2013-08-24	\N	\N	f	1	889	session_Qt1Ql4RY	f	2013-08-24 00:00:00+00
+3091	5	Q3	2013-08-24	\N	\N	f	1	889	session_SsD9vBps	f	2013-08-24 00:00:00+00
+3092	1	FP1	2013-08-23	\N	\N	f	1	889	session_2ggXZUD7	f	2013-08-23 00:00:00+00
+3093	2	FP2	2013-08-23	\N	\N	f	1	889	session_JjRG489n	f	2013-08-23 00:00:00+00
+3094	6	FP3	2013-08-24	\N	\N	f	1	889	session_IGfQidwE	f	2013-08-24 00:00:00+00
+3095	7	R	2013-09-08	12:00:00	\N	f	16	890	session_gReoTWpt	t	2013-09-08 12:00:00+00
+3096	3	Q1	2013-09-07	\N	\N	f	1	890	session_oxm62V1r	f	2013-09-07 00:00:00+00
+3097	4	Q2	2013-09-07	\N	\N	f	1	890	session_EaGiYT9J	f	2013-09-07 00:00:00+00
+3098	5	Q3	2013-09-07	\N	\N	f	1	890	session_Lbc8BvXx	f	2013-09-07 00:00:00+00
+3099	1	FP1	2013-09-06	\N	\N	f	1	890	session_kcE3gxiE	f	2013-09-06 00:00:00+00
+3100	2	FP2	2013-09-06	\N	\N	f	1	890	session_R7ObgRel	f	2013-09-06 00:00:00+00
+3101	6	FP3	2013-09-07	\N	\N	f	1	890	session_ISA3bbkk	f	2013-09-07 00:00:00+00
+3102	7	R	2013-09-22	12:00:00	\N	f	16	891	session_AZwZ0Kkr	t	2013-09-22 12:00:00+00
+3103	3	Q1	2013-09-21	\N	\N	f	1	891	session_VKSD2mFW	f	2013-09-21 00:00:00+00
+3104	4	Q2	2013-09-21	\N	\N	f	1	891	session_BM3C5AG7	f	2013-09-21 00:00:00+00
+3105	5	Q3	2013-09-21	\N	\N	f	1	891	session_IyKwHbJX	f	2013-09-21 00:00:00+00
+3106	1	FP1	2013-09-20	\N	\N	f	1	891	session_HB1fhEGE	f	2013-09-20 00:00:00+00
+3107	2	FP2	2013-09-20	\N	\N	f	1	891	session_NVVMJcRd	f	2013-09-20 00:00:00+00
+3108	6	FP3	2013-09-21	\N	\N	f	1	891	session_ccuSgBSi	f	2013-09-21 00:00:00+00
+3109	7	R	2013-10-06	06:00:00	\N	f	16	892	session_KQ8AIl0O	t	2013-10-06 06:00:00+00
+3110	3	Q1	2013-10-05	\N	\N	f	1	892	session_XNXVy5lG	f	2013-10-05 00:00:00+00
+3111	4	Q2	2013-10-05	\N	\N	f	1	892	session_KQ2sQ66e	f	2013-10-05 00:00:00+00
+3112	5	Q3	2013-10-05	\N	\N	f	1	892	session_AMjYGlKZ	f	2013-10-05 00:00:00+00
+3113	1	FP1	2013-10-04	\N	\N	f	1	892	session_6LatyPLL	f	2013-10-04 00:00:00+00
+3114	2	FP2	2013-10-04	\N	\N	f	1	892	session_7QeYlJnY	f	2013-10-04 00:00:00+00
+3115	6	FP3	2013-10-05	\N	\N	f	1	892	session_2gGbGYsf	f	2013-10-05 00:00:00+00
+3116	7	R	2013-10-13	06:00:00	\N	f	16	893	session_Yjuy56Lz	t	2013-10-13 06:00:00+00
+3117	3	Q1	2013-10-12	\N	\N	f	1	893	session_fy2TPRfh	f	2013-10-12 00:00:00+00
+3118	4	Q2	2013-10-12	\N	\N	f	1	893	session_4sw6uDQe	f	2013-10-12 00:00:00+00
+3119	5	Q3	2013-10-12	\N	\N	f	1	893	session_ZX2296L3	f	2013-10-12 00:00:00+00
+3120	1	FP1	2013-10-11	\N	\N	f	1	893	session_ssNCgKH1	f	2013-10-11 00:00:00+00
+3121	2	FP2	2013-10-11	\N	\N	f	1	893	session_rxMWzmay	f	2013-10-11 00:00:00+00
+3122	6	FP3	2013-10-12	\N	\N	f	1	893	session_64l3zXQA	f	2013-10-12 00:00:00+00
+3123	7	R	2013-10-27	09:30:00	\N	f	16	894	session_6CfOnbaj	t	2013-10-27 09:30:00+00
+3124	3	Q1	2013-10-26	\N	\N	f	1	894	session_r2kXqWsK	f	2013-10-26 00:00:00+00
+3125	4	Q2	2013-10-26	\N	\N	f	1	894	session_8esbX3jI	f	2013-10-26 00:00:00+00
+3126	5	Q3	2013-10-26	\N	\N	f	1	894	session_XYov2OlZ	f	2013-10-26 00:00:00+00
+3127	1	FP1	2013-10-25	\N	\N	f	1	894	session_rxXSqLIb	f	2013-10-25 00:00:00+00
+3128	2	FP2	2013-10-25	\N	\N	f	1	894	session_eLiYmHnW	f	2013-10-25 00:00:00+00
+3129	6	FP3	2013-10-26	\N	\N	f	1	894	session_ugrAugBk	f	2013-10-26 00:00:00+00
+3130	7	R	2013-11-03	13:00:00	\N	f	16	895	session_fbo1X1fF	t	2013-11-03 13:00:00+00
+3131	3	Q1	2013-11-02	\N	\N	f	1	895	session_aaIyH1WO	f	2013-11-02 00:00:00+00
+3132	4	Q2	2013-11-02	\N	\N	f	1	895	session_7oL60VTA	f	2013-11-02 00:00:00+00
+3133	5	Q3	2013-11-02	\N	\N	f	1	895	session_oSGWCVmB	f	2013-11-02 00:00:00+00
+3134	1	FP1	2013-11-01	\N	\N	f	1	895	session_OYLirzc5	f	2013-11-01 00:00:00+00
+3135	2	FP2	2013-11-01	\N	\N	f	1	895	session_5xR76hCk	f	2013-11-01 00:00:00+00
+3136	6	FP3	2013-11-02	\N	\N	f	1	895	session_V2P4PYo1	f	2013-11-02 00:00:00+00
+3137	7	R	2013-11-17	19:00:00	\N	f	16	896	session_k8DF7EKo	t	2013-11-17 19:00:00+00
+3138	3	Q1	2013-11-16	\N	\N	f	1	896	session_8yK1x9F2	f	2013-11-16 00:00:00+00
+3139	4	Q2	2013-11-16	\N	\N	f	1	896	session_nPr41JM8	f	2013-11-16 00:00:00+00
+3140	5	Q3	2013-11-16	\N	\N	f	1	896	session_c7AuMUBA	f	2013-11-16 00:00:00+00
+3141	1	FP1	2013-11-15	\N	\N	f	1	896	session_AzaWP0nA	f	2013-11-15 00:00:00+00
+3142	2	FP2	2013-11-15	\N	\N	f	1	896	session_RtLwM1By	f	2013-11-15 00:00:00+00
+3143	6	FP3	2013-11-16	\N	\N	f	1	896	session_1Kt1OQqi	f	2013-11-16 00:00:00+00
+3144	7	R	2013-11-24	16:00:00	\N	f	16	897	session_MWajbaLQ	t	2013-11-24 16:00:00+00
+3145	3	Q1	2013-11-23	\N	\N	f	1	897	session_W962uFAG	f	2013-11-23 00:00:00+00
+3146	4	Q2	2013-11-23	\N	\N	f	1	897	session_oF7efYn1	f	2013-11-23 00:00:00+00
+3147	5	Q3	2013-11-23	\N	\N	f	1	897	session_j0IdqpTU	f	2013-11-23 00:00:00+00
+3148	1	FP1	2013-11-22	\N	\N	f	1	897	session_VQjcfjjE	f	2013-11-22 00:00:00+00
+3149	2	FP2	2013-11-22	\N	\N	f	1	897	session_cTxnGpZA	f	2013-11-22 00:00:00+00
+3150	6	FP3	2013-11-23	\N	\N	f	1	897	session_GodqyLng	f	2013-11-23 00:00:00+00
+3151	7	R	2014-03-16	06:00:00	\N	f	16	898	session_ibaZACdd	t	2014-03-16 06:00:00+00
+3152	3	Q1	2014-03-15	\N	\N	f	1	898	session_IOTb4tN9	f	2014-03-15 00:00:00+00
+3153	4	Q2	2014-03-15	\N	\N	f	1	898	session_FVN4VCf6	f	2014-03-15 00:00:00+00
+3154	5	Q3	2014-03-15	\N	\N	f	1	898	session_NHluh8Px	f	2014-03-15 00:00:00+00
+3155	1	FP1	2014-03-14	\N	\N	f	1	898	session_XXDgy7EY	f	2014-03-14 00:00:00+00
+3156	2	FP2	2014-03-14	\N	\N	f	1	898	session_bIZZozKb	f	2014-03-14 00:00:00+00
+3157	6	FP3	2014-03-15	\N	\N	f	1	898	session_yDaYI1kM	f	2014-03-15 00:00:00+00
+3158	7	R	2014-03-30	08:00:00	\N	f	16	899	session_rYBPRp65	t	2014-03-30 08:00:00+00
+3159	3	Q1	2014-03-29	\N	\N	f	1	899	session_YRrCmFqW	f	2014-03-29 00:00:00+00
+3160	4	Q2	2014-03-29	\N	\N	f	1	899	session_CaNcRk65	f	2014-03-29 00:00:00+00
+3161	5	Q3	2014-03-29	\N	\N	f	1	899	session_MkOxkoVX	f	2014-03-29 00:00:00+00
+3162	1	FP1	2014-03-28	\N	\N	f	1	899	session_QwWOZeKa	f	2014-03-28 00:00:00+00
+3163	2	FP2	2014-03-28	\N	\N	f	1	899	session_sBNMmNiS	f	2014-03-28 00:00:00+00
+3164	6	FP3	2014-03-29	\N	\N	f	1	899	session_SS5ofyLu	f	2014-03-29 00:00:00+00
+3165	7	R	2014-04-06	15:00:00	\N	f	16	900	session_tVZcUkqA	t	2014-04-06 15:00:00+00
+3166	3	Q1	2014-04-05	\N	\N	f	1	900	session_uInUmeXa	f	2014-04-05 00:00:00+00
+3167	4	Q2	2014-04-05	\N	\N	f	1	900	session_KXkSbdux	f	2014-04-05 00:00:00+00
+3168	5	Q3	2014-04-05	\N	\N	f	1	900	session_TfbHSnxU	f	2014-04-05 00:00:00+00
+3169	1	FP1	2014-04-04	\N	\N	f	1	900	session_o7hqUeNU	f	2014-04-04 00:00:00+00
+3170	2	FP2	2014-04-04	\N	\N	f	1	900	session_sBorH0v9	f	2014-04-04 00:00:00+00
+3171	6	FP3	2014-04-05	\N	\N	f	1	900	session_rFDuYy0V	f	2014-04-05 00:00:00+00
+3172	7	R	2014-04-20	07:00:00	\N	f	16	901	session_BoeMYoqp	t	2014-04-20 07:00:00+00
+3173	3	Q1	2014-04-19	\N	\N	f	1	901	session_12eMY1zb	f	2014-04-19 00:00:00+00
+3174	4	Q2	2014-04-19	\N	\N	f	1	901	session_k9ysofs6	f	2014-04-19 00:00:00+00
+3175	5	Q3	2014-04-19	\N	\N	f	1	901	session_Nl3XWagb	f	2014-04-19 00:00:00+00
+3176	1	FP1	2014-04-18	\N	\N	f	1	901	session_E6wRawHY	f	2014-04-18 00:00:00+00
+3177	2	FP2	2014-04-18	\N	\N	f	1	901	session_gXLowUb1	f	2014-04-18 00:00:00+00
+3178	6	FP3	2014-04-19	\N	\N	f	1	901	session_zhtY7YYG	f	2014-04-19 00:00:00+00
+3179	7	R	2014-05-11	12:00:00	\N	f	16	902	session_SNSjYmO8	t	2014-05-11 12:00:00+00
+3180	3	Q1	2014-05-10	\N	\N	f	1	902	session_MllYmAUm	f	2014-05-10 00:00:00+00
+3181	4	Q2	2014-05-10	\N	\N	f	1	902	session_bfEXDIFo	f	2014-05-10 00:00:00+00
+3182	5	Q3	2014-05-10	\N	\N	f	1	902	session_v5h2rtGa	f	2014-05-10 00:00:00+00
+3183	1	FP1	2014-05-09	\N	\N	f	1	902	session_XW5Wp8Tc	f	2014-05-09 00:00:00+00
+3184	2	FP2	2014-05-09	\N	\N	f	1	902	session_QcVJLPfS	f	2014-05-09 00:00:00+00
+3185	6	FP3	2014-05-10	\N	\N	f	1	902	session_UfdxVzTK	f	2014-05-10 00:00:00+00
+3186	7	R	2014-05-25	12:00:00	\N	f	16	903	session_RK28JEpB	t	2014-05-25 12:00:00+00
+3187	3	Q1	2014-05-24	\N	\N	f	1	903	session_GLAGd1yB	f	2014-05-24 00:00:00+00
+3188	4	Q2	2014-05-24	\N	\N	f	1	903	session_IEGqfBmX	f	2014-05-24 00:00:00+00
+3189	5	Q3	2014-05-24	\N	\N	f	1	903	session_lg93ejpd	f	2014-05-24 00:00:00+00
+3190	1	FP1	2014-05-22	\N	\N	f	1	903	session_nfJPKESm	f	2014-05-22 00:00:00+00
+3191	2	FP2	2014-05-22	\N	\N	f	1	903	session_0uXb76yD	f	2014-05-22 00:00:00+00
+3192	6	FP3	2014-05-24	\N	\N	f	1	903	session_kCjGydLh	f	2014-05-24 00:00:00+00
+3193	7	R	2014-06-08	18:00:00	\N	f	16	904	session_VJMPgT0Q	t	2014-06-08 18:00:00+00
+3194	3	Q1	2014-06-07	\N	\N	f	1	904	session_IGVD6mF9	f	2014-06-07 00:00:00+00
+3195	4	Q2	2014-06-07	\N	\N	f	1	904	session_AAsk6h05	f	2014-06-07 00:00:00+00
+3196	5	Q3	2014-06-07	\N	\N	f	1	904	session_X9hlacAX	f	2014-06-07 00:00:00+00
+3197	1	FP1	2014-06-06	\N	\N	f	1	904	session_eDG0WJdg	f	2014-06-06 00:00:00+00
+3198	2	FP2	2014-06-06	\N	\N	f	1	904	session_kz99EVAS	f	2014-06-06 00:00:00+00
+3199	6	FP3	2014-06-07	\N	\N	f	1	904	session_EbqWMNyJ	f	2014-06-07 00:00:00+00
+3200	7	R	2014-06-22	12:00:00	\N	f	16	905	session_rVyrCGjB	t	2014-06-22 12:00:00+00
+3201	3	Q1	2014-06-21	\N	\N	f	1	905	session_EoBLytii	f	2014-06-21 00:00:00+00
+3202	4	Q2	2014-06-21	\N	\N	f	1	905	session_VUiM0XXe	f	2014-06-21 00:00:00+00
+3203	5	Q3	2014-06-21	\N	\N	f	1	905	session_a862B2lR	f	2014-06-21 00:00:00+00
+3204	1	FP1	2014-06-20	\N	\N	f	1	905	session_GhXfgTdo	f	2014-06-20 00:00:00+00
+3205	2	FP2	2014-06-20	\N	\N	f	1	905	session_cOm4ddob	f	2014-06-20 00:00:00+00
+3206	6	FP3	2014-06-21	\N	\N	f	1	905	session_5b7TuCSW	f	2014-06-21 00:00:00+00
+3207	7	R	2014-07-06	12:00:00	\N	f	16	906	session_RouPbdon	t	2014-07-06 12:00:00+00
+3208	3	Q1	2014-07-05	\N	\N	f	1	906	session_r8VShVsw	f	2014-07-05 00:00:00+00
+3209	4	Q2	2014-07-05	\N	\N	f	1	906	session_QvvzTEqZ	f	2014-07-05 00:00:00+00
+3210	5	Q3	2014-07-05	\N	\N	f	1	906	session_ElONobmv	f	2014-07-05 00:00:00+00
+3211	1	FP1	2014-07-04	\N	\N	f	1	906	session_TQxRENpR	f	2014-07-04 00:00:00+00
+3212	2	FP2	2014-07-04	\N	\N	f	1	906	session_UVa2thQm	f	2014-07-04 00:00:00+00
+3213	6	FP3	2014-07-05	\N	\N	f	1	906	session_f4STpBiV	f	2014-07-05 00:00:00+00
+3214	7	R	2014-07-20	12:00:00	\N	f	16	907	session_QomsT5si	t	2014-07-20 12:00:00+00
+3215	3	Q1	2014-07-19	\N	\N	f	1	907	session_CxV5UApb	f	2014-07-19 00:00:00+00
+3216	4	Q2	2014-07-19	\N	\N	f	1	907	session_yfnusRRG	f	2014-07-19 00:00:00+00
+3217	5	Q3	2014-07-19	\N	\N	f	1	907	session_tW9ChfTh	f	2014-07-19 00:00:00+00
+3218	1	FP1	2014-07-18	\N	\N	f	1	907	session_W0ibvcPl	f	2014-07-18 00:00:00+00
+3219	2	FP2	2014-07-18	\N	\N	f	1	907	session_SjIuV5fd	f	2014-07-18 00:00:00+00
+3220	6	FP3	2014-07-19	\N	\N	f	1	907	session_UNQntM1Q	f	2014-07-19 00:00:00+00
+3221	7	R	2014-07-27	12:00:00	\N	f	16	908	session_ev0PGsQS	t	2014-07-27 12:00:00+00
+3222	3	Q1	2014-07-26	\N	\N	f	1	908	session_4EiXb1Ae	f	2014-07-26 00:00:00+00
+3223	4	Q2	2014-07-26	\N	\N	f	1	908	session_X00tDgrX	f	2014-07-26 00:00:00+00
+3224	5	Q3	2014-07-26	\N	\N	f	1	908	session_q8chNJZi	f	2014-07-26 00:00:00+00
+3225	1	FP1	2014-07-25	\N	\N	f	1	908	session_7KcqBv6x	f	2014-07-25 00:00:00+00
+3226	2	FP2	2014-07-25	\N	\N	f	1	908	session_VGLqCiu0	f	2014-07-25 00:00:00+00
+3227	6	FP3	2014-07-26	\N	\N	f	1	908	session_4MPdwRsw	f	2014-07-26 00:00:00+00
+3228	7	R	2014-08-24	12:00:00	\N	f	16	909	session_LJPY7JvN	t	2014-08-24 12:00:00+00
+3229	3	Q1	2014-08-23	\N	\N	f	1	909	session_vhpejDSe	f	2014-08-23 00:00:00+00
+3230	4	Q2	2014-08-23	\N	\N	f	1	909	session_Mlg1nUmd	f	2014-08-23 00:00:00+00
+3231	5	Q3	2014-08-23	\N	\N	f	1	909	session_X93adcvt	f	2014-08-23 00:00:00+00
+3232	1	FP1	2014-08-22	\N	\N	f	1	909	session_Bw63D1Ob	f	2014-08-22 00:00:00+00
+3233	2	FP2	2014-08-22	\N	\N	f	1	909	session_LXhclGXX	f	2014-08-22 00:00:00+00
+3234	6	FP3	2014-08-23	\N	\N	f	1	909	session_j04fv7sz	f	2014-08-23 00:00:00+00
+3235	7	R	2014-09-07	12:00:00	\N	f	16	910	session_Im2vdhzy	t	2014-09-07 12:00:00+00
+3236	3	Q1	2014-09-06	\N	\N	f	1	910	session_gpckSjrZ	f	2014-09-06 00:00:00+00
+3237	4	Q2	2014-09-06	\N	\N	f	1	910	session_tPkPJkSb	f	2014-09-06 00:00:00+00
+3238	5	Q3	2014-09-06	\N	\N	f	1	910	session_bApGLxEw	f	2014-09-06 00:00:00+00
+3239	1	FP1	2014-09-05	\N	\N	f	1	910	session_0Zg4jWrB	f	2014-09-05 00:00:00+00
+3240	2	FP2	2014-09-05	\N	\N	f	1	910	session_Zimuu0XJ	f	2014-09-05 00:00:00+00
+3241	6	FP3	2014-09-06	\N	\N	f	1	910	session_sn7qRhVT	f	2014-09-06 00:00:00+00
+3242	7	R	2014-09-21	12:00:00	\N	f	16	911	session_bPZrQkh6	t	2014-09-21 12:00:00+00
+3243	3	Q1	2014-09-20	\N	\N	f	1	911	session_KtAhU2T0	f	2014-09-20 00:00:00+00
+3244	4	Q2	2014-09-20	\N	\N	f	1	911	session_vIaTtWOr	f	2014-09-20 00:00:00+00
+3245	5	Q3	2014-09-20	\N	\N	f	1	911	session_82WQM8sG	f	2014-09-20 00:00:00+00
+3246	1	FP1	2014-09-19	\N	\N	f	1	911	session_jo2PxgUc	f	2014-09-19 00:00:00+00
+3247	2	FP2	2014-09-19	\N	\N	f	1	911	session_k8vDBpdt	f	2014-09-19 00:00:00+00
+3248	6	FP3	2014-09-20	\N	\N	f	1	911	session_oW0Rltji	f	2014-09-20 00:00:00+00
+3249	7	R	2014-10-05	06:00:00	\N	f	16	912	session_UB0Pr7Ek	t	2014-10-05 06:00:00+00
+3250	3	Q1	2014-10-04	\N	\N	f	1	912	session_XSHyIpPK	f	2014-10-04 00:00:00+00
+3251	4	Q2	2014-10-04	\N	\N	f	1	912	session_ncsNRJfS	f	2014-10-04 00:00:00+00
+3252	5	Q3	2014-10-04	\N	\N	f	1	912	session_8c2qdp6t	f	2014-10-04 00:00:00+00
+3253	1	FP1	2014-10-03	\N	\N	f	1	912	session_yXhE6hLR	f	2014-10-03 00:00:00+00
+3254	2	FP2	2014-10-03	\N	\N	f	1	912	session_2LNBFbXI	f	2014-10-03 00:00:00+00
+3255	6	FP3	2014-10-04	\N	\N	f	1	912	session_afxnjaHr	f	2014-10-04 00:00:00+00
+3256	7	R	2014-10-12	11:00:00	\N	f	16	913	session_zcPU0lGa	t	2014-10-12 11:00:00+00
+3257	3	Q1	2014-10-11	\N	\N	f	1	913	session_qpbdGWy4	f	2014-10-11 00:00:00+00
+3258	4	Q2	2014-10-11	\N	\N	f	1	913	session_GZF3Qmzg	f	2014-10-11 00:00:00+00
+3259	5	Q3	2014-10-11	\N	\N	f	1	913	session_dEyiIMA2	f	2014-10-11 00:00:00+00
+3260	1	FP1	2014-10-10	\N	\N	f	1	913	session_TPFmk36c	f	2014-10-10 00:00:00+00
+3261	2	FP2	2014-10-10	\N	\N	f	1	913	session_CTDte2u8	f	2014-10-10 00:00:00+00
+3262	6	FP3	2014-10-11	\N	\N	f	1	913	session_ts59AGon	f	2014-10-11 00:00:00+00
+3263	7	R	2014-11-02	20:00:00	\N	f	16	914	session_TR5gZFDc	t	2014-11-02 20:00:00+00
+3264	3	Q1	2014-11-01	\N	\N	f	1	914	session_Ehj5cvkd	f	2014-11-01 00:00:00+00
+3265	4	Q2	2014-11-01	\N	\N	f	1	914	session_CKysZ2xb	f	2014-11-01 00:00:00+00
+3266	5	Q3	2014-11-01	\N	\N	f	1	914	session_RLhPf1dP	f	2014-11-01 00:00:00+00
+3267	1	FP1	2014-10-31	\N	\N	f	1	914	session_N0XM2MyC	f	2014-10-31 00:00:00+00
+3268	2	FP2	2014-10-31	\N	\N	f	1	914	session_JstRNtz8	f	2014-10-31 00:00:00+00
+3269	6	FP3	2014-11-01	\N	\N	f	1	914	session_7oyByUhT	f	2014-11-01 00:00:00+00
+3270	7	R	2014-11-09	16:00:00	\N	f	16	915	session_mqqgTc1M	t	2014-11-09 16:00:00+00
+3271	3	Q1	2014-11-08	\N	\N	f	1	915	session_1JUUmqiS	f	2014-11-08 00:00:00+00
+3272	4	Q2	2014-11-08	\N	\N	f	1	915	session_0tw6M8rf	f	2014-11-08 00:00:00+00
+3273	5	Q3	2014-11-08	\N	\N	f	1	915	session_JWrGqRCJ	f	2014-11-08 00:00:00+00
+3274	1	FP1	2014-11-07	\N	\N	f	1	915	session_5o7V0Uyn	f	2014-11-07 00:00:00+00
+3275	2	FP2	2014-11-07	\N	\N	f	1	915	session_ZSK6hDGe	f	2014-11-07 00:00:00+00
+3276	6	FP3	2014-11-08	\N	\N	f	1	915	session_t9UpYGyN	f	2014-11-08 00:00:00+00
+3277	7	R	2014-11-23	13:00:00	\N	f	16	916	session_lcw60767	t	2014-11-23 13:00:00+00
+3278	3	Q1	2014-11-22	\N	\N	f	1	916	session_iwf4jL1u	f	2014-11-22 00:00:00+00
+3279	4	Q2	2014-11-22	\N	\N	f	1	916	session_uUdL2CmF	f	2014-11-22 00:00:00+00
+3280	5	Q3	2014-11-22	\N	\N	f	1	916	session_m5abYY9H	f	2014-11-22 00:00:00+00
+3281	1	FP1	2014-11-21	\N	\N	f	1	916	session_IxNWIRoC	f	2014-11-21 00:00:00+00
+3282	2	FP2	2014-11-21	\N	\N	f	1	916	session_mE0Lml3G	f	2014-11-21 00:00:00+00
+3283	6	FP3	2014-11-22	\N	\N	f	1	916	session_C3DrqTkZ	f	2014-11-22 00:00:00+00
+3284	7	R	2015-03-15	05:00:00	\N	f	16	917	session_rPU8qTPR	t	2015-03-15 05:00:00+00
+3285	3	Q1	2015-03-14	\N	\N	f	1	917	session_9zI9b7e3	f	2015-03-14 00:00:00+00
+3286	4	Q2	2015-03-14	\N	\N	f	1	917	session_BAcOmDKh	f	2015-03-14 00:00:00+00
+3287	5	Q3	2015-03-14	\N	\N	f	1	917	session_egpDnrOe	f	2015-03-14 00:00:00+00
+3288	1	FP1	2015-03-13	\N	\N	f	1	917	session_gAQ6n0Z0	f	2015-03-13 00:00:00+00
+3289	2	FP2	2015-03-13	\N	\N	f	1	917	session_TyD0pU1L	f	2015-03-13 00:00:00+00
+3290	6	FP3	2015-03-14	\N	\N	f	1	917	session_uv90c9On	f	2015-03-14 00:00:00+00
+3291	7	R	2015-03-29	07:00:00	\N	f	16	918	session_kLKkNo6c	t	2015-03-29 07:00:00+00
+3292	3	Q1	2015-03-28	\N	\N	f	1	918	session_iWzCoMYD	f	2015-03-28 00:00:00+00
+3293	4	Q2	2015-03-28	\N	\N	f	1	918	session_cv2nDIRR	f	2015-03-28 00:00:00+00
+3294	5	Q3	2015-03-28	\N	\N	f	1	918	session_GQvTp8eq	f	2015-03-28 00:00:00+00
+3295	1	FP1	2015-03-27	\N	\N	f	1	918	session_ItxDiyNp	f	2015-03-27 00:00:00+00
+3296	2	FP2	2015-03-27	\N	\N	f	1	918	session_4ZFYNfjW	f	2015-03-27 00:00:00+00
+3297	6	FP3	2015-03-28	\N	\N	f	1	918	session_ELQKvdTs	f	2015-03-28 00:00:00+00
+3298	7	R	2015-04-12	06:00:00	\N	f	16	919	session_J8k1JQt7	t	2015-04-12 06:00:00+00
+3299	3	Q1	2015-04-11	\N	\N	f	1	919	session_RMSY4F0N	f	2015-04-11 00:00:00+00
+3300	4	Q2	2015-04-11	\N	\N	f	1	919	session_u7e6NM7J	f	2015-04-11 00:00:00+00
+3301	5	Q3	2015-04-11	\N	\N	f	1	919	session_2zOpQ8iY	f	2015-04-11 00:00:00+00
+3302	1	FP1	2015-04-10	\N	\N	f	1	919	session_U61pBPeA	f	2015-04-10 00:00:00+00
+3303	2	FP2	2015-04-10	\N	\N	f	1	919	session_UW62ZSwZ	f	2015-04-10 00:00:00+00
+3304	6	FP3	2015-04-11	\N	\N	f	1	919	session_kzuPCSKu	f	2015-04-11 00:00:00+00
+3305	7	R	2015-04-19	15:00:00	\N	f	16	920	session_XrOHMMOk	t	2015-04-19 15:00:00+00
+3306	3	Q1	2015-04-18	\N	\N	f	1	920	session_eGQ25Ayc	f	2015-04-18 00:00:00+00
+3307	4	Q2	2015-04-18	\N	\N	f	1	920	session_BWypciLi	f	2015-04-18 00:00:00+00
+3308	5	Q3	2015-04-18	\N	\N	f	1	920	session_pATkXgxO	f	2015-04-18 00:00:00+00
+3309	1	FP1	2015-04-17	\N	\N	f	1	920	session_L66ELHaj	f	2015-04-17 00:00:00+00
+3310	2	FP2	2015-04-17	\N	\N	f	1	920	session_I4mdlP9x	f	2015-04-17 00:00:00+00
+3311	6	FP3	2015-04-18	\N	\N	f	1	920	session_yXqNIhTS	f	2015-04-18 00:00:00+00
+3312	7	R	2015-05-10	12:00:00	\N	f	16	921	session_2xJFmLTz	t	2015-05-10 12:00:00+00
+3313	3	Q1	2015-05-09	\N	\N	f	1	921	session_jqnBYrNk	f	2015-05-09 00:00:00+00
+3314	4	Q2	2015-05-09	\N	\N	f	1	921	session_KMsaWa5m	f	2015-05-09 00:00:00+00
+3315	5	Q3	2015-05-09	\N	\N	f	1	921	session_k9IR7S4y	f	2015-05-09 00:00:00+00
+3316	1	FP1	2015-05-08	\N	\N	f	1	921	session_i0DSC0qb	f	2015-05-08 00:00:00+00
+3317	2	FP2	2015-05-08	\N	\N	f	1	921	session_2wnTuGR1	f	2015-05-08 00:00:00+00
+3318	6	FP3	2015-05-09	\N	\N	f	1	921	session_ARfVWar4	f	2015-05-09 00:00:00+00
+3319	7	R	2015-05-24	12:00:00	\N	f	16	922	session_wt6SKy1p	t	2015-05-24 12:00:00+00
+3320	3	Q1	2015-05-23	\N	\N	f	1	922	session_ZEzXk097	f	2015-05-23 00:00:00+00
+3321	4	Q2	2015-05-23	\N	\N	f	1	922	session_3qYINsko	f	2015-05-23 00:00:00+00
+3322	5	Q3	2015-05-23	\N	\N	f	1	922	session_7vMhO9Zl	f	2015-05-23 00:00:00+00
+3323	1	FP1	2015-05-21	\N	\N	f	1	922	session_YYvbF9gJ	f	2015-05-21 00:00:00+00
+3324	2	FP2	2015-05-21	\N	\N	f	1	922	session_9kkrf8xC	f	2015-05-21 00:00:00+00
+3325	6	FP3	2015-05-23	\N	\N	f	1	922	session_berizycE	f	2015-05-23 00:00:00+00
+3326	7	R	2015-06-07	18:00:00	\N	f	16	923	session_Ku4s7cpf	t	2015-06-07 18:00:00+00
+3327	3	Q1	2015-06-06	\N	\N	f	1	923	session_pnV2w2Kw	f	2015-06-06 00:00:00+00
+3328	4	Q2	2015-06-06	\N	\N	f	1	923	session_XVQhCOef	f	2015-06-06 00:00:00+00
+3329	5	Q3	2015-06-06	\N	\N	f	1	923	session_x54KAdEt	f	2015-06-06 00:00:00+00
+3330	1	FP1	2015-06-05	\N	\N	f	1	923	session_YCYYa64H	f	2015-06-05 00:00:00+00
+3331	2	FP2	2015-06-05	\N	\N	f	1	923	session_xm3cesHR	f	2015-06-05 00:00:00+00
+3332	6	FP3	2015-06-06	\N	\N	f	1	923	session_GKFPTTGX	f	2015-06-06 00:00:00+00
+3333	7	R	2015-06-21	12:00:00	\N	f	16	924	session_Fsoey7Np	t	2015-06-21 12:00:00+00
+3334	3	Q1	2015-06-20	\N	\N	f	1	924	session_loduoPpW	f	2015-06-20 00:00:00+00
+3335	4	Q2	2015-06-20	\N	\N	f	1	924	session_PmHc8aJP	f	2015-06-20 00:00:00+00
+3336	5	Q3	2015-06-20	\N	\N	f	1	924	session_3cSMALba	f	2015-06-20 00:00:00+00
+3337	1	FP1	2015-06-19	\N	\N	f	1	924	session_gJxcRiie	f	2015-06-19 00:00:00+00
+3338	2	FP2	2015-06-19	\N	\N	f	1	924	session_eNbKukfg	f	2015-06-19 00:00:00+00
+3339	6	FP3	2015-06-20	\N	\N	f	1	924	session_kVAz2lBn	f	2015-06-20 00:00:00+00
+3340	7	R	2015-07-05	12:00:00	\N	f	16	925	session_JLgDsdQY	t	2015-07-05 12:00:00+00
+3341	3	Q1	2015-07-04	\N	\N	f	1	925	session_OWFy5hXH	f	2015-07-04 00:00:00+00
+3342	4	Q2	2015-07-04	\N	\N	f	1	925	session_vQWhiklA	f	2015-07-04 00:00:00+00
+3343	5	Q3	2015-07-04	\N	\N	f	1	925	session_Fb2mmcay	f	2015-07-04 00:00:00+00
+3344	1	FP1	2015-07-03	\N	\N	f	1	925	session_hv3TnoRS	f	2015-07-03 00:00:00+00
+3345	2	FP2	2015-07-03	\N	\N	f	1	925	session_DQUchDcM	f	2015-07-03 00:00:00+00
+3346	6	FP3	2015-07-04	\N	\N	f	1	925	session_AB8NhoN5	f	2015-07-04 00:00:00+00
+3347	7	R	2015-07-26	12:00:00	\N	f	16	926	session_HhEn9U0t	t	2015-07-26 12:00:00+00
+3348	3	Q1	2015-07-25	\N	\N	f	1	926	session_uAF8JBrA	f	2015-07-25 00:00:00+00
+3349	4	Q2	2015-07-25	\N	\N	f	1	926	session_E3wm0BEZ	f	2015-07-25 00:00:00+00
+3350	5	Q3	2015-07-25	\N	\N	f	1	926	session_em7JZRBM	f	2015-07-25 00:00:00+00
+3351	1	FP1	2015-07-24	\N	\N	f	1	926	session_AUZEjbPN	f	2015-07-24 00:00:00+00
+3352	2	FP2	2015-07-24	\N	\N	f	1	926	session_4t8K3aa7	f	2015-07-24 00:00:00+00
+3353	6	FP3	2015-07-25	\N	\N	f	1	926	session_p9931ZAC	f	2015-07-25 00:00:00+00
+3354	7	R	2015-08-23	12:00:00	\N	f	16	927	session_UIaVOy5r	t	2015-08-23 12:00:00+00
+3355	3	Q1	2015-08-22	\N	\N	f	1	927	session_xwD01oTl	f	2015-08-22 00:00:00+00
+3356	4	Q2	2015-08-22	\N	\N	f	1	927	session_YPMHAdzG	f	2015-08-22 00:00:00+00
+3357	5	Q3	2015-08-22	\N	\N	f	1	927	session_WqT2UtJj	f	2015-08-22 00:00:00+00
+3358	1	FP1	2015-08-21	\N	\N	f	1	927	session_EQ63Svag	f	2015-08-21 00:00:00+00
+3359	2	FP2	2015-08-21	\N	\N	f	1	927	session_4UXZyKAc	f	2015-08-21 00:00:00+00
+3360	6	FP3	2015-08-22	\N	\N	f	1	927	session_yu3HtUsV	f	2015-08-22 00:00:00+00
+3361	7	R	2015-09-06	12:00:00	\N	f	16	928	session_ETJfXgWW	t	2015-09-06 12:00:00+00
+3362	3	Q1	2015-09-05	\N	\N	f	1	928	session_OUf2EFxu	f	2015-09-05 00:00:00+00
+3363	4	Q2	2015-09-05	\N	\N	f	1	928	session_G6yiYxSQ	f	2015-09-05 00:00:00+00
+3364	5	Q3	2015-09-05	\N	\N	f	1	928	session_fFGTTUcF	f	2015-09-05 00:00:00+00
+3365	1	FP1	2015-09-04	\N	\N	f	1	928	session_dnpjl4kQ	f	2015-09-04 00:00:00+00
+3366	2	FP2	2015-09-04	\N	\N	f	1	928	session_9iSO6lv9	f	2015-09-04 00:00:00+00
+3367	6	FP3	2015-09-05	\N	\N	f	1	928	session_d1Oxe5C9	f	2015-09-05 00:00:00+00
+3368	7	R	2015-09-20	12:00:00	\N	f	16	929	session_vyExGt0G	t	2015-09-20 12:00:00+00
+3369	3	Q1	2015-09-19	\N	\N	f	1	929	session_0JelEC8k	f	2015-09-19 00:00:00+00
+3370	4	Q2	2015-09-19	\N	\N	f	1	929	session_izKPtvRB	f	2015-09-19 00:00:00+00
+3371	5	Q3	2015-09-19	\N	\N	f	1	929	session_mSTqqgNz	f	2015-09-19 00:00:00+00
+3372	1	FP1	2015-09-18	\N	\N	f	1	929	session_VBhQLBa7	f	2015-09-18 00:00:00+00
+3373	2	FP2	2015-09-18	\N	\N	f	1	929	session_ahTlusQj	f	2015-09-18 00:00:00+00
+3374	6	FP3	2015-09-19	\N	\N	f	1	929	session_psJ2Yx6b	f	2015-09-19 00:00:00+00
+3375	7	R	2015-09-27	05:00:00	\N	f	16	930	session_sSpR0Af2	t	2015-09-27 05:00:00+00
+3376	3	Q1	2015-09-26	\N	\N	f	1	930	session_Vawf6TLt	f	2015-09-26 00:00:00+00
+3377	4	Q2	2015-09-26	\N	\N	f	1	930	session_w4lGLGwf	f	2015-09-26 00:00:00+00
+3378	5	Q3	2015-09-26	\N	\N	f	1	930	session_w3w3K5MU	f	2015-09-26 00:00:00+00
+3379	1	FP1	2015-09-25	\N	\N	f	1	930	session_Z7bbLk3x	f	2015-09-25 00:00:00+00
+3380	2	FP2	2015-09-25	\N	\N	f	1	930	session_7SVBZfaQ	f	2015-09-25 00:00:00+00
+3381	6	FP3	2015-09-26	\N	\N	f	1	930	session_fD9CTMVt	f	2015-09-26 00:00:00+00
+3382	7	R	2015-10-11	11:00:00	\N	f	16	931	session_gZedYgWj	t	2015-10-11 11:00:00+00
+3383	3	Q1	2015-10-10	\N	\N	f	1	931	session_dWsoLed5	f	2015-10-10 00:00:00+00
+3384	4	Q2	2015-10-10	\N	\N	f	1	931	session_pacMU9zS	f	2015-10-10 00:00:00+00
+3385	5	Q3	2015-10-10	\N	\N	f	1	931	session_8hEvNQsX	f	2015-10-10 00:00:00+00
+3386	1	FP1	2015-10-09	\N	\N	f	1	931	session_zHXAll5X	f	2015-10-09 00:00:00+00
+3387	2	FP2	2015-10-09	\N	\N	f	1	931	session_iCsmROgF	f	2015-10-09 00:00:00+00
+3388	6	FP3	2015-10-10	\N	\N	f	1	931	session_Lyx67Q8m	f	2015-10-10 00:00:00+00
+3389	7	R	2015-10-25	19:00:00	\N	f	16	932	session_5JwZGi1E	t	2015-10-25 19:00:00+00
+3390	3	Q1	2015-10-24	\N	\N	f	1	932	session_DvgPmK8m	f	2015-10-24 00:00:00+00
+3391	4	Q2	2015-10-24	\N	\N	f	1	932	session_pgSEeUBB	f	2015-10-24 00:00:00+00
+3392	5	Q3	2015-10-24	\N	\N	f	1	932	session_DlgYHhCQ	f	2015-10-24 00:00:00+00
+3393	1	FP1	2015-10-23	\N	\N	f	1	932	session_1QsFcI55	f	2015-10-23 00:00:00+00
+3394	2	FP2	2015-10-23	\N	\N	f	1	932	session_UQq1OhyK	f	2015-10-23 00:00:00+00
+3395	6	FP3	2015-10-24	\N	\N	f	1	932	session_t5adqhak	f	2015-10-24 00:00:00+00
+3396	7	R	2015-11-01	19:00:00	\N	f	16	933	session_YSLEm4su	t	2015-11-01 19:00:00+00
+3397	3	Q1	2015-10-31	\N	\N	f	1	933	session_FHumtO3x	f	2015-10-31 00:00:00+00
+3398	4	Q2	2015-10-31	\N	\N	f	1	933	session_K5Qkq4xx	f	2015-10-31 00:00:00+00
+3399	5	Q3	2015-10-31	\N	\N	f	1	933	session_9jtmWkVE	f	2015-10-31 00:00:00+00
+3400	1	FP1	2015-10-30	\N	\N	f	1	933	session_VU6uicdv	f	2015-10-30 00:00:00+00
+3401	2	FP2	2015-10-30	\N	\N	f	1	933	session_ph8nlo8A	f	2015-10-30 00:00:00+00
+3402	6	FP3	2015-10-31	\N	\N	f	1	933	session_j69ZFQIm	f	2015-10-31 00:00:00+00
+3403	7	R	2015-11-15	16:00:00	\N	f	16	934	session_K5xU80vl	t	2015-11-15 16:00:00+00
+3404	3	Q1	2015-11-14	\N	\N	f	1	934	session_en3ElMyT	f	2015-11-14 00:00:00+00
+3405	4	Q2	2015-11-14	\N	\N	f	1	934	session_tn7ahOqw	f	2015-11-14 00:00:00+00
+3406	5	Q3	2015-11-14	\N	\N	f	1	934	session_xBFklqRU	f	2015-11-14 00:00:00+00
+3407	1	FP1	2015-11-13	\N	\N	f	1	934	session_EaZozT4P	f	2015-11-13 00:00:00+00
+3408	2	FP2	2015-11-13	\N	\N	f	1	934	session_kPgCCp2L	f	2015-11-13 00:00:00+00
+3409	6	FP3	2015-11-14	\N	\N	f	1	934	session_jLuhx2nr	f	2015-11-14 00:00:00+00
+3410	7	R	2015-11-29	13:00:00	\N	f	16	935	session_vF2MtQZJ	t	2015-11-29 13:00:00+00
+3411	3	Q1	2015-11-28	\N	\N	f	1	935	session_f4OIw5w2	f	2015-11-28 00:00:00+00
+3412	4	Q2	2015-11-28	\N	\N	f	1	935	session_9Pga3SR7	f	2015-11-28 00:00:00+00
+3413	5	Q3	2015-11-28	\N	\N	f	1	935	session_biaYFvBg	f	2015-11-28 00:00:00+00
+3414	1	FP1	2015-11-27	\N	\N	f	1	935	session_FajHVo3p	f	2015-11-27 00:00:00+00
+3415	2	FP2	2015-11-27	\N	\N	f	1	935	session_P8NLQfWF	f	2015-11-27 00:00:00+00
+3416	6	FP3	2015-11-28	\N	\N	f	1	935	session_4PIR9wAv	f	2015-11-28 00:00:00+00
+3417	7	R	2016-03-20	05:00:00	\N	f	16	936	session_RtRLo1jq	t	2016-03-20 05:00:00+00
+3418	3	Q1	2016-03-19	\N	\N	f	1	936	session_7np4XyYN	f	2016-03-19 00:00:00+00
+3419	4	Q2	2016-03-19	\N	\N	f	1	936	session_0jjBUgpI	f	2016-03-19 00:00:00+00
+3420	5	Q3	2016-03-19	\N	\N	f	1	936	session_3s3DCfiQ	f	2016-03-19 00:00:00+00
+3421	1	FP1	2016-03-18	\N	\N	f	1	936	session_vOzwrAn3	f	2016-03-18 00:00:00+00
+3422	2	FP2	2016-03-18	\N	\N	f	1	936	session_rqSQyfeV	f	2016-03-18 00:00:00+00
+3423	6	FP3	2016-03-19	\N	\N	f	1	936	session_bfKlRm6I	f	2016-03-19 00:00:00+00
+3424	7	R	2016-04-03	15:00:00	\N	f	16	937	session_7S3rdrhy	t	2016-04-03 15:00:00+00
+3425	3	Q1	2016-04-02	\N	\N	f	1	937	session_OEYruKFL	f	2016-04-02 00:00:00+00
+3426	4	Q2	2016-04-02	\N	\N	f	1	937	session_NcINk01N	f	2016-04-02 00:00:00+00
+3427	5	Q3	2016-04-02	\N	\N	f	1	937	session_OKxGryxi	f	2016-04-02 00:00:00+00
+3428	1	FP1	2016-04-01	\N	\N	f	1	937	session_A38AbRhS	f	2016-04-01 00:00:00+00
+3429	2	FP2	2016-04-01	\N	\N	f	1	937	session_dYX78B7G	f	2016-04-01 00:00:00+00
+3430	6	FP3	2016-04-02	\N	\N	f	1	937	session_1B4A7Em5	f	2016-04-02 00:00:00+00
+3431	7	R	2016-04-17	06:00:00	\N	f	16	938	session_HIkS9GXw	t	2016-04-17 06:00:00+00
+3432	3	Q1	2016-04-16	\N	\N	f	1	938	session_LYIBBEwo	f	2016-04-16 00:00:00+00
+3433	4	Q2	2016-04-16	\N	\N	f	1	938	session_lM7kM3iR	f	2016-04-16 00:00:00+00
+3434	5	Q3	2016-04-16	\N	\N	f	1	938	session_M60eyT2F	f	2016-04-16 00:00:00+00
+3435	1	FP1	2016-04-15	\N	\N	f	1	938	session_zdGuGwaY	f	2016-04-15 00:00:00+00
+3436	2	FP2	2016-04-15	\N	\N	f	1	938	session_ny8Hv2ku	f	2016-04-15 00:00:00+00
+3437	6	FP3	2016-04-16	\N	\N	f	1	938	session_WmcCrjPn	f	2016-04-16 00:00:00+00
+3438	7	R	2016-05-01	12:00:00	\N	f	16	939	session_fr2BZdjm	t	2016-05-01 12:00:00+00
+3439	3	Q1	2016-04-30	\N	\N	f	1	939	session_xEVtzn9y	f	2016-04-30 00:00:00+00
+3440	4	Q2	2016-04-30	\N	\N	f	1	939	session_gmw1bOup	f	2016-04-30 00:00:00+00
+3441	5	Q3	2016-04-30	\N	\N	f	1	939	session_C3HDy8lz	f	2016-04-30 00:00:00+00
+3442	1	FP1	2016-04-29	\N	\N	f	1	939	session_BhxQ84zE	f	2016-04-29 00:00:00+00
+3443	2	FP2	2016-04-29	\N	\N	f	1	939	session_SuEPJZCQ	f	2016-04-29 00:00:00+00
+3444	6	FP3	2016-04-30	\N	\N	f	1	939	session_q0NW15Yr	f	2016-04-30 00:00:00+00
+3445	7	R	2016-05-15	12:00:00	\N	f	16	940	session_7dVRv3gd	t	2016-05-15 12:00:00+00
+3446	3	Q1	2016-05-14	\N	\N	f	1	940	session_cjVCFqeZ	f	2016-05-14 00:00:00+00
+3447	4	Q2	2016-05-14	\N	\N	f	1	940	session_rdeMV4b0	f	2016-05-14 00:00:00+00
+3448	5	Q3	2016-05-14	\N	\N	f	1	940	session_acXBH5My	f	2016-05-14 00:00:00+00
+3449	1	FP1	2016-05-13	\N	\N	f	1	940	session_r5EkHuNN	f	2016-05-13 00:00:00+00
+3450	2	FP2	2016-05-13	\N	\N	f	1	940	session_ALXJpKqo	f	2016-05-13 00:00:00+00
+3451	6	FP3	2016-05-14	\N	\N	f	1	940	session_8MquSWVo	f	2016-05-14 00:00:00+00
+3452	7	R	2016-05-29	12:00:00	\N	f	16	941	session_93cbRjCR	t	2016-05-29 12:00:00+00
+3453	3	Q1	2016-05-28	\N	\N	f	1	941	session_XODaxXTa	f	2016-05-28 00:00:00+00
+3454	4	Q2	2016-05-28	\N	\N	f	1	941	session_UERpMs0p	f	2016-05-28 00:00:00+00
+3455	5	Q3	2016-05-28	\N	\N	f	1	941	session_ASEWT4Pb	f	2016-05-28 00:00:00+00
+3456	1	FP1	2016-05-26	\N	\N	f	1	941	session_z1Xxnx9M	f	2016-05-26 00:00:00+00
+3457	2	FP2	2016-05-26	\N	\N	f	1	941	session_UN6L1DPc	f	2016-05-26 00:00:00+00
+3458	6	FP3	2016-05-28	\N	\N	f	1	941	session_yBlTRctH	f	2016-05-28 00:00:00+00
+3459	7	R	2016-06-12	18:00:00	\N	f	16	942	session_LAqsExjP	t	2016-06-12 18:00:00+00
+3460	3	Q1	2016-06-11	\N	\N	f	1	942	session_zIw8RHU7	f	2016-06-11 00:00:00+00
+3461	4	Q2	2016-06-11	\N	\N	f	1	942	session_U2xv5ZP2	f	2016-06-11 00:00:00+00
+3462	5	Q3	2016-06-11	\N	\N	f	1	942	session_9qCrtshc	f	2016-06-11 00:00:00+00
+3463	1	FP1	2016-06-10	\N	\N	f	1	942	session_bjghkCW3	f	2016-06-10 00:00:00+00
+3464	2	FP2	2016-06-10	\N	\N	f	1	942	session_ynnxPUt3	f	2016-06-10 00:00:00+00
+3465	6	FP3	2016-06-11	\N	\N	f	1	942	session_KaX3rqvI	f	2016-06-11 00:00:00+00
+3466	7	R	2016-06-19	13:00:00	\N	f	16	943	session_SfAYhRES	t	2016-06-19 13:00:00+00
+3467	3	Q1	2016-06-18	\N	\N	f	1	943	session_kV405Mrw	f	2016-06-18 00:00:00+00
+3468	4	Q2	2016-06-18	\N	\N	f	1	943	session_Wg7rAHf9	f	2016-06-18 00:00:00+00
+3469	5	Q3	2016-06-18	\N	\N	f	1	943	session_fceWIQC2	f	2016-06-18 00:00:00+00
+3470	1	FP1	2016-06-17	\N	\N	f	1	943	session_DEhmE90O	f	2016-06-17 00:00:00+00
+3471	2	FP2	2016-06-17	\N	\N	f	1	943	session_vSIcDk7d	f	2016-06-17 00:00:00+00
+3472	6	FP3	2016-06-18	\N	\N	f	1	943	session_qBo9N5FA	f	2016-06-18 00:00:00+00
+3473	7	R	2016-07-03	12:00:00	\N	f	16	944	session_kXsttCcu	t	2016-07-03 12:00:00+00
+3474	3	Q1	2016-07-02	\N	\N	f	1	944	session_DbD6ymbM	f	2016-07-02 00:00:00+00
+3475	4	Q2	2016-07-02	\N	\N	f	1	944	session_3heF0Pwf	f	2016-07-02 00:00:00+00
+3476	5	Q3	2016-07-02	\N	\N	f	1	944	session_FCxIaTWt	f	2016-07-02 00:00:00+00
+3477	1	FP1	2016-07-01	\N	\N	f	1	944	session_Eye0goqB	f	2016-07-01 00:00:00+00
+3478	2	FP2	2016-07-01	\N	\N	f	1	944	session_3chTwprC	f	2016-07-01 00:00:00+00
+3479	6	FP3	2016-07-02	\N	\N	f	1	944	session_QZtUOIGY	f	2016-07-02 00:00:00+00
+3480	7	R	2016-07-10	12:00:00	\N	f	16	945	session_QOqgpQOy	t	2016-07-10 12:00:00+00
+3481	3	Q1	2016-07-09	\N	\N	f	1	945	session_v1gSSQFz	f	2016-07-09 00:00:00+00
+3482	4	Q2	2016-07-09	\N	\N	f	1	945	session_iGhF49cA	f	2016-07-09 00:00:00+00
+3483	5	Q3	2016-07-09	\N	\N	f	1	945	session_rLqqG4yG	f	2016-07-09 00:00:00+00
+3484	1	FP1	2016-07-08	\N	\N	f	1	945	session_Fgl2FmeJ	f	2016-07-08 00:00:00+00
+3485	2	FP2	2016-07-08	\N	\N	f	1	945	session_iB0jqRP7	f	2016-07-08 00:00:00+00
+3486	6	FP3	2016-07-09	\N	\N	f	1	945	session_kVgnDvTO	f	2016-07-09 00:00:00+00
+3487	7	R	2016-07-24	12:00:00	\N	f	16	946	session_hB6EP6kE	t	2016-07-24 12:00:00+00
+3488	3	Q1	2016-07-23	\N	\N	f	1	946	session_8EZPrCVc	f	2016-07-23 00:00:00+00
+3489	4	Q2	2016-07-23	\N	\N	f	1	946	session_zxUnoNZ7	f	2016-07-23 00:00:00+00
+3490	5	Q3	2016-07-23	\N	\N	f	1	946	session_9W1iWLqQ	f	2016-07-23 00:00:00+00
+3491	1	FP1	2016-07-22	\N	\N	f	1	946	session_1FBS3o0A	f	2016-07-22 00:00:00+00
+3492	2	FP2	2016-07-22	\N	\N	f	1	946	session_lZxRyEK0	f	2016-07-22 00:00:00+00
+3493	6	FP3	2016-07-23	\N	\N	f	1	946	session_USNtdOzB	f	2016-07-23 00:00:00+00
+3494	7	R	2016-07-31	12:00:00	\N	f	16	947	session_S1RWNqrm	t	2016-07-31 12:00:00+00
+3495	3	Q1	2016-07-30	\N	\N	f	1	947	session_WghZynHh	f	2016-07-30 00:00:00+00
+3496	4	Q2	2016-07-30	\N	\N	f	1	947	session_wX6wGxpd	f	2016-07-30 00:00:00+00
+3497	5	Q3	2016-07-30	\N	\N	f	1	947	session_hR9xqclm	f	2016-07-30 00:00:00+00
+3498	1	FP1	2016-07-29	\N	\N	f	1	947	session_SoFUspg9	f	2016-07-29 00:00:00+00
+3499	2	FP2	2016-07-29	\N	\N	f	1	947	session_6pcdaits	f	2016-07-29 00:00:00+00
+3500	6	FP3	2016-07-30	\N	\N	f	1	947	session_Q9e3AW7v	f	2016-07-30 00:00:00+00
+3501	7	R	2016-08-28	12:00:00	\N	f	16	948	session_MCc0UpET	t	2016-08-28 12:00:00+00
+3502	3	Q1	2016-08-27	\N	\N	f	1	948	session_yawR5eft	f	2016-08-27 00:00:00+00
+3503	4	Q2	2016-08-27	\N	\N	f	1	948	session_58zllHrR	f	2016-08-27 00:00:00+00
+3504	5	Q3	2016-08-27	\N	\N	f	1	948	session_XIxHdpiy	f	2016-08-27 00:00:00+00
+3505	1	FP1	2016-08-26	\N	\N	f	1	948	session_OyNZNjQF	f	2016-08-26 00:00:00+00
+3506	2	FP2	2016-08-26	\N	\N	f	1	948	session_RH90zIop	f	2016-08-26 00:00:00+00
+3507	6	FP3	2016-08-27	\N	\N	f	1	948	session_QWo80TvB	f	2016-08-27 00:00:00+00
+3508	7	R	2016-09-04	12:00:00	\N	f	16	949	session_nBLvclDO	t	2016-09-04 12:00:00+00
+3509	3	Q1	2016-09-03	\N	\N	f	1	949	session_4sBDeBVD	f	2016-09-03 00:00:00+00
+3510	4	Q2	2016-09-03	\N	\N	f	1	949	session_Ke4puwF8	f	2016-09-03 00:00:00+00
+3511	5	Q3	2016-09-03	\N	\N	f	1	949	session_WLm9hXET	f	2016-09-03 00:00:00+00
+3512	1	FP1	2016-09-02	\N	\N	f	1	949	session_UuchKQgF	f	2016-09-02 00:00:00+00
+3513	2	FP2	2016-09-02	\N	\N	f	1	949	session_8NaH5Elf	f	2016-09-02 00:00:00+00
+3514	6	FP3	2016-09-03	\N	\N	f	1	949	session_N6f2LRdh	f	2016-09-03 00:00:00+00
+3515	7	R	2016-09-18	12:00:00	\N	f	16	950	session_USnhHXUR	t	2016-09-18 12:00:00+00
+3516	3	Q1	2016-09-17	\N	\N	f	1	950	session_AQqfJ4Is	f	2016-09-17 00:00:00+00
+3517	4	Q2	2016-09-17	\N	\N	f	1	950	session_JpqlYDe1	f	2016-09-17 00:00:00+00
+3518	5	Q3	2016-09-17	\N	\N	f	1	950	session_4fTS8CgJ	f	2016-09-17 00:00:00+00
+3519	1	FP1	2016-09-16	\N	\N	f	1	950	session_K9Kqn1Zt	f	2016-09-16 00:00:00+00
+3520	2	FP2	2016-09-16	\N	\N	f	1	950	session_5ofdWpzB	f	2016-09-16 00:00:00+00
+3521	6	FP3	2016-09-17	\N	\N	f	1	950	session_0Ostbav0	f	2016-09-17 00:00:00+00
+3522	7	R	2016-10-02	07:00:00	\N	f	16	951	session_AsqXTdq0	t	2016-10-02 07:00:00+00
+3523	3	Q1	2016-10-01	\N	\N	f	1	951	session_5ok1zfsM	f	2016-10-01 00:00:00+00
+3524	4	Q2	2016-10-01	\N	\N	f	1	951	session_67pgQ35U	f	2016-10-01 00:00:00+00
+3525	5	Q3	2016-10-01	\N	\N	f	1	951	session_aiBkj8p4	f	2016-10-01 00:00:00+00
+3526	1	FP1	2016-09-30	\N	\N	f	1	951	session_34PfIsnj	f	2016-09-30 00:00:00+00
+3527	2	FP2	2016-09-30	\N	\N	f	1	951	session_vTYHZYKA	f	2016-09-30 00:00:00+00
+3528	6	FP3	2016-10-01	\N	\N	f	1	951	session_ZBpKXSCQ	f	2016-10-01 00:00:00+00
+3529	7	R	2016-10-09	05:00:00	\N	f	16	952	session_Nqu4JshC	t	2016-10-09 05:00:00+00
+3530	3	Q1	2016-10-08	\N	\N	f	1	952	session_QDrh7nEj	f	2016-10-08 00:00:00+00
+3531	4	Q2	2016-10-08	\N	\N	f	1	952	session_ECjHKLt5	f	2016-10-08 00:00:00+00
+3532	5	Q3	2016-10-08	\N	\N	f	1	952	session_FUwGT1CB	f	2016-10-08 00:00:00+00
+3533	1	FP1	2016-10-07	\N	\N	f	1	952	session_D5gvweLQ	f	2016-10-07 00:00:00+00
+3534	2	FP2	2016-10-07	\N	\N	f	1	952	session_S60EDrAq	f	2016-10-07 00:00:00+00
+3535	6	FP3	2016-10-08	\N	\N	f	1	952	session_4q98tA3O	f	2016-10-08 00:00:00+00
+3536	7	R	2016-10-23	19:00:00	\N	f	16	953	session_mPeTHX3Q	t	2016-10-23 19:00:00+00
+3537	3	Q1	2016-10-22	\N	\N	f	1	953	session_XmgSUxvj	f	2016-10-22 00:00:00+00
+3538	4	Q2	2016-10-22	\N	\N	f	1	953	session_DwwWYLmu	f	2016-10-22 00:00:00+00
+3539	5	Q3	2016-10-22	\N	\N	f	1	953	session_xBOntL5B	f	2016-10-22 00:00:00+00
+3540	1	FP1	2016-10-21	\N	\N	f	1	953	session_TJdDhsOx	f	2016-10-21 00:00:00+00
+3541	2	FP2	2016-10-21	\N	\N	f	1	953	session_GxHP02Au	f	2016-10-21 00:00:00+00
+3542	6	FP3	2016-10-22	\N	\N	f	1	953	session_Ak5rS9T0	f	2016-10-22 00:00:00+00
+3543	7	R	2016-10-30	19:00:00	\N	f	16	954	session_tP1YXWmL	t	2016-10-30 19:00:00+00
+3544	3	Q1	2016-10-29	\N	\N	f	1	954	session_dlhFMVGR	f	2016-10-29 00:00:00+00
+3545	4	Q2	2016-10-29	\N	\N	f	1	954	session_0Q5uADZp	f	2016-10-29 00:00:00+00
+3546	5	Q3	2016-10-29	\N	\N	f	1	954	session_l2qynAxp	f	2016-10-29 00:00:00+00
+3547	1	FP1	2016-10-28	\N	\N	f	1	954	session_pGg7cuCb	f	2016-10-28 00:00:00+00
+3548	2	FP2	2016-10-28	\N	\N	f	1	954	session_NLClxiWx	f	2016-10-28 00:00:00+00
+3549	6	FP3	2016-10-29	\N	\N	f	1	954	session_6qaoUIB0	f	2016-10-29 00:00:00+00
+3550	7	R	2016-11-13	16:00:00	\N	f	16	955	session_fKK5GrTu	t	2016-11-13 16:00:00+00
+3551	3	Q1	2016-11-12	\N	\N	f	1	955	session_VEmIFMAU	f	2016-11-12 00:00:00+00
+3552	4	Q2	2016-11-12	\N	\N	f	1	955	session_2LJqyK1c	f	2016-11-12 00:00:00+00
+3553	5	Q3	2016-11-12	\N	\N	f	1	955	session_CGvo1Em0	f	2016-11-12 00:00:00+00
+3554	1	FP1	2016-11-11	\N	\N	f	1	955	session_cKlpW8VU	f	2016-11-11 00:00:00+00
+3555	2	FP2	2016-11-11	\N	\N	f	1	955	session_OQDSIRFG	f	2016-11-11 00:00:00+00
+3556	6	FP3	2016-11-12	\N	\N	f	1	955	session_UI3BUAUD	f	2016-11-12 00:00:00+00
+3557	7	R	2016-11-27	13:00:00	\N	f	16	956	session_PnLTMLIq	t	2016-11-27 13:00:00+00
+3558	3	Q1	2016-11-26	\N	\N	f	1	956	session_VyETBeY3	f	2016-11-26 00:00:00+00
+3559	4	Q2	2016-11-26	\N	\N	f	1	956	session_hFCyj2B4	f	2016-11-26 00:00:00+00
+3560	5	Q3	2016-11-26	\N	\N	f	1	956	session_iHMDMiJ9	f	2016-11-26 00:00:00+00
+3561	1	FP1	2016-11-25	\N	\N	f	1	956	session_Cj8V10ks	f	2016-11-25 00:00:00+00
+3562	2	FP2	2016-11-25	\N	\N	f	1	956	session_JsryFZck	f	2016-11-25 00:00:00+00
+3563	6	FP3	2016-11-26	\N	\N	f	1	956	session_WucsIK8I	f	2016-11-26 00:00:00+00
+3564	7	R	2017-03-26	05:00:00	\N	f	16	957	session_YEWxIkQr	t	2017-03-26 05:00:00+00
+3565	3	Q1	2017-03-25	\N	\N	f	1	957	session_dXGa0Ogg	f	2017-03-25 00:00:00+00
+3566	4	Q2	2017-03-25	\N	\N	f	1	957	session_1EeRAe1N	f	2017-03-25 00:00:00+00
+3567	5	Q3	2017-03-25	\N	\N	f	1	957	session_SDY3YswB	f	2017-03-25 00:00:00+00
+3568	1	FP1	2017-03-24	\N	\N	f	1	957	session_kRygBpnF	f	2017-03-24 00:00:00+00
+3569	2	FP2	2017-03-24	\N	\N	f	1	957	session_bnQscz7P	f	2017-03-24 00:00:00+00
+3570	6	FP3	2017-03-25	\N	\N	f	1	957	session_tTvZlIH1	f	2017-03-25 00:00:00+00
+3571	7	R	2017-04-09	06:00:00	\N	f	16	958	session_BkbBN2uN	t	2017-04-09 06:00:00+00
+3572	3	Q1	2017-04-08	\N	\N	f	1	958	session_GgKcyJGQ	f	2017-04-08 00:00:00+00
+3573	4	Q2	2017-04-08	\N	\N	f	1	958	session_o1DL6XTz	f	2017-04-08 00:00:00+00
+3574	5	Q3	2017-04-08	\N	\N	f	1	958	session_lTYtOvHR	f	2017-04-08 00:00:00+00
+3575	1	FP1	2017-04-07	\N	\N	f	1	958	session_b87TijAl	f	2017-04-07 00:00:00+00
+3576	2	FP2	2017-04-07	\N	\N	f	1	958	session_TT9hXpsz	f	2017-04-07 00:00:00+00
+3577	6	FP3	2017-04-08	\N	\N	f	1	958	session_wu3JDqwQ	f	2017-04-08 00:00:00+00
+3578	7	R	2017-04-16	15:00:00	\N	f	16	959	session_cUGcFham	t	2017-04-16 15:00:00+00
+3579	3	Q1	2017-04-15	\N	\N	f	1	959	session_iFNgHa2e	f	2017-04-15 00:00:00+00
+3580	4	Q2	2017-04-15	\N	\N	f	1	959	session_dMPML4y1	f	2017-04-15 00:00:00+00
+3581	5	Q3	2017-04-15	\N	\N	f	1	959	session_YIdSPHM6	f	2017-04-15 00:00:00+00
+3582	1	FP1	2017-04-14	\N	\N	f	1	959	session_OcuOjWpJ	f	2017-04-14 00:00:00+00
+3583	2	FP2	2017-04-14	\N	\N	f	1	959	session_Zdm7Yicr	f	2017-04-14 00:00:00+00
+3584	6	FP3	2017-04-15	\N	\N	f	1	959	session_agQ5j1AP	f	2017-04-15 00:00:00+00
+3585	7	R	2017-04-30	12:00:00	\N	f	16	960	session_5Wdlw3fD	t	2017-04-30 12:00:00+00
+3586	3	Q1	2017-04-29	\N	\N	f	1	960	session_trCfjzPf	f	2017-04-29 00:00:00+00
+3587	4	Q2	2017-04-29	\N	\N	f	1	960	session_RRrULIlr	f	2017-04-29 00:00:00+00
+3588	5	Q3	2017-04-29	\N	\N	f	1	960	session_nbJuCLPw	f	2017-04-29 00:00:00+00
+3589	1	FP1	2017-04-28	\N	\N	f	1	960	session_SFxZy5Sk	f	2017-04-28 00:00:00+00
+3590	2	FP2	2017-04-28	\N	\N	f	1	960	session_Q3ESkYU5	f	2017-04-28 00:00:00+00
+3591	6	FP3	2017-04-29	\N	\N	f	1	960	session_cevwzLjB	f	2017-04-29 00:00:00+00
+3592	7	R	2017-05-14	12:00:00	\N	f	16	961	session_19layugs	t	2017-05-14 12:00:00+00
+3593	3	Q1	2017-05-13	\N	\N	f	1	961	session_yZt0qfwr	f	2017-05-13 00:00:00+00
+3594	4	Q2	2017-05-13	\N	\N	f	1	961	session_ddwo69pJ	f	2017-05-13 00:00:00+00
+3595	5	Q3	2017-05-13	\N	\N	f	1	961	session_Lw6qvCxH	f	2017-05-13 00:00:00+00
+3596	1	FP1	2017-05-12	\N	\N	f	1	961	session_YuiASuiJ	f	2017-05-12 00:00:00+00
+3597	2	FP2	2017-05-12	\N	\N	f	1	961	session_De8XsGI1	f	2017-05-12 00:00:00+00
+3598	6	FP3	2017-05-13	\N	\N	f	1	961	session_9T2xeDjr	f	2017-05-13 00:00:00+00
+3599	7	R	2017-05-28	12:00:00	\N	f	16	962	session_TeKzdL1t	t	2017-05-28 12:00:00+00
+3600	3	Q1	2017-05-27	\N	\N	f	1	962	session_pV1WLruQ	f	2017-05-27 00:00:00+00
+3601	4	Q2	2017-05-27	\N	\N	f	1	962	session_AlSkdlwN	f	2017-05-27 00:00:00+00
+3602	5	Q3	2017-05-27	\N	\N	f	1	962	session_AvYLji5m	f	2017-05-27 00:00:00+00
+3603	1	FP1	2017-05-25	\N	\N	f	1	962	session_6Z97dOiy	f	2017-05-25 00:00:00+00
+3604	2	FP2	2017-05-25	\N	\N	f	1	962	session_bBCmEjwM	f	2017-05-25 00:00:00+00
+3605	6	FP3	2017-05-27	\N	\N	f	1	962	session_XfEZ7llb	f	2017-05-27 00:00:00+00
+3606	7	R	2017-06-11	18:00:00	\N	f	16	963	session_G2kWx5wz	t	2017-06-11 18:00:00+00
+3607	3	Q1	2017-06-10	\N	\N	f	1	963	session_NhANzg2L	f	2017-06-10 00:00:00+00
+3608	4	Q2	2017-06-10	\N	\N	f	1	963	session_xDcJ4M8C	f	2017-06-10 00:00:00+00
+3609	5	Q3	2017-06-10	\N	\N	f	1	963	session_t7RckfEN	f	2017-06-10 00:00:00+00
+3610	1	FP1	2017-06-09	\N	\N	f	1	963	session_DYwpvNq9	f	2017-06-09 00:00:00+00
+3611	2	FP2	2017-06-09	\N	\N	f	1	963	session_HVXChCYw	f	2017-06-09 00:00:00+00
+3612	6	FP3	2017-06-10	\N	\N	f	1	963	session_N4LzlLiF	f	2017-06-10 00:00:00+00
+3613	7	R	2017-06-25	13:00:00	\N	f	16	964	session_ZuCoV22y	t	2017-06-25 13:00:00+00
+3614	3	Q1	2017-06-24	\N	\N	f	1	964	session_xSBfDnd9	f	2017-06-24 00:00:00+00
+3615	4	Q2	2017-06-24	\N	\N	f	1	964	session_ZdIFRsdg	f	2017-06-24 00:00:00+00
+3616	5	Q3	2017-06-24	\N	\N	f	1	964	session_FXCGDxkn	f	2017-06-24 00:00:00+00
+3617	1	FP1	2017-06-23	\N	\N	f	1	964	session_G15DQ8cN	f	2017-06-23 00:00:00+00
+3618	2	FP2	2017-06-23	\N	\N	f	1	964	session_esvy1hvf	f	2017-06-23 00:00:00+00
+3619	6	FP3	2017-06-24	\N	\N	f	1	964	session_VjbNeSE0	f	2017-06-24 00:00:00+00
+3620	7	R	2017-07-09	12:00:00	\N	f	16	965	session_bWK42ErU	t	2017-07-09 12:00:00+00
+3621	3	Q1	2017-07-08	\N	\N	f	1	965	session_3gmujl03	f	2017-07-08 00:00:00+00
+3622	4	Q2	2017-07-08	\N	\N	f	1	965	session_IOliadN6	f	2017-07-08 00:00:00+00
+3623	5	Q3	2017-07-08	\N	\N	f	1	965	session_uH74cMKx	f	2017-07-08 00:00:00+00
+3624	1	FP1	2017-07-07	\N	\N	f	1	965	session_KcI4Kt8Q	f	2017-07-07 00:00:00+00
+3625	2	FP2	2017-07-07	\N	\N	f	1	965	session_vlan0IDN	f	2017-07-07 00:00:00+00
+3626	6	FP3	2017-07-08	\N	\N	f	1	965	session_Hufbo7x5	f	2017-07-08 00:00:00+00
+3627	7	R	2017-07-16	12:00:00	\N	f	16	966	session_dKh0F9Ch	t	2017-07-16 12:00:00+00
+3628	3	Q1	2017-07-15	\N	\N	f	1	966	session_vltooeu2	f	2017-07-15 00:00:00+00
+3629	4	Q2	2017-07-15	\N	\N	f	1	966	session_kTSh0ZoY	f	2017-07-15 00:00:00+00
+3630	5	Q3	2017-07-15	\N	\N	f	1	966	session_QqEW5Rq7	f	2017-07-15 00:00:00+00
+3631	1	FP1	2017-07-14	\N	\N	f	1	966	session_g0IFl3lN	f	2017-07-14 00:00:00+00
+3632	2	FP2	2017-07-14	\N	\N	f	1	966	session_WXf5j2D4	f	2017-07-14 00:00:00+00
+3633	6	FP3	2017-07-15	\N	\N	f	1	966	session_5GRG2EEI	f	2017-07-15 00:00:00+00
+3634	7	R	2017-07-30	12:00:00	\N	f	16	967	session_aH76sWiD	t	2017-07-30 12:00:00+00
+3635	3	Q1	2017-07-29	\N	\N	f	1	967	session_3sYUGLJI	f	2017-07-29 00:00:00+00
+3636	4	Q2	2017-07-29	\N	\N	f	1	967	session_U6bTxLSP	f	2017-07-29 00:00:00+00
+3637	5	Q3	2017-07-29	\N	\N	f	1	967	session_6FvoJzre	f	2017-07-29 00:00:00+00
+3638	1	FP1	2017-07-28	\N	\N	f	1	967	session_AQF6Mvsb	f	2017-07-28 00:00:00+00
+3639	2	FP2	2017-07-28	\N	\N	f	1	967	session_CUcpAYua	f	2017-07-28 00:00:00+00
+3640	6	FP3	2017-07-29	\N	\N	f	1	967	session_iXmabQAS	f	2017-07-29 00:00:00+00
+3641	7	R	2017-08-27	12:00:00	\N	f	16	968	session_aBY7K6kb	t	2017-08-27 12:00:00+00
+3642	3	Q1	2017-08-26	\N	\N	f	1	968	session_fRHPuMBU	f	2017-08-26 00:00:00+00
+3643	4	Q2	2017-08-26	\N	\N	f	1	968	session_cBf2p5nC	f	2017-08-26 00:00:00+00
+3644	5	Q3	2017-08-26	\N	\N	f	1	968	session_fcgseXIi	f	2017-08-26 00:00:00+00
+3645	1	FP1	2017-08-25	\N	\N	f	1	968	session_wgMhEBGx	f	2017-08-25 00:00:00+00
+3646	2	FP2	2017-08-25	\N	\N	f	1	968	session_sxwgbGwQ	f	2017-08-25 00:00:00+00
+3647	6	FP3	2017-08-26	\N	\N	f	1	968	session_tx57lL4i	f	2017-08-26 00:00:00+00
+3648	7	R	2017-09-03	12:00:00	\N	f	16	969	session_8cTOuQ9k	t	2017-09-03 12:00:00+00
+3649	3	Q1	2017-09-02	\N	\N	f	1	969	session_KKyl42fl	f	2017-09-02 00:00:00+00
+3650	4	Q2	2017-09-02	\N	\N	f	1	969	session_dX9Jn6UN	f	2017-09-02 00:00:00+00
+3651	5	Q3	2017-09-02	\N	\N	f	1	969	session_p8tJTsgq	f	2017-09-02 00:00:00+00
+3652	1	FP1	2017-09-01	\N	\N	f	1	969	session_3ygAiv6y	f	2017-09-01 00:00:00+00
+3653	2	FP2	2017-09-01	\N	\N	f	1	969	session_rVC64I9S	f	2017-09-01 00:00:00+00
+3654	6	FP3	2017-09-02	\N	\N	f	1	969	session_YDTDTH9J	f	2017-09-02 00:00:00+00
+3655	7	R	2017-09-17	12:00:00	\N	f	16	970	session_OJ9hawhd	t	2017-09-17 12:00:00+00
+3656	3	Q1	2017-09-16	\N	\N	f	1	970	session_9JFjKyCa	f	2017-09-16 00:00:00+00
+3657	4	Q2	2017-09-16	\N	\N	f	1	970	session_yYvaWOLE	f	2017-09-16 00:00:00+00
+3658	5	Q3	2017-09-16	\N	\N	f	1	970	session_7elxwTe3	f	2017-09-16 00:00:00+00
+3659	1	FP1	2017-09-15	\N	\N	f	1	970	session_DVjMcpJJ	f	2017-09-15 00:00:00+00
+3660	2	FP2	2017-09-15	\N	\N	f	1	970	session_KAS9iXCD	f	2017-09-15 00:00:00+00
+3661	6	FP3	2017-09-16	\N	\N	f	1	970	session_cd73vIRi	f	2017-09-16 00:00:00+00
+3662	7	R	2017-10-01	07:00:00	\N	f	16	971	session_LDu5mru2	t	2017-10-01 07:00:00+00
+3663	3	Q1	2017-09-30	\N	\N	f	1	971	session_igTQMALq	f	2017-09-30 00:00:00+00
+3664	4	Q2	2017-09-30	\N	\N	f	1	971	session_wbo6Wl72	f	2017-09-30 00:00:00+00
+3665	5	Q3	2017-09-30	\N	\N	f	1	971	session_LeORQjYd	f	2017-09-30 00:00:00+00
+3666	1	FP1	2017-09-29	\N	\N	f	1	971	session_qh6RRLkb	f	2017-09-29 00:00:00+00
+3667	2	FP2	2017-09-29	\N	\N	f	1	971	session_CyN3lYcF	f	2017-09-29 00:00:00+00
+3668	6	FP3	2017-09-30	\N	\N	f	1	971	session_xjpTnF3y	f	2017-09-30 00:00:00+00
+3669	7	R	2017-10-08	05:00:00	\N	f	16	972	session_FldNLVI4	t	2017-10-08 05:00:00+00
+3670	3	Q1	2017-10-07	\N	\N	f	1	972	session_youHdZmJ	f	2017-10-07 00:00:00+00
+3671	4	Q2	2017-10-07	\N	\N	f	1	972	session_J88s1Wn4	f	2017-10-07 00:00:00+00
+3672	5	Q3	2017-10-07	\N	\N	f	1	972	session_oneULscC	f	2017-10-07 00:00:00+00
+3673	1	FP1	2017-10-06	\N	\N	f	1	972	session_ivtcIXnO	f	2017-10-06 00:00:00+00
+3674	2	FP2	2017-10-06	\N	\N	f	1	972	session_C9Q2TS5r	f	2017-10-06 00:00:00+00
+3675	6	FP3	2017-10-07	\N	\N	f	1	972	session_aOduKBJL	f	2017-10-07 00:00:00+00
+3676	7	R	2017-10-22	19:00:00	\N	f	16	973	session_5ryg57Fe	t	2017-10-22 19:00:00+00
+3677	3	Q1	2017-10-21	\N	\N	f	1	973	session_3ksJEBxn	f	2017-10-21 00:00:00+00
+3678	4	Q2	2017-10-21	\N	\N	f	1	973	session_CcG71dKi	f	2017-10-21 00:00:00+00
+3679	5	Q3	2017-10-21	\N	\N	f	1	973	session_aTpm19py	f	2017-10-21 00:00:00+00
+3680	1	FP1	2017-10-20	\N	\N	f	1	973	session_6X2bJOyc	f	2017-10-20 00:00:00+00
+3681	2	FP2	2017-10-20	\N	\N	f	1	973	session_ofNdLguY	f	2017-10-20 00:00:00+00
+3682	6	FP3	2017-10-21	\N	\N	f	1	973	session_yH0pdjoV	f	2017-10-21 00:00:00+00
+3683	7	R	2017-10-29	19:00:00	\N	f	16	974	session_YdO9lI0Y	t	2017-10-29 19:00:00+00
+3684	3	Q1	2017-10-28	\N	\N	f	1	974	session_OI1a8t5o	f	2017-10-28 00:00:00+00
+3685	4	Q2	2017-10-28	\N	\N	f	1	974	session_SEx7Lykf	f	2017-10-28 00:00:00+00
+3686	5	Q3	2017-10-28	\N	\N	f	1	974	session_95APgUPw	f	2017-10-28 00:00:00+00
+3687	1	FP1	2017-10-27	\N	\N	f	1	974	session_p7wVPmUH	f	2017-10-27 00:00:00+00
+3688	2	FP2	2017-10-27	\N	\N	f	1	974	session_Q9UjPwxu	f	2017-10-27 00:00:00+00
+3689	6	FP3	2017-10-28	\N	\N	f	1	974	session_ZJwYygJW	f	2017-10-28 00:00:00+00
+3690	7	R	2017-11-12	16:00:00	\N	f	16	975	session_tJdJsgqN	t	2017-11-12 16:00:00+00
+3691	3	Q1	2017-11-11	\N	\N	f	1	975	session_mhitI8AO	f	2017-11-11 00:00:00+00
+3692	4	Q2	2017-11-11	\N	\N	f	1	975	session_fTKVd6R8	f	2017-11-11 00:00:00+00
+3693	5	Q3	2017-11-11	\N	\N	f	1	975	session_W4wMmyty	f	2017-11-11 00:00:00+00
+3694	1	FP1	2017-11-10	\N	\N	f	1	975	session_xg8nMjhi	f	2017-11-10 00:00:00+00
+3695	2	FP2	2017-11-10	\N	\N	f	1	975	session_277wrDXT	f	2017-11-10 00:00:00+00
+3696	6	FP3	2017-11-11	\N	\N	f	1	975	session_hUrFFX31	f	2017-11-11 00:00:00+00
+3697	7	R	2017-11-26	13:00:00	\N	f	16	976	session_QQHwwzJd	t	2017-11-26 13:00:00+00
+3698	3	Q1	2017-11-25	\N	\N	f	1	976	session_fQtKHVpu	f	2017-11-25 00:00:00+00
+3699	4	Q2	2017-11-25	\N	\N	f	1	976	session_Q4LoIPXJ	f	2017-11-25 00:00:00+00
+3700	5	Q3	2017-11-25	\N	\N	f	1	976	session_fYBEXpMU	f	2017-11-25 00:00:00+00
+3701	1	FP1	2017-11-24	\N	\N	f	1	976	session_4IXhqwLB	f	2017-11-24 00:00:00+00
+3702	2	FP2	2017-11-24	\N	\N	f	1	976	session_oynmE1nA	f	2017-11-24 00:00:00+00
+3703	6	FP3	2017-11-25	\N	\N	f	1	976	session_JRGYeZBe	f	2017-11-25 00:00:00+00
+3704	7	R	2018-03-25	05:10:00	\N	f	16	977	session_NpcSJeoX	t	2018-03-25 05:10:00+00
+3705	3	Q1	2018-03-24	\N	\N	f	1	977	session_6JGq3jWS	f	2018-03-24 00:00:00+00
+3706	4	Q2	2018-03-24	\N	\N	f	1	977	session_Xz0Qz6Ra	f	2018-03-24 00:00:00+00
+3707	5	Q3	2018-03-24	\N	\N	f	1	977	session_BuHwNFFp	f	2018-03-24 00:00:00+00
+3708	1	FP1	2018-03-23	\N	\N	f	1	977	session_2UAtrUzd	f	2018-03-23 00:00:00+00
+3709	2	FP2	2018-03-23	\N	\N	f	1	977	session_vdGpgsLe	f	2018-03-23 00:00:00+00
+3710	6	FP3	2018-03-24	\N	\N	f	1	977	session_oRSVSJkA	f	2018-03-24 00:00:00+00
+3711	7	R	2018-04-08	15:10:00	\N	f	16	978	session_5eUuNNjX	t	2018-04-08 15:10:00+00
+3712	3	Q1	2018-04-07	\N	\N	f	1	978	session_RqpJpCpV	f	2018-04-07 00:00:00+00
+3713	4	Q2	2018-04-07	\N	\N	f	1	978	session_WHoS7vgg	f	2018-04-07 00:00:00+00
+3714	5	Q3	2018-04-07	\N	\N	f	1	978	session_hQf3xpr9	f	2018-04-07 00:00:00+00
+3715	1	FP1	2018-04-06	\N	\N	f	1	978	session_O19o6gjb	f	2018-04-06 00:00:00+00
+3716	2	FP2	2018-04-06	\N	\N	f	1	978	session_x6EUVVCq	f	2018-04-06 00:00:00+00
+3717	6	FP3	2018-04-07	\N	\N	f	1	978	session_IdcHuOSR	f	2018-04-07 00:00:00+00
+3718	7	R	2018-04-15	06:10:00	\N	f	16	979	session_ydfqgR69	t	2018-04-15 06:10:00+00
+3719	3	Q1	2018-04-14	\N	\N	f	1	979	session_yNvfc1RV	f	2018-04-14 00:00:00+00
+3720	4	Q2	2018-04-14	\N	\N	f	1	979	session_Sdse9v1f	f	2018-04-14 00:00:00+00
+3721	5	Q3	2018-04-14	\N	\N	f	1	979	session_CiVtMayn	f	2018-04-14 00:00:00+00
+3722	1	FP1	2018-04-13	\N	\N	f	1	979	session_FpLnrZZY	f	2018-04-13 00:00:00+00
+3723	2	FP2	2018-04-13	\N	\N	f	1	979	session_VfroRmKF	f	2018-04-13 00:00:00+00
+3724	6	FP3	2018-04-14	\N	\N	f	1	979	session_WYx90oRV	f	2018-04-14 00:00:00+00
+3725	7	R	2018-04-29	12:10:00	\N	f	16	980	session_qVHAufit	t	2018-04-29 12:10:00+00
+3726	3	Q1	2018-04-28	\N	\N	f	1	980	session_IXB7GdFS	f	2018-04-28 00:00:00+00
+3727	4	Q2	2018-04-28	\N	\N	f	1	980	session_uOlW3u5r	f	2018-04-28 00:00:00+00
+3728	5	Q3	2018-04-28	\N	\N	f	1	980	session_2vclDMoq	f	2018-04-28 00:00:00+00
+3729	1	FP1	2018-04-27	\N	\N	f	1	980	session_iADCiBHd	f	2018-04-27 00:00:00+00
+3730	2	FP2	2018-04-27	\N	\N	f	1	980	session_GOYJF0FW	f	2018-04-27 00:00:00+00
+3731	6	FP3	2018-04-28	\N	\N	f	1	980	session_87QqHFiI	f	2018-04-28 00:00:00+00
+3732	7	R	2018-05-13	13:10:00	\N	f	16	981	session_gF6UaxOI	t	2018-05-13 13:10:00+00
+3733	3	Q1	2018-05-12	\N	\N	f	1	981	session_VwQHxCqf	f	2018-05-12 00:00:00+00
+3734	4	Q2	2018-05-12	\N	\N	f	1	981	session_NMSGwmwR	f	2018-05-12 00:00:00+00
+3735	5	Q3	2018-05-12	\N	\N	f	1	981	session_t5dRpiiK	f	2018-05-12 00:00:00+00
+3736	1	FP1	2018-05-11	\N	\N	f	1	981	session_J5rsM9WI	f	2018-05-11 00:00:00+00
+3737	2	FP2	2018-05-11	\N	\N	f	1	981	session_5DyFOqdS	f	2018-05-11 00:00:00+00
+3738	6	FP3	2018-05-12	\N	\N	f	1	981	session_kRIOajoc	f	2018-05-12 00:00:00+00
+3739	7	R	2018-05-27	13:10:00	\N	f	16	982	session_NdWLinXy	t	2018-05-27 13:10:00+00
+3740	3	Q1	2018-05-26	\N	\N	f	1	982	session_a3RINrrp	f	2018-05-26 00:00:00+00
+3741	4	Q2	2018-05-26	\N	\N	f	1	982	session_6siQUHgK	f	2018-05-26 00:00:00+00
+3742	5	Q3	2018-05-26	\N	\N	f	1	982	session_iIXGhsZa	f	2018-05-26 00:00:00+00
+3743	1	FP1	2018-05-24	\N	\N	f	1	982	session_0XjaPaJ3	f	2018-05-24 00:00:00+00
+3744	2	FP2	2018-05-24	\N	\N	f	1	982	session_F7vBymHh	f	2018-05-24 00:00:00+00
+3745	6	FP3	2018-05-26	\N	\N	f	1	982	session_JzV9PcMc	f	2018-05-26 00:00:00+00
+3746	7	R	2018-06-10	18:10:00	\N	f	16	983	session_CXg4X09V	t	2018-06-10 18:10:00+00
+3747	3	Q1	2018-06-09	\N	\N	f	1	983	session_6bgjbO50	f	2018-06-09 00:00:00+00
+3748	4	Q2	2018-06-09	\N	\N	f	1	983	session_bPoi1Fvx	f	2018-06-09 00:00:00+00
+3749	5	Q3	2018-06-09	\N	\N	f	1	983	session_4DpbpUFL	f	2018-06-09 00:00:00+00
+3750	1	FP1	2018-06-08	\N	\N	f	1	983	session_RnyRapBX	f	2018-06-08 00:00:00+00
+3751	2	FP2	2018-06-08	\N	\N	f	1	983	session_3LlLH3Xb	f	2018-06-08 00:00:00+00
+3752	6	FP3	2018-06-09	\N	\N	f	1	983	session_TKnRoUZ9	f	2018-06-09 00:00:00+00
+3753	7	R	2018-06-24	14:10:00	\N	f	16	984	session_0poaoJtj	t	2018-06-24 14:10:00+00
+3754	3	Q1	2018-06-23	\N	\N	f	1	984	session_ZJ8KSCn8	f	2018-06-23 00:00:00+00
+3755	4	Q2	2018-06-23	\N	\N	f	1	984	session_IzsIQKSs	f	2018-06-23 00:00:00+00
+3756	5	Q3	2018-06-23	\N	\N	f	1	984	session_IXnbUh6x	f	2018-06-23 00:00:00+00
+3757	1	FP1	2018-06-22	\N	\N	f	1	984	session_I1ysprHB	f	2018-06-22 00:00:00+00
+3758	2	FP2	2018-06-22	\N	\N	f	1	984	session_VU35WeAG	f	2018-06-22 00:00:00+00
+3759	6	FP3	2018-06-23	\N	\N	f	1	984	session_TMlZDtX8	f	2018-06-23 00:00:00+00
+3760	7	R	2018-07-01	13:10:00	\N	f	16	985	session_tUfsVr9l	t	2018-07-01 13:10:00+00
+3761	3	Q1	2018-06-30	\N	\N	f	1	985	session_nTwCWMt5	f	2018-06-30 00:00:00+00
+3762	4	Q2	2018-06-30	\N	\N	f	1	985	session_ag91EQbM	f	2018-06-30 00:00:00+00
+3763	5	Q3	2018-06-30	\N	\N	f	1	985	session_ie7eYC85	f	2018-06-30 00:00:00+00
+3764	1	FP1	2018-06-29	\N	\N	f	1	985	session_gIajlUUe	f	2018-06-29 00:00:00+00
+3765	2	FP2	2018-06-29	\N	\N	f	1	985	session_9GAeFSXO	f	2018-06-29 00:00:00+00
+3766	6	FP3	2018-06-30	\N	\N	f	1	985	session_M7Yn7LC5	f	2018-06-30 00:00:00+00
+3767	7	R	2018-07-08	13:10:00	\N	f	16	986	session_2yppbRBt	t	2018-07-08 13:10:00+00
+3768	3	Q1	2018-07-07	\N	\N	f	1	986	session_HJ0ikDMJ	f	2018-07-07 00:00:00+00
+3769	4	Q2	2018-07-07	\N	\N	f	1	986	session_jqf9TbrX	f	2018-07-07 00:00:00+00
+3770	5	Q3	2018-07-07	\N	\N	f	1	986	session_YG94Mr68	f	2018-07-07 00:00:00+00
+3771	1	FP1	2018-07-06	\N	\N	f	1	986	session_VjagA5CX	f	2018-07-06 00:00:00+00
+3772	2	FP2	2018-07-06	\N	\N	f	1	986	session_Q6y6rc6g	f	2018-07-06 00:00:00+00
+3773	6	FP3	2018-07-07	\N	\N	f	1	986	session_sLHsob3O	f	2018-07-07 00:00:00+00
+3774	7	R	2018-07-22	13:10:00	\N	f	16	987	session_FRZ3Kwu0	t	2018-07-22 13:10:00+00
+3775	3	Q1	2018-07-21	\N	\N	f	1	987	session_qaGBo3it	f	2018-07-21 00:00:00+00
+3776	4	Q2	2018-07-21	\N	\N	f	1	987	session_7fe1RcjJ	f	2018-07-21 00:00:00+00
+3777	5	Q3	2018-07-21	\N	\N	f	1	987	session_IX6Ysna6	f	2018-07-21 00:00:00+00
+3778	1	FP1	2018-07-20	\N	\N	f	1	987	session_EUNXPCV2	f	2018-07-20 00:00:00+00
+3779	2	FP2	2018-07-20	\N	\N	f	1	987	session_hyJQ7BuP	f	2018-07-20 00:00:00+00
+3780	6	FP3	2018-07-21	\N	\N	f	1	987	session_T3AIOqGR	f	2018-07-21 00:00:00+00
+3781	7	R	2018-07-29	13:10:00	\N	f	16	988	session_c8w4Hc3D	t	2018-07-29 13:10:00+00
+3782	3	Q1	2018-07-28	\N	\N	f	1	988	session_JYvqE9kY	f	2018-07-28 00:00:00+00
+3783	4	Q2	2018-07-28	\N	\N	f	1	988	session_QWDaJ1ko	f	2018-07-28 00:00:00+00
+3784	5	Q3	2018-07-28	\N	\N	f	1	988	session_7x5fEYSk	f	2018-07-28 00:00:00+00
+3785	1	FP1	2018-07-27	\N	\N	f	1	988	session_8EaDOOZe	f	2018-07-27 00:00:00+00
+3786	2	FP2	2018-07-27	\N	\N	f	1	988	session_pPtrLSmm	f	2018-07-27 00:00:00+00
+3787	6	FP3	2018-07-28	\N	\N	f	1	988	session_DWMhBuPi	f	2018-07-28 00:00:00+00
+3788	7	R	2018-08-26	13:10:00	\N	f	16	989	session_4OcbVhYS	t	2018-08-26 13:10:00+00
+3789	3	Q1	2018-08-25	\N	\N	f	1	989	session_sdcHimZd	f	2018-08-25 00:00:00+00
+3790	4	Q2	2018-08-25	\N	\N	f	1	989	session_GIVXX1wc	f	2018-08-25 00:00:00+00
+3791	5	Q3	2018-08-25	\N	\N	f	1	989	session_3IVIxhgf	f	2018-08-25 00:00:00+00
+3792	1	FP1	2018-08-24	\N	\N	f	1	989	session_1Cjw475m	f	2018-08-24 00:00:00+00
+3793	2	FP2	2018-08-24	\N	\N	f	1	989	session_4lJD7a0o	f	2018-08-24 00:00:00+00
+3794	6	FP3	2018-08-25	\N	\N	f	1	989	session_J9tt3Juo	f	2018-08-25 00:00:00+00
+3795	7	R	2018-09-02	13:10:00	\N	f	16	990	session_aQHic4Li	t	2018-09-02 13:10:00+00
+3796	3	Q1	2018-09-01	\N	\N	f	1	990	session_bNla32GA	f	2018-09-01 00:00:00+00
+3797	4	Q2	2018-09-01	\N	\N	f	1	990	session_lc9O6LxU	f	2018-09-01 00:00:00+00
+3798	5	Q3	2018-09-01	\N	\N	f	1	990	session_pCt8H81M	f	2018-09-01 00:00:00+00
+3799	1	FP1	2018-08-31	\N	\N	f	1	990	session_CJB325Je	f	2018-08-31 00:00:00+00
+3800	2	FP2	2018-08-31	\N	\N	f	1	990	session_Q3wEJkgd	f	2018-08-31 00:00:00+00
+3801	6	FP3	2018-09-01	\N	\N	f	1	990	session_0HPdK6Ni	f	2018-09-01 00:00:00+00
+3802	7	R	2018-09-16	12:10:00	\N	f	16	991	session_5f0G0ak7	t	2018-09-16 12:10:00+00
+3803	3	Q1	2018-09-15	\N	\N	f	1	991	session_72BbeOGe	f	2018-09-15 00:00:00+00
+3804	4	Q2	2018-09-15	\N	\N	f	1	991	session_zhXQFeuW	f	2018-09-15 00:00:00+00
+3805	5	Q3	2018-09-15	\N	\N	f	1	991	session_cd4NFpg7	f	2018-09-15 00:00:00+00
+3806	1	FP1	2018-09-14	\N	\N	f	1	991	session_ftKYraxd	f	2018-09-14 00:00:00+00
+3807	2	FP2	2018-09-14	\N	\N	f	1	991	session_ZxxEp4cl	f	2018-09-14 00:00:00+00
+3808	6	FP3	2018-09-15	\N	\N	f	1	991	session_hZgfAfwk	f	2018-09-15 00:00:00+00
+3809	7	R	2018-09-30	11:10:00	\N	f	16	992	session_uGrX6nS2	t	2018-09-30 11:10:00+00
+3810	3	Q1	2018-09-29	\N	\N	f	1	992	session_N01WoldL	f	2018-09-29 00:00:00+00
+3811	4	Q2	2018-09-29	\N	\N	f	1	992	session_hVxZtWiS	f	2018-09-29 00:00:00+00
+3812	5	Q3	2018-09-29	\N	\N	f	1	992	session_Gqm4zc48	f	2018-09-29 00:00:00+00
+3813	1	FP1	2018-09-28	\N	\N	f	1	992	session_UrIPxCOD	f	2018-09-28 00:00:00+00
+3814	2	FP2	2018-09-28	\N	\N	f	1	992	session_d5IyZBQm	f	2018-09-28 00:00:00+00
+3815	6	FP3	2018-09-29	\N	\N	f	1	992	session_sVDH2GSh	f	2018-09-29 00:00:00+00
+3816	7	R	2018-10-07	05:10:00	\N	f	16	993	session_JH5grwYk	t	2018-10-07 05:10:00+00
+3817	3	Q1	2018-10-06	\N	\N	f	1	993	session_6nmYx2E4	f	2018-10-06 00:00:00+00
+3818	4	Q2	2018-10-06	\N	\N	f	1	993	session_cFyLTodH	f	2018-10-06 00:00:00+00
+3819	5	Q3	2018-10-06	\N	\N	f	1	993	session_yqQUSV7i	f	2018-10-06 00:00:00+00
+3820	1	FP1	2018-10-05	\N	\N	f	1	993	session_v4Gu26AW	f	2018-10-05 00:00:00+00
+3821	2	FP2	2018-10-05	\N	\N	f	1	993	session_kMaKfwlM	f	2018-10-05 00:00:00+00
+3822	6	FP3	2018-10-06	\N	\N	f	1	993	session_B7axqOPe	f	2018-10-06 00:00:00+00
+3823	7	R	2018-10-21	18:10:00	\N	f	16	994	session_10LnrShQ	t	2018-10-21 18:10:00+00
+3824	3	Q1	2018-10-20	\N	\N	f	1	994	session_Ubv0jXkg	f	2018-10-20 00:00:00+00
+3825	4	Q2	2018-10-20	\N	\N	f	1	994	session_HjnwOVZg	f	2018-10-20 00:00:00+00
+3826	5	Q3	2018-10-20	\N	\N	f	1	994	session_axptAPIP	f	2018-10-20 00:00:00+00
+3827	1	FP1	2018-10-19	\N	\N	f	1	994	session_8XHCTDmm	f	2018-10-19 00:00:00+00
+3828	2	FP2	2018-10-19	\N	\N	f	1	994	session_q69mF15h	f	2018-10-19 00:00:00+00
+3829	6	FP3	2018-10-20	\N	\N	f	1	994	session_g2RTAkUz	f	2018-10-20 00:00:00+00
+3830	7	R	2018-10-28	19:10:00	\N	f	16	995	session_R7koDouU	t	2018-10-28 19:10:00+00
+3831	3	Q1	2018-10-27	\N	\N	f	1	995	session_XOzcRnvL	f	2018-10-27 00:00:00+00
+3832	4	Q2	2018-10-27	\N	\N	f	1	995	session_EK1btdRa	f	2018-10-27 00:00:00+00
+3833	5	Q3	2018-10-27	\N	\N	f	1	995	session_RQsqFE3Z	f	2018-10-27 00:00:00+00
+3834	1	FP1	2018-10-26	\N	\N	f	1	995	session_tmWa7JjA	f	2018-10-26 00:00:00+00
+3835	2	FP2	2018-10-26	\N	\N	f	1	995	session_oJcsKQzP	f	2018-10-26 00:00:00+00
+3836	6	FP3	2018-10-27	\N	\N	f	1	995	session_mZHWCvSH	f	2018-10-27 00:00:00+00
+3837	7	R	2018-11-11	17:10:00	\N	f	16	996	session_w7TAKqpj	t	2018-11-11 17:10:00+00
+3838	3	Q1	2018-11-10	\N	\N	f	1	996	session_3zYSPHhs	f	2018-11-10 00:00:00+00
+3839	4	Q2	2018-11-10	\N	\N	f	1	996	session_g833DGrt	f	2018-11-10 00:00:00+00
+3840	5	Q3	2018-11-10	\N	\N	f	1	996	session_2mFWrtLk	f	2018-11-10 00:00:00+00
+3841	1	FP1	2018-11-09	\N	\N	f	1	996	session_z7xasauS	f	2018-11-09 00:00:00+00
+3842	2	FP2	2018-11-09	\N	\N	f	1	996	session_eLXGdH39	f	2018-11-09 00:00:00+00
+3843	6	FP3	2018-11-10	\N	\N	f	1	996	session_VO6GP31F	f	2018-11-10 00:00:00+00
+3844	7	R	2018-11-25	13:10:00	\N	f	16	997	session_dCGWNgu5	t	2018-11-25 13:10:00+00
+3845	3	Q1	2018-11-24	\N	\N	f	1	997	session_ibcUZ1GH	f	2018-11-24 00:00:00+00
+3846	4	Q2	2018-11-24	\N	\N	f	1	997	session_YxEmBQQq	f	2018-11-24 00:00:00+00
+3847	5	Q3	2018-11-24	\N	\N	f	1	997	session_JqN3G5fX	f	2018-11-24 00:00:00+00
+3848	1	FP1	2018-11-23	\N	\N	f	1	997	session_CYtLcfz3	f	2018-11-23 00:00:00+00
+3849	2	FP2	2018-11-23	\N	\N	f	1	997	session_MYv31OmJ	f	2018-11-23 00:00:00+00
+3850	6	FP3	2018-11-24	\N	\N	f	1	997	session_XfdE90g3	f	2018-11-24 00:00:00+00
+3851	7	R	2019-03-17	05:10:00	\N	f	18	998	session_tYRQTW0A	t	2019-03-17 05:10:00+00
+3852	3	Q1	2019-03-16	\N	\N	f	1	998	session_ZH0R9aNO	f	2019-03-16 00:00:00+00
+3853	4	Q2	2019-03-16	\N	\N	f	1	998	session_9CEwOhXT	f	2019-03-16 00:00:00+00
+3854	5	Q3	2019-03-16	\N	\N	f	1	998	session_j51GI5nT	f	2019-03-16 00:00:00+00
+3855	1	FP1	2019-03-15	\N	\N	f	1	998	session_qsguKps7	f	2019-03-15 00:00:00+00
+3856	2	FP2	2019-03-15	\N	\N	f	1	998	session_ec5GdzSL	f	2019-03-15 00:00:00+00
+3857	6	FP3	2019-03-16	\N	\N	f	1	998	session_sTcnUjPc	f	2019-03-16 00:00:00+00
+3858	7	R	2019-03-31	15:10:00	\N	f	18	999	session_UMxhO53d	t	2019-03-31 15:10:00+00
+3859	3	Q1	2019-03-30	\N	\N	f	1	999	session_er3oZh7z	f	2019-03-30 00:00:00+00
+3860	4	Q2	2019-03-30	\N	\N	f	1	999	session_JqMuWXAP	f	2019-03-30 00:00:00+00
+3861	5	Q3	2019-03-30	\N	\N	f	1	999	session_It7FtIY9	f	2019-03-30 00:00:00+00
+3862	1	FP1	2019-03-29	\N	\N	f	1	999	session_m5DAGRRi	f	2019-03-29 00:00:00+00
+3863	2	FP2	2019-03-29	\N	\N	f	1	999	session_ea4gjtaB	f	2019-03-29 00:00:00+00
+3864	6	FP3	2019-03-30	\N	\N	f	1	999	session_bWdvFfTv	f	2019-03-30 00:00:00+00
+3865	7	R	2019-04-14	06:10:00	\N	f	18	1000	session_0JXSEpXy	t	2019-04-14 06:10:00+00
+3866	3	Q1	2019-04-13	\N	\N	f	1	1000	session_oSDsdwUr	f	2019-04-13 00:00:00+00
+3867	4	Q2	2019-04-13	\N	\N	f	1	1000	session_f228DHsD	f	2019-04-13 00:00:00+00
+3868	5	Q3	2019-04-13	\N	\N	f	1	1000	session_RnolMFxw	f	2019-04-13 00:00:00+00
+3869	1	FP1	2019-04-12	\N	\N	f	1	1000	session_PmQZo0IP	f	2019-04-12 00:00:00+00
+3870	2	FP2	2019-04-12	\N	\N	f	1	1000	session_vOIaYmW1	f	2019-04-12 00:00:00+00
+3871	6	FP3	2019-04-13	\N	\N	f	1	1000	session_qXqk40rW	f	2019-04-13 00:00:00+00
+3872	7	R	2019-04-28	12:10:00	\N	f	18	1001	session_P3GEXjAJ	t	2019-04-28 12:10:00+00
+3873	3	Q1	2019-04-27	\N	\N	f	1	1001	session_urltliiy	f	2019-04-27 00:00:00+00
+3874	4	Q2	2019-04-27	\N	\N	f	1	1001	session_TOKyfBsM	f	2019-04-27 00:00:00+00
+3875	5	Q3	2019-04-27	\N	\N	f	1	1001	session_AQYWCTaw	f	2019-04-27 00:00:00+00
+3876	1	FP1	2019-04-26	\N	\N	f	1	1001	session_VcjwQLSb	f	2019-04-26 00:00:00+00
+3877	2	FP2	2019-04-26	\N	\N	f	1	1001	session_5NN6Cr0z	f	2019-04-26 00:00:00+00
+3878	6	FP3	2019-04-27	\N	\N	f	1	1001	session_dOjzrG30	f	2019-04-27 00:00:00+00
+3879	7	R	2019-05-12	13:10:00	\N	f	18	1002	session_qFQg1yuo	t	2019-05-12 13:10:00+00
+3880	3	Q1	2019-05-11	\N	\N	f	1	1002	session_ueGpZWAs	f	2019-05-11 00:00:00+00
+3881	4	Q2	2019-05-11	\N	\N	f	1	1002	session_diclpi9X	f	2019-05-11 00:00:00+00
+3882	5	Q3	2019-05-11	\N	\N	f	1	1002	session_wiw4fH23	f	2019-05-11 00:00:00+00
+3883	1	FP1	2019-05-10	\N	\N	f	1	1002	session_lIdNsyfv	f	2019-05-10 00:00:00+00
+3884	2	FP2	2019-05-10	\N	\N	f	1	1002	session_iDGAivuY	f	2019-05-10 00:00:00+00
+3885	6	FP3	2019-05-11	\N	\N	f	1	1002	session_9y3APRB2	f	2019-05-11 00:00:00+00
+3886	7	R	2019-05-26	13:10:00	\N	f	18	1003	session_wkuvnd00	t	2019-05-26 13:10:00+00
+3887	3	Q1	2019-05-25	\N	\N	f	1	1003	session_2tPRhVF7	f	2019-05-25 00:00:00+00
+3888	4	Q2	2019-05-25	\N	\N	f	1	1003	session_qLUpGxAw	f	2019-05-25 00:00:00+00
+3889	5	Q3	2019-05-25	\N	\N	f	1	1003	session_GLmKJYKY	f	2019-05-25 00:00:00+00
+3890	1	FP1	2019-05-23	\N	\N	f	1	1003	session_EibUwyS1	f	2019-05-23 00:00:00+00
+3891	2	FP2	2019-05-23	\N	\N	f	1	1003	session_ArAgmS9I	f	2019-05-23 00:00:00+00
+3892	6	FP3	2019-05-25	\N	\N	f	1	1003	session_MKjmkGrl	f	2019-05-25 00:00:00+00
+3893	7	R	2019-06-09	18:10:00	\N	f	18	1004	session_j82ACwfT	t	2019-06-09 18:10:00+00
+3894	3	Q1	2019-06-08	\N	\N	f	1	1004	session_Udrc7og1	f	2019-06-08 00:00:00+00
+3895	4	Q2	2019-06-08	\N	\N	f	1	1004	session_D9c9i4cq	f	2019-06-08 00:00:00+00
+3896	5	Q3	2019-06-08	\N	\N	f	1	1004	session_0wxAuvMb	f	2019-06-08 00:00:00+00
+3897	1	FP1	2019-06-07	\N	\N	f	1	1004	session_4kSep86E	f	2019-06-07 00:00:00+00
+3898	2	FP2	2019-06-07	\N	\N	f	1	1004	session_dgdkjih7	f	2019-06-07 00:00:00+00
+3899	6	FP3	2019-06-08	\N	\N	f	1	1004	session_hIBcKFxu	f	2019-06-08 00:00:00+00
+3900	7	R	2019-06-23	13:10:00	\N	f	18	1005	session_Ut3hr9ea	t	2019-06-23 13:10:00+00
+3901	3	Q1	2019-06-22	\N	\N	f	1	1005	session_4GfqQjTU	f	2019-06-22 00:00:00+00
+3902	4	Q2	2019-06-22	\N	\N	f	1	1005	session_0RFUea4w	f	2019-06-22 00:00:00+00
+3903	5	Q3	2019-06-22	\N	\N	f	1	1005	session_NUlTIoPZ	f	2019-06-22 00:00:00+00
+3904	1	FP1	2019-06-21	\N	\N	f	1	1005	session_4ScqMhK8	f	2019-06-21 00:00:00+00
+3905	2	FP2	2019-06-21	\N	\N	f	1	1005	session_yHeD8PRU	f	2019-06-21 00:00:00+00
+3906	6	FP3	2019-06-22	\N	\N	f	1	1005	session_kxtqLJGy	f	2019-06-22 00:00:00+00
+3907	7	R	2019-06-30	13:10:00	\N	f	18	1006	session_8Pv8Xq69	t	2019-06-30 13:10:00+00
+3908	3	Q1	2019-06-29	\N	\N	f	1	1006	session_vGFB4CW9	f	2019-06-29 00:00:00+00
+3909	4	Q2	2019-06-29	\N	\N	f	1	1006	session_uwtNgb9V	f	2019-06-29 00:00:00+00
+3910	5	Q3	2019-06-29	\N	\N	f	1	1006	session_qNe7jSTd	f	2019-06-29 00:00:00+00
+3911	1	FP1	2019-06-28	\N	\N	f	1	1006	session_u3VaJFrT	f	2019-06-28 00:00:00+00
+3912	2	FP2	2019-06-28	\N	\N	f	1	1006	session_IHtpVWKu	f	2019-06-28 00:00:00+00
+3913	6	FP3	2019-06-29	\N	\N	f	1	1006	session_PL7IG7Qs	f	2019-06-29 00:00:00+00
+3914	7	R	2019-07-14	13:10:00	\N	f	18	1007	session_AGakvqjW	t	2019-07-14 13:10:00+00
+3915	3	Q1	2019-07-13	\N	\N	f	1	1007	session_S9axPdYR	f	2019-07-13 00:00:00+00
+3916	4	Q2	2019-07-13	\N	\N	f	1	1007	session_u982lgit	f	2019-07-13 00:00:00+00
+3917	5	Q3	2019-07-13	\N	\N	f	1	1007	session_6WhuoVZP	f	2019-07-13 00:00:00+00
+3918	1	FP1	2019-07-12	\N	\N	f	1	1007	session_f4z2mBhm	f	2019-07-12 00:00:00+00
+3919	2	FP2	2019-07-12	\N	\N	f	1	1007	session_8aDL5Tv5	f	2019-07-12 00:00:00+00
+3920	6	FP3	2019-07-13	\N	\N	f	1	1007	session_T2Dg07pP	f	2019-07-13 00:00:00+00
+3921	7	R	2019-07-28	13:10:00	\N	f	18	1008	session_NJd4qIdT	t	2019-07-28 13:10:00+00
+3922	3	Q1	2019-07-27	\N	\N	f	1	1008	session_cMRVSlRy	f	2019-07-27 00:00:00+00
+3923	4	Q2	2019-07-27	\N	\N	f	1	1008	session_7znbPs1K	f	2019-07-27 00:00:00+00
+3924	5	Q3	2019-07-27	\N	\N	f	1	1008	session_Jtzmq3wo	f	2019-07-27 00:00:00+00
+3925	1	FP1	2019-07-26	\N	\N	f	1	1008	session_npfvr272	f	2019-07-26 00:00:00+00
+3926	2	FP2	2019-07-26	\N	\N	f	1	1008	session_vNkTTSL5	f	2019-07-26 00:00:00+00
+3927	6	FP3	2019-07-27	\N	\N	f	1	1008	session_usPW3Buo	f	2019-07-27 00:00:00+00
+3928	7	R	2019-08-04	13:10:00	\N	f	18	1009	session_ijRsi0zl	t	2019-08-04 13:10:00+00
+3929	3	Q1	2019-08-03	\N	\N	f	1	1009	session_7hIEMPBF	f	2019-08-03 00:00:00+00
+3930	4	Q2	2019-08-03	\N	\N	f	1	1009	session_BR9tz14Z	f	2019-08-03 00:00:00+00
+3931	5	Q3	2019-08-03	\N	\N	f	1	1009	session_fDh2Bv2L	f	2019-08-03 00:00:00+00
+3932	1	FP1	2019-08-02	\N	\N	f	1	1009	session_j6YSnR1w	f	2019-08-02 00:00:00+00
+3933	2	FP2	2019-08-02	\N	\N	f	1	1009	session_Oiiko2sZ	f	2019-08-02 00:00:00+00
+3934	6	FP3	2019-08-03	\N	\N	f	1	1009	session_AHF8xDEp	f	2019-08-03 00:00:00+00
+3935	7	R	2019-09-01	13:10:00	\N	f	18	1010	session_X8hdf8zh	t	2019-09-01 13:10:00+00
+3936	3	Q1	2019-08-31	\N	\N	f	1	1010	session_hQRH4zeR	f	2019-08-31 00:00:00+00
+3937	4	Q2	2019-08-31	\N	\N	f	1	1010	session_e2tpcEKb	f	2019-08-31 00:00:00+00
+3938	5	Q3	2019-08-31	\N	\N	f	1	1010	session_M3ReIIWX	f	2019-08-31 00:00:00+00
+3939	1	FP1	2019-08-30	\N	\N	f	1	1010	session_MwDXzdrP	f	2019-08-30 00:00:00+00
+3940	2	FP2	2019-08-30	\N	\N	f	1	1010	session_F4tHqKKx	f	2019-08-30 00:00:00+00
+3941	6	FP3	2019-08-31	\N	\N	f	1	1010	session_sBS6YPBy	f	2019-08-31 00:00:00+00
+3942	7	R	2019-09-08	13:10:00	\N	f	18	1011	session_lg4zF9NG	t	2019-09-08 13:10:00+00
+3943	3	Q1	2019-09-07	\N	\N	f	1	1011	session_Fsr4UXKN	f	2019-09-07 00:00:00+00
+3944	4	Q2	2019-09-07	\N	\N	f	1	1011	session_8IsF27km	f	2019-09-07 00:00:00+00
+3945	5	Q3	2019-09-07	\N	\N	f	1	1011	session_vIpeMpuL	f	2019-09-07 00:00:00+00
+3946	1	FP1	2019-09-06	\N	\N	f	1	1011	session_tL2GYQsc	f	2019-09-06 00:00:00+00
+3947	2	FP2	2019-09-06	\N	\N	f	1	1011	session_IxviJ5m0	f	2019-09-06 00:00:00+00
+3948	6	FP3	2019-09-07	\N	\N	f	1	1011	session_36uUk6Jn	f	2019-09-07 00:00:00+00
+3949	7	R	2019-09-22	12:10:00	\N	f	18	1012	session_HXNcjIvs	t	2019-09-22 12:10:00+00
+3950	3	Q1	2019-09-21	\N	\N	f	1	1012	session_J3Gs8BC1	f	2019-09-21 00:00:00+00
+3951	4	Q2	2019-09-21	\N	\N	f	1	1012	session_INKDpqVX	f	2019-09-21 00:00:00+00
+3952	5	Q3	2019-09-21	\N	\N	f	1	1012	session_UCfVajNn	f	2019-09-21 00:00:00+00
+3953	1	FP1	2019-09-20	\N	\N	f	1	1012	session_8QfhPhUu	f	2019-09-20 00:00:00+00
+3954	2	FP2	2019-09-20	\N	\N	f	1	1012	session_lNd5FaPE	f	2019-09-20 00:00:00+00
+3955	6	FP3	2019-09-21	\N	\N	f	1	1012	session_VOhmoew9	f	2019-09-21 00:00:00+00
+3956	7	R	2019-09-29	11:10:00	\N	f	18	1013	session_90SpDrmI	t	2019-09-29 11:10:00+00
+3957	3	Q1	2019-09-28	\N	\N	f	1	1013	session_Lma4TgXB	f	2019-09-28 00:00:00+00
+3958	4	Q2	2019-09-28	\N	\N	f	1	1013	session_rmGIg3j5	f	2019-09-28 00:00:00+00
+3959	5	Q3	2019-09-28	\N	\N	f	1	1013	session_T7vjDEl3	f	2019-09-28 00:00:00+00
+3960	1	FP1	2019-09-27	\N	\N	f	1	1013	session_owfQANEg	f	2019-09-27 00:00:00+00
+3961	2	FP2	2019-09-27	\N	\N	f	1	1013	session_mqIRpTWf	f	2019-09-27 00:00:00+00
+3962	6	FP3	2019-09-28	\N	\N	f	1	1013	session_2IoVaq2l	f	2019-09-28 00:00:00+00
+3963	7	R	2019-10-13	05:10:00	\N	f	18	1014	session_itWsCffr	t	2019-10-13 05:10:00+00
+3964	3	Q1	2019-10-12	\N	\N	f	1	1014	session_RXpgWDqw	f	2019-10-12 00:00:00+00
+3965	4	Q2	2019-10-12	\N	\N	f	1	1014	session_S9rMu8cQ	f	2019-10-12 00:00:00+00
+3966	5	Q3	2019-10-12	\N	\N	f	1	1014	session_BxnE7mol	f	2019-10-12 00:00:00+00
+3967	1	FP1	2019-10-11	\N	\N	f	1	1014	session_hCpxdgJe	f	2019-10-11 00:00:00+00
+3968	2	FP2	2019-10-11	\N	\N	f	1	1014	session_HMQQBlbl	f	2019-10-11 00:00:00+00
+3969	6	FP3	2019-10-12	\N	\N	f	1	1014	session_o8dHEb8s	f	2019-10-12 00:00:00+00
+3970	7	R	2019-10-27	19:10:00	\N	f	18	1015	session_LeDxYgFk	t	2019-10-27 19:10:00+00
+3971	3	Q1	2019-10-26	\N	\N	f	1	1015	session_UMFkYXRV	f	2019-10-26 00:00:00+00
+3972	4	Q2	2019-10-26	\N	\N	f	1	1015	session_ktiUAZlq	f	2019-10-26 00:00:00+00
+3973	5	Q3	2019-10-26	\N	\N	f	1	1015	session_vxhlHg3a	f	2019-10-26 00:00:00+00
+3974	1	FP1	2019-10-25	\N	\N	f	1	1015	session_Th0yDwlu	f	2019-10-25 00:00:00+00
+3975	2	FP2	2019-10-25	\N	\N	f	1	1015	session_ftwc6GBH	f	2019-10-25 00:00:00+00
+3976	6	FP3	2019-10-26	\N	\N	f	1	1015	session_ef2DiXR2	f	2019-10-26 00:00:00+00
+3977	7	R	2019-11-03	19:10:00	\N	f	18	1016	session_bnq4Mcqg	t	2019-11-03 19:10:00+00
+3978	3	Q1	2019-11-02	\N	\N	f	1	1016	session_H4bBoL5I	f	2019-11-02 00:00:00+00
+3979	4	Q2	2019-11-02	\N	\N	f	1	1016	session_xPmTYSvu	f	2019-11-02 00:00:00+00
+3980	5	Q3	2019-11-02	\N	\N	f	1	1016	session_2sOB3FD1	f	2019-11-02 00:00:00+00
+3981	1	FP1	2019-11-01	\N	\N	f	1	1016	session_0x8uTn5s	f	2019-11-01 00:00:00+00
+3982	2	FP2	2019-11-01	\N	\N	f	1	1016	session_mvYpR7xg	f	2019-11-01 00:00:00+00
+3983	6	FP3	2019-11-02	\N	\N	f	1	1016	session_xY57KCiX	f	2019-11-02 00:00:00+00
+3984	7	R	2019-11-17	17:10:00	\N	f	18	1017	session_1OwgYsO9	t	2019-11-17 17:10:00+00
+3985	3	Q1	2019-11-16	\N	\N	f	1	1017	session_3Q4pgav4	f	2019-11-16 00:00:00+00
+3986	4	Q2	2019-11-16	\N	\N	f	1	1017	session_XgIBFX6e	f	2019-11-16 00:00:00+00
+3987	5	Q3	2019-11-16	\N	\N	f	1	1017	session_wDu4ZOWW	f	2019-11-16 00:00:00+00
+3988	1	FP1	2019-11-15	\N	\N	f	1	1017	session_lzpiCpUD	f	2019-11-15 00:00:00+00
+3989	2	FP2	2019-11-15	\N	\N	f	1	1017	session_F6lyB6HU	f	2019-11-15 00:00:00+00
+3990	6	FP3	2019-11-16	\N	\N	f	1	1017	session_ny9elaUA	f	2019-11-16 00:00:00+00
+3991	7	R	2019-12-01	13:10:00	\N	f	18	1018	session_ZFu8ilof	t	2019-12-01 13:10:00+00
+3992	3	Q1	2019-11-30	\N	\N	f	1	1018	session_enl4k5Ec	f	2019-11-30 00:00:00+00
+3993	4	Q2	2019-11-30	\N	\N	f	1	1018	session_Nsp40vY1	f	2019-11-30 00:00:00+00
+3994	5	Q3	2019-11-30	\N	\N	f	1	1018	session_isI17oqK	f	2019-11-30 00:00:00+00
+3995	1	FP1	2019-11-29	\N	\N	f	1	1018	session_4rvC2XfR	f	2019-11-29 00:00:00+00
+3996	2	FP2	2019-11-29	\N	\N	f	1	1018	session_fyOXxURZ	f	2019-11-29 00:00:00+00
+3997	6	FP3	2019-11-30	\N	\N	f	1	1018	session_Nj9OQDiS	f	2019-11-30 00:00:00+00
+3998	7	R	2020-07-05	13:10:00	\N	f	18	1019	session_XSUo98E3	t	2020-07-05 13:10:00+00
+3999	3	Q1	2020-07-04	\N	\N	f	1	1019	session_CPVCHF3R	f	2020-07-04 00:00:00+00
+4000	4	Q2	2020-07-04	\N	\N	f	1	1019	session_lhcDsaS0	f	2020-07-04 00:00:00+00
+4001	5	Q3	2020-07-04	\N	\N	f	1	1019	session_aprzgxuI	f	2020-07-04 00:00:00+00
+4002	1	FP1	2020-07-03	\N	\N	f	1	1019	session_euqQMVoS	f	2020-07-03 00:00:00+00
+4003	2	FP2	2020-07-03	\N	\N	f	1	1019	session_f4DrEQJM	f	2020-07-03 00:00:00+00
+4004	6	FP3	2020-07-04	\N	\N	f	1	1019	session_GffTC6Qb	f	2020-07-04 00:00:00+00
+4005	7	R	2020-07-12	13:10:00	\N	f	18	1020	session_ik3r2WjH	t	2020-07-12 13:10:00+00
+4006	3	Q1	2020-07-11	\N	\N	f	1	1020	session_LBj0P4ph	f	2020-07-11 00:00:00+00
+4007	4	Q2	2020-07-11	\N	\N	f	1	1020	session_pYhsyjfg	f	2020-07-11 00:00:00+00
+4008	5	Q3	2020-07-11	\N	\N	f	1	1020	session_90Gy3rmG	f	2020-07-11 00:00:00+00
+4009	1	FP1	2020-07-10	\N	\N	f	1	1020	session_6TXgTR1M	f	2020-07-10 00:00:00+00
+4010	2	FP2	2020-07-10	\N	\N	f	1	1020	session_nZvOdbzZ	f	2020-07-10 00:00:00+00
+4011	6	FP3	2020-07-11	\N	\N	f	1	1020	session_tUXk86Zw	f	2020-07-11 00:00:00+00
+4012	7	R	2020-07-19	13:10:00	\N	f	18	1021	session_cvEBvUiq	t	2020-07-19 13:10:00+00
+4013	3	Q1	2020-07-18	\N	\N	f	1	1021	session_bE0GoMdJ	f	2020-07-18 00:00:00+00
+4014	4	Q2	2020-07-18	\N	\N	f	1	1021	session_WKfsGyF5	f	2020-07-18 00:00:00+00
+4015	5	Q3	2020-07-18	\N	\N	f	1	1021	session_1ybEwIFu	f	2020-07-18 00:00:00+00
+4016	1	FP1	2020-07-17	\N	\N	f	1	1021	session_4Jjc8NT0	f	2020-07-17 00:00:00+00
+4017	2	FP2	2020-07-17	\N	\N	f	1	1021	session_Kxpqln6n	f	2020-07-17 00:00:00+00
+4018	6	FP3	2020-07-18	\N	\N	f	1	1021	session_caNtjEgT	f	2020-07-18 00:00:00+00
+4019	7	R	2020-08-02	13:10:00	\N	f	18	1022	session_jBDZNQQf	t	2020-08-02 13:10:00+00
+4020	3	Q1	2020-08-01	\N	\N	f	1	1022	session_aBcf4NAr	f	2020-08-01 00:00:00+00
+4021	4	Q2	2020-08-01	\N	\N	f	1	1022	session_Q5XcMEEn	f	2020-08-01 00:00:00+00
+4022	5	Q3	2020-08-01	\N	\N	f	1	1022	session_nS6dBljK	f	2020-08-01 00:00:00+00
+4023	1	FP1	2020-07-31	\N	\N	f	1	1022	session_XtEDT6eQ	f	2020-07-31 00:00:00+00
+4024	2	FP2	2020-07-31	\N	\N	f	1	1022	session_2cAFHJam	f	2020-07-31 00:00:00+00
+4025	6	FP3	2020-08-01	\N	\N	f	1	1022	session_U0z6veF2	f	2020-08-01 00:00:00+00
+4026	7	R	2020-08-09	13:10:00	\N	f	18	1023	session_TsFZLxX5	t	2020-08-09 13:10:00+00
+4027	3	Q1	2020-08-08	\N	\N	f	1	1023	session_At7biA1q	f	2020-08-08 00:00:00+00
+4028	4	Q2	2020-08-08	\N	\N	f	1	1023	session_Kv88MPJD	f	2020-08-08 00:00:00+00
+4029	5	Q3	2020-08-08	\N	\N	f	1	1023	session_HBiNmr6i	f	2020-08-08 00:00:00+00
+4030	1	FP1	2020-08-07	\N	\N	f	1	1023	session_bogbiLZn	f	2020-08-07 00:00:00+00
+4031	2	FP2	2020-08-07	\N	\N	f	1	1023	session_aSlU6kc2	f	2020-08-07 00:00:00+00
+4032	6	FP3	2020-08-08	\N	\N	f	1	1023	session_jHZSeXqX	f	2020-08-08 00:00:00+00
+4033	7	R	2020-08-16	13:10:00	\N	f	18	1024	session_qLnJJ1S3	t	2020-08-16 13:10:00+00
+4034	3	Q1	2020-08-15	\N	\N	f	1	1024	session_4kRkZ4bW	f	2020-08-15 00:00:00+00
+4035	4	Q2	2020-08-15	\N	\N	f	1	1024	session_4a5PVpqn	f	2020-08-15 00:00:00+00
+4036	5	Q3	2020-08-15	\N	\N	f	1	1024	session_fH9vjoY5	f	2020-08-15 00:00:00+00
+4037	1	FP1	2020-08-14	\N	\N	f	1	1024	session_cx2t9WeY	f	2020-08-14 00:00:00+00
+4038	2	FP2	2020-08-14	\N	\N	f	1	1024	session_7MqNse3D	f	2020-08-14 00:00:00+00
+4039	6	FP3	2020-08-15	\N	\N	f	1	1024	session_BRN54OtA	f	2020-08-15 00:00:00+00
+4040	7	R	2020-08-30	13:10:00	\N	f	18	1025	session_2raitQvf	t	2020-08-30 13:10:00+00
+4041	3	Q1	2020-08-29	\N	\N	f	1	1025	session_Jy6URC4o	f	2020-08-29 00:00:00+00
+4042	4	Q2	2020-08-29	\N	\N	f	1	1025	session_ul1x2jdM	f	2020-08-29 00:00:00+00
+4043	5	Q3	2020-08-29	\N	\N	f	1	1025	session_RjedVNmv	f	2020-08-29 00:00:00+00
+4044	1	FP1	2020-08-28	\N	\N	f	1	1025	session_qTNkg5ym	f	2020-08-28 00:00:00+00
+4045	2	FP2	2020-08-28	\N	\N	f	1	1025	session_IHL8phdi	f	2020-08-28 00:00:00+00
+4046	6	FP3	2020-08-29	\N	\N	f	1	1025	session_NB2br5sl	f	2020-08-29 00:00:00+00
+4047	7	R	2020-09-06	13:10:00	\N	f	18	1026	session_chkaRmzr	t	2020-09-06 13:10:00+00
+4048	3	Q1	2020-09-05	\N	\N	f	1	1026	session_TazbYNwT	f	2020-09-05 00:00:00+00
+4049	4	Q2	2020-09-05	\N	\N	f	1	1026	session_hxQvCv0d	f	2020-09-05 00:00:00+00
+4050	5	Q3	2020-09-05	\N	\N	f	1	1026	session_9XTV5ilO	f	2020-09-05 00:00:00+00
+4051	1	FP1	2020-09-04	\N	\N	f	1	1026	session_TeVIB0BU	f	2020-09-04 00:00:00+00
+4052	2	FP2	2020-09-04	\N	\N	f	1	1026	session_37lZXGVa	f	2020-09-04 00:00:00+00
+4053	6	FP3	2020-09-05	\N	\N	f	1	1026	session_ecKVUUGE	f	2020-09-05 00:00:00+00
+4054	7	R	2020-09-13	13:10:00	\N	f	18	1027	session_5Wmsvoax	t	2020-09-13 13:10:00+00
+4055	3	Q1	2020-09-12	\N	\N	f	1	1027	session_jYGrC7Dc	f	2020-09-12 00:00:00+00
+4056	4	Q2	2020-09-12	\N	\N	f	1	1027	session_KaaBYLw9	f	2020-09-12 00:00:00+00
+4057	5	Q3	2020-09-12	\N	\N	f	1	1027	session_WHNtR2RV	f	2020-09-12 00:00:00+00
+4058	1	FP1	2020-09-11	\N	\N	f	1	1027	session_Q3LCsEhg	f	2020-09-11 00:00:00+00
+4059	2	FP2	2020-09-11	\N	\N	f	1	1027	session_8cLTi3i2	f	2020-09-11 00:00:00+00
+4060	6	FP3	2020-09-12	\N	\N	f	1	1027	session_nriWBKtv	f	2020-09-12 00:00:00+00
+4061	7	R	2020-09-27	11:10:00	\N	f	18	1028	session_BDZO0c7E	t	2020-09-27 11:10:00+00
+4062	3	Q1	2020-09-26	\N	\N	f	1	1028	session_O3Ima9y7	f	2020-09-26 00:00:00+00
+4063	4	Q2	2020-09-26	\N	\N	f	1	1028	session_x73jUJ6I	f	2020-09-26 00:00:00+00
+4064	5	Q3	2020-09-26	\N	\N	f	1	1028	session_GzR5YXVd	f	2020-09-26 00:00:00+00
+4065	1	FP1	2020-09-25	\N	\N	f	1	1028	session_Ozx8cHVA	f	2020-09-25 00:00:00+00
+4066	2	FP2	2020-09-25	\N	\N	f	1	1028	session_OStWmu2t	f	2020-09-25 00:00:00+00
+4067	6	FP3	2020-09-26	\N	\N	f	1	1028	session_uJmpxkWw	f	2020-09-26 00:00:00+00
+4068	7	R	2020-10-11	13:10:00	\N	f	18	1029	session_NZCSnSpe	t	2020-10-11 13:10:00+00
+4069	3	Q1	2020-10-10	\N	\N	f	1	1029	session_BvccTw9R	f	2020-10-10 00:00:00+00
+4070	4	Q2	2020-10-10	\N	\N	f	1	1029	session_Tu5UNpSD	f	2020-10-10 00:00:00+00
+4071	5	Q3	2020-10-10	\N	\N	f	1	1029	session_42uINAlu	f	2020-10-10 00:00:00+00
+4072	1	FP1	2020-10-09	\N	\N	f	1	1029	session_kEO4lCcG	f	2020-10-09 00:00:00+00
+4073	2	FP2	2020-10-09	\N	\N	f	1	1029	session_WYenPDSn	f	2020-10-09 00:00:00+00
+4074	6	FP3	2020-10-10	\N	\N	f	1	1029	session_OZEdZRUs	f	2020-10-10 00:00:00+00
+4075	7	R	2020-10-25	12:10:00	\N	f	18	1030	session_k9l5uND5	t	2020-10-25 12:10:00+00
+4076	3	Q1	2020-10-24	\N	\N	f	1	1030	session_G8O00Hkt	f	2020-10-24 00:00:00+00
+4077	4	Q2	2020-10-24	\N	\N	f	1	1030	session_ILQsAQpk	f	2020-10-24 00:00:00+00
+4078	5	Q3	2020-10-24	\N	\N	f	1	1030	session_RGJ6aG0C	f	2020-10-24 00:00:00+00
+4079	1	FP1	2020-10-23	\N	\N	f	1	1030	session_UuEPCUgV	f	2020-10-23 00:00:00+00
+4080	2	FP2	2020-10-23	\N	\N	f	1	1030	session_wOxyyqUw	f	2020-10-23 00:00:00+00
+4081	6	FP3	2020-10-24	\N	\N	f	1	1030	session_kcndzMbN	f	2020-10-24 00:00:00+00
+4082	7	R	2020-11-01	12:10:00	\N	f	18	1031	session_vIT1ksz9	t	2020-11-01 12:10:00+00
+4083	3	Q1	2020-10-31	\N	\N	f	1	1031	session_avEQ6vlU	f	2020-10-31 00:00:00+00
+4084	4	Q2	2020-10-31	\N	\N	f	1	1031	session_C4CxrT1g	f	2020-10-31 00:00:00+00
+4085	5	Q3	2020-10-31	\N	\N	f	1	1031	session_kbben05x	f	2020-10-31 00:00:00+00
+4086	1	FP1	2020-10-30	\N	\N	f	1	1031	session_5zrjv7ux	f	2020-10-30 00:00:00+00
+4087	2	FP2	2020-10-30	\N	\N	f	1	1031	session_CX5kFLvH	f	2020-10-30 00:00:00+00
+4088	6	FP3	2020-10-31	\N	\N	f	1	1031	session_vxPVo6cQ	f	2020-10-31 00:00:00+00
+4089	7	R	2020-11-15	10:10:00	\N	f	18	1032	session_BBSkY0fY	t	2020-11-15 10:10:00+00
+4090	3	Q1	2020-11-14	\N	\N	f	1	1032	session_CrBUWvzA	f	2020-11-14 00:00:00+00
+4091	4	Q2	2020-11-14	\N	\N	f	1	1032	session_fsW6YcU7	f	2020-11-14 00:00:00+00
+4092	5	Q3	2020-11-14	\N	\N	f	1	1032	session_fTFyHGPC	f	2020-11-14 00:00:00+00
+4093	1	FP1	2020-11-13	\N	\N	f	1	1032	session_EsAO1Dg5	f	2020-11-13 00:00:00+00
+4094	2	FP2	2020-11-13	\N	\N	f	1	1032	session_J4SnepfT	f	2020-11-13 00:00:00+00
+4095	6	FP3	2020-11-14	\N	\N	f	1	1032	session_pkAznBJB	f	2020-11-14 00:00:00+00
+4096	7	R	2020-11-29	14:10:00	\N	f	18	1033	session_65avkr0N	t	2020-11-29 14:10:00+00
+4097	3	Q1	2020-11-28	\N	\N	f	1	1033	session_8cgJy5V9	f	2020-11-28 00:00:00+00
+4098	4	Q2	2020-11-28	\N	\N	f	1	1033	session_wK7kMZ4r	f	2020-11-28 00:00:00+00
+4099	5	Q3	2020-11-28	\N	\N	f	1	1033	session_3bpNx4XP	f	2020-11-28 00:00:00+00
+4100	1	FP1	2020-11-27	\N	\N	f	1	1033	session_reejA2vi	f	2020-11-27 00:00:00+00
+4101	2	FP2	2020-11-27	\N	\N	f	1	1033	session_xCN1c5dZ	f	2020-11-27 00:00:00+00
+4102	6	FP3	2020-11-28	\N	\N	f	1	1033	session_HaN6QzuY	f	2020-11-28 00:00:00+00
+4103	7	R	2020-12-06	17:10:00	\N	f	18	1034	session_EosYAyxd	t	2020-12-06 17:10:00+00
+4104	3	Q1	2020-12-05	\N	\N	f	1	1034	session_X6LENGt7	f	2020-12-05 00:00:00+00
+4105	4	Q2	2020-12-05	\N	\N	f	1	1034	session_gRcAhHs2	f	2020-12-05 00:00:00+00
+4106	5	Q3	2020-12-05	\N	\N	f	1	1034	session_fU0yG3xD	f	2020-12-05 00:00:00+00
+4107	1	FP1	2020-12-04	\N	\N	f	1	1034	session_2RXkC2KN	f	2020-12-04 00:00:00+00
+4108	2	FP2	2020-12-04	\N	\N	f	1	1034	session_RGhAumqW	f	2020-12-04 00:00:00+00
+4109	6	FP3	2020-12-05	\N	\N	f	1	1034	session_XLQOs3am	f	2020-12-05 00:00:00+00
+4110	7	R	2020-12-13	13:10:00	\N	f	18	1035	session_6a8Q3o0T	t	2020-12-13 13:10:00+00
+4111	3	Q1	2020-12-12	\N	\N	f	1	1035	session_RijnaeUf	f	2020-12-12 00:00:00+00
+4112	4	Q2	2020-12-12	\N	\N	f	1	1035	session_oVw3oW8f	f	2020-12-12 00:00:00+00
+4113	5	Q3	2020-12-12	\N	\N	f	1	1035	session_ydAHpHDH	f	2020-12-12 00:00:00+00
+4114	1	FP1	2020-12-11	\N	\N	f	1	1035	session_MV1WvzLs	f	2020-12-11 00:00:00+00
+4115	2	FP2	2020-12-11	\N	\N	f	1	1035	session_TqA8wHIP	f	2020-12-11 00:00:00+00
+4116	6	FP3	2020-12-12	\N	\N	f	1	1035	session_rrfM6Cza	f	2020-12-12 00:00:00+00
+4117	7	R	2021-03-28	15:00:00	\N	f	18	1036	session_9q2BS6mw	t	2021-03-28 15:00:00+00
+4118	3	Q1	2021-03-27	\N	\N	f	1	1036	session_3pQ7W9ZW	f	2021-03-27 00:00:00+00
+4119	4	Q2	2021-03-27	\N	\N	f	1	1036	session_7c6xP3O4	f	2021-03-27 00:00:00+00
+4120	5	Q3	2021-03-27	\N	\N	f	1	1036	session_ED83T5x7	f	2021-03-27 00:00:00+00
+4121	1	FP1	2021-03-26	\N	\N	f	1	1036	session_CiVomkBs	f	2021-03-26 00:00:00+00
+4122	2	FP2	2021-03-26	\N	\N	f	1	1036	session_r6LT5o1g	f	2021-03-26 00:00:00+00
+4123	6	FP3	2021-03-27	\N	\N	f	1	1036	session_7je8Dys5	f	2021-03-27 00:00:00+00
+4124	7	R	2021-04-18	13:00:00	\N	f	18	1037	session_TyA5xiba	t	2021-04-18 13:00:00+00
+4125	3	Q1	2021-04-17	\N	\N	f	1	1037	session_ihOQ6mEF	f	2021-04-17 00:00:00+00
+4126	4	Q2	2021-04-17	\N	\N	f	1	1037	session_hmMxvm4U	f	2021-04-17 00:00:00+00
+4127	5	Q3	2021-04-17	\N	\N	f	1	1037	session_d4H5B4Yh	f	2021-04-17 00:00:00+00
+4128	1	FP1	2021-04-16	\N	\N	f	1	1037	session_QKn5BFW2	f	2021-04-16 00:00:00+00
+4129	2	FP2	2021-04-16	\N	\N	f	1	1037	session_Za0mLz5B	f	2021-04-16 00:00:00+00
+4130	6	FP3	2021-04-17	\N	\N	f	1	1037	session_dwRYqV1F	f	2021-04-17 00:00:00+00
+4131	7	R	2021-05-02	14:00:00	\N	f	18	1038	session_AJKQH8LF	t	2021-05-02 14:00:00+00
+4132	3	Q1	2021-05-01	\N	\N	f	1	1038	session_UaHQbdjM	f	2021-05-01 00:00:00+00
+4133	4	Q2	2021-05-01	\N	\N	f	1	1038	session_YRuWbmEc	f	2021-05-01 00:00:00+00
+4134	5	Q3	2021-05-01	\N	\N	f	1	1038	session_JTMu087d	f	2021-05-01 00:00:00+00
+4135	1	FP1	2021-04-30	\N	\N	f	1	1038	session_yZdACB8v	f	2021-04-30 00:00:00+00
+4136	2	FP2	2021-04-30	\N	\N	f	1	1038	session_TPRrflkg	f	2021-04-30 00:00:00+00
+4137	6	FP3	2021-05-01	\N	\N	f	1	1038	session_3g7cCE0s	f	2021-05-01 00:00:00+00
+4138	7	R	2021-05-09	13:00:00	\N	f	18	1039	session_idvk1yj9	t	2021-05-09 13:00:00+00
+4139	3	Q1	2021-05-08	\N	\N	f	1	1039	session_UHSPGVZa	f	2021-05-08 00:00:00+00
+4140	4	Q2	2021-05-08	\N	\N	f	1	1039	session_9cIJNQnl	f	2021-05-08 00:00:00+00
+4141	5	Q3	2021-05-08	\N	\N	f	1	1039	session_Gg9kwMdm	f	2021-05-08 00:00:00+00
+4142	1	FP1	2021-05-07	\N	\N	f	1	1039	session_Q2aiVIvo	f	2021-05-07 00:00:00+00
+4143	2	FP2	2021-05-07	\N	\N	f	1	1039	session_uxFmgpGH	f	2021-05-07 00:00:00+00
+4144	6	FP3	2021-05-08	\N	\N	f	1	1039	session_j4MBxCok	f	2021-05-08 00:00:00+00
+4145	7	R	2021-05-23	13:00:00	\N	f	18	1040	session_XnaBmgra	t	2021-05-23 13:00:00+00
+4146	3	Q1	2021-05-22	\N	\N	f	1	1040	session_pUl6WOc5	f	2021-05-22 00:00:00+00
+4147	4	Q2	2021-05-22	\N	\N	f	1	1040	session_Ex71s2PN	f	2021-05-22 00:00:00+00
+4148	5	Q3	2021-05-22	\N	\N	f	1	1040	session_hZQpH1xj	f	2021-05-22 00:00:00+00
+4149	1	FP1	2021-05-21	\N	\N	f	1	1040	session_F8aDbiqQ	f	2021-05-21 00:00:00+00
+4150	2	FP2	2021-05-21	\N	\N	f	1	1040	session_SPByuQ1e	f	2021-05-21 00:00:00+00
+4151	6	FP3	2021-05-22	\N	\N	f	1	1040	session_xt1ZrP8T	f	2021-05-22 00:00:00+00
+4152	7	R	2021-06-06	12:00:00	\N	f	18	1041	session_qKgWocSl	t	2021-06-06 12:00:00+00
+4153	3	Q1	2021-06-05	\N	\N	f	1	1041	session_ZglwemtD	f	2021-06-05 00:00:00+00
+4154	4	Q2	2021-06-05	\N	\N	f	1	1041	session_GdMEE0YF	f	2021-06-05 00:00:00+00
+4155	5	Q3	2021-06-05	\N	\N	f	1	1041	session_kTKX1HLQ	f	2021-06-05 00:00:00+00
+4156	1	FP1	2021-06-04	\N	\N	f	1	1041	session_aKto1Tcf	f	2021-06-04 00:00:00+00
+4157	2	FP2	2021-06-04	\N	\N	f	1	1041	session_CqWZvcHi	f	2021-06-04 00:00:00+00
+4158	6	FP3	2021-06-05	\N	\N	f	1	1041	session_Q9OgzaDC	f	2021-06-05 00:00:00+00
+4159	7	R	2021-06-20	13:00:00	\N	f	18	1042	session_E64EFrXo	t	2021-06-20 13:00:00+00
+4160	3	Q1	2021-06-19	\N	\N	f	1	1042	session_lnUVJKrE	f	2021-06-19 00:00:00+00
+4161	4	Q2	2021-06-19	\N	\N	f	1	1042	session_IyA8OFhG	f	2021-06-19 00:00:00+00
+4162	5	Q3	2021-06-19	\N	\N	f	1	1042	session_n8IJYGjU	f	2021-06-19 00:00:00+00
+4163	1	FP1	2021-06-18	\N	\N	f	1	1042	session_LpRgVMND	f	2021-06-18 00:00:00+00
+4164	2	FP2	2021-06-18	\N	\N	f	1	1042	session_0H1jOzhA	f	2021-06-18 00:00:00+00
+4165	6	FP3	2021-06-19	\N	\N	f	1	1042	session_xYaQ27Kq	f	2021-06-19 00:00:00+00
+4166	7	R	2021-06-27	13:00:00	\N	f	18	1043	session_iqu2Uy1L	t	2021-06-27 13:00:00+00
+4167	3	Q1	2021-06-26	\N	\N	f	1	1043	session_x9c9iMI0	f	2021-06-26 00:00:00+00
+4168	4	Q2	2021-06-26	\N	\N	f	1	1043	session_5VXqopR7	f	2021-06-26 00:00:00+00
+4169	5	Q3	2021-06-26	\N	\N	f	1	1043	session_dXcgUeLa	f	2021-06-26 00:00:00+00
+4170	1	FP1	2021-06-25	\N	\N	f	1	1043	session_EFUqPq3g	f	2021-06-25 00:00:00+00
+4171	2	FP2	2021-06-25	\N	\N	f	1	1043	session_HsbbrNqm	f	2021-06-25 00:00:00+00
+4172	6	FP3	2021-06-26	\N	\N	f	1	1043	session_PDaAqovy	f	2021-06-26 00:00:00+00
+4173	7	R	2021-07-04	13:00:00	\N	f	18	1044	session_9xuEBKZ2	t	2021-07-04 13:00:00+00
+4174	3	Q1	2021-07-03	\N	\N	f	1	1044	session_jvSyb4gf	f	2021-07-03 00:00:00+00
+4175	4	Q2	2021-07-03	\N	\N	f	1	1044	session_CIB6TX0g	f	2021-07-03 00:00:00+00
+4176	5	Q3	2021-07-03	\N	\N	f	1	1044	session_0SJyROhB	f	2021-07-03 00:00:00+00
+4177	1	FP1	2021-07-02	\N	\N	f	1	1044	session_snO5FmLn	f	2021-07-02 00:00:00+00
+4178	2	FP2	2021-07-02	\N	\N	f	1	1044	session_5yvpSf5v	f	2021-07-02 00:00:00+00
+4179	6	FP3	2021-07-03	\N	\N	f	1	1044	session_nzUAE9HR	f	2021-07-03 00:00:00+00
+4180	7	R	2021-07-18	14:00:00	\N	f	18	1045	session_4Nfij6ck	t	2021-07-18 14:00:00+00
+4181	1	Q1	2021-07-16	\N	\N	f	1	1045	session_UW4h88sJ	f	2021-07-16 00:00:00+00
+4182	2	Q2	2021-07-16	\N	\N	f	1	1045	session_3W30fsgE	f	2021-07-16 00:00:00+00
+4183	3	Q3	2021-07-16	\N	\N	f	1	1045	session_xZWteRXu	f	2021-07-16 00:00:00+00
+4184	4	FP1	2021-07-16	\N	\N	f	1	1045	session_Q9ZEbaZS	f	2021-07-16 00:00:00+00
+4185	5	FP2	2021-07-17	\N	\N	f	1	1045	session_7yHAEkjX	f	2021-07-17 00:00:00+00
+4186	6	SR	2021-07-17	\N	\N	f	19	1045	session_NmjuV5Um	f	2021-07-17 00:00:00+00
+4187	7	R	2021-08-01	13:00:00	\N	f	18	1046	session_2TmxnUp2	t	2021-08-01 13:00:00+00
+4188	3	Q1	2021-07-31	\N	\N	f	1	1046	session_0RnMHY1m	f	2021-07-31 00:00:00+00
+4189	4	Q2	2021-07-31	\N	\N	f	1	1046	session_v8MkLmXw	f	2021-07-31 00:00:00+00
+4190	5	Q3	2021-07-31	\N	\N	f	1	1046	session_gwA9bRkx	f	2021-07-31 00:00:00+00
+4191	1	FP1	2021-07-30	\N	\N	f	1	1046	session_747mWocV	f	2021-07-30 00:00:00+00
+4192	2	FP2	2021-07-30	\N	\N	f	1	1046	session_HtuLzTqF	f	2021-07-30 00:00:00+00
+4193	6	FP3	2021-07-31	\N	\N	f	1	1046	session_urr5VOH4	f	2021-07-31 00:00:00+00
+4194	7	R	2021-08-29	13:00:00	\N	f	18	1047	session_EDTISQmc	t	2021-08-29 13:00:00+00
+4195	3	Q1	2021-08-28	\N	\N	f	1	1047	session_M66anhBN	f	2021-08-28 00:00:00+00
+4196	4	Q2	2021-08-28	\N	\N	f	1	1047	session_ct06Klkg	f	2021-08-28 00:00:00+00
+4197	5	Q3	2021-08-28	\N	\N	f	1	1047	session_IoRY2wXW	f	2021-08-28 00:00:00+00
+4198	1	FP1	2021-08-27	\N	\N	f	1	1047	session_ltBMAJ78	f	2021-08-27 00:00:00+00
+4199	2	FP2	2021-08-27	\N	\N	f	1	1047	session_iQWsZPhx	f	2021-08-27 00:00:00+00
+4200	6	FP3	2021-08-28	\N	\N	f	1	1047	session_Y1zOR1Wy	f	2021-08-28 00:00:00+00
+4201	7	R	2021-09-05	13:00:00	\N	f	18	1048	session_VZAJlw3y	t	2021-09-05 13:00:00+00
+4202	3	Q1	2021-09-04	\N	\N	f	1	1048	session_2LgIqzfb	f	2021-09-04 00:00:00+00
+4203	4	Q2	2021-09-04	\N	\N	f	1	1048	session_KfTAlQXU	f	2021-09-04 00:00:00+00
+4204	5	Q3	2021-09-04	\N	\N	f	1	1048	session_pIkfyDXX	f	2021-09-04 00:00:00+00
+4205	1	FP1	2021-09-03	\N	\N	f	1	1048	session_rzQvSVnE	f	2021-09-03 00:00:00+00
+4206	2	FP2	2021-09-03	\N	\N	f	1	1048	session_611leTLZ	f	2021-09-03 00:00:00+00
+4207	6	FP3	2021-09-04	\N	\N	f	1	1048	session_aAS4r0BZ	f	2021-09-04 00:00:00+00
+4208	7	R	2021-09-12	13:00:00	\N	f	18	1049	session_FUqPpugO	t	2021-09-12 13:00:00+00
+4209	1	Q1	2021-09-10	\N	\N	f	1	1049	session_pz8ww3YQ	f	2021-09-10 00:00:00+00
+4210	2	Q2	2021-09-10	\N	\N	f	1	1049	session_KbqFI13P	f	2021-09-10 00:00:00+00
+4211	3	Q3	2021-09-10	\N	\N	f	1	1049	session_IJEqsAL4	f	2021-09-10 00:00:00+00
+4212	4	FP1	2021-09-10	\N	\N	f	1	1049	session_THJlohhc	f	2021-09-10 00:00:00+00
+4213	5	FP2	2021-09-11	\N	\N	f	1	1049	session_CsWyA7SF	f	2021-09-11 00:00:00+00
+4214	6	SR	2021-09-11	\N	\N	f	19	1049	session_HV3yLR23	f	2021-09-11 00:00:00+00
+4215	7	R	2021-09-26	12:00:00	\N	f	18	1050	session_cM3JoE3R	t	2021-09-26 12:00:00+00
+4216	3	Q1	2021-09-25	\N	\N	f	1	1050	session_70H84est	f	2021-09-25 00:00:00+00
+4217	4	Q2	2021-09-25	\N	\N	f	1	1050	session_iCVF5USD	f	2021-09-25 00:00:00+00
+4218	5	Q3	2021-09-25	\N	\N	f	1	1050	session_aCIkP1nI	f	2021-09-25 00:00:00+00
+4219	1	FP1	2021-09-24	\N	\N	f	1	1050	session_PTjfTHhh	f	2021-09-24 00:00:00+00
+4220	2	FP2	2021-09-24	\N	\N	f	1	1050	session_l1YpTFWO	f	2021-09-24 00:00:00+00
+4221	6	FP3	2021-09-25	\N	\N	f	1	1050	session_K1499nvi	f	2021-09-25 00:00:00+00
+4222	7	R	2021-10-10	12:00:00	\N	f	18	1051	session_UnVYMaYw	t	2021-10-10 12:00:00+00
+4223	3	Q1	2021-10-09	\N	\N	f	1	1051	session_F0Vsb81U	f	2021-10-09 00:00:00+00
+4224	4	Q2	2021-10-09	\N	\N	f	1	1051	session_2bFKPlcE	f	2021-10-09 00:00:00+00
+4225	5	Q3	2021-10-09	\N	\N	f	1	1051	session_wvnY36E0	f	2021-10-09 00:00:00+00
+4226	1	FP1	2021-10-08	\N	\N	f	1	1051	session_0Q4oDHh4	f	2021-10-08 00:00:00+00
+4227	2	FP2	2021-10-08	\N	\N	f	1	1051	session_sjavIAIr	f	2021-10-08 00:00:00+00
+4228	6	FP3	2021-10-09	\N	\N	f	1	1051	session_NtCvDhfH	f	2021-10-09 00:00:00+00
+4229	7	R	2021-10-24	19:00:00	\N	f	18	1052	session_Nr5haHGC	t	2021-10-24 19:00:00+00
+4230	3	Q1	2021-10-23	\N	\N	f	1	1052	session_mCfyCFwR	f	2021-10-23 00:00:00+00
+4231	4	Q2	2021-10-23	\N	\N	f	1	1052	session_5sAbZZfH	f	2021-10-23 00:00:00+00
+4232	5	Q3	2021-10-23	\N	\N	f	1	1052	session_BLtccaPN	f	2021-10-23 00:00:00+00
+4233	1	FP1	2021-10-22	\N	\N	f	1	1052	session_5bm5zLgp	f	2021-10-22 00:00:00+00
+4234	2	FP2	2021-10-22	\N	\N	f	1	1052	session_INkqoc3F	f	2021-10-22 00:00:00+00
+4235	6	FP3	2021-10-23	\N	\N	f	1	1052	session_LX3ILATG	f	2021-10-23 00:00:00+00
+4236	7	R	2021-11-07	19:00:00	\N	f	18	1053	session_uKnDbgrh	t	2021-11-07 19:00:00+00
+4237	3	Q1	2021-11-06	\N	\N	f	1	1053	session_McCEO1W8	f	2021-11-06 00:00:00+00
+4238	4	Q2	2021-11-06	\N	\N	f	1	1053	session_Y4mwDsUR	f	2021-11-06 00:00:00+00
+4239	5	Q3	2021-11-06	\N	\N	f	1	1053	session_UZAFxIDk	f	2021-11-06 00:00:00+00
+4240	1	FP1	2021-11-05	\N	\N	f	1	1053	session_2VrnYS3x	f	2021-11-05 00:00:00+00
+4241	2	FP2	2021-11-05	\N	\N	f	1	1053	session_Cx5fnbn4	f	2021-11-05 00:00:00+00
+4242	6	FP3	2021-11-06	\N	\N	f	1	1053	session_u6E0Msg8	f	2021-11-06 00:00:00+00
+4243	7	R	2021-11-14	17:00:00	\N	f	18	1054	session_AhtE7LPV	t	2021-11-14 17:00:00+00
+4244	1	Q1	2021-11-12	\N	\N	f	1	1054	session_TzUULswU	f	2021-11-12 00:00:00+00
+4245	2	Q2	2021-11-12	\N	\N	f	1	1054	session_ayskypTt	f	2021-11-12 00:00:00+00
+4246	3	Q3	2021-11-12	\N	\N	f	1	1054	session_LIAp7Ipj	f	2021-11-12 00:00:00+00
+4247	4	FP1	2021-11-12	\N	\N	f	1	1054	session_g9w5KK0M	f	2021-11-12 00:00:00+00
+4248	5	FP2	2021-11-13	\N	\N	f	1	1054	session_NRPZwcqp	f	2021-11-13 00:00:00+00
+4249	6	SR	2021-11-13	\N	\N	f	19	1054	session_gOfCM393	f	2021-11-13 00:00:00+00
+4250	7	R	2021-11-21	14:00:00	\N	f	18	1055	session_hByFnb6j	t	2021-11-21 14:00:00+00
+4251	3	Q1	2021-11-20	\N	\N	f	1	1055	session_Xvr5aXGq	f	2021-11-20 00:00:00+00
+4252	4	Q2	2021-11-20	\N	\N	f	1	1055	session_vjETOZoL	f	2021-11-20 00:00:00+00
+4253	5	Q3	2021-11-20	\N	\N	f	1	1055	session_8QwfmMT5	f	2021-11-20 00:00:00+00
+4254	1	FP1	2021-11-19	\N	\N	f	1	1055	session_BNWb2wMy	f	2021-11-19 00:00:00+00
+4255	2	FP2	2021-11-19	\N	\N	f	1	1055	session_16AeIOfG	f	2021-11-19 00:00:00+00
+4256	6	FP3	2021-11-20	\N	\N	f	1	1055	session_AlxRNGdH	f	2021-11-20 00:00:00+00
+4257	7	R	2021-12-05	17:30:00	\N	f	18	1056	session_3czlaart	t	2021-12-05 17:30:00+00
+4258	3	Q1	2021-12-04	\N	\N	f	1	1056	session_VlDcdWlf	f	2021-12-04 00:00:00+00
+4259	4	Q2	2021-12-04	\N	\N	f	1	1056	session_vKbohpYV	f	2021-12-04 00:00:00+00
+4260	5	Q3	2021-12-04	\N	\N	f	1	1056	session_E6yJ9eag	f	2021-12-04 00:00:00+00
+4261	1	FP1	2021-12-03	\N	\N	f	1	1056	session_fRUzPzDT	f	2021-12-03 00:00:00+00
+4262	2	FP2	2021-12-03	\N	\N	f	1	1056	session_XlQyxHTk	f	2021-12-03 00:00:00+00
+4263	6	FP3	2021-12-04	\N	\N	f	1	1056	session_5TQjQkXE	f	2021-12-04 00:00:00+00
+4264	7	R	2021-12-12	13:00:00	\N	f	18	1057	session_CCRKWVbB	t	2021-12-12 13:00:00+00
+4265	3	Q1	2021-12-11	\N	\N	f	1	1057	session_4sXOmbqe	f	2021-12-11 00:00:00+00
+4266	4	Q2	2021-12-11	\N	\N	f	1	1057	session_fl94b6Yk	f	2021-12-11 00:00:00+00
+4267	5	Q3	2021-12-11	\N	\N	f	1	1057	session_xzW7mbFC	f	2021-12-11 00:00:00+00
+4268	1	FP1	2021-12-10	\N	\N	f	1	1057	session_ais5ySHv	f	2021-12-10 00:00:00+00
+4269	2	FP2	2021-12-10	\N	\N	f	1	1057	session_eGrtDmZ3	f	2021-12-10 00:00:00+00
+4270	6	FP3	2021-12-11	\N	\N	f	1	1057	session_zKg4yeqi	f	2021-12-11 00:00:00+00
+4271	7	R	2022-03-20	15:00:00	\N	f	20	1058	session_eEMwlen8	t	2022-03-20 15:00:00+00
+4272	4	Q1	2022-03-19	15:00:00	\N	f	1	1058	session_M5I5fQDp	t	2022-03-19 15:00:00+00
+4273	5	Q2	2022-03-19	15:00:00	\N	f	1	1058	session_1O8v5IDu	t	2022-03-19 15:00:00+00
+4274	6	Q3	2022-03-19	15:00:00	\N	f	1	1058	session_TODqK2LD	t	2022-03-19 15:00:00+00
+4275	1	FP1	2022-03-18	12:00:00	\N	f	1	1058	session_BEngdigM	t	2022-03-18 12:00:00+00
+4276	2	FP2	2022-03-18	15:00:00	\N	f	1	1058	session_31VZRqqc	t	2022-03-18 15:00:00+00
+4277	3	FP3	2022-03-19	12:00:00	\N	f	1	1058	session_X2K9eZFq	t	2022-03-19 12:00:00+00
+4278	7	R	2022-03-27	17:00:00	\N	f	20	1059	session_aVBq5axB	t	2022-03-27 17:00:00+00
+4279	4	Q1	2022-03-26	17:00:00	\N	f	1	1059	session_tqxYKxg7	t	2022-03-26 17:00:00+00
+4280	5	Q2	2022-03-26	17:00:00	\N	f	1	1059	session_dT03om9B	t	2022-03-26 17:00:00+00
+4281	6	Q3	2022-03-26	17:00:00	\N	f	1	1059	session_w9f5Rtrg	t	2022-03-26 17:00:00+00
+4282	1	FP1	2022-03-25	14:00:00	\N	f	1	1059	session_EVh4zkqU	t	2022-03-25 14:00:00+00
+4283	2	FP2	2022-03-25	17:00:00	\N	f	1	1059	session_4YYm5zGg	t	2022-03-25 17:00:00+00
+4284	3	FP3	2022-03-26	14:00:00	\N	f	1	1059	session_tvPLgYim	t	2022-03-26 14:00:00+00
+4285	7	R	2022-04-10	05:00:00	\N	f	20	1060	session_YI64yexk	t	2022-04-10 05:00:00+00
+4286	4	Q1	2022-04-09	06:00:00	\N	f	1	1060	session_lWs60vqs	t	2022-04-09 06:00:00+00
+4287	5	Q2	2022-04-09	06:00:00	\N	f	1	1060	session_yIgA56c0	t	2022-04-09 06:00:00+00
+4288	6	Q3	2022-04-09	06:00:00	\N	f	1	1060	session_iOWZcbf2	t	2022-04-09 06:00:00+00
+4289	1	FP1	2022-04-08	03:00:00	\N	f	1	1060	session_OKLiBk6f	t	2022-04-08 03:00:00+00
+4290	2	FP2	2022-04-08	06:00:00	\N	f	1	1060	session_X1tdaF8B	t	2022-04-08 06:00:00+00
+4291	3	FP3	2022-04-09	03:00:00	\N	f	1	1060	session_ltIgXwh2	t	2022-04-09 03:00:00+00
+4292	7	R	2022-04-24	13:00:00	\N	f	20	1061	session_YebSWNsS	t	2022-04-24 13:00:00+00
+4293	2	Q1	2022-04-22	15:00:00	\N	f	1	1061	session_uZhAuvEX	t	2022-04-22 15:00:00+00
+4294	3	Q2	2022-04-22	15:00:00	\N	f	1	1061	session_ZrfeRTUB	t	2022-04-22 15:00:00+00
+4295	4	Q3	2022-04-22	15:00:00	\N	f	1	1061	session_xX2m6R9j	t	2022-04-22 15:00:00+00
+4296	1	FP1	2022-04-22	11:30:00	\N	f	1	1061	session_qb2YuarV	t	2022-04-22 11:30:00+00
+4297	5	FP2	2022-04-23	10:30:00	\N	f	1	1061	session_HfLNLnbU	t	2022-04-23 10:30:00+00
+4298	6	SR	2022-04-23	14:30:00	\N	f	21	1061	session_qZKzuMFv	t	2022-04-23 14:30:00+00
+4299	7	R	2022-05-08	19:30:00	\N	f	20	1062	session_Oa1jDRQV	t	2022-05-08 19:30:00+00
+4300	4	Q1	2022-05-07	20:00:00	\N	f	1	1062	session_XvgVw70I	t	2022-05-07 20:00:00+00
+4301	5	Q2	2022-05-07	20:00:00	\N	f	1	1062	session_T8GlVAOz	t	2022-05-07 20:00:00+00
+4302	6	Q3	2022-05-07	20:00:00	\N	f	1	1062	session_xZrFtcfH	t	2022-05-07 20:00:00+00
+4303	1	FP1	2022-05-06	18:30:00	\N	f	1	1062	session_7hx9OnJQ	t	2022-05-06 18:30:00+00
+4304	2	FP2	2022-05-06	21:30:00	\N	f	1	1062	session_LOJrkSls	t	2022-05-06 21:30:00+00
+4305	3	FP3	2022-05-07	17:00:00	\N	f	1	1062	session_BuqgSJD1	t	2022-05-07 17:00:00+00
+4306	7	R	2022-05-22	13:00:00	\N	f	20	1063	session_ocKQJHtd	t	2022-05-22 13:00:00+00
+4307	4	Q1	2022-05-21	14:00:00	\N	f	1	1063	session_jzkmWvZV	t	2022-05-21 14:00:00+00
+4308	5	Q2	2022-05-21	14:00:00	\N	f	1	1063	session_cNsp0N4i	t	2022-05-21 14:00:00+00
+4309	6	Q3	2022-05-21	14:00:00	\N	f	1	1063	session_DuVWDDkI	t	2022-05-21 14:00:00+00
+4310	1	FP1	2022-05-20	12:00:00	\N	f	1	1063	session_AOtaQBGa	t	2022-05-20 12:00:00+00
+4311	2	FP2	2022-05-20	15:00:00	\N	f	1	1063	session_cAP8IZ0J	t	2022-05-20 15:00:00+00
+4312	3	FP3	2022-05-21	11:00:00	\N	f	1	1063	session_33vo4hWS	t	2022-05-21 11:00:00+00
+4313	7	R	2022-05-29	13:00:00	\N	f	20	1064	session_n5Zo1WdK	t	2022-05-29 13:00:00+00
+4314	4	Q1	2022-05-28	14:00:00	\N	f	1	1064	session_H6kGk7qv	t	2022-05-28 14:00:00+00
+4315	5	Q2	2022-05-28	14:00:00	\N	f	1	1064	session_MKqaRB7A	t	2022-05-28 14:00:00+00
+4316	6	Q3	2022-05-28	14:00:00	\N	f	1	1064	session_hqrtsfvq	t	2022-05-28 14:00:00+00
+4317	1	FP1	2022-05-27	12:00:00	\N	f	1	1064	session_lG6dzAWD	t	2022-05-27 12:00:00+00
+4318	2	FP2	2022-05-27	15:00:00	\N	f	1	1064	session_WSSD3nR0	t	2022-05-27 15:00:00+00
+4319	3	FP3	2022-05-28	11:00:00	\N	f	1	1064	session_o5aMcBUi	t	2022-05-28 11:00:00+00
+4320	7	R	2022-06-12	11:00:00	\N	f	20	1065	session_t9xAvnw5	t	2022-06-12 11:00:00+00
+4321	4	Q1	2022-06-11	14:00:00	\N	f	1	1065	session_tcD9HQiP	t	2022-06-11 14:00:00+00
+4322	5	Q2	2022-06-11	14:00:00	\N	f	1	1065	session_CO4z3tws	t	2022-06-11 14:00:00+00
+4323	6	Q3	2022-06-11	14:00:00	\N	f	1	1065	session_wW0SmPMw	t	2022-06-11 14:00:00+00
+4324	1	FP1	2022-06-10	11:00:00	\N	f	1	1065	session_5XCqnETV	t	2022-06-10 11:00:00+00
+4325	2	FP2	2022-06-10	14:00:00	\N	f	1	1065	session_xbIk2Xdq	t	2022-06-10 14:00:00+00
+4326	3	FP3	2022-06-11	11:00:00	\N	f	1	1065	session_C7ZrR8MI	t	2022-06-11 11:00:00+00
+4327	7	R	2022-06-19	18:00:00	\N	f	20	1066	session_xge4DDam	t	2022-06-19 18:00:00+00
+4328	4	Q1	2022-06-18	20:00:00	\N	f	1	1066	session_YtmmKc6y	t	2022-06-18 20:00:00+00
+4329	5	Q2	2022-06-18	20:00:00	\N	f	1	1066	session_GvEF56K5	t	2022-06-18 20:00:00+00
+4330	6	Q3	2022-06-18	20:00:00	\N	f	1	1066	session_Hwyz1taO	t	2022-06-18 20:00:00+00
+4331	1	FP1	2022-06-17	18:00:00	\N	f	1	1066	session_gnsF6Vc4	t	2022-06-17 18:00:00+00
+4332	2	FP2	2022-06-17	21:00:00	\N	f	1	1066	session_stLqkgaR	t	2022-06-17 21:00:00+00
+4333	3	FP3	2022-06-18	17:00:00	\N	f	1	1066	session_5uQ7v929	t	2022-06-18 17:00:00+00
+4334	7	R	2022-07-03	14:00:00	\N	f	20	1067	session_7TrH50Pi	t	2022-07-03 14:00:00+00
+4335	4	Q1	2022-07-02	14:00:00	\N	f	1	1067	session_lqJGRwNY	t	2022-07-02 14:00:00+00
+4336	5	Q2	2022-07-02	14:00:00	\N	f	1	1067	session_g8TjCmYt	t	2022-07-02 14:00:00+00
+4337	6	Q3	2022-07-02	14:00:00	\N	f	1	1067	session_2RjfpDHh	t	2022-07-02 14:00:00+00
+4338	1	FP1	2022-07-01	12:00:00	\N	f	1	1067	session_cFA2ZEt0	t	2022-07-01 12:00:00+00
+4339	2	FP2	2022-07-01	15:00:00	\N	f	1	1067	session_VSmFzn5d	t	2022-07-01 15:00:00+00
+4340	3	FP3	2022-07-02	11:00:00	\N	f	1	1067	session_O6D8M81t	t	2022-07-02 11:00:00+00
+4341	7	R	2022-07-10	13:00:00	\N	f	20	1068	session_6EVobO7W	t	2022-07-10 13:00:00+00
+4342	2	Q1	2022-07-08	15:00:00	\N	f	1	1068	session_z2914Vxx	t	2022-07-08 15:00:00+00
+4343	3	Q2	2022-07-08	15:00:00	\N	f	1	1068	session_9AZgBTn2	t	2022-07-08 15:00:00+00
+4344	4	Q3	2022-07-08	15:00:00	\N	f	1	1068	session_o0RURYVl	t	2022-07-08 15:00:00+00
+4345	1	FP1	2022-07-08	11:30:00	\N	f	1	1068	session_hiy97Mj9	t	2022-07-08 11:30:00+00
+4346	5	FP2	2022-07-09	10:30:00	\N	f	1	1068	session_wPbIdF2C	t	2022-07-09 10:30:00+00
+4347	6	SR	2022-07-09	14:30:00	\N	f	21	1068	session_fOrUX7hT	t	2022-07-09 14:30:00+00
+4348	7	R	2022-07-24	13:00:00	\N	f	20	1069	session_ssbBFn6O	t	2022-07-24 13:00:00+00
+4349	4	Q1	2022-07-23	14:00:00	\N	f	1	1069	session_tcIiYiuB	t	2022-07-23 14:00:00+00
+4350	5	Q2	2022-07-23	14:00:00	\N	f	1	1069	session_wOPwUZWL	t	2022-07-23 14:00:00+00
+4351	6	Q3	2022-07-23	14:00:00	\N	f	1	1069	session_nGcjGw0t	t	2022-07-23 14:00:00+00
+4352	1	FP1	2022-07-22	12:00:00	\N	f	1	1069	session_IS6ywkRc	t	2022-07-22 12:00:00+00
+4353	2	FP2	2022-07-22	15:00:00	\N	f	1	1069	session_y5l3gx7c	t	2022-07-22 15:00:00+00
+4354	3	FP3	2022-07-23	11:00:00	\N	f	1	1069	session_eWUI6wex	t	2022-07-23 11:00:00+00
+4355	7	R	2022-07-31	13:00:00	\N	f	20	1070	session_kgs9y0nU	t	2022-07-31 13:00:00+00
+4356	4	Q1	2022-07-30	14:00:00	\N	f	1	1070	session_jdUxm014	t	2022-07-30 14:00:00+00
+4357	5	Q2	2022-07-30	14:00:00	\N	f	1	1070	session_WdWhnDO3	t	2022-07-30 14:00:00+00
+4358	6	Q3	2022-07-30	14:00:00	\N	f	1	1070	session_8rNHo5Z3	t	2022-07-30 14:00:00+00
+4359	1	FP1	2022-07-29	12:00:00	\N	f	1	1070	session_PUfyOnN9	t	2022-07-29 12:00:00+00
+4360	2	FP2	2022-07-29	15:00:00	\N	f	1	1070	session_0je3X84s	t	2022-07-29 15:00:00+00
+4361	3	FP3	2022-07-30	11:00:00	\N	f	1	1070	session_r1wht4iC	t	2022-07-30 11:00:00+00
+4362	7	R	2022-08-28	13:00:00	\N	f	20	1071	session_vJlvHFj9	t	2022-08-28 13:00:00+00
+4363	4	Q1	2022-08-27	14:00:00	\N	f	1	1071	session_bL3tZyM2	t	2022-08-27 14:00:00+00
+4364	5	Q2	2022-08-27	14:00:00	\N	f	1	1071	session_ojKtqMx3	t	2022-08-27 14:00:00+00
+4365	6	Q3	2022-08-27	14:00:00	\N	f	1	1071	session_UnoVHukP	t	2022-08-27 14:00:00+00
+4366	1	FP1	2022-08-26	12:00:00	\N	f	1	1071	session_zYO9FKl4	t	2022-08-26 12:00:00+00
+4367	2	FP2	2022-08-26	15:00:00	\N	f	1	1071	session_RS1soLjS	t	2022-08-26 15:00:00+00
+4368	3	FP3	2022-08-27	11:00:00	\N	f	1	1071	session_XSLYkQsM	t	2022-08-27 11:00:00+00
+4369	7	R	2022-09-04	13:00:00	\N	f	20	1072	session_T4tWxQd7	t	2022-09-04 13:00:00+00
+4370	4	Q1	2022-09-03	13:00:00	\N	f	1	1072	session_wLfajeNH	t	2022-09-03 13:00:00+00
+4371	5	Q2	2022-09-03	13:00:00	\N	f	1	1072	session_5PMUKA5W	t	2022-09-03 13:00:00+00
+4372	6	Q3	2022-09-03	13:00:00	\N	f	1	1072	session_LB0eWctg	t	2022-09-03 13:00:00+00
+4373	1	FP1	2022-09-02	10:30:00	\N	f	1	1072	session_Tkkk2hwe	t	2022-09-02 10:30:00+00
+4374	2	FP2	2022-09-02	14:00:00	\N	f	1	1072	session_NKYyRnov	t	2022-09-02 14:00:00+00
+4375	3	FP3	2022-09-03	10:00:00	\N	f	1	1072	session_Tn5oz2li	t	2022-09-03 10:00:00+00
+4376	7	R	2022-09-11	13:00:00	\N	f	20	1073	session_qwUKgXMe	t	2022-09-11 13:00:00+00
+4377	4	Q1	2022-09-10	14:00:00	\N	f	1	1073	session_LDysqbK5	t	2022-09-10 14:00:00+00
+4378	5	Q2	2022-09-10	14:00:00	\N	f	1	1073	session_y0S0XVdZ	t	2022-09-10 14:00:00+00
+4379	6	Q3	2022-09-10	14:00:00	\N	f	1	1073	session_vq7ugkxg	t	2022-09-10 14:00:00+00
+4380	1	FP1	2022-09-09	12:00:00	\N	f	1	1073	session_HPwJmuvA	t	2022-09-09 12:00:00+00
+4381	2	FP2	2022-09-09	15:00:00	\N	f	1	1073	session_HjoZEwFk	t	2022-09-09 15:00:00+00
+4382	3	FP3	2022-09-10	11:00:00	\N	f	1	1073	session_ZmykvlsG	t	2022-09-10 11:00:00+00
+4383	7	R	2022-10-02	12:00:00	\N	f	20	1074	session_rBzbriuz	t	2022-10-02 12:00:00+00
+4384	4	Q1	2022-10-01	13:00:00	\N	f	1	1074	session_ciQNBwTB	t	2022-10-01 13:00:00+00
+4385	5	Q2	2022-10-01	13:00:00	\N	f	1	1074	session_Hom7NKdB	t	2022-10-01 13:00:00+00
+4386	6	Q3	2022-10-01	13:00:00	\N	f	1	1074	session_9kaaZHXk	t	2022-10-01 13:00:00+00
+4387	1	FP1	2022-09-30	10:00:00	\N	f	1	1074	session_ckQwQYbe	t	2022-09-30 10:00:00+00
+4388	2	FP2	2022-09-30	13:00:00	\N	f	1	1074	session_CC2V0Q6l	t	2022-09-30 13:00:00+00
+4389	3	FP3	2022-10-01	10:00:00	\N	f	1	1074	session_1NJXZm4p	t	2022-10-01 10:00:00+00
+4390	7	R	2022-10-09	05:00:00	\N	f	20	1075	session_ye20dkvC	t	2022-10-09 05:00:00+00
+4391	4	Q1	2022-10-08	06:00:00	\N	f	1	1075	session_ElKBfyX4	t	2022-10-08 06:00:00+00
+4392	5	Q2	2022-10-08	06:00:00	\N	f	1	1075	session_eUCuoAF2	t	2022-10-08 06:00:00+00
+4393	6	Q3	2022-10-08	06:00:00	\N	f	1	1075	session_GR6ROFzG	t	2022-10-08 06:00:00+00
+4394	1	FP1	2022-10-07	03:00:00	\N	f	1	1075	session_LxX6EgG3	t	2022-10-07 03:00:00+00
+4395	2	FP2	2022-10-07	06:00:00	\N	f	1	1075	session_QSKrFp6T	t	2022-10-07 06:00:00+00
+4396	3	FP3	2022-10-08	03:00:00	\N	f	1	1075	session_Bucliya3	t	2022-10-08 03:00:00+00
+4397	7	R	2022-10-23	19:00:00	\N	f	20	1076	session_FJ5Te5Ds	t	2022-10-23 19:00:00+00
+4398	4	Q1	2022-10-22	22:00:00	\N	f	1	1076	session_Qfx69iIJ	t	2022-10-22 22:00:00+00
+4399	5	Q2	2022-10-22	22:00:00	\N	f	1	1076	session_RNTtU4B6	t	2022-10-22 22:00:00+00
+4400	6	Q3	2022-10-22	22:00:00	\N	f	1	1076	session_DyyMoX2N	t	2022-10-22 22:00:00+00
+4401	1	FP1	2022-10-21	19:00:00	\N	f	1	1076	session_RvYmShsU	t	2022-10-21 19:00:00+00
+4402	2	FP2	2022-10-21	22:00:00	\N	f	1	1076	session_DrBqKFl1	t	2022-10-21 22:00:00+00
+4403	3	FP3	2022-10-22	19:00:00	\N	f	1	1076	session_dBqVb4r6	t	2022-10-22 19:00:00+00
+4404	7	R	2022-10-30	20:00:00	\N	f	20	1077	session_ndwEvrOM	t	2022-10-30 20:00:00+00
+4405	4	Q1	2022-10-29	20:00:00	\N	f	1	1077	session_d17tcxDa	t	2022-10-29 20:00:00+00
+4406	5	Q2	2022-10-29	20:00:00	\N	f	1	1077	session_ftd1DLIo	t	2022-10-29 20:00:00+00
+4407	6	Q3	2022-10-29	20:00:00	\N	f	1	1077	session_Pnxk6J3J	t	2022-10-29 20:00:00+00
+4408	1	FP1	2022-10-28	18:00:00	\N	f	1	1077	session_ewCFq6Pf	t	2022-10-28 18:00:00+00
+4409	2	FP2	2022-10-28	21:00:00	\N	f	1	1077	session_JBbVKGAj	t	2022-10-28 21:00:00+00
+4410	3	FP3	2022-10-29	17:00:00	\N	f	1	1077	session_G6P8wVXW	t	2022-10-29 17:00:00+00
+4411	7	R	2022-11-13	18:00:00	\N	f	20	1078	session_PVzIBExw	t	2022-11-13 18:00:00+00
+4412	2	Q1	2022-11-11	19:00:00	\N	f	1	1078	session_vxpkwxBU	t	2022-11-11 19:00:00+00
+4413	3	Q2	2022-11-11	19:00:00	\N	f	1	1078	session_Aob1EeXb	t	2022-11-11 19:00:00+00
+4414	4	Q3	2022-11-11	19:00:00	\N	f	1	1078	session_tyiD9WLX	t	2022-11-11 19:00:00+00
+4415	1	FP1	2022-11-11	15:30:00	\N	f	1	1078	session_sKnucAXu	t	2022-11-11 15:30:00+00
+4416	5	FP2	2022-11-12	15:30:00	\N	f	1	1078	session_p9DnnY75	t	2022-11-12 15:30:00+00
+4417	6	SR	2022-11-12	19:30:00	\N	f	21	1078	session_nUQBWFF3	t	2022-11-12 19:30:00+00
+4418	7	R	2022-11-20	13:00:00	\N	f	20	1079	session_pPmqZu5O	t	2022-11-20 13:00:00+00
+4419	4	Q1	2022-11-19	14:00:00	\N	f	1	1079	session_bUeM6FKj	t	2022-11-19 14:00:00+00
+4420	5	Q2	2022-11-19	14:00:00	\N	f	1	1079	session_Sc9fmlDj	t	2022-11-19 14:00:00+00
+4421	6	Q3	2022-11-19	14:00:00	\N	f	1	1079	session_Oh6tKXep	t	2022-11-19 14:00:00+00
+4422	1	FP1	2022-11-18	10:00:00	\N	f	1	1079	session_Nz3oQ2Fw	t	2022-11-18 10:00:00+00
+4423	2	FP2	2022-11-18	13:00:00	\N	f	1	1079	session_XbUEpCnq	t	2022-11-18 13:00:00+00
+4424	3	FP3	2022-11-19	11:00:00	\N	f	1	1079	session_9DX6TuNX	t	2022-11-19 11:00:00+00
+4425	7	R	2023-03-05	15:00:00	\N	f	22	1080	session_WYhvrtIE	t	2023-03-05 15:00:00+00
+4426	4	Q1	2023-03-04	15:00:00	\N	f	1	1080	session_g3A58yis	t	2023-03-04 15:00:00+00
+4427	5	Q2	2023-03-04	15:00:00	\N	f	1	1080	session_uN4RdDpI	t	2023-03-04 15:00:00+00
+4428	6	Q3	2023-03-04	15:00:00	\N	f	1	1080	session_5zJsRXIF	t	2023-03-04 15:00:00+00
+4429	1	FP1	2023-03-03	11:30:00	\N	f	1	1080	session_LTaFEjdi	t	2023-03-03 11:30:00+00
+4430	2	FP2	2023-03-03	15:00:00	\N	f	1	1080	session_1eNHxRRN	t	2023-03-03 15:00:00+00
+4431	3	FP3	2023-03-04	11:30:00	\N	f	1	1080	session_kQSVykvt	t	2023-03-04 11:30:00+00
+4432	7	R	2023-03-19	17:00:00	\N	f	22	1081	session_lzt77ScV	t	2023-03-19 17:00:00+00
+4433	4	Q1	2023-03-18	17:00:00	\N	f	1	1081	session_ej6JO5ek	t	2023-03-18 17:00:00+00
+4434	5	Q2	2023-03-18	17:00:00	\N	f	1	1081	session_XRHIHDQS	t	2023-03-18 17:00:00+00
+4435	6	Q3	2023-03-18	17:00:00	\N	f	1	1081	session_5Y3jvAjU	t	2023-03-18 17:00:00+00
+4436	1	FP1	2023-03-17	13:30:00	\N	f	1	1081	session_uG1XxSTW	t	2023-03-17 13:30:00+00
+4437	2	FP2	2023-03-17	17:00:00	\N	f	1	1081	session_gQFichYB	t	2023-03-17 17:00:00+00
+4438	3	FP3	2023-03-18	13:30:00	\N	f	1	1081	session_5y3mItaw	t	2023-03-18 13:30:00+00
+4439	7	R	2023-04-02	05:00:00	\N	f	22	1082	session_7TM22CvK	t	2023-04-02 05:00:00+00
+4440	4	Q1	2023-04-01	05:00:00	\N	f	1	1082	session_4D3mFWBD	t	2023-04-01 05:00:00+00
+4441	5	Q2	2023-04-01	05:00:00	\N	f	1	1082	session_bcpRBtkA	t	2023-04-01 05:00:00+00
+4442	6	Q3	2023-04-01	05:00:00	\N	f	1	1082	session_MNajdWow	t	2023-04-01 05:00:00+00
+4443	1	FP1	2023-03-31	01:30:00	\N	f	1	1082	session_Ry4rx5r7	t	2023-03-31 01:30:00+00
+4444	2	FP2	2023-03-31	05:00:00	\N	f	1	1082	session_cdbl0T70	t	2023-03-31 05:00:00+00
+4445	3	FP3	2023-04-01	01:30:00	\N	f	1	1082	session_A3Srq9zb	t	2023-04-01 01:30:00+00
+4446	9	R	2023-04-30	11:00:00	\N	f	22	1083	session_Gf0xTZUH	t	2023-04-30 11:00:00+00
+4447	2	Q1	2023-04-28	13:00:00	\N	f	1	1083	session_1LHJRAq7	t	2023-04-28 13:00:00+00
+4448	3	Q2	2023-04-28	13:00:00	\N	f	1	1083	session_7LdKfjCK	t	2023-04-28 13:00:00+00
+4449	4	Q3	2023-04-28	13:00:00	\N	f	1	1083	session_QXErBbRK	t	2023-04-28 13:00:00+00
+4450	1	FP1	2023-04-28	09:30:00	\N	f	1	1083	session_KrqT3TPQ	t	2023-04-28 09:30:00+00
+4451	5	SQ1	2023-04-29	09:30:00	\N	f	1	1083	session_MG0GXiBP	t	2023-04-29 09:30:00+00
+4452	6	SQ2	2023-04-29	09:30:00	\N	f	1	1083	session_4jfCRyeI	t	2023-04-29 09:30:00+00
+4453	7	SQ3	2023-04-29	09:30:00	\N	f	1	1083	session_15h4pwhu	t	2023-04-29 09:30:00+00
+4454	8	SR	2023-04-29	13:30:00	\N	f	23	1083	session_JIKvGJnp	t	2023-04-29 13:30:00+00
+4455	7	R	2023-05-07	19:30:00	\N	f	22	1084	session_xcODoFvt	t	2023-05-07 19:30:00+00
+4456	4	Q1	2023-05-06	20:00:00	\N	f	1	1084	session_TfAlBzWg	t	2023-05-06 20:00:00+00
+4457	5	Q2	2023-05-06	20:00:00	\N	f	1	1084	session_iaYkV3kK	t	2023-05-06 20:00:00+00
+4458	6	Q3	2023-05-06	20:00:00	\N	f	1	1084	session_KsR8LVfI	t	2023-05-06 20:00:00+00
+4459	1	FP1	2023-05-05	18:00:00	\N	f	1	1084	session_NpjCXG13	t	2023-05-05 18:00:00+00
+4460	2	FP2	2023-05-05	21:30:00	\N	f	1	1084	session_yMFpbad6	t	2023-05-05 21:30:00+00
+4461	3	FP3	2023-05-06	16:30:00	\N	f	1	1084	session_qSHZAsva	t	2023-05-06 16:30:00+00
+4462	7	R	2023-05-28	13:00:00	\N	f	22	1085	session_A4y4IyKd	t	2023-05-28 13:00:00+00
+4463	4	Q1	2023-05-27	14:00:00	\N	f	1	1085	session_BAnMMwl8	t	2023-05-27 14:00:00+00
+4464	5	Q2	2023-05-27	14:00:00	\N	f	1	1085	session_S70Huz3P	t	2023-05-27 14:00:00+00
+4465	6	Q3	2023-05-27	14:00:00	\N	f	1	1085	session_YrqihnT6	t	2023-05-27 14:00:00+00
+4466	1	FP1	2023-05-26	11:30:00	\N	f	1	1085	session_kzEzydkW	t	2023-05-26 11:30:00+00
+4467	2	FP2	2023-05-26	15:00:00	\N	f	1	1085	session_LWpSYz6O	t	2023-05-26 15:00:00+00
+4468	3	FP3	2023-05-27	10:30:00	\N	f	1	1085	session_hSPzGvBD	t	2023-05-27 10:30:00+00
+4469	7	R	2023-06-04	13:00:00	\N	f	22	1086	session_7KcHwC8Q	t	2023-06-04 13:00:00+00
+4470	4	Q1	2023-06-03	14:00:00	\N	f	1	1086	session_9jDkPgZM	t	2023-06-03 14:00:00+00
+4471	5	Q2	2023-06-03	14:00:00	\N	f	1	1086	session_2WJmcVyN	t	2023-06-03 14:00:00+00
+4472	6	Q3	2023-06-03	14:00:00	\N	f	1	1086	session_I3n3ujaN	t	2023-06-03 14:00:00+00
+4473	1	FP1	2023-06-02	11:30:00	\N	f	1	1086	session_ZDJHkPK3	t	2023-06-02 11:30:00+00
+4474	2	FP2	2023-06-02	15:00:00	\N	f	1	1086	session_sV3RTx1A	t	2023-06-02 15:00:00+00
+4475	3	FP3	2023-06-03	10:30:00	\N	f	1	1086	session_BkfB9SWR	t	2023-06-03 10:30:00+00
+4476	7	R	2023-06-18	18:00:00	\N	f	22	1087	session_PAxokna3	t	2023-06-18 18:00:00+00
+4477	4	Q1	2023-06-17	20:00:00	\N	f	1	1087	session_LXRy3ZFQ	t	2023-06-17 20:00:00+00
+4478	5	Q2	2023-06-17	20:00:00	\N	f	1	1087	session_O9WQMIG7	t	2023-06-17 20:00:00+00
+4479	6	Q3	2023-06-17	20:00:00	\N	f	1	1087	session_wYBauyjJ	t	2023-06-17 20:00:00+00
+4480	1	FP1	2023-06-16	17:30:00	\N	f	1	1087	session_j8LJVZ19	t	2023-06-16 17:30:00+00
+4481	2	FP2	2023-06-16	21:00:00	\N	f	1	1087	session_hksCciNu	t	2023-06-16 21:00:00+00
+4482	3	FP3	2023-06-17	16:30:00	\N	f	1	1087	session_1i024fC0	t	2023-06-17 16:30:00+00
+4483	9	R	2023-07-02	13:00:00	\N	f	22	1088	session_T3yoSaSy	t	2023-07-02 13:00:00+00
+4484	2	Q1	2023-06-30	15:00:00	\N	f	1	1088	session_jwLOH7PJ	t	2023-06-30 15:00:00+00
+4485	3	Q2	2023-06-30	15:00:00	\N	f	1	1088	session_RyvABdhO	t	2023-06-30 15:00:00+00
+4486	4	Q3	2023-06-30	15:00:00	\N	f	1	1088	session_SxaoRnyo	t	2023-06-30 15:00:00+00
+4487	1	FP1	2023-06-30	11:30:00	\N	f	1	1088	session_yTc7Brh1	t	2023-06-30 11:30:00+00
+4488	5	SQ1	2023-07-01	10:30:00	\N	f	1	1088	session_T021ad4p	t	2023-07-01 10:30:00+00
+4489	6	SQ2	2023-07-01	10:30:00	\N	f	1	1088	session_0IrGSGqe	t	2023-07-01 10:30:00+00
+4490	7	SQ3	2023-07-01	10:30:00	\N	f	1	1088	session_cKUBro80	t	2023-07-01 10:30:00+00
+4491	8	SR	2023-07-01	14:30:00	\N	f	23	1088	session_2L5ICjjo	t	2023-07-01 14:30:00+00
+4492	7	R	2023-07-09	14:00:00	\N	f	22	1089	session_UNKptQNV	t	2023-07-09 14:00:00+00
+4493	4	Q1	2023-07-08	14:00:00	\N	f	1	1089	session_sypcoEYn	t	2023-07-08 14:00:00+00
+4494	5	Q2	2023-07-08	14:00:00	\N	f	1	1089	session_JMSBoO4O	t	2023-07-08 14:00:00+00
+4495	6	Q3	2023-07-08	14:00:00	\N	f	1	1089	session_m1NcJHmG	t	2023-07-08 14:00:00+00
+4496	1	FP1	2023-07-07	11:30:00	\N	f	1	1089	session_9WtbInEu	t	2023-07-07 11:30:00+00
+4497	2	FP2	2023-07-07	15:00:00	\N	f	1	1089	session_6DiXRxk8	t	2023-07-07 15:00:00+00
+4498	3	FP3	2023-07-08	10:30:00	\N	f	1	1089	session_mluwq7NW	t	2023-07-08 10:30:00+00
+4499	7	R	2023-07-23	13:00:00	\N	f	22	1090	session_oOHkhBcN	t	2023-07-23 13:00:00+00
+4500	4	Q1	2023-07-22	14:00:00	\N	f	1	1090	session_5vSeChjN	t	2023-07-22 14:00:00+00
+4501	5	Q2	2023-07-22	14:00:00	\N	f	1	1090	session_3h96Enbh	t	2023-07-22 14:00:00+00
+4502	6	Q3	2023-07-22	14:00:00	\N	f	1	1090	session_iWEgYtrK	t	2023-07-22 14:00:00+00
+4503	1	FP1	2023-07-21	11:30:00	\N	f	1	1090	session_6rE4JfVl	t	2023-07-21 11:30:00+00
+4504	2	FP2	2023-07-21	15:00:00	\N	f	1	1090	session_uYzHN7kE	t	2023-07-21 15:00:00+00
+4505	3	FP3	2023-07-22	10:30:00	\N	f	1	1090	session_sKQ7zOwG	t	2023-07-22 10:30:00+00
+4506	9	R	2023-07-30	13:00:00	\N	f	22	1091	session_5T0ZO7v0	t	2023-07-30 13:00:00+00
+4507	2	Q1	2023-07-28	15:00:00	\N	f	1	1091	session_zg06bGu3	t	2023-07-28 15:00:00+00
+4508	3	Q2	2023-07-28	15:00:00	\N	f	1	1091	session_Ykmf2IBr	t	2023-07-28 15:00:00+00
+4509	4	Q3	2023-07-28	15:00:00	\N	f	1	1091	session_ZQF3ghVb	t	2023-07-28 15:00:00+00
+4510	1	FP1	2023-07-28	11:30:00	\N	f	1	1091	session_6YG9cfEK	t	2023-07-28 11:30:00+00
+4511	5	SQ1	2023-07-29	10:30:00	\N	f	1	1091	session_AXOgKRoX	t	2023-07-29 10:30:00+00
+4512	6	SQ2	2023-07-29	10:30:00	\N	f	1	1091	session_x9NJzFTZ	t	2023-07-29 10:30:00+00
+4513	7	SQ3	2023-07-29	10:30:00	\N	f	1	1091	session_heNS8rwI	t	2023-07-29 10:30:00+00
+4514	8	SR	2023-07-29	14:30:00	\N	f	23	1091	session_w4oPv3q6	t	2023-07-29 14:30:00+00
+4515	7	R	2023-08-27	13:00:00	\N	f	22	1092	session_7avOZJEq	t	2023-08-27 13:00:00+00
+4516	4	Q1	2023-08-26	13:00:00	\N	f	1	1092	session_2efRka0k	t	2023-08-26 13:00:00+00
+4517	5	Q2	2023-08-26	13:00:00	\N	f	1	1092	session_DE1FeAmj	t	2023-08-26 13:00:00+00
+4518	6	Q3	2023-08-26	13:00:00	\N	f	1	1092	session_3TNI3Emv	t	2023-08-26 13:00:00+00
+4519	1	FP1	2023-08-25	10:30:00	\N	f	1	1092	session_xCVfHSqd	t	2023-08-25 10:30:00+00
+4520	2	FP2	2023-08-25	14:00:00	\N	f	1	1092	session_n5e69aBy	t	2023-08-25 14:00:00+00
+4521	3	FP3	2023-08-26	09:30:00	\N	f	1	1092	session_bvDnbYWG	t	2023-08-26 09:30:00+00
+4522	7	R	2023-09-03	13:00:00	\N	f	22	1093	session_8ZfgfXZP	t	2023-09-03 13:00:00+00
+4523	4	Q1	2023-09-02	14:00:00	\N	f	1	1093	session_iYFDlg7h	t	2023-09-02 14:00:00+00
+4524	5	Q2	2023-09-02	14:00:00	\N	f	1	1093	session_ve6tfpbn	t	2023-09-02 14:00:00+00
+4525	6	Q3	2023-09-02	14:00:00	\N	f	1	1093	session_0AkitEOv	t	2023-09-02 14:00:00+00
+4526	1	FP1	2023-09-01	11:30:00	\N	f	1	1093	session_nbdLHACG	t	2023-09-01 11:30:00+00
+4527	2	FP2	2023-09-01	15:00:00	\N	f	1	1093	session_4aBAeStT	t	2023-09-01 15:00:00+00
+4528	3	FP3	2023-09-02	10:30:00	\N	f	1	1093	session_oAY5k3Vn	t	2023-09-02 10:30:00+00
+4529	7	R	2023-09-17	12:00:00	\N	f	22	1094	session_3jqDb092	t	2023-09-17 12:00:00+00
+4530	4	Q1	2023-09-16	13:00:00	\N	f	1	1094	session_sIaGOM5z	t	2023-09-16 13:00:00+00
+4531	5	Q2	2023-09-16	13:00:00	\N	f	1	1094	session_JM9jH03K	t	2023-09-16 13:00:00+00
+4532	6	Q3	2023-09-16	13:00:00	\N	f	1	1094	session_hMH6BwJo	t	2023-09-16 13:00:00+00
+4533	1	FP1	2023-09-15	09:30:00	\N	f	1	1094	session_w7Rm8bGS	t	2023-09-15 09:30:00+00
+4534	2	FP2	2023-09-15	13:00:00	\N	f	1	1094	session_Dy8u6Waj	t	2023-09-15 13:00:00+00
+4535	3	FP3	2023-09-16	09:30:00	\N	f	1	1094	session_8nhb2kDW	t	2023-09-16 09:30:00+00
+4536	7	R	2023-09-24	05:00:00	\N	f	22	1095	session_MYoLmiRh	t	2023-09-24 05:00:00+00
+4537	4	Q1	2023-09-23	06:00:00	\N	f	1	1095	session_ADNXWEki	t	2023-09-23 06:00:00+00
+4538	5	Q2	2023-09-23	06:00:00	\N	f	1	1095	session_zuxrMUrv	t	2023-09-23 06:00:00+00
+4539	6	Q3	2023-09-23	06:00:00	\N	f	1	1095	session_Hg3AJH5O	t	2023-09-23 06:00:00+00
+4540	1	FP1	2023-09-22	02:30:00	\N	f	1	1095	session_cxDAhWBE	t	2023-09-22 02:30:00+00
+4541	2	FP2	2023-09-22	06:00:00	\N	f	1	1095	session_cF2L7Dja	t	2023-09-22 06:00:00+00
+4542	3	FP3	2023-09-23	02:30:00	\N	f	1	1095	session_SkxW2WPI	t	2023-09-23 02:30:00+00
+4543	9	R	2023-10-08	17:00:00	\N	f	22	1096	session_pJ6EE9Jy	t	2023-10-08 17:00:00+00
+4544	2	Q1	2023-10-06	17:00:00	\N	f	1	1096	session_D4Goem8X	t	2023-10-06 17:00:00+00
+4545	3	Q2	2023-10-06	17:00:00	\N	f	1	1096	session_VixSyqQt	t	2023-10-06 17:00:00+00
+4546	4	Q3	2023-10-06	17:00:00	\N	f	1	1096	session_7bJjDqzg	t	2023-10-06 17:00:00+00
+4547	1	FP1	2023-10-06	13:30:00	\N	f	1	1096	session_RCtPCYre	t	2023-10-06 13:30:00+00
+4548	5	SQ1	2023-10-07	13:00:00	\N	f	1	1096	session_H8UWVRHm	t	2023-10-07 13:00:00+00
+4549	6	SQ2	2023-10-07	13:00:00	\N	f	1	1096	session_KCcdf9hk	t	2023-10-07 13:00:00+00
+4550	7	SQ3	2023-10-07	13:00:00	\N	f	1	1096	session_leIfyxLL	t	2023-10-07 13:00:00+00
+4551	8	SR	2023-10-07	17:30:00	\N	f	23	1096	session_SCXWCIoq	t	2023-10-07 17:30:00+00
+4552	9	R	2023-10-22	19:00:00	\N	f	22	1097	session_GfgZKI28	t	2023-10-22 19:00:00+00
+4553	2	Q1	2023-10-20	21:00:00	\N	f	1	1097	session_axkmoXiK	t	2023-10-20 21:00:00+00
+4554	3	Q2	2023-10-20	21:00:00	\N	f	1	1097	session_5qK4W4g0	t	2023-10-20 21:00:00+00
+4555	4	Q3	2023-10-20	21:00:00	\N	f	1	1097	session_hm8XWg9Y	t	2023-10-20 21:00:00+00
+4556	1	FP1	2023-10-20	17:30:00	\N	f	1	1097	session_G9eRYPdz	t	2023-10-20 17:30:00+00
+4557	5	SQ1	2023-10-21	18:00:00	\N	f	1	1097	session_ZsdGEfWi	t	2023-10-21 18:00:00+00
+4558	6	SQ2	2023-10-21	18:00:00	\N	f	1	1097	session_etFF7T8q	t	2023-10-21 18:00:00+00
+4559	7	SQ3	2023-10-21	18:00:00	\N	f	1	1097	session_QlPHYkr4	t	2023-10-21 18:00:00+00
+4560	8	SR	2023-10-21	22:00:00	\N	f	23	1097	session_uo1VT7rT	t	2023-10-21 22:00:00+00
+4561	7	R	2023-10-29	20:00:00	\N	f	22	1098	session_Qk0QSPp7	t	2023-10-29 20:00:00+00
+4562	4	Q1	2023-10-28	21:00:00	\N	f	1	1098	session_T2tz1Sk9	t	2023-10-28 21:00:00+00
+4563	5	Q2	2023-10-28	21:00:00	\N	f	1	1098	session_H5B5oqOc	t	2023-10-28 21:00:00+00
+4564	6	Q3	2023-10-28	21:00:00	\N	f	1	1098	session_Qjt2CcwF	t	2023-10-28 21:00:00+00
+4565	1	FP1	2023-10-27	18:30:00	\N	f	1	1098	session_A9VNjI9U	t	2023-10-27 18:30:00+00
+4566	2	FP2	2023-10-27	22:00:00	\N	f	1	1098	session_xTo1ElJ2	t	2023-10-27 22:00:00+00
+4567	3	FP3	2023-10-28	17:30:00	\N	f	1	1098	session_vFYqhOyS	t	2023-10-28 17:30:00+00
+4568	9	R	2023-11-05	17:00:00	\N	f	22	1099	session_UkFWsywu	t	2023-11-05 17:00:00+00
+4569	2	Q1	2023-11-03	18:00:00	\N	f	1	1099	session_CyxkCRr5	t	2023-11-03 18:00:00+00
+4570	3	Q2	2023-11-03	18:00:00	\N	f	1	1099	session_4MhNZmcL	t	2023-11-03 18:00:00+00
+4571	4	Q3	2023-11-03	18:00:00	\N	f	1	1099	session_8K9pzw64	t	2023-11-03 18:00:00+00
+4572	1	FP1	2023-11-03	14:30:00	\N	f	1	1099	session_AFG8kxJU	t	2023-11-03 14:30:00+00
+4573	5	SQ1	2023-11-04	14:30:00	\N	f	1	1099	session_414FIgSM	t	2023-11-04 14:30:00+00
+4574	6	SQ2	2023-11-04	14:30:00	\N	f	1	1099	session_Q6KIQWa3	t	2023-11-04 14:30:00+00
+4575	7	SQ3	2023-11-04	14:30:00	\N	f	1	1099	session_7J4KRemg	t	2023-11-04 14:30:00+00
+4576	8	SR	2023-11-04	18:30:00	\N	f	23	1099	session_vZp8eou2	t	2023-11-04 18:30:00+00
+4577	7	R	2023-11-19	06:00:00	\N	f	22	1100	session_GssSnIcL	t	2023-11-19 06:00:00+00
+4578	4	Q1	2023-11-17	08:00:00	\N	f	1	1100	session_HQ2rROy9	t	2023-11-17 08:00:00+00
+4579	5	Q2	2023-11-17	08:00:00	\N	f	1	1100	session_VE2kBhyg	t	2023-11-17 08:00:00+00
+4580	6	Q3	2023-11-17	08:00:00	\N	f	1	1100	session_7rl5RKAK	t	2023-11-17 08:00:00+00
+4581	1	FP1	2023-11-16	04:30:00	\N	f	1	1100	session_402AEU4s	t	2023-11-16 04:30:00+00
+4582	2	FP2	2023-11-16	08:00:00	\N	f	1	1100	session_RaQMBHzf	t	2023-11-16 08:00:00+00
+4583	3	FP3	2023-11-17	04:30:00	\N	f	1	1100	session_2qIWOIfO	t	2023-11-17 04:30:00+00
+4584	7	R	2023-11-26	13:00:00	\N	f	22	1101	session_y5d8RPan	t	2023-11-26 13:00:00+00
+4585	4	Q1	2023-11-25	14:00:00	\N	f	1	1101	session_2qxXR6o6	t	2023-11-25 14:00:00+00
+4586	5	Q2	2023-11-25	14:00:00	\N	f	1	1101	session_4j5XPe5Y	t	2023-11-25 14:00:00+00
+4587	6	Q3	2023-11-25	14:00:00	\N	f	1	1101	session_rjbgiG49	t	2023-11-25 14:00:00+00
+4588	1	FP1	2023-11-24	09:30:00	\N	f	1	1101	session_YnL5Ub2f	t	2023-11-24 09:30:00+00
+4589	2	FP2	2023-11-24	13:00:00	\N	f	1	1101	session_94GfbSw8	t	2023-11-24 13:00:00+00
+4590	3	FP3	2023-11-25	10:30:00	\N	f	1	1101	session_Q1H9xTgC	t	2023-11-25 10:30:00+00
+4591	7	R	2024-03-02	15:00:00	\N	f	22	1102	session_TAmdOOz5	t	2024-03-02 15:00:00+00
+4592	4	Q1	2024-03-01	16:00:00	\N	f	1	1102	session_2HCrzVCV	t	2024-03-01 16:00:00+00
+4593	5	Q2	2024-03-01	16:00:00	\N	f	1	1102	session_uGRAULzs	t	2024-03-01 16:00:00+00
+4594	6	Q3	2024-03-01	16:00:00	\N	f	1	1102	session_05ODp9EX	t	2024-03-01 16:00:00+00
+4595	1	FP1	2024-02-29	11:30:00	\N	f	1	1102	session_hmmsSTb1	t	2024-02-29 11:30:00+00
+4596	2	FP2	2024-02-29	15:00:00	\N	f	1	1102	session_MdP4UBZ5	t	2024-02-29 15:00:00+00
+4597	3	FP3	2024-03-01	12:30:00	\N	f	1	1102	session_E6Fimw7v	t	2024-03-01 12:30:00+00
+4598	7	R	2024-03-09	17:00:00	\N	f	22	1103	session_WLl6Sf18	t	2024-03-09 17:00:00+00
+4599	4	Q1	2024-03-08	17:00:00	\N	f	1	1103	session_KZ2WAKxE	t	2024-03-08 17:00:00+00
+4600	5	Q2	2024-03-08	17:00:00	\N	f	1	1103	session_R0nDe0TK	t	2024-03-08 17:00:00+00
+4601	6	Q3	2024-03-08	17:00:00	\N	f	1	1103	session_X9EnP0p4	t	2024-03-08 17:00:00+00
+4602	1	FP1	2024-03-07	13:30:00	\N	f	1	1103	session_GUD0uN6L	t	2024-03-07 13:30:00+00
+4603	2	FP2	2024-03-07	17:00:00	\N	f	1	1103	session_WdgDKgZf	t	2024-03-07 17:00:00+00
+4604	3	FP3	2024-03-08	13:30:00	\N	f	1	1103	session_tgymc8af	t	2024-03-08 13:30:00+00
+4605	7	R	2024-03-24	04:00:00	\N	f	22	1104	session_V3M4XCXM	t	2024-03-24 04:00:00+00
+4606	4	Q1	2024-03-23	05:00:00	\N	f	1	1104	session_7yk9wrAZ	t	2024-03-23 05:00:00+00
+4607	5	Q2	2024-03-23	05:00:00	\N	f	1	1104	session_9KnBI02M	t	2024-03-23 05:00:00+00
+4608	6	Q3	2024-03-23	05:00:00	\N	f	1	1104	session_pWaUCFwQ	t	2024-03-23 05:00:00+00
+4609	1	FP1	2024-03-22	01:30:00	\N	f	1	1104	session_sQlyzoMt	t	2024-03-22 01:30:00+00
+4610	2	FP2	2024-03-22	05:00:00	\N	f	1	1104	session_V3QvH5XG	t	2024-03-22 05:00:00+00
+4611	3	FP3	2024-03-23	01:30:00	\N	f	1	1104	session_8aBHq0aV	t	2024-03-23 01:30:00+00
+4612	7	R	2024-04-07	05:00:00	\N	f	22	1105	session_XsFZNOnA	t	2024-04-07 05:00:00+00
+4613	4	Q1	2024-04-06	06:00:00	\N	f	1	1105	session_Ex1pVP1R	t	2024-04-06 06:00:00+00
+4614	5	Q2	2024-04-06	06:00:00	\N	f	1	1105	session_5qv9Js92	t	2024-04-06 06:00:00+00
+4615	6	Q3	2024-04-06	06:00:00	\N	f	1	1105	session_AbtlhBCq	t	2024-04-06 06:00:00+00
+4616	1	FP1	2024-04-05	02:30:00	\N	f	1	1105	session_eKH5AKKe	t	2024-04-05 02:30:00+00
+4617	2	FP2	2024-04-05	06:00:00	\N	f	1	1105	session_5acULPCk	t	2024-04-05 06:00:00+00
+4618	3	FP3	2024-04-06	02:30:00	\N	f	1	1105	session_kQ4QbfFn	t	2024-04-06 02:30:00+00
+4619	9	R	2024-04-21	07:00:00	\N	f	22	1106	session_MyYzQgij	t	2024-04-21 07:00:00+00
+4620	6	Q1	2024-04-20	07:00:00	\N	f	1	1106	session_JGFVEY9D	t	2024-04-20 07:00:00+00
+4621	7	Q2	2024-04-20	07:00:00	\N	f	1	1106	session_p9SAUyZZ	t	2024-04-20 07:00:00+00
+4622	8	Q3	2024-04-20	07:00:00	\N	f	1	1106	session_ebOa46hn	t	2024-04-20 07:00:00+00
+4623	1	FP1	2024-04-19	03:30:00	\N	f	1	1106	session_5iQ006Ph	t	2024-04-19 03:30:00+00
+4624	2	SQ1	2024-04-19	07:30:00	\N	f	1	1106	session_wWXQ8VoT	t	2024-04-19 07:30:00+00
+4625	3	SQ2	2024-04-19	07:30:00	\N	f	1	1106	session_MdBYOOeQ	t	2024-04-19 07:30:00+00
+4626	4	SQ3	2024-04-19	07:30:00	\N	f	1	1106	session_4UD3pPdR	t	2024-04-19 07:30:00+00
+4627	5	SR	2024-04-20	03:00:00	\N	f	23	1106	session_qR66TVES	t	2024-04-20 03:00:00+00
+4628	9	R	2024-05-05	20:00:00	\N	f	22	1107	session_18pZ7zgF	t	2024-05-05 20:00:00+00
+4629	6	Q1	2024-05-04	20:00:00	\N	f	1	1107	session_wsCT1M5E	t	2024-05-04 20:00:00+00
+4630	7	Q2	2024-05-04	20:00:00	\N	f	1	1107	session_zZ2RJjeV	t	2024-05-04 20:00:00+00
+4631	8	Q3	2024-05-04	20:00:00	\N	f	1	1107	session_1vLD2IW7	t	2024-05-04 20:00:00+00
+4632	1	FP1	2024-05-03	16:30:00	\N	f	1	1107	session_kljaYKNz	t	2024-05-03 16:30:00+00
+4633	2	SQ1	2024-05-03	20:30:00	\N	f	1	1107	session_xojbosia	t	2024-05-03 20:30:00+00
+4634	3	SQ2	2024-05-03	20:30:00	\N	f	1	1107	session_eBCjc8iT	t	2024-05-03 20:30:00+00
+4635	4	SQ3	2024-05-03	20:30:00	\N	f	1	1107	session_cMhYd8La	t	2024-05-03 20:30:00+00
+4636	5	SR	2024-05-04	16:00:00	\N	f	23	1107	session_TlMZhn3S	t	2024-05-04 16:00:00+00
+4637	7	R	2024-05-19	13:00:00	\N	f	22	1108	session_VdFMYcbi	t	2024-05-19 13:00:00+00
+4638	4	Q1	2024-05-18	14:00:00	\N	f	1	1108	session_L7jtAtPh	t	2024-05-18 14:00:00+00
+4639	5	Q2	2024-05-18	14:00:00	\N	f	1	1108	session_4HthBVVB	t	2024-05-18 14:00:00+00
+4640	6	Q3	2024-05-18	14:00:00	\N	f	1	1108	session_kfGUAnFW	t	2024-05-18 14:00:00+00
+4641	1	FP1	2024-05-17	11:30:00	\N	f	1	1108	session_qXGrUcTi	t	2024-05-17 11:30:00+00
+4642	2	FP2	2024-05-17	15:00:00	\N	f	1	1108	session_bOtlmEBW	t	2024-05-17 15:00:00+00
+4643	3	FP3	2024-05-18	10:30:00	\N	f	1	1108	session_LDcwH851	t	2024-05-18 10:30:00+00
+4644	7	R	2024-05-26	13:00:00	\N	f	22	1109	session_onuzzJR0	t	2024-05-26 13:00:00+00
+4645	4	Q1	2024-05-25	14:00:00	\N	f	1	1109	session_jWPDJ1S7	t	2024-05-25 14:00:00+00
+4646	5	Q2	2024-05-25	14:00:00	\N	f	1	1109	session_s4U9JY5j	t	2024-05-25 14:00:00+00
+4647	6	Q3	2024-05-25	14:00:00	\N	f	1	1109	session_Xe21yZcF	t	2024-05-25 14:00:00+00
+4648	1	FP1	2024-05-24	11:30:00	\N	f	1	1109	session_ZV3I8syI	t	2024-05-24 11:30:00+00
+4649	2	FP2	2024-05-24	15:00:00	\N	f	1	1109	session_jTDOBNdx	t	2024-05-24 15:00:00+00
+4650	3	FP3	2024-05-25	10:30:00	\N	f	1	1109	session_eLaPFlFn	t	2024-05-25 10:30:00+00
+4651	7	R	2024-06-09	18:00:00	\N	f	22	1110	session_UgX1JoWP	t	2024-06-09 18:00:00+00
+4652	4	Q1	2024-06-08	20:00:00	\N	f	1	1110	session_QtS9MRXt	t	2024-06-08 20:00:00+00
+4653	5	Q2	2024-06-08	20:00:00	\N	f	1	1110	session_WGvJBuFD	t	2024-06-08 20:00:00+00
+4654	6	Q3	2024-06-08	20:00:00	\N	f	1	1110	session_RX8HkUPy	t	2024-06-08 20:00:00+00
+4655	1	FP1	2024-06-07	17:30:00	\N	f	1	1110	session_TuSU6NGa	t	2024-06-07 17:30:00+00
+4656	2	FP2	2024-06-07	21:00:00	\N	f	1	1110	session_2lXGy1tQ	t	2024-06-07 21:00:00+00
+4657	3	FP3	2024-06-08	16:30:00	\N	f	1	1110	session_TrBNQuBI	t	2024-06-08 16:30:00+00
+4658	7	R	2024-06-23	13:00:00	\N	f	22	1111	session_zjCahpun	t	2024-06-23 13:00:00+00
+4659	4	Q1	2024-06-22	14:00:00	\N	f	1	1111	session_LSsKNcdR	t	2024-06-22 14:00:00+00
+4660	5	Q2	2024-06-22	14:00:00	\N	f	1	1111	session_IVaY1q68	t	2024-06-22 14:00:00+00
+4661	6	Q3	2024-06-22	14:00:00	\N	f	1	1111	session_JkSv0ebv	t	2024-06-22 14:00:00+00
+4662	1	FP1	2024-06-21	11:30:00	\N	f	1	1111	session_lmNTr6d2	t	2024-06-21 11:30:00+00
+4663	2	FP2	2024-06-21	15:00:00	\N	f	1	1111	session_OlPHuAgx	t	2024-06-21 15:00:00+00
+4664	3	FP3	2024-06-22	10:30:00	\N	f	1	1111	session_Zm5JfI7C	t	2024-06-22 10:30:00+00
+4665	9	R	2024-06-30	13:00:00	\N	f	22	1112	session_9Zb4ZOo3	t	2024-06-30 13:00:00+00
+4666	6	Q1	2024-06-29	14:00:00	\N	f	1	1112	session_X4kDrNlS	t	2024-06-29 14:00:00+00
+4667	7	Q2	2024-06-29	14:00:00	\N	f	1	1112	session_GvkKZRut	t	2024-06-29 14:00:00+00
+4668	8	Q3	2024-06-29	14:00:00	\N	f	1	1112	session_YuqxGHMV	t	2024-06-29 14:00:00+00
+4669	1	FP1	2024-06-28	10:30:00	\N	f	1	1112	session_EEAlZnuK	t	2024-06-28 10:30:00+00
+4670	2	SQ1	2024-06-28	14:30:00	\N	f	1	1112	session_dbLhlqwf	t	2024-06-28 14:30:00+00
+4671	3	SQ2	2024-06-28	14:30:00	\N	f	1	1112	session_XQE09qQM	t	2024-06-28 14:30:00+00
+4672	4	SQ3	2024-06-28	14:30:00	\N	f	1	1112	session_EmrdzoAz	t	2024-06-28 14:30:00+00
+4673	5	SR	2024-06-29	10:00:00	\N	f	23	1112	session_Vom6afwe	t	2024-06-29 10:00:00+00
+4674	7	R	2024-07-07	14:00:00	\N	f	22	1113	session_jCKdIIHM	t	2024-07-07 14:00:00+00
+4675	4	Q1	2024-07-06	14:00:00	\N	f	1	1113	session_4J3dy71w	t	2024-07-06 14:00:00+00
+4676	5	Q2	2024-07-06	14:00:00	\N	f	1	1113	session_5CrqwT0i	t	2024-07-06 14:00:00+00
+4677	6	Q3	2024-07-06	14:00:00	\N	f	1	1113	session_r4Z23FRd	t	2024-07-06 14:00:00+00
+4678	1	FP1	2024-07-05	11:30:00	\N	f	1	1113	session_eh23MVFK	t	2024-07-05 11:30:00+00
+4679	2	FP2	2024-07-05	15:00:00	\N	f	1	1113	session_CoBzKwJU	t	2024-07-05 15:00:00+00
+4680	3	FP3	2024-07-06	10:30:00	\N	f	1	1113	session_Wlq98mZm	t	2024-07-06 10:30:00+00
+4681	7	R	2024-07-21	13:00:00	\N	f	22	1114	session_wQEoAaCE	t	2024-07-21 13:00:00+00
+4682	4	Q1	2024-07-20	14:00:00	\N	f	1	1114	session_CyxBFwP2	t	2024-07-20 14:00:00+00
+4683	5	Q2	2024-07-20	14:00:00	\N	f	1	1114	session_AXnFikHM	t	2024-07-20 14:00:00+00
+4684	6	Q3	2024-07-20	14:00:00	\N	f	1	1114	session_cKDzqii6	t	2024-07-20 14:00:00+00
+4685	1	FP1	2024-07-19	11:30:00	\N	f	1	1114	session_hX6f39qL	t	2024-07-19 11:30:00+00
+4686	2	FP2	2024-07-19	15:00:00	\N	f	1	1114	session_AJBF3B7j	t	2024-07-19 15:00:00+00
+4687	3	FP3	2024-07-20	10:30:00	\N	f	1	1114	session_DT1hAMHr	t	2024-07-20 10:30:00+00
+4688	7	R	2024-07-28	13:00:00	\N	f	22	1115	session_u8779gmx	t	2024-07-28 13:00:00+00
+4689	4	Q1	2024-07-27	14:00:00	\N	f	1	1115	session_JWbxjsXQ	t	2024-07-27 14:00:00+00
+4690	5	Q2	2024-07-27	14:00:00	\N	f	1	1115	session_CVwMlopf	t	2024-07-27 14:00:00+00
+4691	6	Q3	2024-07-27	14:00:00	\N	f	1	1115	session_xYxCXtBL	t	2024-07-27 14:00:00+00
+4692	1	FP1	2024-07-26	11:30:00	\N	f	1	1115	session_Js8wFIvK	t	2024-07-26 11:30:00+00
+4693	2	FP2	2024-07-26	15:00:00	\N	f	1	1115	session_z25kczxA	t	2024-07-26 15:00:00+00
+4694	3	FP3	2024-07-27	10:30:00	\N	f	1	1115	session_7819VBEQ	t	2024-07-27 10:30:00+00
+4695	7	R	2024-08-25	13:00:00	\N	f	22	1116	session_VeC6n5LT	t	2024-08-25 13:00:00+00
+4696	4	Q1	2024-08-24	13:00:00	\N	f	1	1116	session_sDAqWXNC	t	2024-08-24 13:00:00+00
+4697	5	Q2	2024-08-24	13:00:00	\N	f	1	1116	session_ydhV4gHa	t	2024-08-24 13:00:00+00
+4698	6	Q3	2024-08-24	13:00:00	\N	f	1	1116	session_UttX7XLM	t	2024-08-24 13:00:00+00
+4699	1	FP1	2024-08-23	10:30:00	\N	f	1	1116	session_ieNkhXzU	t	2024-08-23 10:30:00+00
+4700	2	FP2	2024-08-23	14:00:00	\N	f	1	1116	session_etCzrvlF	t	2024-08-23 14:00:00+00
+4701	3	FP3	2024-08-24	09:30:00	\N	f	1	1116	session_xhZkUWAM	t	2024-08-24 09:30:00+00
+4702	7	R	2024-09-01	13:00:00	\N	f	22	1117	session_yhk1ZcZ3	t	2024-09-01 13:00:00+00
+4703	4	Q1	2024-08-31	14:00:00	\N	f	1	1117	session_hyX0ZLUa	t	2024-08-31 14:00:00+00
+4704	5	Q2	2024-08-31	14:00:00	\N	f	1	1117	session_snK6hRWc	t	2024-08-31 14:00:00+00
+4705	6	Q3	2024-08-31	14:00:00	\N	f	1	1117	session_EJMe25YI	t	2024-08-31 14:00:00+00
+4706	1	FP1	2024-08-30	11:30:00	\N	f	1	1117	session_Iez1r0Xq	t	2024-08-30 11:30:00+00
+4707	2	FP2	2024-08-30	15:00:00	\N	f	1	1117	session_pystorYu	t	2024-08-30 15:00:00+00
+4708	3	FP3	2024-08-31	10:30:00	\N	f	1	1117	session_TXRvTjFU	t	2024-08-31 10:30:00+00
+4709	7	R	2024-09-15	11:00:00	\N	f	22	1118	session_qkOlhVQZ	t	2024-09-15 11:00:00+00
+4710	4	Q1	2024-09-14	12:00:00	\N	f	1	1118	session_IGRrLGcg	t	2024-09-14 12:00:00+00
+4711	5	Q2	2024-09-14	12:00:00	\N	f	1	1118	session_VbDv7wOn	t	2024-09-14 12:00:00+00
+4712	6	Q3	2024-09-14	12:00:00	\N	f	1	1118	session_EyIlxy1G	t	2024-09-14 12:00:00+00
+4713	1	FP1	2024-09-13	09:30:00	\N	f	1	1118	session_Dh8tHTdW	t	2024-09-13 09:30:00+00
+4714	2	FP2	2024-09-13	13:00:00	\N	f	1	1118	session_m7Jz2Bph	t	2024-09-13 13:00:00+00
+4715	3	FP3	2024-09-14	08:30:00	\N	f	1	1118	session_idO9x4ER	t	2024-09-14 08:30:00+00
+4716	7	R	2024-09-22	12:00:00	\N	f	22	1119	session_mtQ0FSmy	t	2024-09-22 12:00:00+00
+4717	4	Q1	2024-09-21	13:00:00	\N	f	1	1119	session_QBEJcehz	t	2024-09-21 13:00:00+00
+4718	5	Q2	2024-09-21	13:00:00	\N	f	1	1119	session_9L0uvC93	t	2024-09-21 13:00:00+00
+4719	6	Q3	2024-09-21	13:00:00	\N	f	1	1119	session_Z4zNndl9	t	2024-09-21 13:00:00+00
+4720	1	FP1	2024-09-20	09:30:00	\N	f	1	1119	session_FJF1v8s6	t	2024-09-20 09:30:00+00
+4721	2	FP2	2024-09-20	13:00:00	\N	f	1	1119	session_JEWEezLt	t	2024-09-20 13:00:00+00
+4722	3	FP3	2024-09-21	09:30:00	\N	f	1	1119	session_1A7GgWJo	t	2024-09-21 09:30:00+00
+4723	9	R	2024-10-20	19:00:00	\N	f	22	1120	session_g0arYCNV	t	2024-10-20 19:00:00+00
+4724	6	Q1	2024-10-19	22:00:00	\N	f	1	1120	session_WBZgq5Vt	t	2024-10-19 22:00:00+00
+4725	7	Q2	2024-10-19	22:00:00	\N	f	1	1120	session_jQNnc9Gi	t	2024-10-19 22:00:00+00
+4726	8	Q3	2024-10-19	22:00:00	\N	f	1	1120	session_w4gdWB8f	t	2024-10-19 22:00:00+00
+4727	1	FP1	2024-10-18	17:30:00	\N	f	1	1120	session_CstfnyTO	t	2024-10-18 17:30:00+00
+4728	2	SQ1	2024-10-18	21:30:00	\N	f	1	1120	session_qGnfuhHV	t	2024-10-18 21:30:00+00
+4729	3	SQ2	2024-10-18	21:30:00	\N	f	1	1120	session_AjfW7G8l	t	2024-10-18 21:30:00+00
+4730	4	SQ3	2024-10-18	21:30:00	\N	f	1	1120	session_g6pTJM4y	t	2024-10-18 21:30:00+00
+4731	5	SR	2024-10-19	18:00:00	\N	f	23	1120	session_ndmZdSkX	t	2024-10-19 18:00:00+00
+4732	7	R	2024-10-27	20:00:00	\N	f	22	1121	session_h33v1VjK	t	2024-10-27 20:00:00+00
+4733	4	Q1	2024-10-26	21:00:00	\N	f	1	1121	session_zgqxGSg8	t	2024-10-26 21:00:00+00
+4734	5	Q2	2024-10-26	21:00:00	\N	f	1	1121	session_9iFp4aZ3	t	2024-10-26 21:00:00+00
+4735	6	Q3	2024-10-26	21:00:00	\N	f	1	1121	session_t6t9Tngt	t	2024-10-26 21:00:00+00
+4736	1	FP1	2024-10-25	18:30:00	\N	f	1	1121	session_jozdvOZC	t	2024-10-25 18:30:00+00
+4737	2	FP2	2024-10-25	22:00:00	\N	f	1	1121	session_tp28yobx	t	2024-10-25 22:00:00+00
+4738	3	FP3	2024-10-26	17:30:00	\N	f	1	1121	session_nBFmIIoa	t	2024-10-26 17:30:00+00
+4739	9	R	2024-11-03	17:00:00	\N	f	22	1122	session_hfUuBIal	t	2024-11-03 17:00:00+00
+4740	6	Q1	2024-11-02	18:00:00	\N	f	1	1122	session_Cv0OE7R1	t	2024-11-02 18:00:00+00
+4741	7	Q2	2024-11-02	18:00:00	\N	f	1	1122	session_oJui4vKO	t	2024-11-02 18:00:00+00
+4742	8	Q3	2024-11-02	18:00:00	\N	f	1	1122	session_rIaaHjiV	t	2024-11-02 18:00:00+00
+4743	1	FP1	2024-11-01	14:30:00	\N	f	1	1122	session_cquZq3YX	t	2024-11-01 14:30:00+00
+4744	2	SQ1	2024-11-01	18:30:00	\N	f	1	1122	session_Hh7uYY6x	t	2024-11-01 18:30:00+00
+4745	3	SQ2	2024-11-01	18:30:00	\N	f	1	1122	session_7GyY37Xo	t	2024-11-01 18:30:00+00
+4746	4	SQ3	2024-11-01	18:30:00	\N	f	1	1122	session_rMJUaEae	t	2024-11-01 18:30:00+00
+4747	5	SR	2024-11-02	14:00:00	\N	f	23	1122	session_JgU1L1Rv	t	2024-11-02 14:00:00+00
+4748	7	R	2024-11-23	06:00:00	\N	f	22	1123	session_MsJCLkca	t	2024-11-23 06:00:00+00
+4749	4	Q1	2024-11-22	06:00:00	\N	f	1	1123	session_ZX0z42xB	t	2024-11-22 06:00:00+00
+4750	5	Q2	2024-11-22	06:00:00	\N	f	1	1123	session_ix9hjWLd	t	2024-11-22 06:00:00+00
+4751	6	Q3	2024-11-22	06:00:00	\N	f	1	1123	session_zbPwf9Ih	t	2024-11-22 06:00:00+00
+4752	1	FP1	2024-11-21	02:30:00	\N	f	1	1123	session_boP7ZLXj	t	2024-11-21 02:30:00+00
+4753	2	FP2	2024-11-21	06:00:00	\N	f	1	1123	session_h5lBziga	t	2024-11-21 06:00:00+00
+4754	3	FP3	2024-11-22	02:30:00	\N	f	1	1123	session_k9gPni9M	t	2024-11-22 02:30:00+00
+4755	9	R	2024-12-01	16:00:00	\N	f	22	1124	session_TgrQTekG	t	2024-12-01 16:00:00+00
+4756	6	Q1	2024-11-30	18:00:00	\N	f	1	1124	session_a7Jm1ZyP	t	2024-11-30 18:00:00+00
+4757	7	Q2	2024-11-30	18:00:00	\N	f	1	1124	session_0LG3ercS	t	2024-11-30 18:00:00+00
+4758	8	Q3	2024-11-30	18:00:00	\N	f	1	1124	session_3j2NcyzN	t	2024-11-30 18:00:00+00
+4759	1	FP1	2024-11-29	13:30:00	\N	f	1	1124	session_JYxsaiEy	t	2024-11-29 13:30:00+00
+4760	2	SQ1	2024-11-29	17:30:00	\N	f	1	1124	session_5S1Gdm6b	t	2024-11-29 17:30:00+00
+4761	3	SQ2	2024-11-29	17:30:00	\N	f	1	1124	session_eI9RH2vZ	t	2024-11-29 17:30:00+00
+4762	4	SQ3	2024-11-29	17:30:00	\N	f	1	1124	session_yX80BzvL	t	2024-11-29 17:30:00+00
+4763	5	SR	2024-11-30	14:00:00	\N	f	23	1124	session_qyKRxYMU	t	2024-11-30 14:00:00+00
+4764	7	R	2024-12-08	13:00:00	\N	f	22	1125	session_fcgTHu2i	t	2024-12-08 13:00:00+00
+4765	4	Q1	2024-12-07	14:00:00	\N	f	1	1125	session_23fqNnOr	t	2024-12-07 14:00:00+00
+4766	5	Q2	2024-12-07	14:00:00	\N	f	1	1125	session_bkmM9DLy	t	2024-12-07 14:00:00+00
+4767	6	Q3	2024-12-07	14:00:00	\N	f	1	1125	session_6zQ6LLFC	t	2024-12-07 14:00:00+00
+4768	1	FP1	2024-12-06	09:30:00	\N	f	1	1125	session_i07CLWiH	t	2024-12-06 09:30:00+00
+4769	2	FP2	2024-12-06	13:00:00	\N	f	1	1125	session_eeCzbLUh	t	2024-12-06 13:00:00+00
+4770	3	FP3	2024-12-07	10:30:00	\N	f	1	1125	session_qeYJdl5L	t	2024-12-07 10:30:00+00
+4771	1	FP1	2025-03-14	01:30:00	\N	f	1	1126	session_s5C5LCb1	t	2025-03-14 01:30:00+00
+4772	2	FP2	2025-03-14	05:00:00	\N	f	1	1126	session_pULmYKSo	t	2025-03-14 05:00:00+00
+4773	3	FP3	2025-03-15	01:30:00	\N	f	1	1126	session_oGRuY94G	t	2025-03-15 01:30:00+00
+4774	4	Q1	2025-03-15	05:00:00	\N	f	1	1126	session_gO1Z1iEq	t	2025-03-15 05:00:00+00
+4775	5	Q2	2025-03-15	05:00:00	\N	f	1	1126	session_hWngrlUY	t	2025-03-15 05:00:00+00
+4776	6	Q3	2025-03-15	05:00:00	\N	f	1	1126	session_DTzUXnEZ	t	2025-03-15 05:00:00+00
+4777	7	R	2025-03-16	04:00:00	58	f	24	1126	session_Yqc2k17Z	t	2025-03-16 04:00:00+00
+4778	1	FP1	2025-03-21	03:30:00	\N	f	1	1127	session_X1sv7FSq	t	2025-03-21 03:30:00+00
+4779	2	SQ1	2025-03-21	07:30:00	\N	f	1	1127	session_vsXcRch7	t	2025-03-21 07:30:00+00
+4780	3	SQ2	2025-03-21	07:30:00	\N	f	1	1127	session_Kn8MweuQ	t	2025-03-21 07:30:00+00
+4781	4	SQ3	2025-03-21	07:30:00	\N	f	1	1127	session_NOqAJ1B3	t	2025-03-21 07:30:00+00
+4782	5	SR	2025-03-22	03:00:00	\N	f	23	1127	session_tJE3ebSO	t	2025-03-22 03:00:00+00
+4783	6	Q1	2025-03-22	07:00:00	\N	f	1	1127	session_MAGicxn3	t	2025-03-22 07:00:00+00
+4784	7	Q2	2025-03-22	07:00:00	\N	f	1	1127	session_GiqF2Yig	t	2025-03-22 07:00:00+00
+4785	8	Q3	2025-03-22	07:00:00	\N	f	1	1127	session_JtuiXd4e	t	2025-03-22 07:00:00+00
+4786	9	R	2025-03-23	07:00:00	56	f	24	1127	session_niuOeI9X	t	2025-03-23 07:00:00+00
+4787	1	FP1	2025-04-04	02:30:00	\N	f	1	1128	session_oBd8NFLw	t	2025-04-04 02:30:00+00
+4788	2	FP2	2025-04-04	06:00:00	\N	f	1	1128	session_A7sIwH1u	t	2025-04-04 06:00:00+00
+4789	3	FP3	2025-04-05	02:30:00	\N	f	1	1128	session_UP8dO4FA	t	2025-04-05 02:30:00+00
+4790	4	Q1	2025-04-05	06:00:00	\N	f	1	1128	session_M8FzzzXS	t	2025-04-05 06:00:00+00
+4791	5	Q2	2025-04-05	06:00:00	\N	f	1	1128	session_IkZyyKqP	t	2025-04-05 06:00:00+00
+4792	6	Q3	2025-04-05	06:00:00	\N	f	1	1128	session_28r5UY97	t	2025-04-05 06:00:00+00
+4793	7	R	2025-04-06	05:00:00	53	f	24	1128	session_eOj1pxYB	t	2025-04-06 05:00:00+00
+4794	1	FP1	2025-04-11	11:30:00	\N	f	1	1129	session_NpNz3cLL	t	2025-04-11 11:30:00+00
+4795	2	FP2	2025-04-11	15:00:00	\N	f	1	1129	session_tJtzVwFE	t	2025-04-11 15:00:00+00
+4796	3	FP3	2025-04-12	12:30:00	\N	f	1	1129	session_oXCyez98	t	2025-04-12 12:30:00+00
+4797	4	Q1	2025-04-12	16:00:00	\N	f	1	1129	session_n23uXp5C	t	2025-04-12 16:00:00+00
+4798	5	Q2	2025-04-12	16:00:00	\N	f	1	1129	session_0oZaqfDm	t	2025-04-12 16:00:00+00
+4799	6	Q3	2025-04-12	16:00:00	\N	f	1	1129	session_RivAuxNi	t	2025-04-12 16:00:00+00
+4800	7	R	2025-04-13	15:00:00	57	f	24	1129	session_KLlrgjAC	t	2025-04-13 15:00:00+00
+4801	1	FP1	2025-04-18	13:30:00	\N	f	1	1130	session_3zjl4YsZ	t	2025-04-18 13:30:00+00
+4802	2	FP2	2025-04-18	17:00:00	\N	f	1	1130	session_rHI2GhiI	t	2025-04-18 17:00:00+00
+4803	3	FP3	2025-04-19	13:30:00	\N	f	1	1130	session_3zO538O1	t	2025-04-19 13:30:00+00
+4804	4	Q1	2025-04-19	17:00:00	\N	f	1	1130	session_4zk03DYU	t	2025-04-19 17:00:00+00
+4805	5	Q2	2025-04-19	17:00:00	\N	f	1	1130	session_dAMUK0i1	t	2025-04-19 17:00:00+00
+4806	6	Q3	2025-04-19	17:00:00	\N	f	1	1130	session_s5oui9AQ	t	2025-04-19 17:00:00+00
+4807	7	R	2025-04-20	17:00:00	50	f	24	1130	session_pIHOXrxQ	t	2025-04-20 17:00:00+00
+4808	1	FP1	2025-05-02	16:30:00	\N	f	1	1131	session_2R5BbCUB	t	2025-05-02 16:30:00+00
+4809	2	SQ1	2025-05-02	20:30:00	\N	f	1	1131	session_SvdzGFpk	t	2025-05-02 20:30:00+00
+4810	3	SQ2	2025-05-02	20:30:00	\N	f	1	1131	session_fSTTEL8M	t	2025-05-02 20:30:00+00
+4811	4	SQ3	2025-05-02	20:30:00	\N	f	1	1131	session_m14eXLWK	t	2025-05-02 20:30:00+00
+4812	5	SR	2025-05-03	16:00:00	\N	f	23	1131	session_3tRW19Fq	t	2025-05-03 16:00:00+00
+4813	6	Q1	2025-05-03	20:00:00	\N	f	1	1131	session_sZnoM2KJ	t	2025-05-03 20:00:00+00
+4814	7	Q2	2025-05-03	20:00:00	\N	f	1	1131	session_4mJek7eU	t	2025-05-03 20:00:00+00
+4815	8	Q3	2025-05-03	20:00:00	\N	f	1	1131	session_GIFrKd3E	t	2025-05-03 20:00:00+00
+4816	9	R	2025-05-04	20:00:00	57	f	24	1131	session_KkjrO2fg	t	2025-05-04 20:00:00+00
+4817	1	FP1	2025-05-16	11:30:00	\N	f	1	1132	session_O3wIskxV	t	2025-05-16 11:30:00+00
+4818	2	FP2	2025-05-16	15:00:00	\N	f	1	1132	session_La8tYfG5	t	2025-05-16 15:00:00+00
+4819	3	FP3	2025-05-17	10:30:00	\N	f	1	1132	session_h7SyASdx	t	2025-05-17 10:30:00+00
+4820	4	Q1	2025-05-17	14:00:00	\N	f	1	1132	session_1f9S2t6r	t	2025-05-17 14:00:00+00
+4821	5	Q2	2025-05-17	14:00:00	\N	f	1	1132	session_LU2cC9MO	t	2025-05-17 14:00:00+00
+4822	6	Q3	2025-05-17	14:00:00	\N	f	1	1132	session_694fHZJG	t	2025-05-17 14:00:00+00
+4823	7	R	2025-05-18	13:00:00	63	f	24	1132	session_2mpFx9b5	t	2025-05-18 13:00:00+00
+4824	1	FP1	2025-05-23	11:30:00	\N	f	1	1133	session_PRHTO4SI	t	2025-05-23 11:30:00+00
+4825	2	FP2	2025-05-23	15:00:00	\N	f	1	1133	session_Lsf88Noq	t	2025-05-23 15:00:00+00
+4826	3	FP3	2025-05-24	10:30:00	\N	f	1	1133	session_Qxz5h8Ah	t	2025-05-24 10:30:00+00
+4827	4	Q1	2025-05-24	14:00:00	\N	f	1	1133	session_1P8oCKS0	t	2025-05-24 14:00:00+00
+4828	5	Q2	2025-05-24	14:00:00	\N	f	1	1133	session_8WBQis7K	t	2025-05-24 14:00:00+00
+4829	6	Q3	2025-05-24	14:00:00	\N	f	1	1133	session_mEdzOf6e	t	2025-05-24 14:00:00+00
+4830	7	R	2025-05-25	13:00:00	78	f	24	1133	session_Cu2SE7zy	t	2025-05-25 13:00:00+00
+4831	1	FP1	2025-05-30	11:30:00	\N	f	1	1134	session_gaThBqQD	t	2025-05-30 11:30:00+00
+4832	2	FP2	2025-05-30	15:00:00	\N	f	1	1134	session_3iWofwRf	t	2025-05-30 15:00:00+00
+4833	3	FP3	2025-05-31	10:30:00	\N	f	1	1134	session_iEy1FAmt	t	2025-05-31 10:30:00+00
+4834	4	Q1	2025-05-31	14:00:00	\N	f	1	1134	session_0xWmMlna	t	2025-05-31 14:00:00+00
+4835	5	Q2	2025-05-31	14:00:00	\N	f	1	1134	session_YiBSZKlH	t	2025-05-31 14:00:00+00
+4836	6	Q3	2025-05-31	14:00:00	\N	f	1	1134	session_ZN0paCCH	t	2025-05-31 14:00:00+00
+4837	7	R	2025-06-01	13:00:00	66	f	24	1134	session_GKcjbcwP	t	2025-06-01 13:00:00+00
+4838	1	FP1	2025-06-13	17:30:00	\N	f	1	1135	session_JVfb1UfV	t	2025-06-13 17:30:00+00
+4839	2	FP2	2025-06-13	21:00:00	\N	f	1	1135	session_uMEIgJzn	t	2025-06-13 21:00:00+00
+4840	3	FP3	2025-06-14	16:30:00	\N	f	1	1135	session_9ts19wRs	t	2025-06-14 16:30:00+00
+4841	4	Q1	2025-06-14	20:00:00	\N	f	1	1135	session_ZnSg5EPe	t	2025-06-14 20:00:00+00
+4842	5	Q2	2025-06-14	20:00:00	\N	f	1	1135	session_xVu1yGS8	t	2025-06-14 20:00:00+00
+4843	6	Q3	2025-06-14	20:00:00	\N	f	1	1135	session_W0aIxg2c	t	2025-06-14 20:00:00+00
+4844	7	R	2025-06-15	18:00:00	70	f	24	1135	session_V9pGDdC2	t	2025-06-15 18:00:00+00
+4845	1	FP1	2025-06-27	11:30:00	\N	f	1	1136	session_B0SV0meR	t	2025-06-27 11:30:00+00
+4846	2	FP2	2025-06-27	15:00:00	\N	f	1	1136	session_LyyfmcNO	t	2025-06-27 15:00:00+00
+4847	3	FP3	2025-06-28	10:30:00	\N	f	1	1136	session_41sZvmaS	t	2025-06-28 10:30:00+00
+4848	4	Q1	2025-06-28	14:00:00	\N	f	1	1136	session_OOjt9Kmn	t	2025-06-28 14:00:00+00
+4849	5	Q2	2025-06-28	14:00:00	\N	f	1	1136	session_1ddgEhi2	t	2025-06-28 14:00:00+00
+4850	6	Q3	2025-06-28	14:00:00	\N	f	1	1136	session_CLEIfhGd	t	2025-06-28 14:00:00+00
+4851	7	R	2025-06-29	13:00:00	71	f	24	1136	session_EUOU3b7h	t	2025-06-29 13:00:00+00
+4852	1	FP1	2025-07-04	11:30:00	\N	f	1	1137	session_WIqxVT7I	t	2025-07-04 11:30:00+00
+4853	2	FP2	2025-07-04	15:00:00	\N	f	1	1137	session_mwmKnrcM	t	2025-07-04 15:00:00+00
+4854	3	FP3	2025-07-05	10:30:00	\N	f	1	1137	session_XpRxUCqS	t	2025-07-05 10:30:00+00
+4855	4	Q1	2025-07-05	14:00:00	\N	f	1	1137	session_ufi1WgGb	t	2025-07-05 14:00:00+00
+4856	5	Q2	2025-07-05	14:00:00	\N	f	1	1137	session_ZJtBE2E7	t	2025-07-05 14:00:00+00
+4857	6	Q3	2025-07-05	14:00:00	\N	f	1	1137	session_GqJH6Zir	t	2025-07-05 14:00:00+00
+4858	7	R	2025-07-06	14:00:00	52	f	24	1137	session_Tqc6midw	t	2025-07-06 14:00:00+00
+4859	1	FP1	2025-07-25	10:30:00	\N	f	1	1138	session_Jd3eQ3um	t	2025-07-25 10:30:00+00
+4860	2	SQ1	2025-07-25	14:30:00	\N	f	1	1138	session_SWfwGRXQ	t	2025-07-25 14:30:00+00
+4861	3	SQ2	2025-07-25	14:30:00	\N	f	1	1138	session_yQdK7nTT	t	2025-07-25 14:30:00+00
+4862	4	SQ3	2025-07-25	14:30:00	\N	f	1	1138	session_6J1qliyS	t	2025-07-25 14:30:00+00
+4863	5	SR	2025-07-26	10:00:00	\N	f	23	1138	session_2tCooKIG	t	2025-07-26 10:00:00+00
+4864	6	Q1	2025-07-26	14:00:00	\N	f	1	1138	session_pgdgWbHd	t	2025-07-26 14:00:00+00
+4865	7	Q2	2025-07-26	14:00:00	\N	f	1	1138	session_WTMaywHX	t	2025-07-26 14:00:00+00
+4866	8	Q3	2025-07-26	14:00:00	\N	f	1	1138	session_0Gy4BbUC	t	2025-07-26 14:00:00+00
+4867	9	R	2025-07-27	13:00:00	44	f	24	1138	session_aN6sq8kI	t	2025-07-27 13:00:00+00
+4868	1	FP1	2025-08-01	11:30:00	\N	f	1	1139	session_7Gxnvv80	t	2025-08-01 11:30:00+00
+4869	2	FP2	2025-08-01	15:00:00	\N	f	1	1139	session_wFqwRSzu	t	2025-08-01 15:00:00+00
+4870	3	FP3	2025-08-02	10:30:00	\N	f	1	1139	session_FB0d2SYI	t	2025-08-02 10:30:00+00
+4871	4	Q1	2025-08-02	14:00:00	\N	f	1	1139	session_FoJRJ6sP	t	2025-08-02 14:00:00+00
+4872	5	Q2	2025-08-02	14:00:00	\N	f	1	1139	session_e8Rbitmy	t	2025-08-02 14:00:00+00
+4873	6	Q3	2025-08-02	14:00:00	\N	f	1	1139	session_YCfdmw1X	t	2025-08-02 14:00:00+00
+4874	7	R	2025-08-03	13:00:00	70	f	24	1139	session_HzaPRbOV	t	2025-08-03 13:00:00+00
+4875	1	FP1	2025-08-29	10:30:00	\N	f	1	1140	session_I5BIZuX6	t	2025-08-29 10:30:00+00
+4876	2	FP2	2025-08-29	14:00:00	\N	f	1	1140	session_YvhcQEef	t	2025-08-29 14:00:00+00
+4877	3	FP3	2025-08-30	09:30:00	\N	f	1	1140	session_zqVuCWr3	t	2025-08-30 09:30:00+00
+4878	4	Q1	2025-08-30	13:00:00	\N	f	1	1140	session_kAGS5ufz	t	2025-08-30 13:00:00+00
+4879	5	Q2	2025-08-30	13:00:00	\N	f	1	1140	session_ghxa79NH	t	2025-08-30 13:00:00+00
+4880	6	Q3	2025-08-30	13:00:00	\N	f	1	1140	session_jCK5z62t	t	2025-08-30 13:00:00+00
+4881	7	R	2025-08-31	13:00:00	72	f	24	1140	session_Yy4ISWvr	t	2025-08-31 13:00:00+00
+4882	1	FP1	2025-09-05	11:30:00	\N	f	1	1141	session_wUyRJ7oW	t	2025-09-05 11:30:00+00
+4883	2	FP2	2025-09-05	15:00:00	\N	f	1	1141	session_gLu5GvYP	t	2025-09-05 15:00:00+00
+4884	3	FP3	2025-09-06	10:30:00	\N	f	1	1141	session_ymgKYmnW	t	2025-09-06 10:30:00+00
+4885	4	Q1	2025-09-06	14:00:00	\N	f	1	1141	session_DMxcfia0	t	2025-09-06 14:00:00+00
+4886	5	Q2	2025-09-06	14:00:00	\N	f	1	1141	session_vxqd1B9k	t	2025-09-06 14:00:00+00
+4887	6	Q3	2025-09-06	14:00:00	\N	f	1	1141	session_Q31ObWGT	t	2025-09-06 14:00:00+00
+4888	7	R	2025-09-07	13:00:00	53	f	24	1141	session_avG88vHu	t	2025-09-07 13:00:00+00
+4889	1	FP1	2025-09-19	08:30:00	\N	f	1	1142	session_sJ3gQkqy	t	2025-09-19 08:30:00+00
+4890	2	FP2	2025-09-19	12:00:00	\N	f	1	1142	session_5BVrzWfR	t	2025-09-19 12:00:00+00
+4891	3	FP3	2025-09-20	08:30:00	\N	f	1	1142	session_4cpexxqT	t	2025-09-20 08:30:00+00
+4892	4	Q1	2025-09-20	12:00:00	\N	f	1	1142	session_OV3ORx4w	t	2025-09-20 12:00:00+00
+4893	5	Q2	2025-09-20	12:00:00	\N	f	1	1142	session_AadexSDu	t	2025-09-20 12:00:00+00
+4894	6	Q3	2025-09-20	12:00:00	\N	f	1	1142	session_yRXH2UF8	t	2025-09-20 12:00:00+00
+4895	7	R	2025-09-21	11:00:00	51	f	24	1142	session_TNtWVNu0	t	2025-09-21 11:00:00+00
+4896	1	FP1	2025-10-03	09:30:00	\N	f	1	1143	session_DlEXOC6n	t	2025-10-03 09:30:00+00
+4897	2	FP2	2025-10-03	13:00:00	\N	f	1	1143	session_lyQjzi00	t	2025-10-03 13:00:00+00
+4898	3	FP3	2025-10-04	09:30:00	\N	f	1	1143	session_9l0sezvu	t	2025-10-04 09:30:00+00
+4899	4	Q1	2025-10-04	13:00:00	\N	f	1	1143	session_qC03Ewq1	t	2025-10-04 13:00:00+00
+4900	5	Q2	2025-10-04	13:00:00	\N	f	1	1143	session_7WsS87j3	t	2025-10-04 13:00:00+00
+4901	6	Q3	2025-10-04	13:00:00	\N	f	1	1143	session_kw5oCidU	t	2025-10-04 13:00:00+00
+4902	7	R	2025-10-05	12:00:00	62	f	24	1143	session_qLIn1RAu	t	2025-10-05 12:00:00+00
+4903	1	FP1	2025-10-17	17:30:00	\N	f	1	1144	session_17EXX6fb	t	2025-10-17 17:30:00+00
+4904	2	SQ1	2025-10-17	21:30:00	\N	f	1	1144	session_ZPcSeBBY	t	2025-10-17 21:30:00+00
+4928	3	FP3	2025-11-22	00:30:00	\N	f	1	1147	session_q69492P5	t	2025-11-22 00:30:00+00
+4929	4	Q1	2025-11-22	04:00:00	\N	f	1	1147	session_0JeaMTb9	t	2025-11-22 04:00:00+00
+4930	5	Q2	2025-11-22	04:00:00	\N	f	1	1147	session_wGtstAPI	t	2025-11-22 04:00:00+00
+4931	6	Q3	2025-11-22	04:00:00	\N	f	1	1147	session_QVxiBleC	t	2025-11-22 04:00:00+00
+4932	7	R	2025-11-23	04:00:00	50	f	24	1147	session_IfMtHa40	t	2025-11-23 04:00:00+00
+4933	1	FP1	2025-11-28	13:30:00	\N	f	1	1148	session_ejwvI1m2	t	2025-11-28 13:30:00+00
+4934	2	SQ1	2025-11-28	17:30:00	\N	f	1	1148	session_sd4DBaxU	t	2025-11-28 17:30:00+00
+4935	3	SQ2	2025-11-28	17:30:00	\N	f	1	1148	session_3U9A9GPY	t	2025-11-28 17:30:00+00
+4936	4	SQ3	2025-11-28	17:30:00	\N	f	1	1148	session_AUvU3bQl	t	2025-11-28 17:30:00+00
+4937	5	SR	2025-11-29	14:00:00	\N	f	23	1148	session_Rkwf3qxl	t	2025-11-29 14:00:00+00
+4938	6	Q1	2025-11-29	18:00:00	\N	f	1	1148	session_BHtLDi3j	t	2025-11-29 18:00:00+00
+4939	7	Q2	2025-11-29	18:00:00	\N	f	1	1148	session_h9TlJYPA	t	2025-11-29 18:00:00+00
+4940	8	Q3	2025-11-29	18:00:00	\N	f	1	1148	session_EuhGibYe	t	2025-11-29 18:00:00+00
+4941	9	R	2025-11-30	16:00:00	57	f	24	1148	session_72HE0gPk	t	2025-11-30 16:00:00+00
+4942	1	FP1	2025-12-05	09:30:00	\N	f	1	1149	session_xX7dvATL	t	2025-12-05 09:30:00+00
+4943	2	FP2	2025-12-05	13:00:00	\N	f	1	1149	session_sfx4KBjX	t	2025-12-05 13:00:00+00
+4944	3	FP3	2025-12-06	10:30:00	\N	f	1	1149	session_UsWB229Q	t	2025-12-06 10:30:00+00
+4945	4	Q1	2025-12-06	14:00:00	\N	f	1	1149	session_Vm9J9Uxn	t	2025-12-06 14:00:00+00
+4946	5	Q2	2025-12-06	14:00:00	\N	f	1	1149	session_HPxgtbZE	t	2025-12-06 14:00:00+00
+4947	6	Q3	2025-12-06	14:00:00	\N	f	1	1149	session_kGYIX8C9	t	2025-12-06 14:00:00+00
+4948	7	R	2025-12-07	13:00:00	58	f	24	1149	session_s6Mp2pAB	t	2025-12-07 13:00:00+00
+4949	8	Q3	2025-10-18	21:00:00	\N	f	1	1144	session_anVq99Cm	t	2025-10-18 21:00:00+00
+4950	9	R	2025-10-19	19:00:00	56	f	24	1144	session_wAeaTFVC	t	2025-10-19 19:00:00+00
 \.
 
 
@@ -11144,5 +11144,5 @@ SELECT pg_catalog.setval('public.formula_one_teamdriver_id_seq', 3613, true);
 -- PostgreSQL database dump complete
 --
 
-\unrestrict aeeWhQ8ZvbqcfZzWV6S4d6WGelgQqC9wHWBYsxTEcckgAxa44l2JuhNnoE6EelR
+\unrestrict df9UXHVdKeXzhNIKbM09QDZgMqmokheAIz6c12IL9grRweLkskq9hKtH2rwdxzd
 
