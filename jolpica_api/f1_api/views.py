@@ -106,7 +106,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                 instance.rounds.order_by("date")
                 .prefetch_related(
                     Prefetch(
-                        "sessions", queryset=f1.Session.objects.order_by("date", "time"), to_attr="prefetched_sessions"
+                        "sessions", queryset=f1.Session.objects.order_by("timestamp"), to_attr="prefetched_sessions"
                     )
                 )
                 # Added select_related here for fallback
@@ -238,7 +238,7 @@ class SessionViewSet(viewsets.ReadOnlyModelViewSet):
             sessions = list(
                 queryset.filter(
                     type__startswith=session_type,
-                ).order_by("date", "time", "type")
+                ).order_by("timestamp", "type")
             )
 
             if not sessions:
@@ -304,11 +304,11 @@ class SessionViewSet(viewsets.ReadOnlyModelViewSet):
                         ),
                     )
                 )
-                .order_by("-date", "-time")
+                .order_by("-timestamp")
             )
 
         # Simplified queryset for list view
-        return queryset.select_related("round__circuit", "round__season").order_by("-date", "-time")
+        return queryset.select_related("round__circuit", "round__season").order_by("-timestamp")
 
     def get_serializer_class(self):
         if self.action == "retrieve":

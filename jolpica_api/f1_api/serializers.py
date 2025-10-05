@@ -7,8 +7,7 @@ from jolpica.formula_one import models as f1
 class SessionSerializer(serializers.Serializer):
     type = serializers.CharField(read_only=True)
     type_display = serializers.CharField(source="get_type_display", read_only=True)
-    date = serializers.DateField(read_only=True)
-    time = serializers.TimeField(read_only=True)
+    timestamp = serializers.DateTimeField(read_only=True)
 
     def to_representation(self, instance):
         """
@@ -176,8 +175,7 @@ class SessionListSerializer(serializers.HyperlinkedModelSerializer):
             "round",
             "type",
             "type_display",
-            "date",
-            "time",
+            "timestamp",
         ]
 
     def get_url(self, obj):
