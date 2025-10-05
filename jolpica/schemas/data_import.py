@@ -222,6 +222,26 @@ class RoundEntryImport(F1ImportSchema):
     objects: list[RoundEntryObject] = Field(min_length=1)
 
 
+class SessionForeignKeys(HasRoundForeignKey):
+    pass
+
+
+class SessionObject(F1ObjectSchema):
+    number: PositiveInt | None = None
+    type: str | None = None
+    timestamp: datetime.datetime | None = None
+    has_time_data: bool | None = None
+    timezone: str | None = None
+    scheduled_laps: PositiveInt | None = None
+    is_cancelled: bool | None = None
+
+
+class SessionImport(F1ImportSchema):
+    object_type: Literal["Session"]
+    foreign_keys: SessionForeignKeys
+    objects: list[SessionObject] = Field(min_length=1)
+
+
 class SessionEntryForeignKeys(HasSessionForeignKey, HasRoundEntryForeignKey):
     pass
 
@@ -287,6 +307,7 @@ type F1Import = Annotated[
     | TeamImport
     | DriverImport
     | RoundEntryImport
+    | SessionImport
     | SessionEntryImport
     | LapImport
     | PitStopImport,
@@ -300,6 +321,7 @@ type F1Object = (
     | TeamObject
     | DriverObject
     | RoundEntryObject
+    | SessionObject
     | SessionEntryObject
     | LapObject
     | PitStopObject
@@ -311,6 +333,7 @@ type F1ForeignKeys = (
     | TeamForeignKeys
     | DriverForeignKeys
     | RoundEntryForeignKeys
+    | SessionForeignKeys
     | SessionEntryForeignKeys
     | LapForeignKeys
     | PitStopForeignKeys
