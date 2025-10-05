@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import datetime
 from typing import TYPE_CHECKING, ClassVar
+from zoneinfo import ZoneInfo
 
 from django.db import models
+from timezone_field import TimeZoneField
 
 from .mixins import ApiIDMixin
 
@@ -58,6 +61,11 @@ class Session(ApiIDMixin, models.Model):
         default=False,
         help_text="Indicates whether the timestamp includes actual time data or just date with default midnight time.",
     )
+    timezone = TimeZoneField(
+        null=True,
+        blank=True,
+        help_text="IANA timezone identifier for the session location (e.g., 'Europe/Monaco', 'Asia/Singapore').",
+    )
     scheduled_laps = models.PositiveSmallIntegerField(null=True, blank=True)
     is_cancelled = models.BooleanField(default=False)
 
@@ -69,6 +77,17 @@ class Session(ApiIDMixin, models.Model):
 
     def __str__(self) -> str:
         return f"{self.round} - {SessionType(self.type).label}"
+
+    @property
+    def local_timestamp(self) -> datetime.datetime | None:
+        """Convert UTC timestamp to local timezone.
+
+        Returns:
+            Local datetime if both timestamp and timezone are set, None otherwise
+        """
+        if self.timestamp and self.timezone:
+            return self.timestamp.astimezone(ZoneInfo(str(self.timezone)))
+        return None
 
 
 class SessionStatus(models.IntegerChoices):

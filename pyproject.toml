@@ -27,6 +27,8 @@ opentelemetry-sdk = "^1.26.0"
 opentelemetry-exporter-otlp = "^1.26.0"
 django-cors-headers = "^4.4.0"
 drf-spectacular = "^0.28.0"
+django-timezone-field = "^7.1"
+tzdata = "^2025.2"
 
 [tool.poetry.group.dev.dependencies]
 django-dbml = "^0.10.1"                                                            # Generation of dbml file
