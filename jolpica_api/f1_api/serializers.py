@@ -4,7 +4,15 @@ from rest_framework import serializers
 from jolpica.formula_one import models as f1
 
 
-class SessionSerializer(serializers.Serializer):
+class OmitNullMixin:
+    """Mixin to omit null/None values from serializer output."""
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        return {key: value for key, value in representation.items() if value is not None}
+
+
+class SessionSerializer(OmitNullMixin, serializers.Serializer):
     type = serializers.CharField(read_only=True)
     type_display = serializers.CharField(source="get_type_display", read_only=True)
     timestamp = serializers.DateTimeField(read_only=True)
@@ -23,7 +31,7 @@ class SessionSerializer(serializers.Serializer):
         return representation
 
 
-class CircuitScheduleSerializer(serializers.ModelSerializer):
+class CircuitScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
     latitude = serializers.FloatField(read_only=True)
     longitude = serializers.FloatField(read_only=True)
     altitude = serializers.FloatField(read_only=True)
@@ -44,7 +52,7 @@ class CircuitScheduleSerializer(serializers.ModelSerializer):
         ]
 
 
-class RoundScheduleSerializer(serializers.ModelSerializer):
+class RoundScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
     circuit = CircuitScheduleSerializer(read_only=True)
     sessions = SessionSerializer(many=True, read_only=True, source="sessions_for_serializer")
 
@@ -53,7 +61,7 @@ class RoundScheduleSerializer(serializers.ModelSerializer):
         fields = ["number", "name", "circuit", "date", "sessions"]
 
 
-class SeasonScheduleSerializer(serializers.HyperlinkedModelSerializer):
+class SeasonScheduleSerializer(OmitNullMixin, serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name="schedules-detail", lookup_field="year", read_only=True)
 
     class Meta:
@@ -73,7 +81,7 @@ class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
         return self.context.get("rounds_info")
 
 
-class FastestLapSerializer(serializers.ModelSerializer):
+class FastestLapSerializer(OmitNullMixin, serializers.ModelSerializer):
     rank = serializers.IntegerField(source="position")
     lap_number = serializers.IntegerField(source="number")
     time = serializers.SerializerMethodField()
@@ -88,7 +96,7 @@ class FastestLapSerializer(serializers.ModelSerializer):
         return None
 
 
-class SessionDriverSerializer(serializers.ModelSerializer):
+class SessionDriverSerializer(OmitNullMixin, serializers.ModelSerializer):
     first_name = serializers.CharField(source="forename")
     last_name = serializers.CharField(source="surname")
 
@@ -97,19 +105,19 @@ class SessionDriverSerializer(serializers.ModelSerializer):
         fields = ["first_name", "last_name", "abbreviation", "country_code"]
 
 
-class SessionTeamSerializer(serializers.ModelSerializer):
+class SessionTeamSerializer(OmitNullMixin, serializers.ModelSerializer):
     class Meta:
         model = f1.Team
         fields = ["name", "country_code"]
 
 
-class RoundInfoSerializer(serializers.ModelSerializer):
+class RoundInfoSerializer(OmitNullMixin, serializers.ModelSerializer):
     class Meta:
         model = f1.Round
         fields = ["number", "name"]
 
 
-class SessionEntrySerializer(serializers.ModelSerializer):
+class SessionEntrySerializer(OmitNullMixin, serializers.ModelSerializer):
     driver = SessionDriverSerializer(source="round_entry.team_driver.driver")
     team = SessionTeamSerializer(source="round_entry.team_driver.team")
     time = serializers.SerializerMethodField()
@@ -164,7 +172,7 @@ class SessionEntrySerializer(serializers.ModelSerializer):
         ]
 
 
-class SessionListSerializer(serializers.HyperlinkedModelSerializer):
+class SessionListSerializer(OmitNullMixin, serializers.HyperlinkedModelSerializer):
     url = serializers.SerializerMethodField()
     round = RoundInfoSerializer()
     type = serializers.SerializerMethodField()
@@ -218,3 +226,98 @@ class SessionDetailSerializer(SessionListSerializer):
         else:
             entries = obj.session_entries.all()
         return SessionEntrySerializer(entries, many=True).data
+
+
+class RoundCircuitSerializer(OmitNullMixin, serializers.ModelSerializer):
+    """
+    Serializer for Circuit information in Round context.
+
+    Required prefetches: None
+    """
+
+    id = serializers.CharField(read_only=True, source="api_id")
+    url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = f1.Circuit
+        fields = ["id", "url", "name", "locality", "country_code"]
+
+    def get_url(self, obj):
+        # TODO: We first need to implement the rounds-detail endpoint
+        pass
+
+
+class RoundSeasonSerializer(OmitNullMixin, serializers.HyperlinkedModelSerializer):
+    """
+    Serializer for Season information in Round context.
+
+    Required prefetches: None
+    """
+
+    id = serializers.CharField(read_only=True, source="api_id")
+    url = serializers.HyperlinkedIdentityField(view_name="schedules-detail", lookup_field="year", read_only=True)
+
+    class Meta:
+        model = f1.Season
+        fields = ["id", "url", "year"]
+
+
+class RoundSessionSerializer(OmitNullMixin, serializers.ModelSerializer):
+    """
+    Serializer for Session information in Round context.
+
+    Required prefetches: None
+    Note: local_timestamp is a property that requires timezone and timestamp to be populated
+    """
+
+    id = serializers.CharField(read_only=True, source="api_id")
+    url = serializers.SerializerMethodField()
+    type_display = serializers.CharField(source="get_type_display", read_only=True)
+    timezone = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = f1.Session
+        fields = [
+            "id",
+            "url",
+            "number",
+            "type",
+            "type_display",
+            "timestamp",
+            "has_time_data",
+            "local_timestamp",
+            "timezone",
+        ]
+
+    def get_url(self, obj):
+        # TODO: We first need to implement the sessions-detail endpoint
+        pass
+
+
+class RoundSerializer(OmitNullMixin, serializers.ModelSerializer):
+    """
+    Serializer for Round with nested circuit, season, and session information.
+
+    Required prefetches:
+    - select_related('season', 'circuit')
+    - prefetch_related('sessions')
+    """
+
+    id = serializers.CharField(read_only=True, source="api_id")
+    circuit = RoundCircuitSerializer(read_only=True)
+    season = RoundSeasonSerializer(read_only=True)
+    sessions = RoundSessionSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = f1.Round
+        fields = [
+            "id",
+            "number",
+            "name",
+            "race_number",
+            "wikipedia",
+            "is_cancelled",
+            "circuit",
+            "season",
+            "sessions",
+        ]

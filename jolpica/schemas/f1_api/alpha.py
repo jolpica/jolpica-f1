@@ -142,3 +142,42 @@ class SessionDetail(SessionSummary):
 
 class RetrievedSessionDetail(DetailResponse[SessionDetail]):
     """Schema for session detail responses"""
+
+
+class RoundCircuit(BaseModel):
+    url: str | None = Field(None, description="TODO: URL to circuit detail endpoint")
+    name: str
+    locality: str | None = None
+    country_code: str | None = Field(None, max_length=3)
+
+
+class RoundSeason(BaseModel):
+    url: HttpUrl
+    year: int
+
+
+class RoundSession(BaseModel):
+    url: str | None = Field(None, description="TODO: URL to session detail endpoint")
+    number: int | None = None
+    type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
+    type_display: str = Field(..., description="Display name for the session type")
+    timestamp: datetime.datetime | None = None
+    has_time_data: bool = False
+    local_timestamp: str | None = None
+    timezone: str | None = None
+
+
+class RoundSummary(BaseModel):
+    api_id: str
+    number: int | None = None
+    name: str | None = None
+    race_number: int | None = None
+    wikipedia: HttpUrl | None = None
+    is_cancelled: bool = False
+    circuit: RoundCircuit
+    season: RoundSeason
+    sessions: list[RoundSession]
+
+
+class PaginatedRoundSummary(PaginatedResponse[list[RoundSummary]]):
+    """Schema for paginated round list responses"""

@@ -20,7 +20,7 @@ class StandardMetadataPagination(PageNumberPagination):
             next_url=self.get_next_link(),
             previous_url=self.get_previous_link(),
         )
-        return Response(PaginatedResponse(metadata=metadata, data=data).model_dump(mode="json"))
+        return Response(PaginatedResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True))
 
     def get_paginated_response_schema(self, schema):
         return {
