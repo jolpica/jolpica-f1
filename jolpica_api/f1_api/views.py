@@ -1,5 +1,4 @@
 from django.db.models import Prefetch
-from django.http import Http404
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, response, viewsets
@@ -10,18 +9,14 @@ from jolpica.schemas.f1_api.alpha import (
     DetailMetadata,
     DetailResponse,
     RetrievedScheduleDetail,
-    RetrievedSessionDetail,
     ScheduleDetail,
     ScheduleSummary,
-    SessionSummary,
 )
 
 from .pagination import StandardMetadataPagination
 from .serializers import (
     SeasonScheduleDetailSerializer,
     SeasonScheduleSerializer,
-    SessionDetailSerializer,
-    SessionListSerializer,
 )
 
 
@@ -188,137 +183,3 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         data = ScheduleDetail.model_validate(serializer.data)
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(DetailResponse(metadata=metadata, data=data).model_dump(mode="json"))
-
-
-@extend_schema_view(
-    list=extend_schema(
-        summary="List all F1 Sessions",
-        description="Provides a paginated list of all available F1 sessions with links to their details.",
-        responses={200: SessionSummary},
-    ),
-    retrieve=extend_schema(
-        summary="Get F1 Session Details",
-        description=(
-            "Provides detailed information for a specific F1 session, including position, timing, "
-            "and driver/team information."
-        ),
-        responses={200: RetrievedSessionDetail},
-    ),
-)
-class SessionViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    API endpoint that allows viewing F1 sessions.
-    List view provides basic session information with links to details.
-    Detail view includes full session results with timing and classification.
-    Uses standard metadata/data response format. (Alpha Version)
-    """
-
-    permission_classes = [permissions.AllowAny]
-    pagination_class = StandardMetadataPagination
-    lookup_url_kwarg = None  # We'll handle the URL kwargs manually in get_object
-
-    CONSOLIDATED_SESSIONS = ("Q", "SQ")
-
-    def get_object(self):
-        """
-        Retrieve session by year, round number, and session type.
-        For 'Q' and 'SQ', consolidates multiple qualifying session results.
-        """
-        year = self.kwargs.get("year")
-        round_number = self.kwargs.get("round_number")
-        session_type = self.kwargs.get("session_type")
-
-        if not all([year, round_number, session_type]):
-            raise Http404("Missing required path parameters")
-
-        queryset = self.get_queryset().filter(round__season__year=year, round__number=round_number)
-
-        # Handle consolidated qualifying session results
-        if session_type in self.CONSOLIDATED_SESSIONS:
-            sessions = list(
-                queryset.filter(
-                    type__startswith=session_type,
-                ).order_by("timestamp", "type")
-            )
-
-            if not sessions:
-                raise Http404
-
-            # Use the first session as base but collect all results
-            base_session = sessions[0]
-            base_session._is_consolidated_session = True
-            session_name = "Qualifying" if session_type == "Q" else "Sprint Qualifying"
-            base_session._consolidated_session_type = (session_type, session_name)
-
-            consolidated_results = {}  # driver_id -> session_entry
-            for session in sessions:
-                for entry in session.session_entries.all():
-                    driver_id = entry.round_entry.team_driver.driver_id
-
-                    if driver_id in consolidated_results:
-                        existing_entry = consolidated_results[driver_id]
-                        if entry.is_classified or not existing_entry.is_classified:
-                            # Update existing entry with other entry data
-                            entry.fastest_laps = [
-                                *existing_entry.fastest_laps,
-                                *entry.fastest_laps,
-                            ]
-                            consolidated_results[driver_id] = entry
-                    else:
-                        consolidated_results[driver_id] = entry
-
-            # Maintain original session_entries for DB operations but add consolidated_results for serialization
-            base_session._consolidated_results = consolidated_results.values()
-            return base_session
-        else:
-            obj = queryset.filter(type=session_type).first()
-
-            if obj is None:
-                raise Http404
-
-            return obj
-
-    def get_queryset(self):
-        queryset = f1.Session.objects.filter(session_entries__isnull=False).distinct()
-
-        if self.action == "retrieve":
-            # Full prefetch for detail view
-            return (
-                queryset.select_related("round__circuit", "round__season")
-                .prefetch_related(
-                    Prefetch(
-                        "session_entries",
-                        queryset=(
-                            f1.SessionEntry.objects.select_related(
-                                "round_entry__team_driver__driver",
-                                "round_entry__team_driver__team",
-                            )
-                            .prefetch_related(
-                                Prefetch(
-                                    "laps",
-                                    queryset=f1.Lap.objects.filter(is_entry_fastest_lap=True),
-                                    to_attr="fastest_laps",
-                                )
-                            )
-                            .order_by("position", "-points")
-                        ),
-                    )
-                )
-                .order_by("-timestamp")
-            )
-
-        # Simplified queryset for list view
-        return queryset.select_related("round__circuit", "round__season").order_by("-timestamp")
-
-    def get_serializer_class(self):
-        if self.action == "retrieve":
-            return SessionDetailSerializer
-        return SessionListSerializer
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(
-            RetrievedSessionDetail(metadata=metadata, data=serializer.data).model_dump(mode="json", exclude_none=True)
-        )
