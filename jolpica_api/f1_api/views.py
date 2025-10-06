@@ -8,6 +8,7 @@ from jolpica.formula_one.models import SessionType
 from jolpica.schemas.f1_api.alpha import (
     DetailMetadata,
     DetailResponse,
+    PaginatedRoundSummary,
     RetrievedScheduleDetail,
     ScheduleDetail,
     ScheduleSummary,
@@ -15,6 +16,7 @@ from jolpica.schemas.f1_api.alpha import (
 
 from .pagination import StandardMetadataPagination
 from .serializers import (
+    RoundSerializer,
     SeasonScheduleDetailSerializer,
     SeasonScheduleSerializer,
 )
@@ -182,4 +184,32 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         serializer = self.get_serializer(instance, context=context)
         data = ScheduleDetail.model_validate(serializer.data)
         metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(DetailResponse(metadata=metadata, data=data).model_dump(mode="json"))
+        return response.Response(
+            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
+        )
+
+
+@extend_schema_view(
+    list=extend_schema(
+        summary="List all F1 Rounds",
+        description="Provides a paginated list of all F1 rounds with circuit, season, and session information.",
+        responses={200: PaginatedRoundSummary},
+    ),
+)
+class RoundViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint for viewing F1 rounds with circuit, season, and session details.
+    Uses standard metadata/data response format. (Alpha Version)
+    """
+
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RoundSerializer
+    pagination_class = StandardMetadataPagination
+
+    def get_queryset(self):
+        """Optimize database queries with select_related and prefetch_related."""
+        return (
+            f1.Round.objects.select_related("season", "circuit")
+            .prefetch_related("sessions")
+            .order_by("-season__year", "-number")
+        )

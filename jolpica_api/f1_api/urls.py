@@ -10,6 +10,7 @@ class CustomRouter(routers.DefaultRouter):
 
 router = CustomRouter()
 router.register(r"schedules", views.SeasonScheduleViewSet, basename="schedules")
+router.register(r"rounds", views.RoundViewSet, basename="rounds")
 
 urlpatterns = [
     path("alpha/", include(router.urls)),
