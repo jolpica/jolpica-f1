@@ -80,6 +80,8 @@ Current requirements are:
        - replace `jolpica` with the name of the database
        - replace `postgres` with the username used to authenticate
        - export the password for the user to the `PGPASSWORD` environment variable
+  
+  If you are having issues with a schema mismatch / constraint violation, you may need to follow one of the FAQs [here](/docs/database_dumps.md).
 
 - Do the initial setup of the test database then run the tests
   ```
