@@ -243,7 +243,7 @@ class RoundCircuitSerializer(OmitNullMixin, serializers.ModelSerializer):
         fields = ["id", "url", "name", "locality", "country_code"]
 
     def get_url(self, obj):
-        # TODO: We first need to implement the rounds-detail endpoint
+        # TODO: We first need to implement the circuits-detail endpoint
         pass
 
 
@@ -273,6 +273,8 @@ class RoundSessionSerializer(OmitNullMixin, serializers.ModelSerializer):
     id = serializers.CharField(read_only=True, source="api_id")
     url = serializers.SerializerMethodField()
     type_display = serializers.CharField(source="get_type_display", read_only=True)
+    # Must use CharField instead of DateTimeField as otherwise it will display as UTC
+    local_timestamp = serializers.CharField(read_only=True)
     timezone = serializers.CharField(read_only=True)
 
     class Meta:
@@ -304,6 +306,7 @@ class RoundSerializer(OmitNullMixin, serializers.ModelSerializer):
     """
 
     id = serializers.CharField(read_only=True, source="api_id")
+    url = serializers.HyperlinkedIdentityField(view_name="rounds-detail", lookup_field="api_id", read_only=True)
     circuit = RoundCircuitSerializer(read_only=True)
     season = RoundSeasonSerializer(read_only=True)
     sessions = RoundSessionSerializer(many=True, read_only=True)
@@ -312,6 +315,7 @@ class RoundSerializer(OmitNullMixin, serializers.ModelSerializer):
         model = f1.Round
         fields = [
             "id",
+            "url",
             "number",
             "name",
             "race_number",

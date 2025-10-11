@@ -52,3 +52,23 @@ def test_schedule_detail_schema_conformance(api_client, sample_season_data):
         DetailResponse.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API detail response does not conform to DetailResponseSchema:\n{e}")
+
+
+@pytest.mark.django_db
+def test_rounds_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the rounds detail response conforms to RetrievedRoundDetail."""
+    from jolpica.schemas.f1_api.alpha import RetrievedRoundDetail
+
+    round_obj = sample_season_data.rounds.first()
+    assert round_obj is not None, "Sample season must have at least one round"
+
+    url = reverse("rounds-detail", kwargs={"api_id": round_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedRoundDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API rounds detail response does not conform to RetrievedRoundDetail:\n{e}")
