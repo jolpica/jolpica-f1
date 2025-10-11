@@ -145,6 +145,7 @@ class RetrievedSessionDetail(DetailResponse[SessionDetail]):
 
 
 class RoundCircuit(BaseModel):
+    id: str
     url: str | None = Field(None, description="TODO: URL to circuit detail endpoint")
     name: str
     locality: str | None = None
@@ -152,11 +153,13 @@ class RoundCircuit(BaseModel):
 
 
 class RoundSeason(BaseModel):
+    id: str
     url: HttpUrl
     year: int
 
 
 class RoundSession(BaseModel):
+    id: str
     url: str | None = Field(None, description="TODO: URL to session detail endpoint")
     number: int | None = None
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
@@ -168,7 +171,8 @@ class RoundSession(BaseModel):
 
 
 class RoundSummary(BaseModel):
-    api_id: str
+    id: str
+    url: HttpUrl
     number: int | None = None
     name: str | None = None
     race_number: int | None = None
@@ -179,5 +183,8 @@ class RoundSummary(BaseModel):
     sessions: list[RoundSession]
 
 
-class PaginatedRoundSummary(PaginatedResponse[list[RoundSummary]]):
-    """Schema for paginated round list responses"""
+RoundDetail = RoundSummary
+
+
+class RetrievedRoundDetail(DetailResponse[RoundDetail]):
+    """Schema for round detail responses"""

@@ -8,8 +8,9 @@ from jolpica.formula_one.models import SessionType
 from jolpica.schemas.f1_api.alpha import (
     DetailMetadata,
     DetailResponse,
-    PaginatedRoundSummary,
+    RetrievedRoundDetail,
     RetrievedScheduleDetail,
+    RoundSummary,
     ScheduleDetail,
     ScheduleSummary,
 )
@@ -193,7 +194,12 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     list=extend_schema(
         summary="List all F1 Rounds",
         description="Provides a paginated list of all F1 rounds with circuit, season, and session information.",
-        responses={200: PaginatedRoundSummary},
+        responses={200: RoundSummary},
+    ),
+    retrieve=extend_schema(
+        summary="Get F1 Round Detail",
+        description="Provides detailed information for a specific round, including circuit, season, and all sessions.",
+        responses={200: RetrievedRoundDetail},
     ),
 )
 class RoundViewSet(viewsets.ReadOnlyModelViewSet):
@@ -205,11 +211,22 @@ class RoundViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = RoundSerializer
     pagination_class = StandardMetadataPagination
+    lookup_field = "api_id"
 
     def get_queryset(self):
         """Optimize database queries with select_related and prefetch_related."""
         return (
             f1.Round.objects.select_related("season", "circuit")
             .prefetch_related("sessions")
-            .order_by("-season__year", "-number")
+            .order_by("season__year", "number")
+        )
+
+    def retrieve(self, request, *args, **kwargs):
+        """Override retrieve to return DetailResponse format."""
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        data = RoundSummary.model_validate(serializer.data)
+        metadata = DetailMetadata(timestamp=timezone.now())
+        return response.Response(
+            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
         )
