@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 
 from django.http import HttpResponse, HttpResponseRedirect
-from drf_spectacular.utils import OpenApiParameter, extend_schema
+from drf_spectacular.utils import OpenApiParameter, OpenApiResponse, extend_schema
 from rest_framework import response, status
 from rest_framework.views import APIView
 
@@ -197,7 +197,10 @@ class DumpUploadCompleteView(APIView):
             location=OpenApiParameter.QUERY,
         ),
     ],
-    responses={302: "Redirect to S3 download URL", 404: "No dumps available"},
+    responses={
+        302: OpenApiResponse(description="Redirect to S3 download URL"),
+        404: OpenApiResponse(description="No dumps available"),
+    },
 )
 class DumpDownloadDelayedView(APIView):
     """API endpoint for downloading delayed database dumps (public access)."""
@@ -255,7 +258,10 @@ class DumpDownloadDelayedView(APIView):
             location=OpenApiParameter.QUERY,
         ),
     ],
-    responses={302: "Redirect to S3 download URL", 404: "No dumps available"},
+    responses={
+        302: OpenApiResponse(description="Redirect to S3 download URL"),
+        404: OpenApiResponse(description="No dumps available"),
+    },
 )
 class DumpDownloadLatestView(DumpDownloadDelayedView):
     """API endpoint for downloading the latest database dump."""
