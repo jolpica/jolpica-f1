@@ -10,6 +10,7 @@ from jolpica.schemas.f1_api.alpha import (
     DetailResponse,
     RetrievedRoundDetail,
     RetrievedScheduleDetail,
+    RoundQueryParams,
     RoundSummary,
     ScheduleDetail,
     ScheduleSummary,
@@ -21,6 +22,7 @@ from .serializers import (
     SeasonScheduleDetailSerializer,
     SeasonScheduleSerializer,
 )
+from .utils import pydantic_to_open_api_parameters, validate_query_params
 
 
 @extend_schema_view(
@@ -194,6 +196,7 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     list=extend_schema(
         summary="List all F1 Rounds",
         description="Provides a paginated list of all F1 rounds with circuit, season, and session information.",
+        parameters=pydantic_to_open_api_parameters(RoundQueryParams),
         responses={200: RoundSummary},
     ),
     retrieve=extend_schema(
@@ -213,13 +216,45 @@ class RoundViewSet(viewsets.ReadOnlyModelViewSet):
     pagination_class = StandardMetadataPagination
     lookup_field = "api_id"
 
+    def _get_validated_query_params(self) -> RoundQueryParams:
+        """Parse and validate query parameters using Pydantic."""
+        return validate_query_params(
+            query_params=self.request.query_params,
+            model=RoundQueryParams,
+            pagination_class=self.pagination_class,
+        )
+
     def get_queryset(self):
         """Optimize database queries with select_related and prefetch_related."""
-        return (
-            f1.Round.objects.select_related("season", "circuit")
-            .prefetch_related("sessions")
-            .order_by("season__year", "number")
-        )
+        queryset = f1.Round.objects.select_related("season", "circuit").prefetch_related("sessions")
+
+        # Get validated query parameters
+        params = self._get_validated_query_params()
+
+        # Apply filters
+        if params.year is not None:
+            queryset = queryset.filter(season__year=params.year)
+
+        if params.round_number is not None:
+            queryset = queryset.filter(number=params.round_number)
+
+        if params.race_number is not None:
+            queryset = queryset.filter(race_number=params.race_number)
+
+        if params.is_cancelled is not None:
+            queryset = queryset.filter(is_cancelled=params.is_cancelled)
+
+        if params.driver_id is not None:
+            queryset = queryset.filter(round_entries__team_driver__driver__api_id=params.driver_id)
+
+        if params.team_id is not None:
+            queryset = queryset.filter(round_entries__team_driver__team__api_id=params.team_id)
+
+        # Use distinct() when filtering on many-to-many relationships
+        if params.driver_id or params.team_id:
+            queryset = queryset.distinct()
+
+        return queryset.order_by("season__year", "number")
 
     def retrieve(self, request, *args, **kwargs):
         """Override retrieve to return DetailResponse format."""
