@@ -11,22 +11,32 @@ from jolpica.formula_one import models as f1
 
 
 @pytest.mark.django_db
-def test_rounds_list_query_optimization(api_client, django_assert_max_num_queries):
-    """Verify the rounds list endpoint makes fewer than 10 database queries."""
-    url = reverse("rounds-list")
+@pytest.mark.parametrize(
+    ["endpoint_name", "model_class", "min_results"],
+    [
+        ("rounds-list", f1.Round, 100),
+        ("circuits-list", f1.Circuit, 1),
+    ],
+    ids=["rounds", "circuits"],
+)
+def test_list_query_optimization(
+    api_client, django_assert_max_num_queries, endpoint_name: str, model_class: type, min_results: int
+):
+    """Verify list endpoints make fewer than 10 database queries."""
+    url = reverse(endpoint_name)
 
     with django_assert_max_num_queries(10):
         response = api_client.get(url)
 
     assert response.status_code == 200
     rsp = response.json()
-    assert rsp["metadata"]["count"] == f1.Round.objects.count()
-    assert 0 < len(rsp["data"]) >= 100
+    assert rsp["metadata"]["count"] == model_class.objects.count()
+    assert len(rsp["data"]) >= min_results
 
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "filter_name,get_params,validate_result",
+    ["filter_name", "get_params", "validate_result"],
     [
         (
             "year",
@@ -104,7 +114,7 @@ def test_rounds_filter_valid(
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "params,error_field",
+    ["params", "error_field"],
     [
         ({"year": "not_a_number"}, "year"),
         ({"round_number": "-1"}, "round_number"),
@@ -139,3 +149,71 @@ def test_rounds_filter_combined(api_client: APIClient, sample_season_data: f1.Se
     for round_data in response_data["data"]:
         assert round_data["season"]["year"] == sample_season_data.year
         assert round_data["is_cancelled"] is False
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    ["filter_name", "get_params", "validate_result"],
+    [
+        (
+            "year",
+            lambda season: {"year": season.year},
+            lambda data, season: len(data) > 0,
+        ),
+        (
+            "country_code",
+            lambda season: (
+                {"country_code": circuit.country_code}
+                if (circuit := f1.Circuit.objects.filter(country_code__isnull=False).first())
+                else None
+            ),
+            lambda data, season: len(data) > 0,
+        ),
+    ],
+    ids=["filter_by_year", "filter_by_country_code"],
+)
+def test_circuits_filter_valid(
+    api_client: APIClient,
+    sample_season_data: f1.Season,
+    filter_name: str,
+    get_params: Callable[[f1.Season], dict[str, Any] | None],
+    validate_result: Callable[[list[dict[str, Any]], f1.Season], bool],
+):
+    """Test filtering circuits with valid parameters."""
+    params = get_params(sample_season_data)
+
+    if params is None:
+        pytest.skip(f"No data available for testing {filter_name}")
+
+    url = reverse("circuits-list")
+    response = api_client.get(url, params)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    assert validate_result(response_data["data"], sample_season_data)
+
+
+@pytest.mark.django_db
+def test_circuits_filter_combined(api_client: APIClient, sample_season_data: f1.Season):
+    """Test combining year and country_code filters for circuits."""
+    circuit_with_country = (
+        f1.Circuit.objects.filter(rounds__season=sample_season_data, country_code__isnull=False).distinct().first()
+    )
+
+    if not circuit_with_country:
+        pytest.skip("No circuit with country code in sample season")
+
+    url = reverse("circuits-list")
+    response = api_client.get(url, {"year": sample_season_data.year, "country_code": circuit_with_country.country_code})
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    # Verify all returned circuits match both filters
+    for circuit_data in response_data["data"]:
+        assert circuit_data["country_code"] == circuit_with_country.country_code
+        # Verify circuit appears in the filtered year (by checking the database)
+        assert f1.Circuit.objects.filter(
+            api_id=circuit_data["id"], rounds__season__year=sample_season_data.year
+        ).exists()

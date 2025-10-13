@@ -236,15 +236,11 @@ class RoundCircuitSerializer(OmitNullMixin, serializers.ModelSerializer):
     """
 
     id = serializers.CharField(read_only=True, source="api_id")
-    url = serializers.SerializerMethodField()
+    url = serializers.HyperlinkedIdentityField(view_name="circuits-detail", lookup_field="api_id", read_only=True)
 
     class Meta:
         model = f1.Circuit
         fields = ["id", "url", "name", "locality", "country_code"]
-
-    def get_url(self, obj):
-        # TODO: We first need to implement the circuits-detail endpoint
-        pass
 
 
 class RoundSeasonSerializer(OmitNullMixin, serializers.HyperlinkedModelSerializer):
@@ -324,4 +320,31 @@ class RoundSerializer(OmitNullMixin, serializers.ModelSerializer):
             "circuit",
             "season",
             "sessions",
+        ]
+
+
+class CircuitSerializer(OmitNullMixin, serializers.ModelSerializer):
+    """
+    Serializer for Circuit information.
+
+    Required prefetches: None
+    """
+
+    id = serializers.CharField(read_only=True, source="api_id")
+    url = serializers.HyperlinkedIdentityField(view_name="circuits-detail", lookup_field="api_id", read_only=True)
+
+    class Meta:
+        model = f1.Circuit
+        fields = [
+            "id",
+            "url",
+            "name",
+            "reference",
+            "locality",
+            "country",
+            "country_code",
+            "latitude",
+            "longitude",
+            "altitude",
+            "wikipedia",
         ]

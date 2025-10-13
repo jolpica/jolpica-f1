@@ -6,8 +6,12 @@ from rest_framework import permissions, response, viewsets
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.models import SessionType
 from jolpica.schemas.f1_api.alpha import (
+    CircuitQueryParams,
+    CircuitSummary,
     DetailMetadata,
     DetailResponse,
+    PaginatedCircuitSummary,
+    RetrievedCircuitDetail,
     RetrievedRoundDetail,
     RetrievedScheduleDetail,
     RoundQueryParams,
@@ -18,6 +22,7 @@ from jolpica.schemas.f1_api.alpha import (
 
 from .pagination import StandardMetadataPagination
 from .serializers import (
+    CircuitSerializer,
     RoundSerializer,
     SeasonScheduleDetailSerializer,
     SeasonScheduleSerializer,
@@ -261,6 +266,66 @@ class RoundViewSet(viewsets.ReadOnlyModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         data = RoundSummary.model_validate(serializer.data)
+        metadata = DetailMetadata(timestamp=timezone.now())
+        return response.Response(
+            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
+        )
+
+
+@extend_schema_view(
+    list=extend_schema(
+        summary="List all F1 Circuits",
+        description="Provides a paginated list of all F1 circuits. "
+        + "Can be filtered by year (circuits used in a specific season) and country code.",
+        parameters=pydantic_to_open_api_parameters(CircuitQueryParams),
+        responses={200: CircuitSummary},
+    ),
+    retrieve=extend_schema(
+        summary="Get F1 Circuit Detail",
+        description="Provides detailed information for a specific circuit.",
+        responses={200: RetrievedCircuitDetail},
+    ),
+)
+class CircuitViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    API endpoint for viewing F1 circuits.
+    Uses standard metadata/data response format. (Alpha Version)
+    """
+
+    permission_classes = [permissions.AllowAny]
+    serializer_class = CircuitSerializer
+    pagination_class = StandardMetadataPagination
+    lookup_field = "api_id"
+
+    def _get_validated_query_params(self) -> CircuitQueryParams:
+        """Parse and validate query parameters using Pydantic."""
+        return validate_query_params(
+            query_params=self.request.query_params,
+            model=CircuitQueryParams,
+            pagination_class=self.pagination_class,
+        )
+
+    def get_queryset(self):
+        """Optimize database queries with filters."""
+        queryset = f1.Circuit.objects.all()
+
+        # Get validated query parameters
+        params = self._get_validated_query_params()
+
+        # Apply filters
+        if params.year is not None:
+            queryset = queryset.filter(rounds__season__year=params.year).distinct()
+
+        if params.country_code is not None:
+            queryset = queryset.filter(country_code=params.country_code)
+
+        return queryset.order_by("name")
+
+    def retrieve(self, request, *args, **kwargs):
+        """Override retrieve to return DetailResponse format."""
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        data = CircuitSummary.model_validate(serializer.data)
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(
             DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)

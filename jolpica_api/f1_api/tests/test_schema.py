@@ -54,3 +54,41 @@ def test_rounds_detail_schema_conformance(api_client, sample_season_data):
         RetrievedRoundDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API rounds detail response does not conform to RetrievedRoundDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_circuits_list_schema_conformance(api_client, sample_season_data):
+    """Verify the circuits list response conforms to PaginatedCircuitSummary."""
+    from jolpica.schemas.f1_api.alpha import PaginatedCircuitSummary
+
+    url = reverse("circuits-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedCircuitSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API circuits list response does not conform to PaginatedCircuitSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_circuits_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the circuits detail response conforms to RetrievedCircuitDetail."""
+    from jolpica.formula_one import models as f1
+    from jolpica.schemas.f1_api.alpha import RetrievedCircuitDetail
+
+    circuit_obj = f1.Circuit.objects.first()
+    assert circuit_obj is not None, "Database must have at least one circuit"
+
+    url = reverse("circuits-detail", kwargs={"api_id": circuit_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedCircuitDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API circuits detail response does not conform to RetrievedCircuitDetail:\n{e}")

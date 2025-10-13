@@ -146,7 +146,7 @@ class RetrievedSessionDetail(DetailResponse[SessionDetail]):
 
 class RoundCircuit(BaseModel):
     id: str
-    url: str | None = Field(None, description="TODO: URL to circuit detail endpoint")
+    url: HttpUrl
     name: str
     locality: str | None = None
     country_code: str | None = Field(None, max_length=3)
@@ -201,3 +201,39 @@ class RoundQueryParams(BaseModel):
     is_cancelled: bool | None = Field(None, description="Filter by cancellation status")
     driver_id: str | None = Field(None, description="Filter by driver API ID")
     team_id: str | None = Field(None, description="Filter by team API ID")
+
+
+class CircuitSummary(BaseModel):
+    """Summary information for Circuit"""
+
+    id: str
+    url: HttpUrl
+    name: str
+    reference: str | None = None
+    locality: str | None = None
+    country: str | None = None
+    country_code: str | None = Field(None, max_length=3)
+    latitude: float | None = None
+    longitude: float | None = None
+    altitude: float | None = None
+    wikipedia: HttpUrl | None = None
+
+
+CircuitDetail = CircuitSummary
+
+
+class PaginatedCircuitSummary(PaginatedResponse[list[CircuitSummary]]):
+    """Schema for paginated circuit list responses"""
+
+
+class RetrievedCircuitDetail(DetailResponse[CircuitDetail]):
+    """Schema for circuit detail responses"""
+
+
+class CircuitQueryParams(BaseModel):
+    """Query parameters for filtering circuits list"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    year: int | None = Field(None, description="Filter by circuits that appeared in a specific season year")
+    country_code: str | None = Field(None, max_length=3, description="Filter by ISO 3166-1 alpha-3 country code")

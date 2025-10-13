@@ -41,10 +41,10 @@ def test_data_import_validation_error(client: APIClient):
     assert data == {
         "errors": [
             {
-                "input": ["5"],
+                "input": "5",
                 "loc": ["dry_run"],
-                "msg": "Input should be a valid boolean",
-                "type": "bool_type",
+                "msg": "Input should be a valid boolean, unable to interpret input",
+                "type": "bool_parsing",
             },
             {
                 "input": {"dry_run": "5", "extra_key": "test"},
@@ -53,9 +53,7 @@ def test_data_import_validation_error(client: APIClient):
                 "type": "missing",
             },
             {
-                "input": [
-                    "test",
-                ],
+                "input": "test",
                 "loc": [
                     "extra_key",
                 ],
