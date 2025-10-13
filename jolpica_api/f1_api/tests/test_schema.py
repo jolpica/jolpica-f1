@@ -1,26 +1,8 @@
 import pytest
 from django.urls import reverse
 from pydantic import ValidationError
-from rest_framework.test import APIClient
 
-from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha import DetailResponse, PaginatedResponse, ScheduleSummary
-
-
-@pytest.fixture
-def api_client():
-    """Provides an API client for making requests."""
-    return APIClient()
-
-
-@pytest.fixture
-def sample_circuit():
-    return f1.Circuit.objects.get(reference="monza")
-
-
-@pytest.fixture
-def sample_season_data():
-    return f1.Season.objects.get(year=2023)
 
 
 @pytest.mark.django_db
