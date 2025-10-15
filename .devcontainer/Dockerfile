@@ -1,15 +1,15 @@
 FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
 
-ENV POETRY_VERSION=1.8.3
+ENV UV_VERSION=0.9.2
 ENV PYTHONUNBUFFERED 1
 
 ENV VIRTUAL_ENV=/home/vscode/.venv
 ENV PATH=$VIRTUAL_ENV/bin:/root/.local/bin:$PATH
-ENV POETRY_VIRTUALENVS_CREATE=false
+#ENV UV_VIRTUALENVS_CREATE=false
 
 USER vscode
 RUN pip install pipx && \
-    pipx install poetry==${POETRY_VERSION} && \
+    pipx install uv==${UV_VERSION} && \
     python -m venv ${VIRTUAL_ENV}
 
 WORKDIR /workspaces/jolpica-f1

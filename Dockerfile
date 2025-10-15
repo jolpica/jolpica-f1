@@ -1,17 +1,18 @@
 FROM python:3.12-slim-bullseye as venv
 
+ENV UV_VERSION=0.9.2
 WORKDIR /app
 
-ENV PATH=/venv/bin:/poetry/bin:$PATH \
+ENV PATH=/venv/bin:$PATH  \
     VIRTUAL_ENV=/venv
 
-COPY pyproject.toml poetry.lock /app/
-# Install poetry
-RUN python -m venv /poetry && \
-    /poetry/bin/python -m pip install poetry==1.8.3 && \
+COPY pyproject.toml uv.lock /app/
+# Install uv
+RUN python -m pip install uv==${UV_VERSION} && \
 # Create project venv
-    python -m venv /venv && \
-    poetry install --only=main --no-root
+    uv venv /venv && \
+    uv sync --frozen --no-dev --no-install-project 
+
 
 FROM python:3.12-slim-bullseye
 ARG DEPLOYMENT_ENV=BUILD
