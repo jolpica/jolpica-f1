@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from typing import Any, TypeVar
+
+import pydantic
 from django.db.models import Prefetch
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
@@ -10,7 +15,6 @@ from jolpica.schemas.f1_api.alpha import (
     CircuitSummary,
     DetailMetadata,
     DetailResponse,
-    PaginatedCircuitSummary,
     RetrievedCircuitDetail,
     RetrievedRoundDetail,
     RetrievedScheduleDetail,
@@ -28,6 +32,63 @@ from .serializers import (
     SeasonScheduleSerializer,
 )
 from .utils import pydantic_to_open_api_parameters, validate_query_params
+
+# Type variable for Pydantic models
+T = TypeVar("T", bound=pydantic.BaseModel)
+
+
+class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Base ViewSet for filterable F1 API endpoints.
+
+    Provides common functionality for endpoints with query parameter filtering
+    and standardized DetailResponse wrapping.
+
+    Subclasses must define (following DRF naming conventions):
+    - query_params_class: Pydantic model class for query parameter validation
+    - response_schema_class: Pydantic schema class for response data validation
+    - serializer_class: DRF serializer class (inherited from ReadOnlyModelViewSet)
+
+    Raises:
+        NotImplementedError: At instantiation if required attributes are not defined
+    """
+
+    permission_classes = [permissions.AllowAny]
+    pagination_class = StandardMetadataPagination
+    lookup_field = "api_id"
+
+    # Subclasses must override these
+    query_params_class: type[pydantic.BaseModel]
+    response_schema_class: type[pydantic.BaseModel]
+
+    def __init__(self, **kwargs: Any):
+        super().__init__(**kwargs)
+        if not hasattr(self, "query_params_class"):
+            raise NotImplementedError(f"{self.__class__.__name__} must define 'query_params_class' attribute")
+        if not hasattr(self, "response_schema_class"):
+            raise NotImplementedError(f"{self.__class__.__name__} must define 'response_schema_class' attribute")
+
+    def _get_validated_query_params(self) -> pydantic.BaseModel:
+        """Parse and validate query parameters using the query_params_class."""
+        return validate_query_params(
+            query_params=self.request.query_params,
+            model=self.query_params_class,
+            pagination_class=self.pagination_class,
+        )
+
+    def retrieve(self, request: Any, *args: Any, **kwargs: Any) -> response.Response:
+        """
+        Override retrieve to return DetailResponse format with metadata.
+
+        Validates serializer data against response_schema_class before returning.
+        """
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        data = self.response_schema_class.model_validate(serializer.data)
+        metadata = DetailMetadata(timestamp=timezone.now())
+        return response.Response(
+            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
+        )
 
 
 @extend_schema_view(
@@ -210,24 +271,15 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         responses={200: RetrievedRoundDetail},
     ),
 )
-class RoundViewSet(viewsets.ReadOnlyModelViewSet):
+class RoundViewSet(BaseFilterableViewSet):
     """
     API endpoint for viewing F1 rounds with circuit, season, and session details.
     Uses standard metadata/data response format. (Alpha Version)
     """
 
-    permission_classes = [permissions.AllowAny]
     serializer_class = RoundSerializer
-    pagination_class = StandardMetadataPagination
-    lookup_field = "api_id"
-
-    def _get_validated_query_params(self) -> RoundQueryParams:
-        """Parse and validate query parameters using Pydantic."""
-        return validate_query_params(
-            query_params=self.request.query_params,
-            model=RoundQueryParams,
-            pagination_class=self.pagination_class,
-        )
+    query_params_class = RoundQueryParams
+    response_schema_class = RoundSummary
 
     def get_queryset(self):
         """Optimize database queries with select_related and prefetch_related."""
@@ -236,7 +288,6 @@ class RoundViewSet(viewsets.ReadOnlyModelViewSet):
         # Get validated query parameters
         params = self._get_validated_query_params()
 
-        # Apply filters
         if params.year is not None:
             queryset = queryset.filter(season__year=params.year)
 
@@ -261,16 +312,6 @@ class RoundViewSet(viewsets.ReadOnlyModelViewSet):
 
         return queryset.order_by("season__year", "number")
 
-    def retrieve(self, request, *args, **kwargs):
-        """Override retrieve to return DetailResponse format."""
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        data = RoundSummary.model_validate(serializer.data)
-        metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(
-            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
-        )
-
 
 @extend_schema_view(
     list=extend_schema(
@@ -286,24 +327,15 @@ class RoundViewSet(viewsets.ReadOnlyModelViewSet):
         responses={200: RetrievedCircuitDetail},
     ),
 )
-class CircuitViewSet(viewsets.ReadOnlyModelViewSet):
+class CircuitViewSet(BaseFilterableViewSet):
     """
     API endpoint for viewing F1 circuits.
     Uses standard metadata/data response format. (Alpha Version)
     """
 
-    permission_classes = [permissions.AllowAny]
     serializer_class = CircuitSerializer
-    pagination_class = StandardMetadataPagination
-    lookup_field = "api_id"
-
-    def _get_validated_query_params(self) -> CircuitQueryParams:
-        """Parse and validate query parameters using Pydantic."""
-        return validate_query_params(
-            query_params=self.request.query_params,
-            model=CircuitQueryParams,
-            pagination_class=self.pagination_class,
-        )
+    query_params_class = CircuitQueryParams
+    response_schema_class = CircuitSummary
 
     def get_queryset(self):
         """Optimize database queries with filters."""
@@ -320,13 +352,3 @@ class CircuitViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = queryset.filter(country_code=params.country_code)
 
         return queryset.order_by("name")
-
-    def retrieve(self, request, *args, **kwargs):
-        """Override retrieve to return DetailResponse format."""
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        data = CircuitSummary.model_validate(serializer.data)
-        metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(
-            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
-        )

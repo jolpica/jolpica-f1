@@ -1,3 +1,11 @@
+"""
+Pydantic schemas for the F1 Alpha API.
+
+Generic Response Types:
+- DetailResponse[T]: Wraps detail endpoint responses with metadata
+- PaginatedResponse[T]: Wraps paginated list responses with pagination metadata
+"""
+
 import datetime
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
@@ -183,11 +191,7 @@ class RoundSummary(BaseModel):
     sessions: list[RoundSession]
 
 
-RoundDetail = RoundSummary
-
-
-class RetrievedRoundDetail(DetailResponse[RoundDetail]):
-    """Schema for round detail responses"""
+RetrievedRoundDetail = DetailResponse[RoundSummary]
 
 
 class RoundQueryParams(BaseModel):
@@ -219,15 +223,8 @@ class CircuitSummary(BaseModel):
     wikipedia: HttpUrl | None = None
 
 
-CircuitDetail = CircuitSummary
-
-
-class PaginatedCircuitSummary(PaginatedResponse[list[CircuitSummary]]):
-    """Schema for paginated circuit list responses"""
-
-
-class RetrievedCircuitDetail(DetailResponse[CircuitDetail]):
-    """Schema for circuit detail responses"""
+PaginatedCircuitSummary = PaginatedResponse[list[CircuitSummary]]
+RetrievedCircuitDetail = DetailResponse[CircuitSummary]
 
 
 class CircuitQueryParams(BaseModel):
