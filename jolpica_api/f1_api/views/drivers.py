@@ -59,6 +59,6 @@ class DriverViewSet(BaseFilterableViewSet):
             queryset = queryset.distinct()
 
         # Order by first round appearance, then alphabetically
-        return queryset.annotate(first_round_date=Min("team_drivers__round_entries__round__race_number")).order_by(
-            "first_round_date", "surname", "forename"
-        )
+        return queryset.annotate(
+            first_round_number=Min("team_drivers__round_entries__round__race_number"),
+        ).order_by("first_round_number", "surname", "forename")
