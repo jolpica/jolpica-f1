@@ -1,14 +1,21 @@
+from __future__ import annotations
+
+from typing import get_args, get_origin
+
 import pytest
 from django.urls import reverse
-from pydantic import ValidationError
+from pydantic import BaseModel, ValidationError
+from rest_framework.request import Request
+from rest_framework.test import APIRequestFactory
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.circuit import PaginatedCircuitSummary, RetrievedCircuitDetail
-from jolpica.schemas.f1_api.alpha.driver import PaginatedDriverSummary, RetrievedDriverDetail
+from jolpica.schemas.f1_api.alpha.circuit import CircuitSummary, PaginatedCircuitSummary, RetrievedCircuitDetail
+from jolpica.schemas.f1_api.alpha.driver import DriverSummary, PaginatedDriverSummary, RetrievedDriverDetail
 from jolpica.schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
-from jolpica.schemas.f1_api.alpha.round import RetrievedRoundDetail
+from jolpica.schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundSummary
 from jolpica.schemas.f1_api.alpha.schedule import ScheduleSummary
-from jolpica.schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail
+from jolpica.schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
+from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
 
 
 @pytest.mark.django_db
@@ -164,3 +171,139 @@ def test_teams_detail_schema_conformance(api_client, sample_season_data):
         RetrievedTeamDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API teams detail response does not conform to RetrievedTeamDetail:\n{e}")
+
+
+# Field completeness tests
+
+
+def validate_field_completeness(data: dict | list, schema_class: type, path: str = "") -> list[str]:
+    """Recursively validate that all schema fields are present in serialized data.
+
+    Args:
+        data: The serialized data to validate
+        schema_class: The Pydantic schema class to validate against
+        path: Current path in the data structure (for error reporting)
+
+    Returns:
+        List of missing field paths
+    """
+    from pydantic_core import PydanticUndefined
+
+    missing_fields = []
+
+    # Handle BaseModel schemas
+    if isinstance(schema_class, type) and issubclass(schema_class, BaseModel):
+        if not isinstance(data, dict):
+            missing_fields.append(f"{path} (expected dict, got {type(data).__name__})")
+            return missing_fields
+
+        # Get schema fields
+        for field_name, field_info in schema_class.model_fields.items():
+            field_path = f"{path}.{field_name}" if path else field_name
+
+            # Check if field is missing from data
+            if field_name not in data:
+                # Check if field is optional (has None in union or has default)
+                field_type = field_info.annotation
+                origin = get_origin(field_type)
+
+                # Check if annotation is literally NoneType (TODO fields like url: None = Field(None, ...))
+                is_none_only = field_type is type(None)
+
+                # If it's a Union type (e.g., str | None), check if None is in the union
+                is_optional = False
+                if origin is type(None) or (hasattr(origin, "__name__") and origin.__name__ == "UnionType"):
+                    args = get_args(field_type)
+                    is_optional = type(None) in args
+
+                # Check if field has a default value
+                has_default = field_info.default is not PydanticUndefined or field_info.default_factory is not None
+
+                # Report missing field based on type and defaults
+                if is_none_only:
+                    # Field type is literally None (TODO fields) - omission is acceptable
+                    pass
+                elif not is_optional and not has_default:
+                    # Required field with no default
+                    missing_fields.append(f"{field_path} (missing from data)")
+                elif is_optional and not has_default:
+                    # Optional field (type | None) without default - should be present when data exists
+                    missing_fields.append(f"{field_path} (optional field omitted from data)")
+                elif is_optional and has_default:
+                    # Optional field with default - should still be present when data exists
+                    missing_fields.append(f"{field_path} (optional field with default omitted from data)")
+                # else: field has non-optional default, omission is acceptable
+                continue
+
+            # Recursively validate nested structures
+            field_value = data[field_name]
+            field_type = field_info.annotation
+            origin = get_origin(field_type)
+
+            # Handle list types
+            if origin is list:
+                args = get_args(field_type)
+                if args and isinstance(field_value, list):
+                    for i, item in enumerate(field_value):
+                        item_path = f"{field_path}[{i}]"
+                        missing_fields.extend(validate_field_completeness(item, args[0], item_path))
+            # Handle nested BaseModel
+            elif isinstance(field_type, type) and issubclass(field_type, BaseModel):
+                if field_value is not None:
+                    missing_fields.extend(validate_field_completeness(field_value, field_type, field_path))
+            # Handle Union types that might contain BaseModel
+            elif origin is type(None) or (hasattr(origin, "__name__") and origin.__name__ == "UnionType"):
+                args = get_args(field_type)
+                for arg in args:
+                    if arg is not type(None) and isinstance(arg, type) and issubclass(arg, BaseModel):
+                        if field_value is not None:
+                            missing_fields.extend(validate_field_completeness(field_value, arg, field_path))
+                        break
+
+    return missing_fields
+
+
+@pytest.mark.parametrize(
+    ["serializer_class", "schema_class", "fixture_name"],
+    [
+        (CircuitSerializer, CircuitSummary, "fully_populated_circuit"),
+        (DriverSerializer, DriverSummary, "fully_populated_driver"),
+        (RoundSerializer, RoundSummary, "fully_populated_round"),
+        (TeamSerializer, TeamSummary, "fully_populated_team"),
+    ],
+)
+def test_serializer_field_completeness(request, serializer_class, schema_class, fixture_name):
+    """Verify that serializers include all schema fields when data is available.
+
+    This test ensures that:
+    1. All required schema fields are present in serialized data
+    2. Optional fields are included when the model has data for them
+    3. Nested schemas are also fully populated
+    """
+    # Get the fully populated model instance from the fixture
+    instance = request.getfixturevalue(fixture_name)
+
+    # Create a mock request for URL generation in serializers
+    factory = APIRequestFactory()
+    mock_request = factory.get("/")
+    mock_request = Request(mock_request)
+
+    # Serialize the instance
+    serializer = serializer_class(instance, context={"request": mock_request})
+    serialized_data = serializer.data
+
+    # Validate field completeness
+    missing_fields = validate_field_completeness(serialized_data, schema_class)
+
+    # Assert no fields are missing
+    if missing_fields:
+        error_msg = f"{serializer_class.__name__} is missing fields when data is available:\n" + "\n".join(
+            f"  - {field}" for field in missing_fields
+        )
+        pytest.fail(error_msg)
+
+    # Validate that the data conforms to the schema
+    try:
+        schema_class.model_validate(serialized_data)
+    except ValidationError as e:
+        pytest.fail(f"{serializer_class.__name__} output does not conform to {schema_class.__name__}:\n{e}")
