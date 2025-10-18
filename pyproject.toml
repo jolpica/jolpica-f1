@@ -1,53 +1,65 @@
-[tool.poetry]
-authors = ["jolpica <no-reply@jolpi.ca>"]
-description = ""
-exclude = ["**/tests"]
+[project]
 name = "jolpica"
-packages = [{ include = "jolpica" }]
 version = "0.1.0"
+description = ""
+authors = [{ name = "jolpica", email = "no-reply@jolpi.ca" }]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "jolpica-schemas",
+    "boto3>=1.40.25,<2",
+    "Django~=5.2",
+    "django-environ>=0.12.0,<0.13",
+    "django-ratelimit>=4.1.0,<5",
+    "django-redis>=5.4.0,<6",
+    "django-rest-knox>=5.0.2,<6",
+    "django-storages>=1.14.5,<2",
+    "djangorestframework>=3.15.2,<4",
+    "gunicorn>=23.0.0,<24",
+    "psycopg[binary]>=3.1.12,<4",
+    "requests>=2.32.3,<3",
+    "uvicorn>=0.30.5,<0.31",
+    "opentelemetry-sdk>=1.26.0,<2",
+    "opentelemetry-exporter-otlp>=1.26.0,<2",
+    "django-cors-headers>=4.4.0,<5",
+    "drf-spectacular>=0.28.0,<0.29",
+    "django-timezone-field~=7.1",
+    "tzdata~=2025.2",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.12,<3.13"
+[dependency-groups]
+dev = [
+    "django-dbml>=0.10.1,<0.11",
+    "django-debug-toolbar>=5.0.1,<6",
+    "django-stubs[compatible-mypy]>=5.1.3,<6",
+    "djangorestframework-stubs[compatible-mypy]>=3.15.0,<4",
+    "mypy[dmypy]>=1.10.0,<2",
+    "pytest-django>=4.8.0,<5",
+    "ruff>=0.5.6",
+    "pre-commit>=4.0.1,<5",
+    "tqdm>=4.66.3,<5",
+]
+local = ["ipykernel>=6.29.5,<7"]
 
-jolpica-schemas = { path = "jolpica/schemas/", develop=true}
+[tool.uv]
+default-groups = [
+    "dev",
+    "local",
+]
 
-boto3 = "^1.40.25"
-Django = "^5.2"
-django-environ = "^0.12.0"
-django-ratelimit = "^4.1.0"
-django-redis = "^5.4.0"
-django-rest-knox = "^5.0.2"
-django-storages = "^1.14.5"
-djangorestframework = "^3.15.2"
-gunicorn = "^23.0.0"
-psycopg = { extras = ["binary"], version = "^3.1.12" }
-requests = "^2.32.3"
-uvicorn = "^0.30.5"
-opentelemetry-sdk = "^1.26.0"
-opentelemetry-exporter-otlp = "^1.26.0"
-django-cors-headers = "^4.4.0"
-drf-spectacular = "^0.28.0"
-django-timezone-field = "^7.1"
-tzdata = "^2025.2"
+[tool.uv.sources]
+jolpica-schemas = { path = "jolpica/schemas/", editable = true }
 
-[tool.poetry.group.dev.dependencies]
-django-dbml = "^0.10.1"                                                            # Generation of dbml file
-django-debug-toolbar = "^5.0.1"
-django-stubs = { extras = ["compatible-mypy"], version = "^5.1.3" }
-djangorestframework-stubs = { extras = ["compatible-mypy"], version = "^3.15.0" }
-mypy = { extras = ["dmypy"], version = "^1.10.0" }
-pytest-django = "^4.8.0"
-ruff = ">=0.5.6"
-pre-commit = "^4.0.1"
-tqdm = "^4.66.3"
+[tool.hatch.build.targets.sdist]
+include = ["jolpica"]
+exclude = ["**/tests"]
 
-[tool.poetry.group.local.dependencies]
-# Only for local development e.g. Jupyter notebook
-ipykernel = "^6.29.5"
+[tool.hatch.build.targets.wheel]
+include = ["jolpica"]
+exclude = ["**/tests"]
 
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.0.0"]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.mypy]
 exclude = ["tests/*", "^jolpica_api/ergastapi/*"]
@@ -56,7 +68,6 @@ python_version = "3.12"
 
 [tool.django-stubs]
 django_settings_module = "jolpica_api.settings"
-
 
 [tool.ruff]
 extend-exclude = ["**/migrations"]
@@ -82,7 +93,6 @@ pydocstyle.convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
 "**/tests/*.py" = ["D", "S", "E501"]
-
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "tests.settings"

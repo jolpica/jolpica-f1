@@ -25,26 +25,26 @@ jobs:
               - "**.md"
               - "docs/**"
             src:
-              - "poetry.lock"
+              - "uv.lock"
               - "pyproject.toml"
               - "**.py"
               - "tests/**"
               - "jolpica/**"
               - "jolpica_api/**"
 
-      - name: Install Poetry
-        run: pipx install poetry==1.8.3
+      - name: Install uv
+        run: pipx install uv==0.9.2
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version-file: "pyproject.toml"
-          cache: poetry
+          #cache: poetry
       
       - name: Install Dependencies & Activate Environment
         run: |
-          poetry install --without local
-          VIRTUAL_ENV=$(poetry env info --path)
+          uv sync --no-group local
+          VIRTUAL_ENV=$(uv find python)
           echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
           echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
 
