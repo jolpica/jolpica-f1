@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any, TypeVar
 
 import pydantic
-from django.db.models import Prefetch
+from django.db.models import Min, Prefetch
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, response, viewsets
@@ -411,7 +411,10 @@ class DriverViewSet(BaseFilterableViewSet):
         if params.year or params.team_id or params.role:
             queryset = queryset.distinct()
 
-        return queryset.order_by("surname", "forename")
+        # Order by first round appearance, then alphabetically
+        return queryset.annotate(first_round_date=Min("team_drivers__round_entries__round__race_number")).order_by(
+            "first_round_date", "surname", "forename"
+        )
 
 
 @extend_schema_view(
