@@ -36,6 +36,7 @@ class Round(ApiIDMixin, models.Model):
     is_cancelled = models.BooleanField(default=False)
 
     class Meta:
+        ordering = ["season__year", "number"]
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["season", "number"], name="round_unique_season_number")
         ]
