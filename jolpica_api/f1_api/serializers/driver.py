@@ -14,11 +14,11 @@ class DriverTeamSerializer(BaseAPISerializer):
     Required prefetches: None
     """
 
-    # view_name = "teams-detail"  # TODO: implement this endpoint
+    view_name = "teams-detail"
 
     class Meta:
         model = f1.Team
-        fields = ["id", "name", "country_code"]
+        fields = ["id", "url", "name", "country_code"]
 
 
 class DriverSeasonSerializer(BaseAPISerializer):

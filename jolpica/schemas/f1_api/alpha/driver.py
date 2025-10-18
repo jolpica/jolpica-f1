@@ -11,6 +11,7 @@ class DriverTeam(BaseModel):
     """
 
     id: str
+    url: HttpUrl
     name: str
     country_code: str | None = Field(None, max_length=3)
 
@@ -21,15 +22,17 @@ class DriverSeason(BaseModel):
     """
 
     id: str
+    url: None = Field(None, description="TODO: URL to season detail endpoint")
     year: int
 
 
-class DriverTeamHistory(BaseModel):
+class DriverTeamDriver(BaseModel):
     """
     Driver's stint with a team in a specific season.
     """
 
     id: str
+    url: None = Field(None, description="TODO: URL to team driver detail endpoint")
     team: DriverTeam
     season: DriverSeason
     role: int | None = None
@@ -49,7 +52,7 @@ class DriverSummary(BaseModel):
     permanent_car_number: int | None = None
     date_of_birth: datetime.date | None = None
     wikipedia: HttpUrl | None = None
-    teams: list[DriverTeamHistory]
+    teams: list[DriverTeamDriver]
 
 
 PaginatedDriverSummary = PaginatedResponse[list[DriverSummary]]

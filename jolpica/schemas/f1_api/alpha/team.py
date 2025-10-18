@@ -9,6 +9,7 @@ class TeamSeason(BaseModel):
     """
 
     id: str
+    url: None = Field(None, description="TODO: URL to season detail endpoint")
     year: int
 
 
