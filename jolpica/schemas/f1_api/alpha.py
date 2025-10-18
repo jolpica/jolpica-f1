@@ -92,7 +92,7 @@ class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
 
 class RoundCircuit(BaseModel):
     id: str
-    url: HttpUrl
+    url: HttpUrl | None = Field(None, description="TODO: URL to circuit detail endpoint")
     name: str
     locality: str | None = None
     country_code: str | None = Field(None, max_length=3)
@@ -100,13 +100,13 @@ class RoundCircuit(BaseModel):
 
 class RoundSeason(BaseModel):
     id: str
-    url: HttpUrl
+    url: HttpUrl | None = Field(None, description="TODO: URL to season detail endpoint")
     year: int
 
 
 class RoundSession(BaseModel):
     id: str
-    url: str | None = Field(None, description="TODO: URL to session detail endpoint")
+    url: HttpUrl | None = Field(None, description="TODO: URL to session detail endpoint")
     number: int | None = None
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")
