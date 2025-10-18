@@ -37,7 +37,9 @@ class TeamViewSet(BaseFilterableViewSet):
         from django.db.models import Min
 
         # Prefetch seasons with distinct to avoid duplicates (a team can have multiple drivers in same season)
-        queryset = f1.Team.objects.prefetch_related(Prefetch("seasons", queryset=f1.Season.objects.all().distinct()))
+        queryset = f1.Team.objects.prefetch_related(
+            Prefetch("seasons", queryset=f1.Season.objects.distinct()),
+        )
 
         # Get validated query parameters
         params = self._get_validated_query_params()
@@ -53,5 +55,7 @@ class TeamViewSet(BaseFilterableViewSet):
         if params.year:
             queryset = queryset.distinct()
 
-        # Order by first year competed, then alphabetically
-        return queryset.annotate(first_year=Min("seasons__year")).order_by("first_year", "name")
+        # Order by first round appearance, then alphabetically
+        return queryset.annotate(
+            first_round_number=Min("team_drivers__round_entries__round__race_number"),
+        ).order_by("first_round_number", "name")
