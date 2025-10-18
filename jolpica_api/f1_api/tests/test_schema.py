@@ -130,3 +130,41 @@ def test_drivers_detail_schema_conformance(api_client, sample_season_data):
         RetrievedDriverDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API drivers detail response does not conform to RetrievedDriverDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_teams_list_schema_conformance(api_client, sample_season_data):
+    """Verify the teams list response conforms to PaginatedTeamSummary."""
+    from jolpica.schemas.f1_api.alpha import PaginatedTeamSummary
+
+    url = reverse("teams-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedTeamSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API teams list response does not conform to PaginatedTeamSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_teams_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the teams detail response conforms to RetrievedTeamDetail."""
+    from jolpica.formula_one import models as f1
+    from jolpica.schemas.f1_api.alpha import RetrievedTeamDetail
+
+    team_obj = f1.Team.objects.first()
+    assert team_obj is not None, "Database must have at least one team"
+
+    url = reverse("teams-detail", kwargs={"api_id": team_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedTeamDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API teams detail response does not conform to RetrievedTeamDetail:\n{e}")
