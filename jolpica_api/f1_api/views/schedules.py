@@ -7,9 +7,8 @@ from rest_framework import permissions, response, viewsets
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.models import SessionType
-from jolpica.schemas.f1_api.alpha import (
-    DetailMetadata,
-    DetailResponse,
+from jolpica.schemas.f1_api.alpha.metadata import DetailMetadata, DetailResponse
+from jolpica.schemas.f1_api.alpha.schedule import (
     RetrievedScheduleDetail,
     ScheduleDetail,
     ScheduleSummary,

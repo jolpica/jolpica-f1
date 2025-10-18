@@ -2,7 +2,7 @@ from django.db.models import Prefetch
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha import RetrievedTeamDetail, TeamQueryParams, TeamSummary
+from jolpica.schemas.f1_api.alpha.team import RetrievedTeamDetail, TeamQueryParams, TeamSummary
 
 from ..serializers import TeamSerializer
 from ..utils import pydantic_to_open_api_parameters

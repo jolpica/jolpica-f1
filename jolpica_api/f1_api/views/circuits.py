@@ -1,7 +1,7 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha import CircuitQueryParams, CircuitSummary, RetrievedCircuitDetail
+from jolpica.schemas.f1_api.alpha.circuit import CircuitQueryParams, CircuitSummary, RetrievedCircuitDetail
 
 from ..serializers import CircuitSerializer
 from ..utils import pydantic_to_open_api_parameters

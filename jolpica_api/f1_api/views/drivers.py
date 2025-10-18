@@ -2,7 +2,7 @@ from django.db.models import Min
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha import DriverQueryParams, DriverSummary, RetrievedDriverDetail
+from jolpica.schemas.f1_api.alpha.driver import DriverQueryParams, DriverSummary, RetrievedDriverDetail
 
 from ..serializers import DriverSerializer
 from ..utils import pydantic_to_open_api_parameters
