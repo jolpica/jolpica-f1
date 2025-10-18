@@ -9,7 +9,6 @@ class CircuitSummary(BaseModel):
     id: str
     url: HttpUrl
     name: str
-    reference: str | None = None
     locality: str | None = None
     country: str | None = None
     country_code: str | None = Field(None, max_length=3)

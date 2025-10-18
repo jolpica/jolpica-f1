@@ -37,7 +37,6 @@ class CircuitScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
         model = f1.Circuit
         fields = [
             "name",
-            "reference",
             "wikipedia",
             "latitude",
             "longitude",

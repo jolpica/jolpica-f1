@@ -19,7 +19,6 @@ class TeamSummary(BaseModel):
     id: str
     url: HttpUrl
     name: str
-    reference: str | None = None
     nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
     wikipedia: HttpUrl | None = None

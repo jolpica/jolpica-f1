@@ -20,7 +20,6 @@ class CircuitSerializer(BaseAPISerializer):
             "id",
             "url",
             "name",
-            "reference",
             "locality",
             "country",
             "country_code",
