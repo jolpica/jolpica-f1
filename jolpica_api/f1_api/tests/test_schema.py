@@ -92,3 +92,41 @@ def test_circuits_detail_schema_conformance(api_client, sample_season_data):
         RetrievedCircuitDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API circuits detail response does not conform to RetrievedCircuitDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_drivers_list_schema_conformance(api_client, sample_season_data):
+    """Verify the drivers list response conforms to PaginatedDriverSummary."""
+    from jolpica.schemas.f1_api.alpha import PaginatedDriverSummary
+
+    url = reverse("drivers-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedDriverSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API drivers list response does not conform to PaginatedDriverSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_drivers_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the drivers detail response conforms to RetrievedDriverDetail."""
+    from jolpica.formula_one import models as f1
+    from jolpica.schemas.f1_api.alpha import RetrievedDriverDetail
+
+    driver_obj = f1.Driver.objects.first()
+    assert driver_obj is not None, "Database must have at least one driver"
+
+    url = reverse("drivers-detail", kwargs={"api_id": driver_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedDriverDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API drivers detail response does not conform to RetrievedDriverDetail:\n{e}")
