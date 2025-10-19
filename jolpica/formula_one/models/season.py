@@ -32,5 +32,8 @@ class Season(ApiIDMixin, models.Model):
     year = models.SmallIntegerField(unique=True)
     wikipedia = models.URLField(max_length=255, null=True, blank=True)
 
+    class Meta:
+        ordering = ["year"]
+
     def __str__(self) -> str:
         return f"{self.year}"

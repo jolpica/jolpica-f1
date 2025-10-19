@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.db.models import Prefetch
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
@@ -5,24 +7,18 @@ from rest_framework import permissions, response, viewsets
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.models import SessionType
-from jolpica.schemas.f1_api.alpha import (
-    DetailMetadata,
-    DetailResponse,
-    RetrievedRoundDetail,
+from jolpica.schemas.f1_api.alpha.metadata import DetailMetadata, DetailResponse
+from jolpica.schemas.f1_api.alpha.schedule import (
     RetrievedScheduleDetail,
-    RoundQueryParams,
-    RoundSummary,
     ScheduleDetail,
     ScheduleSummary,
 )
 
-from .pagination import StandardMetadataPagination
-from .serializers import (
-    RoundSerializer,
+from ..pagination import StandardMetadataPagination
+from ..serializers import (
     SeasonScheduleDetailSerializer,
     SeasonScheduleSerializer,
 )
-from .utils import pydantic_to_open_api_parameters, validate_query_params
 
 
 @extend_schema_view(
@@ -186,81 +182,6 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
 
         serializer = self.get_serializer(instance, context=context)
         data = ScheduleDetail.model_validate(serializer.data)
-        metadata = DetailMetadata(timestamp=timezone.now())
-        return response.Response(
-            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
-        )
-
-
-@extend_schema_view(
-    list=extend_schema(
-        summary="List all F1 Rounds",
-        description="Provides a paginated list of all F1 rounds with circuit, season, and session information.",
-        parameters=pydantic_to_open_api_parameters(RoundQueryParams),
-        responses={200: RoundSummary},
-    ),
-    retrieve=extend_schema(
-        summary="Get F1 Round Detail",
-        description="Provides detailed information for a specific round, including circuit, season, and all sessions.",
-        responses={200: RetrievedRoundDetail},
-    ),
-)
-class RoundViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    API endpoint for viewing F1 rounds with circuit, season, and session details.
-    Uses standard metadata/data response format. (Alpha Version)
-    """
-
-    permission_classes = [permissions.AllowAny]
-    serializer_class = RoundSerializer
-    pagination_class = StandardMetadataPagination
-    lookup_field = "api_id"
-
-    def _get_validated_query_params(self) -> RoundQueryParams:
-        """Parse and validate query parameters using Pydantic."""
-        return validate_query_params(
-            query_params=self.request.query_params,
-            model=RoundQueryParams,
-            pagination_class=self.pagination_class,
-        )
-
-    def get_queryset(self):
-        """Optimize database queries with select_related and prefetch_related."""
-        queryset = f1.Round.objects.select_related("season", "circuit").prefetch_related("sessions")
-
-        # Get validated query parameters
-        params = self._get_validated_query_params()
-
-        # Apply filters
-        if params.year is not None:
-            queryset = queryset.filter(season__year=params.year)
-
-        if params.round_number is not None:
-            queryset = queryset.filter(number=params.round_number)
-
-        if params.race_number is not None:
-            queryset = queryset.filter(race_number=params.race_number)
-
-        if params.is_cancelled is not None:
-            queryset = queryset.filter(is_cancelled=params.is_cancelled)
-
-        if params.driver_id is not None:
-            queryset = queryset.filter(round_entries__team_driver__driver__api_id=params.driver_id)
-
-        if params.team_id is not None:
-            queryset = queryset.filter(round_entries__team_driver__team__api_id=params.team_id)
-
-        # Use distinct() when filtering on many-to-many relationships
-        if params.driver_id or params.team_id:
-            queryset = queryset.distinct()
-
-        return queryset.order_by("season__year", "number")
-
-    def retrieve(self, request, *args, **kwargs):
-        """Override retrieve to return DetailResponse format."""
-        instance = self.get_object()
-        serializer = self.get_serializer(instance)
-        data = RoundSummary.model_validate(serializer.data)
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(
             DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
