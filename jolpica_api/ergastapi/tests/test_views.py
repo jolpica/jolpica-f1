@@ -5,6 +5,13 @@ from pathlib import Path
 import pytest
 from rest_framework.test import APIClient
 
+from jolpica.formula_one.models import (
+    RoundEntry,
+    Season,
+    Session,
+    SessionEntry,
+)
+
 
 def remove_url_keys(data: dict):
     if "url" in data and "en.wikipedia.org/wiki" in data["url"]:
@@ -188,3 +195,67 @@ def test_invalid_filter_or_final_filter_for_endpoint(client: APIClient, endpoint
     """Giving a non-integer input to an integer filter/final filter should return 404"""
     response = client.get(f"/ergast/f1/{endpoint}")
     assert response.status_code == 404
+
+
+@pytest.mark.django_db
+def test_qualifying_with_null_position_filtered_out(client: APIClient):
+    """When a qualifying session entry has a null position, it should be filtered out and return 200"""
+
+    # Use existing 2023 round 1 data (Bahrain)
+    season = Season.objects.get(year=2023)
+    round_obj = season.rounds.filter(number=1).first()
+
+    # Get existing round entries (drivers who participated in the race)
+    round_entry_1 = RoundEntry.objects.filter(round=round_obj).order_by("id").first()
+    round_entry_2 = RoundEntry.objects.filter(round=round_obj).order_by("id")[1]
+
+    # Create or get qualifying sessions (Q1 and Q2)
+    session_q1, _ = Session.objects.get_or_create(
+        round=round_obj,
+        type="Q1",
+        defaults={"api_id": f"test_session_q1_{round_obj.id}", "number": 3},
+    )
+    session_q2, _ = Session.objects.get_or_create(
+        round=round_obj,
+        type="Q2",
+        defaults={"api_id": f"test_session_q2_{round_obj.id}", "number": 4},
+    )
+
+    # Delete ALL existing qualifying session entries for our test drivers to ensure clean test
+    SessionEntry.objects.filter(
+        session__round=round_obj, session__type__startswith="Q", round_entry__in=[round_entry_1, round_entry_2]
+    ).delete()
+
+    # Create Q1 session entries for both drivers with valid positions
+    SessionEntry.objects.create(
+        api_id=f"test_se_q1_{session_q1.id}_{round_entry_1.id}",
+        session=session_q1,
+        round_entry=round_entry_1,
+        position=1,  # Valid position in Q1
+    )
+
+    SessionEntry.objects.create(
+        api_id=f"test_se_q1_{session_q1.id}_{round_entry_2.id}",
+        session=session_q1,
+        round_entry=round_entry_2,
+        position=2,  # Valid position in Q1
+    )
+
+    # Create Q2 session entry with NULL position for round_entry_2
+    session_entry_with_null = SessionEntry.objects.create(
+        api_id=f"test_se_q2_{session_q2.id}_{round_entry_2.id}",
+        session=session_q2,
+        round_entry=round_entry_2,
+        position=None,  # NULL position - should be filtered out from prefetch
+    )
+
+    response = client.get("/ergast/f1/2023/1/qualifying.json")
+
+    assert response.status_code == 200, f"Expected 200 but got {response.status_code}: {response.content}"
+    data = response.json()
+    qualifying_results = data["MRData"]["RaceTable"]["Races"][0]["QualifyingResults"]
+    assert len(qualifying_results) >= 1
+    positions = [result["position"] for result in qualifying_results]
+    assert None not in positions, f"Found None in positions: {qualifying_results}"
+    assert "None" not in positions, f"Found 'None' string in positions: {qualifying_results}"
+    assert SessionEntry.objects.filter(id=session_entry_with_null.id, position__isnull=True).exists()
