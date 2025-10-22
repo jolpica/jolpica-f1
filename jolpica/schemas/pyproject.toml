@@ -3,7 +3,7 @@ name = "jolpica.schemas"
 version = "0.1.0"
 description = "Schemas for the jolpica project."
 authors = [{ name = "Your Name", email = "your.email@example.com" }]
-requires-python = "~=3.8"
+requires-python = ">=3.12,<3.13"
 dependencies = ["pydantic>=2.10.6,<3"]
 
 [dependency-groups]
@@ -16,7 +16,7 @@ include = ["./../schemas"]
 include = ["./../schemas"]
 
 [tool.hatch.build.targets.wheel.sources]
-"./../schemas" = "jolpica/schemas/../schemas"
+"./../schemas" = "jolpica/schemas"
 
 [build-system]
 requires = ["hatchling"]

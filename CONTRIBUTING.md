@@ -45,10 +45,10 @@ How to setup the project locally for development.
 ## Initial Setup
 ### Prerequisite
 Use of the devcontainer is recommended. If not using, we will provide no debugging help,
-but please look at `.devcontainer/Dockerfile` for the required installs and versions (e.g. `poetry < 2`>).<br>
+but please look at `.devcontainer/Dockerfile` for the required installs and versions (e.g. `uv < 0.9.2`>).<br>
 
 Current requirements are:
-- Poetry for python (get the version from the devcontainer)
+- UV for python (get the version from the devcontainer)
 - A postgres database which can be accessed via the `DATABASE_SECRET_URL` environment variable.
 
 ### Data Import
@@ -58,8 +58,8 @@ Current requirements are:
   ```
   make setup
   ```
-  - If not using the devcontainer, you will need to have the correct poetry version installed and activate the environment first:  
-    `source "$(poetry env info -p)"/bin/activate`
+  - If not using the devcontainer, you will need to have the correct uv version installed and activate the environment first:  
+    `source .venv/bin/activate`
 
 - Create all required database tables
   ```

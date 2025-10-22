@@ -36,10 +36,10 @@ jobs:
         run: pipx install uv==0.9.2
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: astral-sh/setup-uv@v7
         with:
           python-version-file: "pyproject.toml"
-          #cache: poetry
+          cache: uv
       
       - name: Install Dependencies & Activate Environment
         run: |
