@@ -1,21 +1,23 @@
-[tool.poetry]
+[project]
 name = "jolpica.schemas"
 version = "0.1.0"
 description = "Schemas for the jolpica project."
-authors = ["Your Name <your.email@example.com>"]
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+requires-python = ">=3.12,<3.13"
+dependencies = ["pydantic>=2.10.6,<3"]
 
-[[tool.poetry.packages]]
-include = "../schemas"
-from = "."
-to = "jolpica/schemas"
+[dependency-groups]
+dev = ["pytest>=7.1.0,<8"]
 
-[tool.poetry.dependencies]
-python = "^3.8"
-pydantic = "^2.10.6"
+[tool.hatch.build.targets.sdist]
+include = ["./../schemas"]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.1.0"
+[tool.hatch.build.targets.wheel]
+include = ["./../schemas"]
+
+[tool.hatch.build.targets.wheel.sources]
+"./../schemas" = "jolpica/schemas"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

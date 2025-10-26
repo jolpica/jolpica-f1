@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Get all test, doc and src files that have changed
         id: changed-files-yaml
         uses: tj-actions/changed-files@v45
@@ -25,32 +25,29 @@ jobs:
               - "**.md"
               - "docs/**"
             src:
-              - "poetry.lock"
+              - "uv.lock"
               - "pyproject.toml"
               - "**.py"
               - "tests/**"
               - "jolpica/**"
               - "jolpica_api/**"
 
-      - name: Install Poetry
-        run: pipx install poetry==1.8.3
+      - name: Install uv
+        run: pipx install uv==0.9.2
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: astral-sh/setup-uv@v7
         with:
           python-version-file: "pyproject.toml"
-          cache: poetry
-      
+          cache: uv
+
       - name: Install Dependencies & Activate Environment
         run: |
-          poetry install --without local
-          VIRTUAL_ENV=$(poetry env info --path)
-          echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
-          echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+          uv sync --no-group local
 
       - name: Run Linting
         run: |
-          make lint
+          uv run make lint
 
       - name: Update DBDocs
         if: ${{ github.ref_name == 'main' && steps.changed-files-yaml.outputs.dbml_any_changed == 'true' }}

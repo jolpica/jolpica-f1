@@ -1,5 +1,5 @@
 setup:
-	poetry install
+	uv sync --active
 	pre-commit install --hook-type pre-push # Install pre-push hooks
 	python manage.py migrate
 
