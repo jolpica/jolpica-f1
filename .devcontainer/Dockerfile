@@ -11,4 +11,3 @@ WORKDIR /workspaces/jolpica-f1
 
 # Install UV
 RUN curl -LsSf https://astral.sh/uv/${UV_VERSION}/install.sh | sh
-

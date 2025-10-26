@@ -1,99 +1,86 @@
 [project]
-name = "jolpica"
-version = "0.1.0"
-description = ""
-authors = [{ name = "jolpica", email = "no-reply@jolpi.ca" }]
-requires-python = ">=3.12,<3.13"
-dependencies = [
-    "jolpica-schemas",
-    "boto3>=1.40.25,<2",
-    "Django~=5.2",
-    "django-environ>=0.12.0,<0.13",
-    "django-ratelimit>=4.1.0,<5",
-    "django-redis>=5.4.0,<6",
-    "django-rest-knox>=5.0.2,<6",
-    "django-storages>=1.14.5,<2",
-    "djangorestframework>=3.15.2,<4",
-    "gunicorn>=23.0.0,<24",
-    "psycopg[binary]>=3.1.12,<4",
-    "requests>=2.32.3,<3",
-    "uvicorn>=0.30.5,<0.31",
-    "opentelemetry-sdk>=1.26.0,<2",
-    "opentelemetry-exporter-otlp>=1.26.0,<2",
-    "django-cors-headers>=4.4.0,<5",
-    "drf-spectacular>=0.28.0,<0.29",
-    "django-timezone-field~=7.1",
-    "tzdata~=2025.2",
-]
+    name = "jolpica"
+    version = "0.1.0"
+    description = "jolpica-f1 F1 API"
+    authors = [{ name = "jolpica", email = "no-reply@jolpi.ca" }]
+    requires-python = ">=3.12,<3.13"
+    dependencies = [
+        # Internal Packages
+        "jolpica-schemas",
+        # External Packages
+        "boto3~=1.40",
+        "Django~=5.2",
+        "django-cors-headers~=4.4",
+        "django-environ~=0.12",
+        "django-ratelimit~=4.1",
+        "django-redis~=5.4",
+        "django-rest-knox~=5.0",
+        "django-storages~=1.14",
+        "django-timezone-field~=7.1",
+        "djangorestframework~=3.15",
+        "drf-spectacular~=0.28",
+        "gunicorn~=23.0",
+        "uvicorn~=0.30",
+        "psycopg[binary]~=3.1",
+        "requests~=2.32",
+        "opentelemetry-sdk~=1.26",
+        "opentelemetry-exporter-otlp~=1.26",
+        "tzdata~=2025.2",
+    ]
 
 [dependency-groups]
-dev = [
-    "django-dbml>=0.10.1,<0.11",
-    "django-debug-toolbar>=5.0.1,<6",
-    "django-stubs[compatible-mypy]>=5.1.3,<6",
-    "djangorestframework-stubs[compatible-mypy]>=3.15.0,<4",
-    "mypy[dmypy]>=1.10.0,<2",
-    "pytest-django>=4.8.0,<5",
-    "ruff>=0.5.6",
-    "pre-commit>=4.0.1,<5",
-    "tqdm>=4.66.3,<5",
-]
-local = ["ipykernel>=6.29.5,<7"]
+    dev = [
+        "django-dbml~=0.10",
+        "django-debug-toolbar~=5.0",
+        "django-stubs[compatible-mypy]~=5.1",
+        "djangorestframework-stubs[compatible-mypy]~=3.15",
+        "mypy[dmypy]~=1.10",
+        "pytest-django~=4.8",
+        "ruff~=0.5",
+        "pre-commit~=4.0",
+        "tqdm~=4.66",
+    ]
+    local = ["ipykernel~=6.29"]
 
 [tool.uv]
-default-groups = [
-    "dev",
-    "local",
-]
+    default-groups = ["dev", "local"]
 
-[tool.uv.sources]
-jolpica-schemas = { path = "jolpica/schemas/", editable = true }
-
-#[tool.hatch.build.targets.sdist]
-#include = ["jolpica"]
-#exclude = ["**/tests"]
-
-#[tool.hatch.build.targets.wheel]
-#include = ["jolpica"]
-#exclude = ["**/tests"]
-
-#[build-system]
-#requires = ["hatchling"]
-#build-backend = "hatchling.build"
+    [tool.uv.sources]
+        jolpica-schemas = { path = "jolpica/schemas/", editable = true }
 
 [tool.mypy]
-exclude = ["tests/*", "^jolpica_api/ergastapi/*"]
-plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
-python_version = "3.12"
+    exclude = ["tests/*", "^jolpica_api/ergastapi/*"]
+    plugins = ["mypy_django_plugin.main", "mypy_drf_plugin.main"]
+    python_version = "3.12"
 
 [tool.django-stubs]
-django_settings_module = "jolpica_api.settings"
+    django_settings_module = "jolpica_api.settings"
 
 [tool.ruff]
-extend-exclude = ["**/migrations"]
-line-length = 120
-src = ["jolpica", "jolpica_api"]
-target-version = "py312"
+    extend-exclude = ["**/migrations"]
+    line-length = 120
+    src = ["jolpica", "jolpica_api"]
+    target-version = "py312"
 
-[tool.ruff.lint]
-ignore = ["TRY300", "TRY003", "RUF012"]
-isort.known-first-party = ["jolpica", "jolpica_api"]
-select = [
-    "RUF", # Ruff specific
-    "I",   # isort - Import sorting
-    "S",   # Bandit - Security Report
-    "F",   # Pyflakes - Error Checker
-    "E",   # Pycodestyle - Style Checker
-    "UP",  # Pyupgrade - Update Old Syntax
-    "N",   # pep8-naming - Naming Conventions
-    "TRY", # Tryceratops - Try Except Checking
-]
+    [tool.ruff.lint]
+        ignore = ["TRY300", "TRY003", "RUF012"]
+        isort.known-first-party = ["jolpica", "jolpica_api"]
+        select = [
+            "RUF", # Ruff specific
+            "I", # isort - Import sorting
+            "S", # Bandit - Security Report
+            "F", # Pyflakes - Error Checker
+            "E", # Pycodestyle - Style Checker
+            "UP", # Pyupgrade - Update Old Syntax
+            "N", # pep8-naming - Naming Conventions
+            "TRY", # Tryceratops - Try Except Checking
+        ]
 
-pydocstyle.convention = "google"
+        pydocstyle.convention = "google"
 
-[tool.ruff.lint.per-file-ignores]
-"**/tests/*.py" = ["D", "S", "E501"]
+        [tool.ruff.lint.per-file-ignores]
+            "**/tests/*.py" = ["D", "S", "E501"]
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "tests.settings"
-addopts = ["--reuse-db"]
+    DJANGO_SETTINGS_MODULE = "tests.settings"
+    addopts = ["--reuse-db"]
