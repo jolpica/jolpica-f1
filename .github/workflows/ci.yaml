@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Get all test, doc and src files that have changed
         id: changed-files-yaml
         uses: tj-actions/changed-files@v45
@@ -40,17 +40,14 @@ jobs:
         with:
           python-version-file: "pyproject.toml"
           cache: uv
-      
+
       - name: Install Dependencies & Activate Environment
         run: |
           uv sync --no-group local
-          VIRTUAL_ENV=$(uv find python)
-          echo "$VIRTUAL_ENV/bin" >> $GITHUB_PATH
-          echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
 
       - name: Run Linting
         run: |
-          make lint
+          uv run make lint
 
       - name: Update DBDocs
         if: ${{ github.ref_name == 'main' && steps.changed-files-yaml.outputs.dbml_any_changed == 'true' }}
