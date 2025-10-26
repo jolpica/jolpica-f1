@@ -45,10 +45,10 @@ How to setup the project locally for development.
 ## Initial Setup
 ### Prerequisite
 Use of the devcontainer is recommended. If not using, we will provide no debugging help,
-but please look at `.devcontainer/Dockerfile` for the required installs and versions (e.g. `uv < 0.9.2`>).<br>
+but please look at `.devcontainer/` for the required installs and versions (e.g. `uv`, `postgres`).<br>
 
 Current requirements are:
-- UV for python (get the version from the devcontainer)
+- uv (Check the required version in pyproject.toml)
 - A postgres database which can be accessed via the `DATABASE_SECRET_URL` environment variable.
 
 ### Data Import
