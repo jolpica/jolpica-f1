@@ -1,5 +1,5 @@
 setup:
-	uv sync --active
+	uv sync --locked
 	pre-commit install --hook-type pre-push # Install pre-push hooks
 	python manage.py migrate
 
