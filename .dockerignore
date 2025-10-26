@@ -4,6 +4,7 @@
 .elasticbeanstalk/*
 .git
 .gitignore
+tests/
 **/tests/
 docs/
 dangerfile.js
