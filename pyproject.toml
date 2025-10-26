@@ -43,7 +43,7 @@
     local = ["ipykernel~=6.29"]
 
 [tool.uv]
-    required-version = "=~0.9.5"
+    required-version = "~=0.9.5"
     default-groups = ["dev", "local"]
 
     [tool.uv.sources]
