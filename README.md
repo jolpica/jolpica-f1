@@ -44,3 +44,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [FormulaVision](https://github.com/skat9234/formula-vision) - A Mobile F1 Dashboard built with Flutter.
 - [RaceTimeApp](https://www.github.com/MayckGomes/RaceTimeApp) - An Android App showing latest F1 data, Built with Jetpack Compose.
 - [OversteerFormula1App](https://github.com/HugoLe-SS/OversteerFormula1App) - OversteerFormula1App is an Android project built with Kotlin and Jetpack Compose, designed to provide race schedules, standings, race results, news, and live updates.
+- [F1nally](https://apps.apple.com/us/app/f1nally/id1618275556) – An iPhone app that displays the upcoming F1 schedule, as well as the current championship standings. Not currently open-source, but it is free, with no ads and no data collection. Yes, [that F1nally](https://www.reddit.com/r/formula1/comments/wovxbj/comment/ikdaxa2/).
