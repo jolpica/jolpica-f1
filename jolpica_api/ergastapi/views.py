@@ -13,6 +13,7 @@ from rest_framework.response import Response
 
 from jolpica.formula_one.models import Lap, Season, Session, SessionEntry, SessionType, Team
 from jolpica.formula_one.models.managed_views import DriverChampionship, TeamChampionship
+from jolpica_api.metrics_mixin import MetricsInstrumentationMixin
 from jolpica_api.settings import DEPLOYMENT_ENV
 
 from ..authentication.throttles import ErgastLongThrottle, ErgastShortThrottle
@@ -51,7 +52,7 @@ def api_root_view(request: Request) -> Response:
     ],
     name="dispatch",
 )
-class ErgastModelViewSet(viewsets.ReadOnlyModelViewSet):
+class ErgastModelViewSet(MetricsInstrumentationMixin, viewsets.ReadOnlyModelViewSet):
     authentication_classes = [knox.auth.TokenAuthentication]
     throttle_classes = [ErgastLongThrottle, ErgastShortThrottle]
     pagination_class = pagination.ErgastAPIPagination

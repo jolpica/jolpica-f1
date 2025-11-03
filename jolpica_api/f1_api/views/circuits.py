@@ -2,6 +2,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha.circuit import CircuitQueryParams, CircuitSummary, RetrievedCircuitDetail
+from jolpica_api.metrics_mixin import MetricsInstrumentationMixin
 
 from ..serializers import CircuitSerializer
 from ..utils import pydantic_to_open_api_parameters
@@ -22,7 +23,7 @@ from .base_viewset import BaseFilterableViewSet
         responses={200: RetrievedCircuitDetail},
     ),
 )
-class CircuitViewSet(BaseFilterableViewSet):
+class CircuitViewSet(MetricsInstrumentationMixin, BaseFilterableViewSet):
     """
     API endpoint for viewing F1 circuits.
     Uses standard metadata/data response format. (Alpha Version)

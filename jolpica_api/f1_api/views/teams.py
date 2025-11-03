@@ -3,6 +3,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha.team import RetrievedTeamDetail, TeamQueryParams, TeamSummary
+from jolpica_api.metrics_mixin import MetricsInstrumentationMixin
 
 from ..serializers import TeamSerializer
 from ..utils import pydantic_to_open_api_parameters
@@ -22,7 +23,7 @@ from .base_viewset import BaseFilterableViewSet
         responses={200: RetrievedTeamDetail},
     ),
 )
-class TeamViewSet(BaseFilterableViewSet):
+class TeamViewSet(MetricsInstrumentationMixin, BaseFilterableViewSet):
     """
     API endpoint for viewing F1 teams (constructors) with season history.
     Uses standard metadata/data response format.
