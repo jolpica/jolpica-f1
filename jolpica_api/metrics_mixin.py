@@ -100,7 +100,6 @@ class MetricsInstrumentationMixin:
             "ergast" if from ergastapi module, "f1_alpha" if from f1_api module
         """
         module = self.__class__.__module__
-        print(module)
         if "ergastapi" in module:
             return "ergast"
         elif "f1_api" in module:
