@@ -13,7 +13,6 @@ from jolpica.schemas.f1_api.alpha.schedule import (
     ScheduleDetail,
     ScheduleSummary,
 )
-from jolpica_api.metrics_mixin import MetricsInstrumentationMixin
 
 from ..pagination import StandardMetadataPagination
 from ..serializers import (
@@ -35,7 +34,7 @@ from ..serializers import (
         responses={200: RetrievedScheduleDetail},
     ),
 )
-class SeasonScheduleViewSet(MetricsInstrumentationMixin, viewsets.ReadOnlyModelViewSet):
+class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows the full schedule for a season to be viewed.
     Detail view includes details for each round and session, plus links to previous/next race.

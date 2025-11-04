@@ -3,7 +3,6 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha.driver import DriverQueryParams, DriverSummary, RetrievedDriverDetail
-from jolpica_api.metrics_mixin import MetricsInstrumentationMixin
 
 from ..serializers import DriverSerializer
 from ..utils import pydantic_to_open_api_parameters
@@ -25,7 +24,7 @@ from .base_viewset import BaseFilterableViewSet
         responses={200: RetrievedDriverDetail},
     ),
 )
-class DriverViewSet(MetricsInstrumentationMixin, BaseFilterableViewSet):
+class DriverViewSet(BaseFilterableViewSet):
     """
     API endpoint for viewing F1 drivers with team history.
     Uses standard metadata/data response format. (Alpha Version)

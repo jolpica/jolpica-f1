@@ -2,7 +2,6 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundQueryParams, RoundSummary
-from jolpica_api.metrics_mixin import MetricsInstrumentationMixin
 
 from ..serializers import RoundSerializer
 from ..utils import pydantic_to_open_api_parameters
@@ -22,7 +21,7 @@ from .base_viewset import BaseFilterableViewSet
         responses={200: RetrievedRoundDetail},
     ),
 )
-class RoundViewSet(MetricsInstrumentationMixin, BaseFilterableViewSet):
+class RoundViewSet(BaseFilterableViewSet):
     """
     API endpoint for viewing F1 rounds with circuit, season, and session details.
     Uses standard metadata/data response format. (Alpha Version)
