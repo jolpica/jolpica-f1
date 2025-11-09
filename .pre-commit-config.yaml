@@ -10,7 +10,7 @@ repos:
         stages: [pre-push]
       - id: make-dbml
         name: "Update database documentation"
-        entry: make dbml
+        entry: uv run make dbml
         language: system
         pass_filenames: false
         files: ^jolpica/formula_one/models/

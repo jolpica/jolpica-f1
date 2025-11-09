@@ -1,7 +1,7 @@
 setup:
 	uv sync --locked
-	pre-commit install --hook-type pre-push # Install pre-push hooks
-	python manage.py migrate
+	uv run prek install --hook-type pre-push # Install pre-push hooks
+	uv run python manage.py migrate
 
 format:
 	ruff format .
@@ -25,7 +25,7 @@ dbml:
 	# Remove the time_zone_session_timezone enum as it makes the visualisation hard to read
 	sed '/^enum formula_one\.time_zone_session_timezone {$$/,/^}$$/d' \
       jolpica/formula_one/models/models.dbml > jolpica/formula_one/models/models.filtered.dbml
-	npx @softwaretechnik/dbml-renderer -i jolpica/formula_one/models/models.filtered.dbml -o docs/database.svg
+	npx --yes @softwaretechnik/dbml-renderer -i jolpica/formula_one/models/models.filtered.dbml -o docs/database.svg
 	rm jolpica/formula_one/models/models.filtered.dbml
 
 test-fixtures:

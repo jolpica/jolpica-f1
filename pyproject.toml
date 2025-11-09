@@ -37,9 +37,9 @@
         "mypy[dmypy]~=1.10",
         "pytest-django~=4.8",
         "ruff~=0.5",
-        "pre-commit~=4.0",
         "tqdm~=4.66",
-    ]
+        "prek>=0.2.13",
+]
     local = ["ipykernel~=6.29"]
 
 [tool.uv]
