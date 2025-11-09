@@ -10,10 +10,12 @@ class CustomRouter(routers.DefaultRouter):
 
 router = CustomRouter()
 router.register(r"schedules", schedules.SeasonScheduleViewSet, basename="schedules")
-router.register(r"rounds", rounds.RoundViewSet, basename="rounds")
-router.register(r"circuits", circuits.CircuitViewSet, basename="circuits")
-router.register(r"drivers", drivers.DriverViewSet, basename="drivers")
-router.register(r"teams", teams.TeamViewSet, basename="teams")
+
+# Core table-mapped endpoints
+router.register(r"core/rounds", rounds.RoundViewSet, basename="rounds")
+router.register(r"core/circuits", circuits.CircuitViewSet, basename="circuits")
+router.register(r"core/drivers", drivers.DriverViewSet, basename="drivers")
+router.register(r"core/teams", teams.TeamViewSet, basename="teams")
 
 urlpatterns = [
     path("alpha/", include(router.urls)),
