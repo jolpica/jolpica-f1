@@ -1,7 +1,7 @@
 setup:
 	uv sync --locked
-	pre-commit install --hook-type pre-push # Install pre-push hooks
-	python manage.py migrate
+	uv run prek install --hook-type pre-push # Install pre-push hooks
+	uv run python manage.py migrate
 
 format:
 	ruff format .
