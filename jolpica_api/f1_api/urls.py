@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from .views import circuits, drivers, rounds, schedules, teams
+from .views import circuits, drivers, rounds, schedules, sessions, teams
 
 
 class CustomRouter(routers.DefaultRouter):
@@ -16,6 +16,7 @@ router.register(r"core/rounds", rounds.RoundViewSet, basename="rounds")
 router.register(r"core/circuits", circuits.CircuitViewSet, basename="circuits")
 router.register(r"core/drivers", drivers.DriverViewSet, basename="drivers")
 router.register(r"core/teams", teams.TeamViewSet, basename="teams")
+router.register(r"core/sessions", sessions.SessionViewSet, basename="sessions")
 
 urlpatterns = [
     path("alpha/", include(router.urls)),

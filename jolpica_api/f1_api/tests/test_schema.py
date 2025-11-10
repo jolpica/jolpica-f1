@@ -173,6 +173,43 @@ def test_teams_detail_schema_conformance(api_client, sample_season_data):
         pytest.fail(f"API teams detail response does not conform to RetrievedTeamDetail:\n{e}")
 
 
+@pytest.mark.django_db
+def test_sessions_list_schema_conformance(api_client, sample_season_data):
+    """Verify the sessions list response conforms to PaginatedSessionSummary."""
+    from jolpica.schemas.f1_api.alpha.session import PaginatedSessionSummary
+
+    url = reverse("sessions-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedSessionSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API sessions list response does not conform to PaginatedSessionSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_sessions_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the sessions detail response conforms to RetrievedSessionDetail."""
+    from jolpica.schemas.f1_api.alpha.session import RetrievedSessionDetail
+
+    session_obj = sample_season_data.rounds.first().sessions.first()
+    assert session_obj is not None, "Sample season must have at least one session"
+
+    url = reverse("sessions-detail", kwargs={"api_id": session_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedSessionDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API sessions detail response does not conform to RetrievedSessionDetail:\n{e}")
+
+
 # Field completeness tests
 
 

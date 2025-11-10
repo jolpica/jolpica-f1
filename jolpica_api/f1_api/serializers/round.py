@@ -43,7 +43,7 @@ class RoundSessionSerializer(BaseAPISerializer):
     Note: local_timestamp is a property that requires timezone and timestamp to be populated
     """
 
-    # view_name = "sessions-detail"  # TODO: implement this endpoint
+    view_name = "sessions-detail"
 
     type_display = serializers.CharField(source="get_type_display", read_only=True)
     # Must use CharField instead of DateTimeField as otherwise it will display as UTC
@@ -62,10 +62,6 @@ class RoundSessionSerializer(BaseAPISerializer):
             "local_timestamp",
             "timezone",
         ]
-
-    def get_url(self, obj):
-        # TODO: We first need to implement the sessions-detail endpoint
-        pass
 
 
 class RoundSerializer(BaseAPISerializer):
