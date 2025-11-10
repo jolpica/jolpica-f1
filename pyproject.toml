@@ -21,7 +21,7 @@
         "drf-spectacular~=0.28",
         "gunicorn~=23.0",
         "uvicorn~=0.30",
-        "psycopg[binary]~=3.1",
+        "psycopg[binary]==3.2.10", # We suspect that newer versions are causing a crash after ~20 hours
         "requests~=2.32",
         "opentelemetry-sdk~=1.26",
         "opentelemetry-exporter-otlp~=1.26",
@@ -39,7 +39,7 @@
         "ruff~=0.5",
         "tqdm~=4.66",
         "prek>=0.2.13",
-]
+    ]
     local = ["ipykernel~=6.29"]
 
 [tool.uv]
