@@ -1,8 +1,17 @@
+from __future__ import annotations
+
+import logging
+import time
 from collections.abc import Callable
 
 import requests
+from django.conf import settings
 from django.http import HttpResponseForbidden
 from django.http.request import HttpRequest
+
+from jolpica_api.metrics import get_duration_histogram, get_request_counter
+
+logger = logging.getLogger(__name__)
 
 
 def get_ec2_token() -> str:
@@ -77,6 +86,54 @@ def queryparam_blocks_middleware(get_response):
             if "cache" in key.lower():
                 return HttpResponseForbidden("Please be considerate of other API users and do not avoid caches.")
         return get_response(request)
+
+    return process_request
+
+
+def opentelemetry_metrics_middleware(get_response):
+    """Record OpenTelemetry metrics for API requests with ViewSet basename."""
+
+    def process_request(request: HttpRequest):
+        if settings.DEPLOYMENT_ENV == "LOCAL":
+            return get_response(request)
+
+        start_time = time.perf_counter()
+
+        response = get_response(request)
+
+        # Extract ViewSet basename if available
+        basename = "unknown"
+        if hasattr(request, "resolver_match") and request.resolver_match:
+            view_func = request.resolver_match.func
+            if hasattr(view_func, "cls") and hasattr(view_func, "initkwargs"):
+                basename = view_func.initkwargs.get("basename", "unknown")
+
+        # Detect API type from URL path
+        api_type = "other"
+        if request.path.startswith("/ergast/"):
+            api_type = "ergast"
+        elif request.path.startswith("/f1/alpha/"):
+            api_type = "f1_alpha"
+
+        try:
+            attributes: dict[str, str] = {
+                "basename": basename,
+                "method": str(request.method),
+                "status_code": str(response.status_code),
+                "api_type": api_type,
+            }
+
+            duration_ms = (time.perf_counter() - start_time) * 1000
+            histogram = get_duration_histogram()
+            histogram.record(duration_ms, attributes)
+
+            counter = get_request_counter()
+            counter.add(1, attributes)
+
+        except Exception as ex:
+            logger.exception("Failed to record OpenTelemetry metrics", exc_info=ex)
+
+        return response
 
     return process_request
 
