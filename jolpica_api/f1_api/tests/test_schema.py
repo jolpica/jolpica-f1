@@ -14,6 +14,10 @@ from jolpica.schemas.f1_api.alpha.driver import DriverSummary, PaginatedDriverSu
 from jolpica.schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
 from jolpica.schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundSummary
 from jolpica.schemas.f1_api.alpha.schedule import ScheduleSummary
+from jolpica.schemas.f1_api.alpha.session_entry import (
+    PaginatedSessionEntrySummary,
+    RetrievedSessionEntryDetail,
+)
 from jolpica.schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
 from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
 
@@ -208,6 +212,41 @@ def test_sessions_detail_schema_conformance(api_client, sample_season_data):
         RetrievedSessionDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API sessions detail response does not conform to RetrievedSessionDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_session_entries_list_schema_conformance(api_client, sample_season_data):
+    """Verify the session entries list response conforms to PaginatedSessionEntrySummary."""
+
+    url = reverse("session-entries-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedSessionEntrySummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API session entries list response does not conform to PaginatedSessionEntrySummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_session_entries_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the session entries detail response conforms to RetrievedSessionEntryDetail."""
+
+    session_entry_obj = f1.SessionEntry.objects.first()
+    assert session_entry_obj is not None, "Database must have at least one session entry"
+
+    url = reverse("session-entries-detail", kwargs={"api_id": session_entry_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedSessionEntryDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API session entries detail response does not conform to RetrievedSessionEntryDetail:\n{e}")
 
 
 # Field completeness tests
