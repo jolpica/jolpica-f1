@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl
 
 from .metadata import DetailResponse, PaginatedResponse
@@ -59,7 +61,9 @@ class SessionEntrySummary(BaseModel):
     status_display: str | None = Field(None, description="Display name for the session status")
     points: float | None = None
     grid: int | None = Field(None, description="Grid position at session start")
-    time: str | None = Field(None, description="Finishing time in ISO 8601 duration format (e.g., PT1H32M15.123S)")
+    time: timedelta | None = Field(
+        None, description="Finishing time in ISO 8601 duration format (e.g., PT1H32M15.123S)"
+    )
     time_display: str | None = Field(None, description="Human-readable finishing time (e.g., 1:32:15.123)")
     fastest_lap_rank: int | None = Field(None, description="Fastest lap ranking in session")
     laps_completed: int | None = Field(None, description="Number of laps completed")

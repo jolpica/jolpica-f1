@@ -286,6 +286,43 @@ def test_laps_detail_schema_conformance(api_client, sample_season_data):
         pytest.fail(f"API laps detail response does not conform to RetrievedLapDetail:\n{e}")
 
 
+@pytest.mark.django_db
+def test_pit_stops_list_schema_conformance(api_client, sample_season_data):
+    """Verify the pit stops list response conforms to PaginatedPitStopSummary."""
+    from jolpica.schemas.f1_api.alpha.pit_stop import PaginatedPitStopSummary
+
+    url = reverse("pit-stops-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedPitStopSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API pit stops list response does not conform to PaginatedPitStopSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_pit_stops_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the pit stops detail response conforms to RetrievedPitStopDetail."""
+    from jolpica.schemas.f1_api.alpha.pit_stop import RetrievedPitStopDetail
+
+    pit_stop_obj = f1.PitStop.objects.first()
+    assert pit_stop_obj is not None, "Database must have at least one pit stop"
+
+    url = reverse("pit-stops-detail", kwargs={"api_id": pit_stop_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedPitStopDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API pit stops detail response does not conform to RetrievedPitStopDetail:\n{e}")
+
+
 # Field completeness tests
 
 

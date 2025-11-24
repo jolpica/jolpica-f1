@@ -1,6 +1,7 @@
 from .circuit import CircuitSerializer
 from .driver import DriverSerializer
 from .lap import LapSerializer
+from .pit_stop import PitStopSerializer
 from .round import RoundSerializer
 from .schedule import SeasonScheduleDetailSerializer, SeasonScheduleSerializer
 from .session import SessionSerializer
@@ -11,6 +12,7 @@ __all__ = [
     "CircuitSerializer",
     "DriverSerializer",
     "LapSerializer",
+    "PitStopSerializer",
     "RoundSerializer",
     "SeasonScheduleDetailSerializer",
     "SeasonScheduleSerializer",
