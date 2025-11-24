@@ -249,6 +249,43 @@ def test_session_entries_detail_schema_conformance(api_client, sample_season_dat
         pytest.fail(f"API session entries detail response does not conform to RetrievedSessionEntryDetail:\n{e}")
 
 
+@pytest.mark.django_db
+def test_laps_list_schema_conformance(api_client, sample_season_data):
+    """Verify the laps list response conforms to PaginatedLapSummary."""
+    from jolpica.schemas.f1_api.alpha.lap import PaginatedLapSummary
+
+    url = reverse("laps-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedLapSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API laps list response does not conform to PaginatedLapSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_laps_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the laps detail response conforms to RetrievedLapDetail."""
+    from jolpica.schemas.f1_api.alpha.lap import RetrievedLapDetail
+
+    lap_obj = f1.Lap.objects.first()
+    assert lap_obj is not None, "Database must have at least one lap"
+
+    url = reverse("laps-detail", kwargs={"api_id": lap_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedLapDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API laps detail response does not conform to RetrievedLapDetail:\n{e}")
+
+
 # Field completeness tests
 
 
