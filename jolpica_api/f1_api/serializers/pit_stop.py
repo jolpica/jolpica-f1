@@ -4,8 +4,13 @@ from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.utils import format_timedelta, timedelta_to_iso8601
+from jolpica.schemas.f1_api.alpha.pit_stop import (
+    PitStopLap,
+    PitStopRound,
+    PitStopSummary,
+)
 
-from .base_serializer import BaseAPISerializer
+from .base_serializer import PydanticValidatedSerializer
 from .round import RoundSeasonSerializer
 from .session_entry import (
     SessionEntryDriverSerializer,
@@ -14,13 +19,14 @@ from .session_entry import (
 )
 
 
-class PitStopLapSerializer(BaseAPISerializer):
+class PitStopLapSerializer(PydanticValidatedSerializer):
     """
     Serializer for Lap information in PitStop context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = PitStopLap
     view_name = "laps-detail"
 
     time = serializers.SerializerMethodField()
@@ -34,7 +40,7 @@ class PitStopLapSerializer(BaseAPISerializer):
         return timedelta_to_iso8601(obj.time)
 
 
-class PitStopRoundSerializer(BaseAPISerializer):
+class PitStopRoundSerializer(PydanticValidatedSerializer):
     """
     Serializer for Round information in PitStop context (with nested season).
 
@@ -42,6 +48,7 @@ class PitStopRoundSerializer(BaseAPISerializer):
     - select_related('season')
     """
 
+    pydantic_schema_class = PitStopRound
     view_name = "rounds-detail"
 
     season = RoundSeasonSerializer(read_only=True)
@@ -51,7 +58,7 @@ class PitStopRoundSerializer(BaseAPISerializer):
         fields = ["id", "url", "number", "name", "season"]
 
 
-class PitStopSerializer(BaseAPISerializer):
+class PitStopSerializer(PydanticValidatedSerializer):
     """
     Serializer for PitStop with nested driver, team, session, round, and lap information.
 
@@ -62,6 +69,7 @@ class PitStopSerializer(BaseAPISerializer):
     - select_related('lap')
     """
 
+    pydantic_schema_class = PitStopSummary
     view_name = "pit-stops-detail"
 
     driver = serializers.SerializerMethodField()

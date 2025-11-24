@@ -4,17 +4,25 @@ from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.utils import format_timedelta
+from jolpica.schemas.f1_api.alpha.session_entry import (
+    SessionEntryDriver,
+    SessionEntryRound,
+    SessionEntrySession,
+    SessionEntrySummary,
+    SessionEntryTeam,
+)
 
-from .base_serializer import BaseAPISerializer
+from .base_serializer import PydanticValidatedSerializer
 
 
-class SessionEntrySessionSerializer(BaseAPISerializer):
+class SessionEntrySessionSerializer(PydanticValidatedSerializer):
     """
     Serializer for Session information in SessionEntry context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = SessionEntrySession
     view_name = "sessions-detail"
 
     type_display = serializers.CharField(source="get_type_display", read_only=True)
@@ -24,13 +32,14 @@ class SessionEntrySessionSerializer(BaseAPISerializer):
         fields = ["id", "url", "type", "type_display"]
 
 
-class SessionEntryRoundSerializer(BaseAPISerializer):
+class SessionEntryRoundSerializer(PydanticValidatedSerializer):
     """
     Serializer for Round information in SessionEntry context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = SessionEntryRound
     view_name = "rounds-detail"
 
     class Meta:
@@ -38,13 +47,14 @@ class SessionEntryRoundSerializer(BaseAPISerializer):
         fields = ["id", "url", "number", "name"]
 
 
-class SessionEntryDriverSerializer(BaseAPISerializer):
+class SessionEntryDriverSerializer(PydanticValidatedSerializer):
     """
     Serializer for Driver information in SessionEntry context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = SessionEntryDriver
     view_name = "drivers-detail"
 
     class Meta:
@@ -52,13 +62,14 @@ class SessionEntryDriverSerializer(BaseAPISerializer):
         fields = ["id", "url", "abbreviation", "forename", "surname"]
 
 
-class SessionEntryTeamSerializer(BaseAPISerializer):
+class SessionEntryTeamSerializer(PydanticValidatedSerializer):
     """
     Serializer for Team information in SessionEntry context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = SessionEntryTeam
     view_name = "teams-detail"
 
     class Meta:
@@ -66,7 +77,7 @@ class SessionEntryTeamSerializer(BaseAPISerializer):
         fields = ["id", "url", "name", "reference"]
 
 
-class SessionEntrySerializer(BaseAPISerializer):
+class SessionEntrySerializer(PydanticValidatedSerializer):
     """
     Serializer for SessionEntry with nested session, round, driver, and team information.
 
@@ -74,6 +85,7 @@ class SessionEntrySerializer(BaseAPISerializer):
     - select_related('session__round', 'round_entry__team_driver__driver', 'round_entry__team_driver__team')
     """
 
+    pydantic_schema_class = SessionEntrySummary
     view_name = "session-entries-detail"
 
     session = SessionEntrySessionSerializer(read_only=True)

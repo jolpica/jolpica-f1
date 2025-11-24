@@ -1,17 +1,19 @@
 from __future__ import annotations
 
 from jolpica.formula_one import models as f1
+from jolpica.schemas.f1_api.alpha.circuit import CircuitSummary
 
-from .base_serializer import BaseAPISerializer
+from .base_serializer import PydanticValidatedSerializer
 
 
-class CircuitSerializer(BaseAPISerializer):
+class CircuitSerializer(PydanticValidatedSerializer):
     """
     Serializer for Circuit information.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = CircuitSummary
     view_name = "circuits-detail"
 
     class Meta:

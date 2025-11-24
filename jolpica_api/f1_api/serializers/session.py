@@ -3,17 +3,19 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica.schemas.f1_api.alpha.session import SessionRound, SessionSummary
 
-from .base_serializer import BaseAPISerializer
+from .base_serializer import PydanticValidatedSerializer
 
 
-class SessionRoundSerializer(BaseAPISerializer):
+class SessionRoundSerializer(PydanticValidatedSerializer):
     """
     Serializer for Round information in Session context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = SessionRound
     view_name = "rounds-detail"
 
     class Meta:
@@ -21,7 +23,7 @@ class SessionRoundSerializer(BaseAPISerializer):
         fields = ["id", "url", "number", "name"]
 
 
-class SessionSerializer(BaseAPISerializer):
+class SessionSerializer(PydanticValidatedSerializer):
     """
     Serializer for Session with nested round information.
 
@@ -29,6 +31,7 @@ class SessionSerializer(BaseAPISerializer):
     - select_related('round')
     """
 
+    pydantic_schema_class = SessionSummary
     view_name = "sessions-detail"
 
     round = SessionRoundSerializer(read_only=True)
