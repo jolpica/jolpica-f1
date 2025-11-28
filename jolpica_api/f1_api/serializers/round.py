@@ -3,17 +3,24 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica.schemas.f1_api.alpha.round import (
+    RoundCircuit,
+    RoundSeason,
+    RoundSession,
+    RoundSummary,
+)
 
-from .base_serializer import BaseAPISerializer
+from .base_serializer import PydanticValidatedSerializer
 
 
-class RoundCircuitSerializer(BaseAPISerializer):
+class RoundCircuitSerializer(PydanticValidatedSerializer):
     """
     Serializer for Circuit information in Round context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = RoundCircuit
     view_name = "circuits-detail"
 
     class Meta:
@@ -21,13 +28,14 @@ class RoundCircuitSerializer(BaseAPISerializer):
         fields = ["id", "name", "locality", "country_code"]
 
 
-class RoundSeasonSerializer(BaseAPISerializer):
+class RoundSeasonSerializer(PydanticValidatedSerializer):
     """
     Serializer for Season information in Round context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = RoundSeason
     # view_name = "seasons-detail"  # TODO: implement this endpoint
 
     class Meta:
@@ -35,7 +43,7 @@ class RoundSeasonSerializer(BaseAPISerializer):
         fields = ["id", "year"]
 
 
-class RoundSessionSerializer(BaseAPISerializer):
+class RoundSessionSerializer(PydanticValidatedSerializer):
     """
     Serializer for Session information in Round context.
 
@@ -43,7 +51,8 @@ class RoundSessionSerializer(BaseAPISerializer):
     Note: local_timestamp is a property that requires timezone and timestamp to be populated
     """
 
-    view_name = "sessions-detail"
+    pydantic_schema_class = RoundSession
+    # view_name = "sessions-detail"  # TODO: Schema expects url: None
 
     type_display = serializers.CharField(source="get_type_display", read_only=True)
     # Must use CharField instead of DateTimeField as otherwise it will display as UTC
@@ -64,7 +73,7 @@ class RoundSessionSerializer(BaseAPISerializer):
         ]
 
 
-class RoundSerializer(BaseAPISerializer):
+class RoundSerializer(PydanticValidatedSerializer):
     """
     Serializer for Round with nested circuit, season, and session information.
 
@@ -73,6 +82,7 @@ class RoundSerializer(BaseAPISerializer):
     - prefetch_related('sessions')
     """
 
+    pydantic_schema_class = RoundSummary
     view_name = "rounds-detail"
 
     circuit = RoundCircuitSerializer(read_only=True)

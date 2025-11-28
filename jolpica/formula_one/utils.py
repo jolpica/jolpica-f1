@@ -1,7 +1,10 @@
+import json
 import secrets
 import string
 from collections import Counter
 from datetime import timedelta
+
+from pydantic import TypeAdapter
 
 
 def generate_api_id(model_prefix: str) -> str:
@@ -95,3 +98,27 @@ def format_timedelta(time: timedelta) -> str:
     if display_time[0] == "0":
         display_time = display_time[1:]
     return display_time
+
+
+# TODO: Remove this function by using Pydantic serialization
+def timedelta_to_iso8601(td: timedelta | None) -> str | None:
+    """Convert timedelta to ISO 8601 duration format using Pydantic.
+
+    Args:
+        td: Timedelta object to convert
+
+    Returns:
+        ISO 8601 duration string (e.g., "PT2M49.888S", "PT13.341S")
+        None if td is None
+
+    Examples:
+        timedelta(seconds=169, milliseconds=888) -> "PT2M49.888S"
+        timedelta(seconds=13, milliseconds=341) -> "PT13.341S"
+        timedelta(hours=1, minutes=32, seconds=15, milliseconds=123) -> "PT1H32M15.123S"
+    """
+    if td is None:
+        return None
+
+    adapter = TypeAdapter(timedelta)
+    # Use json.loads to extract the string value without JSON encoding quotes
+    return json.loads(adapter.dump_json(td))

@@ -3,17 +3,24 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica.schemas.f1_api.alpha.driver import (
+    DriverSeason,
+    DriverSummary,
+    DriverTeam,
+    DriverTeamDriver,
+)
 
-from .base_serializer import BaseAPISerializer
+from .base_serializer import PydanticValidatedSerializer
 
 
-class DriverTeamSerializer(BaseAPISerializer):
+class DriverTeamSerializer(PydanticValidatedSerializer):
     """
     Serializer for Team information in Driver context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = DriverTeam
     view_name = "teams-detail"
 
     class Meta:
@@ -21,13 +28,14 @@ class DriverTeamSerializer(BaseAPISerializer):
         fields = ["id", "url", "name", "country_code"]
 
 
-class DriverSeasonSerializer(BaseAPISerializer):
+class DriverSeasonSerializer(PydanticValidatedSerializer):
     """
     Serializer for Season information in Driver context.
 
     Required prefetches: None
     """
 
+    pydantic_schema_class = DriverSeason
     # view_name = "seasons-detail"  # TODO: implement this endpoint
 
     class Meta:
@@ -35,7 +43,7 @@ class DriverSeasonSerializer(BaseAPISerializer):
         fields = ["id", "year"]
 
 
-class DriverTeamDriverSerializer(BaseAPISerializer):
+class DriverTeamDriverSerializer(PydanticValidatedSerializer):
     """
     Serializer for TeamDriver (team/season stint) information in Driver context.
 
@@ -43,6 +51,7 @@ class DriverTeamDriverSerializer(BaseAPISerializer):
     - select_related('team', 'season')
     """
 
+    pydantic_schema_class = DriverTeamDriver
     # view_name = "teamdrivers-detail"  # TODO: implement this endpoint
     team = DriverTeamSerializer(read_only=True)
     season = DriverSeasonSerializer(read_only=True)
@@ -53,7 +62,7 @@ class DriverTeamDriverSerializer(BaseAPISerializer):
         fields = ["id", "team", "season", "role", "role_display"]
 
 
-class DriverSerializer(BaseAPISerializer):
+class DriverSerializer(PydanticValidatedSerializer):
     """
     Serializer for Driver with nested team history.
 
@@ -61,6 +70,7 @@ class DriverSerializer(BaseAPISerializer):
     - prefetch_related('team_drivers__team', 'team_drivers__season')
     """
 
+    pydantic_schema_class = DriverSummary
     view_name = "drivers-detail"
     first_name = serializers.CharField(read_only=True, source="forename")
     last_name = serializers.CharField(read_only=True, source="surname")

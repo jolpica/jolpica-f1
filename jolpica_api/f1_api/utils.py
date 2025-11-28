@@ -173,6 +173,40 @@ def get_pagination_param_names(pagination_class: type | None) -> set[str]:
     return param_names
 
 
+def _get_list_item_type(annotation: Any) -> type | None:
+    """Extract the item type from a list annotation, or None if not a list.
+
+    Handles list[T], Optional[list[T]], and list[T] | None annotations.
+
+    Args:
+        annotation: Type annotation to check
+
+    Returns:
+        The item type (e.g., str for list[str]) or None if not a list type
+    """
+    origin = get_origin(annotation)
+
+    # Handle Union types (Optional[list[T]] or list[T] | None)
+    if origin is not None:
+        args = get_args(annotation)
+        # Check if this is a Union with None
+        if type(None) in args:
+            # Recursively check non-None types
+            for arg in args:
+                if arg is not type(None):
+                    result = _get_list_item_type(arg)
+                    if result:
+                        return result
+
+    # Check if it's a list
+    if origin is list:
+        args = get_args(annotation)
+        if args:
+            return args[0]
+
+    return None
+
+
 def validate_query_params[T: pydantic.BaseModel](
     query_params: dict,
     model: type[T],
@@ -195,6 +229,14 @@ def validate_query_params[T: pydantic.BaseModel](
         # Convert query params to dict, handling single values
         params = dict(query_params)
         params = {k: v[0] if isinstance(v, list) and len(v) == 1 else v for k, v in params.items()}
+
+        # Process list fields - split comma-separated values
+        for field_name, field_info in model.model_fields.items():
+            if field_name in params:
+                list_item_type = _get_list_item_type(field_info.annotation)
+                if list_item_type and isinstance(params[field_name], str):
+                    # Split comma-separated string into list
+                    params[field_name] = [item.strip() for item in params[field_name].split(",")]
 
         # Exclude pagination parameters
         pagination_params = get_pagination_param_names(pagination_class)
