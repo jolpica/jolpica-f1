@@ -1,0 +1,310 @@
+{% extends "f1_visualizations/base.html" %}
+
+{% block title %}Chart Builder - F1 Visualization Tool{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-8">
+        <h2 class="text-4xl font-bold text-gray-800 mb-2">Chart Builder</h2>
+        <p class="text-gray-600">Create custom F1 visualizations</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Controls Panel -->
+        <div class="lg:col-span-1">
+            <div class="card sticky top-8">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Chart Settings</h3>
+
+                <!-- Chart Type -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Chart Type</label>
+                    <select id="chartType">
+                        <option value="bar">Bar Chart</option>
+                        <option value="line">Line Chart</option>
+                        <option value="pie">Pie Chart</option>
+                        <option value="radar">Radar Chart</option>
+                    </select>
+                </div>
+
+                <!-- Visualization Type -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Visualization</label>
+                    <select id="vizType">
+                        <option value="season_standings">Season Standings</option>
+                        <option value="driver_comparison">Driver Comparison</option>
+                        <option value="team_performance">Team Performance</option>
+                        <option value="lap_times">Lap Times</option>
+                    </select>
+                </div>
+
+                <!-- Championship Type (for standings) -->
+                <div id="championshipTypeSection" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Championship</label>
+                    <select id="championshipType">
+                        <option value="driver">Driver</option>
+                        <option value="team">Constructor</option>
+                    </select>
+                </div>
+
+                <!-- Year Selection -->
+                <div id="yearSection" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Year</label>
+                    <select id="year">
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </div>
+
+                <!-- Year Range (for comparisons) -->
+                <div id="yearRangeSection" class="mb-4" style="display: none;">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Start Year</label>
+                    <select id="startYear">
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                    </select>
+
+                    <label class="block text-sm font-medium text-gray-700 mb-2 mt-2">End Year</label>
+                    <select id="endYear">
+                        <option value="2024" selected>2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </div>
+
+                <!-- Driver Selection (multi-select) -->
+                <div id="driverSection" class="mb-4" style="display: none;">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Drivers</label>
+                    <div class="text-xs text-gray-500 mb-2">Enter driver API IDs (comma-separated)</div>
+                    <input type="text" id="driverIds" placeholder="e.g., hamilton, verstappen, leclerc">
+                    <div class="text-xs text-gray-500 mt-1">
+                        Popular: hamilton, verstappen, leclerc, sainz, russell, norris, piastri, alonso
+                    </div>
+                </div>
+
+                <!-- Team Selection -->
+                <div id="teamSection" class="mb-4" style="display: none;">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Team</label>
+                    <input type="text" id="teamId" placeholder="e.g., red_bull, ferrari, mercedes">
+                    <div class="text-xs text-gray-500 mt-1">
+                        Popular: red_bull, ferrari, mercedes, mclaren, alpine, aston_martin
+                    </div>
+                </div>
+
+                <!-- Round Selection (for lap times) -->
+                <div id="roundSection" class="mb-4" style="display: none;">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Round Number</label>
+                    <input type="number" id="round" value="1" min="1" max="24">
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generateBtn" class="btn-primary w-full">
+                    Generate Chart
+                </button>
+
+                <!-- Export Button -->
+                <button id="exportBtn" class="btn-secondary w-full mt-3">
+                    Export as PNG
+                </button>
+            </div>
+        </div>
+
+        <!-- Chart Display Area -->
+        <div class="lg:col-span-3">
+            <div class="card">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800" id="chartTitle">Your Chart</h3>
+                    <div id="loadingIndicator" class="loading" style="display: none;"></div>
+                </div>
+
+                <div class="chart-container" style="height: 500px;">
+                    <canvas id="customChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Chart Info -->
+            <div class="card mt-6">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">📖 How to Use</h4>
+                <ul class="space-y-2 text-gray-600 text-sm">
+                    <li><strong>Season Standings:</strong> View driver or constructor championship standings for a specific year</li>
+                    <li><strong>Driver Comparison:</strong> Compare multiple drivers' points across seasons</li>
+                    <li><strong>Team Performance:</strong> Track a team's performance over multiple years</li>
+                    <li><strong>Lap Times:</strong> Compare lap times between drivers in a specific race</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let customChart;
+
+    // Initialize chart
+    function initChart() {
+        const ctx = document.getElementById('customChart').getContext('2d');
+        customChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    }
+
+    // Update form visibility based on visualization type
+    function updateFormVisibility() {
+        const vizType = document.getElementById('vizType').value;
+
+        // Hide all conditional sections
+        document.getElementById('championshipTypeSection').style.display = 'none';
+        document.getElementById('yearSection').style.display = 'none';
+        document.getElementById('yearRangeSection').style.display = 'none';
+        document.getElementById('driverSection').style.display = 'none';
+        document.getElementById('teamSection').style.display = 'none';
+        document.getElementById('roundSection').style.display = 'none';
+
+        // Show relevant sections
+        if (vizType === 'season_standings') {
+            document.getElementById('championshipTypeSection').style.display = 'block';
+            document.getElementById('yearSection').style.display = 'block';
+        } else if (vizType === 'driver_comparison') {
+            document.getElementById('yearRangeSection').style.display = 'block';
+            document.getElementById('driverSection').style.display = 'block';
+        } else if (vizType === 'team_performance') {
+            document.getElementById('yearRangeSection').style.display = 'block';
+            document.getElementById('teamSection').style.display = 'block';
+        } else if (vizType === 'lap_times') {
+            document.getElementById('yearSection').style.display = 'block';
+            document.getElementById('roundSection').style.display = 'block';
+            document.getElementById('driverSection').style.display = 'block';
+        }
+    }
+
+    // Generate chart based on settings
+    async function generateChart() {
+        const vizType = document.getElementById('vizType').value;
+        const chartType = document.getElementById('chartType').value;
+        const loading = document.getElementById('loadingIndicator');
+
+        loading.style.display = 'block';
+
+        try {
+            let url = '/visualizations/api/chart-data/?';
+            let params = new URLSearchParams();
+            params.append('type', vizType);
+
+            if (vizType === 'season_standings') {
+                params.append('year', document.getElementById('year').value);
+                params.append('championship', document.getElementById('championshipType').value);
+            } else if (vizType === 'driver_comparison') {
+                params.append('start_year', document.getElementById('startYear').value);
+                params.append('end_year', document.getElementById('endYear').value);
+                const drivers = document.getElementById('driverIds').value.split(',').map(d => d.trim());
+                drivers.forEach(d => params.append('drivers[]', d));
+            } else if (vizType === 'team_performance') {
+                params.append('team', document.getElementById('teamId').value);
+                params.append('start_year', document.getElementById('startYear').value);
+                params.append('end_year', document.getElementById('endYear').value);
+            } else if (vizType === 'lap_times') {
+                params.append('year', document.getElementById('year').value);
+                params.append('round', document.getElementById('round').value);
+                const drivers = document.getElementById('driverIds').value.split(',').map(d => d.trim());
+                drivers.forEach(d => params.append('drivers[]', d));
+            }
+
+            url += params.toString();
+
+            const response = await fetch(url);
+            const data = await response.json();
+
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+
+            // Update chart
+            customChart.config.type = chartType;
+            customChart.data = data;
+
+            // Update chart options based on type
+            if (vizType === 'team_performance') {
+                customChart.options.scales = {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Points' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        reverse: true,
+                        title: { display: true, text: 'Position' },
+                        grid: { drawOnChartArea: false }
+                    }
+                };
+            } else {
+                customChart.options.scales = {
+                    y: { beginAtZero: true }
+                };
+            }
+
+            customChart.update();
+
+            // Update title
+            const titles = {
+                'season_standings': 'Season Championship Standings',
+                'driver_comparison': 'Driver Points Comparison',
+                'team_performance': 'Team Performance Over Time',
+                'lap_times': 'Lap Time Comparison'
+            };
+            document.getElementById('chartTitle').textContent = titles[vizType];
+
+        } catch (error) {
+            console.error('Error generating chart:', error);
+            alert('Failed to generate chart. Please check your inputs and try again.');
+        } finally {
+            loading.style.display = 'none';
+        }
+    }
+
+    // Export chart as PNG
+    function exportChart() {
+        const link = document.createElement('a');
+        link.download = 'f1-chart.png';
+        link.href = customChart.toBase64Image();
+        link.click();
+    }
+
+    // Event listeners
+    document.getElementById('vizType').addEventListener('change', updateFormVisibility);
+    document.getElementById('generateBtn').addEventListener('click', generateChart);
+    document.getElementById('exportBtn').addEventListener('click', exportChart);
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+        initChart();
+        updateFormVisibility();
+    });
+</script>
+{% endblock %}

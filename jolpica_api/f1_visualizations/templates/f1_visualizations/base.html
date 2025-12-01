@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}F1 Visualization Tool{% endblock %}</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom styles -->
+    <style>
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 20px 0;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        select, input {
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50">
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar w-64 text-white p-6">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold mb-2">🏎️ F1 Viz</h1>
+                <p class="text-sm opacity-80">Formula 1 Data Visualization</p>
+            </div>
+
+            <nav class="space-y-2">
+                <a href="{% url 'f1_visualizations:dashboard' %}" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10 transition {% if request.path == '/' %}bg-white bg-opacity-20{% endif %}">
+                    📊 Dashboard
+                </a>
+                <a href="{% url 'f1_visualizations:chart_builder' %}" class="block py-3 px-4 rounded-lg hover:bg-white hover:bg-opacity-10 transition {% if 'builder' in request.path %}bg-white bg-opacity-20{% endif %}">
+                    🎨 Chart Builder
+                </a>
+            </nav>
+
+            <div class="mt-12 p-4 bg-white bg-opacity-10 rounded-lg">
+                <p class="text-xs opacity-80">
+                    Create stunning F1 visualizations with ease. Explore driver stats, team performance, and race analytics.
+                </p>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 p-8">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

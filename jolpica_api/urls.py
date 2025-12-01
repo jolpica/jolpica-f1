@@ -22,6 +22,7 @@ urlpatterns = [
     path("data/dumps/", include("jolpica_api.dumps.urls")),
     path("auth/", include("jolpica_api.authentication.urls")),
     path("f1/", include("jolpica_api.f1_api.urls")),
+    path("visualizations/", include("jolpica_api.f1_visualizations.urls")),
     path("docs/", include(open_api_docs_urlpatterns)),
     path("", views.healthcheck),
     path("test/", views.test),

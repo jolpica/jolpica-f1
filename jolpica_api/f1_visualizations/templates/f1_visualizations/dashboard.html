@@ -1,0 +1,193 @@
+{% extends "f1_visualizations/base.html" %}
+
+{% block title %}Dashboard - F1 Visualization Tool{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    <div class="mb-8">
+        <h2 class="text-4xl font-bold text-gray-800 mb-2">F1 Dashboard</h2>
+        <p class="text-gray-600">Explore Formula 1 data with interactive visualizations</p>
+    </div>
+
+    <!-- Season Selector -->
+    <div class="card">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-semibold text-gray-800">Select Season</h3>
+            <div class="flex items-center space-x-4">
+                <label for="seasonSelect" class="text-sm font-medium text-gray-700">Year:</label>
+                <select id="seasonSelect" class="w-32">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                </select>
+                <button id="loadSeasonBtn" class="btn-primary">Load Data</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Driver Championship Standings -->
+    <div class="card">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Driver Championship Standings</h3>
+        <div class="chart-container">
+            <canvas id="driverStandingsChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Team Championship Standings -->
+    <div class="card">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Constructor Championship Standings</h3>
+        <div class="chart-container">
+            <canvas id="teamStandingsChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card text-center">
+            <div class="text-4xl mb-2">🏆</div>
+            <div class="text-3xl font-bold text-purple-600" id="topDriver">-</div>
+            <div class="text-gray-600 text-sm">Leading Driver</div>
+        </div>
+        <div class="card text-center">
+            <div class="text-4xl mb-2">🏁</div>
+            <div class="text-3xl font-bold text-purple-600" id="topTeam">-</div>
+            <div class="text-gray-600 text-sm">Leading Team</div>
+        </div>
+        <div class="card text-center">
+            <div class="text-4xl mb-2">📊</div>
+            <div class="text-3xl font-bold text-purple-600" id="totalPoints">-</div>
+            <div class="text-gray-600 text-sm">Leader's Points</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let driverChart, teamChart;
+
+    // Initialize charts
+    function initCharts() {
+        const driverCtx = document.getElementById('driverStandingsChart').getContext('2d');
+        const teamCtx = document.getElementById('teamStandingsChart').getContext('2d');
+
+        driverChart = new Chart(driverCtx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Points by Driver'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Points'
+                        }
+                    }
+                }
+            }
+        });
+
+        teamChart = new Chart(teamCtx, {
+            type: 'bar',
+            data: {
+                labels: [],
+                datasets: []
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Points by Constructor'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Points'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Load season data
+    async function loadSeasonData(year) {
+        try {
+            const response = await fetch(`/visualizations/api/standings/${year}/`);
+            const data = await response.json();
+
+            // Update driver chart
+            driverChart.data.labels = data.drivers.slice(0, 10).map(d => d.driver);
+            driverChart.data.datasets = [{
+                label: `${year} Driver Championship`,
+                data: data.drivers.slice(0, 10).map(d => d.points),
+                backgroundColor: 'rgba(102, 126, 234, 0.8)',
+                borderColor: 'rgba(102, 126, 234, 1)',
+                borderWidth: 2
+            }];
+            driverChart.update();
+
+            // Update team chart
+            teamChart.data.labels = data.teams.map(t => t.team);
+            teamChart.data.datasets = [{
+                label: `${year} Constructor Championship`,
+                data: data.teams.map(t => t.points),
+                backgroundColor: 'rgba(118, 75, 162, 0.8)',
+                borderColor: 'rgba(118, 75, 162, 1)',
+                borderWidth: 2
+            }];
+            teamChart.update();
+
+            // Update quick stats
+            document.getElementById('topDriver').textContent = data.drivers[0]?.driver || '-';
+            document.getElementById('topTeam').textContent = data.teams[0]?.team || '-';
+            document.getElementById('totalPoints').textContent = data.drivers[0]?.points.toFixed(0) || '-';
+
+        } catch (error) {
+            console.error('Error loading season data:', error);
+            alert('Failed to load season data. Please try again.');
+        }
+    }
+
+    // Event listeners
+    document.getElementById('loadSeasonBtn').addEventListener('click', () => {
+        const year = document.getElementById('seasonSelect').value;
+        loadSeasonData(year);
+    });
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+        initCharts();
+        loadSeasonData(2024); // Load current season by default
+    });
+</script>
+{% endblock %}
