@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, TypeVar
+from typing import Any
 
 import pydantic
 from django.utils import timezone
@@ -14,11 +14,8 @@ from jolpica.schemas.f1_api.alpha.metadata import (
 from ..pagination import StandardMetadataPagination
 from ..utils import validate_query_params
 
-# Type variable for Pydantic models
-T = TypeVar("T", bound=pydantic.BaseModel)
 
-
-class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
+class BaseFilterableViewSet[T: pydantic.BaseModel](viewsets.ReadOnlyModelViewSet):
     """
     Base ViewSet for filterable F1 API endpoints.
 
@@ -39,7 +36,7 @@ class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
     lookup_field = "api_id"
 
     # Subclasses must override these
-    query_params_class: type[pydantic.BaseModel]
+    query_params_class: type[T]
     response_schema_class: type[pydantic.BaseModel]
 
     def __init__(self, **kwargs: Any):
@@ -49,7 +46,16 @@ class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
         if not hasattr(self, "response_schema_class"):
             raise NotImplementedError(f"{self.__class__.__name__} must define 'response_schema_class' attribute")
 
-    def _get_validated_query_params(self) -> pydantic.BaseModel:
+        # Validate serializer uses PydanticValidatedSerializer
+        if hasattr(self, "serializer_class") and self.serializer_class is not None:
+            from ..serializers.base_serializer import BaseAPISerializer
+
+            if not issubclass(self.serializer_class, BaseAPISerializer):
+                raise NotImplementedError(
+                    f"{self.__class__.__name__}.serializer_class must inherit from PydanticValidatedSerializer"
+                )
+
+    def _get_validated_query_params(self) -> T:
         """Parse and validate query parameters using the query_params_class."""
         return validate_query_params(
             query_params=self.request.query_params,
@@ -61,12 +67,12 @@ class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
         """
         Override retrieve to return DetailResponse format with metadata.
 
-        Validates serializer data against response_schema_class before returning.
+        Serializer automatically validates via PydanticValidatedSerializer.to_representation().
         """
         instance = self.get_object()
         serializer = self.get_serializer(instance)
-        data = self.response_schema_class.model_validate(serializer.data)
+        # serializer.data is already Pydantic-validated!
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(
-            DetailResponse(metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
+            DetailResponse(metadata=metadata, data=serializer.data).model_dump(mode="json", exclude_none=True)
         )

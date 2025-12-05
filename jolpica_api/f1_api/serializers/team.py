@@ -3,6 +3,7 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica.schemas.f1_api.alpha.team import TeamSeason, TeamSummary
 
 from .base_serializer import BaseAPISerializer
 
@@ -14,6 +15,7 @@ class TeamSeasonSerializer(BaseAPISerializer):
     Required prefetches: None
     """
 
+    pydantic_schema_class = TeamSeason
     # view_name = "seasons-detail"  # TODO: implement this endpoint
 
     class Meta:
@@ -29,6 +31,7 @@ class TeamSerializer(BaseAPISerializer):
     - prefetch_related('seasons')
     """
 
+    pydantic_schema_class = TeamSummary
     view_name = "teams-detail"
     seasons = TeamSeasonSerializer(many=True, read_only=True)
     nationality = serializers.CharField(read_only=True)  # TODO: Generate nationality from country_code

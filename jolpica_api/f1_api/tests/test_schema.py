@@ -14,6 +14,10 @@ from jolpica.schemas.f1_api.alpha.driver import DriverSummary, PaginatedDriverSu
 from jolpica.schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
 from jolpica.schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundSummary
 from jolpica.schemas.f1_api.alpha.schedule import ScheduleSummary
+from jolpica.schemas.f1_api.alpha.session_entry import (
+    PaginatedSessionEntrySummary,
+    RetrievedSessionEntryDetail,
+)
 from jolpica.schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
 from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
 
@@ -208,6 +212,115 @@ def test_sessions_detail_schema_conformance(api_client, sample_season_data):
         RetrievedSessionDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API sessions detail response does not conform to RetrievedSessionDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_session_entries_list_schema_conformance(api_client, sample_season_data):
+    """Verify the session entries list response conforms to PaginatedSessionEntrySummary."""
+
+    url = reverse("session-entries-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedSessionEntrySummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API session entries list response does not conform to PaginatedSessionEntrySummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_session_entries_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the session entries detail response conforms to RetrievedSessionEntryDetail."""
+
+    session_entry_obj = f1.SessionEntry.objects.first()
+    assert session_entry_obj is not None, "Database must have at least one session entry"
+
+    url = reverse("session-entries-detail", kwargs={"api_id": session_entry_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedSessionEntryDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API session entries detail response does not conform to RetrievedSessionEntryDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_laps_list_schema_conformance(api_client, sample_season_data):
+    """Verify the laps list response conforms to PaginatedLapSummary."""
+    from jolpica.schemas.f1_api.alpha.lap import PaginatedLapSummary
+
+    url = reverse("laps-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedLapSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API laps list response does not conform to PaginatedLapSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_laps_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the laps detail response conforms to RetrievedLapDetail."""
+    from jolpica.schemas.f1_api.alpha.lap import RetrievedLapDetail
+
+    lap_obj = f1.Lap.objects.first()
+    assert lap_obj is not None, "Database must have at least one lap"
+
+    url = reverse("laps-detail", kwargs={"api_id": lap_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedLapDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API laps detail response does not conform to RetrievedLapDetail:\n{e}")
+
+
+@pytest.mark.django_db
+def test_pit_stops_list_schema_conformance(api_client, sample_season_data):
+    """Verify the pit stops list response conforms to PaginatedPitStopSummary."""
+    from jolpica.schemas.f1_api.alpha.pit_stop import PaginatedPitStopSummary
+
+    url = reverse("pit-stops-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        PaginatedPitStopSummary.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API pit stops list response does not conform to PaginatedPitStopSummary:\n{e}")
+
+
+@pytest.mark.django_db
+def test_pit_stops_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the pit stops detail response conforms to RetrievedPitStopDetail."""
+    from jolpica.schemas.f1_api.alpha.pit_stop import RetrievedPitStopDetail
+
+    pit_stop_obj = f1.PitStop.objects.first()
+    assert pit_stop_obj is not None, "Database must have at least one pit stop"
+
+    url = reverse("pit-stops-detail", kwargs={"api_id": pit_stop_obj.api_id})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        RetrievedPitStopDetail.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"API pit stops detail response does not conform to RetrievedPitStopDetail:\n{e}")
 
 
 # Field completeness tests

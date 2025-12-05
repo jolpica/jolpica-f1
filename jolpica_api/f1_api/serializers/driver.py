@@ -3,6 +3,12 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica.schemas.f1_api.alpha.driver import (
+    DriverSeason,
+    DriverSummary,
+    DriverTeam,
+    DriverTeamDriver,
+)
 
 from .base_serializer import BaseAPISerializer
 
@@ -14,6 +20,7 @@ class DriverTeamSerializer(BaseAPISerializer):
     Required prefetches: None
     """
 
+    pydantic_schema_class = DriverTeam
     view_name = "teams-detail"
 
     class Meta:
@@ -28,6 +35,7 @@ class DriverSeasonSerializer(BaseAPISerializer):
     Required prefetches: None
     """
 
+    pydantic_schema_class = DriverSeason
     # view_name = "seasons-detail"  # TODO: implement this endpoint
 
     class Meta:
@@ -43,6 +51,7 @@ class DriverTeamDriverSerializer(BaseAPISerializer):
     - select_related('team', 'season')
     """
 
+    pydantic_schema_class = DriverTeamDriver
     # view_name = "teamdrivers-detail"  # TODO: implement this endpoint
     team = DriverTeamSerializer(read_only=True)
     season = DriverSeasonSerializer(read_only=True)
@@ -61,6 +70,7 @@ class DriverSerializer(BaseAPISerializer):
     - prefetch_related('team_drivers__team', 'team_drivers__season')
     """
 
+    pydantic_schema_class = DriverSummary
     view_name = "drivers-detail"
     first_name = serializers.CharField(read_only=True, source="forename")
     last_name = serializers.CharField(read_only=True, source="surname")
