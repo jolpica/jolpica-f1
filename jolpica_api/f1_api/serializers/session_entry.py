@@ -12,10 +12,10 @@ from jolpica.schemas.f1_api.alpha.session_entry import (
     SessionEntryTeam,
 )
 
-from .base_serializer import PydanticValidatedSerializer
+from .base_serializer import BaseAPISerializer
 
 
-class SessionEntrySessionSerializer(PydanticValidatedSerializer):
+class SessionEntrySessionSerializer(BaseAPISerializer):
     """
     Serializer for Session information in SessionEntry context.
 
@@ -32,7 +32,7 @@ class SessionEntrySessionSerializer(PydanticValidatedSerializer):
         fields = ["id", "url", "type", "type_display"]
 
 
-class SessionEntryRoundSerializer(PydanticValidatedSerializer):
+class SessionEntryRoundSerializer(BaseAPISerializer):
     """
     Serializer for Round information in SessionEntry context.
 
@@ -47,7 +47,7 @@ class SessionEntryRoundSerializer(PydanticValidatedSerializer):
         fields = ["id", "url", "number", "name"]
 
 
-class SessionEntryDriverSerializer(PydanticValidatedSerializer):
+class SessionEntryDriverSerializer(BaseAPISerializer):
     """
     Serializer for Driver information in SessionEntry context.
 
@@ -62,7 +62,7 @@ class SessionEntryDriverSerializer(PydanticValidatedSerializer):
         fields = ["id", "url", "abbreviation", "forename", "surname"]
 
 
-class SessionEntryTeamSerializer(PydanticValidatedSerializer):
+class SessionEntryTeamSerializer(BaseAPISerializer):
     """
     Serializer for Team information in SessionEntry context.
 
@@ -77,7 +77,7 @@ class SessionEntryTeamSerializer(PydanticValidatedSerializer):
         fields = ["id", "url", "name", "reference"]
 
 
-class SessionEntrySerializer(PydanticValidatedSerializer):
+class SessionEntrySerializer(BaseAPISerializer):
     """
     Serializer for SessionEntry with nested session, round, driver, and team information.
 

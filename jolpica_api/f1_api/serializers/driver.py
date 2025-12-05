@@ -10,10 +10,10 @@ from jolpica.schemas.f1_api.alpha.driver import (
     DriverTeamDriver,
 )
 
-from .base_serializer import PydanticValidatedSerializer
+from .base_serializer import BaseAPISerializer
 
 
-class DriverTeamSerializer(PydanticValidatedSerializer):
+class DriverTeamSerializer(BaseAPISerializer):
     """
     Serializer for Team information in Driver context.
 
@@ -28,7 +28,7 @@ class DriverTeamSerializer(PydanticValidatedSerializer):
         fields = ["id", "url", "name", "country_code"]
 
 
-class DriverSeasonSerializer(PydanticValidatedSerializer):
+class DriverSeasonSerializer(BaseAPISerializer):
     """
     Serializer for Season information in Driver context.
 
@@ -43,7 +43,7 @@ class DriverSeasonSerializer(PydanticValidatedSerializer):
         fields = ["id", "year"]
 
 
-class DriverTeamDriverSerializer(PydanticValidatedSerializer):
+class DriverTeamDriverSerializer(BaseAPISerializer):
     """
     Serializer for TeamDriver (team/season stint) information in Driver context.
 
@@ -62,7 +62,7 @@ class DriverTeamDriverSerializer(PydanticValidatedSerializer):
         fields = ["id", "team", "season", "role", "role_display"]
 
 
-class DriverSerializer(PydanticValidatedSerializer):
+class DriverSerializer(BaseAPISerializer):
     """
     Serializer for Driver with nested team history.
 

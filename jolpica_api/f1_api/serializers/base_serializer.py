@@ -16,40 +16,6 @@ class OmitNullMixin:
 
 class BaseAPISerializer(OmitNullMixin, serializers.ModelSerializer):
     """
-    Base serializer for F1 API endpoints.
-
-    Provides common fields:
-    - id: Maps model's api_id to id for API response
-    - url: Self-referencing hyperlinked field (auto-generated if view_name is set)
-
-    Subclasses must define:
-    - view_name: The DRF view name for the url field (e.g., 'rounds-detail')
-    - Meta.model: The Django model
-    - Meta.fields: List of fields to include (must include 'id' and 'url')
-
-    Usage:
-        class MySerializer(BaseAPISerializer):
-            view_name = "myresources-detail"
-
-            class Meta:
-                model = MyModel
-                fields = ["id", "url", "field1", "field2"]
-    """
-
-    id = serializers.CharField(read_only=True, source="api_id")
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Dynamically add url field with correct view_name if not explicitly declared
-        # Check both the declared fields (from class definition) and instance fields
-        if hasattr(self.__class__, "view_name") and "url" not in self._declared_fields:
-            self.fields["url"] = serializers.HyperlinkedIdentityField(
-                view_name=self.__class__.view_name, lookup_field="api_id", read_only=True
-            )
-
-
-class PydanticValidatedSerializer(serializers.ModelSerializer):
-    """
     Base serializer that validates output through a Pydantic schema.
 
     Makes Pydantic the source of truth for API response types by validating
@@ -82,15 +48,28 @@ class PydanticValidatedSerializer(serializers.ModelSerializer):
 
         This ensures:
         - All fields match Pydantic schema types
+        - No extra fields not in schema (equivalent to extra="forbid")
         - Consistent serialization (dates, URLs, enums, etc.)
         - Null values are omitted (exclude_none=True)
         - List and retrieve endpoints produce identical output
 
         Raises:
             ValidationError: If serializer output doesn't conform to Pydantic schema
+                            or contains extra fields not in schema
         """
         # Get DRF representation
         representation = super().to_representation(instance)
+
+        # Check for extra fields not in schema (equivalent to extra="forbid")
+        schema_fields = set(self.pydantic_schema_class.model_fields.keys())
+        repr_fields = set(representation.keys())
+        extra_fields = repr_fields - schema_fields
+
+        if extra_fields:
+            raise serializers.ValidationError(
+                f"Serializer output contains extra fields not in schema "
+                f"{self.pydantic_schema_class.__name__}: {sorted(extra_fields)}"
+            )
 
         # Validate through Pydantic
         try:

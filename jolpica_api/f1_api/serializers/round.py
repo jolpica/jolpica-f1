@@ -10,10 +10,10 @@ from jolpica.schemas.f1_api.alpha.round import (
     RoundSummary,
 )
 
-from .base_serializer import PydanticValidatedSerializer
+from .base_serializer import BaseAPISerializer
 
 
-class RoundCircuitSerializer(PydanticValidatedSerializer):
+class RoundCircuitSerializer(BaseAPISerializer):
     """
     Serializer for Circuit information in Round context.
 
@@ -28,7 +28,7 @@ class RoundCircuitSerializer(PydanticValidatedSerializer):
         fields = ["id", "name", "locality", "country_code"]
 
 
-class RoundSeasonSerializer(PydanticValidatedSerializer):
+class RoundSeasonSerializer(BaseAPISerializer):
     """
     Serializer for Season information in Round context.
 
@@ -43,7 +43,7 @@ class RoundSeasonSerializer(PydanticValidatedSerializer):
         fields = ["id", "year"]
 
 
-class RoundSessionSerializer(PydanticValidatedSerializer):
+class RoundSessionSerializer(BaseAPISerializer):
     """
     Serializer for Session information in Round context.
 
@@ -73,7 +73,7 @@ class RoundSessionSerializer(PydanticValidatedSerializer):
         ]
 
 
-class RoundSerializer(PydanticValidatedSerializer):
+class RoundSerializer(BaseAPISerializer):
     """
     Serializer for Round with nested circuit, season, and session information.
 

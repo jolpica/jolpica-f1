@@ -48,9 +48,9 @@ class BaseFilterableViewSet[T: pydantic.BaseModel](viewsets.ReadOnlyModelViewSet
 
         # Validate serializer uses PydanticValidatedSerializer
         if hasattr(self, "serializer_class") and self.serializer_class is not None:
-            from ..serializers.base_serializer import PydanticValidatedSerializer
+            from ..serializers.base_serializer import BaseAPISerializer
 
-            if not issubclass(self.serializer_class, PydanticValidatedSerializer):
+            if not issubclass(self.serializer_class, BaseAPISerializer):
                 raise NotImplementedError(
                     f"{self.__class__.__name__}.serializer_class must inherit from PydanticValidatedSerializer"
                 )

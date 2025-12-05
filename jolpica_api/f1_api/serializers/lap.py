@@ -6,10 +6,10 @@ from jolpica.formula_one import models as f1
 from jolpica.formula_one.utils import format_timedelta, timedelta_to_iso8601
 from jolpica.schemas.f1_api.alpha.lap import LapPitStop, LapSessionEntry, LapSummary
 
-from .base_serializer import PydanticValidatedSerializer
+from .base_serializer import BaseAPISerializer
 
 
-class LapSessionEntrySerializer(PydanticValidatedSerializer):
+class LapSessionEntrySerializer(BaseAPISerializer):
     """
     Minimal serializer for SessionEntry information in Lap context.
 
@@ -24,7 +24,7 @@ class LapSessionEntrySerializer(PydanticValidatedSerializer):
         fields = ["id", "url"]
 
 
-class LapPitStopSerializer(PydanticValidatedSerializer):
+class LapPitStopSerializer(BaseAPISerializer):
     """
     Serializer for PitStop information in Lap context.
 
@@ -63,7 +63,7 @@ class LapPitStopSerializer(PydanticValidatedSerializer):
         return int(obj.duration.total_seconds() * 1000) if obj.duration else None
 
 
-class LapSerializer(PydanticValidatedSerializer):
+class LapSerializer(BaseAPISerializer):
     """
     Serializer for Lap with nested session_entry and pit_stop information.
 

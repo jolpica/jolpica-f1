@@ -5,10 +5,10 @@ from rest_framework import serializers
 from jolpica.formula_one import models as f1
 from jolpica.schemas.f1_api.alpha.team import TeamSeason, TeamSummary
 
-from .base_serializer import PydanticValidatedSerializer
+from .base_serializer import BaseAPISerializer
 
 
-class TeamSeasonSerializer(PydanticValidatedSerializer):
+class TeamSeasonSerializer(BaseAPISerializer):
     """
     Serializer for Season information in Team context.
 
@@ -23,7 +23,7 @@ class TeamSeasonSerializer(PydanticValidatedSerializer):
         fields = ["id", "year"]
 
 
-class TeamSerializer(PydanticValidatedSerializer):
+class TeamSerializer(BaseAPISerializer):
     """
     Serializer for Team with nested season information.
 
