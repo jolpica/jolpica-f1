@@ -101,6 +101,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "jolpica_api.deployment_utils.opentelemetry_metrics_middleware",
     "django_ratelimit.middleware.RatelimitMiddleware",
 ]
 if DEPLOYMENT_ENV in ("LOCAL", "SANDBOX"):
