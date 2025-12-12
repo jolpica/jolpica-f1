@@ -9,14 +9,12 @@
 [dependency-groups]
     dev = ["pytest>=7.1.0,<8"]
 
-[tool.hatch.build.targets.sdist]
-    include = ["../schemas"]
 
 [tool.hatch.build.targets.wheel]
-    include = ["../schemas"]
+    only-include = ["."]
 
     [tool.hatch.build.targets.wheel.sources]
-        "../schemas" = "jolpica/schemas"
+        "" = "jolpica/schemas"
 
 [build-system]
     requires = ["hatchling"]
