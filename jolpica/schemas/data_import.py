@@ -76,6 +76,10 @@ class HasRoundForeignKey(F1ForeignKeysSchema):
     round: int
 
 
+class HasCircuitForeignKey(F1ForeignKeysSchema):
+    circuit_id: str
+
+
 class HasTeamForeignKey(F1ForeignKeysSchema):
     team_reference: str
 
@@ -189,7 +193,7 @@ class TeamDriverImport(F1ImportSchema):
     objects: list[TeamDriverObject] = Field(min_length=1)
 
 
-class RoundForeignKeys(HasSeasonForeignKey):
+class RoundForeignKeys(HasSeasonForeignKey, HasCircuitForeignKey):
     pass
 
 
