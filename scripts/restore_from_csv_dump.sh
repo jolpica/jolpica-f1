@@ -7,6 +7,13 @@ DATABASE_USERNAME=${3:-postgres}
 
 echo "Restoring database from dump.zip to $DATABASE_HOST"
 
+# Check if the CSV dump exists locally, if not download it
+if [ ! -f "jolpica-f1-csv.zip" ]; then
+  echo "CSV dump not found locally. Downloading from https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv"
+  curl -L -o jolpica-f1-csv.zip "https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv"
+  echo "Download complete."
+fi
+
 # Unzip the dump
 unzip -o jolpica-f1-csv.zip -d dump/
 
