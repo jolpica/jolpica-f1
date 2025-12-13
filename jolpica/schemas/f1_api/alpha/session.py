@@ -46,3 +46,4 @@ class SessionQueryParams(BaseModel):
     year: int | None = Field(None, description="Filter by season year")
     session_type: str | None = Field(None, max_length=3, description="Filter by session type code (e.g., R, Q1, FP1)")
     round_id: str | None = Field(None, description="Filter by round API ID")
+    circuit_id: str | None = Field(None, description="Filter by circuit API ID")

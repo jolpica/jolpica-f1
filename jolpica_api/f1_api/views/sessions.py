@@ -52,4 +52,7 @@ class SessionViewSet(BaseFilterableViewSet):
         if params.round_id is not None:
             queryset = queryset.filter(round__api_id=params.round_id)
 
+        if params.circuit_id is not None:
+            queryset = queryset.filter(round__circuit__api_id=params.circuit_id)
+
         return queryset.order_by("timestamp", "number")
