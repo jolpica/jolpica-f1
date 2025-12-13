@@ -55,6 +55,7 @@ class ModelLookupCache[M: models.Model]:
             "team__reference": "team_reference",
         },
         f1.Round: {"season__year": "year", "number": "round"},
+        f1.Session: {"round__season__year": "year", "round__number": "round", "type": "session"},
         f1.RoundEntry: {
             "round__season__year": "year",
             "round__number": "round",
@@ -118,6 +119,8 @@ class ModelLookupCache[M: models.Model]:
             )
         elif isinstance(model, f1.Round) and isinstance(foreign_keys, json_models.HasSeasonForeignKey):
             cache_key = (foreign_keys.year, model.number)
+        elif isinstance(model, f1.Session) and isinstance(foreign_keys, json_models.HasRoundForeignKey):
+            cache_key = (foreign_keys.year, foreign_keys.round, model.type)
         else:
             cache_key = tuple(getattr(foreign_keys, val) for val in self.MODEL_CACHE_FIELD_MAP[model_class].values())
         cache[cache_key] = model
@@ -176,6 +179,8 @@ class Deserialiser:
             values["team"] = self._cache.get_model_instance(f1.Team, reference=foreign_keys.team_reference)
         if isinstance(foreign_keys, json_models.HasDriverForeignKey):
             values["driver"] = self._cache.get_model_instance(f1.Driver, reference=foreign_keys.driver_reference)
+        if isinstance(foreign_keys, json_models.HasCircuitForeignKey):
+            values["circuit"] = self._cache.get_model_instance(f1.Circuit, api_id=foreign_keys.circuit_id)
         if isinstance(foreign_keys, json_models.HasRoundForeignKey):
             values["round"] = self._cache.get_model_instance(
                 f1.Round, season__year=foreign_keys.year, number=foreign_keys.round
@@ -296,6 +301,7 @@ class DeserialiserFactory:
         "Circuit": (f1.Circuit, json_models.CircuitImport, ("reference",)),
         "TeamDriver": (f1.TeamDriver, json_models.TeamDriverImport, ("season", "team", "driver")),
         "Round": (f1.Round, json_models.RoundImport, ("season", "number")),
+        "Session": (f1.Session, json_models.SessionImport, ("round", "type")),
         "SessionEntry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
         "classification": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
         "session_entry": (f1.SessionEntry, json_models.SessionEntryImport, ("session", "round_entry")),
