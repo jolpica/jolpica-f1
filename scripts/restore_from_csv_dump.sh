@@ -38,8 +38,6 @@ fi
 # Unzip the dump
 unzip -o jolpica-f1-csv.zip -d dump/
 
-exit
-
 # Define the table order based on dependencies
 FOREIGN_KEY_TABLE_ORDER=(
   "formula_one_championshipadjustment"
