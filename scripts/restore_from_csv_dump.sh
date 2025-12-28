@@ -4,18 +4,41 @@ set -e
 DATABASE_HOST=${1:-localhost}
 DATABASE_NAME=${2:-jolpica}
 DATABASE_USERNAME=${3:-postgres}
+#set PGPASSWORD environment variable
+#optional: Set JF1_API_TOKEN environment variable
 
 echo "Restoring database from dump.zip to $DATABASE_HOST"
 
-# Check if the CSV dump exists locally, if not download it
+# Check if the CSV dump exists locally
+if [ -f "jolpica-f1-csv.zip" ]; then
+  echo "CSV dump file found locally."
+  read -p "Do you want to delete it and download a fresh copy? (y/n): " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Deleting existing file..."
+    rm jolpica-f1-csv.zip
+  else
+    echo "Using existing file."
+  fi
+fi
+
+# Download the CSV dump if it doesn't exist
 if [ ! -f "jolpica-f1-csv.zip" ]; then
-  echo "CSV dump not found locally. Downloading from https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv"
-  curl -L -o jolpica-f1-csv.zip "https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv"
+  if [ -n "$JF1_API_TOKEN" ]; then
+    echo "API Token found, downloading CSV dump with authentication."
+    echo "Downloading LATEST dump from https://api.jolpi.ca/data/dumps/download/latest/?dump_type=csv using API token"
+    curl -L -H "Authorization: Token $JF1_API_TOKEN" -o jolpica-f1-csv.zip "https://api.jolpi.ca/data/dumps/download/latest/?dump_type=csv"
+  else
+    echo "Downloading DELAYED from https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv"
+    curl -L -o jolpica-f1-csv.zip "https://api.jolpi.ca/data/dumps/download/delayed/?dump_type=csv"
+  fi
   echo "Download complete."
 fi
 
 # Unzip the dump
 unzip -o jolpica-f1-csv.zip -d dump/
+
+exit
 
 # Define the table order based on dependencies
 FOREIGN_KEY_TABLE_ORDER=(
