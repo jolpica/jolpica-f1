@@ -2,7 +2,8 @@
   {
     "object_type": "Round",
     "foreign_keys": {
-      "year": 2025
+      "year": 2025,
+      "circuit_id": "circuit_W8rwFAJs"
     },
     "objects": [
       {

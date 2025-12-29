@@ -268,7 +268,7 @@ def test_deserialisation_error_has_log(client):
         "data": [
             {
                 "object_type": "Round",
-                "foreign_keys": {"year": 9999},
+                "foreign_keys": {"year": 2025, "circuit_id": "circuit_notexists"},
                 "objects": [{"number": 5}],
             }
         ],
@@ -283,7 +283,12 @@ def test_deserialisation_error_has_log(client):
     assert log.error_type == "DESERIALISATION"
     assert response.json()["errors"][0] == {
         "index": 0,
-        "message": [{"error": "DoesNotExist('Season matching query does not exist.')", "input": {"year": 9999}}],
+        "message": [
+            {
+                "error": "DoesNotExist('Circuit matching query does not exist.')",
+                "input": {"circuit_id": "circuit_notexists", "year": 2025},
+            }
+        ],
         "type": "Round",
     }
 
