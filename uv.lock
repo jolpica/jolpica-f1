@@ -2,6 +2,12 @@ version = 1
 revision = 3
 requires-python = "==3.12.*"
 
+[manifest]
+members = [
+    "jolpica",
+    "jolpica-schemas",
+]
+
 [[package]]
 name = "annotated-types"
 version = "0.7.0"
@@ -621,7 +627,7 @@ requires-dist = [
     { name = "djangorestframework", specifier = "~=3.15" },
     { name = "drf-spectacular", specifier = "~=0.28" },
     { name = "gunicorn", specifier = "~=23.0" },
-    { name = "jolpica-schemas", editable = "jolpica/schemas" },
+    { name = "jolpica-schemas", editable = "libraries/jolpica-schemas" },
     { name = "opentelemetry-exporter-otlp", specifier = "~=1.26" },
     { name = "opentelemetry-sdk", specifier = "~=1.26" },
     { name = "psycopg", extras = ["binary"], specifier = "==3.2.10" },
@@ -647,9 +653,14 @@ local = [{ name = "ipykernel", specifier = "~=6.29" }]
 [[package]]
 name = "jolpica-schemas"
 version = "0.1.0"
-source = { editable = "jolpica/schemas" }
+source = { editable = "libraries/jolpica-schemas" }
 dependencies = [
     { name = "pydantic" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
 ]
 
 [package.metadata]
@@ -1122,18 +1133,17 @@ wheels = [
 
 [[package]]
 name = "pytest"
-version = "9.0.0"
+version = "7.4.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "colorama", marker = "sys_platform == 'win32'" },
     { name = "iniconfig" },
     { name = "packaging" },
     { name = "pluggy" },
-    { name = "pygments" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/da/1d/eb34f286b164c5e431a810a38697409cca1112cee04b287bb56ac486730b/pytest-9.0.0.tar.gz", hash = "sha256:8f44522eafe4137b0f35c9ce3072931a788a21ee40a2ed279e817d3cc16ed21e", size = 1562764, upload-time = "2025-11-08T17:25:33.34Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/80/1f/9d8e98e4133ffb16c90f3b405c43e38d3abb715bb5d7a63a5a684f7e46a3/pytest-7.4.4.tar.gz", hash = "sha256:2cf0005922c6ace4a3e2ec8b4080eb0d9753fdc93107415332f50ce9e7994280", size = 1357116, upload-time = "2023-12-31T12:00:18.035Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/72/99/cafef234114a3b6d9f3aaed0723b437c40c57bdb7b3e4c3a575bc4890052/pytest-9.0.0-py3-none-any.whl", hash = "sha256:e5ccdf10b0bac554970ee88fc1a4ad0ee5d221f8ef22321f9b7e4584e19d7f96", size = 373364, upload-time = "2025-11-08T17:25:31.811Z" },
+    { url = "https://files.pythonhosted.org/packages/51/ff/f6e8b8f39e08547faece4bd80f89d5a8de68a38b2d179cc1c4490ffa3286/pytest-7.4.4-py3-none-any.whl", hash = "sha256:b090cdf5ed60bf4c45261be03239c2c1c22df034fbffe691abe93cd80cea01d8", size = 325287, upload-time = "2023-12-31T12:00:13.963Z" },
 ]
 
 [[package]]

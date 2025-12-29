@@ -47,7 +47,12 @@
     default-groups = ["dev", "local"]
 
     [tool.uv.sources]
-        jolpica-schemas = { path = "jolpica/schemas/", editable = true }
+        jolpica-schemas = { workspace = true, editable = true }
+
+[tool.uv.workspace]
+members = [
+    "libraries/jolpica-schemas",
+]
 
 [tool.mypy]
     exclude = ["tests/*", "^jolpica_api/ergastapi/*"]
