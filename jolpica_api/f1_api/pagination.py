@@ -2,7 +2,7 @@ from django.utils import timezone
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
-from jolpica.schemas.f1_api.alpha.metadata import PaginatedResponse, PaginationMetadata
+from jolpica_schemas.f1_api.alpha.metadata import PaginatedResponse, PaginationMetadata
 
 
 class StandardMetadataPagination(PageNumberPagination):

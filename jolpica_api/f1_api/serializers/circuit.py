@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.circuit import CircuitSummary
+from jolpica_schemas.f1_api.alpha.circuit import CircuitSummary
 
 from .base_serializer import BaseAPISerializer
 

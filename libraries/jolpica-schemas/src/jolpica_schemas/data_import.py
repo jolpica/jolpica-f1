@@ -193,7 +193,7 @@ class TeamDriverImport(F1ImportSchema):
     objects: list[TeamDriverObject] = Field(min_length=1)
 
 
-class RoundForeignKeys(HasSeasonForeignKey, HasCircuitForeignKey):
+class RoundForeignKeys(HasSeasonForeignKey):
     pass
 
 

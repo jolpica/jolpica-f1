@@ -1,7 +1,7 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.session import (
+from jolpica_schemas.f1_api.alpha.session import (
     RetrievedSessionDetail,
     SessionQueryParams,
     SessionSummary,

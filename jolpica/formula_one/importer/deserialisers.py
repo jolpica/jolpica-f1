@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from pydantic import ValidationError
 
-from jolpica.schemas import data_import as json_models
+from jolpica_schemas import data_import as json_models
 
 from .. import models as f1
 

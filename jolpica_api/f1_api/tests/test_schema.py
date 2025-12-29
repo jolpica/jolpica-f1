@@ -9,17 +9,20 @@ from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.circuit import CircuitSummary, PaginatedCircuitSummary, RetrievedCircuitDetail
-from jolpica.schemas.f1_api.alpha.driver import DriverSummary, PaginatedDriverSummary, RetrievedDriverDetail
-from jolpica.schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
-from jolpica.schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundSummary
-from jolpica.schemas.f1_api.alpha.schedule import ScheduleSummary
-from jolpica.schemas.f1_api.alpha.session_entry import (
+from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
+from jolpica_schemas.f1_api.alpha.circuit import CircuitSummary, PaginatedCircuitSummary, RetrievedCircuitDetail
+from jolpica_schemas.f1_api.alpha.driver import DriverSummary, PaginatedDriverSummary, RetrievedDriverDetail
+from jolpica_schemas.f1_api.alpha.lap import PaginatedLapSummary, RetrievedLapDetail
+from jolpica_schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
+from jolpica_schemas.f1_api.alpha.pit_stop import PaginatedPitStopSummary, RetrievedPitStopDetail
+from jolpica_schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundSummary
+from jolpica_schemas.f1_api.alpha.schedule import ScheduleSummary
+from jolpica_schemas.f1_api.alpha.session import PaginatedSessionSummary, RetrievedSessionDetail
+from jolpica_schemas.f1_api.alpha.session_entry import (
     PaginatedSessionEntrySummary,
     RetrievedSessionEntryDetail,
 )
-from jolpica.schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
-from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
+from jolpica_schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
 
 
 @pytest.mark.django_db
@@ -180,7 +183,6 @@ def test_teams_detail_schema_conformance(api_client, sample_season_data):
 @pytest.mark.django_db
 def test_sessions_list_schema_conformance(api_client, sample_season_data):
     """Verify the sessions list response conforms to PaginatedSessionSummary."""
-    from jolpica.schemas.f1_api.alpha.session import PaginatedSessionSummary
 
     url = reverse("sessions-list")
     response = api_client.get(url)
@@ -197,7 +199,6 @@ def test_sessions_list_schema_conformance(api_client, sample_season_data):
 @pytest.mark.django_db
 def test_sessions_detail_schema_conformance(api_client, sample_season_data):
     """Verify the sessions detail response conforms to RetrievedSessionDetail."""
-    from jolpica.schemas.f1_api.alpha.session import RetrievedSessionDetail
 
     session_obj = sample_season_data.rounds.first().sessions.first()
     assert session_obj is not None, "Sample season must have at least one session"
@@ -252,7 +253,6 @@ def test_session_entries_detail_schema_conformance(api_client, sample_season_dat
 @pytest.mark.django_db
 def test_laps_list_schema_conformance(api_client, sample_season_data):
     """Verify the laps list response conforms to PaginatedLapSummary."""
-    from jolpica.schemas.f1_api.alpha.lap import PaginatedLapSummary
 
     url = reverse("laps-list")
     response = api_client.get(url)
@@ -269,7 +269,6 @@ def test_laps_list_schema_conformance(api_client, sample_season_data):
 @pytest.mark.django_db
 def test_laps_detail_schema_conformance(api_client, sample_season_data):
     """Verify the laps detail response conforms to RetrievedLapDetail."""
-    from jolpica.schemas.f1_api.alpha.lap import RetrievedLapDetail
 
     lap_obj = f1.Lap.objects.first()
     assert lap_obj is not None, "Database must have at least one lap"
@@ -289,7 +288,6 @@ def test_laps_detail_schema_conformance(api_client, sample_season_data):
 @pytest.mark.django_db
 def test_pit_stops_list_schema_conformance(api_client, sample_season_data):
     """Verify the pit stops list response conforms to PaginatedPitStopSummary."""
-    from jolpica.schemas.f1_api.alpha.pit_stop import PaginatedPitStopSummary
 
     url = reverse("pit-stops-list")
     response = api_client.get(url)
@@ -306,7 +304,6 @@ def test_pit_stops_list_schema_conformance(api_client, sample_season_data):
 @pytest.mark.django_db
 def test_pit_stops_detail_schema_conformance(api_client, sample_season_data):
     """Verify the pit stops detail response conforms to RetrievedPitStopDetail."""
-    from jolpica.schemas.f1_api.alpha.pit_stop import RetrievedPitStopDetail
 
     pit_stop_obj = f1.PitStop.objects.first()
     assert pit_stop_obj is not None, "Database must have at least one pit stop"

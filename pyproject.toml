@@ -70,7 +70,7 @@ members = [
 
     [tool.ruff.lint]
         ignore = ["TRY300", "TRY003", "RUF012"]
-        isort.known-first-party = ["jolpica", "jolpica_api"]
+        isort.known-first-party = ["jolpica", "jolpica_api", "jolpica_schemas"]
         select = [
             "RUF", # Ruff specific
             "I", # isort - Import sorting
