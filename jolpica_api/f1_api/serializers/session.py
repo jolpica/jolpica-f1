@@ -3,7 +3,7 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.session import SessionRound, SessionSummary
+from jolpica_schemas.f1_api.alpha.session import SessionRound, SessionSummary
 
 from .base_serializer import BaseAPISerializer
 

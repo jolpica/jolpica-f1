@@ -6,7 +6,7 @@ import pydantic
 from django.utils import timezone
 from rest_framework import permissions, response, viewsets
 
-from jolpica.schemas.f1_api.alpha.metadata import (
+from jolpica_schemas.f1_api.alpha.metadata import (
     DetailMetadata,
     DetailResponse,
 )

@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.utils import format_timedelta, timedelta_to_iso8601
-from jolpica.schemas.f1_api.alpha.pit_stop import (
+from jolpica_schemas.f1_api.alpha.pit_stop import (
     PitStopLap,
     PitStopRound,
     PitStopSummary,

@@ -3,7 +3,7 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.driver import (
+from jolpica_schemas.f1_api.alpha.driver import (
     DriverSeason,
     DriverSummary,
     DriverTeam,

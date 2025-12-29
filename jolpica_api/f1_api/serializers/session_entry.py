@@ -4,7 +4,7 @@ from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.utils import format_timedelta
-from jolpica.schemas.f1_api.alpha.session_entry import (
+from jolpica_schemas.f1_api.alpha.session_entry import (
     SessionEntryDriver,
     SessionEntryRound,
     SessionEntrySession,

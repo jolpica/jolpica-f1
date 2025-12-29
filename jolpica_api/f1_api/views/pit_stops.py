@@ -3,7 +3,7 @@ from __future__ import annotations
 from drf_spectacular.utils import extend_schema, extend_schema_view
 
 from jolpica.formula_one import models as f1
-from jolpica.schemas.f1_api.alpha.pit_stop import (
+from jolpica_schemas.f1_api.alpha.pit_stop import (
     PitStopQueryParams,
     PitStopSummary,
     RetrievedPitStopDetail,

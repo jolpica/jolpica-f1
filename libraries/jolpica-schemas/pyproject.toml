@@ -1,0 +1,19 @@
+[project]
+    name = "jolpica-schemas"
+    version = "0.1.0"
+    description = "Schemas for the jolpica project."
+    authors = [{ name = "jolpica", email = "no-reply@jolpi.ca" }]
+    requires-python = ">=3.12,<3.13"
+    dependencies = ["pydantic>=2.10.6,<3"]
+
+[dependency-groups]
+    dev = ["pytest>=7.1.0,<8"]
+
+[build-system]
+    requires = ["uv_build>=0.9.18,<0.10.0"]
+    build-backend = "uv_build"
+
+[tool.uv.build-backend]
+    module-name = "jolpica_schemas"
+    wheel-exclude = ["**/tests/"]
+    data = ["src/jolpica_schemas/py.typed"]
