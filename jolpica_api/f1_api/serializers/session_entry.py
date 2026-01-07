@@ -29,7 +29,6 @@ class SessionEntrySessionSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Session
-        fields = ["id", "url", "type", "type_display"]
 
 
 class SessionEntryRoundSerializer(BaseAPISerializer):
@@ -44,7 +43,6 @@ class SessionEntryRoundSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Round
-        fields = ["id", "url", "number", "name"]
 
 
 class SessionEntryDriverSerializer(BaseAPISerializer):
@@ -59,7 +57,6 @@ class SessionEntryDriverSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Driver
-        fields = ["id", "url", "abbreviation", "forename", "surname"]
 
 
 class SessionEntryTeamSerializer(BaseAPISerializer):
@@ -74,7 +71,6 @@ class SessionEntryTeamSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Team
-        fields = ["id", "url", "name", "reference"]
 
 
 class SessionEntrySerializer(BaseAPISerializer):
@@ -98,25 +94,6 @@ class SessionEntrySerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.SessionEntry
-        fields = [
-            "id",
-            "url",
-            "position",
-            "is_classified",
-            "status",
-            "status_display",
-            "points",
-            "grid",
-            "time",
-            "time_display",
-            "fastest_lap_rank",
-            "laps_completed",
-            "car_number",
-            "session",
-            "round",
-            "driver",
-            "team",
-        ]
 
     def get_round(self, obj: f1.SessionEntry) -> dict:
         """Get round data from session.round"""

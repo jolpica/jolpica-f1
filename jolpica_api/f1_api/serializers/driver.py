@@ -25,7 +25,6 @@ class DriverTeamSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Team
-        fields = ["id", "url", "name", "country_code"]
 
 
 class DriverSeasonSerializer(BaseAPISerializer):
@@ -40,7 +39,6 @@ class DriverSeasonSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Season
-        fields = ["id", "year"]
 
 
 class DriverTeamDriverSerializer(BaseAPISerializer):
@@ -59,7 +57,6 @@ class DriverTeamDriverSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.TeamDriver
-        fields = ["id", "team", "season", "role", "role_display"]
 
 
 class DriverSerializer(BaseAPISerializer):
@@ -79,16 +76,3 @@ class DriverSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Driver
-        fields = [
-            "id",
-            "url",
-            "first_name",
-            "last_name",
-            "abbreviation",
-            "nationality",
-            "country_code",
-            "permanent_car_number",
-            "date_of_birth",
-            "wikipedia",
-            "teams",
-        ]

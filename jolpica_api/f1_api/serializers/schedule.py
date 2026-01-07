@@ -3,6 +3,12 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica_schemas.f1_api.alpha.schedule import (
+    ScheduleCircuit,
+    ScheduleDetail,
+    ScheduleRound,
+    ScheduleSummary,
+)
 
 from .base_serializer import OmitNullMixin
 
@@ -35,16 +41,7 @@ class CircuitScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
 
     class Meta:
         model = f1.Circuit
-        fields = [
-            "name",
-            "reference",
-            "wikipedia",
-            "latitude",
-            "longitude",
-            "altitude",
-            "locality",
-            "country_code",
-        ]
+        fields = list(ScheduleCircuit.model_fields.keys())
 
 
 class RoundScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
@@ -53,7 +50,7 @@ class RoundScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
 
     class Meta:
         model = f1.Round
-        fields = ["number", "name", "circuit", "date", "sessions"]
+        fields = list(ScheduleRound.model_fields.keys())
 
 
 class SeasonScheduleSerializer(OmitNullMixin, serializers.HyperlinkedModelSerializer):
@@ -61,7 +58,7 @@ class SeasonScheduleSerializer(OmitNullMixin, serializers.HyperlinkedModelSerial
 
     class Meta:
         model = f1.Season
-        fields = ["url", "year", "wikipedia"]
+        fields = list(ScheduleSummary.model_fields.keys())
 
 
 class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
@@ -70,7 +67,7 @@ class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
 
     class Meta:
         model = f1.Season
-        fields = ["url", "year", "wikipedia", "rounds_info", "rounds"]
+        fields = list(ScheduleDetail.model_fields.keys())
 
     def get_rounds_info(self, obj):
         return self.context.get("rounds_info")

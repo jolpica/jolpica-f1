@@ -454,3 +454,44 @@ def test_serializer_field_completeness(request, serializer_class, schema_class, 
         schema_class.model_validate(serialized_data)
     except ValidationError as e:
         pytest.fail(f"{serializer_class.__name__} output does not conform to {schema_class.__name__}:\n{e}")
+
+
+@pytest.mark.parametrize(
+    ["serializer_class", "schema_class"],
+    [
+        (CircuitSerializer, CircuitSummary),
+        (DriverSerializer, DriverSummary),
+        (RoundSerializer, RoundSummary),
+        (TeamSerializer, TeamSummary),
+    ],
+)
+def test_serializer_schema_field_parity(serializer_class, schema_class):
+    """Verify that serializer Meta.fields exactly match pydantic schema model_fields.
+
+    This static comparison catches mismatches between serializer and schema fields
+    without requiring any dummy data or fixtures. It ensures that:
+    1. All serializer fields exist in the schema (no extra fields in serializer)
+    2. All schema fields exist in the serializer (no missing fields in serializer)
+    """
+    serializer_fields = set(serializer_class.Meta.fields)
+    schema_fields = set(schema_class.model_fields.keys())
+
+    # Fields in serializer but not in schema
+    extra_in_serializer = serializer_fields - schema_fields
+    # Fields in schema but not in serializer
+    missing_from_serializer = schema_fields - serializer_fields
+
+    error_messages = []
+    if extra_in_serializer:
+        error_messages.append(
+            f"Fields in {serializer_class.__name__}.Meta.fields but not in {schema_class.__name__}: "
+            f"{sorted(extra_in_serializer)}"
+        )
+    if missing_from_serializer:
+        error_messages.append(
+            f"Fields in {schema_class.__name__} but not in {serializer_class.__name__}.Meta.fields: "
+            f"{sorted(missing_from_serializer)}"
+        )
+
+    if error_messages:
+        pytest.fail("\n".join(error_messages))
