@@ -18,15 +18,3 @@ class CircuitSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Circuit
-        fields = [
-            "id",
-            "url",
-            "name",
-            "locality",
-            "country",
-            "country_code",
-            "latitude",
-            "longitude",
-            "altitude",
-            "wikipedia",
-        ]

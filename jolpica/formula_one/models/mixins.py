@@ -9,7 +9,7 @@ class ApiIDMixin(models.Model):
     """Mixin for models that use auto-generated API IDs"""
 
     ID_PREFIX: str
-    api_id: str | None
+    api_id: models.CharField
 
     class Meta:
         abstract = True

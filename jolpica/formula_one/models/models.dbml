@@ -1170,6 +1170,7 @@ Information about a Constructor / Team
   nationality char [null]
   country_code char [null]
   wikipedia url [null]
+  primary_color char [null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_team_api_id_key', type: btree]

@@ -10,7 +10,7 @@ class OmitNullMixin:
     """Mixin to omit null/None values from serializer output."""
 
     def to_representation(self, instance):
-        representation = super().to_representation(instance)
+        representation = getattr(super(), "to_representation", lambda x: {})(instance)
         return {key: value for key, value in representation.items() if value is not None}
 
 
@@ -25,22 +25,37 @@ class BaseAPISerializer(OmitNullMixin, serializers.ModelSerializer):
     - pydantic_schema_class: The Pydantic schema to validate against
     - view_name: The DRF view name for URL field generation
     - Meta.model: The Django model
-    - Meta.fields: List of fields to include
+    - Meta.fields: List of fields to include (optional, auto-populated from pydantic_schema_class if not set)
     """
 
     pydantic_schema_class: type[pydantic.BaseModel]
+
+    def __init_subclass__(cls, **kwargs):
+        super().__init_subclass__(**kwargs)
+        if hasattr(cls, "pydantic_schema_class") and cls.pydantic_schema_class:
+            # Only set fields if not already explicitly defined in Meta
+            if hasattr(cls, "Meta") and (not hasattr(cls.Meta, "fields") or cls.Meta.fields == "__all__"):
+                cls.Meta.fields = list(cls.pydantic_schema_class.model_fields.keys())
 
     id = serializers.CharField(read_only=True, source="api_id")
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         # Dynamically add url field with correct view_name
-        if hasattr(self.__class__, "view_name") and "url" not in self._declared_fields:
-            self.fields["url"] = serializers.HyperlinkedIdentityField(
-                view_name=self.__class__.view_name,
-                lookup_field="api_id",
-                read_only=True,
-            )
+        if "url" not in self._declared_fields:
+            if view_name := getattr(self.__class__, "view_name", None):
+                self.fields["url"] = serializers.HyperlinkedIdentityField(
+                    view_name=view_name,
+                    lookup_field="api_id",
+                    read_only=True,
+                )
+            else:
+                # If no view_name is set, url should always be null
+                self.fields["url"] = serializers.SerializerMethodField()
+
+    def get_url(self, instance: Any) -> None:
+        """Return None for url when view_name is not set."""
+        return None
 
     def to_representation(self, instance: Any) -> dict[str, Any]:
         """

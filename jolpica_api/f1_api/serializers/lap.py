@@ -21,7 +21,6 @@ class LapSessionEntrySerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.SessionEntry
-        fields = ["id", "url"]
 
 
 class LapPitStopSerializer(BaseAPISerializer):
@@ -40,15 +39,6 @@ class LapPitStopSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.PitStop
-        fields = [
-            "id",
-            "url",
-            "number",
-            "duration",
-            "duration_display",
-            "duration_milliseconds",
-            "local_timestamp",
-        ]
 
     def get_duration(self, obj: f1.PitStop) -> str | None:
         """Convert duration to ISO 8601 format (e.g., PT13.341S)"""
@@ -83,19 +73,6 @@ class LapSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Lap
-        fields = [
-            "id",
-            "url",
-            "number",
-            "position",
-            "time",
-            "time_display",
-            "time_milliseconds",
-            "average_speed",
-            "is_entry_fastest_lap",
-            "session_entry",
-            "pit_stop",
-        ]
 
     def get_pit_stop(self, obj: f1.Lap) -> dict | None:
         """Get pit stop data if exists"""

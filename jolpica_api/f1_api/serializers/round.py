@@ -25,7 +25,6 @@ class RoundCircuitSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Circuit
-        fields = ["id", "name", "locality", "country_code"]
 
 
 class RoundSeasonSerializer(BaseAPISerializer):
@@ -40,7 +39,6 @@ class RoundSeasonSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Season
-        fields = ["id", "year"]
 
 
 class RoundSessionSerializer(BaseAPISerializer):
@@ -61,16 +59,6 @@ class RoundSessionSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Session
-        fields = [
-            "id",
-            "number",
-            "type",
-            "type_display",
-            "timestamp",
-            "has_time_data",
-            "local_timestamp",
-            "timezone",
-        ]
 
 
 class RoundSerializer(BaseAPISerializer):
@@ -91,15 +79,3 @@ class RoundSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Round
-        fields = [
-            "id",
-            "url",
-            "number",
-            "name",
-            "race_number",
-            "wikipedia",
-            "is_cancelled",
-            "circuit",
-            "season",
-            "sessions",
-        ]
