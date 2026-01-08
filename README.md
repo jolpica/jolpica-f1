@@ -44,3 +44,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [FormulaVision](https://github.com/skat9234/formula-vision) - A Mobile F1 Dashboard built with Flutter.
 - [RaceTimeApp](https://www.github.com/MayckGomes/RaceTimeApp) - An Android App showing latest F1 data, Built with Jetpack Compose.
 - [OversteerFormula1App](https://github.com/HugoLe-SS/OversteerFormula1App) - OversteerFormula1App is an Android project built with Kotlin and Jetpack Compose, designed to provide race schedules, standings, race results, news, and live updates.
+- [F1 Points Calculator](https://github.com/yuyangchee98/F1-Points-Calculator) - An interactive championship points calculator and race simulator for predicting F1 standings. Results update every week using jolpica-f1 data. 
