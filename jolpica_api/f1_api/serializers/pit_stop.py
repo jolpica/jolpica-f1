@@ -33,7 +33,6 @@ class PitStopLapSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Lap
-        fields = ["id", "url", "number", "position", "time"]
 
     def get_time(self, obj: f1.Lap) -> str | None:
         """Convert lap time to ISO 8601 format (e.g., PT2M49.888S)"""
@@ -55,7 +54,6 @@ class PitStopRoundSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Round
-        fields = ["id", "url", "number", "name", "season"]
 
 
 class PitStopSerializer(BaseAPISerializer):
@@ -83,20 +81,6 @@ class PitStopSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.PitStop
-        fields = [
-            "id",
-            "url",
-            "number",
-            "duration",
-            "duration_display",
-            "duration_milliseconds",
-            "local_timestamp",
-            "driver",
-            "team",
-            "session",
-            "round",
-            "lap",
-        ]
 
     def get_driver(self, obj: f1.PitStop) -> dict:
         """Get driver data from session_entry.round_entry.team_driver.driver"""

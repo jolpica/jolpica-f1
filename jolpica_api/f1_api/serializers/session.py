@@ -20,7 +20,6 @@ class SessionRoundSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Round
-        fields = ["id", "url", "number", "name"]
 
 
 class SessionSerializer(BaseAPISerializer):
@@ -42,17 +41,3 @@ class SessionSerializer(BaseAPISerializer):
 
     class Meta:
         model = f1.Session
-        fields = [
-            "id",
-            "url",
-            "number",
-            "type",
-            "type_display",
-            "timestamp",
-            "has_time_data",
-            "local_timestamp",
-            "timezone",
-            "scheduled_laps",
-            "is_cancelled",
-            "round",
-        ]

@@ -22,6 +22,7 @@ class TeamSummary(BaseModel):
     nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
     wikipedia: HttpUrl | None = None
+    primary_color: str | None = None
     seasons: list[TeamSeason]
 
 

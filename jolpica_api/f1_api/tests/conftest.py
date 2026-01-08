@@ -69,6 +69,7 @@ def fully_populated_team():
         nationality="Austrian",
         country_code="AUT",
         wikipedia="http://en.wikipedia.org/wiki/Red_Bull_Racing",
+        primary_color="#1E41FF",
     )
 
     # Create season instances for the team
