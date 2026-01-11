@@ -37,7 +37,7 @@ class CircuitViewSet(BaseFilterableViewSet):
         queryset = f1.Circuit.objects.all()
 
         # Get validated query parameters
-        params = self._get_validated_query_params()
+        params = self._get_validated_query_params(self.query_params_class)
 
         # Apply filters
         if params.year is not None:

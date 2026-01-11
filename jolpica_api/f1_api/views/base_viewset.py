@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, ClassVar
 
 import pydantic
 from django.utils import timezone
@@ -15,7 +15,7 @@ from ..pagination import StandardMetadataPagination
 from ..utils import validate_query_params
 
 
-class BaseFilterableViewSet[T: pydantic.BaseModel](viewsets.ReadOnlyModelViewSet):
+class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Base ViewSet for filterable F1 API endpoints.
 
@@ -36,8 +36,7 @@ class BaseFilterableViewSet[T: pydantic.BaseModel](viewsets.ReadOnlyModelViewSet
     lookup_field = "api_id"
 
     # Subclasses must override these
-    query_params_class: type[T]
-    response_schema_class: type[pydantic.BaseModel]
+    response_schema_class: ClassVar[type[pydantic.BaseModel]]
 
     def __init__(self, **kwargs: Any):
         super().__init__(**kwargs)
@@ -55,11 +54,11 @@ class BaseFilterableViewSet[T: pydantic.BaseModel](viewsets.ReadOnlyModelViewSet
                     f"{self.__class__.__name__}.serializer_class must inherit from PydanticValidatedSerializer"
                 )
 
-    def _get_validated_query_params(self) -> T:
+    def _get_validated_query_params[T: pydantic.BaseModel](self, query_params_class: type[T]) -> T:
         """Parse and validate query parameters using the query_params_class."""
         return validate_query_params(
             query_params=self.request.query_params,
-            model=self.query_params_class,
+            model=query_params_class,
             pagination_class=self.pagination_class,
         )
 

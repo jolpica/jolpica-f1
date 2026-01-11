@@ -15,13 +15,13 @@ class RoundCircuit(BaseModel):
 
 class RoundSeason(BaseModel):
     id: str
-    url: None = Field(None, description="TODO: URL to season detail endpoint")
+    url: HttpUrl
     year: int
 
 
 class RoundSession(BaseModel):
     id: str
-    url: None = Field(None, description="TODO: URL to session detail endpoint")
+    url: HttpUrl
     number: int | None = None
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")

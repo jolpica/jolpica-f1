@@ -22,7 +22,7 @@ class LapPitStop(BaseModel):
     """
 
     id: str
-    url: str | None = Field(None, description="TODO: URL to pit stop detail endpoint")
+    url: HttpUrl
     number: int | None = None
     duration: timedelta | None = Field(None, description="Pit stop duration as ISO 8601")
     duration_display: str | None = Field(None, description="Human-readable pit stop duration (e.g., '2.456')")

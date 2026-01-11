@@ -35,7 +35,7 @@ class DriverSeasonSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = DriverSeason
-    # view_name = "seasons-detail"  # TODO: implement this endpoint
+    view_name = "seasons-detail"
 
     class Meta:
         model = f1.Season

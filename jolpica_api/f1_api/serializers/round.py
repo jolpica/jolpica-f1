@@ -35,7 +35,7 @@ class RoundSeasonSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = RoundSeason
-    # view_name = "seasons-detail"  # TODO: implement this endpoint
+    view_name = "seasons-detail"
 
     class Meta:
         model = f1.Season
@@ -50,7 +50,7 @@ class RoundSessionSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = RoundSession
-    # view_name = "sessions-detail"  # TODO: Schema expects url: None
+    view_name = "sessions-detail"
 
     type_display = serializers.CharField(source="get_type_display", read_only=True)
     # Must use CharField instead of DateTimeField as otherwise it will display as UTC
