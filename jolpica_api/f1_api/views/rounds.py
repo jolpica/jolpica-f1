@@ -36,7 +36,7 @@ class RoundViewSet(BaseFilterableViewSet):
         queryset = f1.Round.objects.select_related("season", "circuit").prefetch_related("sessions")
 
         # Get validated query parameters
-        params = self._get_validated_query_params()
+        params = self._get_validated_query_params(self.query_params_class)
 
         if params.year is not None:
             queryset = queryset.filter(season__year=params.year)

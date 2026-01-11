@@ -48,7 +48,7 @@ class PitStopSeason(BaseModel):
     """
 
     id: str
-    url: str | None = Field(None, description="TODO: URL to season detail endpoint")
+    url: HttpUrl
     year: int
 
 

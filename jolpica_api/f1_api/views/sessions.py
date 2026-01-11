@@ -40,7 +40,7 @@ class SessionViewSet(BaseFilterableViewSet):
         queryset = f1.Session.objects.select_related("round")
 
         # Get validated query parameters
-        params = self._get_validated_query_params()
+        params = self._get_validated_query_params(self.query_params_class)
 
         # Apply filters
         if params.year is not None:

@@ -39,7 +39,7 @@ class DriverViewSet(BaseFilterableViewSet):
         queryset = f1.Driver.objects.prefetch_related("team_drivers__team", "team_drivers__season")
 
         # Get validated query parameters
-        params = self._get_validated_query_params()
+        params = self._get_validated_query_params(self.query_params_class)
 
         # Apply filters
         if params.year is not None:
