@@ -88,26 +88,14 @@ class SessionEntrySerializer(BaseAPISerializer):
     view_name = "session-entries-detail"
 
     session = SessionEntrySessionSerializer(read_only=True)
-    round = serializers.SerializerMethodField()
-    driver = serializers.SerializerMethodField()
-    team = serializers.SerializerMethodField()
+    round = SessionEntryRoundSerializer(read_only=True, source="session.round")
+    driver = SessionEntryDriverSerializer(read_only=True, source="round_entry.team_driver.driver")
+    team = SessionEntryTeamSerializer(read_only=True, source="round_entry.team_driver.team")
     status_display = serializers.CharField(source="get_status_display", read_only=True)
     time_display = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.SessionEntry
-
-    def get_round(self, obj: f1.SessionEntry) -> dict:
-        """Get round data from session.round"""
-        return SessionEntryRoundSerializer(obj.session.round, context=self.context).data
-
-    def get_driver(self, obj: f1.SessionEntry) -> dict:
-        """Get driver data from round_entry.team_driver.driver"""
-        return SessionEntryDriverSerializer(obj.round_entry.team_driver.driver, context=self.context).data
-
-    def get_team(self, obj: f1.SessionEntry) -> dict:
-        """Get team data from round_entry.team_driver.team"""
-        return SessionEntryTeamSerializer(obj.round_entry.team_driver.team, context=self.context).data
 
     def get_time_display(self, obj: f1.SessionEntry) -> str | None:
         """Format timedelta as human-readable string (H:MM:SS.mmm)"""

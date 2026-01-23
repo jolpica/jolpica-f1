@@ -68,44 +68,18 @@ class PitStopSerializer(BaseAPISerializer):
     pydantic_schema_class = PitStopSummary
     view_name = "pit-stops-detail"
 
-    driver = serializers.SerializerMethodField()
-    team = serializers.SerializerMethodField()
-    session = serializers.SerializerMethodField()
-    round = serializers.SerializerMethodField()
+    driver = SessionEntryDriverSerializer(read_only=True, source="session_entry.round_entry.team_driver.driver")
+    team = SessionEntryTeamSerializer(read_only=True, source="session_entry.round_entry.team_driver.team")
+    session = SessionEntrySessionSerializer(read_only=True, source="session_entry.session")
+    round = PitStopRoundSerializer(read_only=True, source="session_entry.session.round")
     season = RoundSeasonSerializer(read_only=True, source="session_entry.session.round.season")
-    lap = serializers.SerializerMethodField()
+    lap = PitStopLapSerializer(read_only=True)
     duration = serializers.SerializerMethodField()
     duration_display = serializers.SerializerMethodField()
     duration_milliseconds = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.PitStop
-
-    def get_driver(self, obj: f1.PitStop) -> dict:
-        """Get driver data from session_entry.round_entry.team_driver.driver"""
-        driver = obj.session_entry.round_entry.team_driver.driver
-        return SessionEntryDriverSerializer(driver, context=self.context).data
-
-    def get_team(self, obj: f1.PitStop) -> dict:
-        """Get team data from session_entry.round_entry.team_driver.team"""
-        team = obj.session_entry.round_entry.team_driver.team
-        return SessionEntryTeamSerializer(team, context=self.context).data
-
-    def get_session(self, obj: f1.PitStop) -> dict:
-        """Get session data from session_entry.session"""
-        session = obj.session_entry.session
-        return SessionEntrySessionSerializer(session, context=self.context).data
-
-    def get_round(self, obj: f1.PitStop) -> dict:
-        """Get round data from session_entry.session.round"""
-        round_obj = obj.session_entry.session.round
-        return PitStopRoundSerializer(round_obj, context=self.context).data
-
-    def get_lap(self, obj: f1.PitStop) -> dict | None:
-        """Get lap data if exists"""
-        if hasattr(obj, "lap") and obj.lap:
-            return PitStopLapSerializer(obj.lap, context=self.context).data
-        return None
 
     def get_duration(self, obj: f1.PitStop) -> str | None:
         """Convert duration to ISO 8601 format (e.g., PT13.341S)"""
