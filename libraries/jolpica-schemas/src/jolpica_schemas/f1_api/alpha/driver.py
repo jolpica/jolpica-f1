@@ -1,58 +1,11 @@
-import datetime
-
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field
 
 from .metadata import DetailResponse, PaginatedResponse
+from .shared import Driver
 
 
-class DriverTeam(BaseModel):
-    """
-    Team information in driver's team history context.
-    """
-
-    id: str
-    url: HttpUrl
-    name: str
-    country_code: str | None = Field(None, max_length=3)
-
-
-class DriverSeason(BaseModel):
-    """
-    Season information in driver's team history context.
-    """
-
-    id: str
-    url: HttpUrl
-    year: int
-
-
-class DriverTeamDriver(BaseModel):
-    """
-    Driver's stint with a team in a specific season.
-    """
-
-    id: str
-    url: None = Field(None, description="TODO: URL to team driver detail endpoint")
-    team: DriverTeam
-    season: DriverSeason
-    role: int | None = None
-    role_display: str | None = None
-
-
-class DriverSummary(BaseModel):
-    """Summary information for Driver."""
-
-    id: str
-    url: HttpUrl
-    first_name: str
-    last_name: str
-    abbreviation: str | None = None
-    nationality: str | None = None
-    country_code: str | None = Field(None, max_length=3)
-    permanent_car_number: int | None = None
-    date_of_birth: datetime.date | None = None
-    wikipedia: HttpUrl | None = None
-    teams: list[DriverTeamDriver]
+class DriverSummary(Driver):
+    pass
 
 
 PaginatedDriverSummary = PaginatedResponse[list[DriverSummary]]

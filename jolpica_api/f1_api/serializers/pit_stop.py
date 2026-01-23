@@ -50,8 +50,6 @@ class PitStopRoundSerializer(BaseAPISerializer):
     pydantic_schema_class = PitStopRound
     view_name = "rounds-detail"
 
-    season = RoundSeasonSerializer(read_only=True)
-
     class Meta:
         model = f1.Round
 
@@ -74,6 +72,7 @@ class PitStopSerializer(BaseAPISerializer):
     team = serializers.SerializerMethodField()
     session = serializers.SerializerMethodField()
     round = serializers.SerializerMethodField()
+    season = RoundSeasonSerializer(read_only=True, source="session_entry.session.round.season")
     lap = serializers.SerializerMethodField()
     duration = serializers.SerializerMethodField()
     duration_display = serializers.SerializerMethodField()

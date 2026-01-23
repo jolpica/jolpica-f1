@@ -1,15 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field
 
 from .metadata import DetailResponse, PaginatedResponse
+from .shared import Season
 
 
-class SeasonSummary(BaseModel):
-    """Summary information for Season"""
-
-    id: str
-    url: HttpUrl
-    year: int
-    wikipedia: HttpUrl | None = None
+class SeasonSummary(Season):
+    pass
 
 
 PaginatedSeasonSummary = PaginatedResponse[list[SeasonSummary]]

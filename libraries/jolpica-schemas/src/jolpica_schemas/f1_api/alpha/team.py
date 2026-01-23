@@ -1,28 +1,14 @@
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field
 
 from .metadata import DetailResponse, PaginatedResponse
+from .shared import BasicSeason, Team
 
 
-class TeamSeason(BaseModel):
-    """
-    Season information in team context.
-    """
-
-    id: str
-    url: HttpUrl
-    year: int
+class TeamSeason(BasicSeason):
+    pass
 
 
-class TeamSummary(BaseModel):
-    """Summary information for Team."""
-
-    id: str
-    url: HttpUrl
-    name: str
-    nationality: str | None = None
-    country_code: str | None = Field(None, max_length=3)
-    wikipedia: HttpUrl | None = None
-    primary_color: str | None = None
+class TeamSummary(Team):
     seasons: list[TeamSeason]
 
 

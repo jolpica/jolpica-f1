@@ -55,6 +55,9 @@ class SessionEntryDriverSerializer(BaseAPISerializer):
     pydantic_schema_class = SessionEntryDriver
     view_name = "drivers-detail"
 
+    given_name = serializers.CharField(read_only=True, source="forename")
+    family_name = serializers.CharField(read_only=True, source="surname")
+
     class Meta:
         model = f1.Driver
 
@@ -89,7 +92,6 @@ class SessionEntrySerializer(BaseAPISerializer):
     driver = serializers.SerializerMethodField()
     team = serializers.SerializerMethodField()
     status_display = serializers.CharField(source="get_status_display", read_only=True)
-    car_number = serializers.IntegerField(source="round_entry.car_number", read_only=True)
     time_display = serializers.SerializerMethodField()
 
     class Meta:

@@ -1,21 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field
 
 from .metadata import DetailResponse, PaginatedResponse
+from .shared import Circuit
 
 
-class CircuitSummary(BaseModel):
-    """Summary information for Circuit"""
-
-    id: str
-    url: HttpUrl
-    name: str
-    locality: str | None = None
-    country: str | None = None
-    country_code: str | None = Field(None, max_length=3)
-    latitude: float | None = None
-    longitude: float | None = None
-    altitude: float | None = None
-    wikipedia: HttpUrl | None = None
+class CircuitSummary(Circuit):
+    pass
 
 
 PaginatedCircuitSummary = PaginatedResponse[list[CircuitSummary]]

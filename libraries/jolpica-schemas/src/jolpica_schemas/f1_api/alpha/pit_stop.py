@@ -1,107 +1,46 @@
 from __future__ import annotations
 
-from datetime import timedelta
-
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field
 
 from .metadata import DetailResponse, PaginatedResponse
+from .shared import BasicDriver, BasicLap, BasicRound, BasicSeason, BasicSession, BasicTeam, PitStop
 
 
-class PitStopDriver(BaseModel):
-    """
-    Driver information in PitStop context.
-    """
-
-    id: str
-    url: HttpUrl
-    abbreviation: str | None = Field(None, max_length=10)
-    forename: str
-    surname: str
+class PitStopDriver(BasicDriver):
+    pass
 
 
-class PitStopTeam(BaseModel):
-    """
-    Team information in PitStop context.
-    """
-
-    id: str
-    url: HttpUrl
-    name: str
-    reference: str
+class PitStopTeam(BasicTeam):
+    pass
 
 
-class PitStopSession(BaseModel):
-    """
-    Session information in PitStop context.
-    """
-
-    id: str
-    url: HttpUrl
-    number: int | None = None
-    type: str = Field(..., description="Session type code (e.g., R, Q, FP1)")
-    type_display: str = Field(..., description="Display name for the session type")
+class PitStopSession(BasicSession):
+    pass
 
 
-class PitStopSeason(BaseModel):
-    """
-    Season information in PitStop context.
-    """
-
-    id: str
-    url: HttpUrl
-    year: int
+class PitStopSeason(BasicSeason):
+    pass
 
 
-class PitStopRound(BaseModel):
-    """
-    Round information in PitStop context.
-    """
-
-    id: str
-    url: HttpUrl
-    number: int | None = None
-    name: str | None = None
-    season: PitStopSeason
+class PitStopRound(BasicRound):
+    pass
 
 
-class PitStopLap(BaseModel):
-    """
-    Lap information in PitStop context.
-    """
-
-    id: str
-    url: HttpUrl
-    number: int | None = None
-    position: int | None = None
-    time: str | None = Field(None, description="Lap time in ISO 8601 duration format (e.g., PT2M49.888S)")
+class PitStopLap(BasicLap):
+    pass
 
 
-class PitStopSummary(BaseModel):
-    """Summary information for PitStop."""
-
-    id: str
-    url: HttpUrl
-    number: int | None = Field(None, description="Pit stop number for this driver in the session")
-    duration: timedelta | None = Field(None, description="Pit stop duration in ISO 8601 format (e.g., PT13.341S)")
-    duration_display: str | None = Field(None, description="Human-readable pit stop duration (e.g., '2.347s')")
-    duration_milliseconds: int | None = Field(None, description="Pit stop duration in milliseconds")
-    local_timestamp: str | None = Field(None, max_length=16, description="Local time of pit stop")
+class PitStopSummary(PitStop):
     driver: PitStopDriver
     team: PitStopTeam
     session: PitStopSession
     round: PitStopRound
+    season: PitStopSeason
     lap: PitStopLap | None = None
 
 
-class PaginatedPitStopSummary(PaginatedResponse[list[PitStopSummary]]):
-    """Schema for paginated pit stop list responses"""
-
-
-PitStopDetail = PitStopSummary
-
-
-class RetrievedPitStopDetail(DetailResponse[PitStopDetail]):
-    """Schema for pit stop detail responses"""
+PaginatedPitStopSummary = PaginatedResponse[list[PitStopSummary]]
+RetrievedPitStopDetail = DetailResponse[PitStopSummary]
 
 
 class PitStopQueryParams(BaseModel):
