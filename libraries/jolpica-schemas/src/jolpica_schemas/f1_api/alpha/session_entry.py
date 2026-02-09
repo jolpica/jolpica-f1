@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from .metadata import DetailResponse, PaginatedResponse
-from .shared import BasicDriver, BasicRound, BasicSession, BasicTeam, Session, SessionEntry
+from .shared import BasicDriver, BasicRound, BasicSession, BasicTeam, SessionEntry
 
 
 class SessionEntrySession(BasicSession):
