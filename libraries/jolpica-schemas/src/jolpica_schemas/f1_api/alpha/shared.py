@@ -125,10 +125,10 @@ class BasicTeam(BaseModel):
     id: str
     url: HttpUrl
     name: str
+    primary_color: str | None = None
 
 
 class Team(BasicTeam):
     nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
     wikipedia: HttpUrl | None = None
-    primary_color: str | None = None

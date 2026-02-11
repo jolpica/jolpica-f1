@@ -1,7 +1,19 @@
 from django.urls import include, path
 from rest_framework import routers
 
-from .views import circuits, drivers, laps, pit_stops, rounds, schedules, seasons, session_entries, sessions, teams
+from .views import (
+    circuits,
+    drivers,
+    laps,
+    pit_stops,
+    results,
+    rounds,
+    schedules,
+    seasons,
+    session_entries,
+    sessions,
+    teams,
+)
 
 
 class CustomRouter(routers.DefaultRouter):
@@ -10,6 +22,7 @@ class CustomRouter(routers.DefaultRouter):
 
 router = CustomRouter()
 router.register(r"schedules", schedules.SeasonScheduleViewSet, basename="schedules")
+router.register(r"results", results.ResultsView, basename="results")
 
 # Core table-mapped endpoints
 router.register(r"core/seasons", seasons.SeasonViewSet, basename="seasons")
