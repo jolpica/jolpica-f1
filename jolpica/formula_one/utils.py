@@ -92,7 +92,7 @@ def format_timedelta(time: timedelta) -> str:
     display_time = ""
     if hours:
         display_time += f"{int(hours):02}:"
-    if mins:
+    if mins or hours:
         display_time += f"{int(mins):02}:"
     display_time += f"{int(secs):02}.{int(millis):03}"
     if display_time[0] == "0":
