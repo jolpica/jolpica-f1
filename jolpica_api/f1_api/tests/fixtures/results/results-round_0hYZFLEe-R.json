@@ -1,0 +1,667 @@
+{
+  "data": {
+    "title": "Race",
+    "code": "R",
+    "season": {
+      "id": "season_0VeNZC1A",
+      "url": "http://testserver/f1/alpha/core/seasons/season_0VeNZC1A/",
+      "year": 2023,
+      "wikipedia": "https://en.wikipedia.org/wiki/2023_Formula_One_World_Championship"
+    },
+    "round": {
+      "id": "round_0hYZFLEe",
+      "url": "http://testserver/f1/alpha/core/rounds/round_0hYZFLEe/",
+      "number": 10,
+      "name": "British Grand Prix",
+      "race_number": 1089,
+      "wikipedia": "https://en.wikipedia.org/wiki/2023_British_Grand_Prix",
+      "is_cancelled": false
+    },
+    "circuit": {
+      "id": "circuit_W8rwFAJs",
+      "url": "http://testserver/f1/alpha/core/circuits/circuit_W8rwFAJs/",
+      "name": "Silverstone Circuit",
+      "locality": "Silverstone",
+      "country_code": "GBR",
+      "country": null,
+      "latitude": 52.0786,
+      "longitude": -1.01694,
+      "altitude": 153.0,
+      "wikipedia": "https://en.wikipedia.org/wiki/Silverstone_Circuit"
+    },
+    "sessions": [
+      {
+        "id": "session_UNKptQNV",
+        "url": "http://testserver/f1/alpha/core/sessions/session_UNKptQNV/",
+        "number": 7,
+        "type": "R",
+        "type_display": "RACE"
+      }
+    ],
+    "component_keys": [
+      "GRID"
+    ],
+    "results": [
+      {
+        "position": 1,
+        "position_text": "1",
+        "time": "1:25:16.938",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 26.0,
+        "laps": 52,
+        "car_number": 1,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 1,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_VkTWWTC5",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_VkTWWTC5/",
+          "abbreviation": "VER",
+          "given_name": "Max",
+          "family_name": "Verstappen"
+        },
+        "team": {
+          "id": "team_SYB8m2Vp",
+          "url": "http://testserver/f1/alpha/core/teams/team_SYB8m2Vp/",
+          "name": "Red Bull",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 2,
+        "position_text": "2",
+        "time": "1:25:20.736",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 18.0,
+        "laps": 52,
+        "car_number": 4,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 2,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_BOyYHlVE",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_BOyYHlVE/",
+          "abbreviation": "NOR",
+          "given_name": "Lando",
+          "family_name": "Norris"
+        },
+        "team": {
+          "id": "team_jJ6cuwXz",
+          "url": "http://testserver/f1/alpha/core/teams/team_jJ6cuwXz/",
+          "name": "McLaren",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 3,
+        "position_text": "3",
+        "time": "1:25:23.721",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 15.0,
+        "laps": 52,
+        "car_number": 44,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 7,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_cAPSXDn9",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_cAPSXDn9/",
+          "abbreviation": "HAM",
+          "given_name": "Lewis",
+          "family_name": "Hamilton"
+        },
+        "team": {
+          "id": "team_tdiMmtQx",
+          "url": "http://testserver/f1/alpha/core/teams/team_tdiMmtQx/",
+          "name": "Mercedes",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 4,
+        "position_text": "4",
+        "time": "1:25:24.714",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 12.0,
+        "laps": 52,
+        "car_number": 81,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 3,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_1V17qcph",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_1V17qcph/",
+          "abbreviation": "PIA",
+          "given_name": "Oscar",
+          "family_name": "Piastri"
+        },
+        "team": {
+          "id": "team_jJ6cuwXz",
+          "url": "http://testserver/f1/alpha/core/teams/team_jJ6cuwXz/",
+          "name": "McLaren",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 5,
+        "position_text": "5",
+        "time": "1:25:28.144",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 10.0,
+        "laps": 52,
+        "car_number": 63,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 6,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_dPPwWNxA",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_dPPwWNxA/",
+          "abbreviation": "RUS",
+          "given_name": "George",
+          "family_name": "Russell"
+        },
+        "team": {
+          "id": "team_tdiMmtQx",
+          "url": "http://testserver/f1/alpha/core/teams/team_tdiMmtQx/",
+          "name": "Mercedes",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 6,
+        "position_text": "6",
+        "time": "1:25:29.820",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 8.0,
+        "laps": 52,
+        "car_number": 11,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 15,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_NliMiGAb",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_NliMiGAb/",
+          "abbreviation": "PER",
+          "given_name": "Sergio",
+          "family_name": "P\u00e9rez"
+        },
+        "team": {
+          "id": "team_SYB8m2Vp",
+          "url": "http://testserver/f1/alpha/core/teams/team_SYB8m2Vp/",
+          "name": "Red Bull",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 7,
+        "position_text": "7",
+        "time": "1:25:34.131",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 6.0,
+        "laps": 52,
+        "car_number": 14,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 9,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_WqMAI78W",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_WqMAI78W/",
+          "abbreviation": "ALO",
+          "given_name": "Fernando",
+          "family_name": "Alonso"
+        },
+        "team": {
+          "id": "team_fhnXl3cF",
+          "url": "http://testserver/f1/alpha/core/teams/team_fhnXl3cF/",
+          "name": "Aston Martin",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 8,
+        "position_text": "8",
+        "time": "1:25:34.816",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 4.0,
+        "laps": 52,
+        "car_number": 23,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 8,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_0Z9Cjb1U",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_0Z9Cjb1U/",
+          "abbreviation": "ALB",
+          "given_name": "Alexander",
+          "family_name": "Albon"
+        },
+        "team": {
+          "id": "team_IJAI583X",
+          "url": "http://testserver/f1/alpha/core/teams/team_IJAI583X/",
+          "name": "Williams",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 9,
+        "position_text": "9",
+        "time": "1:25:35.627",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 2.0,
+        "laps": 52,
+        "car_number": 16,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 4,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_pAXWnsA8",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_pAXWnsA8/",
+          "abbreviation": "LEC",
+          "given_name": "Charles",
+          "family_name": "Leclerc"
+        },
+        "team": {
+          "id": "team_LjEBz7Xq",
+          "url": "http://testserver/f1/alpha/core/teams/team_LjEBz7Xq/",
+          "name": "Ferrari",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 10,
+        "position_text": "10",
+        "time": "1:25:36.386",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 1.0,
+        "laps": 52,
+        "car_number": 55,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 5,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_nPms5pYt",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_nPms5pYt/",
+          "abbreviation": "SAI",
+          "given_name": "Carlos",
+          "family_name": "Sainz"
+        },
+        "team": {
+          "id": "team_LjEBz7Xq",
+          "url": "http://testserver/f1/alpha/core/teams/team_LjEBz7Xq/",
+          "name": "Ferrari",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 11,
+        "position_text": "11",
+        "time": "1:25:40.570",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 2,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 14,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_xXhDYjcC",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_xXhDYjcC/",
+          "abbreviation": "SAR",
+          "given_name": "Logan",
+          "family_name": "Sargeant"
+        },
+        "team": {
+          "id": "team_IJAI583X",
+          "url": "http://testserver/f1/alpha/core/teams/team_IJAI583X/",
+          "name": "Williams",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 12,
+        "position_text": "12",
+        "time": "1:25:42.768",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 77,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 20,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_H43o382s",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_H43o382s/",
+          "abbreviation": "BOT",
+          "given_name": "Valtteri",
+          "family_name": "Bottas"
+        },
+        "team": {
+          "id": "team_1XDKqgNu",
+          "url": "http://testserver/f1/alpha/core/teams/team_1XDKqgNu/",
+          "name": "Alfa Romeo",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 13,
+        "position_text": "13",
+        "time": "1:25:43.601",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 27,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 11,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_gADFaAX1",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_gADFaAX1/",
+          "abbreviation": "HUL",
+          "given_name": "Nico",
+          "family_name": "H\u00fclkenberg"
+        },
+        "team": {
+          "id": "team_aDYlrycX",
+          "url": "http://testserver/f1/alpha/core/teams/team_aDYlrycX/",
+          "name": "Haas F1 Team",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 14,
+        "position_text": "14",
+        "time": "1:25:44.421",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 18,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 12,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_XkmSOlgX",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_XkmSOlgX/",
+          "abbreviation": "STR",
+          "given_name": "Lance",
+          "family_name": "Stroll"
+        },
+        "team": {
+          "id": "team_fhnXl3cF",
+          "url": "http://testserver/f1/alpha/core/teams/team_fhnXl3cF/",
+          "name": "Aston Martin",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 15,
+        "position_text": "15",
+        "time": "1:25:46.758",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 24,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 17,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_CyXA6GA4",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_CyXA6GA4/",
+          "abbreviation": "ZHO",
+          "given_name": "Guanyu",
+          "family_name": "Zhou"
+        },
+        "team": {
+          "id": "team_1XDKqgNu",
+          "url": "http://testserver/f1/alpha/core/teams/team_1XDKqgNu/",
+          "name": "Alfa Romeo",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 16,
+        "position_text": "16",
+        "time": "1:25:48.163",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 22,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 16,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_aEOevTUh",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_aEOevTUh/",
+          "abbreviation": "TSU",
+          "given_name": "Yuki",
+          "family_name": "Tsunoda"
+        },
+        "team": {
+          "id": "team_GV5YhhEU",
+          "url": "http://testserver/f1/alpha/core/teams/team_GV5YhhEU/",
+          "name": "AlphaTauri",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 17,
+        "position_text": "17",
+        "time": "1:25:50.066",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 52,
+        "car_number": 21,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 18,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_xKluwMtH",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_xKluwMtH/",
+          "abbreviation": "DEV",
+          "given_name": "Nyck",
+          "family_name": "de Vries"
+        },
+        "team": {
+          "id": "team_GV5YhhEU",
+          "url": "http://testserver/f1/alpha/core/teams/team_GV5YhhEU/",
+          "name": "AlphaTauri",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 18,
+        "position_text": "18",
+        "time": "1:17:35.589",
+        "is_classified": true,
+        "status": "FINISHED",
+        "points": 0.0,
+        "laps": 46,
+        "car_number": 10,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 10,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_q7WdJenu",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_q7WdJenu/",
+          "abbreviation": "GAS",
+          "given_name": "Pierre",
+          "family_name": "Gasly"
+        },
+        "team": {
+          "id": "team_LJ6hqyXM",
+          "url": "http://testserver/f1/alpha/core/teams/team_LJ6hqyXM/",
+          "name": "Alpine F1 Team",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 19,
+        "position_text": "NC",
+        "time": "48:55.905",
+        "is_classified": false,
+        "status": "RETIRED",
+        "points": 0.0,
+        "laps": 31,
+        "car_number": 20,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 19,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_8tH8zRcP",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_8tH8zRcP/",
+          "abbreviation": "MAG",
+          "given_name": "Kevin",
+          "family_name": "Magnussen"
+        },
+        "team": {
+          "id": "team_aDYlrycX",
+          "url": "http://testserver/f1/alpha/core/teams/team_aDYlrycX/",
+          "name": "Haas F1 Team",
+          "primary_color": null
+        }
+      },
+      {
+        "position": 20,
+        "position_text": "NC",
+        "time": "14:16.351",
+        "is_classified": false,
+        "status": "RETIRED",
+        "points": 0.0,
+        "laps": 9,
+        "car_number": 31,
+        "components": {
+          "GRID": {
+            "key": "GRID",
+            "name": "Grid Position",
+            "position": 13,
+            "time": null
+          }
+        },
+        "driver": {
+          "id": "driver_0GFvbLMc",
+          "url": "http://testserver/f1/alpha/core/drivers/driver_0GFvbLMc/",
+          "abbreviation": "OCO",
+          "given_name": "Esteban",
+          "family_name": "Ocon"
+        },
+        "team": {
+          "id": "team_LJ6hqyXM",
+          "url": "http://testserver/f1/alpha/core/teams/team_LJ6hqyXM/",
+          "name": "Alpine F1 Team",
+          "primary_color": null
+        }
+      }
+    ]
+  }
+}

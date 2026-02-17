@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from datetime import timedelta
-
 from pydantic import BaseModel
 
 from . import shared
@@ -22,6 +20,7 @@ class ResultItem(BaseModel):
     status: str | None
     points: float | None
     laps: int | None
+    car_number: int | None = None
     components: dict[str, ResultComponent]
     driver: shared.BasicDriver
     team: shared.BasicTeam
