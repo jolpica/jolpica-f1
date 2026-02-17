@@ -30,9 +30,10 @@ class ListAdminMixin:
             ]
         if model.__name__ == "Lap":
             self.list_filter = [
+                "is_entry_fastest_lap",
                 "session_entry__session__type",
-                "session_entry__session__round__season__year",
                 "session_entry__session__round__number",
+                "session_entry__session__round__season__year",
                 "session_entry__round_entry__team_driver__driver",
             ]
         elif model.__name__ == "PitStop":
@@ -83,13 +84,20 @@ class ListAdminMixin:
                 return [
                     "session_entry__session__type",
                     "number",
-                    "session_entry__round_entry__driver__forename",
-                    "session_entry__round_entry__driver__surname",
+                    "session_entry__round_entry__round__name",
+                    "session_entry__round_entry__team_driver__driver__forename",
+                    "session_entry__round_entry__team_driver__driver__surname",
                 ]
             case "Session":
                 return ["number", "round__season__year", "round__name", "type"]
             case "RoundEntry":
-                return ["round__season__year", "round__name", "car_number"]
+                return [
+                    "round__season__year",
+                    "round__name",
+                    "car_number",
+                    "team_driver__driver__forename",
+                    "team_driver__driver__surname",
+                ]
             case "SessionEntry":
                 return [
                     "session__round__season__year",
