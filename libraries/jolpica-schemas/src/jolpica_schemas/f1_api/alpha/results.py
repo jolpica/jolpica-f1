@@ -13,6 +13,8 @@ class ResultComponent(BaseModel):
 
 
 class ResultItem(BaseModel):
+    driver: shared.BasicDriver
+    team: shared.BasicTeam
     position: int | None
     position_text: str | None
     time: str | None
@@ -22,18 +24,15 @@ class ResultItem(BaseModel):
     laps: int | None
     car_number: int | None = None
     components: dict[str, ResultComponent]
-    driver: shared.BasicDriver
-    team: shared.BasicTeam
 
 
 class Results(BaseModel):
-    title: str
-    code: str
-
-    component_keys: list[str]
-    results: list[ResultItem]
-
-    round: shared.Round
     season: shared.Season
+    round: shared.Round
     circuit: shared.Circuit
     sessions: list[shared.BasicSession]
+
+    title: str
+    code: str
+    component_keys: list[str]
+    results: list[ResultItem]

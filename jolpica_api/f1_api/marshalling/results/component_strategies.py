@@ -5,7 +5,10 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 from jolpica.formula_one.utils import format_timedelta
-from jolpica_api.f1_api.marshalling.results.constants import COMPONENT_DISPLAY_NAMES
+from jolpica_api.f1_api.marshalling.results.constants import (
+    COMPONENT_DISPLAY_NAMES,
+    GRID_COMPONENT_KEY,
+)
 from jolpica_api.f1_api.marshalling.results.data_transfer import (
     ResultRowData,
     ResultRowSessionEntryData,
@@ -75,7 +78,7 @@ class GridComponent(ComponentRenderingStrategy):
         self._session_type_startswith = session_type_startswith
 
     def get_component_key(self) -> str:
-        return "GRID"
+        return GRID_COMPONENT_KEY
 
     def should_render(self, result_data: ResultRowData) -> bool:
         return any(se.grid_position is not None for se in result_data.session_entries)
@@ -94,6 +97,6 @@ class GridComponent(ComponentRenderingStrategy):
 
         return ResultComponent(
             key=self.get_component_key(),
-            name=COMPONENT_DISPLAY_NAMES["GRID"],
+            name=COMPONENT_DISPLAY_NAMES[GRID_COMPONENT_KEY],
             position=grid_position,
         )

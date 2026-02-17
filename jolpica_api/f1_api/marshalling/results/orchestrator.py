@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterable
-
 from django.urls import reverse
 from pydantic import HttpUrl
 from rest_framework import request
@@ -66,8 +64,8 @@ class ResultsOrchestrator:
         )
 
 
-def get_result_types_for_round(round: f1.Round) -> list[str]:
-    """Get the list of result types available for a given round."""
+def get_available_result_types(round: f1.Round) -> list[str]:
+    """Get the list of result type codes available for a round."""
     session_types = {sess.type for sess in round.sessions.all()}
 
     results_for_round = [
@@ -80,64 +78,69 @@ def get_result_types_for_round(round: f1.Round) -> list[str]:
     return results_for_round
 
 
-def get_per_round_entry_mapping(req: request.Request, sessions: Iterable[f1.Session]) -> ResultData:
-    """Build ResultData from sessions, mapping data per round entry."""
-    round_entries = f1.RoundEntry.objects.filter(sessions__in=sessions).distinct()
+class ResultDataLoader:
+    """Loads result data from ORM models into ResultData DTO."""
 
-    if len(round_entries) == 0:
-        raise ValueError("No round entries found for sessions when building per round entry mapping")
+    def __init__(self, round_api_id: str):
+        self._round_id = round_api_id
 
-    round: f1.Round | None = None
-    row_data: list[ResultRowData] = []
-    for rentry in round_entries:
+    def load(self, req: request.Request, session_filter: str) -> ResultData:
+        """Build ResultData for the given session filter."""
+        round = f1.Round.objects.filter(api_id=self._round_id).select_related("season", "circuit").first()
+
         if round is None:
-            round = rentry.round
-        elif rentry.round.api_id != round.api_id:
-            raise ValueError("Multiple rounds found for session entries when building per round entry mapping")
-        key = (rentry.car_number, rentry.team_driver.driver.forename, rentry.api_id)
-        driver = rentry.team_driver.driver
-        team = rentry.team_driver.team
-        session_entries = rentry.session_entries.filter(session__in=sessions)
-        row_data.append(ResultRowData.from_orm(req, key, driver, team, session_entries))
+            raise ValueError(f"Round not found: {self._round_id}")
 
-    if round is None:
-        raise ValueError("No round found for session entries when building per round entry mapping")
+        sessions = f1.Session.objects.filter(round=round, type__startswith=session_filter).order_by("timestamp")
 
-    return ResultData(
-        rows=row_data,
-        round=shared.Round(
-            id=round.api_id,
-            url=HttpUrl(req.build_absolute_uri(reverse("rounds-detail", args=[round.api_id]))),
-            name=round.name,
-            number=round.number,
-            race_number=round.race_number,
-            wikipedia=HttpUrl(round.wikipedia) if round.wikipedia else None,
-        ),
-        season=shared.Season(
-            id=round.season.api_id,
-            url=HttpUrl(req.build_absolute_uri(reverse("seasons-detail", args=[round.season.api_id]))),
-            year=round.season.year,
-            wikipedia=HttpUrl(round.season.wikipedia) if round.season.wikipedia else None,
-        ),
-        circuit=shared.Circuit(
-            id=round.circuit.api_id,
-            url=HttpUrl(req.build_absolute_uri(reverse("circuits-detail", args=[round.circuit.api_id]))),
-            name=round.circuit.name,
-            locality=round.circuit.locality,
-            country_code=round.circuit.country_code,
-            latitude=round.circuit.latitude,
-            longitude=round.circuit.longitude,
-            altitude=round.circuit.altitude,
-            wikipedia=HttpUrl(round.circuit.wikipedia) if round.circuit.wikipedia else None,
-        ),
-        sessions=[
-            shared.BasicSession(
-                id=s.api_id,
-                url=HttpUrl(req.build_absolute_uri(reverse("sessions-detail", args=[s.api_id]))),
-                number=s.number,
-                type=s.type,
-                type_display=f1.SessionType(s.type).name,
-            )
-            for s in sessions
-        ],
-    )
+        round_entries = f1.RoundEntry.objects.filter(sessions__in=sessions).distinct()
+
+        if len(round_entries) == 0:
+            raise ValueError("No round entries found for sessions")
+
+        row_data: list[ResultRowData] = []
+        for rentry in round_entries:
+            key = (rentry.car_number, rentry.team_driver.driver.forename, rentry.api_id)
+            driver = rentry.team_driver.driver
+            team = rentry.team_driver.team
+            session_entries = rentry.session_entries.filter(session__in=sessions)
+            row_data.append(ResultRowData.from_orm(req, key, driver, team, session_entries))
+
+        return ResultData(
+            rows=row_data,
+            round=shared.Round(
+                id=round.api_id,
+                url=HttpUrl(req.build_absolute_uri(reverse("rounds-detail", args=[round.api_id]))),
+                name=round.name,
+                number=round.number,
+                race_number=round.race_number,
+                wikipedia=HttpUrl(round.wikipedia) if round.wikipedia else None,
+            ),
+            season=shared.Season(
+                id=round.season.api_id,
+                url=HttpUrl(req.build_absolute_uri(reverse("seasons-detail", args=[round.season.api_id]))),
+                year=round.season.year,
+                wikipedia=HttpUrl(round.season.wikipedia) if round.season.wikipedia else None,
+            ),
+            circuit=shared.Circuit(
+                id=round.circuit.api_id,
+                url=HttpUrl(req.build_absolute_uri(reverse("circuits-detail", args=[round.circuit.api_id]))),
+                name=round.circuit.name,
+                locality=round.circuit.locality,
+                country_code=round.circuit.country_code,
+                latitude=round.circuit.latitude,
+                longitude=round.circuit.longitude,
+                altitude=round.circuit.altitude,
+                wikipedia=HttpUrl(round.circuit.wikipedia) if round.circuit.wikipedia else None,
+            ),
+            sessions=[
+                shared.BasicSession(
+                    id=s.api_id,
+                    url=HttpUrl(req.build_absolute_uri(reverse("sessions-detail", args=[s.api_id]))),
+                    number=s.number,
+                    type=s.type,
+                    type_display=f1.SessionType(s.type).name,
+                )
+                for s in sessions
+            ],
+        )
