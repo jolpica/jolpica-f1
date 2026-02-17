@@ -8,7 +8,7 @@ enum formula_one.char_session_type {
   "Q1" [note: '''Qualifying One''']
   "Q2" [note: '''Qualifying Two''']
   "Q3" [note: '''Qualifying Three''']
-  "QA" [note: '''Qualifying Avg''']
+  "QA" [note: '''Qualifying Aggregate''']
   "QO" [note: '''Qualifying Order''']
   "QB" [note: '''Qualifying Best''']
   "FP1" [note: '''Practice One''']

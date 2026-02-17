@@ -65,4 +65,4 @@ class RoundEntry(ApiIDMixin, models.Model):
         ]
 
     def __str__(self) -> str:
-        return f"{self.team_driver} - {self.round}"
+        return f"{self.team_driver} - {self.round} - {self.car_number}"

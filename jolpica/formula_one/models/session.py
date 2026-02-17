@@ -20,7 +20,7 @@ class SessionType(models.TextChoices):
     QUALIFYING_ONE = "Q1"
     QUALIFYING_TWO = "Q2"
     QUALIFYING_THREE = "Q3"
-    QUALIFYING_AVG = "QA"
+    QUALIFYING_AGGREGATE = "QA"
     QUALIFYING_ORDER = "QO"
     QUALIFYING_BEST = "QB"
     PRACTICE_ONE = "FP1"
