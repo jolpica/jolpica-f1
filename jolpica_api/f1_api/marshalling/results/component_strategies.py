@@ -5,15 +5,16 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 
 from jolpica.formula_one.utils import format_timedelta
-from jolpica_api.f1_api.marshalling.results.constants import (
+from jolpica_schemas.f1_api.alpha.results import ResultComponent
+
+from .constants import (
     COMPONENT_DISPLAY_NAMES,
     GRID_COMPONENT_KEY,
 )
-from jolpica_api.f1_api.marshalling.results.data_transfer import (
+from .loader import (
     ResultRowData,
     ResultRowSessionEntryData,
 )
-from jolpica_schemas.f1_api.alpha.results import ResultComponent
 
 
 class ComponentRenderingStrategy(ABC):

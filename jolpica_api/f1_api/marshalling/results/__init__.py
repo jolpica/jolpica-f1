@@ -2,16 +2,13 @@
 
 from __future__ import annotations
 
-from jolpica_api.f1_api.marshalling.results.data_transfer import (
+from .loader import (
     ResultData,
+    ResultDataLoader,
     ResultRowData,
     ResultRowSessionEntryData,
 )
-from jolpica_api.f1_api.marshalling.results.orchestrator import (
-    ResultDataLoader,
-    ResultsOrchestrator,
-    get_available_result_types,
-)
+from .orchestrator import ResultsOrchestrator
 
 __all__ = [
     "ResultData",
@@ -19,5 +16,4 @@ __all__ = [
     "ResultRowData",
     "ResultRowSessionEntryData",
     "ResultsOrchestrator",
-    "get_available_result_types",
 ]

@@ -7,17 +7,18 @@ from collections.abc import Sequence
 from datetime import timedelta
 
 from jolpica.formula_one.utils import format_timedelta
-from jolpica_api.f1_api.marshalling.results.component_strategies import (
+from jolpica_schemas.f1_api.alpha import shared
+from jolpica_schemas.f1_api.alpha.results import ResultComponent, ResultItem
+
+from .component_strategies import (
     ComponentRenderingStrategy,
     GridComponent,
     SingleSessionComponent,
 )
-from jolpica_api.f1_api.marshalling.results.data_transfer import (
+from .loader import (
     ResultRowData,
     ResultRowSessionEntryData,
 )
-from jolpica_schemas.f1_api.alpha import shared
-from jolpica_schemas.f1_api.alpha.results import ResultComponent, ResultItem
 
 
 class ResultRenderingStrategy(ABC):

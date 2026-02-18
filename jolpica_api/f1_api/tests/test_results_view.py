@@ -18,8 +18,8 @@ def test_results_view(
     """Test filtering rounds with valid parameters."""
 
     url = reverse("results-results", args=["round_0hYZFLEe", session_code])
-    # with django_assert_max_num_queries(10):
-    response = api_client.get(url)
+    with django_assert_max_num_queries(10):
+        response = api_client.get(url)
 
     assert response.status_code == 200
     response_data = response.json()

@@ -7,11 +7,25 @@ from rest_framework import permissions, request, response, viewsets
 from rest_framework.decorators import action
 
 from jolpica.formula_one import models as f1
-from jolpica_api.f1_api.marshalling.results import (
+
+from ..marshalling.results import (
     ResultDataLoader,
     ResultsOrchestrator,
-    get_available_result_types,
 )
+
+
+def get_available_result_types(round: f1.Round) -> list[str]:
+    """Get the list of result type codes available for a round."""
+    session_types = {sess.type for sess in round.sessions.all()}
+
+    results_for_round = [
+        "R",
+        "Q",
+    ]
+    for result_type in ["SQ", "SR", "FP", "FP1", "FP2", "FP3"]:
+        if any(sess_type.startswith(result_type) for sess_type in session_types):
+            results_for_round.append(result_type)
+    return results_for_round
 
 
 class ResultsView(viewsets.ViewSet):
