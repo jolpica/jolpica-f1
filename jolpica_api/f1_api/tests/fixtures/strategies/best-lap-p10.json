@@ -1,0 +1,31 @@
+{
+  "driver": {
+    "id": "decesaris",
+    "url": "http://api.example.com/drivers/decesaris",
+    "abbreviation": "CES",
+    "given_name": "Andrea",
+    "family_name": "de Cesaris"
+  },
+  "team": {
+    "id": "rial",
+    "url": "http://api.example.com/teams/rial",
+    "name": "Rial",
+    "primary_color": "#000080"
+  },
+  "position": 10,
+  "position_text": "10",
+  "time": "1:27.892",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": 22,
+  "components": {
+    "Q1": {
+      "key": "Q1",
+      "name": "Qualifying 1",
+      "position": 10,
+      "time": "1:27.892"
+    }
+  }
+}

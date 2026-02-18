@@ -1,0 +1,31 @@
+{
+  "driver": {
+    "id": "senna",
+    "url": "http://api.example.com/drivers/senna",
+    "abbreviation": "SEN",
+    "given_name": "Ayrton",
+    "family_name": "Senna"
+  },
+  "team": {
+    "id": "mclaren",
+    "url": "http://api.example.com/teams/mclaren",
+    "name": "McLaren",
+    "primary_color": "#FF8000"
+  },
+  "position": 1,
+  "position_text": "1",
+  "time": "1:25.501",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": 12,
+  "components": {
+    "Q1": {
+      "key": "Q1",
+      "name": "Qualifying 1",
+      "position": 1,
+      "time": "1:25.501"
+    }
+  }
+}

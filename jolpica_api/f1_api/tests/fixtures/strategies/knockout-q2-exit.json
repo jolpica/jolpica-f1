@@ -1,0 +1,37 @@
+{
+  "driver": {
+    "id": "bottas",
+    "url": "http://api.example.com/drivers/bottas",
+    "abbreviation": "BOT",
+    "given_name": "Valtteri",
+    "family_name": "Bottas"
+  },
+  "team": {
+    "id": "sauber",
+    "url": "http://api.example.com/teams/sauber",
+    "name": "Stake F1 Team Kick Sauber",
+    "primary_color": "#52E252"
+  },
+  "position": 13,
+  "position_text": "13",
+  "time": "1:29.876",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": 77,
+  "components": {
+    "Q1": {
+      "key": "Q1",
+      "name": "Qualifying 1",
+      "position": 12,
+      "time": "1:30.245"
+    },
+    "Q2": {
+      "key": "Q2",
+      "name": "Qualifying 2",
+      "position": 13,
+      "time": "1:29.876"
+    }
+  }
+}

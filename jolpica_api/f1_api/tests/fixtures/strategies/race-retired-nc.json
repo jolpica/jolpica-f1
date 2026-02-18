@@ -1,0 +1,31 @@
+{
+  "driver": {
+    "id": "alonso",
+    "url": "http://api.example.com/drivers/alonso",
+    "abbreviation": "ALO",
+    "given_name": "Fernando",
+    "family_name": "Alonso"
+  },
+  "team": {
+    "id": "aston_martin",
+    "url": "http://api.example.com/teams/aston_martin",
+    "name": "Aston Martin",
+    "primary_color": "#358C75"
+  },
+  "position": null,
+  "position_text": "NC",
+  "time": null,
+  "is_classified": false,
+  "status": "Engine",
+  "points": null,
+  "laps": 32,
+  "car_number": 14,
+  "components": {
+    "GRID": {
+      "key": "GRID",
+      "name": "Grid Position",
+      "position": 8,
+      "time": null
+    }
+  }
+}

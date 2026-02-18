@@ -1,0 +1,37 @@
+{
+  "driver": {
+    "id": "piastri",
+    "url": "http://api.example.com/drivers/piastri",
+    "abbreviation": "PIA",
+    "given_name": "Oscar",
+    "family_name": "Piastri"
+  },
+  "team": {
+    "id": "mclaren",
+    "url": "http://api.example.com/teams/mclaren",
+    "name": "McLaren",
+    "primary_color": "#FF8000"
+  },
+  "position": null,
+  "position_text": null,
+  "time": null,
+  "is_classified": null,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": null,
+  "components": {
+    "FP1": {
+      "key": "FP1",
+      "name": "Practice 1",
+      "position": 5,
+      "time": "1:33.102"
+    },
+    "FP2": {
+      "key": "FP2",
+      "name": "Practice 2",
+      "position": 2,
+      "time": "1:31.876"
+    }
+  }
+}

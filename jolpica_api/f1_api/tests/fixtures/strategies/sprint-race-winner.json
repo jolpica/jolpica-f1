@@ -1,0 +1,31 @@
+{
+  "driver": {
+    "id": "leclerc",
+    "url": "http://api.example.com/drivers/leclerc",
+    "abbreviation": "LEC",
+    "given_name": "Charles",
+    "family_name": "Leclerc"
+  },
+  "team": {
+    "id": "ferrari",
+    "url": "http://api.example.com/teams/ferrari",
+    "name": "Ferrari",
+    "primary_color": "#E8002D"
+  },
+  "position": 1,
+  "position_text": "1",
+  "time": "26:31.445",
+  "is_classified": true,
+  "status": null,
+  "points": 8.0,
+  "laps": 19,
+  "car_number": 16,
+  "components": {
+    "GRID": {
+      "key": "GRID",
+      "name": "Grid Position",
+      "position": 2,
+      "time": null
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "driver": {
+    "id": "hamilton",
+    "url": "http://api.example.com/drivers/hamilton",
+    "abbreviation": "HAM",
+    "given_name": "Lewis",
+    "family_name": "Hamilton"
+  },
+  "team": {
+    "id": "mercedes",
+    "url": "http://api.example.com/teams/mercedes",
+    "name": "Mercedes",
+    "primary_color": "#27F4D2"
+  },
+  "position": 3,
+  "position_text": "3",
+  "time": "1:32.456",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": 22,
+  "car_number": 44,
+  "components": {}
+}

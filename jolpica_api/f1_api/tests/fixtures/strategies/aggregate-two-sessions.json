@@ -1,0 +1,37 @@
+{
+  "driver": {
+    "id": "raikkonen",
+    "url": "http://api.example.com/drivers/raikkonen",
+    "abbreviation": "RAI",
+    "given_name": "Kimi",
+    "family_name": "Raikkonen"
+  },
+  "team": {
+    "id": "alfa_romeo",
+    "url": "http://api.example.com/teams/alfa_romeo",
+    "name": "Alfa Romeo",
+    "primary_color": "#900000"
+  },
+  "position": 1,
+  "position_text": "1",
+  "time": "5:29.800",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": 2,
+  "components": {
+    "Q1": {
+      "key": "Q1",
+      "name": "Qualifying 1",
+      "position": 1,
+      "time": "2:45.600"
+    },
+    "Q2": {
+      "key": "Q2",
+      "name": "Qualifying 2",
+      "position": 1,
+      "time": "2:44.200"
+    }
+  }
+}

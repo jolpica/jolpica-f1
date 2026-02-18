@@ -1,0 +1,31 @@
+{
+  "driver": {
+    "id": "sargeant",
+    "url": "http://api.example.com/drivers/sargeant",
+    "abbreviation": "SAR",
+    "given_name": "Logan",
+    "family_name": "Sargeant"
+  },
+  "team": {
+    "id": "williams",
+    "url": "http://api.example.com/teams/williams",
+    "name": "Williams",
+    "primary_color": "#64C4FF"
+  },
+  "position": 18,
+  "position_text": "18",
+  "time": "1:31.892",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": 2,
+  "components": {
+    "Q1": {
+      "key": "Q1",
+      "name": "Qualifying 1",
+      "position": 18,
+      "time": "1:31.892"
+    }
+  }
+}

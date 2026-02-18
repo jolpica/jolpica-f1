@@ -1,0 +1,31 @@
+{
+  "driver": {
+    "id": "verstappen",
+    "url": "http://api.example.com/drivers/verstappen",
+    "abbreviation": "VER",
+    "given_name": "Max",
+    "family_name": "Verstappen"
+  },
+  "team": {
+    "id": "red_bull",
+    "url": "http://api.example.com/teams/red_bull",
+    "name": "Red Bull Racing",
+    "primary_color": "#3671C6"
+  },
+  "position": 1,
+  "position_text": "1",
+  "time": "1:20:48.233",
+  "is_classified": true,
+  "status": null,
+  "points": 25.0,
+  "laps": 53,
+  "car_number": 1,
+  "components": {
+    "GRID": {
+      "key": "GRID",
+      "name": "Grid Position",
+      "position": 1,
+      "time": null
+    }
+  }
+}

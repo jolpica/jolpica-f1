@@ -1,0 +1,43 @@
+{
+  "driver": {
+    "id": "norris",
+    "url": "http://api.example.com/drivers/norris",
+    "abbreviation": "NOR",
+    "given_name": "Lando",
+    "family_name": "Norris"
+  },
+  "team": {
+    "id": "mclaren",
+    "url": "http://api.example.com/teams/mclaren",
+    "name": "McLaren",
+    "primary_color": "#FF8000"
+  },
+  "position": 1,
+  "position_text": "1",
+  "time": "1:27.654",
+  "is_classified": true,
+  "status": null,
+  "points": null,
+  "laps": null,
+  "car_number": 4,
+  "components": {
+    "Q1": {
+      "key": "Q1",
+      "name": "Qualifying 1",
+      "position": 3,
+      "time": "1:29.456"
+    },
+    "Q2": {
+      "key": "Q2",
+      "name": "Qualifying 2",
+      "position": 2,
+      "time": "1:28.789"
+    },
+    "Q3": {
+      "key": "Q3",
+      "name": "Qualifying 3",
+      "position": 1,
+      "time": "1:27.654"
+    }
+  }
+}
