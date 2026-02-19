@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 
 from . import shared
+from .metadata import DetailResponse
 
 
 class ResultComponent(BaseModel):
@@ -26,6 +27,16 @@ class ResultItem(BaseModel):
     components: dict[str, ResultComponent]
 
 
+class AvailableResultsItem(BaseModel):
+    url: HttpUrl
+    type: str
+    title: str
+
+
+class AvailableResultsForRound(BaseModel):
+    available_results: list[AvailableResultsItem]
+
+
 class Results(BaseModel):
     season: shared.Season
     round: shared.Round
@@ -36,3 +47,11 @@ class Results(BaseModel):
     code: str
     component_keys: list[str]
     results: list[ResultItem]
+
+
+class ResultsResponse(DetailResponse[Results]):
+    """Schema for season schedule detail responses"""
+
+
+class AvailableResultsForRoundResponse(DetailResponse[AvailableResultsForRound]):
+    """Schema for available results types for a round response"""
