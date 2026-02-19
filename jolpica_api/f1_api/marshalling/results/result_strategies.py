@@ -115,8 +115,14 @@ class KnockoutQualifyingStrategy(ResultRenderingStrategy):
     def __init__(self, sessions: Sequence[shared.BasicSession], session_type_startswith: str):
         if session_type_startswith not in ["Q", "SQ"]:
             raise ValueError("Invalid session type for KnockoutQualifyingStrategy, must start with Q or SQ")
+        filtered_sessions = [s for s in sessions if s.type.startswith(session_type_startswith)]
+        if len(filtered_sessions) == 0:
+            raise ValueError(
+                f"No sessions found matching session type {session_type_startswith} for KnockoutQualifyingStrategy"
+            )
         component_renderers = [
-            SingleSessionComponent(f"{session_type_startswith}{i + 1}", sess.id) for i, sess in enumerate(sessions)
+            SingleSessionComponent(f"{session_type_startswith}{i + 1}", sess.id)
+            for i, sess in enumerate(filtered_sessions)
         ]
         super().__init__(component_renderers)
         self._session_type_startswith = session_type_startswith

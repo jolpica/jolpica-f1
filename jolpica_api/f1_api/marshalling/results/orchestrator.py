@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from jolpica_schemas.f1_api.alpha.results import ResultItem, Results
 
+from ..logger import logger
 from .constants import RESULT_TYPE_TITLES
 from .loader import (
     ResultData,
@@ -29,13 +30,17 @@ class ResultsOrchestrator:
         # TODO: Way to calculate result positions based on session entries
         result_renderer: ResultRenderingStrategy = RaceResultStrategy(self._session_filter)
         if self._session_filter in ["Q", "SQ"]:
-            # TODO: quali renderers for different seasons
             session_types = {s.type for s in self._result_data.sessions}
             if "QA" in session_types:
                 result_renderer = AggregateQualifyingStrategy(self._result_data.sessions)
             elif "QB" in session_types:
                 result_renderer = BestLapQualifyingStrategy(self._result_data.sessions)
             else:
+                if "QO" in session_types:
+                    # No support for QO sessions currently, but this isn't an issue currently as we don't have this data
+                    logger.error(
+                        "No qualifying strategy for QO session type, falling back to KnockoutQualifyingStrategy"
+                    )
                 result_renderer = KnockoutQualifyingStrategy(self._result_data.sessions, self._session_filter)
         elif self._session_filter in ["FP", "FP1", "FP2", "FP3"]:
             result_renderer = PracticeResultStrategy(self._result_data.sessions, self._session_filter)
@@ -50,8 +55,12 @@ class ResultsOrchestrator:
 
         component_keys = [renderer.get_component_key() for renderer in result_renderer.get_component_renderers()]
 
+        title = RESULT_TYPE_TITLES.get(self._session_filter)
+        if title is None:
+            logger.error("Missing result type title for session filter", extra={"session_filter": self._session_filter})
+            title = self._session_filter  # Fallback to using the session filter as the title if not found in mapping
         return Results(
-            title=RESULT_TYPE_TITLES.get(self._session_filter, "Unknown"),
+            title=title,
             code=self._session_filter,
             season=self._result_data.season,
             circuit=self._result_data.circuit,

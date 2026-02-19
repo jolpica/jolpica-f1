@@ -14,7 +14,6 @@ RESULT_TYPE_TITLES: dict[str, str] = {
     "FP3": "Practice 3",
 }
 
-GRID_COMPONENT_KEY = "GRID"
 
 # Display names for session components (used in ResultComponent)
 COMPONENT_DISPLAY_NAMES: dict[str, str] = {
@@ -27,5 +26,6 @@ COMPONENT_DISPLAY_NAMES: dict[str, str] = {
     "SQ1": "Sprint Qualifying 1",
     "SQ2": "Sprint Qualifying 2",
     "SQ3": "Sprint Qualifying 3",
-    GRID_COMPONENT_KEY: "Grid Position",
+    "GRID": "Grid Position",
+    "SGRID": "Sprint Grid Position",
 }

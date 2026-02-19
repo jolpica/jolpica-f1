@@ -1,5 +1,3 @@
-from typing import TYPE_CHECKING
-
 from django.apps import apps
 from django.contrib import admin
 from django.urls import resolve

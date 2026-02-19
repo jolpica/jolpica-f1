@@ -53,13 +53,10 @@ class ResultData:
 
 
 class ResultDataLoader:
-    """Loads result data from ORM models into ResultData DTO."""
-
     def __init__(self, round_api_id: str):
         self._round_id = round_api_id
 
     def load(self, req: request.Request, session_filter: str) -> ResultData:
-        """Build ResultData for the given session filter."""
         round = f1.Round.objects.filter(api_id=self._round_id).select_related("season", "circuit").first()
 
         if round is None:
@@ -99,10 +96,10 @@ class ResultDataLoader:
             key = (rentry.car_number, driver.forename, rentry.api_id)
 
             session_entry_list = []
-            for se in rentry.prefetched_session_entries:
-                # Get fastest lap from prefetched list (empty list if none)
-                fastest_lap = se.fastest_laps[0] if se.fastest_laps else None
-                fastest_lap_time = fastest_lap.time if fastest_lap else None
+            for se in rentry.prefetched_session_entries:  # type:ignore
+                fastest_lap_time: timedelta | None = None
+                if se.fastest_laps:
+                    fastest_lap_time = se.fastest_laps[0].time
 
                 session_entry_list.append(
                     ResultRowSessionEntryData(
