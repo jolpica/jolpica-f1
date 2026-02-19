@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from django.apps import apps
 from django.contrib import admin
 from django.urls import resolve
@@ -8,7 +10,7 @@ from jolpica.formula_one import models as f1
 class ListAdminMixin:
     def __init__(self, model, admin_site):
         self.list_display = [field.name for field in model._meta.fields]
-        self.search_fields = self._get_search_fields(model.__name__)
+        self.search_fields = self._get_search_fields(model)
         if model.__name__ not in {"PointScheme"}:
             self.autocomplete_fields = [
                 field.name
@@ -37,6 +39,17 @@ class ListAdminMixin:
                 "session_entry__round_entry__team_driver__driver",
             ]
         elif model.__name__ == "PitStop":
+            self.list_select_related = [
+                "session_entry",
+                "lap__session_entry__session__round__season",
+                "lap__session_entry__round_entry__team_driver__driver",
+                "lap__session_entry__round_entry__team_driver__team",
+                "session_entry__session__round__season",
+                "session_entry__round_entry__round__season",
+                "session_entry__round_entry__team_driver__driver",
+                "session_entry__round_entry__team_driver__team",
+                "session_entry__round_entry__team_driver__season",
+            ]
             self.list_filter = [
                 "session_entry__session__round__season__year",
                 "session_entry__session__round__number",
@@ -48,9 +61,22 @@ class ListAdminMixin:
             self.list_filter = ["session__type", "session__round__number", "session__round__season"]
         elif model.__name__ == "Session":
             self.list_filter = ["type", "round__season", "round__number"]
+        elif model.__name__ == "Round":
+            self.list_filter = ["is_cancelled", "number", "season"]
+        elif model.__name__ == "Season":
+            self.list_select_related = ["championship_system"]
         elif model.__name__ == "TeamDriver":
             self.list_filter = ["season"]
         elif model.__name__ == "DriverChampionship" or model.__name__ == "TeamChampionship":
+            self.list_select_related = [
+                "session__round__season",
+                "season",
+                "round__season",
+            ]
+            if model.__name__ == "TeamChampionship":
+                self.list_select_related.append("team")
+            else:
+                self.list_select_related.append("driver")
             self.list_filter = [
                 ("season", admin.EmptyFieldListFilter),
                 ("round", admin.EmptyFieldListFilter),
@@ -59,16 +85,18 @@ class ListAdminMixin:
             ]
         super().__init__(model, admin_site)
 
-    def _get_search_fields(self, model_name: str) -> list[str]:
+    def _get_search_fields(self, model) -> list[str]:
+        search_fields = []
+        model_name = model.__name__
         match model_name:
             case "Circuit":
-                return ["name", "reference", "country", "locality"]
+                search_fields = ["name", "reference", "country", "locality"]
             case "Season":
-                return ["year"]
+                search_fields = ["year"]
             case "Round":
-                return ["number", "season__year", "name", "circuit__country"]
+                search_fields = ["number", "season__year", "name", "circuit__country"]
             case "TeamDriver":
-                return [
+                search_fields = [
                     "season__year",
                     "team__reference",
                     "team__name",
@@ -77,11 +105,11 @@ class ListAdminMixin:
                     "driver__surname",
                 ]
             case "Driver":
-                return ["forename", "surname", "abbreviation"]
+                search_fields = ["forename", "surname", "abbreviation"]
             case "Team":
-                return ["name", "reference"]
+                search_fields = ["name", "reference"]
             case "Lap":
-                return [
+                search_fields = [
                     "session_entry__session__type",
                     "number",
                     "session_entry__round_entry__round__name",
@@ -89,9 +117,9 @@ class ListAdminMixin:
                     "session_entry__round_entry__team_driver__driver__surname",
                 ]
             case "Session":
-                return ["number", "round__season__year", "round__name", "type"]
+                search_fields = ["number", "round__season__year", "round__name", "type"]
             case "RoundEntry":
-                return [
+                search_fields = [
                     "round__season__year",
                     "round__name",
                     "car_number",
@@ -99,14 +127,16 @@ class ListAdminMixin:
                     "team_driver__driver__surname",
                 ]
             case "SessionEntry":
-                return [
+                search_fields = [
                     "session__round__season__year",
                     "session__round__name",
                     "round_entry__team_driver__driver__forename",
                     "round_entry__team_driver__driver__surname",
                     "round_entry__team_driver__team__name",
                 ]
-        return []
+        if hasattr(model, "api_id"):
+            search_fields.append("api_id")
+        return search_fields
 
 
 class SessionInline(admin.TabularInline):
