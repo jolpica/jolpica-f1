@@ -21,9 +21,9 @@
   "laps": 19,
   "car_number": 16,
   "components": {
-    "GRID": {
-      "key": "GRID",
-      "name": "Grid Position",
+    "SGRID": {
+      "key": "SGRID",
+      "name": "Sprint Grid Position",
       "position": 2,
       "time": null
     }

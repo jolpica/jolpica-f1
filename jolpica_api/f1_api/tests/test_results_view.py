@@ -60,7 +60,7 @@ def assert_result_matches_snapshot(result: ResultItem, snapshot_name: str) -> No
 
     if snapshot_path.exists():
         expected_data = json.loads(snapshot_path.read_text())
-        assert result_data == expected_data
+        assert result_data == expected_data, f"Result does not match snapshot {snapshot_name}"
     else:
         snapshot_path.parent.mkdir(parents=True, exist_ok=True)
         snapshot_path.write_text(json.dumps(result_data, indent=2))

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from django.urls import reverse
 from rest_framework import permissions, request, response, viewsets
 from rest_framework.decorators import action
@@ -12,6 +14,8 @@ from ..marshalling.results import (
     ResultDataLoader,
     ResultsOrchestrator,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def get_available_result_types(round: f1.Round) -> list[str]:
@@ -63,6 +67,12 @@ class ResultsView(viewsets.ViewSet):
 
         loader = ResultDataLoader(api_id)
         result_data = loader.load(req, session_filter)
-        results = ResultsOrchestrator(session_filter, result_data).render()
+        try:
+            results = ResultsOrchestrator(session_filter, result_data).render()
+        except ValueError:
+            logger.exception(
+                "Failed to render results", extra={"round_api_id": api_id, "session_filter": session_filter}
+            )
+            return response.Response({"error": "Failed to render results"}, status=500)
 
         return response.Response({"data": results.model_dump(exclude_none=True, mode="json")})

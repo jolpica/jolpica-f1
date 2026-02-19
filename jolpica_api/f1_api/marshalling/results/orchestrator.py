@@ -28,7 +28,7 @@ class ResultsOrchestrator:
 
     def render(self) -> Results:
         # TODO: Way to calculate result positions based on session entries
-        result_renderer: ResultRenderingStrategy = RaceResultStrategy(self._session_filter)
+        result_renderer: ResultRenderingStrategy
         if self._session_filter in ["Q", "SQ"]:
             session_types = {s.type for s in self._result_data.sessions}
             if "QA" in session_types:
@@ -44,6 +44,8 @@ class ResultsOrchestrator:
                 result_renderer = KnockoutQualifyingStrategy(self._result_data.sessions, self._session_filter)
         elif self._session_filter in ["FP", "FP1", "FP2", "FP3"]:
             result_renderer = PracticeResultStrategy(self._result_data.sessions, self._session_filter)
+        else:
+            result_renderer = RaceResultStrategy(self._session_filter)
 
         results: list[ResultItem] = []
         for result_data_row in self._result_data.rows:
