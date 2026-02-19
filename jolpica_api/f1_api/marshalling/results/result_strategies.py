@@ -70,7 +70,7 @@ class ResultRenderingStrategy(ABC):
             points=race_session_entry.points if race_session_entry.is_eligible_for_points else None,
             laps=race_session_entry.laps_completed,
             components=components,
-            car_number=race_session_entry.car_number,
+            car_number=result_data.car_number,
             driver=result_data.driver,
             team=result_data.team,
         )
@@ -256,6 +256,7 @@ class PracticeResultStrategy(ResultRenderingStrategy):
             points=None,
             laps=None,
             components=components,
+            car_number=result_data.car_number,
             driver=result_data.driver,
             team=result_data.team,
         )

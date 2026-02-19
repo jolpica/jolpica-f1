@@ -189,9 +189,9 @@ def race_winner_data() -> ResultRowData:
                 laps_completed=53,
                 time=timedelta(hours=1, minutes=20, seconds=48, milliseconds=233),
                 fastest_lap_time=timedelta(minutes=1, seconds=24, milliseconds=319),
-                car_number=1,
             )
         ],
+        car_number=1,
         driver=shared.BasicDriver(
             id="verstappen",
             given_name="Max",
@@ -227,9 +227,9 @@ def race_retired_data() -> ResultRowData:
                 laps_completed=32,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=25, milliseconds=102),
-                car_number=14,
             )
         ],
+        car_number=14,
         driver=shared.BasicDriver(
             id="alonso",
             given_name="Fernando",
@@ -265,9 +265,9 @@ def sprint_winner_data() -> ResultRowData:
                 laps_completed=19,
                 time=timedelta(minutes=26, seconds=31, milliseconds=445),
                 fastest_lap_time=timedelta(minutes=1, seconds=29, milliseconds=876),
-                car_number=16,
             )
         ],
+        car_number=16,
         driver=shared.BasicDriver(
             id="leclerc",
             given_name="Charles",
@@ -303,9 +303,9 @@ def knockout_q1_exit_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=31, milliseconds=892),
-                car_number=2,
             )
         ],
+        car_number=2,
         driver=shared.BasicDriver(
             id="sargeant",
             given_name="Logan",
@@ -341,7 +341,6 @@ def knockout_q2_exit_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=30, milliseconds=245),
-                car_number=77,
             ),
             ResultRowSessionEntryData(
                 session_type="Q2",
@@ -356,9 +355,9 @@ def knockout_q2_exit_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=29, milliseconds=876),
-                car_number=77,
             ),
         ],
+        car_number=77,
         driver=shared.BasicDriver(
             id="bottas",
             given_name="Valtteri",
@@ -394,7 +393,6 @@ def knockout_pole_position_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=29, milliseconds=456),
-                car_number=4,
             ),
             ResultRowSessionEntryData(
                 session_type="Q2",
@@ -409,7 +407,6 @@ def knockout_pole_position_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=28, milliseconds=789),
-                car_number=4,
             ),
             ResultRowSessionEntryData(
                 session_type="Q3",
@@ -424,9 +421,9 @@ def knockout_pole_position_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=27, milliseconds=654),
-                car_number=4,
             ),
         ],
+        car_number=4,
         driver=shared.BasicDriver(
             id="norris",
             given_name="Lando",
@@ -462,7 +459,6 @@ def aggregate_quali_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=2, seconds=45, milliseconds=600),
-                car_number=2,
             ),
             ResultRowSessionEntryData(
                 session_type="QA",
@@ -477,9 +473,9 @@ def aggregate_quali_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=2, seconds=44, milliseconds=200),
-                car_number=2,
             ),
         ],
+        car_number=2,
         driver=shared.BasicDriver(
             id="raikkonen",
             given_name="Kimi",
@@ -515,9 +511,9 @@ def best_lap_pole_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=25, milliseconds=501),
-                car_number=12,
             )
         ],
+        car_number=12,
         driver=shared.BasicDriver(
             id="senna",
             given_name="Ayrton",
@@ -553,9 +549,9 @@ def best_lap_p10_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=27, milliseconds=892),
-                car_number=22,
             )
         ],
+        car_number=22,
         driver=shared.BasicDriver(
             id="decesaris",
             given_name="Andrea",
@@ -591,9 +587,9 @@ def practice_single_session_data() -> ResultRowData:
                 laps_completed=22,
                 time=timedelta(minutes=1, seconds=32, milliseconds=456),
                 fastest_lap_time=timedelta(minutes=1, seconds=32, milliseconds=456),
-                car_number=44,
             )
         ],
+        car_number=44,
         driver=shared.BasicDriver(
             id="hamilton",
             given_name="Lewis",
@@ -629,7 +625,6 @@ def practice_multiple_sessions_data() -> ResultRowData:
                 laps_completed=25,
                 time=timedelta(minutes=1, seconds=33, milliseconds=102),
                 fastest_lap_time=timedelta(minutes=1, seconds=33, milliseconds=102),
-                car_number=81,
             ),
             ResultRowSessionEntryData(
                 session_type="FP2",
@@ -644,9 +639,9 @@ def practice_multiple_sessions_data() -> ResultRowData:
                 laps_completed=28,
                 time=timedelta(minutes=1, seconds=31, milliseconds=876),
                 fastest_lap_time=timedelta(minutes=1, seconds=31, milliseconds=876),
-                car_number=81,
             ),
         ],
+        car_number=81,
         driver=shared.BasicDriver(
             id="piastri",
             given_name="Oscar",

@@ -27,7 +27,6 @@ class ResultRowSessionEntryData:
     points: float | None
     laps_completed: int | None
     time: timedelta | None
-    car_number: int | None
     fastest_lap_time: timedelta | None
 
 
@@ -37,6 +36,7 @@ class ResultRowData:
 
     row_key: tuple
     session_entries: list[ResultRowSessionEntryData]
+    car_number: int | None
     driver: shared.BasicDriver
     team: shared.BasicTeam
 
@@ -115,7 +115,6 @@ class ResultDataLoader:
                         laps_completed=se.laps_completed,
                         time=se.time,
                         fastest_lap_time=fastest_lap_time,
-                        car_number=rentry.car_number,
                     )
                 )
 
@@ -123,6 +122,7 @@ class ResultDataLoader:
                 ResultRowData(
                     row_key=key,
                     session_entries=session_entry_list,
+                    car_number=rentry.car_number,
                     driver=shared.BasicDriver(
                         id=driver.api_id,
                         given_name=driver.forename,
@@ -148,6 +148,7 @@ class ResultDataLoader:
                 number=round.number,
                 race_number=round.race_number,
                 wikipedia=HttpUrl(round.wikipedia) if round.wikipedia else None,
+                is_cancelled=round.is_cancelled,
             ),
             season=shared.Season(
                 id=round.season.api_id,
