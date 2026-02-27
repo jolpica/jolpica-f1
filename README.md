@@ -46,3 +46,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [OversteerFormula1App](https://github.com/HugoLe-SS/OversteerFormula1App) - OversteerFormula1App is an Android project built with Kotlin and Jetpack Compose, designed to provide race schedules, standings, race results, news, and live updates.
 - [F1 Points Calculator](https://github.com/yuyangchee98/F1-Points-Calculator) - An interactive championship points calculator and race simulator for predicting F1 standings. Results update every week using jolpica-f1 data. 
 - [GridTip](https://github.com/selfire1/gridtip) - Website for social F1 tipping with your friends. Data is powered by the jolpica-f1 API.
+- [InkyCloud-F1](https://github.com/Rhiz3K/InkyCloud-F1) - E-Ink/ePaper F1 screen generator (1-bit BMP) showing next race info, full session times, and circuit details.
