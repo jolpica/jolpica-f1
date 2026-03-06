@@ -351,11 +351,12 @@ def test_db_error(client, dry_run):
 
 
 @pytest.mark.django_db
-def test_2026_aus_fp1_import(client, season_2026_data):
+def test_2026_aus_fp1_import(client, season_2026_data, django_assert_max_num_queries):
     """Test importing a full 2026 Australian GP FP1+FP2 dataset."""
     input_data = load_fixture_directory(FIXTURE_DIR / "2026-aus-fp1")
 
-    response = client.put("/data/import/", {"dry_run": False, "data": input_data}, format="json")
+    with django_assert_max_num_queries(500):
+        response = client.put("/data/import/", {"dry_run": False, "data": input_data}, format="json")
     assert response.status_code == 200, f"Import failed: {response.json()}"
 
     round_obj = f1.Round.objects.get(season__year=2026, number=1)
