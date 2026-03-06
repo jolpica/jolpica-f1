@@ -33,7 +33,7 @@ def get_available_result_types(round: f1.Round) -> list[str]:
         "R",
         "Q",
     ]
-    for result_type in ["SQ", "SR", "FP", "FP1", "FP2", "FP3"]:
+    for result_type in ["SQ", "SR", "FP1", "FP2", "FP3"]:
         if any(sess_type.startswith(result_type) for sess_type in session_types):
             results_for_round.append(result_type)
     return results_for_round

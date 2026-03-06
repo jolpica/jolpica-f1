@@ -42,7 +42,7 @@ class ResultsOrchestrator:
                         "No qualifying strategy for QO session type, falling back to KnockoutQualifyingStrategy"
                     )
                 result_renderer = KnockoutQualifyingStrategy(self._result_data.sessions, self._session_filter)
-        elif self._session_filter in ["FP", "FP1", "FP2", "FP3"]:
+        elif self._session_filter in ["FP1", "FP2", "FP3"]:
             result_renderer = PracticeResultStrategy(self._result_data.sessions, self._session_filter)
         else:
             result_renderer = RaceResultStrategy(self._session_filter)
