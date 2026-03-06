@@ -247,6 +247,9 @@ class ListResultsSerializer(serializers.ListSerializer):
         if finish_time == winner_time:
             # time = str(finish_time).strip(":0")
             time = str(finish_time)[:-3].lstrip("0:")
+        elif finish_time < winner_time:
+            # This can happen when the driver crashes, but is still classified
+            return ""
         else:
             time_diff = finish_time - winner_time
             time = f"+{format_timedelta(time_diff)}"
