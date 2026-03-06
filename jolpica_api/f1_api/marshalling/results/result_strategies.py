@@ -228,18 +228,18 @@ class PracticeResultStrategy(ResultRenderingStrategy):
 
     def __init__(self, sessions: Sequence[shared.BasicSession], session_type_startswith: str):
         self._number_of_sessions = len(sessions)
-        component_renderers: list[ComponentRenderingStrategy] = [
-            SingleSessionComponent(sess.type, sess.id) for sess in sessions
-        ]
-        if self._number_of_sessions == 1:
-            component_renderers = []
+        component_renderers: list[ComponentRenderingStrategy] = []
+        # This is in place to allow displaying multiple practice sessions in a single result call,
+        # currently this is unused, but could be used in the future for a unified round result
+        if self._number_of_sessions > 1:
+            component_renderers = [SingleSessionComponent(sess.type, sess.id) for sess in sessions]
         super().__init__(component_renderers)
 
     def should_render(self, result_data: ResultRowData) -> bool:
-        return True
+        return bool(result_data.session_entries)
 
     def render(self, result_data: ResultRowData) -> ResultItem:
-        if self._number_of_sessions == 1 and result_data.session_entries:
+        if self._number_of_sessions == 1:
             session_entry = result_data.session_entries[0]
             return self._get_result_item_for_session(
                 session_entry.time if session_entry else None,
