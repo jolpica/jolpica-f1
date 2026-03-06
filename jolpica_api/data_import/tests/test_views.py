@@ -8,10 +8,21 @@ from rest_framework.test import APIClient
 
 import jolpica.formula_one.models as f1
 from jolpica_api.data_import.models import DataImportLog
-from jolpica_api.data_import.tests.test_fixture_setup import FIXTURE_DIR, load_fixture_directory, season_2026_data
 
-# Re-export fixture so pytest can discover it
-__all__ = ["season_2026_data"]
+FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures"
+
+
+def load_fixture_directory(directory: Path) -> list[dict]:
+    """Recursively load all JSON files from a directory into a single list."""
+    data: list[dict] = []
+    for path in sorted(directory.rglob("*.json")):
+        with open(path) as fh:
+            content = json.load(fh)
+            if isinstance(content, list):
+                data.extend(content)
+            else:
+                data.append(content)
+    return data
 
 
 @pytest.fixture(scope="function")
