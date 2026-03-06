@@ -9,6 +9,21 @@ from rest_framework.test import APIClient
 import jolpica.formula_one.models as f1
 from jolpica_api.data_import.models import DataImportLog
 
+FIXTURE_DIR = Path(__file__).resolve().parent / "fixtures"
+
+
+def load_fixture_directory(directory: Path) -> list[dict]:
+    """Recursively load all JSON files from a directory into a single list."""
+    data: list[dict] = []
+    for path in sorted(directory.rglob("*.json")):
+        with open(path) as fh:
+            content = json.load(fh)
+            if isinstance(content, list):
+                data.extend(content)
+            else:
+                data.append(content)
+    return data
+
 
 @pytest.fixture(scope="function")
 def client() -> APIClient:
@@ -344,3 +359,28 @@ def test_db_error(client, dry_run):
     assert log.dry_run == dry_run
     assert not log.is_success
     assert log.error_type == "IMPORT"
+
+
+@pytest.mark.django_db
+def test_2026_aus_fp1_import(client, season_2026_data, django_assert_max_num_queries):
+    """Test importing a full 2026 Australian GP FP1+FP2 dataset."""
+    input_data = load_fixture_directory(FIXTURE_DIR / "2026-aus-fp1")
+
+    with django_assert_max_num_queries(500):
+        response = client.put("/data/import/", {"dry_run": False, "data": input_data}, format="json")
+    assert response.status_code == 200, f"Import failed: {response.json()}"
+
+    round_obj = f1.Round.objects.get(season__year=2026, number=1)
+
+    # 22 RoundEntries
+    assert f1.RoundEntry.objects.filter(round=round_obj).count() == 22
+
+    # 21 FP1 SessionEntries, 22 FP2 SessionEntries
+    fp1_session = f1.Session.objects.get(round=round_obj, type="FP1")
+    fp2_session = f1.Session.objects.get(round=round_obj, type="FP2")
+    assert f1.SessionEntry.objects.filter(session=fp1_session).count() == 21
+    assert f1.SessionEntry.objects.filter(session=fp2_session).count() == 22
+
+    # 463 FP1 Laps, 518 FP2 Laps
+    assert f1.Lap.objects.filter(session_entry__session=fp1_session).count() == 463
+    assert f1.Lap.objects.filter(session_entry__session=fp2_session).count() == 518
