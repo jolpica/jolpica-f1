@@ -242,7 +242,7 @@ class PracticeResultStrategy(ResultRenderingStrategy):
         if self._number_of_sessions == 1:
             session_entry = result_data.session_entries[0]
             return self._get_result_item_for_session(
-                session_entry.time if session_entry else None,
+                session_entry.fastest_lap_time if session_entry else None,
                 result_data,
                 session_entry,
             )

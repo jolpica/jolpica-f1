@@ -140,17 +140,17 @@ class ListAdminMixin:
 
 class InlineAutoFillApiIdMixin(admin.TabularInline):
     def get_formset(self, request, obj=None, **kwargs):
-        FormSet = super().get_formset(request, obj, **kwargs)
+        formset = super().get_formset(request, obj, **kwargs)
         model = self.model
         extra = self.get_extra(request, obj, **kwargs)
-        original_init = FormSet.__init__
+        original_init = formset.__init__
 
         def new_init(fs, *args, **kw):
             kw.setdefault("initial", [{"api_id": generate_api_id(model.ID_PREFIX)} for _ in range(extra)])
             original_init(fs, *args, **kw)
 
-        FormSet.__init__ = new_init
-        return FormSet
+        formset.__init__ = new_init
+        return formset
 
     def formfield_for_dbfield(self, db_field, request, **kwargs):
         field = super().formfield_for_dbfield(db_field, request, **kwargs)
