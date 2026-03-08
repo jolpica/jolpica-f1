@@ -29,7 +29,7 @@ def test_practice_result_strategy_with_session_with_session_entries():
     # setup magic mock so that any undefined attribute works as usual (e.g. if a string, returns "")
     strat._get_result_item_for_session = MagicMock()
     se_mock = MagicMock()
-    se_mock.time = "time"
+    se_mock.fastest_lap_time = "time"
 
     row_data = ResultRowData(
         row_key=("driver_1",),
