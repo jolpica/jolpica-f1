@@ -28,6 +28,7 @@ class ResultRowSessionEntryData:
     laps_completed: int | None
     time: timedelta | None
     fastest_lap_time: timedelta | None
+    fastest_lap_rank: int | None
 
 
 @dataclass
@@ -115,6 +116,7 @@ class ResultDataLoader:
                         laps_completed=se.laps_completed,
                         time=se.time,
                         fastest_lap_time=fastest_lap_time,
+                        fastest_lap_rank=se.fastest_lap_rank,
                     )
                 )
 

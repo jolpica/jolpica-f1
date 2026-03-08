@@ -10,11 +10,7 @@ from jolpica.formula_one.utils import format_timedelta
 from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.results import ResultComponent, ResultItem
 
-from .component_strategies import (
-    ComponentRenderingStrategy,
-    GridComponent,
-    SingleSessionComponent,
-)
+from .component_strategies import ComponentRenderingStrategy, FastestLapComponent, GridComponent, SingleSessionComponent
 from .loader import (
     ResultRowData,
     ResultRowSessionEntryData,
@@ -80,7 +76,7 @@ class RaceResultStrategy(ResultRenderingStrategy):
     """Renders race results (main race or sprint race)."""
 
     def __init__(self, session_type_startswith: str):
-        super().__init__([GridComponent(session_type_startswith)])
+        super().__init__([GridComponent(session_type_startswith), FastestLapComponent(session_type_startswith)])
         self._session_type_startswith = session_type_startswith
 
     def _get_race_session_entry(self, result_data: ResultRowData) -> ResultRowSessionEntryData | None:
