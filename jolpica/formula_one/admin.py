@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import resolve
 
 from jolpica.formula_one import models as f1
+from jolpica.formula_one.utils import generate_api_id
 
 
 class ListAdminMixin:
@@ -137,11 +138,32 @@ class ListAdminMixin:
         return search_fields
 
 
-class SessionInline(admin.TabularInline):
+class InlineAutoFillApiIdMixin(admin.TabularInline):
+    def get_formset(self, request, obj=None, **kwargs):
+        FormSet = super().get_formset(request, obj, **kwargs)
+        model = self.model
+        extra = self.get_extra(request, obj, **kwargs)
+        original_init = FormSet.__init__
+
+        def new_init(fs, *args, **kw):
+            kw.setdefault("initial", [{"api_id": generate_api_id(model.ID_PREFIX)} for _ in range(extra)])
+            original_init(fs, *args, **kw)
+
+        FormSet.__init__ = new_init
+        return FormSet
+
+    def formfield_for_dbfield(self, db_field, request, **kwargs):
+        field = super().formfield_for_dbfield(db_field, request, **kwargs)
+        if db_field.name == "api_id" and field is not None:
+            field.widget.attrs["data-api-prefix"] = self.model.ID_PREFIX
+        return field
+
+
+class SessionInline(InlineAutoFillApiIdMixin, admin.TabularInline):
     model = f1.Session
 
 
-class RoundEntryInline(admin.TabularInline):
+class RoundEntryInline(InlineAutoFillApiIdMixin, admin.TabularInline):
     model = f1.RoundEntry
 
     def get_parent_id_from_request(self, request):
@@ -163,10 +185,19 @@ class RoundEntryInline(admin.TabularInline):
 
 
 class FormulaOneModelAdmin(ListAdminMixin, admin.ModelAdmin):
+    class Media:
+        js = ("formula_one/admin/autofill_api_id.js",)
+
     def __init__(self, model, admin_site):
         super().__init__(model, admin_site)
         if model.__name__ == "Round":
             self.inlines = [SessionInline, RoundEntryInline]
+
+    def get_changeform_initial_data(self, request):
+        initial = super().get_changeform_initial_data(request)
+        if hasattr(self.model, "ID_PREFIX"):
+            initial.setdefault("api_id", generate_api_id(self.model.ID_PREFIX))
+        return initial
 
 
 models = apps.get_app_config("formula_one").get_models()
