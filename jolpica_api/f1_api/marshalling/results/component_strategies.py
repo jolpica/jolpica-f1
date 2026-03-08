@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from datetime import timedelta
 
 from jolpica.formula_one.utils import format_timedelta
 from jolpica_schemas.f1_api.alpha.results import ResultComponent
@@ -87,8 +88,6 @@ class GridComponent(ComponentRenderingStrategy):
         self._session_type_startswith = session_type_startswith
 
     def get_component_key(self) -> str:
-        if self._session_type_startswith == "SR":
-            return "SGRID"
         return "GRID"
 
     def should_render(self, result_data: ResultRowData) -> bool:
@@ -123,4 +122,56 @@ class GridComponent(ComponentRenderingStrategy):
             key=self.get_component_key(),
             name=self._get_component_display_name(),
             position=grid_position,
+        )
+
+
+class FastestLapComponent(ComponentRenderingStrategy):
+    """Renders the fastest lap component for race results."""
+
+    def __init__(self, session_type_startswith: str):
+        if session_type_startswith not in ["R", "SR"]:
+            raise ValueError(
+                f"FastestLapComponent must be initialized with a race session type, not {session_type_startswith}",
+            )
+        self._session_type_startswith = session_type_startswith
+
+    def get_component_key(self) -> str:
+        return "FLAP"
+
+    def should_render(self, result_data: ResultRowData) -> bool:
+        return any(
+            se.fastest_lap_time is not None
+            for se in result_data.session_entries
+            if se.session_type.startswith(self._session_type_startswith)
+        )
+
+    def render(self, result_data: ResultRowData) -> ResultComponent:
+        session_entries = [
+            se for se in result_data.session_entries if se.session_type.startswith(self._session_type_startswith)
+        ]
+        if len(session_entries) > 1:
+            logger.error(
+                "found multiple session entries matching fastest lap session filter, when expected at most one",
+                extra={"session_entries": [se.session_api_id for se in session_entries]},
+            )
+            # Fallback to using the first session entry with a fastest lap time if multiple are found
+            session_entries = sorted(
+                session_entries,
+                key=lambda se: se.session_order_number if se.session_order_number is not None else float("-inf"),
+                reverse=True,
+            )
+
+        fastest_lap_time: timedelta | None = None
+        fastest_lap_rank: int | None = None
+        for se in session_entries:
+            if se.fastest_lap_time is not None:
+                fastest_lap_time = se.fastest_lap_time
+                fastest_lap_rank = se.fastest_lap_rank
+                break
+
+        return ResultComponent(
+            key=self.get_component_key(),
+            name=self._get_component_display_name(),
+            time=format_timedelta(fastest_lap_time) if fastest_lap_time else None,
+            position=fastest_lap_rank,
         )

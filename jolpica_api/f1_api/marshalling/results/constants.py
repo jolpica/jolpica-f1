@@ -27,5 +27,5 @@ COMPONENT_DISPLAY_NAMES: dict[str, str] = {
     "SQ2": "Sprint Qualifying 2",
     "SQ3": "Sprint Qualifying 3",
     "GRID": "Grid Position",
-    "SGRID": "Sprint Grid Position",
+    "FLAP": "Fastest Lap",
 }
