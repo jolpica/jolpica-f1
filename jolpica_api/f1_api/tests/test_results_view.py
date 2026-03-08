@@ -30,14 +30,15 @@ def test_results_view(
 ) -> None:
     """Test filtering rounds with valid parameters."""
 
-    url = reverse("results-results", args=["round_0hYZFLEe", session_code])
+    round_id = "round_0hYZFLEe"
+    url = reverse("results-results", args=[round_id, session_code])
     with django_assert_max_num_queries(10):
         response = api_client.get(url)
 
     assert response.status_code == 200
     response_data = response.json()
 
-    expected_path = Path(__file__).parent / "fixtures" / "results" / f"results-round_0hYZFLEe-{session_code}.json"
+    expected_path = Path(__file__).parent / "fixtures" / "results" / f"results-{round_id}-{session_code}.json"
     if expected_path.exists():
         expected_data = json.loads(expected_path.read_text())
     else:
@@ -45,7 +46,9 @@ def test_results_view(
         expected_path.write_text(json.dumps(response_data, indent=2))
         expected_data = response_data
         pytest.fail(f"No fixture found, created new fixture at {expected_path}")
-    assert response_data["data"] == expected_data["data"]
+    assert response_data["data"] == expected_data["data"], (
+        f"Response data does not match expected fixture data ({round_id}, {session_code})"
+    )
 
 
 # ============================================================================
@@ -189,6 +192,7 @@ def race_winner_data() -> ResultRowData:
                 laps_completed=53,
                 time=timedelta(hours=1, minutes=20, seconds=48, milliseconds=233),
                 fastest_lap_time=timedelta(minutes=1, seconds=24, milliseconds=319),
+                fastest_lap_rank=3,
             )
         ],
         car_number=1,
@@ -227,6 +231,7 @@ def race_retired_data() -> ResultRowData:
                 laps_completed=32,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=25, milliseconds=102),
+                fastest_lap_rank=3,
             )
         ],
         car_number=14,
@@ -265,6 +270,7 @@ def sprint_winner_data() -> ResultRowData:
                 laps_completed=19,
                 time=timedelta(minutes=26, seconds=31, milliseconds=445),
                 fastest_lap_time=timedelta(minutes=1, seconds=29, milliseconds=876),
+                fastest_lap_rank=3,
             )
         ],
         car_number=16,
@@ -303,6 +309,7 @@ def knockout_q1_exit_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=31, milliseconds=892),
+                fastest_lap_rank=3,
             )
         ],
         car_number=2,
@@ -341,6 +348,7 @@ def knockout_q2_exit_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=30, milliseconds=245),
+                fastest_lap_rank=3,
             ),
             ResultRowSessionEntryData(
                 session_type="Q2",
@@ -355,6 +363,7 @@ def knockout_q2_exit_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=29, milliseconds=876),
+                fastest_lap_rank=3,
             ),
         ],
         car_number=77,
@@ -393,6 +402,7 @@ def knockout_pole_position_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=29, milliseconds=456),
+                fastest_lap_rank=3,
             ),
             ResultRowSessionEntryData(
                 session_type="Q2",
@@ -407,6 +417,7 @@ def knockout_pole_position_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=28, milliseconds=789),
+                fastest_lap_rank=3,
             ),
             ResultRowSessionEntryData(
                 session_type="Q3",
@@ -421,6 +432,7 @@ def knockout_pole_position_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=27, milliseconds=654),
+                fastest_lap_rank=3,
             ),
         ],
         car_number=4,
@@ -459,6 +471,7 @@ def aggregate_quali_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=2, seconds=45, milliseconds=600),
+                fastest_lap_rank=3,
             ),
             ResultRowSessionEntryData(
                 session_type="QA",
@@ -473,6 +486,7 @@ def aggregate_quali_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=2, seconds=44, milliseconds=200),
+                fastest_lap_rank=3,
             ),
         ],
         car_number=2,
@@ -511,6 +525,7 @@ def best_lap_pole_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=25, milliseconds=501),
+                fastest_lap_rank=3,
             )
         ],
         car_number=12,
@@ -549,6 +564,7 @@ def best_lap_p10_data() -> ResultRowData:
                 laps_completed=None,
                 time=None,
                 fastest_lap_time=timedelta(minutes=1, seconds=27, milliseconds=892),
+                fastest_lap_rank=3,
             )
         ],
         car_number=22,
@@ -587,6 +603,7 @@ def practice_single_session_data() -> ResultRowData:
                 laps_completed=22,
                 time=timedelta(minutes=1, seconds=32, milliseconds=456),
                 fastest_lap_time=timedelta(minutes=1, seconds=32, milliseconds=456),
+                fastest_lap_rank=3,
             )
         ],
         car_number=44,
@@ -625,6 +642,7 @@ def practice_multiple_sessions_data() -> ResultRowData:
                 laps_completed=25,
                 time=timedelta(minutes=1, seconds=33, milliseconds=102),
                 fastest_lap_time=timedelta(minutes=1, seconds=33, milliseconds=102),
+                fastest_lap_rank=5,
             ),
             ResultRowSessionEntryData(
                 session_type="FP2",
@@ -639,6 +657,7 @@ def practice_multiple_sessions_data() -> ResultRowData:
                 laps_completed=28,
                 time=timedelta(minutes=1, seconds=31, milliseconds=876),
                 fastest_lap_time=timedelta(minutes=1, seconds=31, milliseconds=876),
+                fastest_lap_rank=1,
             ),
         ],
         car_number=81,

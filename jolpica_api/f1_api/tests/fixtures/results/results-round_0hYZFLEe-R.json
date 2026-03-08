@@ -1,4 +1,7 @@
 {
+  "metadata": {
+    "timestamp": "2026-03-08T11:01:08.568283Z"
+  },
   "data": {
     "season": {
       "id": "season_0VeNZC1A",
@@ -38,7 +41,8 @@
     "title": "Race",
     "code": "R",
     "component_keys": [
-      "GRID"
+      "GRID",
+      "FLAP"
     ],
     "results": [
       {
@@ -67,6 +71,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 1
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 1,
+            "time": "1:30.275"
           }
         }
       },
@@ -96,6 +106,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 2
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 2,
+            "time": "1:30.543"
           }
         }
       },
@@ -125,6 +141,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 7
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 3,
+            "time": "1:30.545"
           }
         }
       },
@@ -154,6 +176,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 3
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 4,
+            "time": "1:30.850"
           }
         }
       },
@@ -183,6 +211,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 6
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 6,
+            "time": "1:31.124"
           }
         }
       },
@@ -212,6 +246,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 15
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 5,
+            "time": "1:30.914"
           }
         }
       },
@@ -241,6 +281,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 9
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 9,
+            "time": "1:31.338"
           }
         }
       },
@@ -270,6 +316,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 8
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 8,
+            "time": "1:31.273"
           }
         }
       },
@@ -299,6 +351,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 4
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 7,
+            "time": "1:31.255"
           }
         }
       },
@@ -328,6 +386,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 5
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 10,
+            "time": "1:31.366"
           }
         }
       },
@@ -357,6 +421,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 14
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 13,
+            "time": "1:31.699"
           }
         }
       },
@@ -386,6 +456,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 20
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 16,
+            "time": "1:31.852"
           }
         }
       },
@@ -415,6 +491,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 11
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 15,
+            "time": "1:31.776"
           }
         }
       },
@@ -444,6 +526,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 12
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 11,
+            "time": "1:31.508"
           }
         }
       },
@@ -473,6 +561,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 17
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 14,
+            "time": "1:31.769"
           }
         }
       },
@@ -502,6 +596,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 16
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 17,
+            "time": "1:32.084"
           }
         }
       },
@@ -531,6 +631,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 18
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 18,
+            "time": "1:32.353"
           }
         }
       },
@@ -560,6 +666,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 10
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 12,
+            "time": "1:31.539"
           }
         }
       },
@@ -589,6 +701,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 19
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 19,
+            "time": "1:33.356"
           }
         }
       },
@@ -618,6 +736,12 @@
             "key": "GRID",
             "name": "Grid Position",
             "position": 13
+          },
+          "FLAP": {
+            "key": "FLAP",
+            "name": "Fastest Lap",
+            "position": 20,
+            "time": "1:33.941"
           }
         }
       }

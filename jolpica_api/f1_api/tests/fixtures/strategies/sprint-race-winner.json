@@ -21,11 +21,17 @@
   "laps": 19,
   "car_number": 16,
   "components": {
-    "SGRID": {
-      "key": "SGRID",
-      "name": "Sprint Grid Position",
+    "GRID": {
+      "key": "GRID",
+      "name": "Grid Position",
       "position": 2,
       "time": null
+    },
+    "FLAP": {
+      "key": "FLAP",
+      "name": "Fastest Lap",
+      "position": 3,
+      "time": "1:29.876"
     }
   }
 }

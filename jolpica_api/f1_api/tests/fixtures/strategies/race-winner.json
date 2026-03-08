@@ -26,6 +26,12 @@
       "name": "Grid Position",
       "position": 1,
       "time": null
+    },
+    "FLAP": {
+      "key": "FLAP",
+      "name": "Fastest Lap",
+      "position": 3,
+      "time": "1:24.319"
     }
   }
 }
