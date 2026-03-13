@@ -69,7 +69,11 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
             rounds_prefetch = Prefetch(
                 "rounds",
                 queryset=f1.Round.objects.prefetch_related(
-                    Prefetch("sessions", queryset=f1.Session.objects.order_by("number"), to_attr="prefetched_sessions"),
+                    Prefetch(
+                        "sessions",
+                        queryset=f1.Session.objects.select_related("round").order_by("number"),
+                        to_attr="prefetched_sessions",
+                    ),
                 )
                 .select_related("circuit")
                 .order_by("date"),
@@ -102,7 +106,9 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
                 instance.rounds.order_by("date")
                 .prefetch_related(
                     Prefetch(
-                        "sessions", queryset=f1.Session.objects.order_by("timestamp"), to_attr="prefetched_sessions"
+                        "sessions",
+                        queryset=f1.Session.objects.select_related("round").order_by("timestamp"),
+                        to_attr="prefetched_sessions",
                     )
                 )
                 # Added select_related here for fallback
