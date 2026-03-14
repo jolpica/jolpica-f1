@@ -87,59 +87,36 @@ class ResultDataLoader:
             .distinct()
         )
 
-        if len(round_entries) == 0:
-            raise ValueError("No round entries found for sessions")
-
         row_data: list[ResultRowData] = []
-        for rentry in round_entries:
-            driver = rentry.team_driver.driver
-            team = rentry.team_driver.team
-            key = (rentry.car_number, driver.forename, rentry.api_id)
+        if len(round_entries) == 0:
+            pass  # No data to display
+        else:
+            for rentry in round_entries:
+                driver = rentry.team_driver.driver
+                team = rentry.team_driver.team
+                key = (rentry.car_number, driver.forename, rentry.api_id)
+                session_entry_list = self._generate_session_entry_list(rentry.prefetched_session_entries)  # type:ignore
 
-            session_entry_list = []
-            for se in rentry.prefetched_session_entries:  # type:ignore
-                fastest_lap_time: timedelta | None = None
-                if se.fastest_laps:
-                    fastest_lap_time = se.fastest_laps[0].time
-
-                session_entry_list.append(
-                    ResultRowSessionEntryData(
-                        session_order_number=se.session.number,
-                        session_type=se.session.type,
-                        session_api_id=se.session.api_id,
-                        position=se.position,
-                        grid_position=se.grid,
-                        is_classified=se.is_classified,
-                        is_eligible_for_points=se.is_eligible_for_points,
-                        status=f1.SessionStatus(se.status).name if se.status is not None else None,
-                        points=se.points,
-                        laps_completed=se.laps_completed,
-                        time=se.time,
-                        fastest_lap_time=fastest_lap_time,
-                        fastest_lap_rank=se.fastest_lap_rank,
+                row_data.append(
+                    ResultRowData(
+                        row_key=key,
+                        session_entries=session_entry_list,
+                        car_number=rentry.car_number,
+                        driver=shared.BasicDriver(
+                            id=driver.api_id,
+                            given_name=driver.forename,
+                            family_name=driver.surname,
+                            url=HttpUrl(req.build_absolute_uri(reverse("drivers-detail", args=[driver.api_id]))),
+                            abbreviation=driver.abbreviation,
+                        ),
+                        team=shared.BasicTeam(
+                            id=team.api_id,
+                            name=team.name,
+                            url=HttpUrl(req.build_absolute_uri(reverse("teams-detail", args=[team.api_id]))),
+                            primary_color=team.primary_color,
+                        ),
                     )
                 )
-
-            row_data.append(
-                ResultRowData(
-                    row_key=key,
-                    session_entries=session_entry_list,
-                    car_number=rentry.car_number,
-                    driver=shared.BasicDriver(
-                        id=driver.api_id,
-                        given_name=driver.forename,
-                        family_name=driver.surname,
-                        url=HttpUrl(req.build_absolute_uri(reverse("drivers-detail", args=[driver.api_id]))),
-                        abbreviation=driver.abbreviation,
-                    ),
-                    team=shared.BasicTeam(
-                        id=team.api_id,
-                        name=team.name,
-                        url=HttpUrl(req.build_absolute_uri(reverse("teams-detail", args=[team.api_id]))),
-                        primary_color=team.primary_color,
-                    ),
-                )
-            )
 
         return ResultData(
             rows=row_data,
@@ -180,3 +157,32 @@ class ResultDataLoader:
                 for s in sessions
             ],
         )
+
+    def _generate_session_entry_list(self, session_entries: list[f1.SessionEntry]) -> list[ResultRowSessionEntryData]:
+        """Helper to convert a list of SessionEntry objects to a list of ResultRowSessionEntryData."""
+        session_entry_list = []
+        for se in session_entries:
+            fastest_lap_time: timedelta | None = None
+            # This attribute is from the prefetch in the load method
+            fastest_laps: list[f1.Lap] = se.fastest_laps  # type:ignore
+            if fastest_laps:
+                fastest_lap_time = fastest_laps[0].time
+
+            session_entry_list.append(
+                ResultRowSessionEntryData(
+                    session_order_number=se.session.number,
+                    session_type=se.session.type,
+                    session_api_id=se.session.api_id,
+                    position=se.position,
+                    grid_position=se.grid,
+                    is_classified=se.is_classified,
+                    is_eligible_for_points=se.is_eligible_for_points,
+                    status=f1.SessionStatus(se.status).name if se.status is not None else None,
+                    points=se.points,
+                    laps_completed=se.laps_completed,
+                    time=se.time,
+                    fastest_lap_time=fastest_lap_time,
+                    fastest_lap_rank=se.fastest_lap_rank,
+                )
+            )
+        return session_entry_list

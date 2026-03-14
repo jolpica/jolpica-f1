@@ -23,11 +23,11 @@ class DriverChampionship(models.Model):
     is_eligible = models.BooleanField(default=False)
     adjustment_type = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices, default=0)
 
-    season_id: int
+    season_id: int | None
     season = models.ForeignKey(
         "formula_one.Season", null=True, blank=True, on_delete=models.SET_NULL, related_name="driver_championships"
     )
-    round_id: int
+    round_id: int | None
     round = models.ForeignKey(
         "formula_one.Round", null=True, blank=True, on_delete=models.SET_NULL, related_name="driver_championships"
     )
@@ -44,7 +44,9 @@ class DriverChampionship(models.Model):
 class TeamChampionship(models.Model):
     id = models.BigAutoField(primary_key=True)
 
+    session_id: int
     session = models.ForeignKey("formula_one.Session", on_delete=models.CASCADE, related_name="team_championships")
+    team_id: int
     team = models.ForeignKey("formula_one.Team", on_delete=models.CASCADE, related_name="team_championships")
     year = models.SmallIntegerField()
     round_number = models.PositiveSmallIntegerField()
@@ -57,9 +59,11 @@ class TeamChampionship(models.Model):
     is_eligible = models.BooleanField(default=False)
     adjustment_type = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices, default=0)
 
+    season_id: int | None
     season = models.ForeignKey(
         "formula_one.Season", null=True, blank=True, on_delete=models.SET_NULL, related_name="team_championships"
     )
+    round_id: int | None
     round = models.ForeignKey(
         "formula_one.Round", null=True, blank=True, on_delete=models.SET_NULL, related_name="team_championships"
     )

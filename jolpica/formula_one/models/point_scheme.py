@@ -119,6 +119,7 @@ class EligibilityChampionshipScheme(models.IntegerChoices):
 
     HAS_POINT = 1, "Entry must score at least 1 championship point"
     HAS_FINISH = 2, "Entry must have a classified finish in at least 1 round"
+    HAS_FINISH_OR_QUALI = 3, "Entry must have a classified finish or qualifying finish in at least 1 round"
 
 
 class PointsPerSessionChampionshipScheme(models.IntegerChoices):
@@ -187,10 +188,13 @@ class ChampionshipAdjustment(ApiIDMixin, models.Model):
 
     id = models.BigAutoField(primary_key=True)
 
+    season_id: int
     season = models.ForeignKey("formula_one.Season", on_delete=models.CASCADE, related_name="championship_adjustments")
+    driver_id: int | None
     driver = models.ForeignKey(
         "formula_one.Driver", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )
+    team_id: int | None
     team = models.ForeignKey(
         "formula_one.Team", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )

@@ -409,13 +409,14 @@ class ListLapSerializer(serializers.ListSerializer):
                 last_lap_number = lap.number
                 race_results[round_id][self.child.results_list_name].append(lap_groupings[lap.number])
 
-            lap_groupings[lap.number]["Timings"].append(
-                {
-                    "driverId": lap.session_entry.round_entry.team_driver.driver.reference,
-                    "position": str(lap.position),
-                    "time": format_timedelta(lap.time),
-                }
-            )
+            lap_data = {
+                "driverId": lap.session_entry.round_entry.team_driver.driver.reference,
+                "time": format_timedelta(lap.time),
+            }
+            if lap.position is not None:
+                lap_data["position"] = str(lap.position)
+
+            lap_groupings[lap.number]["Timings"].append(lap_data)
 
         results = list(race_results.values())
         if is_single:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import math
 from collections import Counter
 from dataclasses import dataclass, field
@@ -23,6 +24,8 @@ from .models import (
 )
 from .models.managed_views import DriverChampionship, TeamChampionship
 from .utils import calculate_championship_points
+
+logger = logging.getLogger(__name__)
 
 
 def update_championship_standings_in_db(season_years: set[int]) -> None:
@@ -92,7 +95,7 @@ class EntryData:
 
     @classmethod
     def from_session_entry(cls, entry: SessionEntry) -> EntryData:
-        if entry.round_entry.round.number and entry.session.number and entry.round_entry:
+        if entry.round_entry and entry.round_entry.round.number and entry.session.number:
             return cls(
                 round_number=entry.round_entry.round.number,
                 session_number=entry.session.number,
@@ -106,10 +109,18 @@ class EntryData:
         raise ValueError("Missing required fields in entry")
 
 
+@dataclass
+class BestQualiRound:
+    # Needed to ensure we don't double count for Q1/Q2/Q3
+    at_session_number: int
+    position: int
+
+
 class Stats:
     points_by_round: Counter[int]
     finish_counts: Counter[int]
     unclassified_counts: Counter[int]
+    best_quali_by_round: dict[int, BestQualiRound]
 
     group_type: Group
     championship_system: ChampionshipSystem | None
@@ -117,21 +128,26 @@ class Stats:
     def __init__(
         self,
         points: float | dict | None = None,
-        finish_counts: dict | list | None = None,
-        unclassified_counts: dict | list | None = None,
+        # list of every finish position, or dict of finish position to count
+        finish_positions: dict | list | None = None,
+        unclassified_positions: dict | list | None = None,
+        best_quali_by_round: dict[int, BestQualiRound] | None = None,
         championship_system: ChampionshipSystem | None = None,
         group_type: Group = Group.OTHER,
         point_adjustment: float = 0,
     ) -> None:
         if isinstance(points, int | float):
+            # If not a dict, we don't know which round the points are from
+            logger.warning(f"Creating Stats with non-dict points: {points}.")
             self.points_by_round = Counter({99: points})
         elif points is None:
             self.points_by_round = Counter()
         else:
             self.points_by_round = Counter(points)
 
-        self.finish_counts = Counter(finish_counts)
-        self.unclassified_counts = Counter(unclassified_counts)
+        self.finish_counts = Counter(finish_positions if finish_positions is not None else {})
+        self.unclassified_counts = Counter(unclassified_positions if unclassified_positions is not None else {})
+        self.best_quali_by_round = best_quali_by_round or {}
         self.championship_system = championship_system
         self.group_type = group_type
         self.point_adjustment = point_adjustment
@@ -174,16 +190,22 @@ class Stats:
         entry: EntryData,
         group_type: Group,
         session_type: SessionType,
+        session_number: int,
         round_number: int,
         championship_system: ChampionshipSystem | None = None,
         should_remove_fastest_lap_points: bool = False,
     ):
         finishes, unclassifies = [], []
+        best_quali_by_round = {}
         if session_type == SessionType.RACE and entry.position is not None:
             if entry.is_classified is True:
                 finishes.append(entry.position)
             elif entry.is_classified is False:
                 unclassifies.append(entry.position)
+        elif session_type.startswith("Q") and entry.position is not None:
+            best_quali_by_round[round_number] = BestQualiRound(
+                at_session_number=session_number, position=entry.position
+            )
         if entry.points is None:
             points_by_round = {}
         else:
@@ -191,16 +213,42 @@ class Stats:
             if should_remove_fastest_lap_points and entry.fastest_lap_rank == 1:
                 points = math.ceil(points) - 1  # TODO Handle fractional points from non-fastest lap
             points_by_round = {round_number: points}
-        return Stats(points_by_round, finishes, unclassifies, championship_system, group_type)
+        return Stats(
+            points_by_round,
+            finishes,
+            unclassifies,
+            best_quali_by_round,
+            championship_system,
+            group_type,
+        )
+
+    def _should_use_qualifying_instead_of_unclassified_as_tiebreaker(self) -> bool:
+        # Tie breaking:
+        #  - If HAS_FINISH_OR_QUALI, tie break by qualifying if not classified finishes,
+        #    otherwise tie break by unclassified
+        #  - Otherwise, always tie break by unclassified
+        return bool(
+            not self.finish_counts  # no classified finishes, so qualifying should be tiebreaker in this scheme
+            and self.championship_system
+            and self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
+        )
 
     def __eq__(self, other):
         if not isinstance(other, Stats):
             raise NotImplementedError()
-        return (
+
+        is_eq = (
             self.points == other.points
             and self.finish_counts == other.finish_counts
             and self.unclassified_counts == other.unclassified_counts
         )
+
+        if self._should_use_qualifying_instead_of_unclassified_as_tiebreaker():
+            this_quali_counts = Counter([v.position for v in self.best_quali_by_round.values()])
+            other_quali_counts = Counter([v.position for v in other.best_quali_by_round.values()])
+            is_eq = is_eq and this_quali_counts == other_quali_counts
+
+        return is_eq
 
     def __gt__(self, other):
         if not isinstance(other, Stats):
@@ -213,19 +261,31 @@ class Stats:
 
         if self.finish_counts != other.finish_counts:
             for finish in sorted([*self.finish_counts, *other.finish_counts]):
-                val1, val2 = self.finish_counts.get(finish, 0), other.finish_counts.get(finish, 0)
-                if val1 == val2:
+                this_val, other_val = self.finish_counts.get(finish, 0), other.finish_counts.get(finish, 0)
+                if this_val == other_val:
                     continue
                 else:
-                    return val1 > val2
+                    return this_val > other_val
 
-        if self.unclassified_counts != other.unclassified_counts:
-            for finish in sorted([*self.unclassified_counts, *other.unclassified_counts]):
-                val1, val2 = self.unclassified_counts.get(finish, 0), other.unclassified_counts.get(finish, 0)
-                if val1 == val2:
+        if self._should_use_qualifying_instead_of_unclassified_as_tiebreaker():
+            this_quali_counts = Counter([v.position for v in self.best_quali_by_round.values()])
+            other_quali_counts = Counter([v.position for v in other.best_quali_by_round.values()])
+            for qualification in sorted([*this_quali_counts, *other_quali_counts]):
+                this_val, other_val = (
+                    this_quali_counts.get(qualification, 0),
+                    other_quali_counts.get(qualification, 0),
+                )
+                if this_val == other_val:
                     continue
                 else:
-                    return val1 > val2
+                    return this_val > other_val
+        elif self.unclassified_counts != other.unclassified_counts:
+            for finish in sorted([*self.unclassified_counts, *other.unclassified_counts]):
+                this_val, other_val = self.unclassified_counts.get(finish, 0), other.unclassified_counts.get(finish, 0)
+                if this_val == other_val:
+                    continue
+                else:
+                    return this_val > other_val
 
         return False
 
@@ -251,7 +311,16 @@ class Stats:
         points_by_round = Counter(self.points_by_round)
         points_by_round.update(other.points_by_round)
 
-        return Stats(points_by_round, finishes, unclassifieds, championship_system, group_type)
+        best_quali_by_round: dict[int, BestQualiRound] = {}
+        for round_num in {*self.best_quali_by_round, *other.best_quali_by_round}:
+            self_best = self.best_quali_by_round.get(round_num, None)
+            other_best = other.best_quali_by_round.get(round_num, None)
+            if other_best and (self_best is None or other_best.at_session_number > self_best.at_session_number):
+                best_quali_by_round[round_num] = other_best
+            elif self_best and (other_best is None or self_best.at_session_number > other_best.at_session_number):
+                best_quali_by_round[round_num] = self_best
+
+        return Stats(points_by_round, finishes, unclassifieds, best_quali_by_round, championship_system, group_type)
 
 
 @dataclass(order=True)
@@ -330,7 +399,15 @@ class SessionData:
             else self.point_system.team_position_points
         )
         if pos_point_scheme == PositionPointScheme.NONE:
-            return {}
+            if (
+                self.championship_system
+                and self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
+                and self.session_type.startswith("Q")
+            ):
+                # If no points, but eligibility is based on finish or quali, we should still return stats for standings
+                pass
+            else:
+                return {}
 
         # If there are points awarded for driver fastest lap, but not for team fastest lap, then
         # we should subtract the fastest lap points from the team points.
@@ -351,6 +428,7 @@ class SessionData:
                     x,
                     grouping_type,
                     self.session_type,
+                    self.session_number,
                     self.round_number,
                     self.championship_system,
                     should_remove_fastest_lap_points,
@@ -388,9 +466,7 @@ class SeasonData:
                     to_attr="prefetched_sessions",
                     queryset=Session.objects.all()
                     .annotate(session_entires_count=Count("session_entries"))
-                    .filter(
-                        session_entires_count__gt=0, point_system__gt=1
-                    )  # Assumption that point system with pk 1 is the only non-point system
+                    .filter(session_entires_count__gt=0)
                     .select_related("point_system")
                     .prefetch_related(
                         Prefetch(
@@ -403,16 +479,16 @@ class SeasonData:
                 )
             )
         ):
-            if round.number is None or round.round_entries_count == 0:
+            if round.number is None or round.round_entries_count == 0:  # type: ignore[attr-defined]  # Created by Prefetch
                 continue
             for session in round.prefetched_sessions:  # type: ignore[attr-defined]  # Created by Prefetch
                 if session.number is None:
                     continue
-                session_datas.append(
-                    SessionData.from_session(
-                        session, round.number, SessionType(session.type), season.championship_system
-                    )
+                session_data = SessionData.from_session(
+                    session, round.number, SessionType(session.type), season.championship_system
                 )
+                if not cls._should_filter_session(session_data):
+                    session_datas.append(session_data)
 
         adjustments = {}
         for adjustment in season.championship_adjustments.all():
@@ -443,10 +519,13 @@ class SeasonData:
 
     def is_stat_eligible_for_standings(self, stat: Stats) -> bool:
         """Return True if the stat has met the baseline for inclusion in standings"""
-        if self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH:
-            return bool(stat.finish_counts)
-        elif self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_POINT:
+        if self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_POINT:
             return stat.points > 0
+        elif self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH:
+            return bool(stat.finish_counts)
+        elif self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI:
+            # From 2026, if not classified in the race, they are classified if they completed qualifying
+            return bool(stat.finish_counts) or bool(stat.best_quali_by_round)
         else:
             raise NotImplementedError()
 
@@ -517,8 +596,7 @@ class SeasonData:
             else:
                 raise NotImplementedError()
 
-            if grouping_type == Group.DRIVER or grouping_type == Group.TEAM:
-                standing = self.create_group_standing(grouping_type, group_id, stat, position)
+            standing = self.create_group_standing(grouping_type, group_id, stat, position)
 
             standings.append(standing)
         return standings  # type: ignore
@@ -552,3 +630,22 @@ class SeasonData:
                     standing.season_id = self.season_id
             season_standings.extend(standings)
         return season_standings
+
+    @staticmethod
+    def _should_filter_session(session_data: SessionData) -> bool:
+        # If no points awarded for the session, we can skip it entirely
+        should_skip = (  # The "No Points" system
+            session_data.point_system.driver_position_points == PositionPointScheme.NONE
+            and session_data.point_system.team_position_points == PositionPointScheme.NONE
+        )
+
+        if (
+            should_skip
+            and session_data.championship_system
+            and session_data.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
+        ):
+            # We need to include qualifying sessions for this eligibility scheme
+            # We are skipping Sprint Qualifying here, as we have no evidence this counts towards the championship
+            should_skip = not session_data.session_type.startswith("Q")
+
+        return should_skip
