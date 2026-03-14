@@ -139,6 +139,8 @@ class ListAdminMixin:
 
 
 class InlineAutoFillApiIdMixin(admin.TabularInline):
+    extra = 0
+
     def get_formset(self, request, obj=None, **kwargs):
         formset = super().get_formset(request, obj, **kwargs)
         model = self.model
