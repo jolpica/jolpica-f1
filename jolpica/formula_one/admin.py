@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.contrib import admin
+from django.db import transaction
 from django.urls import resolve
 
 from jolpica.formula_one import models as f1
@@ -202,9 +203,158 @@ class FormulaOneModelAdmin(ListAdminMixin, admin.ModelAdmin):
         return initial
 
 
+class CancelAndResequenceAdmin(FormulaOneModelAdmin):
+    actions = ["mark_as_cancelled"]
+    scope_id_field = ""
+    select_related_field = ""
+    item_label_plural = "items"
+
+    def get_selected_items(self, queryset):
+        ordered_queryset = queryset.filter(is_cancelled=False)
+        if self.select_related_field:
+            ordered_queryset = ordered_queryset.select_related(self.select_related_field)
+        return list(ordered_queryset.order_by(self.scope_id_field, "number", "id"))
+
+    def get_scope_id(self, obj):
+        return getattr(obj, self.scope_id_field)
+
+    def get_locked_items_by_id(self, scope_ids):
+        return {
+            item.id: item
+            for item in self.model.objects.select_for_update()
+            .filter(**{f"{self.scope_id_field}__in": scope_ids})
+            .order_by(self.scope_id_field, "number", "id")
+        }
+
+    def get_items_to_resequence(self, scope_id):
+        return list(
+            self.model.objects.select_for_update()
+            .filter(**{self.scope_id_field: scope_id, "is_cancelled": False, "number__isnull": False})
+            .order_by("number", "id")
+        )
+
+    def create_scope_context(self):
+        return {}
+
+    def capture_cancellation_context(self, obj, scope_context):
+        return
+
+    def resequence_update_fields(self):
+        return ["number"]
+
+    def cancellation_update_fields(self):
+        return ["is_cancelled", "number"]
+
+    def apply_cancellation(self, obj):
+        obj.is_cancelled = True
+        obj.number = None
+
+    def is_resequence_required(self, obj, new_number, scope_context):
+        return obj.number != new_number
+
+    def apply_resequence(self, obj, new_number, scope_context):
+        obj.number = new_number
+
+    @admin.action(description="Mark selected records as cancelled")
+    def mark_as_cancelled(self, request, queryset):
+        selected_items = self.get_selected_items(queryset)
+
+        if not selected_items:
+            if request is not None:
+                self.message_user(request, f"No eligible {self.item_label_plural} were selected.")
+            return
+
+        scope_ids = {self.get_scope_id(item) for item in selected_items}
+        with transaction.atomic():
+            scope_contexts = {scope_id: self.create_scope_context() for scope_id in scope_ids}
+            locked_items = self.get_locked_items_by_id(scope_ids)
+
+            cancelled_count = 0
+            for selected_item in selected_items:
+                item = locked_items.get(selected_item.id)
+                if item is None or item.is_cancelled:
+                    continue
+
+                scope_id = self.get_scope_id(item)
+                scope_context = scope_contexts[scope_id]
+                self.capture_cancellation_context(item, scope_context)
+                self.apply_cancellation(item)
+                item.save(update_fields=self.cancellation_update_fields())
+                cancelled_count += 1
+
+            for scope_id in scope_ids:
+                scope_context = scope_contexts[scope_id]
+                items_to_resequence = self.get_items_to_resequence(scope_id)
+
+                for new_number, item in enumerate(items_to_resequence, start=1):
+                    if not self.is_resequence_required(item, new_number, scope_context):
+                        continue
+                    self.apply_resequence(item, new_number, scope_context)
+                    item.save(update_fields=self.resequence_update_fields())
+
+        if request is not None:
+            self.message_user(request, f"Marked {cancelled_count} {self.item_label_plural} as cancelled.")
+
+
+class RoundAdmin(CancelAndResequenceAdmin):
+    actions = ["mark_as_cancelled"]
+    scope_id_field = "season_id"
+    select_related_field = "season"
+    item_label_plural = "round(s)"
+
+    def create_scope_context(self):
+        return {"cancelled_race_numbers": []}
+
+    def capture_cancellation_context(self, obj, scope_context):
+        if obj.race_number is not None:
+            scope_context["cancelled_race_numbers"].append(obj.race_number)
+
+    def cancellation_update_fields(self):
+        return ["is_cancelled", "number", "race_number"]
+
+    def apply_cancellation(self, obj):
+        obj._cancelled_original_race_number = obj.race_number
+        obj.is_cancelled = True
+        obj.number = None
+        obj.race_number = None
+        f1.Session.objects.filter(round_id=obj.id, is_cancelled=False).update(is_cancelled=True, number=None)
+
+    def resequence_update_fields(self):
+        return ["number", "race_number"]
+
+    def _new_race_number(self, obj, scope_context):
+        if obj.race_number is None:
+            return None
+        cancelled_race_numbers = scope_context["cancelled_race_numbers"]
+        decrements = sum(
+            1 for cancelled_race_number in cancelled_race_numbers if cancelled_race_number < obj.race_number
+        )
+        return obj.race_number - decrements
+
+    def is_resequence_required(self, obj, new_number, scope_context):
+        return not (obj.number == new_number and obj.race_number == self._new_race_number(obj, scope_context))
+
+    def apply_resequence(self, obj, new_number, scope_context):
+        obj.number = new_number
+        obj.race_number = self._new_race_number(obj, scope_context)
+
+
+class SessionAdmin(CancelAndResequenceAdmin):
+    actions = ["mark_as_cancelled"]
+    scope_id_field = "round_id"
+    select_related_field = "round"
+    item_label_plural = "session(s)"
+
+
 models = apps.get_app_config("formula_one").get_models()
 for model in models:
-    admin_class = type("AdminClass", (FormulaOneModelAdmin,), {})
+    admin_class: type[admin.ModelAdmin]
+    if model is f1.Round:
+        admin_class = RoundAdmin
+    elif model is f1.Session:
+        admin_class = SessionAdmin
+    else:
+        admin_class = type("AdminClass", (FormulaOneModelAdmin,), {})
     try:
         admin.site.register(model, admin_class)
     except admin.sites.AlreadyRegistered:  # type: ignore
