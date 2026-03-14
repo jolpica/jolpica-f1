@@ -68,7 +68,10 @@ class SeasonScheduleViewSet(viewsets.ReadOnlyModelViewSet):
         if self.action == "retrieve":  # Apply prefetch for detail view
             rounds_prefetch = Prefetch(
                 "rounds",
-                queryset=f1.Round.objects.prefetch_related(
+                queryset=f1.Round.objects.filter(
+                    is_cancelled=False,  # TODO: Show cancelled rounds in scheule
+                )
+                .prefetch_related(
                     Prefetch("sessions", queryset=f1.Session.objects.order_by("number"), to_attr="prefetched_sessions"),
                 )
                 .select_related("circuit")
