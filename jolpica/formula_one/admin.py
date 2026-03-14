@@ -4,6 +4,7 @@ from django.db import transaction
 from django.urls import resolve
 
 from jolpica.formula_one import models as f1
+from jolpica.formula_one.standings import update_championship_standings_in_db
 from jolpica.formula_one.utils import generate_api_id
 
 
@@ -346,6 +347,19 @@ class SessionAdmin(CancelAndResequenceAdmin):
     item_label_plural = "session(s)"
 
 
+class SeasonAdmin(FormulaOneModelAdmin):
+    actions = ["regenerate_standings"]
+
+    @admin.action(description="Regenerate Standings")
+    def regenerate_standings(self, request, queryset):
+        years = set(queryset.values_list("year", flat=True))
+        with transaction.atomic():
+            f1.managed_views.DriverChampionship.objects.filter(year__in=years).delete()
+            f1.managed_views.TeamChampionship.objects.filter(year__in=years).delete()
+            update_championship_standings_in_db(years)
+        self.message_user(request, f"Successfully regenerated standings for seasons: {sorted(years)}")
+
+
 models = apps.get_app_config("formula_one").get_models()
 for model in models:
     admin_class: type[admin.ModelAdmin]
@@ -353,6 +367,8 @@ for model in models:
         admin_class = RoundAdmin
     elif model is f1.Session:
         admin_class = SessionAdmin
+    elif model is f1.Season:
+        admin_class = SeasonAdmin
     else:
         admin_class = type("AdminClass", (FormulaOneModelAdmin,), {})
     try:
