@@ -104,17 +104,20 @@
 <!-- formula_one.positive_small_integer_championshipsystem_eligibility -->
 <g id="formula_one.positive_small_integer_championshipsystem_eligibility" class="node">
 <title>formula_one.positive_small_integer_championshipsystem_eligibility</title>
-<ellipse fill="none" stroke="black" stroke-width="0" cx="12476.46" cy="-3749.96" rx="783.45" ry="130.22"/>
-<polygon fill="#29235c" stroke="transparent" points="11924.46,-3779.96 11924.46,-3839.96 13028.46,-3839.96 13028.46,-3779.96 11924.46,-3779.96"/>
-<polygon fill="none" stroke="#29235c" points="11924.46,-3779.96 11924.46,-3839.96 13028.46,-3839.96 13028.46,-3779.96 11924.46,-3779.96"/>
-<text text-anchor="start" x="11935.04" y="-3801.16" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="32.00" fill="#ffffff"> &#160;&#160;&#160;&#160;&#160;&#160;formula_one.positive_small_integer_championshipsystem_eligibility &#160;&#160;&#160;&#160;&#160;&#160;</text>
-<polygon fill="#e7e2dd" stroke="transparent" points="11924.46,-3719.96 11924.46,-3779.96 13028.46,-3779.96 13028.46,-3719.96 11924.46,-3719.96"/>
-<polygon fill="none" stroke="#29235c" points="11924.46,-3719.96 11924.46,-3779.96 13028.46,-3779.96 13028.46,-3719.96 11924.46,-3719.96"/>
-<text text-anchor="start" x="12432" y="-3741.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#1d71b8"> &#160;&#160;&#160;1 &#160;&#160;&#160;</text>
-<polygon fill="#e7e2dd" stroke="transparent" points="11924.46,-3659.96 11924.46,-3719.96 13028.46,-3719.96 13028.46,-3659.96 11924.46,-3659.96"/>
-<polygon fill="none" stroke="#29235c" points="11924.46,-3659.96 11924.46,-3719.96 13028.46,-3719.96 13028.46,-3659.96 11924.46,-3659.96"/>
-<text text-anchor="start" x="12432" y="-3681.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#1d71b8"> &#160;&#160;&#160;2 &#160;&#160;&#160;</text>
-<polygon fill="none" stroke="#29235c" stroke-width="2" points="11923.46,-3658.96 11923.46,-3840.96 13029.46,-3840.96 13029.46,-3658.96 11923.46,-3658.96"/>
+<ellipse fill="none" stroke="black" stroke-width="0" cx="12476.46" cy="-3791.96" rx="783.45" ry="172.57"/>
+<polygon fill="#29235c" stroke="transparent" points="11924.46,-3851.96 11924.46,-3911.96 13028.46,-3911.96 13028.46,-3851.96 11924.46,-3851.96"/>
+<polygon fill="none" stroke="#29235c" points="11924.46,-3851.96 11924.46,-3911.96 13028.46,-3911.96 13028.46,-3851.96 11924.46,-3851.96"/>
+<text text-anchor="start" x="11935.04" y="-3873.16" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="32.00" fill="#ffffff"> &#160;&#160;&#160;&#160;&#160;&#160;formula_one.positive_small_integer_championshipsystem_eligibility &#160;&#160;&#160;&#160;&#160;&#160;</text>
+<polygon fill="#e7e2dd" stroke="transparent" points="11924.46,-3791.96 11924.46,-3851.96 13028.46,-3851.96 13028.46,-3791.96 11924.46,-3791.96"/>
+<polygon fill="none" stroke="#29235c" points="11924.46,-3791.96 11924.46,-3851.96 13028.46,-3851.96 13028.46,-3791.96 11924.46,-3791.96"/>
+<text text-anchor="start" x="12432" y="-3813.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#1d71b8"> &#160;&#160;&#160;1 &#160;&#160;&#160;</text>
+<polygon fill="#e7e2dd" stroke="transparent" points="11924.46,-3731.96 11924.46,-3791.96 13028.46,-3791.96 13028.46,-3731.96 11924.46,-3731.96"/>
+<polygon fill="none" stroke="#29235c" points="11924.46,-3731.96 11924.46,-3791.96 13028.46,-3791.96 13028.46,-3731.96 11924.46,-3731.96"/>
+<text text-anchor="start" x="12432" y="-3753.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#1d71b8"> &#160;&#160;&#160;2 &#160;&#160;&#160;</text>
+<polygon fill="#e7e2dd" stroke="transparent" points="11924.46,-3671.96 11924.46,-3731.96 13028.46,-3731.96 13028.46,-3671.96 11924.46,-3671.96"/>
+<polygon fill="none" stroke="#29235c" points="11924.46,-3671.96 11924.46,-3731.96 13028.46,-3731.96 13028.46,-3671.96 11924.46,-3671.96"/>
+<text text-anchor="start" x="12432" y="-3693.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#1d71b8"> &#160;&#160;&#160;3 &#160;&#160;&#160;</text>
+<polygon fill="none" stroke="#29235c" stroke-width="2" points="11923.46,-3670.96 11923.46,-3912.96 13029.46,-3912.96 13029.46,-3670.96 11923.46,-3670.96"/>
 </g>
 <!-- formula_one.positive_small_integer_championshipsystem_team_points_per_session -->
 <g id="formula_one.positive_small_integer_championshipsystem_team_points_per_session" class="node">
@@ -825,7 +828,7 @@
 <!-- formula_one.ChampionshipSystem&#45;&gt;formula_one.positive_small_integer_championshipsystem_eligibility -->
 <g id="edge60" class="edge">
 <title>formula_one.ChampionshipSystem:e&#45;&gt;formula_one.positive_small_integer_championshipsystem_eligibility:w</title>
-<path fill="none" stroke="#29235c" stroke-width="3" d="M11138.71,-2831.96C11524.27,-2831.96 11248.23,-3337.92 11520.45,-3610.96 11661.49,-3752.43 11723.7,-3809.96 11923.46,-3809.96"/>
+<path fill="none" stroke="#29235c" stroke-width="3" d="M11138.71,-2831.96C11524.27,-2831.96 11267.03,-3320.39 11520.45,-3610.96 11662.33,-3773.63 11707.62,-3881.96 11923.46,-3881.96"/>
 </g>
 <!-- formula_one.ChampionshipSystem&#45;&gt;formula_one.positive_small_integer_championshipsystem_team_points_per_session -->
 <g id="edge65" class="edge">

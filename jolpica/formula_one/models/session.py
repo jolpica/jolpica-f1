@@ -39,6 +39,7 @@ class Session(ApiIDMixin, models.Model):
     ID_PREFIX = "session"
 
     id = models.BigAutoField(primary_key=True)
+    round_id: int
     round = models.ForeignKey("formula_one.Round", on_delete=models.CASCADE, related_name="sessions")
     number = models.PositiveSmallIntegerField(null=True, blank=True)
     point_system = models.ForeignKey("PointSystem", on_delete=models.PROTECT, default=1, related_name="sessions")

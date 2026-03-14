@@ -300,12 +300,13 @@ def test_update_in_db(django_assert_max_num_queries, adjust_type):
 @pytest.mark.django_db
 def test_from_season_whole_year(monkeypatch):
     season = f1.Season.objects.get(year=2023)
-    monkeypatch.setattr(SessionData, "from_session", lambda *args, **kwargs: None)
 
     season_data = SeasonData.from_season(season)
 
     assert season_data.season_year == 2023
-    assert len(season_data.session_datas) == 28  # 22 races, 6 sprints sessions in 2023 season
+    assert len(season_data.session_datas) == 28, (
+        season_data.session_datas
+    )  # 22 races, 6 sprints sessions in 2023 season
 
 
 @pytest.mark.django_db
@@ -317,7 +318,6 @@ def test_from_season_last_round_has_quali_but_no_race(monkeypatch):
         session__round__number=22,
         session__type="R",
     ).delete()
-    monkeypatch.setattr(SessionData, "from_session", lambda *args, **kwargs: None)
 
     season_data = SeasonData.from_season(season)
 

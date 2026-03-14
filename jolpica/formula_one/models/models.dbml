@@ -37,6 +37,7 @@ enum formula_one.positive_small_integer_championshipsystem_driver_season_split {
 enum formula_one.positive_small_integer_championshipsystem_eligibility {
   "1" [note: '''Entry must score at least 1 championship point''']
   "2" [note: '''Entry must have a classified finish in at least 1 round''']
+  "3" [note: '''Entry must have a classified finish or qualifying finish in at least 1 round''']
 }
 
 enum formula_one.positive_small_integer_championshipsystem_team_points_per_session {
