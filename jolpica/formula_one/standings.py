@@ -225,6 +225,17 @@ class Stats:
             group_type,
         )
 
+    def _should_use_qualifying_instead_of_unclassified_as_tiebreaker(self) -> bool:
+        # Tie breaking:
+        #  - If HAS_FINISH_OR_QUALI, tie break by qualifying if not classified finishes,
+        #    otherwise tie break by unclassified
+        #  - Otherwise, always tie break by unclassified
+        return bool(
+            not self.finish_counts  # no classified finishes, so qualifying should be tiebreaker in this scheme
+            and self.championship_system
+            and self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
+        )
+
     def __eq__(self, other):
         if not isinstance(other, Stats):
             raise NotImplementedError()
@@ -234,11 +245,8 @@ class Stats:
             and self.finish_counts == other.finish_counts
             and self.unclassified_counts == other.unclassified_counts
         )
-        if (
-            not self.finish_counts  # no classified finishes, so qualifying should be tiebreaker in this scheme
-            and self.championship_system
-            and self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
-        ):
+
+        if self._should_use_qualifying_instead_of_unclassified_as_tiebreaker():
             this_quali_counts = Counter([v.position for v in self.best_quali_by_round.values()])
             other_quali_counts = Counter([v.position for v in other.best_quali_by_round.values()])
             is_eq = is_eq and this_quali_counts == other_quali_counts
@@ -262,19 +270,7 @@ class Stats:
                 else:
                     return this_val > other_val
 
-        if self.unclassified_counts != other.unclassified_counts:
-            for finish in sorted([*self.unclassified_counts, *other.unclassified_counts]):
-                this_val, other_val = self.unclassified_counts.get(finish, 0), other.unclassified_counts.get(finish, 0)
-                if this_val == other_val:
-                    continue
-                else:
-                    return this_val > other_val
-
-        if (
-            not self.finish_counts  # no classified finishes, so qualifying should be tiebreaker in this scheme
-            and self.championship_system
-            and self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
-        ):
+        if self._should_use_qualifying_instead_of_unclassified_as_tiebreaker():
             this_quali_counts = Counter([v.position for v in self.best_quali_by_round.values()])
             other_quali_counts = Counter([v.position for v in other.best_quali_by_round.values()])
             for qualification in sorted([*this_quali_counts, *other_quali_counts]):
@@ -282,6 +278,13 @@ class Stats:
                     this_quali_counts.get(qualification, 0),
                     other_quali_counts.get(qualification, 0),
                 )
+                if this_val == other_val:
+                    continue
+                else:
+                    return this_val > other_val
+        elif self.unclassified_counts != other.unclassified_counts:
+            for finish in sorted([*self.unclassified_counts, *other.unclassified_counts]):
+                this_val, other_val = self.unclassified_counts.get(finish, 0), other.unclassified_counts.get(finish, 0)
                 if this_val == other_val:
                     continue
                 else:
