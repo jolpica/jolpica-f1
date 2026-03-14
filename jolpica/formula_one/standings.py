@@ -145,8 +145,8 @@ class Stats:
         else:
             self.points_by_round = Counter(points)
 
-        self.finish_counts = Counter(finish_positions)
-        self.unclassified_counts = Counter(unclassified_positions)
+        self.finish_counts = Counter(finish_positions if finish_positions is not None else {})
+        self.unclassified_counts = Counter(unclassified_positions if unclassified_positions is not None else {})
         self.best_quali_by_round = best_quali_by_round or {}
         self.championship_system = championship_system
         self.group_type = group_type
@@ -202,10 +202,7 @@ class Stats:
                 finishes.append(entry.position)
             elif entry.is_classified is False:
                 unclassifies.append(entry.position)
-        elif (
-            session_type in {SessionType.QUALIFYING_ONE, SessionType.QUALIFYING_TWO, SessionType.QUALIFYING_THREE}
-            and entry.position is not None
-        ):
+        elif session_type.startswith("Q") and entry.position is not None:
             best_quali_by_round[round_number] = BestQualiRound(
                 at_session_number=session_number, position=entry.position
             )
@@ -405,8 +402,7 @@ class SessionData:
             if (
                 self.championship_system
                 and self.championship_system.eligibility == EligibilityChampionshipScheme.HAS_FINISH_OR_QUALI
-                and self.session_type
-                in {SessionType.QUALIFYING_ONE, SessionType.QUALIFYING_TWO, SessionType.QUALIFYING_THREE}
+                and self.session_type.startswith("Q")
             ):
                 # If no points, but eligibility is based on finish or quali, we should still return stats for standings
                 pass
@@ -600,7 +596,6 @@ class SeasonData:
             else:
                 raise NotImplementedError()
 
-            # if grouping_type == Group.DRIVER or grouping_type == Group.TEAM:
             standing = self.create_group_standing(grouping_type, group_id, stat, position)
 
             standings.append(standing)

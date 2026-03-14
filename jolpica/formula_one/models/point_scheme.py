@@ -190,11 +190,11 @@ class ChampionshipAdjustment(ApiIDMixin, models.Model):
 
     season_id: int
     season = models.ForeignKey("formula_one.Season", on_delete=models.CASCADE, related_name="championship_adjustments")
-    driver_id: int
+    driver_id: int | None
     driver = models.ForeignKey(
         "formula_one.Driver", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )
-    team_id: int
+    team_id: int | None
     team = models.ForeignKey(
         "formula_one.Team", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )
