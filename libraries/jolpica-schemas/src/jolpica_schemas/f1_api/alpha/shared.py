@@ -47,6 +47,18 @@ class Session(BasicSession):
     is_cancelled: bool = False
 
 
+class FullSession(BaseModel):
+    """A logical session that may be composed of sub-sessions.
+
+    For example, Qualifying ("Q") is made up of Q1, Q2, Q3. A Race ("R") has a single session.
+    Does not have an ID as it does not map to a single database object.
+    """
+
+    code: str = Field(..., description="Consolidated session type code (e.g., R, Q, SQ, FP1)")
+    title: str = Field(..., description="Display name for the session type (e.g., Qualifying, Race)")
+    sessions: list[Session] = Field(..., description="Individual sessions that make up this full session")
+
+
 class BasicSessionEntry(BaseModel):
     id: str
     url: HttpUrl
