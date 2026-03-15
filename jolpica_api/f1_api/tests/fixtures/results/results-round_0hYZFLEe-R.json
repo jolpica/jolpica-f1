@@ -1,8 +1,23 @@
 {
   "metadata": {
-    "timestamp": "2026-03-08T11:01:08.568283Z"
+    "timestamp": "2026-03-16T00:05:52.816686Z"
   },
   "data": {
+    "code": "R",
+    "title": "Race",
+    "sessions": [
+      {
+        "id": "session_UNKptQNV",
+        "url": "http://testserver/f1/alpha/core/sessions/session_UNKptQNV/",
+        "number": 7,
+        "type": "R",
+        "type_display": "Race",
+        "timestamp": "2023-07-09T14:00:00Z",
+        "local_timestamp": "2023-07-09 15:00:00+01:00",
+        "timezone": "Europe/London",
+        "is_cancelled": false
+      }
+    ],
     "season": {
       "id": "season_0VeNZC1A",
       "url": "http://testserver/f1/alpha/core/seasons/season_0VeNZC1A/",
@@ -29,17 +44,6 @@
       "altitude": 153.0,
       "wikipedia": "https://en.wikipedia.org/wiki/Silverstone_Circuit"
     },
-    "sessions": [
-      {
-        "id": "session_UNKptQNV",
-        "url": "http://testserver/f1/alpha/core/sessions/session_UNKptQNV/",
-        "number": 7,
-        "type": "R",
-        "type_display": "RACE"
-      }
-    ],
-    "title": "Race",
-    "code": "R",
     "component_keys": [
       "GRID",
       "FLAP"
