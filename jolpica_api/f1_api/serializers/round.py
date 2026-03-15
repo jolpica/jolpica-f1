@@ -82,6 +82,13 @@ class RoundSerializer(BaseAPISerializer):
     circuit = RoundCircuitSerializer(read_only=True)
     season = RoundSeasonSerializer(read_only=True)
     sessions = RoundSessionSerializer(many=True, read_only=True)
+    # Temp fix, revert this in 1 week
+    number = serializers.SerializerMethodField(read_only=True)
+
+    def get_number(self, obj):
+        if obj.number:
+            return obj.number
+        return 0
 
     class Meta:
         model = f1.Round
