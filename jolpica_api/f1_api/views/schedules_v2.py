@@ -40,21 +40,22 @@ class SeasonScheduleV2ViewSet(viewsets.ViewSet):
     lookup_field = "year"
 
     def list(self, req: request.Request) -> response.Response:
-        loader = ScheduleDataLoader()
-        seasons = loader.load_list(req)
+        seasons = ScheduleDataLoader.load_list(req)
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(
-            DetailResponse(metadata=metadata, data=[s.model_dump(mode="json") for s in seasons]).model_dump(
-                mode="json", exclude_none=True
-            )
+            DetailResponse(metadata=metadata, data=seasons).model_dump(mode="json", exclude_none=True)
         )
 
     def retrieve(self, req: request.Request, year: str | None = None) -> response.Response:
         if year is None:
             return response.Response({"error": "Year is required"}, status=400)
 
-        loader = ScheduleDataLoader()
-        schedule_data = loader.load_detail(req, int(year))
+        try:
+            year_int = int(year)
+        except ValueError:
+            return response.Response({"error": "Year must be a number"}, status=400)
+
+        schedule_data = ScheduleDataLoader.load_detail(req, year_int)
 
         if schedule_data is None:
             return response.Response({"error": "Season not found"}, status=404)

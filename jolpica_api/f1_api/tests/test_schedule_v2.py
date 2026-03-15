@@ -7,7 +7,6 @@ import datetime
 import pytest
 from django.urls import reverse
 from pydantic import HttpUrl, ValidationError
-from rest_framework.test import APIClient
 
 from jolpica_api.f1_api.marshalling.schedules.loader import ScheduleData, ScheduleRoundData
 from jolpica_api.f1_api.marshalling.schedules.orchestrator import ScheduleOrchestrator
@@ -19,18 +18,6 @@ from jolpica_schemas.f1_api.alpha.schedule_v2 import (
 )
 
 # --- Integration tests ---
-
-
-@pytest.fixture
-def api_client():
-    return APIClient()
-
-
-@pytest.fixture
-def sample_season_data():
-    from jolpica.formula_one import models as f1
-
-    return f1.Season.objects.get(year=2023)
 
 
 @pytest.mark.django_db
@@ -122,7 +109,6 @@ def _make_round_data(
             wikipedia=None,
         ),
         date=date,
-        session_types=session_types,
         sessions=sessions,
     )
 
@@ -270,3 +256,58 @@ class TestRoundsInfoCalculation:
         data = _make_schedule_data([])
         result = ScheduleOrchestrator(data, _dummy_url_builder).render()
         assert result.rounds_info is None
+
+    def test_round_date_equals_today_is_not_previous(self):
+        """A round whose date equals today should NOT be counted as previous (uses strict < today)."""
+        today = datetime.date(2023, 5, 1)
+        rounds = [
+            _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=1, round_api_id="r1"),
+            _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=2, round_api_id="r2"),
+        ]
+        data = _make_schedule_data(rounds)
+        result = ScheduleOrchestrator(data, _dummy_url_builder, today=today).render()
+
+        assert result.rounds_info is not None
+        assert result.rounds_info.previous is None
+        assert result.rounds_info.next is not None
+        assert result.rounds_info.next.number == 1
+
+
+class TestStandaloneQualifyingSessions:
+    """Test that aggregate/order/best qualifying types are handled as standalone sessions."""
+
+    def test_qualifying_aggregate(self):
+        """QA should produce a standalone FullSession with code='Q' and title='Qualifying'."""
+        round_data = _make_round_data(session_types=["QA", "R"])
+        data = _make_schedule_data([round_data])
+        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+
+        codes = [s.code for s in result.events[0].schedule]
+        assert codes == ["Q", "R"]
+        q = next(s for s in result.events[0].schedule if s.code == "Q")
+        assert q.title == "Qualifying"
+        assert len(q.sessions) == 1
+
+    def test_qualifying_order(self):
+        """QO should produce a standalone FullSession with code='Q' and title='Qualifying'."""
+        round_data = _make_round_data(session_types=["QO", "R"])
+        data = _make_schedule_data([round_data])
+        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+
+        codes = [s.code for s in result.events[0].schedule]
+        assert codes == ["Q", "R"]
+        q = next(s for s in result.events[0].schedule if s.code == "Q")
+        assert q.title == "Qualifying"
+        assert len(q.sessions) == 1
+
+    def test_qualifying_best(self):
+        """QB should produce a standalone FullSession with code='Q' and title='Qualifying'."""
+        round_data = _make_round_data(session_types=["QB", "R"])
+        data = _make_schedule_data([round_data])
+        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+
+        codes = [s.code for s in result.events[0].schedule]
+        assert codes == ["Q", "R"]
+        q = next(s for s in result.events[0].schedule if s.code == "Q")
+        assert q.title == "Qualifying"
+        assert len(q.sessions) == 1

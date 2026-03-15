@@ -22,7 +22,6 @@ class ScheduleRoundData:
     round: shared.Round
     circuit: shared.Circuit
     date: datetime.date | None
-    session_types: list[str]
     sessions: list[shared.Session]
 
 
@@ -35,7 +34,9 @@ class ScheduleData:
 
 
 class ScheduleDataLoader:
-    def load_list(self, req: request.Request) -> list[ScheduleSummary]:
+    @staticmethod
+    def load_list(req: request.Request) -> list[ScheduleSummary]:
+        """Load all seasons as ScheduleSummary objects."""
         seasons = f1.Season.objects.order_by("-year")
         return [
             ScheduleSummary(
@@ -47,7 +48,12 @@ class ScheduleDataLoader:
             for s in seasons
         ]
 
-    def load_detail(self, req: request.Request, year: int) -> ScheduleData | None:
+    @staticmethod
+    def load_detail(req: request.Request, year: int) -> ScheduleData | None:
+        """Load a single season with prefetched rounds, sessions, and circuits.
+
+        Returns None if the season does not exist.
+        """
         season = (
             f1.Season.objects.filter(year=year)
             .prefetch_related(
@@ -75,10 +81,8 @@ class ScheduleDataLoader:
         for round_obj in season.prefetched_rounds_ordered:  # type: ignore[attr-defined]
             circuit = round_obj.circuit
             sessions_list: list[shared.Session] = []
-            session_types: list[str] = []
 
             for s in round_obj.prefetched_sessions:
-                session_types.append(s.type)
                 local_ts = s.local_timestamp
                 sessions_list.append(
                     shared.Session(
@@ -120,7 +124,6 @@ class ScheduleDataLoader:
                         wikipedia=HttpUrl(circuit.wikipedia) if circuit.wikipedia else None,
                     ),
                     date=round_obj.date,
-                    session_types=session_types,
                     sessions=sessions_list,
                 )
             )

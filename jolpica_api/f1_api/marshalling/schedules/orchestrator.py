@@ -5,6 +5,8 @@ from __future__ import annotations
 import datetime
 from collections.abc import Callable
 
+from pydantic import HttpUrl
+
 from jolpica.formula_one.models import SessionType
 from jolpica_schemas.f1_api.alpha.schedule_v2 import (
     ScheduleDetail,
@@ -14,6 +16,7 @@ from jolpica_schemas.f1_api.alpha.schedule_v2 import (
     ScheduleRoundsInfo,
 )
 
+from ..logger import logger
 from .loader import ScheduleData, ScheduleRoundData
 
 # Maps groups of session types to their consolidated (code, title)
@@ -90,15 +93,22 @@ class ScheduleOrchestrator:
             consolidated = False
             for group_types, (code, title) in CONSOLIDATED_SESSIONS.items():
                 if session.type in group_types:
-                    # Collect all sessions in this group
                     group_sessions = [s for s in round_data.sessions if s.type in group_types]
                     consumed_types.update(group_types)
+                    if len(group_sessions) != len(group_types):
+                        logger.warning(
+                            "Incomplete consolidation group for %s in round %s: expected %d sessions, got %d",
+                            code,
+                            round_data.round.id,
+                            len(group_types),
+                            len(group_sessions),
+                        )
                     full_sessions.append(
                         ScheduleFullSession(
                             code=code,
                             title=title,
                             sessions=group_sessions,
-                            results_url=self._results_url_builder(round_data.round.id, code),
+                            results_url=HttpUrl(self._results_url_builder(round_data.round.id, code)),
                         )
                     )
                     consolidated = True
@@ -106,13 +116,20 @@ class ScheduleOrchestrator:
 
             if not consolidated:
                 code = self._get_standalone_code(session.type)
-                title = STANDALONE_SESSION_TITLES.get(session.type, session.type)
+                standalone_title = STANDALONE_SESSION_TITLES.get(session.type)
+                if standalone_title is None:
+                    logger.warning(
+                        "Unknown session type %r in round %s, using type as title",
+                        session.type,
+                        round_data.round.id,
+                    )
+                    standalone_title = session.type
                 full_sessions.append(
                     ScheduleFullSession(
                         code=code,
-                        title=title,
+                        title=standalone_title,
                         sessions=[session],
-                        results_url=self._results_url_builder(round_data.round.id, code),
+                        results_url=HttpUrl(self._results_url_builder(round_data.round.id, code)),
                     )
                 )
 
@@ -131,6 +148,10 @@ class ScheduleOrchestrator:
             return "Q"
         return session_type
 
+    @staticmethod
+    def _has_race(round_data: ScheduleRoundData) -> bool:
+        return any(s.type == SessionType.RACE for s in round_data.sessions)
+
     def _calculate_rounds_info(self) -> ScheduleRoundsInfo | None:
         """Calculate next/previous round info based on today's date."""
         rounds = self._data.rounds
@@ -140,8 +161,7 @@ class ScheduleOrchestrator:
         last_valid_previous_index = -1
 
         for i, round_data in enumerate(rounds):
-            has_race = SessionType.RACE in round_data.session_types
-            if has_race and round_data.date:
+            if self._has_race(round_data) and round_data.date:
                 if round_data.date < self._today:
                     last_valid_previous_index = i
 
@@ -158,8 +178,7 @@ class ScheduleOrchestrator:
         potential_next_index = last_valid_previous_index + 1
         while potential_next_index < len(rounds):
             next_round = rounds[potential_next_index]
-            has_race = SessionType.RACE in next_round.session_types
-            if has_race and next_round.round.number is not None:
+            if self._has_race(next_round) and next_round.round.number is not None:
                 next_info = ScheduleRoundInfoDetail(
                     number=next_round.round.number,
                     index=potential_next_index,
