@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 import time
 from collections.abc import Callable
+from typing import Any
 
 import requests
 from django.conf import settings
@@ -147,3 +148,18 @@ def drf_spectacular_filter_preprocess(
         if path.startswith("/f1") or path.startswith("/data/dumps/download"):
             filtered.append((path, path_regex, method, callback))
     return filtered
+
+
+def drf_spectacular_tag_postprocess(result: dict, generator: Any, **kwargs: Any) -> dict:
+    """Remap the auto-generated 'alpha' tag into 'Alpha - Core' and 'Alpha' subgroups."""
+    for path, methods in result.get("paths", {}).items():
+        for method_detail in methods.values():
+            if not isinstance(method_detail, dict):
+                continue
+            tags = method_detail.get("tags", [])
+            if "alpha" in tags:
+                if "/core/" in path:
+                    method_detail["tags"] = ["Alpha - Core" if t == "alpha" else t for t in tags]
+                else:
+                    method_detail["tags"] = ["Alpha" if t == "alpha" else t for t in tags]
+    return result

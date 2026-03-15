@@ -244,6 +244,13 @@ SPECTACULAR_SETTINGS = {
     "PREPROCESSING_HOOKS": [
         "jolpica_api.deployment_utils.drf_spectacular_filter_preprocess",
     ],
+    "POSTPROCESSING_HOOKS": [
+        "jolpica_api.deployment_utils.drf_spectacular_tag_postprocess",
+    ],
+    "TAGS": [
+        {"name": "Alpha", "description": "Composed endpoints combining multiple data sources."},
+        {"name": "Alpha - Core", "description": "Core table-mapped endpoints for direct data access."},
+    ],
     "SWAGGER_UI_SETTINGS": {
         "deepLinking": True,
         "persistAuthorization": True,
