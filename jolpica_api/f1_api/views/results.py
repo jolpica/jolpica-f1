@@ -96,8 +96,7 @@ class ResultsView(viewsets.ViewSet):
         if session_filter not in get_available_result_types(round):
             return response.Response({"error": "Invalid session filter for this round"}, status=404)
 
-        loader = ResultDataLoader(round_id)
-        result_data = loader.load(req, session_filter)
+        result_data = ResultDataLoader.load(req, round_id, session_filter)
         try:
             results = ResultsOrchestrator(session_filter, result_data).render()
         except ValueError:

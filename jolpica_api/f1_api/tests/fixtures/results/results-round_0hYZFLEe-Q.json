@@ -1,8 +1,45 @@
 {
   "metadata": {
-    "timestamp": "2026-03-08T11:01:08.602852Z"
+    "timestamp": "2026-03-16T00:00:13.704133Z"
   },
   "data": {
+    "code": "Q",
+    "title": "Qualifying",
+    "sessions": [
+      {
+        "id": "session_sypcoEYn",
+        "url": "http://testserver/f1/alpha/core/sessions/session_sypcoEYn/",
+        "number": 4,
+        "type": "Q1",
+        "type_display": "Qualifying One",
+        "timestamp": "2023-07-08T14:00:00Z",
+        "local_timestamp": "2023-07-08 15:00:00+01:00",
+        "timezone": "Europe/London",
+        "is_cancelled": false
+      },
+      {
+        "id": "session_JMSBoO4O",
+        "url": "http://testserver/f1/alpha/core/sessions/session_JMSBoO4O/",
+        "number": 5,
+        "type": "Q2",
+        "type_display": "Qualifying Two",
+        "timestamp": "2023-07-08T14:00:00Z",
+        "local_timestamp": "2023-07-08 15:00:00+01:00",
+        "timezone": "Europe/London",
+        "is_cancelled": false
+      },
+      {
+        "id": "session_m1NcJHmG",
+        "url": "http://testserver/f1/alpha/core/sessions/session_m1NcJHmG/",
+        "number": 6,
+        "type": "Q3",
+        "type_display": "Qualifying Three",
+        "timestamp": "2023-07-08T14:00:00Z",
+        "local_timestamp": "2023-07-08 15:00:00+01:00",
+        "timezone": "Europe/London",
+        "is_cancelled": false
+      }
+    ],
     "season": {
       "id": "season_0VeNZC1A",
       "url": "http://testserver/f1/alpha/core/seasons/season_0VeNZC1A/",
@@ -29,31 +66,6 @@
       "altitude": 153.0,
       "wikipedia": "https://en.wikipedia.org/wiki/Silverstone_Circuit"
     },
-    "sessions": [
-      {
-        "id": "session_sypcoEYn",
-        "url": "http://testserver/f1/alpha/core/sessions/session_sypcoEYn/",
-        "number": 4,
-        "type": "Q1",
-        "type_display": "QUALIFYING_ONE"
-      },
-      {
-        "id": "session_JMSBoO4O",
-        "url": "http://testserver/f1/alpha/core/sessions/session_JMSBoO4O/",
-        "number": 5,
-        "type": "Q2",
-        "type_display": "QUALIFYING_TWO"
-      },
-      {
-        "id": "session_m1NcJHmG",
-        "url": "http://testserver/f1/alpha/core/sessions/session_m1NcJHmG/",
-        "number": 6,
-        "type": "Q3",
-        "type_display": "QUALIFYING_THREE"
-      }
-    ],
-    "title": "Qualifying",
-    "code": "Q",
     "component_keys": [
       "Q1",
       "Q2",

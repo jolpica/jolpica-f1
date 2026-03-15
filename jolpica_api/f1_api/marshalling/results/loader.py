@@ -50,18 +50,16 @@ class ResultData:
     round: shared.Round
     season: shared.Season
     circuit: shared.Circuit
-    sessions: list[shared.BasicSession]
+    sessions: list[shared.Session]
 
 
 class ResultDataLoader:
-    def __init__(self, round_api_id: str):
-        self._round_id = round_api_id
-
-    def load(self, req: request.Request, session_filter: str) -> ResultData:
-        round = f1.Round.objects.filter(api_id=self._round_id).select_related("season", "circuit").first()
+    @staticmethod
+    def load(req: request.Request, round_api_id: str, session_filter: str) -> ResultData:
+        round = f1.Round.objects.filter(api_id=round_api_id).select_related("season", "circuit").first()
 
         if round is None:
-            raise ValueError(f"Round not found: {self._round_id}")
+            raise ValueError(f"Round not found: {round_api_id}")
 
         sessions = f1.Session.objects.filter(round=round, type__startswith=session_filter).order_by("timestamp")
 
@@ -95,7 +93,7 @@ class ResultDataLoader:
                 driver = rentry.team_driver.driver
                 team = rentry.team_driver.team
                 key = (rentry.car_number, driver.forename, rentry.api_id)
-                session_entry_list = self._generate_session_entry_list(rentry.prefetched_session_entries)  # type:ignore
+                session_entry_list = ResultDataLoader._generate_session_entry_list(rentry.prefetched_session_entries)  # type:ignore
 
                 row_data.append(
                     ResultRowData(
@@ -147,18 +145,25 @@ class ResultDataLoader:
                 wikipedia=HttpUrl(round.circuit.wikipedia) if round.circuit.wikipedia else None,
             ),
             sessions=[
-                shared.BasicSession(
+                shared.Session(
                     id=s.api_id,
                     url=HttpUrl(req.build_absolute_uri(reverse("sessions-detail", args=[s.api_id]))),
                     number=s.number,
                     type=s.type,
-                    type_display=f1.SessionType(s.type).name,
+                    type_display=f1.SessionType(s.type).label,
+                    timestamp=s.timestamp,
+                    missing_time_data=None if s.has_time_data else True,
+                    local_timestamp=str(s.local_timestamp) if s.local_timestamp else None,
+                    timezone=str(s.timezone) if s.timezone else None,
+                    scheduled_laps=s.scheduled_laps,
+                    is_cancelled=s.is_cancelled,
                 )
                 for s in sessions
             ],
         )
 
-    def _generate_session_entry_list(self, session_entries: list[f1.SessionEntry]) -> list[ResultRowSessionEntryData]:
+    @staticmethod
+    def _generate_session_entry_list(session_entries: list[f1.SessionEntry]) -> list[ResultRowSessionEntryData]:
         """Helper to convert a list of SessionEntry objects to a list of ResultRowSessionEntryData."""
         session_entry_list = []
         for se in session_entries:
