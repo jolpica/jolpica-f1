@@ -38,3 +38,7 @@ class ScheduleDetail(Season):
 
 class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
     """Schema for season schedule detail responses"""
+
+
+class RetrievedScheduleList(DetailResponse[list[ScheduleSummary]]):
+    """Schema for season schedule list responses"""

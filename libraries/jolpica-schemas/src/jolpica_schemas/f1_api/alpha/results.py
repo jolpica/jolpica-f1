@@ -40,14 +40,11 @@ class AvailableResultsForRound(BaseModel):
     available_results: list[AvailableResultsItem]
 
 
-class Results(BaseModel):
+class Results(shared.FullSession):
     season: shared.Season
     round: shared.Round
     circuit: shared.Circuit
-    sessions: list[shared.BasicSession]
 
-    title: str
-    code: str
     component_keys: list[str]
     results: list[ResultItem]
 

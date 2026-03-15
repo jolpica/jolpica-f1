@@ -9,6 +9,7 @@ from .views import (
     results,
     rounds,
     schedules,
+    schedules_v2,
     seasons,
     session_entries,
     sessions,
@@ -22,6 +23,7 @@ class CustomRouter(routers.DefaultRouter):
 
 router = CustomRouter()
 router.register(r"schedules", schedules.SeasonScheduleViewSet, basename="schedules")
+router.register(r"v2-schedules", schedules_v2.SeasonScheduleV2ViewSet, basename="v2-schedules")
 router.register(r"results", results.ResultsView, basename="results")
 
 # Core table-mapped endpoints
