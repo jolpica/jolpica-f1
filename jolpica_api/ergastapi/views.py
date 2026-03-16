@@ -238,7 +238,13 @@ class RaceViewSet(ErgastModelViewSet):
     order_by = ["season__year", "number"]
 
     def get_queryset(self) -> QuerySet:
-        return super().get_queryset().select_related("season", "circuit").prefetch_related("sessions")
+        return (
+            super()
+            .get_queryset()
+            .filter(is_cancelled=False)
+            .select_related("season", "circuit")
+            .prefetch_related("sessions")
+        )
 
 
 class StatusViewSet(ErgastModelViewSet):
