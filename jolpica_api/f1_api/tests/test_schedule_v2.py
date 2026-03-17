@@ -59,6 +59,30 @@ def test_v2_schedule_detail_not_found(api_client):
     assert response.status_code == 404
 
 
+@pytest.mark.django_db
+def test_v2_schedule_list_query_count(api_client, django_assert_max_num_queries, sample_season_data):
+    """Verify the v2 schedule list endpoint makes fewer than 10 database queries."""
+    url = reverse("v2-schedules-list")
+
+    with django_assert_max_num_queries(10):
+        response = api_client.get(url)
+
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_v2_schedule_detail_query_count(api_client, django_assert_max_num_queries, sample_season_data):
+    """Verify the v2 schedule detail endpoint makes fewer than 10 database queries."""
+    year = sample_season_data.year
+    url = reverse("v2-schedules-detail", kwargs={"year": year})
+
+    with django_assert_max_num_queries(10):
+        response = api_client.get(url)
+
+    assert response.status_code == 200
+    assert len(response.json()["data"]["events"]) == sample_season_data.rounds.count()
+
+
 # --- Unit tests for orchestrator ---
 
 
