@@ -3,9 +3,6 @@
 from __future__ import annotations
 
 import datetime
-from collections.abc import Callable
-
-from pydantic import HttpUrl
 
 from jolpica.formula_one.models import SessionType
 from jolpica_schemas.f1_api.alpha.schedule_v2 import (
@@ -49,16 +46,15 @@ class ScheduleOrchestrator:
     def __init__(
         self,
         schedule_data: ScheduleData,
-        results_url_builder: Callable[[str, str], str],
         today: datetime.date | None = None,
     ):
         self._data = schedule_data
-        self._results_url_builder = results_url_builder
         self._today = today or datetime.date.today()
 
     def render(self) -> ScheduleDetail:
+        sorted_rounds = self._sort_rounds(self._data.rounds)
         entries: list[ScheduleEntry] = []
-        for round_data in self._data.rounds:
+        for round_data in sorted_rounds:
             full_sessions = self._consolidate_sessions(round_data)
             entries.append(
                 ScheduleEntry(
@@ -69,7 +65,7 @@ class ScheduleOrchestrator:
                 )
             )
 
-        rounds_info = self._calculate_rounds_info()
+        rounds_info = self._calculate_rounds_info(sorted_rounds)
 
         return ScheduleDetail(
             id=self._data.season.id,
@@ -79,6 +75,18 @@ class ScheduleOrchestrator:
             rounds_info=rounds_info,
             events=entries,
         )
+
+    @staticmethod
+    def _sort_rounds(rounds: list[ScheduleRoundData]) -> list[ScheduleRoundData]:
+        def sort_key(round_data: ScheduleRoundData) -> tuple[bool, int, datetime.date]:
+            round_number = round_data.round.number
+            return (
+                round_number is None,
+                round_number or 0,
+                round_data.date or datetime.date.max,
+            )
+
+        return sorted(rounds, key=sort_key)
 
     def _consolidate_sessions(self, round_data: ScheduleRoundData) -> list[ScheduleFullSession]:
         """Group sessions into FullSession objects, consolidating qualifying sub-sessions."""
@@ -108,7 +116,6 @@ class ScheduleOrchestrator:
                             code=code,
                             title=title,
                             sessions=group_sessions,
-                            results_url=HttpUrl(self._results_url_builder(round_data.round.id, code)),
                         )
                     )
                     consolidated = True
@@ -129,7 +136,6 @@ class ScheduleOrchestrator:
                         code=code,
                         title=standalone_title,
                         sessions=[session],
-                        results_url=HttpUrl(self._results_url_builder(round_data.round.id, code)),
                     )
                 )
 
@@ -152,9 +158,8 @@ class ScheduleOrchestrator:
     def _has_race(round_data: ScheduleRoundData) -> bool:
         return any(s.type == SessionType.RACE for s in round_data.sessions)
 
-    def _calculate_rounds_info(self) -> ScheduleRoundsInfo | None:
+    def _calculate_rounds_info(self, rounds: list[ScheduleRoundData]) -> ScheduleRoundsInfo | None:
         """Calculate next/previous round info based on today's date."""
-        rounds = self._data.rounds
         if not rounds:
             return None
 

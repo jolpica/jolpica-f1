@@ -5,7 +5,7 @@ from __future__ import annotations
 import datetime
 from dataclasses import dataclass
 
-from django.db.models import Prefetch
+from django.db.models import F, Prefetch
 from django.urls import reverse
 from pydantic import HttpUrl
 from rest_framework import request
@@ -67,7 +67,7 @@ class ScheduleDataLoader:
                         ),
                     )
                     .select_related("circuit")
-                    .order_by("date"),
+                    .order_by(F("number").asc(nulls_last=True), "date"),
                     to_attr="prefetched_rounds_ordered",
                 )
             )

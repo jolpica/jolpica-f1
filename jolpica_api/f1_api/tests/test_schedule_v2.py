@@ -106,7 +106,7 @@ def _make_round_data(
     *,
     session_types: list[str],
     date: datetime.date | None = None,
-    round_number: int = 1,
+    round_number: int | None = 1,
     round_api_id: str = "round_1",
 ) -> ScheduleRoundData:
     sessions = [_make_session(st, i + 1) for i, st in enumerate(session_types)]
@@ -149,16 +149,12 @@ def _make_schedule_data(rounds: list[ScheduleRoundData]) -> ScheduleData:
     )
 
 
-def _dummy_url_builder(round_api_id: str, session_code: str) -> str:
-    return f"http://test/results/{round_api_id}/{session_code}"
-
-
 class TestSessionConsolidation:
     def test_qualifying_sessions_consolidated(self):
         """Q1, Q2, Q3 should be consolidated into a single FullSession with code='Q'."""
         round_data = _make_round_data(session_types=["FP1", "Q1", "Q2", "Q3", "R"])
         data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
 
         codes = [s.code for s in result.events[0].schedule]
         assert codes == ["FP1", "Q", "R"]
@@ -166,14 +162,12 @@ class TestSessionConsolidation:
         q_session = next(s for s in result.events[0].schedule if s.code == "Q")
         assert q_session.title == "Qualifying"
         assert len(q_session.sessions) == 3
-        assert q_session.results_url is not None
-        assert "round_1/Q" in str(q_session.results_url)
 
     def test_sprint_qualifying_sessions_consolidated(self):
         """SQ1, SQ2, SQ3 should be consolidated into a single FullSession with code='SQ'."""
         round_data = _make_round_data(session_types=["SQ1", "SQ2", "SQ3", "SR"])
         data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
 
         codes = [s.code for s in result.events[0].schedule]
         assert codes == ["SQ", "SR"]
@@ -186,21 +180,28 @@ class TestSessionConsolidation:
         """FP1, FP2, R should each be their own FullSession."""
         round_data = _make_round_data(session_types=["FP1", "FP2", "R"])
         data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
 
         codes = [s.code for s in result.events[0].schedule]
         assert codes == ["FP1", "FP2", "R"]
         for fs in result.events[0].schedule:
             assert len(fs.sessions) == 1
 
-    def test_results_url_uses_consolidated_code(self):
-        """results_url should use the consolidated code, not the sub-session type."""
-        round_data = _make_round_data(session_types=["Q1", "Q2", "Q3"])
-        data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
 
-        q_session = result.events[0].schedule[0]
-        assert "round_1/Q" in str(q_session.results_url)
+class TestRoundOrdering:
+    def test_rounds_sorted_by_round_number_then_date_with_cancelled_last(self):
+        rounds = [
+            _make_round_data(session_types=["R"], round_number=None, date=datetime.date(2023, 4, 1), round_api_id="c1"),
+            _make_round_data(session_types=["R"], round_number=2, date=datetime.date(2023, 6, 1), round_api_id="r2"),
+            _make_round_data(session_types=["R"], round_number=1, date=datetime.date(2023, 7, 1), round_api_id="r1b"),
+            _make_round_data(session_types=["R"], round_number=1, date=datetime.date(2023, 3, 1), round_api_id="r1a"),
+            _make_round_data(session_types=["R"], round_number=None, date=datetime.date(2023, 2, 1), round_api_id="c0"),
+        ]
+        data = _make_schedule_data(rounds)
+
+        result = ScheduleOrchestrator(data).render()
+
+        assert [event.round.id for event in result.events] == ["r1a", "r1b", "r2", "c0", "c1"]
 
 
 class TestRoundsInfoCalculation:
@@ -213,7 +214,7 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=3, round_api_id="r3"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, _dummy_url_builder, today=today).render()
+        result = ScheduleOrchestrator(data, today=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is not None
@@ -228,7 +229,7 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, _dummy_url_builder, today=today).render()
+        result = ScheduleOrchestrator(data, today=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.next is not None
@@ -241,7 +242,7 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["FP1"], date=datetime.date(2023, 3, 1), round_number=1),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, _dummy_url_builder, today=datetime.date(2023, 6, 1)).render()
+        result = ScheduleOrchestrator(data, today=datetime.date(2023, 6, 1)).render()
 
         assert result.rounds_info is None
 
@@ -253,7 +254,7 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, _dummy_url_builder, today=today).render()
+        result = ScheduleOrchestrator(data, today=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is None
@@ -268,7 +269,7 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, _dummy_url_builder, today=today).render()
+        result = ScheduleOrchestrator(data, today=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is not None
@@ -278,7 +279,7 @@ class TestRoundsInfoCalculation:
     def test_no_rounds(self):
         """rounds_info should be None when there are no rounds."""
         data = _make_schedule_data([])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
         assert result.rounds_info is None
 
     def test_round_date_equals_today_is_not_previous(self):
@@ -289,7 +290,7 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, _dummy_url_builder, today=today).render()
+        result = ScheduleOrchestrator(data, today=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is None
@@ -304,7 +305,7 @@ class TestStandaloneQualifyingSessions:
         """QA should produce a standalone FullSession with code='Q' and title='Qualifying'."""
         round_data = _make_round_data(session_types=["QA", "R"])
         data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
 
         codes = [s.code for s in result.events[0].schedule]
         assert codes == ["Q", "R"]
@@ -316,7 +317,7 @@ class TestStandaloneQualifyingSessions:
         """QO should produce a standalone FullSession with code='Q' and title='Qualifying'."""
         round_data = _make_round_data(session_types=["QO", "R"])
         data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
 
         codes = [s.code for s in result.events[0].schedule]
         assert codes == ["Q", "R"]
@@ -328,7 +329,7 @@ class TestStandaloneQualifyingSessions:
         """QB should produce a standalone FullSession with code='Q' and title='Qualifying'."""
         round_data = _make_round_data(session_types=["QB", "R"])
         data = _make_schedule_data([round_data])
-        result = ScheduleOrchestrator(data, _dummy_url_builder).render()
+        result = ScheduleOrchestrator(data).render()
 
         codes = [s.code for s in result.events[0].schedule]
         assert codes == ["Q", "R"]

@@ -1,13 +1,13 @@
 import datetime
 
-from pydantic import BaseModel, HttpUrl
+from pydantic import BaseModel
 
 from .metadata import DetailResponse
 from .shared import Circuit, FullSession, Round, Season
 
 
 class ScheduleFullSession(FullSession):
-    results_url: HttpUrl | None = None
+    pass
 
 
 class ScheduleEntry(BaseModel):
