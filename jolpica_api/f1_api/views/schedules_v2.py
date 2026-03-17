@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from django.urls import reverse
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, request, response, viewsets
@@ -60,12 +59,8 @@ class SeasonScheduleV2ViewSet(viewsets.ViewSet):
         if schedule_data is None:
             return response.Response({"error": "Season not found"}, status=404)
 
-        def results_url_builder(round_api_id: str, session_code: str) -> str:
-            return req.build_absolute_uri(reverse("results-results", args=[round_api_id, session_code]))
-
         orchestrator = ScheduleOrchestrator(
             schedule_data,
-            results_url_builder=results_url_builder,
             today=timezone.now().date(),
         )
         data = orchestrator.render()
