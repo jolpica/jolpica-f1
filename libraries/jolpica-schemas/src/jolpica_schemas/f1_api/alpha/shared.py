@@ -36,6 +36,7 @@ class BasicSession(BaseModel):
     number: int | None = None
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")
+    is_cancelled: bool = False
 
 
 class Session(BasicSession):
@@ -44,7 +45,6 @@ class Session(BasicSession):
     local_timestamp: str | None = None
     timezone: str | None = None
     scheduled_laps: int | None = None
-    is_cancelled: bool = False
 
 
 class FullSession(BaseModel):
@@ -109,12 +109,12 @@ class BasicRound(BaseModel):
     url: HttpUrl
     number: int | None = None
     name: str | None = None
+    is_cancelled: bool
 
 
 class Round(BasicRound):
     race_number: int | None = None
     wikipedia: HttpUrl | None = None
-    is_cancelled: bool = False
 
 
 class BasicDriver(BaseModel):
