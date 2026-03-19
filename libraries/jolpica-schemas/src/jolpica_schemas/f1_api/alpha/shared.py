@@ -37,6 +37,7 @@ class BasicSession(BaseModel):
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")
     is_cancelled: bool = False
+    scheduled_laps: int | None = None
 
 
 class Session(BasicSession):
@@ -44,7 +45,6 @@ class Session(BasicSession):
     missing_time_data: bool | None = Field(None, description="Does the timestamp field only have date information")
     local_timestamp: str | None = None
     timezone: str | None = None
-    scheduled_laps: int | None = None
 
 
 class FullSession(BaseModel):
@@ -56,7 +56,15 @@ class FullSession(BaseModel):
 
     code: str = Field(..., description="Consolidated session type code (e.g., R, Q, SQ, FP1)")
     title: str = Field(..., description="Display name for the session type (e.g., Qualifying, Race)")
-    sessions: list[Session] = Field(..., description="Individual sessions that make up this full session")
+    sessions: list[BasicSession] = Field(
+        ...,
+        min_length=1,
+        description="Individual sessions that make up this full session",
+    )
+    timestamp: datetime.datetime | None = Field(None, description="Timestamp of the first session")
+    missing_time_data: bool | None = Field(None, description="Does the timestamp field only have date information")
+    local_timestamp: str | None = Field(None, description="Local timestamp of the first session")
+    timezone: str | None = Field(None, description="Timezone of the first session")
 
 
 class BasicSessionEntry(BaseModel):
