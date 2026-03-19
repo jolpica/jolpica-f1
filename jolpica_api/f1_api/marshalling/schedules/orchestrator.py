@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime
 
 from jolpica.formula_one.models import SessionType
+from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.schedule_v2 import (
     ScheduleDetail,
     ScheduleEntry,
@@ -115,7 +116,11 @@ class ScheduleOrchestrator:
                         ScheduleFullSession(
                             code=code,
                             title=title,
-                            sessions=group_sessions,
+                            sessions=[self._to_basic_session(s) for s in group_sessions],
+                            timestamp=group_sessions[0].timestamp,
+                            missing_time_data=group_sessions[0].missing_time_data,
+                            local_timestamp=group_sessions[0].local_timestamp,
+                            timezone=group_sessions[0].timezone,
                         )
                     )
                     consolidated = True
@@ -135,11 +140,28 @@ class ScheduleOrchestrator:
                     ScheduleFullSession(
                         code=code,
                         title=standalone_title,
-                        sessions=[session],
+                        sessions=[self._to_basic_session(session)],
+                        timestamp=session.timestamp,
+                        missing_time_data=session.missing_time_data,
+                        local_timestamp=session.local_timestamp,
+                        timezone=session.timezone,
                     )
                 )
 
         return full_sessions
+
+    @staticmethod
+    def _to_basic_session(session: shared.Session) -> shared.BasicSession:
+        """Convert a Session to a BasicSession."""
+        return shared.BasicSession(
+            id=session.id,
+            url=session.url,
+            number=session.number,
+            type=session.type,
+            type_display=session.type_display,
+            is_cancelled=session.is_cancelled,
+            scheduled_laps=session.scheduled_laps,
+        )
 
     def _get_standalone_code(self, session_type: str) -> str:
         """Get the results code for a standalone (non-consolidated) session type."""
