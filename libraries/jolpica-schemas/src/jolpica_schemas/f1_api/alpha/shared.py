@@ -46,6 +46,17 @@ class Session(BasicSession):
     local_timestamp: str | None = None
     timezone: str | None = None
 
+    def to_basic_session(self) -> BasicSession:
+        return BasicSession(
+            id=self.id,
+            url=self.url,
+            number=self.number,
+            type=self.type,
+            type_display=self.type_display,
+            is_cancelled=self.is_cancelled,
+            scheduled_laps=self.scheduled_laps,
+        )
+
 
 class FullSession(BaseModel):
     """A logical session that may be composed of sub-sessions.

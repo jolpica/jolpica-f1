@@ -61,13 +61,18 @@ class ResultsOrchestrator:
         if title is None:
             logger.error("Missing result type title for session filter", extra={"session_filter": self._session_filter})
             title = self._session_filter  # Fallback to using the session filter as the title if not found in mapping
+        primary_session = self._result_data.sessions[0]
         return Results(
             title=title,
             code=self._session_filter,
+            timestamp=primary_session.timestamp,
+            missing_time_data=primary_session.missing_time_data,
+            local_timestamp=primary_session.local_timestamp,
+            timezone=primary_session.timezone,
             season=self._result_data.season,
             circuit=self._result_data.circuit,
             round=self._result_data.round,
-            sessions=self._result_data.sessions,
+            sessions=[session.to_basic_session() for session in self._result_data.sessions],
             component_keys=component_keys,
             results=results,
         )
