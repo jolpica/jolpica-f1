@@ -207,14 +207,14 @@ class TestRoundOrdering:
 class TestRoundsInfoCalculation:
     def test_previous_round_found(self):
         """Previous round should be the last round with a race before today."""
-        today = datetime.date(2023, 6, 1)
+        today = datetime.datetime(2023, 6, 1)
         rounds = [
             _make_round_data(session_types=["R"], date=datetime.date(2023, 3, 1), round_number=1, round_api_id="r1"),
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=2, round_api_id="r2"),
             _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=3, round_api_id="r3"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, today=today).render()
+        result = ScheduleOrchestrator(data, current_timestamp=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is not None
@@ -223,13 +223,13 @@ class TestRoundsInfoCalculation:
 
     def test_next_round_found(self):
         """Next round should be the first round with a race after the previous."""
-        today = datetime.date(2023, 6, 1)
+        today = datetime.datetime(2023, 6, 1)
         rounds = [
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=1, round_api_id="r1"),
             _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, today=today).render()
+        result = ScheduleOrchestrator(data, current_timestamp=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.next is not None
@@ -242,19 +242,19 @@ class TestRoundsInfoCalculation:
             _make_round_data(session_types=["FP1"], date=datetime.date(2023, 3, 1), round_number=1),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, today=datetime.date(2023, 6, 1)).render()
+        result = ScheduleOrchestrator(data, current_timestamp=datetime.datetime(2023, 6, 1)).render()
 
         assert result.rounds_info is None
 
     def test_all_rounds_in_future(self):
         """Only next should be set when all rounds are in the future."""
-        today = datetime.date(2023, 1, 1)
+        today = datetime.datetime(2023, 1, 1)
         rounds = [
             _make_round_data(session_types=["R"], date=datetime.date(2023, 3, 1), round_number=1, round_api_id="r1"),
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, today=today).render()
+        result = ScheduleOrchestrator(data, current_timestamp=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is None
@@ -263,13 +263,13 @@ class TestRoundsInfoCalculation:
 
     def test_all_rounds_in_past(self):
         """Only previous should be set when all rounds are in the past."""
-        today = datetime.date(2023, 12, 31)
+        today = datetime.datetime(2023, 12, 31)
         rounds = [
             _make_round_data(session_types=["R"], date=datetime.date(2023, 3, 1), round_number=1, round_api_id="r1"),
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, today=today).render()
+        result = ScheduleOrchestrator(data, current_timestamp=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is not None
@@ -284,13 +284,13 @@ class TestRoundsInfoCalculation:
 
     def test_round_date_equals_today_is_not_previous(self):
         """A round whose date equals today should NOT be counted as previous (uses strict < today)."""
-        today = datetime.date(2023, 5, 1)
+        today = datetime.datetime(2023, 5, 1)
         rounds = [
             _make_round_data(session_types=["R"], date=datetime.date(2023, 5, 1), round_number=1, round_api_id="r1"),
             _make_round_data(session_types=["R"], date=datetime.date(2023, 7, 1), round_number=2, round_api_id="r2"),
         ]
         data = _make_schedule_data(rounds)
-        result = ScheduleOrchestrator(data, today=today).render()
+        result = ScheduleOrchestrator(data, current_timestamp=today).render()
 
         assert result.rounds_info is not None
         assert result.rounds_info.previous is None

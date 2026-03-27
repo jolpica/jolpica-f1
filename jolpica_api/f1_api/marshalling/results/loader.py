@@ -54,8 +54,8 @@ class ResultData:
 
 
 class ResultDataLoader:
-    @staticmethod
-    def load(req: request.Request, round_api_id: str, session_filter: str) -> ResultData:
+    @classmethod
+    def load(cls, req: request.Request, round_api_id: str, session_filter: str) -> ResultData:
         round = f1.Round.objects.filter(api_id=round_api_id).select_related("season", "circuit").first()
 
         if round is None:
@@ -93,7 +93,7 @@ class ResultDataLoader:
                 driver = rentry.team_driver.driver
                 team = rentry.team_driver.team
                 key = (rentry.car_number, driver.forename, rentry.api_id)
-                session_entry_list = ResultDataLoader._generate_session_entry_list(rentry.prefetched_session_entries)  # type:ignore
+                session_entry_list = cls._generate_session_entry_list(rentry.prefetched_session_entries)  # type:ignore
 
                 row_data.append(
                     ResultRowData(
@@ -152,6 +152,7 @@ class ResultDataLoader:
                     type=s.type,
                     type_display=f1.SessionType(s.type).label,
                     timestamp=s.timestamp,
+                    # We set to null (omitted) to not bloat modern session responses
                     missing_time_data=None if s.has_time_data else True,
                     local_timestamp=str(s.local_timestamp) if s.local_timestamp else None,
                     timezone=str(s.timezone) if s.timezone else None,
@@ -162,8 +163,8 @@ class ResultDataLoader:
             ],
         )
 
-    @staticmethod
-    def _generate_session_entry_list(session_entries: list[f1.SessionEntry]) -> list[ResultRowSessionEntryData]:
+    @classmethod
+    def _generate_session_entry_list(cls, session_entries: list[f1.SessionEntry]) -> list[ResultRowSessionEntryData]:
         """Helper to convert a list of SessionEntry objects to a list of ResultRowSessionEntryData."""
         session_entry_list = []
         for se in session_entries:

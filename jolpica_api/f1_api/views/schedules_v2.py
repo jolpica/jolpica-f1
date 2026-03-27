@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import logging
+
 from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, request, response, viewsets
@@ -13,7 +15,9 @@ from jolpica_schemas.f1_api.alpha.schedule_v2 import (
     ScheduleDetail,
 )
 
-from ..marshalling.schedules import ScheduleDataLoader, ScheduleOrchestrator
+from ..marshalling.schedules import NoSeasonFoundError, ScheduleDataLoader, ScheduleOrchestrator
+
+logger = logging.getLogger(__name__)
 
 
 @extend_schema_view(
@@ -54,14 +58,14 @@ class SeasonScheduleV2ViewSet(viewsets.ViewSet):
         except ValueError:
             return response.Response({"error": "Year must be a number"}, status=400)
 
-        schedule_data = ScheduleDataLoader.load_detail(req, year_int)
-
-        if schedule_data is None:
+        try:
+            schedule_data = ScheduleDataLoader.load_detail(req, year_int)
+        except NoSeasonFoundError:
             return response.Response({"error": "Season not found"}, status=404)
 
         orchestrator = ScheduleOrchestrator(
             schedule_data,
-            today=timezone.now().date(),
+            current_timestamp=timezone.now(),
         )
         data = orchestrator.render()
         metadata = DetailMetadata(timestamp=timezone.now())

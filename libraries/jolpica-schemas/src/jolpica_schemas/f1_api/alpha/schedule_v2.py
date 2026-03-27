@@ -1,5 +1,3 @@
-import datetime
-
 from pydantic import BaseModel
 
 from .metadata import DetailResponse
@@ -13,7 +11,6 @@ class ScheduleFullSession(FullSession):
 class ScheduleEntry(BaseModel):
     round: Round
     circuit: Circuit
-    date: datetime.date | None = None
     schedule: list[ScheduleFullSession]
 
 

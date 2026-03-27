@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .loader import (
+    NoSeasonFoundError,
     ScheduleData,
     ScheduleDataLoader,
     ScheduleRoundData,
@@ -10,6 +11,7 @@ from .loader import (
 from .orchestrator import ScheduleOrchestrator
 
 __all__ = [
+    "NoSeasonFoundError",
     "ScheduleData",
     "ScheduleDataLoader",
     "ScheduleOrchestrator",

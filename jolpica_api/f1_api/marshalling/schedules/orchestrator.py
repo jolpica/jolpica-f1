@@ -47,10 +47,11 @@ class ScheduleOrchestrator:
     def __init__(
         self,
         schedule_data: ScheduleData,
-        today: datetime.date | None = None,
+        current_timestamp: datetime.datetime | None = None,
     ):
         self._data = schedule_data
-        self._today = today or datetime.date.today()
+        # Used to determine next/previous rounds
+        self._current_timestamp = current_timestamp or datetime.datetime.now()
 
     def render(self) -> ScheduleDetail:
         sorted_rounds = self._sort_rounds(self._data.rounds)
@@ -61,7 +62,6 @@ class ScheduleOrchestrator:
                 ScheduleEntry(
                     round=round_data.round,
                     circuit=round_data.circuit,
-                    date=round_data.date,
                     schedule=full_sessions,
                 )
             )
@@ -79,12 +79,11 @@ class ScheduleOrchestrator:
 
     @staticmethod
     def _sort_rounds(rounds: list[ScheduleRoundData]) -> list[ScheduleRoundData]:
-        def sort_key(round_data: ScheduleRoundData) -> tuple[bool, int, datetime.date]:
+        def sort_key(round_data: ScheduleRoundData) -> tuple[bool, int]:
             round_number = round_data.round.number
             return (
                 round_number is None,
                 round_number or 0,
-                round_data.date or datetime.date.max,
             )
 
         return sorted(rounds, key=sort_key)
@@ -116,7 +115,7 @@ class ScheduleOrchestrator:
                         ScheduleFullSession(
                             code=code,
                             title=title,
-                            sessions=[self._to_basic_session(s) for s in group_sessions],
+                            sessions=[session.to_basic_session() for session in group_sessions],
                             timestamp=group_sessions[0].timestamp,
                             missing_time_data=group_sessions[0].missing_time_data,
                             local_timestamp=group_sessions[0].local_timestamp,
@@ -140,7 +139,7 @@ class ScheduleOrchestrator:
                     ScheduleFullSession(
                         code=code,
                         title=standalone_title,
-                        sessions=[self._to_basic_session(session)],
+                        sessions=[session.to_basic_session()],
                         timestamp=session.timestamp,
                         missing_time_data=session.missing_time_data,
                         local_timestamp=session.local_timestamp,
@@ -149,19 +148,6 @@ class ScheduleOrchestrator:
                 )
 
         return full_sessions
-
-    @staticmethod
-    def _to_basic_session(session: shared.Session) -> shared.BasicSession:
-        """Convert a Session to a BasicSession."""
-        return shared.BasicSession(
-            id=session.id,
-            url=session.url,
-            number=session.number,
-            type=session.type,
-            type_display=session.type_display,
-            is_cancelled=session.is_cancelled,
-            scheduled_laps=session.scheduled_laps,
-        )
 
     def _get_standalone_code(self, session_type: str) -> str:
         """Get the results code for a standalone (non-consolidated) session type."""
@@ -177,8 +163,11 @@ class ScheduleOrchestrator:
         return session_type
 
     @staticmethod
-    def _has_race(round_data: ScheduleRoundData) -> bool:
-        return any(s.type == SessionType.RACE for s in round_data.sessions)
+    def _get_race(round_data: ScheduleRoundData) -> shared.Session | None:
+        for s in round_data.sessions:
+            if s.type == SessionType.RACE:
+                return s
+        return None
 
     def _calculate_rounds_info(self, rounds: list[ScheduleRoundData]) -> ScheduleRoundsInfo | None:
         """Calculate next/previous round info based on today's date."""
@@ -188,8 +177,8 @@ class ScheduleOrchestrator:
         last_valid_previous_index = -1
 
         for i, round_data in enumerate(rounds):
-            if self._has_race(round_data) and round_data.date:
-                if round_data.date < self._today:
+            if race_sess := self._get_race(round_data):
+                if race_sess.timestamp and race_sess.timestamp < self._current_timestamp:
                     last_valid_previous_index = i
 
         previous_info = None
@@ -205,7 +194,7 @@ class ScheduleOrchestrator:
         potential_next_index = last_valid_previous_index + 1
         while potential_next_index < len(rounds):
             next_round = rounds[potential_next_index]
-            if self._has_race(next_round) and next_round.round.number is not None:
+            if self._get_race(next_round) and next_round.round.number is not None:
                 next_info = ScheduleRoundInfoDetail(
                     number=next_round.round.number,
                     index=potential_next_index,
