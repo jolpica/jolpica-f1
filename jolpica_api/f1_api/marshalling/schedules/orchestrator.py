@@ -15,30 +15,8 @@ from jolpica_schemas.f1_api.alpha.schedule_v2 import (
 )
 
 from ..logger import logger
+from .constants import SESSION_CONFIG
 from .loader import ScheduleData, ScheduleRoundData
-
-# Maps groups of session types to their consolidated (code, title)
-CONSOLIDATED_SESSIONS: dict[tuple[str, ...], tuple[str, str]] = {
-    (SessionType.QUALIFYING_ONE, SessionType.QUALIFYING_TWO, SessionType.QUALIFYING_THREE): ("Q", "Qualifying"),
-    (
-        SessionType.SPRINT_QUALIFYING_ONE,
-        SessionType.SPRINT_QUALIFYING_TWO,
-        SessionType.SPRINT_QUALIFYING_THREE,
-    ): ("SQ", "Sprint Qualifying"),
-}
-
-# Session types that map directly to a FullSession without consolidation
-STANDALONE_SESSION_TITLES: dict[str, str] = {
-    SessionType.RACE: "Race",
-    SessionType.SPRINT_RACE: "Sprint Race",
-    SessionType.PRACTICE_ONE: "Practice 1",
-    SessionType.PRACTICE_TWO: "Practice 2",
-    SessionType.PRACTICE_THREE: "Practice 3",
-    SessionType.QUALIFYING_AGGREGATE: "Qualifying",
-    SessionType.QUALIFYING_ORDER: "Qualifying",
-    SessionType.QUALIFYING_BEST: "Qualifying",
-    SessionType.PREQUALIFYING: "Pre-Qualifying",
-}
 
 
 class ScheduleOrchestrator:
@@ -77,8 +55,8 @@ class ScheduleOrchestrator:
             events=entries,
         )
 
-    @staticmethod
-    def _sort_rounds(rounds: list[ScheduleRoundData]) -> list[ScheduleRoundData]:
+    @classmethod
+    def _sort_rounds(cls, rounds: list[ScheduleRoundData]) -> list[ScheduleRoundData]:
         def sort_key(round_data: ScheduleRoundData) -> tuple[bool, int]:
             round_number = round_data.round.number
             return (
@@ -97,70 +75,61 @@ class ScheduleOrchestrator:
             if session.type in consumed_types:
                 continue
 
-            # Check if this session belongs to a consolidation group
-            consolidated = False
-            for group_types, (code, title) in CONSOLIDATED_SESSIONS.items():
-                if session.type in group_types:
-                    group_sessions = [s for s in round_data.sessions if s.type in group_types]
-                    consumed_types.update(group_types)
-                    if len(group_sessions) != len(group_types):
-                        logger.warning(
-                            "Incomplete consolidation group for %s in round %s: expected %d sessions, got %d",
-                            code,
-                            round_data.round.id,
-                            len(group_types),
-                            len(group_sessions),
-                        )
-                    full_sessions.append(
-                        ScheduleFullSession(
-                            code=code,
-                            title=title,
-                            sessions=[session.to_basic_session() for session in group_sessions],
-                            timestamp=group_sessions[0].timestamp,
-                            missing_time_data=group_sessions[0].missing_time_data,
-                            local_timestamp=group_sessions[0].local_timestamp,
-                            timezone=group_sessions[0].timezone,
-                        )
-                    )
-                    consolidated = True
-                    break
+            config = SESSION_CONFIG.get(session.type)
+            if config is None:
+                logger.warning(
+                    "Unknown session type %r in round %s, using type as title",
+                    session.type,
+                    round_data.round.id,
+                )
+                code = session.type
+                title = session.type
+                group_types = None
+            else:
+                code = config.code
+                title = config.title
+                group_types = config.group_types
 
-            if not consolidated:
-                code = self._get_standalone_code(session.type)
-                standalone_title = STANDALONE_SESSION_TITLES.get(session.type)
-                if standalone_title is None:
+            if group_types is not None:
+                group_sessions = [s for s in round_data.sessions if s.type in group_types]
+                consumed_types.update(group_types)
+                if len(group_sessions) != len(group_types):
                     logger.warning(
-                        "Unknown session type %r in round %s, using type as title",
-                        session.type,
+                        "Incomplete consolidation group for %s in round %s: expected %d sessions, got %d",
+                        code,
                         round_data.round.id,
+                        len(group_types),
+                        len(group_sessions),
                     )
-                    standalone_title = session.type
+                if not group_sessions:
+                    continue
+
                 full_sessions.append(
                     ScheduleFullSession(
                         code=code,
-                        title=standalone_title,
-                        sessions=[session.to_basic_session()],
-                        timestamp=session.timestamp,
-                        missing_time_data=session.missing_time_data,
-                        local_timestamp=session.local_timestamp,
-                        timezone=session.timezone,
+                        title=title,
+                        sessions=[group_session.to_basic_session() for group_session in group_sessions],
+                        timestamp=group_sessions[0].timestamp,
+                        missing_time_data=group_sessions[0].missing_time_data,
+                        local_timestamp=group_sessions[0].local_timestamp,
+                        timezone=group_sessions[0].timezone,
                     )
                 )
+                continue
+
+            full_sessions.append(
+                ScheduleFullSession(
+                    code=code,
+                    title=title,
+                    sessions=[session.to_basic_session()],
+                    timestamp=session.timestamp,
+                    missing_time_data=session.missing_time_data,
+                    local_timestamp=session.local_timestamp,
+                    timezone=session.timezone,
+                )
+            )
 
         return full_sessions
-
-    def _get_standalone_code(self, session_type: str) -> str:
-        """Get the results code for a standalone (non-consolidated) session type."""
-        # For standalone sessions, the type itself is the code
-        # e.g., "R" -> "R", "SR" -> "SR", "FP1" -> "FP1"
-        # For aggregate/order/best qualifying, map to "Q"
-        if session_type in (
-            SessionType.QUALIFYING_AGGREGATE,
-            SessionType.QUALIFYING_ORDER,
-            SessionType.QUALIFYING_BEST,
-        ):
-            return "Q"
-        return session_type
 
     @staticmethod
     def _get_race(round_data: ScheduleRoundData) -> shared.Session | None:
