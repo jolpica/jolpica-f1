@@ -13,7 +13,7 @@ from jolpica_api.f1_api.marshalling.schedules.orchestrator import ScheduleOrches
 from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.metadata import DetailResponse
 from jolpica_schemas.f1_api.alpha.schedule_v2 import (
-    RetrievedScheduleDetail,
+    ScheduleResponse,
     ScheduleSummary,
 )
 
@@ -46,7 +46,7 @@ def test_v2_schedule_detail_schema_conformance(api_client, sample_season_data):
     response_data = response.json()
 
     try:
-        RetrievedScheduleDetail.model_validate(response_data)
+        ScheduleResponse.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"V2 schedule detail response does not conform to schema:\n{e}")
 

@@ -7,8 +7,8 @@ import datetime
 from jolpica.formula_one.models import SessionType
 from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.schedule_v2 import (
-    ScheduleDetail,
-    ScheduleEntry,
+    Schedule,
+    ScheduleEvent,
     ScheduleFullSession,
     ScheduleRoundInfoDetail,
     ScheduleRoundsInfo,
@@ -28,16 +28,16 @@ class ScheduleOrchestrator:
         current_timestamp: datetime.datetime | None = None,
     ):
         self._data = schedule_data
-        # Used to determine next/previous rounds
+        # timestamp used to determine next/previous rounds
         self._current_timestamp = current_timestamp or datetime.datetime.now()
 
-    def render(self) -> ScheduleDetail:
+    def render(self) -> Schedule:
         sorted_rounds = self._sort_rounds(self._data.rounds)
-        entries: list[ScheduleEntry] = []
+        events: list[ScheduleEvent] = []
         for round_data in sorted_rounds:
             full_sessions = self._consolidate_sessions(round_data)
-            entries.append(
-                ScheduleEntry(
+            events.append(
+                ScheduleEvent(
                     round=round_data.round,
                     circuit=round_data.circuit,
                     schedule=full_sessions,
@@ -46,13 +46,13 @@ class ScheduleOrchestrator:
 
         rounds_info = self._calculate_rounds_info(sorted_rounds)
 
-        return ScheduleDetail(
+        return Schedule(
             id=self._data.season.id,
             url=self._data.season.url,
             year=self._data.season.year,
             wikipedia=self._data.season.wikipedia,
             rounds_info=rounds_info,
-            events=entries,
+            events=events,
         )
 
     @classmethod

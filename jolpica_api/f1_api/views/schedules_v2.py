@@ -10,9 +10,9 @@ from rest_framework import permissions, request, response, viewsets
 
 from jolpica_schemas.f1_api.alpha.metadata import DetailMetadata, DetailResponse
 from jolpica_schemas.f1_api.alpha.schedule_v2 import (
-    RetrievedScheduleDetail,
-    RetrievedScheduleList,
-    ScheduleDetail,
+    ListSchedulesResponse,
+    Schedule,
+    ScheduleResponse,
 )
 
 from ..marshalling.schedules import NoSeasonFoundError, ScheduleDataLoader, ScheduleOrchestrator
@@ -24,13 +24,13 @@ logger = logging.getLogger(__name__)
     list=extend_schema(
         summary="List all F1 Season Schedules (V2)",
         description="Returns all available F1 seasons.",
-        responses={200: RetrievedScheduleList},
+        responses={200: ListSchedulesResponse},
     ),
     retrieve=extend_schema(
         summary="Get Detailed F1 Season Schedule (V2)",
         description="Provides the full schedule for a given season year, "
         "including rounds, sessions, and circuit details.",
-        responses={200: RetrievedScheduleDetail},
+        responses={200: ScheduleResponse},
     ),
 )
 class SeasonScheduleV2ViewSet(viewsets.ViewSet):
@@ -70,5 +70,5 @@ class SeasonScheduleV2ViewSet(viewsets.ViewSet):
         data = orchestrator.render()
         metadata = DetailMetadata(timestamp=timezone.now())
         return response.Response(
-            DetailResponse[ScheduleDetail](metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
+            DetailResponse[Schedule](metadata=metadata, data=data).model_dump(mode="json", exclude_none=True)
         )

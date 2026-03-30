@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from .metadata import DetailResponse
+from .metadata import DetailResponse, PaginatedResponse
 from .shared import Circuit, FullSession, Round, Season
 
 
@@ -8,7 +8,7 @@ class ScheduleFullSession(FullSession):
     pass
 
 
-class ScheduleEntry(BaseModel):
+class ScheduleEvent(BaseModel):
     round: Round
     circuit: Circuit
     schedule: list[ScheduleFullSession]
@@ -28,14 +28,14 @@ class ScheduleSummary(Season):
     pass
 
 
-class ScheduleDetail(Season):
+class Schedule(ScheduleSummary):
     rounds_info: ScheduleRoundsInfo | None = None
-    events: list[ScheduleEntry]
+    events: list[ScheduleEvent]
 
 
-class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
+class ScheduleResponse(DetailResponse[Schedule]):
     """Schema for season schedule detail responses"""
 
 
-class RetrievedScheduleList(DetailResponse[list[ScheduleSummary]]):
+class ListSchedulesResponse(PaginatedResponse[list[ScheduleSummary]]):
     """Schema for season schedule list responses"""
