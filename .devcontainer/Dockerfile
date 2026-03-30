@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/python:1-3.12-bullseye
 USER vscode
 
-ENV UV_VERSION=0.9.5
+ENV UV_VERSION=0.11.2
 ENV PYTHONUNBUFFERED 1
 
 ENV VIRTUAL_ENV=/home/vscode/.venv
