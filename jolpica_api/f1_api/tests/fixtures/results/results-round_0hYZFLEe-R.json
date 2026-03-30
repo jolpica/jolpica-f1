@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-03-16T00:05:52.816686Z"
+    "timestamp": "2026-03-30T21:45:48.642743Z"
   },
   "data": {
     "code": "R",
@@ -12,12 +12,12 @@
         "number": 7,
         "type": "R",
         "type_display": "Race",
-        "timestamp": "2023-07-09T14:00:00Z",
-        "local_timestamp": "2023-07-09 15:00:00+01:00",
-        "timezone": "Europe/London",
         "is_cancelled": false
       }
     ],
+    "timestamp": "2023-07-09T14:00:00Z",
+    "local_timestamp": "2023-07-09 15:00:00+01:00",
+    "timezone": "Europe/London",
     "season": {
       "id": "season_0VeNZC1A",
       "url": "http://testserver/f1/alpha/core/seasons/season_0VeNZC1A/",
@@ -29,9 +29,9 @@
       "url": "http://testserver/f1/alpha/core/rounds/round_0hYZFLEe/",
       "number": 10,
       "name": "British Grand Prix",
+      "is_cancelled": false,
       "race_number": 1089,
-      "wikipedia": "https://en.wikipedia.org/wiki/2023_British_Grand_Prix",
-      "is_cancelled": false
+      "wikipedia": "https://en.wikipedia.org/wiki/2023_British_Grand_Prix"
     },
     "circuit": {
       "id": "circuit_W8rwFAJs",

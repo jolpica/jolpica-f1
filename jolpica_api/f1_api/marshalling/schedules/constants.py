@@ -11,7 +11,9 @@ from jolpica.formula_one.models import SessionType
 class SessionConfig:
     code: str
     title: str
+    # Required for grouped consolidation (e.g. Q1/Q2/Q3 -> Q), including completeness warnings.
     group_types: tuple[str, ...] | None
+    sequence_group: str | None = None
 
 
 QUALIFYING_SESSION_TYPES: tuple[str, ...] = (
@@ -34,12 +36,42 @@ SESSION_CONFIG: dict[str, SessionConfig] = {
     SessionType.PRACTICE_TWO: SessionConfig(code=SessionType.PRACTICE_TWO, title="Practice 2", group_types=None),
     SessionType.PRACTICE_THREE: SessionConfig(code=SessionType.PRACTICE_THREE, title="Practice 3", group_types=None),
     SessionType.PREQUALIFYING: SessionConfig(code=SessionType.PREQUALIFYING, title="Pre-Qualifying", group_types=None),
-    SessionType.QUALIFYING_AGGREGATE: SessionConfig(code="Q", title="Qualifying", group_types=None),
-    SessionType.QUALIFYING_ORDER: SessionConfig(code="Q", title="Qualifying", group_types=None),
-    SessionType.QUALIFYING_BEST: SessionConfig(code="Q", title="Qualifying", group_types=None),
-    SessionType.QUALIFYING_ONE: SessionConfig(code="Q", title="Qualifying", group_types=QUALIFYING_SESSION_TYPES),
-    SessionType.QUALIFYING_TWO: SessionConfig(code="Q", title="Qualifying", group_types=QUALIFYING_SESSION_TYPES),
-    SessionType.QUALIFYING_THREE: SessionConfig(code="Q", title="Qualifying", group_types=QUALIFYING_SESSION_TYPES),
+    SessionType.QUALIFYING_AGGREGATE: SessionConfig(
+        code="Q",
+        title="Qualifying",
+        group_types=None,
+        sequence_group="qualifying",
+    ),
+    SessionType.QUALIFYING_ORDER: SessionConfig(
+        code="Q",
+        title="Qualifying",
+        group_types=None,
+        sequence_group="qualifying",
+    ),
+    SessionType.QUALIFYING_BEST: SessionConfig(
+        code="Q",
+        title="Qualifying",
+        group_types=None,
+        sequence_group="qualifying",
+    ),
+    SessionType.QUALIFYING_ONE: SessionConfig(
+        code="Q",
+        title="Qualifying",
+        group_types=QUALIFYING_SESSION_TYPES,
+        sequence_group="qualifying",
+    ),
+    SessionType.QUALIFYING_TWO: SessionConfig(
+        code="Q",
+        title="Qualifying",
+        group_types=QUALIFYING_SESSION_TYPES,
+        sequence_group="qualifying",
+    ),
+    SessionType.QUALIFYING_THREE: SessionConfig(
+        code="Q",
+        title="Qualifying",
+        group_types=QUALIFYING_SESSION_TYPES,
+        sequence_group="qualifying",
+    ),
     SessionType.SPRINT_QUALIFYING_ONE: SessionConfig(
         code="SQ",
         title="Sprint Qualifying",

@@ -109,7 +109,17 @@ def _make_round_data(
     round_number: int | None = 1,
     round_api_id: str = "round_1",
 ) -> ScheduleRoundData:
-    sessions = [_make_session(st, i + 1) for i, st in enumerate(session_types)]
+    base_timestamp = None
+    if date is not None:
+        base_timestamp = datetime.datetime.combine(date, datetime.time(12, 0))
+
+    sessions = []
+    for i, session_type in enumerate(session_types):
+        session = _make_session(session_type, i + 1)
+        if base_timestamp is not None:
+            session = session.model_copy(update={"timestamp": base_timestamp + datetime.timedelta(hours=i)})
+        sessions.append(session)
+
     return ScheduleRoundData(
         round=shared.Round(
             id=round_api_id,
@@ -132,7 +142,6 @@ def _make_round_data(
             altitude=0.0,
             wikipedia=None,
         ),
-        date=date,
         sessions=sessions,
     )
 
@@ -193,7 +202,7 @@ class TestRoundOrdering:
         rounds = [
             _make_round_data(session_types=["R"], round_number=None, date=datetime.date(2023, 4, 1), round_api_id="c1"),
             _make_round_data(session_types=["R"], round_number=2, date=datetime.date(2023, 6, 1), round_api_id="r2"),
-            _make_round_data(session_types=["R"], round_number=1, date=datetime.date(2023, 7, 1), round_api_id="r1b"),
+            _make_round_data(session_types=["R"], round_number=3, date=datetime.date(2023, 7, 1), round_api_id="r3"),
             _make_round_data(session_types=["R"], round_number=1, date=datetime.date(2023, 3, 1), round_api_id="r1a"),
             _make_round_data(session_types=["R"], round_number=None, date=datetime.date(2023, 2, 1), round_api_id="c0"),
         ]
@@ -201,7 +210,7 @@ class TestRoundOrdering:
 
         result = ScheduleOrchestrator(data).render()
 
-        assert [event.round.id for event in result.events] == ["r1a", "r1b", "r2", "c0", "c1"]
+        assert [event.round.id for event in result.events] == ["r1a", "r2", "r3", "c0", "c1"]
 
 
 class TestRoundsInfoCalculation:

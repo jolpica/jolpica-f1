@@ -57,17 +57,30 @@ class ScheduleOrchestrator:
 
     @classmethod
     def _sort_rounds(cls, rounds: list[ScheduleRoundData]) -> list[ScheduleRoundData]:
-        def sort_key(round_data: ScheduleRoundData) -> tuple[bool, int]:
+        def sort_key(round_data: ScheduleRoundData) -> tuple[float, float]:
             round_number = round_data.round.number
             return (
-                round_number is None,
-                round_number or 0,
+                round_number or float("inf"),
+                # # We only sort by timestamp if round numbers are missing
+                cls._round_timestamp_sort_key(round_data) if round_number is None else 0,
             )
 
         return sorted(rounds, key=sort_key)
 
+    @staticmethod
+    def _round_timestamp_sort_key(round_data: ScheduleRoundData) -> float:
+        timestamps = [session.timestamp for session in round_data.sessions if session.timestamp is not None]
+        if not timestamps:
+            return float("inf")
+        return min(timestamps).timestamp()
+
     def _consolidate_sessions(self, round_data: ScheduleRoundData) -> list[ScheduleFullSession]:
-        """Group sessions into FullSession objects, consolidating qualifying sub-sessions."""
+        """Build full sessions and then index qualifying sessions when needed."""
+        full_sessions = self._build_full_sessions(round_data)
+        return self._index_qualifying_full_sessions(full_sessions)
+
+    def _build_full_sessions(self, round_data: ScheduleRoundData) -> list[ScheduleFullSession]:
+        """Build FullSession objects from raw sessions, including grouped consolidation."""
         full_sessions: list[ScheduleFullSession] = []
         consumed_types: set[str] = set()
 
@@ -128,6 +141,52 @@ class ScheduleOrchestrator:
                     timezone=session.timezone,
                 )
             )
+
+        return full_sessions
+
+    @staticmethod
+    def _get_full_session_sequence_group(full_session: ScheduleFullSession) -> str | None:
+        sequence_group = None
+        for session in full_session.sessions:
+            session_config = SESSION_CONFIG.get(session.type)
+            if session_config is None:
+                raise ValueError("No session config found", session.type)
+            if sequence_group is not None and session_config.sequence_group != sequence_group:
+                raise ValueError(
+                    "Inconsistent sequence group within full session",
+                    sequence_group,
+                    session_config.sequence_group,
+                )
+            sequence_group = session_config.sequence_group
+        return sequence_group
+
+    @classmethod
+    def _index_qualifying_full_sessions(cls, full_sessions: list[ScheduleFullSession]) -> list[ScheduleFullSession]:
+        """Index grouped FullSessions as Code1/Code2 and Title 1/Title 2 when a group repeats."""
+        grouped_indices: dict[str, list[int]] = {}
+        for index, full_session in enumerate(full_sessions):
+            sequence_group = cls._get_full_session_sequence_group(full_session)
+            if sequence_group is None:
+                continue
+            grouped_indices.setdefault(sequence_group, []).append(index)
+
+        sequence_groups_to_index = {group: indices for group, indices in grouped_indices.items() if len(indices) > 1}
+
+        if not sequence_groups_to_index:
+            return full_sessions
+
+        for group_indices in sequence_groups_to_index.values():
+            for sequence_number, session_index in enumerate(group_indices, start=1):
+                full_session = full_sessions[session_index]
+                full_sessions[session_index] = ScheduleFullSession(
+                    code=f"{full_session.code}{sequence_number}",
+                    title=f"{full_session.title} {sequence_number}",
+                    sessions=full_session.sessions,
+                    timestamp=full_session.timestamp,
+                    missing_time_data=full_session.missing_time_data,
+                    local_timestamp=full_session.local_timestamp,
+                    timezone=full_session.timezone,
+                )
 
         return full_sessions
 

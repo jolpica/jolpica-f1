@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2026-03-16T00:00:13.704133Z"
+    "timestamp": "2026-03-30T21:45:48.681382Z"
   },
   "data": {
     "code": "Q",
@@ -12,9 +12,6 @@
         "number": 4,
         "type": "Q1",
         "type_display": "Qualifying One",
-        "timestamp": "2023-07-08T14:00:00Z",
-        "local_timestamp": "2023-07-08 15:00:00+01:00",
-        "timezone": "Europe/London",
         "is_cancelled": false
       },
       {
@@ -23,9 +20,6 @@
         "number": 5,
         "type": "Q2",
         "type_display": "Qualifying Two",
-        "timestamp": "2023-07-08T14:00:00Z",
-        "local_timestamp": "2023-07-08 15:00:00+01:00",
-        "timezone": "Europe/London",
         "is_cancelled": false
       },
       {
@@ -34,12 +28,12 @@
         "number": 6,
         "type": "Q3",
         "type_display": "Qualifying Three",
-        "timestamp": "2023-07-08T14:00:00Z",
-        "local_timestamp": "2023-07-08 15:00:00+01:00",
-        "timezone": "Europe/London",
         "is_cancelled": false
       }
     ],
+    "timestamp": "2023-07-08T14:00:00Z",
+    "local_timestamp": "2023-07-08 15:00:00+01:00",
+    "timezone": "Europe/London",
     "season": {
       "id": "season_0VeNZC1A",
       "url": "http://testserver/f1/alpha/core/seasons/season_0VeNZC1A/",
@@ -51,9 +45,9 @@
       "url": "http://testserver/f1/alpha/core/rounds/round_0hYZFLEe/",
       "number": 10,
       "name": "British Grand Prix",
+      "is_cancelled": false,
       "race_number": 1089,
-      "wikipedia": "https://en.wikipedia.org/wiki/2023_British_Grand_Prix",
-      "is_cancelled": false
+      "wikipedia": "https://en.wikipedia.org/wiki/2023_British_Grand_Prix"
     },
     "circuit": {
       "id": "circuit_W8rwFAJs",
