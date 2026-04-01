@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from django.urls import reverse
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
@@ -11,7 +10,7 @@ from jolpica_schemas.f1_api.alpha.schedule import (
     ScheduleSummary,
 )
 
-from .base_serializer import BaseAPISerializer, OmitNullMixin
+from .base_serializer import OmitNullMixin
 
 
 class SessionSerializer(OmitNullMixin, serializers.Serializer):
@@ -22,60 +21,35 @@ class SessionSerializer(OmitNullMixin, serializers.Serializer):
     missing_time_data = serializers.SerializerMethodField(read_only=True)
     # Must use CharField instead of DateTimeField as otherwise it will display as UTC
     local_timestamp = serializers.CharField(read_only=True)
-    results_url = serializers.SerializerMethodField(read_only=True)
 
-    def get_missing_time_data(self, obj: f1.Session) -> bool | None:
+    def get_missing_time_data(self, obj):
         if obj.has_time_data:
             return None
         return True
 
-    def get_results_url(self, obj: f1.Session) -> str | None:
-        request = self.context.get("request")
-        if not request:
-            return None
-
-        if getattr(obj, "_is_consolidated_session", False):
-            effective_type = obj._consolidated_session_type[0]  # type: ignore[attr-defined]
-        else:
-            effective_type = obj.type
-
-        round_api_id = obj.round.api_id
-        url = reverse("results-results", args=[round_api_id, effective_type])
-        return request.build_absolute_uri(url)
-
-    def to_representation(self, instance: f1.Session) -> dict:
-        """Modify representation for consolidated qualifying sessions."""
+    def to_representation(self, instance):
+        """
+        Modify representation for consolidated qualifying sessions.
+        """
         representation = super().to_representation(instance)
         if getattr(instance, "_is_consolidated_session", False):
-            representation["type"], representation["type_display"] = instance._consolidated_session_type  # type: ignore[attr-defined]
+            representation["type"], representation["type_display"] = instance._consolidated_session_type
         return representation
 
 
-class CircuitScheduleSerializer(BaseAPISerializer):
-    """Serializer for Circuit in schedule context.
-
-    Required prefetches: select_related('circuit') on Round
-    """
-
-    pydantic_schema_class = ScheduleCircuit
-    view_name = "circuits-detail"
-
-    reference = serializers.CharField(read_only=True)
+class CircuitScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
+    latitude = serializers.FloatField(read_only=True)
+    longitude = serializers.FloatField(read_only=True)
+    altitude = serializers.FloatField(read_only=True)
+    locality = serializers.CharField(read_only=True)
+    country_code = serializers.CharField(read_only=True)
 
     class Meta:
         model = f1.Circuit
         fields = list(ScheduleCircuit.model_fields.keys())
 
 
-class RoundScheduleSerializer(BaseAPISerializer):
-    """Serializer for Round in schedule context.
-
-    Required prefetches: select_related('circuit'), prefetch_related('sessions')
-    """
-
-    pydantic_schema_class = ScheduleRound
-    view_name = "rounds-detail"
-
+class RoundScheduleSerializer(OmitNullMixin, serializers.ModelSerializer):
     circuit = CircuitScheduleSerializer(read_only=True)
     sessions = SessionSerializer(many=True, read_only=True, source="sessions_for_serializer")
 
@@ -85,7 +59,6 @@ class RoundScheduleSerializer(BaseAPISerializer):
 
 
 class SeasonScheduleSerializer(OmitNullMixin, serializers.HyperlinkedModelSerializer):
-    id = serializers.CharField(source="api_id", read_only=True)
     url = serializers.HyperlinkedIdentityField(view_name="schedules-detail", lookup_field="year", read_only=True)
 
     class Meta:
@@ -101,5 +74,5 @@ class SeasonScheduleDetailSerializer(SeasonScheduleSerializer):
         model = f1.Season
         fields = list(ScheduleDetail.model_fields.keys())
 
-    def get_rounds_info(self, obj: f1.Season) -> dict | None:
+    def get_rounds_info(self, obj):
         return self.context.get("rounds_info")
