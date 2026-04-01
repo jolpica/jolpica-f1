@@ -88,6 +88,9 @@ class ScheduleOrchestrator:
             if session.type in consumed_types:
                 continue
 
+            code = session.type
+            title = session.type
+            group_types = None
             config = SESSION_CONFIG.get(session.type)
             if config is None:
                 logger.warning(
@@ -95,50 +98,50 @@ class ScheduleOrchestrator:
                     session.type,
                     round_data.round.id,
                 )
-                code = session.type
-                title = session.type
-                group_types = None
             else:
                 code = config.code
                 title = config.title
                 group_types = config.group_types
 
-            if group_types is not None:
-                group_sessions = [s for s in round_data.sessions if s.type in group_types]
-                consumed_types.update(group_types)
-                if len(group_sessions) != len(group_types):
-                    logger.warning(
-                        "Incomplete consolidation group for %s in round %s: expected %d sessions, got %d",
-                        code,
-                        round_data.round.id,
-                        len(group_types),
-                        len(group_sessions),
-                    )
-                if not group_sessions:
-                    continue
-
+            if group_types is None:
                 full_sessions.append(
                     ScheduleFullSession(
                         code=code,
                         title=title,
-                        sessions=[group_session.to_basic_session() for group_session in group_sessions],
-                        timestamp=group_sessions[0].timestamp,
-                        missing_time_data=group_sessions[0].missing_time_data,
-                        local_timestamp=group_sessions[0].local_timestamp,
-                        timezone=group_sessions[0].timezone,
+                        sessions=[session.to_basic_session()],
+                        timestamp=session.timestamp,
+                        missing_time_data=session.missing_time_data,
+                        local_timestamp=session.local_timestamp,
+                        timezone=session.timezone,
                     )
                 )
                 continue
+
+            group_sessions = [s for s in round_data.sessions if s.type in group_types]
+            if not group_sessions:
+                raise ValueError(
+                    f"No sessions found for consolidation group {group_types} in round {round_data.round.id}"
+                )
+
+            consumed_types.update(group_types)
+            if len(group_sessions) != len(group_types):
+                logger.warning(
+                    "Incomplete consolidation group for %s in round %s: expected %d sessions, got %d",
+                    code,
+                    round_data.round.id,
+                    len(group_types),
+                    len(group_sessions),
+                )
 
             full_sessions.append(
                 ScheduleFullSession(
                     code=code,
                     title=title,
-                    sessions=[session.to_basic_session()],
-                    timestamp=session.timestamp,
-                    missing_time_data=session.missing_time_data,
-                    local_timestamp=session.local_timestamp,
-                    timezone=session.timezone,
+                    sessions=[group_session.to_basic_session() for group_session in group_sessions],
+                    timestamp=group_sessions[0].timestamp,
+                    missing_time_data=group_sessions[0].missing_time_data,
+                    local_timestamp=group_sessions[0].local_timestamp,
+                    timezone=group_sessions[0].timezone,
                 )
             )
 
