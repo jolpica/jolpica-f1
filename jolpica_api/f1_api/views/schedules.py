@@ -45,7 +45,7 @@ class SeasonScheduleViewSet(viewsets.ViewSet):
         metadata = PaginationMetadata(
             timestamp=timezone.now(),
             count=len(seasons),
-            page_size=len(seasons),
+            page_size=max(100, len(seasons)),  # Don't paginate for now
             current_page=1,
             total_pages=1,
         )
