@@ -1,4 +1,4 @@
-"""Schedule V2 API views."""
+"""Schedule API views."""
 
 from __future__ import annotations
 
@@ -8,12 +8,10 @@ from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import permissions, request, response, viewsets
 
-from jolpica_schemas.f1_api.alpha.metadata import DetailMetadata, DetailResponse, PaginatedResponse, PaginationMetadata
+from jolpica_schemas.f1_api.alpha.metadata import DetailMetadata, PaginationMetadata
 from jolpica_schemas.f1_api.alpha.schedule import (
     ListSchedulesResponse,
-    Schedule,
     ScheduleResponse,
-    ScheduleSummary,
 )
 
 from ..marshalling.schedules import NoSeasonFoundError, ScheduleDataLoader, ScheduleOrchestrator
@@ -23,21 +21,20 @@ logger = logging.getLogger(__name__)
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all F1 Season Schedules (V2)",
+        summary="List all F1 Season Schedules",
         description="Returns all available F1 seasons.",
         responses={200: ListSchedulesResponse},
     ),
     retrieve=extend_schema(
-        summary="Get Detailed F1 Season Schedule (V2)",
+        summary="Get Detailed F1 Season Schedule",
         description="Provides the full schedule for a given season year, "
         "including rounds, sessions, and circuit details.",
         responses={200: ScheduleResponse},
     ),
 )
-class SeasonScheduleV2ViewSet(viewsets.ViewSet):
+class SeasonScheduleViewSet(viewsets.ViewSet):
     """
     API endpoint for F1 season schedules.
-    Uses marshalling pattern — no DRF serializers.
     """
 
     permission_classes = [permissions.AllowAny]

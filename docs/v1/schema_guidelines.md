@@ -12,7 +12,7 @@ Schemas live in `libraries/jolpica-schemas/src/jolpica_schemas/f1_api/alpha/` an
 |---|---|---|
 | **Shared** | `shared.py` | Reusable entity schemas (`Driver`, `Round`, `Session`, etc.) |
 | **Metadata** | `metadata.py` | Generic response wrappers (`DetailResponse[T]`, `PaginatedResponse[T]`) |
-| **Endpoint** | `driver.py`, `schedule_v2.py`, etc. | Endpoint-specific compositions and query params |
+| **Endpoint** | `driver.py`, `schedule.py`, etc. | Endpoint-specific compositions and query params |
 
 ---
 

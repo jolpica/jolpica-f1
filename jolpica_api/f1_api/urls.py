@@ -21,7 +21,7 @@ class CustomRouter(routers.DefaultRouter):
 
 
 router = CustomRouter()
-router.register(r"schedules", schedules.SeasonScheduleV2ViewSet, basename="schedules")
+router.register(r"schedules", schedules.SeasonScheduleViewSet, basename="schedules")
 router.register(r"results", results.ResultsView, basename="results")
 
 # Core table-mapped endpoints
