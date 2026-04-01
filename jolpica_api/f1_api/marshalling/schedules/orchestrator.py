@@ -35,7 +35,7 @@ class ScheduleOrchestrator:
         sorted_rounds = self._sort_rounds(self._data.rounds)
         events: list[ScheduleEvent] = []
         for round_data in sorted_rounds:
-            full_sessions = self._consolidate_sessions(round_data)
+            full_sessions = self._get_full_sessions(round_data)
             events.append(
                 ScheduleEvent(
                     round=round_data.round,
@@ -74,7 +74,7 @@ class ScheduleOrchestrator:
             return float("inf")
         return min(timestamps).timestamp()
 
-    def _consolidate_sessions(self, round_data: ScheduleRoundData) -> list[ScheduleFullSession]:
+    def _get_full_sessions(self, round_data: ScheduleRoundData) -> list[ScheduleFullSession]:
         """Build full sessions and then index qualifying sessions when needed."""
         full_sessions = self._build_full_sessions(round_data)
         return self._index_qualifying_full_sessions(full_sessions)

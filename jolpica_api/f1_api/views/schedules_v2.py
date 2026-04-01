@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 )
 class SeasonScheduleV2ViewSet(viewsets.ViewSet):
     """
-    API endpoint for F1 season schedules (V2).
+    API endpoint for F1 season schedules.
     Uses marshalling pattern — no DRF serializers.
     """
 
