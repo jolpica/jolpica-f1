@@ -1,4 +1,4 @@
-"""Tests for the schedule V2 endpoint and marshalling."""
+"""Tests for the schedule endpoint and marshalling."""
 
 from __future__ import annotations
 
@@ -152,8 +152,8 @@ def test_single_standalone_qualifying_remains_q():
 
 
 @pytest.mark.django_db
-def test_v2_schedule_list_schema_conformance(api_client, sample_season_data):
-    """Verify the v2 schedule list response conforms to schema."""
+def test_schedule_list_schema_conformance(api_client, sample_season_data):
+    """Verify the schedule list response conforms to schema."""
     url = reverse("schedules-list")
     response = api_client.get(url)
 
@@ -163,12 +163,12 @@ def test_v2_schedule_list_schema_conformance(api_client, sample_season_data):
     try:
         DetailResponse[list[ScheduleSummary]].model_validate(response_data)
     except ValidationError as e:
-        pytest.fail(f"V2 schedule list response does not conform to schema:\n{e}")
+        pytest.fail(f"schedule list response does not conform to schema:\n{e}")
 
 
 @pytest.mark.django_db
-def test_v2_schedule_detail_schema_conformance(api_client, sample_season_data):
-    """Verify the v2 schedule detail response conforms to RetrievedScheduleDetail."""
+def test_schedule_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the schedule detail response conforms to RetrievedScheduleDetail."""
     year = sample_season_data.year
     url = reverse("schedules-detail", kwargs={"year": year})
     response = api_client.get(url)
@@ -179,11 +179,11 @@ def test_v2_schedule_detail_schema_conformance(api_client, sample_season_data):
     try:
         ScheduleResponse.model_validate(response_data)
     except ValidationError as e:
-        pytest.fail(f"V2 schedule detail response does not conform to schema:\n{e}")
+        pytest.fail(f"schedule detail response does not conform to schema:\n{e}")
 
 
 @pytest.mark.django_db
-def test_v2_schedule_detail_not_found(api_client):
+def test_schedule_detail_not_found(api_client):
     """Verify 404 for a non-existent season."""
     url = reverse("schedules-detail", kwargs={"year": 9999})
     response = api_client.get(url)
@@ -191,8 +191,8 @@ def test_v2_schedule_detail_not_found(api_client):
 
 
 @pytest.mark.django_db
-def test_v2_schedule_list_query_count(api_client, django_assert_max_num_queries, sample_season_data):
-    """Verify the v2 schedule list endpoint makes fewer than 10 database queries."""
+def test_schedule_list_query_count(api_client, django_assert_max_num_queries, sample_season_data):
+    """Verify the schedule list endpoint makes fewer than 10 database queries."""
     url = reverse("schedules-list")
 
     with django_assert_max_num_queries(10):
@@ -202,8 +202,8 @@ def test_v2_schedule_list_query_count(api_client, django_assert_max_num_queries,
 
 
 @pytest.mark.django_db
-def test_v2_schedule_detail_query_count(api_client, django_assert_max_num_queries, sample_season_data):
-    """Verify the v2 schedule detail endpoint makes fewer than 10 database queries."""
+def test_schedule_detail_query_count(api_client, django_assert_max_num_queries, sample_season_data):
+    """Verify the schedule detail endpoint makes fewer than 10 database queries."""
     year = sample_season_data.year
     url = reverse("schedules-detail", kwargs={"year": year})
 
