@@ -11,7 +11,7 @@ from rest_framework import request
 
 from jolpica.formula_one import models as f1
 from jolpica_schemas.f1_api.alpha import shared
-from jolpica_schemas.f1_api.alpha.schedule_v2 import ScheduleSummary
+from jolpica_schemas.f1_api.alpha.schedule import ScheduleSummary
 
 
 class NoSeasonFoundError(Exception):
@@ -43,7 +43,7 @@ class ScheduleDataLoader:
         return [
             ScheduleSummary(
                 id=s.api_id,
-                url=HttpUrl(req.build_absolute_uri(reverse("v2-schedules-detail", args=[s.year]))),
+                url=HttpUrl(req.build_absolute_uri(reverse("schedules-detail", args=[s.year]))),
                 year=s.year,
                 wikipedia=HttpUrl(s.wikipedia) if s.wikipedia else None,
             )
@@ -131,7 +131,7 @@ class ScheduleDataLoader:
         return ScheduleData(
             season=shared.Season(
                 id=season.api_id,
-                url=HttpUrl(req.build_absolute_uri(reverse("v2-schedules-detail", args=[season.year]))),
+                url=HttpUrl(req.build_absolute_uri(reverse("schedules-detail", args=[season.year]))),
                 year=season.year,
                 wikipedia=HttpUrl(season.wikipedia) if season.wikipedia else None,
             ),

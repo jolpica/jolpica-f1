@@ -12,78 +12,11 @@ from jolpica_api.f1_api.marshalling.schedules.loader import ScheduleData, Schedu
 from jolpica_api.f1_api.marshalling.schedules.orchestrator import ScheduleOrchestrator
 from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.metadata import DetailResponse
-from jolpica_schemas.f1_api.alpha.schedule_v2 import (
+from jolpica_schemas.f1_api.alpha.schedule import (
+    Schedule,
     ScheduleResponse,
     ScheduleSummary,
 )
-
-# --- Integration tests ---
-
-
-@pytest.mark.django_db
-def test_v2_schedule_list_schema_conformance(api_client, sample_season_data):
-    """Verify the v2 schedule list response conforms to schema."""
-    url = reverse("v2-schedules-list")
-    response = api_client.get(url)
-
-    assert response.status_code == 200
-    response_data = response.json()
-
-    try:
-        DetailResponse[list[ScheduleSummary]].model_validate(response_data)
-    except ValidationError as e:
-        pytest.fail(f"V2 schedule list response does not conform to schema:\n{e}")
-
-
-@pytest.mark.django_db
-def test_v2_schedule_detail_schema_conformance(api_client, sample_season_data):
-    """Verify the v2 schedule detail response conforms to RetrievedScheduleDetail."""
-    year = sample_season_data.year
-    url = reverse("v2-schedules-detail", kwargs={"year": year})
-    response = api_client.get(url)
-
-    assert response.status_code == 200
-    response_data = response.json()
-
-    try:
-        ScheduleResponse.model_validate(response_data)
-    except ValidationError as e:
-        pytest.fail(f"V2 schedule detail response does not conform to schema:\n{e}")
-
-
-@pytest.mark.django_db
-def test_v2_schedule_detail_not_found(api_client):
-    """Verify 404 for a non-existent season."""
-    url = reverse("v2-schedules-detail", kwargs={"year": 9999})
-    response = api_client.get(url)
-    assert response.status_code == 404
-
-
-@pytest.mark.django_db
-def test_v2_schedule_list_query_count(api_client, django_assert_max_num_queries, sample_season_data):
-    """Verify the v2 schedule list endpoint makes fewer than 10 database queries."""
-    url = reverse("v2-schedules-list")
-
-    with django_assert_max_num_queries(10):
-        response = api_client.get(url)
-
-    assert response.status_code == 200
-
-
-@pytest.mark.django_db
-def test_v2_schedule_detail_query_count(api_client, django_assert_max_num_queries, sample_season_data):
-    """Verify the v2 schedule detail endpoint makes fewer than 10 database queries."""
-    year = sample_season_data.year
-    url = reverse("v2-schedules-detail", kwargs={"year": year})
-
-    with django_assert_max_num_queries(10):
-        response = api_client.get(url)
-
-    assert response.status_code == 200
-    assert len(response.json()["data"]["events"]) == sample_season_data.rounds.count()
-
-
-# --- Unit tests for orchestrator ---
 
 
 def _make_session(session_type: str, number: int = 1) -> shared.Session:
@@ -93,7 +26,7 @@ def _make_session(session_type: str, number: int = 1) -> shared.Session:
         number=number,
         type=session_type,
         type_display=session_type,
-        timestamp=None,
+        timestamp=datetime.datetime(2000, 1, 1, 12, 0) + datetime.timedelta(hours=number),
         missing_time_data=None,
         local_timestamp=None,
         timezone=None,
@@ -156,6 +89,132 @@ def _make_schedule_data(rounds: list[ScheduleRoundData]) -> ScheduleData:
         ),
         rounds=rounds,
     )
+
+
+def _qualifying_labels(result: Schedule) -> list[tuple[str, str]]:
+    return [
+        (session.code, session.title)
+        for session in result.events[0].schedule
+        if session.code.startswith("Q") and not session.code.startswith("SQ")
+    ]
+
+
+def test_two_qb_sessions_are_q1_q2():
+    data = _make_schedule_data([_make_round_data(session_types=["QB", "QB", "R"])])
+
+    result = ScheduleOrchestrator(data).render()
+
+    assert _qualifying_labels(result) == [("Q1", "Qualifying 1"), ("Q2", "Qualifying 2")]
+
+
+def test_qo_and_qb_are_q1_q2():
+    data = _make_schedule_data([_make_round_data(session_types=["QO", "QB", "R"])])
+
+    result = ScheduleOrchestrator(data).render()
+
+    assert _qualifying_labels(result) == [("Q1", "Qualifying 1"), ("Q2", "Qualifying 2")]
+
+
+def test_qo_qb_qb_are_q1_q2_q3():
+    data = _make_schedule_data([_make_round_data(session_types=["QO", "QB", "QB", "R"])])
+
+    result = ScheduleOrchestrator(data).render()
+
+    assert _qualifying_labels(result) == [
+        ("Q1", "Qualifying 1"),
+        ("Q2", "Qualifying 2"),
+        ("Q3", "Qualifying 3"),
+    ]
+
+
+def test_qo_plus_consolidated_q_group_are_q1_q2():
+    data = _make_schedule_data([_make_round_data(session_types=["QO", "Q1", "Q2", "Q3", "R"])])
+
+    result = ScheduleOrchestrator(data).render()
+
+    assert _qualifying_labels(result) == [("Q1", "Qualifying 1"), ("Q2", "Qualifying 2")]
+
+
+def test_single_consolidated_group_remains_q():
+    data = _make_schedule_data([_make_round_data(session_types=["Q1", "Q2", "Q3", "R"])])
+
+    result = ScheduleOrchestrator(data).render()
+
+    assert _qualifying_labels(result) == [("Q", "Qualifying")]
+
+
+def test_single_standalone_qualifying_remains_q():
+    data = _make_schedule_data([_make_round_data(session_types=["QB", "R"])])
+
+    result = ScheduleOrchestrator(data).render()
+
+    assert _qualifying_labels(result) == [("Q", "Qualifying")]
+
+
+@pytest.mark.django_db
+def test_v2_schedule_list_schema_conformance(api_client, sample_season_data):
+    """Verify the v2 schedule list response conforms to schema."""
+    url = reverse("schedules-list")
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        DetailResponse[list[ScheduleSummary]].model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"V2 schedule list response does not conform to schema:\n{e}")
+
+
+@pytest.mark.django_db
+def test_v2_schedule_detail_schema_conformance(api_client, sample_season_data):
+    """Verify the v2 schedule detail response conforms to RetrievedScheduleDetail."""
+    year = sample_season_data.year
+    url = reverse("schedules-detail", kwargs={"year": year})
+    response = api_client.get(url)
+
+    assert response.status_code == 200
+    response_data = response.json()
+
+    try:
+        ScheduleResponse.model_validate(response_data)
+    except ValidationError as e:
+        pytest.fail(f"V2 schedule detail response does not conform to schema:\n{e}")
+
+
+@pytest.mark.django_db
+def test_v2_schedule_detail_not_found(api_client):
+    """Verify 404 for a non-existent season."""
+    url = reverse("schedules-detail", kwargs={"year": 9999})
+    response = api_client.get(url)
+    assert response.status_code == 404
+
+
+@pytest.mark.django_db
+def test_v2_schedule_list_query_count(api_client, django_assert_max_num_queries, sample_season_data):
+    """Verify the v2 schedule list endpoint makes fewer than 10 database queries."""
+    url = reverse("schedules-list")
+
+    with django_assert_max_num_queries(10):
+        response = api_client.get(url)
+
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_v2_schedule_detail_query_count(api_client, django_assert_max_num_queries, sample_season_data):
+    """Verify the v2 schedule detail endpoint makes fewer than 10 database queries."""
+    year = sample_season_data.year
+    url = reverse("schedules-detail", kwargs={"year": year})
+
+    with django_assert_max_num_queries(10):
+        response = api_client.get(url)
+
+    assert response.status_code == 200
+    assert len(response.json()["data"]["events"]) == sample_season_data.rounds.count()
+
+
+# --- Unit tests for orchestrator ---
 
 
 class TestSessionConsolidation:
