@@ -6,7 +6,7 @@ import datetime
 
 from jolpica.formula_one.models import SessionType
 from jolpica_schemas.f1_api.alpha import shared
-from jolpica_schemas.f1_api.alpha.schedule_v2 import (
+from jolpica_schemas.f1_api.alpha.schedule import (
     Schedule,
     ScheduleEvent,
     ScheduleFullSession,

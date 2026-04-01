@@ -1,36 +1,17 @@
-import datetime
+from pydantic import BaseModel
 
-from pydantic import BaseModel, Field, HttpUrl
-
-from .metadata import DetailResponse
-
-
-class ScheduleCircuit(BaseModel):
-    name: str
-    reference: str | None = None
-    wikipedia: HttpUrl | None = None
-    latitude: float | None = None
-    longitude: float | None = None
-    altitude: float | None = None
-    locality: str | None = None
-    country_code: str | None = Field(None, max_length=3)
+from .metadata import DetailResponse, PaginatedResponse
+from .shared import Circuit, FullSession, Round, Season
 
 
-class ScheduleSession(BaseModel):
-    type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
-    type_display: str = Field(..., description="Display name for the session type")
-    timestamp: datetime.datetime | None = None
-    timezone: str | None = None
-    missing_time_data: bool | None = Field(None, description="Does the timestamp field only have date information")
-    local_timestamp: datetime.datetime | None = None
+class ScheduleFullSession(FullSession):
+    pass
 
 
-class ScheduleRound(BaseModel):
-    number: int
-    name: str | None = None
-    circuit: ScheduleCircuit
-    date: datetime.date | None = None
-    sessions: list[ScheduleSession]
+class ScheduleEvent(BaseModel):
+    round: Round
+    circuit: Circuit
+    schedule: list[ScheduleFullSession]
 
 
 class ScheduleRoundInfoDetail(BaseModel):
@@ -43,19 +24,18 @@ class ScheduleRoundsInfo(BaseModel):
     previous: ScheduleRoundInfoDetail | None = None
 
 
-class ScheduleSummary(BaseModel):
-    url: HttpUrl
-    year: int
-    wikipedia: HttpUrl | None = None
+class ScheduleSummary(Season):
+    pass
 
 
-class ScheduleDetail(BaseModel):
-    url: HttpUrl
-    year: int
-    wikipedia: HttpUrl | None = None
+class Schedule(ScheduleSummary):
     rounds_info: ScheduleRoundsInfo | None = None
-    rounds: list[ScheduleRound]
+    events: list[ScheduleEvent]
 
 
-class RetrievedScheduleDetail(DetailResponse[ScheduleDetail]):
+class ScheduleResponse(DetailResponse[Schedule]):
     """Schema for season schedule detail responses"""
+
+
+class ListSchedulesResponse(PaginatedResponse[list[ScheduleSummary]]):
+    """Schema for season schedule list responses"""
