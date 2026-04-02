@@ -11,11 +11,10 @@ from pydantic import HttpUrl, ValidationError
 from jolpica_api.f1_api.marshalling.schedules.loader import ScheduleData, ScheduleRoundData
 from jolpica_api.f1_api.marshalling.schedules.orchestrator import ScheduleOrchestrator
 from jolpica_schemas.f1_api.alpha import shared
-from jolpica_schemas.f1_api.alpha.metadata import DetailResponse
 from jolpica_schemas.f1_api.alpha.schedule import (
+    ListSchedulesResponse,
     Schedule,
     ScheduleResponse,
-    ScheduleSummary,
 )
 
 
@@ -161,7 +160,7 @@ def test_schedule_list_schema_conformance(api_client, sample_season_data):
     response_data = response.json()
 
     try:
-        DetailResponse[list[ScheduleSummary]].model_validate(response_data)
+        ListSchedulesResponse.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"schedule list response does not conform to schema:\n{e}")
 

@@ -28,6 +28,10 @@ class ResultsOrchestrator:
 
     def render(self) -> Results:
         # TODO: Way to calculate result positions based on session entries
+
+        if not self._result_data.sessions:
+            raise ValueError("No sessions found in result data")
+
         result_renderer: ResultRenderingStrategy
         if self._session_filter in ["Q", "SQ"]:
             session_types = {s.type for s in self._result_data.sessions}

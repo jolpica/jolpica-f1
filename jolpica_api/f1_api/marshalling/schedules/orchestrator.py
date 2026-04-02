@@ -153,7 +153,12 @@ class ScheduleOrchestrator:
         for session in full_session.sessions:
             session_config = SESSION_CONFIG.get(session.type)
             if session_config is None:
-                raise ValueError("No session config found", session.type)
+                logger.error(
+                    "No session config found for session type %r in full session %r, cannot determine sequence group",
+                    session.type,
+                    full_session.code,
+                )
+                return None
             if sequence_group is not None and session_config.sequence_group != sequence_group:
                 raise ValueError(
                     "Inconsistent sequence group within full session",

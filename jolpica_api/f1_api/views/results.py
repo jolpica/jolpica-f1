@@ -97,6 +97,11 @@ class ResultsView(viewsets.ViewSet):
             return response.Response({"error": "Invalid session filter for this round"}, status=404)
 
         result_data = ResultDataLoader.load(req, round_id, session_filter)
+        if not result_data.sessions:
+            return response.Response(
+                {"error": "No sessions found for this round and result type"},
+                status=404,
+            )
         try:
             results = ResultsOrchestrator(session_filter, result_data).render()
         except ValueError:
