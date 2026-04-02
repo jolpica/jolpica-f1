@@ -3,17 +3,11 @@ import datetime
 from pydantic import BaseModel, Field, HttpUrl
 
 from .metadata import DetailResponse
+from .shared import BasicRound, Circuit, Season
 
 
-class ScheduleCircuit(BaseModel):
-    name: str
+class ScheduleCircuit(Circuit):
     reference: str | None = None
-    wikipedia: HttpUrl | None = None
-    latitude: float | None = None
-    longitude: float | None = None
-    altitude: float | None = None
-    locality: str | None = None
-    country_code: str | None = Field(None, max_length=3)
 
 
 class ScheduleSession(BaseModel):
@@ -23,11 +17,10 @@ class ScheduleSession(BaseModel):
     timezone: str | None = None
     missing_time_data: bool | None = Field(None, description="Does the timestamp field only have date information")
     local_timestamp: datetime.datetime | None = None
+    results_url: HttpUrl | None = None
 
 
-class ScheduleRound(BaseModel):
-    number: int
-    name: str | None = None
+class ScheduleRound(BasicRound):
     circuit: ScheduleCircuit
     date: datetime.date | None = None
     sessions: list[ScheduleSession]
@@ -43,16 +36,11 @@ class ScheduleRoundsInfo(BaseModel):
     previous: ScheduleRoundInfoDetail | None = None
 
 
-class ScheduleSummary(BaseModel):
-    url: HttpUrl
-    year: int
-    wikipedia: HttpUrl | None = None
+class ScheduleSummary(Season):
+    pass
 
 
-class ScheduleDetail(BaseModel):
-    url: HttpUrl
-    year: int
-    wikipedia: HttpUrl | None = None
+class ScheduleDetail(Season):
     rounds_info: ScheduleRoundsInfo | None = None
     rounds: list[ScheduleRound]
 
