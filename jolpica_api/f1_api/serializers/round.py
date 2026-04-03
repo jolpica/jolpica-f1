@@ -3,7 +3,7 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
-from jolpica_schemas.f1_api.alpha.round import (
+from jolpica_schemas.f1_api.alpha.core.round import (
     RoundCircuit,
     RoundSeason,
     RoundSession,

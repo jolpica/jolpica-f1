@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from .metadata import DetailResponse
-from .shared import BasicCircuit, BasicSeason, Round, Session
+from ..metadata import DetailResponse
+from ..shared import BasicCircuit, BasicSeason, Round, Session
 
 
 class RoundCircuit(BasicCircuit):

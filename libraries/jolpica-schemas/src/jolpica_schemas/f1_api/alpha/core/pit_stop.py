@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from .metadata import DetailResponse, PaginatedResponse
-from .shared import BasicDriver, BasicLap, BasicRound, BasicSeason, BasicSession, BasicTeam, PitStop
+from ..metadata import DetailResponse, PaginatedResponse
+from ..shared import BasicDriver, BasicLap, BasicRound, BasicSeason, BasicSession, BasicTeam, PitStop
 
 
 class PitStopDriver(BasicDriver):

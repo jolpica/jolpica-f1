@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from .metadata import DetailResponse, PaginatedResponse
-from .shared import BasicRound, Session
+from ..metadata import DetailResponse, PaginatedResponse
+from ..shared import BasicRound, Session
 
 
 class SessionRound(BasicRound):

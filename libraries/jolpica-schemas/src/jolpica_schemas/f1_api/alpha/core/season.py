@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from .metadata import DetailResponse, PaginatedResponse
-from .shared import Season
+from ..metadata import DetailResponse, PaginatedResponse
+from ..shared import Season
 
 
 class SeasonSummary(Season):
