@@ -10,19 +10,19 @@ from rest_framework.test import APIRequestFactory
 
 from jolpica.formula_one import models as f1
 from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
-from jolpica_schemas.f1_api.alpha.circuit import CircuitSummary, PaginatedCircuitSummary, RetrievedCircuitDetail
-from jolpica_schemas.f1_api.alpha.driver import DriverSummary, PaginatedDriverSummary, RetrievedDriverDetail
-from jolpica_schemas.f1_api.alpha.lap import PaginatedLapSummary, RetrievedLapDetail
-from jolpica_schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
-from jolpica_schemas.f1_api.alpha.pit_stop import PaginatedPitStopSummary, RetrievedPitStopDetail
-from jolpica_schemas.f1_api.alpha.round import RetrievedRoundDetail, RoundSummary
-from jolpica_schemas.f1_api.alpha.schedule import ScheduleSummary
-from jolpica_schemas.f1_api.alpha.session import PaginatedSessionSummary, RetrievedSessionDetail
-from jolpica_schemas.f1_api.alpha.session_entry import (
+from jolpica_schemas.f1_api.alpha.core.circuit import CircuitSummary, PaginatedCircuitSummary, RetrievedCircuitDetail
+from jolpica_schemas.f1_api.alpha.core.driver import DriverSummary, PaginatedDriverSummary, RetrievedDriverDetail
+from jolpica_schemas.f1_api.alpha.core.lap import PaginatedLapSummary, RetrievedLapDetail
+from jolpica_schemas.f1_api.alpha.core.pit_stop import PaginatedPitStopSummary, RetrievedPitStopDetail
+from jolpica_schemas.f1_api.alpha.core.round import RetrievedRoundDetail, RoundSummary
+from jolpica_schemas.f1_api.alpha.core.session import PaginatedSessionSummary, RetrievedSessionDetail
+from jolpica_schemas.f1_api.alpha.core.session_entry import (
     PaginatedSessionEntrySummary,
     RetrievedSessionEntryDetail,
 )
-from jolpica_schemas.f1_api.alpha.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
+from jolpica_schemas.f1_api.alpha.core.team import PaginatedTeamSummary, RetrievedTeamDetail, TeamSummary
+from jolpica_schemas.f1_api.alpha.metadata import DetailResponse, PaginatedResponse
+from jolpica_schemas.f1_api.alpha.schedule import ScheduleSummary
 
 
 @pytest.mark.django_db

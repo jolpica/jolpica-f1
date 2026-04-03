@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from .metadata import DetailResponse, PaginatedResponse
-from .shared import BasicSessionEntry, Lap, PitStop
+from ..metadata import DetailResponse, PaginatedResponse
+from ..shared import BasicSessionEntry, Lap, PitStop
 
 
 class LapSessionEntry(BasicSessionEntry):

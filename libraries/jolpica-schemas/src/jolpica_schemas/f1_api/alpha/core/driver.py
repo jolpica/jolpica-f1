@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
-from .metadata import DetailResponse, PaginatedResponse
-from .shared import Driver
+from ..metadata import DetailResponse, PaginatedResponse
+from ..shared import Driver
 
 
 class DriverSummary(Driver):
