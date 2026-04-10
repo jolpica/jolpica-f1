@@ -4,8 +4,8 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from jolpica.formula_one import models as f1
 from jolpica_schemas.f1_api.alpha.core.driver import DriverQueryParams, DriverSummary, RetrievedDriverDetail
 
-from ..serializers import DriverSerializer
-from ..utils import pydantic_to_open_api_parameters
+from ...serializers import DriverSerializer
+from ...utils import pydantic_to_open_api_parameters
 from .base_viewset import BaseFilterableViewSet
 
 

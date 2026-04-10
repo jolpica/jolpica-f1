@@ -7,8 +7,8 @@ from jolpica_schemas.f1_api.alpha.core.session import (
     SessionSummary,
 )
 
-from ..serializers import SessionSerializer
-from ..utils import pydantic_to_open_api_parameters
+from ...serializers import SessionSerializer
+from ...utils import pydantic_to_open_api_parameters
 from .base_viewset import BaseFilterableViewSet
 
 

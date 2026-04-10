@@ -11,8 +11,8 @@ from jolpica_schemas.f1_api.alpha.metadata import (
     DetailResponse,
 )
 
-from ..pagination import StandardMetadataPagination
-from ..utils import validate_query_params
+from ...pagination import StandardMetadataPagination
+from ...utils import validate_query_params
 
 
 class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
@@ -47,7 +47,7 @@ class BaseFilterableViewSet(viewsets.ReadOnlyModelViewSet):
 
         # Validate serializer uses PydanticValidatedSerializer
         if hasattr(self, "serializer_class") and self.serializer_class is not None:
-            from ..serializers.base_serializer import BaseAPISerializer
+            from ...serializers.base_serializer import BaseAPISerializer
 
             if not issubclass(self.serializer_class, BaseAPISerializer):
                 raise NotImplementedError(
