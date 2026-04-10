@@ -9,8 +9,8 @@ from jolpica_schemas.f1_api.alpha.core.lap import (
     RetrievedLapDetail,
 )
 
-from ..serializers.lap import LapSerializer
-from ..utils import pydantic_to_open_api_parameters
+from ...serializers.lap import LapSerializer
+from ...utils import pydantic_to_open_api_parameters
 from .base_viewset import BaseFilterableViewSet
 
 

@@ -9,8 +9,8 @@ from jolpica_schemas.f1_api.alpha.core.pit_stop import (
     RetrievedPitStopDetail,
 )
 
-from ..serializers.pit_stop import PitStopSerializer
-from ..utils import pydantic_to_open_api_parameters
+from ...serializers.pit_stop import PitStopSerializer
+from ...utils import pydantic_to_open_api_parameters
 from .base_viewset import BaseFilterableViewSet
 
 

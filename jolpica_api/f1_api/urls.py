@@ -2,18 +2,10 @@ from django.urls import include, path
 from rest_framework import routers
 
 from .views import (
-    circuits,
-    drivers,
-    laps,
-    pit_stops,
     results,
-    rounds,
     schedules,
-    seasons,
-    session_entries,
-    sessions,
-    teams,
 )
+from .views.core import circuits, drivers, laps, pit_stops, rounds, seasons, session_entries, sessions, teams
 
 
 class CustomRouter(routers.DefaultRouter):
