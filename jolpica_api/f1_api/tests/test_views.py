@@ -45,9 +45,11 @@ def test_list_query_optimization(
         ),
         (
             "round_number",
-            lambda season: {"round_number": season.rounds.first().number}
-            if season.rounds.first() and season.rounds.first().number is not None
-            else None,
+            lambda season: (
+                {"round_number": season.rounds.first().number}
+                if season.rounds.first() and season.rounds.first().number is not None
+                else None
+            ),
             lambda data, season: all(round_data["number"] == season.rounds.first().number for round_data in data),
         ),
         (

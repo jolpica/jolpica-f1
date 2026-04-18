@@ -26,7 +26,7 @@
         "opentelemetry-sdk~=1.26",
         "opentelemetry-exporter-otlp~=1.26",
         "tzdata~=2025.2",
-    ]
+]
 
 [dependency-groups]
     dev = [
@@ -39,7 +39,8 @@
         "ruff~=0.5",
         "tqdm~=4.66",
         "prek>=0.2.13",
-    ]
+        "types-requests>=2.33.0.20260408",
+]
     local = ["ipykernel~=6.29"]
 
 [tool.uv]

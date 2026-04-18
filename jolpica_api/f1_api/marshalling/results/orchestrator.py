@@ -57,7 +57,7 @@ class ResultsOrchestrator:
                 continue
             results.append(result_renderer.render(result_data_row))
 
-        results = sorted(results, key=lambda r: (r.position if r.position is not None else float("inf")))
+        results = sorted(results, key=lambda r: r.position if r.position is not None else float("inf"))
 
         component_keys = [renderer.get_component_key() for renderer in result_renderer.get_component_renderers()]
 

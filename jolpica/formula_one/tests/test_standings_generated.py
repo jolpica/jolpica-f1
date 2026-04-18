@@ -39,9 +39,9 @@ def check_expected_in_standings(standings, round, reference, expected):
     else:
         ref_attr = "team"
     standings = filter(
-        lambda x: x.round_number == round
-        and x.session.type == session_type
-        and getattr(x, ref_attr).reference == reference,
+        lambda x: (
+            x.round_number == round and x.session.type == session_type and getattr(x, ref_attr).reference == reference
+        ),
         standings,
     )
     standing = next(standings, False)
