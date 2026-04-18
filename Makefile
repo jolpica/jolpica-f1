@@ -35,7 +35,6 @@ dbml:
 test-fixtures:
 	tests/create_data_fixtures.sh
 	pytest --create-db
-	
-deploy:
-	DJANGO_DEBUG=False python manage.py collectstatic
-	eb deploy
+
+up:
+	docker compose -f .devcontainer/docker-compose.yml up db redis
