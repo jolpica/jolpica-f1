@@ -1,7 +1,11 @@
 setup:
 	uv sync --locked
 	uv run prek install --hook-type pre-push # Install pre-push hooks
+	@command -v psql > /dev/null 2>&1 || (sudo apt-get update && sudo apt-get install -y postgresql-client)
 	uv run python manage.py migrate
+
+update:
+	uv sync --upgrade
 
 format:
 	ruff format .
