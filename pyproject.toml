@@ -19,7 +19,7 @@
         "django-timezone-field~=7.1",
         "djangorestframework~=3.15",
         "drf-spectacular~=0.28",
-        "gunicorn~=23.0",
+        "gunicorn>=23,<26",
         "uvicorn~=0.30",
         "psycopg[binary]==3.2.10", # We suspect that newer versions are causing a crash after ~20 hours
         "requests~=2.32",
