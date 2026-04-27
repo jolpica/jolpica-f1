@@ -9,7 +9,7 @@
         "jolpica-schemas",
         # External Packages
         "boto3~=1.40",
-        "Django~=5.2",
+        "Django>=5.2,<7.0",
         "django-cors-headers~=4.4",
         "django-environ~=0.12",
         "django-ratelimit~=4.1",
