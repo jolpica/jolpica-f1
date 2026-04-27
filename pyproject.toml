@@ -13,7 +13,7 @@
         "django-cors-headers~=4.4",
         "django-environ~=0.12",
         "django-ratelimit~=4.1",
-        "django-redis~=5.4",
+        "django-redis>=5.4,<7.0",
         "django-rest-knox~=5.0",
         "django-storages~=1.14",
         "django-timezone-field~=7.1",
