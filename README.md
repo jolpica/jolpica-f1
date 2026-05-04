@@ -36,6 +36,7 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [FastF1](https://github.com/theOehrly/Fast-F1) - Python package for accessing and analyzing Formula 1 results, schedules, timing data and telemetry.
 - [f1dataR](https://github.com/SCasanova/f1dataR)-  R package to access Formula 1 Data from the jolpica-f1 API.
 - [JolpicaKit](https://github.com/fantasia-y/JolpicaKit) - Swift wrapper for the jolpica-f1 API.
+- [jolpica-go](https://github.com/kostplu/jolpica-go) - Go wrapper for the jolpica-f1 API.
 
 ### Applications and Integrations
 - [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card) - Home Assistant Card showing Formula One Data.
