@@ -37,7 +37,7 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [f1dataR](https://github.com/SCasanova/f1dataR)-  R package to access Formula 1 Data from the jolpica-f1 API.
 - [JolpicaKit](https://github.com/fantasia-y/JolpicaKit) - Swift wrapper for the jolpica-f1 API.
 - [LiveF1](https://github.com/GoktugOcal/LiveF1) - Python package for accessing, processing, and analyzing live and historical Formula 1 data.
-- [BaseF1](https://pypi.org/project/basef1/) - Python client for the jolpica-f1 API with chainable queries, typed models, caching, and pagination helpers.
+- [BaseF1](https://github.com/GoktugOcal/BaseF1) - Python client for the jolpica-f1 API with chainable queries, typed models, caching, and pagination helpers.
 
 ### Applications and Integrations
 - [FormulaOne Card](https://github.com/marcokreeft87/formulaone-card) - Home Assistant Card showing Formula One Data.
