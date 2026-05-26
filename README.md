@@ -48,3 +48,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [GridTip](https://github.com/selfire1/gridtip) - Website for social F1 tipping with your friends. Data is powered by the jolpica-f1 API.
 - [InkyCloud-F1](https://github.com/Rhiz3K/InkyCloud-F1) - E-Ink/ePaper F1 screen generator (1-bit BMP) showing next race info, full session times, and circuit details.
 - [F1_CYD_Notifications](https://github.com/anthonyjclarke/F1_CYD_Notifications) - ESP32 Cheap Yellow Display (CYD) showing Formula 1 race information on TFT Display and WebUI.
+- [F1 Predictions Game](https://github.com/amiablealex/f1-predictions) - A social predictions game with leagues and leaderboards.
