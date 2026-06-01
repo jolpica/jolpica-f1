@@ -36,6 +36,7 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [FastF1](https://github.com/theOehrly/Fast-F1) - Python package for accessing and analyzing Formula 1 results, schedules, timing data and telemetry.
 - [f1dataR](https://github.com/SCasanova/f1dataR)-  R package to access Formula 1 Data from the jolpica-f1 API.
 - [JolpicaKit](https://github.com/fantasia-y/JolpicaKit) - Swift wrapper for the jolpica-f1 API.
+- [jolpica-go](https://github.com/kostplu/jolpica-go) - Go wrapper for the jolpica-f1 API.
 - [LiveF1](https://github.com/GoktugOcal/LiveF1) - Python package for accessing, processing, and analyzing live and historical Formula 1 data.
 - [BaseF1](https://github.com/GoktugOcal/BaseF1) - Python client for the jolpica-f1 API with chainable queries, typed models, caching, and pagination helpers.
 
@@ -50,3 +51,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [GridTip](https://github.com/selfire1/gridtip) - Website for social F1 tipping with your friends. Data is powered by the jolpica-f1 API.
 - [InkyCloud-F1](https://github.com/Rhiz3K/InkyCloud-F1) - E-Ink/ePaper F1 screen generator (1-bit BMP) showing next race info, full session times, and circuit details.
 - [F1_CYD_Notifications](https://github.com/anthonyjclarke/F1_CYD_Notifications) - ESP32 Cheap Yellow Display (CYD) showing Formula 1 race information on TFT Display and WebUI.
+- [F1 Predictions Game](https://github.com/amiablealex/f1-predictions) - A social predictions game with leagues and leaderboards.
