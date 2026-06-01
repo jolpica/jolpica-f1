@@ -3,24 +3,58 @@
 
 version: 2
 updates:
-  - package-ecosystem: "pip"
+  - package-ecosystem: "uv"
     directory: "/"
-    allow:
-      - dependency-type: "production"
     schedule:
       interval: "weekly"
     groups:
-      version:
+      # Dev dependency groups (must be listed before django-production to capture
+      # django-dbml, django-debug-toolbar, and *stubs* packages first)
+      dev-dependencies:
         applies-to: version-updates
         patterns:
-        - "*"
-        update-types:
-        - "minor"
-        - "patch"
-      security:
+          - "*stubs*"
+          - "django-dbml"
+          - "django-debug-toolbar"
+          - "mypy*"
+          - "pytest*"
+          - "ruff"
+          - "tqdm"
+          - "prek"
+          - "types-*"
+          - "ipykernel"
+      dev-security:
         applies-to: security-updates
         patterns:
-        - "*"
-        update-types:
-        - "patch"
-        - "minor"
+          - "*stubs*"
+          - "django-dbml"
+          - "django-debug-toolbar"
+          - "mypy*"
+          - "pytest*"
+          - "ruff"
+          - "tqdm"
+          - "prek"
+          - "types-*"
+          - "ipykernel"
+      # Django production dependency groups
+      django-production:
+        applies-to: version-updates
+        patterns:
+          - "django*"
+          - "djangorestframework"
+          - "drf-*"
+      django-security:
+        applies-to: security-updates
+        patterns:
+          - "django*"
+          - "djangorestframework"
+          - "drf-*"
+      # All other production dependencies
+      other-production:
+        applies-to: version-updates
+        patterns:
+          - "*"
+      other-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
