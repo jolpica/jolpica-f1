@@ -23,18 +23,19 @@ class GunicornMetadataFilter(logging.Filter):
     then removed from the message for clean output.
     """
 
-    METADATA_PATTERN = re.compile(r"(\|\|(\w+):([^|]+)\|\|)+$")
-    PAIR_PATTERN = re.compile(r"\|\|(\w+):([^|]+)\|\|")
+    # Matches the trailing run of ||KEY:value|| pairs (value may be empty).
+    METADATA_PATTERN = re.compile(r"(?:\|\|\w+:[^|]*\|\|)+$")
+    PAIR_PATTERN = re.compile(r"\|\|(\w+):([^|]*)\|\|")
 
     def filter(self, record: logging.LogRecord) -> bool:
         message = record.getMessage()
-        if self.METADATA_PATTERN.search(message):
-            # Extract all metadata pairs
-            pairs = self.PAIR_PATTERN.findall(message)
-            for key, value in pairs:
-                setattr(record, f"metadata_{key.lower()}", value)
-            # Remove metadata from message
-            record.msg = self.METADATA_PATTERN.sub("", message)
+        match = self.METADATA_PATTERN.search(message)
+        if match:
+            record.gunicorn_metadata = {key.lower(): value for key, value in self.PAIR_PATTERN.findall(match.group())}
+            # record.msg now holds the already-formatted line; clear args so a later
+            # getMessage() does not attempt %-formatting against stale args.
+            record.msg = message[: match.start()]
+            record.args = None
         return True
 
 
@@ -62,10 +63,10 @@ class CustomLoggingHandler(LoggingHandler):
                 attributes["request.user_agent"] = request.headers.get("User-Agent", "")
                 attributes["request.ip"] = request.META.get("X-Forwarded-For", request.META.get("REMOTE_ADDR", ""))
             # Extract arbitrary metadata from logs (added by GunicornMetadataFilter)
-            for attr_name in dir(record):
-                if attr_name.startswith("metadata_"):
-                    key = attr_name.replace("metadata_", "request.")
-                    attributes[key] = getattr(record, attr_name)
+            metadata = getattr(record, "gunicorn_metadata", None)
+            if metadata:
+                for key, value in metadata.items():
+                    attributes[f"request.{key}"] = value
 
         return attributes
 
