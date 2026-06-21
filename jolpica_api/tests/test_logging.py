@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 
-from jolpica_api.logging import GunicornMetadataFilter
+from jolpica_api.logging import CustomLoggingHandler, GunicornMetadataFilter
 
 
 def _make_record(message: str) -> logging.LogRecord:
@@ -17,6 +17,10 @@ def _make_record(message: str) -> logging.LogRecord:
     )
 
 
+def _request_attrs(record: logging.LogRecord) -> dict[str, object]:
+    return {key: value for key, value in vars(record).items() if key.startswith("request.")}
+
+
 def test_metadata_filter_strips_block_with_empty_query_string() -> None:
     filter_ = GunicornMetadataFilter()
     record = _make_record(
@@ -28,15 +32,15 @@ def test_metadata_filter_strips_block_with_empty_query_string() -> None:
     assert filter_.filter(record) is True
     assert "||" not in record.getMessage()
     assert record.getMessage() == "82.1.59.6 - 1 'GET / HTTP/1.1' 200 16 - 'Mozilla/5.0' "
-    assert record.gunicorn_metadata == {
-        "host": "prod.jolpi.ca",
-        "path": "/",
-        "query_string": "",
-        "method": "GET",
-        "user_agent": "Mozilla/5.0",
-        "ip": "82.1.59.6",
-        "user": "1",
-        "duration": "16",
+    assert _request_attrs(record) == {
+        "request.host": "prod.jolpi.ca",
+        "request.path": "/",
+        "request.query_string": "",
+        "request.method": "GET",
+        "request.user_agent": "Mozilla/5.0",
+        "request.ip": "82.1.59.6",
+        "request.user": "1",
+        "request.duration": "16",
     }
 
 
@@ -49,10 +53,10 @@ def test_metadata_filter_strips_block_with_populated_query_string() -> None:
 
     assert filter_.filter(record) is True
     assert "||" not in record.getMessage()
-    assert record.gunicorn_metadata == {
-        "host": "prod.jolpi.ca",
-        "path": "/drivers",
-        "query_string": "limit=5&offset=10",
+    assert _request_attrs(record) == {
+        "request.host": "prod.jolpi.ca",
+        "request.path": "/drivers",
+        "request.query_string": "limit=5&offset=10",
     }
 
 
@@ -62,7 +66,7 @@ def test_metadata_filter_only_extracts_trailing_block() -> None:
 
     assert filter_.filter(record) is True
     assert record.getMessage() == "a stray ||FAKE:value|| in the message "
-    assert record.gunicorn_metadata == {"host": "prod.jolpi.ca", "path": "/"}
+    assert _request_attrs(record) == {"request.host": "prod.jolpi.ca", "request.path": "/"}
 
 
 def test_metadata_filter_leaves_plain_message_unchanged() -> None:
@@ -71,4 +75,18 @@ def test_metadata_filter_leaves_plain_message_unchanged() -> None:
 
     assert filter_.filter(record) is True
     assert record.getMessage() == "a plain log message with no metadata block"
-    assert not hasattr(record, "gunicorn_metadata")
+    assert _request_attrs(record) == {}
+
+
+def test_get_attributes_emits_request_keys() -> None:
+    filter_ = GunicornMetadataFilter()
+    record = _make_record(
+        "82.1.59.6 - 1 'GET / HTTP/1.1' 200 16 - 'Mozilla/5.0' ||HOST:prod.jolpi.ca||||PATH:/||||QUERY_STRING:||"
+    )
+    filter_.filter(record)
+
+    attributes = CustomLoggingHandler._get_attributes(record)
+
+    assert attributes["request.host"] == "prod.jolpi.ca"
+    assert attributes["request.path"] == "/"
+    assert attributes["request.query_string"] == ""

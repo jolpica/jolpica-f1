@@ -19,8 +19,9 @@ class GunicornMetadataFilter(logging.Filter):
     """Extract metadata from gunicorn logs using delimiters.
 
     Expected format: <log message> ||KEY1:value1||KEY2:value2||
-    The metadata is extracted and stored as LogRecord attributes,
-    then removed from the message for clean output.
+    Each pair is set on the record as a ``request.<key>`` attribute, which
+    LoggingHandler emits directly as an OTel attribute, and removed from the
+    message for clean output.
     """
 
     # Matches the trailing run of ||KEY:value|| pairs (value may be empty).
@@ -31,7 +32,8 @@ class GunicornMetadataFilter(logging.Filter):
         message = record.getMessage()
         match = self.METADATA_PATTERN.search(message)
         if match:
-            record.gunicorn_metadata = {key.lower(): value for key, value in self.PAIR_PATTERN.findall(match.group())}
+            for key, value in self.PAIR_PATTERN.findall(match.group()):
+                setattr(record, f"request.{key.lower()}", value)
             # record.msg now holds the already-formatted line; clear args so a later
             # getMessage() does not attempt %-formatting against stale args.
             record.msg = message[: match.start()]
@@ -62,11 +64,6 @@ class CustomLoggingHandler(LoggingHandler):
                 attributes["request.method"] = request.method
                 attributes["request.user_agent"] = request.headers.get("User-Agent", "")
                 attributes["request.ip"] = request.META.get("X-Forwarded-For", request.META.get("REMOTE_ADDR", ""))
-            # Extract arbitrary metadata from logs (added by GunicornMetadataFilter)
-            metadata = getattr(record, "gunicorn_metadata", None)
-            if metadata:
-                for key, value in metadata.items():
-                    attributes[f"request.{key}"] = value
 
         return attributes
 
