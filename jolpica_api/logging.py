@@ -1,5 +1,6 @@
 import logging
 import logging.config
+import re
 
 from django.core.exceptions import SuspiciousOperation
 from django.http.request import HttpRequest
@@ -12,6 +13,29 @@ from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 logger_provider = LoggerProvider()
 exporter = OTLPLogExporter()
 logger_provider.add_log_record_processor(BatchLogRecordProcessor(exporter))
+
+
+class GunicornMetadataFilter(logging.Filter):
+    """Extract metadata from gunicorn logs using delimiters.
+
+    Expected format: <log message> ||KEY1:value1||KEY2:value2||
+    The metadata is extracted and stored as LogRecord attributes,
+    then removed from the message for clean output.
+    """
+
+    METADATA_PATTERN = re.compile(r"(\|\|(\w+):([^|]+)\|\|)+$")
+    PAIR_PATTERN = re.compile(r"\|\|(\w+):([^|]+)\|\|")
+
+    def filter(self, record: logging.LogRecord) -> bool:
+        message = record.getMessage()
+        if self.METADATA_PATTERN.search(message):
+            # Extract all metadata pairs
+            pairs = self.PAIR_PATTERN.findall(message)
+            for key, value in pairs:
+                setattr(record, f"metadata_{key.lower()}", value)
+            # Remove metadata from message
+            record.msg = self.METADATA_PATTERN.sub("", message)
+        return True
 
 
 class CustomLoggingHandler(LoggingHandler):
@@ -37,6 +61,11 @@ class CustomLoggingHandler(LoggingHandler):
                 attributes["request.method"] = request.method
                 attributes["request.user_agent"] = request.headers.get("User-Agent", "")
                 attributes["request.ip"] = request.META.get("X-Forwarded-For", request.META.get("REMOTE_ADDR", ""))
+            # Extract arbitrary metadata from logs (added by GunicornMetadataFilter)
+            for attr_name in dir(record):
+                if attr_name.startswith("metadata_"):
+                    key = attr_name.replace("metadata_", "request.")
+                    attributes[key] = getattr(record, attr_name)
 
         return attributes
 
@@ -46,6 +75,11 @@ LOG_CONFIG = {
     "disable_existing_loggers": False,
     "formatters": {
         "standard": {"format": "%(asctime)s %(levelname)s %(name)s %(message)s"},
+    },
+    "filters": {
+        "gunicorn_metadata": {
+            "()": "jolpica_api.logging.GunicornMetadataFilter",
+        },
     },
     "handlers": {
         "console": {"level": "DEBUG", "class": "logging.StreamHandler", "formatter": "standard"},
@@ -60,6 +94,7 @@ LOG_CONFIG = {
     },
     "loggers": {
         "gunicorn.access": {
+            "filters": ["gunicorn_metadata"],
             "propagate": True,
         },
         "gunicorn.error": {
