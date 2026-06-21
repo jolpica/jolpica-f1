@@ -25,6 +25,7 @@ access_log_format = (
     "||IP:%({x-forwarded-for}i)s||"
     "||USER:%(u)s||"
     "||DURATION:%(M)s||"
+    "||STATUS:%(s)s||"
 )
 
 logconfig_dict = LOG_CONFIG
