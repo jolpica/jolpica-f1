@@ -53,4 +53,4 @@ Below is a list of some open source community projects that use the jolpica-f1 A
 - [F1_CYD_Notifications](https://github.com/anthonyjclarke/F1_CYD_Notifications) - ESP32 Cheap Yellow Display (CYD) showing Formula 1 race information on TFT Display and WebUI.
 - [F1 Predictions Game](https://github.com/amiablealex/f1-predictions) - A social predictions game with leagues and leaderboards.
 - [Race Rewind](https://github.com/PhilippKuhnhardt/race-rewind) - A spoiler-free companion website for rewatching past F1 seasons, providing stats, news and historical context
-- [F1 App](https://github.com/DaniilPavlov/f1_pet_project) - A Flutter app (Android/iOS/Web) with Formula 1 statistics (tables, results, calendar, hall of fame, tracks) and push-notifications for upcoming events.
+- [F1 Stats & Reminders](https://github.com/DaniilPavlov/f1_pet_project) - A cross-platform Flutter app (Android/iOS/Web) for Formula 1. It features driver/constructor standings, a full season calendar with session reminders (push-notifications), race results with sprint and pit stop data, a hall of fame and a map with circuits. 
