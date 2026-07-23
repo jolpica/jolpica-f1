@@ -17,7 +17,7 @@ class LapSessionEntrySerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = LapSessionEntry
-    view_name = "session-entries-detail"
+    view_name = "core-session-entries-detail"
 
     class Meta:
         model = f1.SessionEntry
@@ -31,7 +31,7 @@ class LapPitStopSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = LapPitStop
-    view_name = "pit-stops-detail"
+    view_name = "core-pit-stops-detail"
 
     duration = serializers.SerializerMethodField()
     duration_display = serializers.SerializerMethodField()
@@ -63,7 +63,7 @@ class LapSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = LapSummary
-    view_name = "laps-detail"
+    view_name = "core-laps-detail"
 
     session_entry = LapSessionEntrySerializer(read_only=True)
     pit_stop = serializers.SerializerMethodField()

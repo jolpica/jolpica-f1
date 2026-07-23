@@ -16,7 +16,7 @@ class TeamSeasonSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = TeamSeason
-    view_name = "seasons-detail"
+    view_name = "core-seasons-detail"
 
     class Meta:
         model = f1.Season
@@ -31,7 +31,7 @@ class TeamSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = TeamSummary
-    view_name = "teams-detail"
+    view_name = "core-teams-detail"
 
     seasons = TeamSeasonSerializer(many=True, read_only=True)
     nationality = serializers.CharField(read_only=True)  # TODO: Generate nationality from country_code

@@ -88,7 +88,7 @@ class ScheduleDataLoader:
                 sessions_list.append(
                     shared.Session(
                         id=session.api_id,
-                        url=HttpUrl(req.build_absolute_uri(reverse("sessions-detail", args=[session.api_id]))),
+                        url=HttpUrl(req.build_absolute_uri(reverse("core-sessions-detail", args=[session.api_id]))),
                         number=session.number,
                         type=session.type,
                         type_display=str(f1.SessionType(session.type).label),
@@ -105,7 +105,7 @@ class ScheduleDataLoader:
                 ScheduleRoundData(
                     round=shared.Round(
                         id=round_obj.api_id,
-                        url=HttpUrl(req.build_absolute_uri(reverse("rounds-detail", args=[round_obj.api_id]))),
+                        url=HttpUrl(req.build_absolute_uri(reverse("core-rounds-detail", args=[round_obj.api_id]))),
                         name=round_obj.name,
                         number=round_obj.number,
                         race_number=round_obj.race_number,
@@ -114,7 +114,7 @@ class ScheduleDataLoader:
                     ),
                     circuit=shared.Circuit(
                         id=circuit.api_id,
-                        url=HttpUrl(req.build_absolute_uri(reverse("circuits-detail", args=[circuit.api_id]))),
+                        url=HttpUrl(req.build_absolute_uri(reverse("core-circuits-detail", args=[circuit.api_id]))),
                         name=circuit.name,
                         locality=circuit.locality,
                         country_code=circuit.country_code,

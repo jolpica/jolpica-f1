@@ -63,7 +63,7 @@ def test_rounds_detail_schema_conformance(api_client, sample_season_data):
     round_obj = sample_season_data.rounds.first()
     assert round_obj is not None, "Sample season must have at least one round"
 
-    url = reverse("rounds-detail", kwargs={"api_id": round_obj.api_id})
+    url = reverse("core-rounds-detail", kwargs={"api_id": round_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -79,7 +79,7 @@ def test_rounds_detail_schema_conformance(api_client, sample_season_data):
 def test_circuits_list_schema_conformance(api_client, sample_season_data):
     """Verify the circuits list response conforms to PaginatedCircuitSummary."""
 
-    url = reverse("circuits-list")
+    url = reverse("core-circuits-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -98,7 +98,7 @@ def test_circuits_detail_schema_conformance(api_client, sample_season_data):
     circuit_obj = f1.Circuit.objects.first()
     assert circuit_obj is not None, "Database must have at least one circuit"
 
-    url = reverse("circuits-detail", kwargs={"api_id": circuit_obj.api_id})
+    url = reverse("core-circuits-detail", kwargs={"api_id": circuit_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -114,7 +114,7 @@ def test_circuits_detail_schema_conformance(api_client, sample_season_data):
 def test_drivers_list_schema_conformance(api_client, sample_season_data):
     """Verify the drivers list response conforms to PaginatedDriverSummary."""
 
-    url = reverse("drivers-list")
+    url = reverse("core-drivers-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -133,7 +133,7 @@ def test_drivers_detail_schema_conformance(api_client, sample_season_data):
     driver_obj = f1.Driver.objects.first()
     assert driver_obj is not None, "Database must have at least one driver"
 
-    url = reverse("drivers-detail", kwargs={"api_id": driver_obj.api_id})
+    url = reverse("core-drivers-detail", kwargs={"api_id": driver_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -149,7 +149,7 @@ def test_drivers_detail_schema_conformance(api_client, sample_season_data):
 def test_teams_list_schema_conformance(api_client, sample_season_data):
     """Verify the teams list response conforms to PaginatedTeamSummary."""
 
-    url = reverse("teams-list")
+    url = reverse("core-teams-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -168,7 +168,7 @@ def test_teams_detail_schema_conformance(api_client, sample_season_data):
     team_obj = f1.Team.objects.first()
     assert team_obj is not None, "Database must have at least one team"
 
-    url = reverse("teams-detail", kwargs={"api_id": team_obj.api_id})
+    url = reverse("core-teams-detail", kwargs={"api_id": team_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -184,7 +184,7 @@ def test_teams_detail_schema_conformance(api_client, sample_season_data):
 def test_sessions_list_schema_conformance(api_client, sample_season_data):
     """Verify the sessions list response conforms to PaginatedSessionSummary."""
 
-    url = reverse("sessions-list")
+    url = reverse("core-sessions-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -203,7 +203,7 @@ def test_sessions_detail_schema_conformance(api_client, sample_season_data):
     session_obj = sample_season_data.rounds.first().sessions.first()
     assert session_obj is not None, "Sample season must have at least one session"
 
-    url = reverse("sessions-detail", kwargs={"api_id": session_obj.api_id})
+    url = reverse("core-sessions-detail", kwargs={"api_id": session_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -219,7 +219,7 @@ def test_sessions_detail_schema_conformance(api_client, sample_season_data):
 def test_session_entries_list_schema_conformance(api_client, sample_season_data):
     """Verify the session entries list response conforms to PaginatedSessionEntrySummary."""
 
-    url = reverse("session-entries-list")
+    url = reverse("core-session-entries-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -238,7 +238,7 @@ def test_session_entries_detail_schema_conformance(api_client, sample_season_dat
     session_entry_obj = f1.SessionEntry.objects.first()
     assert session_entry_obj is not None, "Database must have at least one session entry"
 
-    url = reverse("session-entries-detail", kwargs={"api_id": session_entry_obj.api_id})
+    url = reverse("core-session-entries-detail", kwargs={"api_id": session_entry_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -254,7 +254,7 @@ def test_session_entries_detail_schema_conformance(api_client, sample_season_dat
 def test_laps_list_schema_conformance(api_client, sample_season_data):
     """Verify the laps list response conforms to PaginatedLapSummary."""
 
-    url = reverse("laps-list")
+    url = reverse("core-laps-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -273,7 +273,7 @@ def test_laps_detail_schema_conformance(api_client, sample_season_data):
     lap_obj = f1.Lap.objects.first()
     assert lap_obj is not None, "Database must have at least one lap"
 
-    url = reverse("laps-detail", kwargs={"api_id": lap_obj.api_id})
+    url = reverse("core-laps-detail", kwargs={"api_id": lap_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -289,7 +289,7 @@ def test_laps_detail_schema_conformance(api_client, sample_season_data):
 def test_pit_stops_list_schema_conformance(api_client, sample_season_data):
     """Verify the pit stops list response conforms to PaginatedPitStopSummary."""
 
-    url = reverse("pit-stops-list")
+    url = reverse("core-pit-stops-list")
     response = api_client.get(url)
 
     assert response.status_code == 200
@@ -308,7 +308,7 @@ def test_pit_stops_detail_schema_conformance(api_client, sample_season_data):
     pit_stop_obj = f1.PitStop.objects.first()
     assert pit_stop_obj is not None, "Database must have at least one pit stop"
 
-    url = reverse("pit-stops-detail", kwargs={"api_id": pit_stop_obj.api_id})
+    url = reverse("core-pit-stops-detail", kwargs={"api_id": pit_stop_obj.api_id})
     response = api_client.get(url)
 
     assert response.status_code == 200

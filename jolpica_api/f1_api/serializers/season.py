@@ -14,7 +14,7 @@ class SeasonSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SeasonSummary
-    view_name = "seasons-detail"
+    view_name = "core-seasons-detail"
 
     class Meta:
         model = f1.Season

@@ -14,7 +14,7 @@ class CircuitSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = CircuitSummary
-    view_name = "circuits-detail"
+    view_name = "core-circuits-detail"
 
     class Meta:
         model = f1.Circuit

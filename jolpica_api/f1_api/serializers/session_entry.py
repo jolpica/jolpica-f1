@@ -23,7 +23,7 @@ class SessionEntrySessionSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionEntrySession
-    view_name = "sessions-detail"
+    view_name = "core-sessions-detail"
 
     type_display = serializers.CharField(source="get_type_display", read_only=True)
 
@@ -39,7 +39,7 @@ class SessionEntryRoundSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionEntryRound
-    view_name = "rounds-detail"
+    view_name = "core-rounds-detail"
 
     class Meta:
         model = f1.Round
@@ -53,7 +53,7 @@ class SessionEntryDriverSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionEntryDriver
-    view_name = "drivers-detail"
+    view_name = "core-drivers-detail"
 
     given_name = serializers.CharField(read_only=True, source="forename")
     family_name = serializers.CharField(read_only=True, source="surname")
@@ -70,7 +70,7 @@ class SessionEntryTeamSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionEntryTeam
-    view_name = "teams-detail"
+    view_name = "core-teams-detail"
 
     class Meta:
         model = f1.Team
@@ -85,7 +85,7 @@ class SessionEntrySerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionEntrySummary
-    view_name = "session-entries-detail"
+    view_name = "core-session-entries-detail"
 
     session = SessionEntrySessionSerializer(read_only=True)
     round = SessionEntryRoundSerializer(read_only=True, source="session.round")

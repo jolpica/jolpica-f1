@@ -104,13 +104,13 @@ class ResultDataLoader:
                             id=driver.api_id,
                             given_name=driver.forename,
                             family_name=driver.surname,
-                            url=HttpUrl(req.build_absolute_uri(reverse("drivers-detail", args=[driver.api_id]))),
+                            url=HttpUrl(req.build_absolute_uri(reverse("core-drivers-detail", args=[driver.api_id]))),
                             abbreviation=driver.abbreviation,
                         ),
                         team=shared.BasicTeam(
                             id=team.api_id,
                             name=team.name,
-                            url=HttpUrl(req.build_absolute_uri(reverse("teams-detail", args=[team.api_id]))),
+                            url=HttpUrl(req.build_absolute_uri(reverse("core-teams-detail", args=[team.api_id]))),
                             primary_color=team.primary_color,
                         ),
                     )
@@ -120,7 +120,7 @@ class ResultDataLoader:
             rows=row_data,
             round=shared.Round(
                 id=round.api_id,
-                url=HttpUrl(req.build_absolute_uri(reverse("rounds-detail", args=[round.api_id]))),
+                url=HttpUrl(req.build_absolute_uri(reverse("core-rounds-detail", args=[round.api_id]))),
                 name=round.name,
                 number=round.number,
                 race_number=round.race_number,
@@ -129,13 +129,13 @@ class ResultDataLoader:
             ),
             season=shared.Season(
                 id=round.season.api_id,
-                url=HttpUrl(req.build_absolute_uri(reverse("seasons-detail", args=[round.season.api_id]))),
+                url=HttpUrl(req.build_absolute_uri(reverse("core-seasons-detail", args=[round.season.api_id]))),
                 year=round.season.year,
                 wikipedia=HttpUrl(round.season.wikipedia) if round.season.wikipedia else None,
             ),
             circuit=shared.Circuit(
                 id=round.circuit.api_id,
-                url=HttpUrl(req.build_absolute_uri(reverse("circuits-detail", args=[round.circuit.api_id]))),
+                url=HttpUrl(req.build_absolute_uri(reverse("core-circuits-detail", args=[round.circuit.api_id]))),
                 name=round.circuit.name,
                 locality=round.circuit.locality,
                 country_code=round.circuit.country_code,
@@ -147,7 +147,7 @@ class ResultDataLoader:
             sessions=[
                 shared.Session(
                     id=s.api_id,
-                    url=HttpUrl(req.build_absolute_uri(reverse("sessions-detail", args=[s.api_id]))),
+                    url=HttpUrl(req.build_absolute_uri(reverse("core-sessions-detail", args=[s.api_id]))),
                     number=s.number,
                     type=s.type,
                     type_display=f1.SessionType(s.type).label,

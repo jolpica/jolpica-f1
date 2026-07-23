@@ -27,7 +27,7 @@ class PitStopLapSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = PitStopLap
-    view_name = "laps-detail"
+    view_name = "core-laps-detail"
 
     time = serializers.SerializerMethodField()
 
@@ -48,7 +48,7 @@ class PitStopRoundSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = PitStopRound
-    view_name = "rounds-detail"
+    view_name = "core-rounds-detail"
 
     class Meta:
         model = f1.Round
@@ -66,7 +66,7 @@ class PitStopSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = PitStopSummary
-    view_name = "pit-stops-detail"
+    view_name = "core-pit-stops-detail"
 
     driver = SessionEntryDriverSerializer(read_only=True, source="session_entry.round_entry.team_driver.driver")
     team = SessionEntryTeamSerializer(read_only=True, source="session_entry.round_entry.team_driver.team")

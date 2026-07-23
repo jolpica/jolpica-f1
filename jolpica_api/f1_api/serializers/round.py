@@ -21,7 +21,7 @@ class RoundCircuitSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = RoundCircuit
-    view_name = "circuits-detail"
+    view_name = "core-circuits-detail"
 
     class Meta:
         model = f1.Circuit
@@ -35,7 +35,7 @@ class RoundSeasonSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = RoundSeason
-    view_name = "seasons-detail"
+    view_name = "core-seasons-detail"
 
     class Meta:
         model = f1.Season
@@ -50,7 +50,7 @@ class RoundSessionSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = RoundSession
-    view_name = "sessions-detail"
+    view_name = "core-sessions-detail"
 
     type_display = serializers.CharField(source="get_type_display", read_only=True)
     # Must use CharField instead of DateTimeField as otherwise it will display as UTC
@@ -77,7 +77,7 @@ class RoundSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = RoundSummary
-    view_name = "rounds-detail"
+    view_name = "core-rounds-detail"
 
     circuit = RoundCircuitSerializer(read_only=True)
     season = RoundSeasonSerializer(read_only=True)

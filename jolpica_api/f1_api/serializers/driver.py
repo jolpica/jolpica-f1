@@ -17,7 +17,7 @@ class DriverSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = DriverSummary
-    view_name = "drivers-detail"
+    view_name = "core-drivers-detail"
     given_name = serializers.CharField(read_only=True, source="forename")
     family_name = serializers.CharField(read_only=True, source="surname")
     nationality = serializers.CharField(read_only=True)  # TODO: Generate from country_code

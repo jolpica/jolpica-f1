@@ -14,8 +14,8 @@ from jolpica.formula_one import models as f1
 @pytest.mark.parametrize(
     ["endpoint_name", "model_class", "min_results"],
     [
-        ("rounds-list", f1.Round, 100),
-        ("circuits-list", f1.Circuit, 1),
+        ("core-rounds-list", f1.Round, 100),
+        ("core-circuits-list", f1.Circuit, 1),
     ],
     ids=["rounds", "circuits"],
 )
@@ -105,7 +105,7 @@ def test_rounds_filter_valid(
     if params is None:
         pytest.skip(f"No data available for testing {filter_name}")
 
-    url = reverse("rounds-list")
+    url = reverse("core-rounds-list")
     response = api_client.get(url, params)
 
     assert response.status_code == 200
@@ -130,7 +130,7 @@ def test_rounds_filter_invalid_input(
     error_field: str,
 ):
     """Test that invalid filter parameters return validation errors."""
-    url = reverse("rounds-list")
+    url = reverse("core-rounds-list")
     response = api_client.get(url, params)
 
     assert response.status_code == 400
@@ -141,7 +141,7 @@ def test_rounds_filter_invalid_input(
 @pytest.mark.django_db
 def test_rounds_filter_combined(api_client: APIClient, sample_season_data: f1.Season):
     """Test combining multiple filters."""
-    url = reverse("rounds-list")
+    url = reverse("core-rounds-list")
     response = api_client.get(url, {"year": sample_season_data.year, "is_cancelled": "false"})
 
     assert response.status_code == 200
@@ -187,7 +187,7 @@ def test_circuits_filter_valid(
     if params is None:
         pytest.skip(f"No data available for testing {filter_name}")
 
-    url = reverse("circuits-list")
+    url = reverse("core-circuits-list")
     response = api_client.get(url, params)
 
     assert response.status_code == 200
@@ -206,7 +206,7 @@ def test_circuits_filter_combined(api_client: APIClient, sample_season_data: f1.
     if not circuit_with_country:
         pytest.skip("No circuit with country code in sample season")
 
-    url = reverse("circuits-list")
+    url = reverse("core-circuits-list")
     response = api_client.get(url, {"year": sample_season_data.year, "country_code": circuit_with_country.country_code})
 
     assert response.status_code == 200

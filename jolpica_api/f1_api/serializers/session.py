@@ -16,7 +16,7 @@ class SessionRoundSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionRound
-    view_name = "rounds-detail"
+    view_name = "core-rounds-detail"
 
     class Meta:
         model = f1.Round
@@ -31,7 +31,7 @@ class SessionSerializer(BaseAPISerializer):
     """
 
     pydantic_schema_class = SessionSummary
-    view_name = "sessions-detail"
+    view_name = "core-sessions-detail"
 
     round = SessionRoundSerializer(read_only=True)
     type_display = serializers.CharField(source="get_type_display", read_only=True)
