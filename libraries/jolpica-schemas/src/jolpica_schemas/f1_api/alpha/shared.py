@@ -105,7 +105,7 @@ class PitStop(BaseModel):
     duration: timedelta | None = Field(None, description="Pit stop duration as ISO 8601")
     duration_display: str | None = Field(None, description="Human-readable pit stop duration (e.g., '2.456')")
     duration_milliseconds: int | None = Field(None, description="Pit stop duration in milliseconds")
-    local_timestamp: str | None = Field(None, max_length=25, description="Local time of pit stop")
+    timestamp: str | None = Field(None, max_length=25, description="Local time of pit stop")
 
 
 class BasicLap(BaseModel):

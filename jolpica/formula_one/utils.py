@@ -1,10 +1,45 @@
+import datetime
 import json
 import secrets
 import string
 from collections import Counter
 from datetime import timedelta
+from typing import TYPE_CHECKING
 
 from pydantic import TypeAdapter
+
+if TYPE_CHECKING:
+    from jolpica.formula_one.models import Session
+
+
+def normalize_pit_stop_timestamp(local_time: str | None, session: "Session") -> str | None:
+    """Ensure a pit stop timestamp includes a date.
+
+    current records store only a time (e.g. '17:59:17'). When that happens
+    we reconstruct the full local datetime from the session's UTC timestamp and
+    IANA timezone, then format it as 'YYYY-MM-DDTHH:MM:SS+HH:MM'.
+    """
+    if local_time is None:
+        return None
+    # Already contains a date (e.g. '2024-03-24T17:59')
+    if "-" in local_time:
+        return local_time
+    # Time-only value — try to combine with the session's local date
+    if session.timezone is None or session.timestamp is None:
+        return local_time
+    try:
+        time_part = datetime.time.fromisoformat(local_time)
+    except ValueError:
+        return local_time
+    timestamp: datetime.datetime = session.timestamp
+    timestamp = timestamp.astimezone(session.timezone)
+    timestamp = timestamp.replace(
+        hour=time_part.hour,
+        minute=time_part.minute,
+        second=time_part.second,
+        microsecond=0,
+    )
+    return timestamp.isoformat(timespec="seconds")
 
 
 def generate_api_id(model_prefix: str) -> str:

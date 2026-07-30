@@ -3,7 +3,7 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
-from jolpica.formula_one.utils import format_timedelta, timedelta_to_iso8601
+from jolpica.formula_one.utils import format_timedelta, normalize_pit_stop_timestamp, timedelta_to_iso8601
 from jolpica_schemas.f1_api.alpha.core.pit_stop import (
     PitStopLap,
     PitStopRound,
@@ -77,6 +77,7 @@ class PitStopSerializer(BaseAPISerializer):
     duration = serializers.SerializerMethodField()
     duration_display = serializers.SerializerMethodField()
     duration_milliseconds = serializers.SerializerMethodField()
+    timestamp = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.PitStop
@@ -92,3 +93,6 @@ class PitStopSerializer(BaseAPISerializer):
     def get_duration_milliseconds(self, obj: f1.PitStop) -> int | None:
         """Convert duration to integer milliseconds"""
         return int(obj.duration.total_seconds() * 1000) if obj.duration else None
+
+    def get_timestamp(self, obj: f1.PitStop) -> str | None:
+        return normalize_pit_stop_timestamp(obj.local_timestamp, obj.session_entry.session)

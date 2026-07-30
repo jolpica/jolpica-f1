@@ -31,11 +31,11 @@ class PitStopLap(BasicLap):
 
 
 class PitStopSummary(PitStop):
+    season: PitStopSeason
+    round: PitStopRound
+    session: PitStopSession
     driver: PitStopDriver
     team: PitStopTeam
-    session: PitStopSession
-    round: PitStopRound
-    season: PitStopSeason
     lap: PitStopLap | None = None
 
 
