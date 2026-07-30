@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 from dataclasses import dataclass
 
 from django.db.models import Prefetch
@@ -12,6 +13,35 @@ from jolpica.formula_one.utils import format_timedelta
 from jolpica_schemas.f1_api.alpha import shared
 
 
+def _normalize_pit_stop_local_timestamp(local_timestamp: str | None, session: f1.Session) -> str | None:
+    """Ensure local_timestamp includes a date.
+
+    Some older records store only a time (e.g. '17:59:17'). When that happens
+    we reconstruct the full local datetime from the session's UTC timestamp and
+    IANA timezone, then format it as 'YYYY-MM-DDTHH:MM' (max 16 chars).
+    """
+    if local_timestamp is None:
+        return None
+    # Already contains a date (e.g. '2024-03-24T17:59')
+    if "-" in local_timestamp:
+        return local_timestamp
+    # Time-only value — try to combine with the session's local date
+    if session.timezone is None or session.timestamp is None:
+        return local_timestamp
+    try:
+        time_part = datetime.time.fromisoformat(local_timestamp)
+    except ValueError:
+        return local_timestamp
+    local_dt = session.timestamp.astimezone(session.timezone)
+    full_dt = local_dt.replace(
+        hour=time_part.hour,
+        minute=time_part.minute,
+        second=time_part.second,
+        microsecond=0,
+    )
+    return full_dt.isoformat(timespec="seconds")
+
+
 @dataclass
 class LapRowData:
     """Data for a single lap row."""
@@ -19,6 +49,8 @@ class LapRowData:
     car_number: int | None
     driver_id: str
     team_id: str
+    session_id: str
+    session_type: str
     pit_stop: shared.PitStop | None
     lap: shared.Lap
 
@@ -104,19 +136,19 @@ class LapDataLoader:
             for se in rentry.prefetched_session_entries:  # type:ignore
                 for lap in se.prefetched_laps:  # type:ignore
                     pit_stop: shared.PitStop | None = None
-                    
-                    ps = lap.pit_stop
+                    try:
+                        ps = lap.pit_stop
+                    except f1.PitStop.DoesNotExist:
+                        ps = None
                     if ps is not None:
                         pit_stop = shared.PitStop(
                             id=ps.api_id,
-                            url=HttpUrl(
-                                req.build_absolute_uri(reverse("core-pit-stops-detail", args=[ps.api_id]))
-                            ),
+                            url=HttpUrl(req.build_absolute_uri(reverse("core-pit-stops-detail", args=[ps.api_id]))),
                             number=ps.number,
                             duration=ps.duration,
                             duration_display=format_timedelta(ps.duration) if ps.duration else None,
                             duration_milliseconds=int(ps.duration.total_seconds() * 1000) if ps.duration else None,
-                            local_timestamp=ps.local_timestamp,
+                            local_timestamp=_normalize_pit_stop_local_timestamp(ps.local_timestamp, se.session),
                         )
 
                     row_data.append(
@@ -124,12 +156,12 @@ class LapDataLoader:
                             car_number=rentry.car_number,
                             driver_id=driver.api_id,
                             team_id=team.api_id,
+                            session_id=se.session.api_id,
+                            session_type=se.session.type,
                             pit_stop=pit_stop,
                             lap=shared.Lap(
                                 id=lap.api_id,
-                                url=HttpUrl(
-                                    req.build_absolute_uri(reverse("core-laps-detail", args=[lap.api_id]))
-                                ),
+                                url=HttpUrl(req.build_absolute_uri(reverse("core-laps-detail", args=[lap.api_id]))),
                                 number=lap.number,
                                 position=lap.position,
                                 time=lap.time,
@@ -188,4 +220,3 @@ class LapDataLoader:
             drivers=list(drivers.values()),
             teams=list(teams.values()),
         )
-

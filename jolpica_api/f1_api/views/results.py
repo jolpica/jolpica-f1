@@ -12,6 +12,7 @@ from rest_framework import permissions, request, response, viewsets
 from rest_framework.decorators import action
 
 from jolpica.formula_one import models as f1
+from jolpica_api.f1_api.views.utils import get_available_full_session_codes
 from jolpica_schemas.f1_api.alpha.metadata import DetailMetadata
 from jolpica_schemas.f1_api.alpha.results import (
     AvailableResultsForRound,
@@ -23,20 +24,6 @@ from jolpica_schemas.f1_api.alpha.results import (
 from ..marshalling.results import RESULT_TYPE_TITLES, ResultDataLoader, ResultsOrchestrator
 
 logger = logging.getLogger(__name__)
-
-
-def get_available_result_types(round: f1.Round) -> list[str]:
-    """Get the list of result type codes available for a round."""
-    session_types = {sess.type for sess in round.sessions.all()}
-
-    results_for_round = [
-        "R",
-        "Q",
-    ]
-    for result_type in ["SQ", "SR", "FP1", "FP2", "FP3"]:
-        if any(sess_type.startswith(result_type) for sess_type in session_types):
-            results_for_round.append(result_type)
-    return results_for_round
 
 
 @extend_schema_view(
@@ -61,11 +48,11 @@ class ResultsView(viewsets.ViewSet):
         if round is None:
             return response.Response({"error": "Round not found"}, status=404)
 
-        result_types = get_available_result_types(round)
+        result_types = get_available_full_session_codes(round)
         available_results = [
             AvailableResultsItem(
                 url=HttpUrl(req.build_absolute_uri(reverse("results-results", args=[round_id, result_type]))),
-                type=result_type,
+                code=result_type,
                 title=RESULT_TYPE_TITLES.get(result_type, result_type),
             )
             for result_type in result_types
@@ -93,7 +80,7 @@ class ResultsView(viewsets.ViewSet):
         if round is None:
             return response.Response({"error": "Round not found"}, status=404)
 
-        if session_filter not in get_available_result_types(round):
+        if session_filter not in get_available_full_session_codes(round):
             return response.Response({"error": "Invalid session filter for this round"}, status=404)
 
         result_data = ResultDataLoader.load(req, round_id, session_filter)

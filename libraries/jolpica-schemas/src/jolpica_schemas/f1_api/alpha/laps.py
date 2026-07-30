@@ -12,13 +12,15 @@ class Lap(shared.Lap):
     round_id: str
     session_id: str
     session_type: str
+    pit_stop: shared.PitStop | None
 
 
 class LapData(BaseModel):
-    driver_id_map: dict[str, shared.Driver]
-    team_id_map: dict[str, shared.Team]
-    session_id_map: dict[str, shared.Session]
-    round_id_map: dict[str, shared.Round]
+    round: shared.Round
+    circuit: shared.Circuit
+    sessions_by_id: dict[str, shared.Session]
+    drivers_by_id: dict[str, shared.Driver]
+    teams_by_id: dict[str, shared.Team]
 
     laps: list[Lap]
 

@@ -29,7 +29,7 @@ class ResultItem(BaseModel):
 
 class AvailableResultsItem(BaseModel):
     url: HttpUrl
-    type: str
+    code: str
     title: str
 
 
