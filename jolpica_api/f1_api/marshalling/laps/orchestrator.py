@@ -50,6 +50,7 @@ class LapDataOrchestrator:
             drivers_by_id=drivers_by_id,
             teams_by_id=teams_by_id,
             sessions_by_id=sessions_by_id,
+            season=self._lap_data.season,
             round=self._lap_data.round,
             circuit=self._lap_data.circuit,
             laps=laps,

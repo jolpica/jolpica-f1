@@ -16,6 +16,7 @@ class Lap(shared.Lap):
 
 
 class LapData(BaseModel):
+    season: shared.Season
     round: shared.Round
     circuit: shared.Circuit
     sessions_by_id: dict[str, shared.Session]
