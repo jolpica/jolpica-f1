@@ -43,6 +43,40 @@ These parameters are shared between all API endpoints
 
 ---
 
+## Custom User Agent
+We require a custom user agent to be set when using our API. This is to help us keep the API available and performant for everyone. A good user agent should contain a identifying app name followed by a version number, this means if a bad version of your project is released we're able to only block badly behaving versions instead of your whole app. You should also include the versions of other relevant software where applicable, for example the FastF1 version. 
+
+An example of a great User Agent: `MyGreatF1App/1.2.3 FastF1/1.2.2`
+
+### Node
+```javascript
+const version = '1.0.0';
+fetch('https://yourdomain.com', {
+  headers: { 'User-Agent': `YourAppName/${version}` }
+});
+```
+
+### Python
+```python
+version = "1.0.0"
+requests.get(
+    "https://yourdomain.com",
+    headers={"User-Agent": f"YourAppName/{version}"},
+)
+```
+
+#### FastF1
+```python
+import fastf1.ergast.interface
+
+version = "1.0.0"
+fastf1.ergast.interface.HEADERS['User-Agent'] = f"YourAppName/{version}" + fastf1.ergast.interface.HEADERS['User-Agent']
+
+```
+
+
+---
+
 ## Common Response Fields:
 
 These are field definitions that you will receive in the response for any call:

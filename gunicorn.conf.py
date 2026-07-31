@@ -23,9 +23,10 @@ access_log_format = (
     "||METHOD:%(m)s||"
     "||USER_AGENT:%(a)s||"
     "||IP:%({x-forwarded-for}i)s||"
-    "||USER:%(u)s||"
     "||DURATION:%(M)s||"
     "||STATUS:%(s)s||"
+    "||REFERER:%({referer}i)s||"
+    "||ORIGIN:%({origin}i)s||"
 )
 
 logconfig_dict = LOG_CONFIG
