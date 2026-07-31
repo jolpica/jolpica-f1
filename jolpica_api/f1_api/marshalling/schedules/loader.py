@@ -33,6 +33,7 @@ class ScheduleData:
 
     season: shared.Season
     rounds: list[ScheduleRoundData]
+    url_prefix: str
 
 
 class ScheduleDataLoader:
@@ -136,4 +137,5 @@ class ScheduleDataLoader:
                 wikipedia=HttpUrl(season.wikipedia) if season.wikipedia else None,
             ),
             rounds=rounds_data,
+            url_prefix=req.build_absolute_uri("/"),
         )

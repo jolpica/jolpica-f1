@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import datetime
 
+from django.urls import reverse
+
 from jolpica.formula_one.models import SessionType
 from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.schedule import (
@@ -103,6 +105,14 @@ class ScheduleOrchestrator:
                 title = config.title
                 group_types = config.group_types
 
+            results_url = self._data.url_prefix.rstrip("/") + reverse(
+                "results-results",
+                args=[round_data.round.id, code],
+            )
+            laps_url = self._data.url_prefix.rstrip("/") + reverse(
+                "laps-laps",
+                args=[round_data.round.id, code],
+            )
             if group_types is None:
                 full_sessions.append(
                     ScheduleFullSession(
@@ -113,6 +123,8 @@ class ScheduleOrchestrator:
                         missing_time_data=session.missing_time_data,
                         local_timestamp=session.local_timestamp,
                         timezone=session.timezone,
+                        results_url=results_url,
+                        laps_url=laps_url,
                     )
                 )
                 continue
@@ -142,6 +154,8 @@ class ScheduleOrchestrator:
                     missing_time_data=group_sessions[0].missing_time_data,
                     local_timestamp=group_sessions[0].local_timestamp,
                     timezone=group_sessions[0].timezone,
+                    results_url=results_url,
+                    laps_url=laps_url,
                 )
             )
 
@@ -194,6 +208,8 @@ class ScheduleOrchestrator:
                     missing_time_data=full_session.missing_time_data,
                     local_timestamp=full_session.local_timestamp,
                     timezone=full_session.timezone,
+                    results_url=full_session.results_url,
+                    laps_url=full_session.laps_url,
                 )
 
         return full_sessions

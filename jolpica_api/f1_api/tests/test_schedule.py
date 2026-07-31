@@ -87,6 +87,7 @@ def _make_schedule_data(rounds: list[ScheduleRoundData]) -> ScheduleData:
             wikipedia=None,
         ),
         rounds=rounds,
+        url_prefix="http://testserver",
     )
 
 

@@ -5,7 +5,8 @@ from .shared import Circuit, FullSession, Round, Season
 
 
 class ScheduleFullSession(FullSession):
-    pass
+    results_url: str
+    laps_url: str
 
 
 class ScheduleEvent(BaseModel):
