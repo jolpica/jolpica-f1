@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 @extend_schema_view(
-    results=extend_schema(
+    laps=extend_schema(
         summary="Get results for a round",
         responses={200: LapsResponse},
     ),

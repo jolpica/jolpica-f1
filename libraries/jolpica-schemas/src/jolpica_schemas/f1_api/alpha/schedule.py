@@ -1,12 +1,12 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, HttpUrl
 
 from .metadata import DetailResponse, PaginatedResponse
 from .shared import Circuit, FullSession, Round, Season
 
 
 class ScheduleFullSession(FullSession):
-    results_url: str
-    laps_url: str
+    results_url: HttpUrl
+    laps_url: HttpUrl
 
 
 class ScheduleEvent(BaseModel):

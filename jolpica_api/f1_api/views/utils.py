@@ -2,7 +2,7 @@ from jolpica.formula_one import models as f1
 
 
 def get_available_full_session_codes(round: f1.Round) -> list[str]:
-    """Get the list of result type codes available for a round."""
+    """Get the list of full session codes available for a round."""
     session_types = {sess.type for sess in round.sessions.all()}
 
     results_for_round = [

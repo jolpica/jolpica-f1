@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime
 
 from django.urls import reverse
+from pydantic import HttpUrl
 
 from jolpica.formula_one.models import SessionType
 from jolpica_schemas.f1_api.alpha import shared
@@ -123,8 +124,8 @@ class ScheduleOrchestrator:
                         missing_time_data=session.missing_time_data,
                         local_timestamp=session.local_timestamp,
                         timezone=session.timezone,
-                        results_url=results_url,
-                        laps_url=laps_url,
+                        results_url=HttpUrl(results_url),
+                        laps_url=HttpUrl(laps_url),
                     )
                 )
                 continue
@@ -154,8 +155,8 @@ class ScheduleOrchestrator:
                     missing_time_data=group_sessions[0].missing_time_data,
                     local_timestamp=group_sessions[0].local_timestamp,
                     timezone=group_sessions[0].timezone,
-                    results_url=results_url,
-                    laps_url=laps_url,
+                    results_url=HttpUrl(results_url),
+                    laps_url=HttpUrl(laps_url),
                 )
             )
 
