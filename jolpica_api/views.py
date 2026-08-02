@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from django.core.cache import cache
+from django.db import connection
 from django.http import JsonResponse
 from django.http.request import HttpRequest
 from django_ratelimit.decorators import ratelimit
@@ -9,6 +11,36 @@ from jolpica_api import settings
 
 def healthcheck(request: HttpRequest):
     return JsonResponse(data={"status": "OK"}, status=200)
+
+
+def _database_is_available() -> bool:
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1")
+    except Exception:
+        return False
+
+    return True
+
+
+def _cache_is_available() -> bool:
+    try:
+        cache.get("service-status")
+    except Exception:
+        return False
+
+    return True
+
+
+def service_status(request: HttpRequest):
+    database_available = _database_is_available()
+    cache_available = _cache_is_available()
+    is_available = database_available and cache_available
+
+    return JsonResponse(
+        data={"status": "OK" if is_available else "DEGRADED"},
+        status=200 if is_available else 503,
+    )
 
 
 def ratelimited_error(request: HttpRequest, exception):
