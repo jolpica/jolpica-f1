@@ -39,7 +39,7 @@ def service_status(request: HttpRequest):
 
     return JsonResponse(
         data={"status": "OK" if is_available else "DEGRADED"},
-        status=200 if is_available else 503,
+        status=200,
     )
 
 
