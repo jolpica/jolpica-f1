@@ -19,7 +19,7 @@ from ..authentication.throttles import ErgastLongThrottle, ErgastShortThrottle
 from . import pagination, serializers
 from .status_mapping import ERGAST_STATUS_MAPPING
 
-CACHE_TIME_SECONDS = 60 * 60 if DEPLOYMENT_ENV == "PROD" else 15
+CACHE_TIME_SECONDS = 10 * 60 if DEPLOYMENT_ENV == "PROD" else 15
 
 
 @cache_page(CACHE_TIME_SECONDS)
