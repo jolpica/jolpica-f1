@@ -309,6 +309,16 @@ def test_from_season_whole_year(monkeypatch):
     )  # 22 races, 6 sprints sessions in 2023 season
 
 
+@pytest.mark.parametrize(
+    ["year", "expected_total_rounds"],
+    [(1958, 11), (1976, 16), (1979, 15), (1980, 14), (2020, 17), (2023, 22)]
+)  # 2020 has COVID cancellations, and 2023 has Imola flood cancellation
+@pytest.mark.django_db
+def test_from_season_total_rounds(year, expected_total_rounds):
+    season_data = SeasonData.from_season(f1.Season.objects.get(year=year))
+    assert season_data.total_rounds == expected_total_rounds
+
+
 @pytest.mark.django_db
 def test_from_season_last_round_has_quali_but_no_race(monkeypatch):
     season = f1.Season.objects.get(year=2023)

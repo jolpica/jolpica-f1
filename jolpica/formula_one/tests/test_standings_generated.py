@@ -111,6 +111,38 @@ def test_1997_driver_standings(driver_standings_from_year, round, reference, exp
 @pytest.mark.parametrize(
     ["round", "reference", "expected"],
     [
+        # See #390
+        # Best all but one result of each half of a 16 round season (rounds 1-8 and 9-16)
+        (16, "hunt", {"position": 1, "points": 69, "win_count": 6}),
+        (16, "lauda", {"position": 2, "points": 68, "win_count": 5}),
+        (16, "scheckter", {"position": 3, "points": 49}),
+        # The split is decided by the length of the whole season, not the rounds held so far,
+        # so James Hunt is still one round away from dropping a result at round 15
+        (15, "lauda", {"position": 1, "points": 68}),
+        (15, "hunt", {"position": 2, "points": 65}),
+    ],
+)
+@pytest.mark.django_db
+def test_1976_driver_standings(driver_standings_from_year: list[DriverChampionship], round, reference, expected):
+    check_expected_in_standings(driver_standings_from_year(1976), round, reference, expected)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
+        (16, "ferrari", {"position": 1, "points": 83}),
+        (16, "mclaren", {"position": 2, "points": 74}),
+        (16, "tyrrell", {"position": 3, "points": 71}),
+    ],
+)
+@pytest.mark.django_db
+def test_1976_team_standings(team_standings_from_year: list[TeamChampionship], round, reference, expected):
+    check_expected_in_standings(team_standings_from_year(1976), round, reference, expected)
+
+
+@pytest.mark.parametrize(
+    ["round", "reference", "expected"],
+    [
         (14, "jones", {"position": 1, "points": 67}),
         (14, "piquet", {"position": 2, "points": 54}),
         (14, "reutemann", {"position": 3, "points": 42}),

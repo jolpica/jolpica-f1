@@ -225,6 +225,405 @@ id,position,is_classified,status,detail,points,is_eligible_for_points,grid,time,
 1810,23,f,10,Accident,0,t,20,,,15,1810,223,sessionentry_qC2asGRm
 1811,24,f,11,Engine,0,t,15,,,15,1811,223,sessionentry_8l6ugKmi
 1812,25,f,11,Engine,0,t,9,,,9,1812,223,sessionentry_DxnWhn91
+6143,1,t,0,Finished,9,t,2,01:45:16.78,,40,6143,793,sessionentry_E2r2kVTb
+6144,2,t,0,Finished,6,t,9,01:45:38.25,,40,6144,793,sessionentry_6kQZabh2
+6145,3,t,0,Finished,4,t,12,01:45:40.62,,40,6145,793,sessionentry_P3DsZLm8
+6146,4,t,0,Finished,3,t,14,01:46:44.95,,40,6146,793,sessionentry_gpOcnloH
+6147,5,t,0,Finished,2,t,13,01:47:13.24,,40,6147,793,sessionentry_TK9BPTXh
+6148,6,t,0,Finished,1,t,6,01:47:15.05,,40,6148,793,sessionentry_5QljA4k7
+6149,7,t,0,Finished,0,t,4,01:47:32.02,,40,6149,793,sessionentry_QmtcOL2m
+6150,8,t,1,+1 Lap,0,t,19,,,39,6150,793,sessionentry_fIcVqaNz
+6151,9,t,1,+1 Lap,0,t,17,,,39,6151,793,sessionentry_AzBPoRoQ
+6152,10,t,1,+1 Lap,0,t,10,,,39,6152,793,sessionentry_zgZDdq5K
+6153,11,t,1,+1 Lap,0,t,20,,,39,6153,793,sessionentry_UoqPlUpD
+6154,12,t,11,Out of fuel,0,t,15,,,37,6154,793,sessionentry_Ni0h91q5
+6155,13,t,1,+3 Laps,0,t,5,,,37,6155,793,sessionentry_gdEC6P0T
+6156,14,t,1,+4 Laps,0,t,22,,,36,6156,793,sessionentry_oP5sRcoJ
+6157,15,f,10,Accident,0,t,3,,,33,6157,793,sessionentry_wF4Tig9Y
+6158,16,f,10,Accident,0,t,1,,,32,6158,793,sessionentry_AWefl1OB
+6159,17,f,11,Oil leak,0,t,7,,,15,6159,793,sessionentry_HCWWEreL
+6160,18,f,11,Transmission,0,t,11,,,14,6160,793,sessionentry_76frUFI3
+6161,19,f,10,Accident,0,t,18,,,10,6161,793,sessionentry_J36wh9vG
+6162,20,f,10,Accident,0,t,16,,,6,6162,793,sessionentry_9jBxvSxn
+6163,21,f,11,Fuel system,0,t,8,,,2,6163,793,sessionentry_ihOFJ4Q6
+6164,22,f,11,Oil pump,0,t,21,,,2,6164,793,sessionentry_N542Xdwt
+6165,1,t,0,Finished,9,t,2,01:42:18.4,,78,6165,796,sessionentry_kXhrMxsK
+6166,2,t,0,Finished,6,t,1,01:42:19.7,,78,6166,796,sessionentry_zuBNdsXE
+6167,3,t,0,Finished,4,t,4,01:43:04.3,,78,6167,796,sessionentry_ravCfoiA
+6168,4,t,0,Finished,3,t,12,01:43:26.8,,78,6168,796,sessionentry_uFzYBAlZ
+6169,5,t,1,+1 Lap,2,t,3,,,77,6169,796,sessionentry_pfc2mDWc
+6170,6,t,1,+1 Lap,1,t,13,,,77,6170,796,sessionentry_UhGSZlaK
+6171,7,t,1,+1 Lap,0,t,7,,,77,6171,796,sessionentry_VYR7DEZb
+6172,8,t,1,+1 Lap,0,t,5,,,77,6172,796,sessionentry_f7DiSGOs
+6173,9,t,1,+1 Lap,0,t,6,,,77,6173,796,sessionentry_PXk5nZoe
+6174,10,t,1,+1 Lap,0,t,23,,,77,6174,796,sessionentry_QW2mp6V5
+6175,11,t,1,+1 Lap,0,t,20,,,77,6175,796,sessionentry_FVgPzRxK
+6176,12,t,1,+2 Laps,0,t,17,,,76,6176,796,sessionentry_PV4owpC4
+6177,13,t,1,+2 Laps,0,t,22,,,76,6177,796,sessionentry_Der14zo0
+6178,14,t,1,+2 Laps,0,t,18,,,76,6178,796,sessionentry_jeyFlGKP
+6179,15,t,1,+4 Laps,0,t,24,,,74,6179,796,sessionentry_4eDtJrdG
+6180,16,t,1,+5 Laps,0,t,19,,,73,6180,796,sessionentry_VhU2M7R0
+6181,17,t,11,Engine,0,t,21,,,70,6181,796,sessionentry_w8WcDlbt
+6182,18,f,11,Engine,0,t,9,,,52,6182,796,sessionentry_RxlnhmNH
+6183,19,f,11,Engine,0,t,8,,,49,6183,796,sessionentry_obTGmSb1
+6184,20,f,11,Radiator,0,t,15,,,28,6184,796,sessionentry_Z4yOGpiE
+6185,21,f,11,Oil pressure,0,t,14,,,22,6185,796,sessionentry_ypx5zTPJ
+6186,22,f,11,Clutch,0,t,25,,,18,6186,796,sessionentry_kx9BDEED
+6187,23,f,11,Oil pressure,0,t,11,,,16,6187,796,sessionentry_fVLywmjO
+6188,24,f,10,Accident,0,t,13,,,15,6188,796,sessionentry_FFAodeRM
+6189,25,f,10,Accident,0,t,16,,,0,6189,796,sessionentry_QltYROqq
+6190,1,t,0,Finished,9,t,1,01:53:18.471,,80,6190,799,sessionentry_eSRtbCSp
+6191,2,t,0,Finished,6,t,4,01:54:00.885,,80,6191,799,sessionentry_Jzh6CmvB
+6192,3,t,0,Finished,4,t,2,01:54:08.443,,80,6192,799,sessionentry_xfkuaCcR
+6193,4,t,0,Finished,3,t,12,01:54:31.299,,80,6193,799,sessionentry_tRFuKRhD
+6194,5,t,0,Finished,2,t,14,01:54:40.763,,80,6194,799,sessionentry_vLg3xlK2
+6195,6,t,1,+1 Lap,1,t,16,,,79,6195,799,sessionentry_IEZVp3PX
+6196,7,t,1,+1 Lap,0,t,7,,,79,6196,799,sessionentry_ujnWoruw
+6197,8,t,1,+2 Laps,0,t,17,,,78,6197,799,sessionentry_xQ0ccGg8
+6198,9,t,1,+3 Laps,0,t,13,,,77,6198,799,sessionentry_gAhLZSpR
+6199,10,t,1,+3 Laps,0,t,6,,,77,6199,799,sessionentry_UMsTOWlV
+6200,11,f,1,Not classified,0,t,19,,,70,6200,799,sessionentry_BGt66Su3
+6201,12,f,1,Not classified,0,t,9,,,69,6201,799,sessionentry_OOu2UdSi
+6202,13,f,11,Suspension,0,t,11,,,34,6202,799,sessionentry_Py5rRnjx
+6203,14,f,11,Halfshaft,0,t,5,,,32,6203,799,sessionentry_tR0KGYzw
+6204,15,f,11,Water leak,0,t,15,,,15,6204,799,sessionentry_38tjRqNw
+6205,16,f,10,Accident,0,t,3,,,3,6205,799,sessionentry_Lh74NBtf
+6206,17,f,10,Accident,0,t,18,,,2,6206,799,sessionentry_NUzzVaHQ
+6207,18,f,10,Accident,0,t,20,,,0,6207,799,sessionentry_8QQSqkwU
+6208,19,f,10,Accident,0,t,10,,,0,6208,799,sessionentry_1kFL5taH
+6209,20,f,11,Suspension,0,t,8,,,0,6209,799,sessionentry_VAXoR8Z0
+6217,1,t,0,Finished,9,t,1,01:42:20.43,,75,6217,802,sessionentry_H01ghi89
+6218,2,t,0,Finished,6,t,2,01:42:51.4,,75,6218,802,sessionentry_36oOAl27
+6219,3,t,0,Finished,4,t,7,01:43:08.45,,75,6219,802,sessionentry_KJlgzSha
+6220,4,t,1,+1 Lap,3,t,12,,,74,6220,802,sessionentry_b35gBvAU
+6221,5,t,1,+1 Lap,2,t,10,,,74,6221,802,sessionentry_zGE3gvBr
+6222,6,t,1,+1 Lap,1,t,11,,,74,6222,802,sessionentry_DXEiplgb
+6223,7,t,1,+1 Lap,0,t,21,,,74,6223,802,sessionentry_IVH1xNdw
+6224,8,t,1,+1 Lap,0,t,22,,,74,6224,802,sessionentry_0eSrekHN
+6225,9,t,1,+1 Lap,0,t,20,,,74,6225,802,sessionentry_9ctn3eRR
+6226,10,t,1,+2 Laps,0,t,23,,,73,6226,802,sessionentry_PawWBbm7
+6227,11,t,1,+3 Laps,0,t,5,,,72,6227,802,sessionentry_dRmywg53
+6228,12,t,1,+3 Laps,0,t,8,,,72,6228,802,sessionentry_vYlEQwmm
+6229,13,t,1,+3 Laps,0,t,24,,,72,6229,802,sessionentry_YrEfZL4F
+6230,14,f,11,Engine,0,t,4,,,65,6230,802,sessionentry_MSBfnZpx
+6231,15,f,11,Electrical,0,t,15,,,61,6231,802,sessionentry_pCac1Gbh
+6232,16,f,11,Engine,0,t,14,,,53,6232,802,sessionentry_qmwIgbwn
+6233,17,f,11,Engine,0,t,13,,,51,6233,802,sessionentry_Cmq9smkV
+6234,18,f,11,Gearbox,0,t,18,,,36,6234,802,sessionentry_pYJYEWez
+6235,19,f,11,Gearbox,0,t,9,,,34,6235,802,sessionentry_gkr0egRd
+6236,20,f,10,Accident,0,t,3,,,25,6236,802,sessionentry_vy57DeEy
+6237,21,f,11,Suspension,0,t,6,,,21,6237,802,sessionentry_dIRDJaDn
+6238,22,f,11,Gearbox,0,t,17,,,16,6238,802,sessionentry_ZVb1ss7C
+6239,23,f,11,Transmission,0,t,16,,,11,6239,802,sessionentry_OipEC9Y8
+6240,24,f,11,Transmission,0,t,19,,,3,6240,802,sessionentry_MrN1uoMZ
+6247,1,t,0,Finished,9,t,1,01:42:53.23,,70,6247,805,sessionentry_JIJ9j51t
+6248,2,t,0,Finished,6,t,2,01:42:56.69,,70,6248,805,sessionentry_wXCiWLb1
+6249,3,t,0,Finished,4,t,4,01:43:28.61,,70,6249,805,sessionentry_94M7C0ZG
+6250,4,t,0,Finished,3,t,7,01:44:24.23,,70,6250,805,sessionentry_DCgSM5Y7
+6251,5,t,1,+1 Lap,2,t,16,,,69,6251,805,sessionentry_NyHNmDQQ
+6252,6,t,1,+1 Lap,1,t,18,,,69,6252,805,sessionentry_t9Sq21VX
+6253,7,t,1,+1 Lap,0,t,17,,,69,6253,805,sessionentry_tbke7V7Y
+6254,8,t,1,+1 Lap,0,t,20,,,69,6254,805,sessionentry_vCpx3Hkw
+6255,9,t,1,+1 Lap,0,t,14,,,69,6255,805,sessionentry_tL4rRXBn
+6256,10,t,1,+2 Laps,0,t,13,,,68,6256,805,sessionentry_46y0Rms4
+6257,11,t,1,+2 Laps,0,t,25,,,68,6257,805,sessionentry_1sdMnuvA
+6258,12,t,1,+7 Laps,0,t,23,,,63,6258,805,sessionentry_lkAX6rvl
+6259,13,f,11,Electrical,0,t,26,,,62,6259,805,sessionentry_ASL1xQtE
+6260,14,f,11,Electrical,0,t,9,,,58,6260,805,sessionentry_1q84jkJA
+6261,15,f,10,Accident,0,t,8,,,51,6261,805,sessionentry_PwhJZ6kL
+6262,16,f,11,Gearbox,0,t,3,,,35,6262,805,sessionentry_6NUKOkKG
+6263,17,f,11,Suspension,0,t,15,,,33,6263,805,sessionentry_J40hKsH9
+6264,18,f,11,Engine,0,t,24,,,31,6264,805,sessionentry_Pif9GN9G
+6265,19,f,11,Engine,0,t,4,,,29,6265,805,sessionentry_wYOfqtw5
+6266,20,f,11,Halfshaft,0,t,11,,,28,6266,805,sessionentry_8NbsL2CH
+6267,21,f,11,Halfshaft,0,t,19,,,26,6267,805,sessionentry_85Vx75tZ
+6268,22,f,11,Engine,0,t,21,,,21,6268,805,sessionentry_rZX6JfDR
+6269,23,f,11,Engine,0,t,12,,,17,6269,805,sessionentry_rtNF58Jj
+6270,24,f,10,Accident,0,t,10,,,16,6270,805,sessionentry_pNmkptlw
+6271,25,f,10,Accident,0,t,22,,,7,6271,805,sessionentry_VlA7dfP4
+6272,26,f,11,Halfshaft,0,t,5,,,6,6272,805,sessionentry_pvj1vGn2
+6276,1,t,0,Finished,9,t,1,01:59:51.47,,78,6276,808,sessionentry_k0vqaiPV
+6277,2,t,0,Finished,6,t,5,02:00:02.6,,78,6277,808,sessionentry_zV5zaXD5
+6278,3,t,0,Finished,4,t,4,02:00:56.31,,78,6278,808,sessionentry_pJab9DsT
+6279,4,t,1,+1 Lap,3,t,6,,,77,6279,808,sessionentry_DfeRR04D
+6280,5,t,1,+1 Lap,2,t,11,,,77,6280,808,sessionentry_0huwLg3V
+6281,6,t,1,+1 Lap,1,t,7,,,77,6281,808,sessionentry_e0e16nvT
+6282,7,t,1,+1 Lap,0,t,15,,,77,6282,808,sessionentry_ESRAVwk1
+6283,8,t,1,+2 Laps,0,t,10,,,76,6283,808,sessionentry_zj6NJNDe
+6284,9,t,1,+2 Laps,0,t,13,,,76,6284,808,sessionentry_vmi2LfuR
+6285,10,t,1,+2 Laps,0,t,17,,,76,6285,808,sessionentry_I6k8PXuv
+6286,11,t,1,+2 Laps,0,t,18,,,76,6286,808,sessionentry_TZ1rhtRf
+6287,12,t,10,Accident,0,t,8,,,75,6287,808,sessionentry_YkAPJLrD
+6288,13,t,1,+4 Laps,0,t,12,,,74,6288,808,sessionentry_rgXYKn4N
+6289,14,t,10,Accident,0,t,2,,,73,6289,808,sessionentry_1ImjmMoT
+6290,15,f,11,Engine,0,t,16,,,39,6290,808,sessionentry_c6GfL1dB
+6291,16,f,10,Accident,0,t,3,,,26,6291,808,sessionentry_sW8WVsY1
+6292,17,f,11,Engine,0,t,14,,,24,6292,808,sessionentry_KtloG5X6
+6293,18,f,11,Suspension,0,t,9,,,9,6293,808,sessionentry_OwErrexF
+6294,19,f,10,Collision,0,t,19,,,1,6294,808,sessionentry_SIej8rno
+6295,20,f,10,Accident,0,t,20,,,0,6295,808,sessionentry_gLFFTlWC
+6301,1,t,0,Finished,9,t,1,01:46:53.729,,72,6301,811,sessionentry_cvead4y1
+6302,2,t,0,Finished,6,t,4,01:47:13.495,,72,6302,811,sessionentry_v6iJWE85
+6303,3,t,0,Finished,4,t,5,01:47:27.595,,72,6303,811,sessionentry_bs4QK2LH
+6304,4,t,0,Finished,3,t,7,01:47:49.548,,72,6304,811,sessionentry_HGvqN2V8
+6305,5,t,0,Finished,2,t,8,01:47:53.212,,72,6305,811,sessionentry_qDnl38RC
+6306,6,t,0,Finished,1,t,11,01:47:54.095,,72,6306,811,sessionentry_jdGRcllO
+6307,7,t,0,Finished,0,t,9,01:47:57.222,,72,6307,811,sessionentry_0EmT7Her
+6308,8,t,0,Finished,0,t,10,01:48:05.342,,72,6308,811,sessionentry_wTeoM9kp
+6309,9,t,1,+1 Lap,0,t,12,,,71,6309,811,sessionentry_7czHQMGr
+6310,10,t,1,+1 Lap,0,t,15,,,71,6310,811,sessionentry_4ENjBrB7
+6311,11,t,1,+1 Lap,0,t,13,,,71,6311,811,sessionentry_VQGnAVch
+6312,12,t,1,+1 Lap,0,t,14,,,71,6312,811,sessionentry_iLEpggJ2
+6313,13,t,1,+1 Lap,0,t,18,,,71,6313,811,sessionentry_yy7Pwq8R
+6314,14,t,11,Engine,0,t,19,,,70,6314,811,sessionentry_qRdcsg7X
+6315,15,t,1,+2 Laps,0,t,24,,,70,6315,811,sessionentry_Dyc0yt4A
+6316,16,f,10,Spun off,0,t,23,,,54,6316,811,sessionentry_GYKlZIM3
+6317,17,f,11,Engine,0,t,20,,,52,6317,811,sessionentry_Xh4K1gN9
+6318,18,f,11,Engine,0,t,2,,,45,6318,811,sessionentry_PPucJkDX
+6319,19,f,10,Accident,0,t,3,,,38,6319,811,sessionentry_UQGa13aW
+6320,20,f,11,Engine,0,t,25,,,20,6320,811,sessionentry_zetkaigy
+6321,21,f,11,Engine,0,t,22,,,18,6321,811,sessionentry_1N6dRLe0
+6322,22,f,11,Handling,0,t,21,,,10,6322,811,sessionentry_pUaIrk4u
+6323,23,f,10,Accident,0,t,26,,,5,6323,811,sessionentry_I6TrYpjk
+6324,24,f,10,Accident,0,t,6,,,2,6324,811,sessionentry_MEj6P1wL
+6325,25,f,11,Engine,0,t,16,,,2,6325,811,sessionentry_trCXo8UL
+6326,26,f,10,Accident,0,t,17,,,0,6326,811,sessionentry_schsA7gp
+6328,1,t,0,Finished,9,t,1,01:40:58.6,,54,6328,814,sessionentry_56fWhR7g
+6329,2,t,0,Finished,6,t,3,01:41:11.3,,54,6329,814,sessionentry_GvfwlczH
+6330,3,t,0,Finished,4,t,8,01:41:22.15,,54,6330,814,sessionentry_uU7gtQHq
+6331,4,t,0,Finished,3,t,5,01:41:23.42,,54,6331,814,sessionentry_U9pFtPt2
+6332,5,t,0,Finished,2,t,7,01:41:42.52,,54,6332,814,sessionentry_s7n7xc65
+6333,6,t,0,Finished,1,t,9,01:41:53.67,,54,6333,814,sessionentry_yrrRrVJP
+6334,7,t,0,Finished,0,t,17,01:42:20.15,,54,6334,814,sessionentry_Neov33Ln
+6335,8,t,0,Finished,0,t,16,01:42:29.27,,54,6335,814,sessionentry_tnHDhOtM
+6336,9,t,0,Finished,0,t,20,01:42:52.17,,54,6336,814,sessionentry_QKZPlsjT
+6337,10,t,1,+1 Lap,0,t,19,,,53,6337,814,sessionentry_AmIHyQeo
+6338,11,t,1,+1 Lap,0,t,10,,,53,6338,814,sessionentry_RkE7WQj1
+6339,12,t,1,+1 Lap,0,t,15,,,53,6339,814,sessionentry_ziz21jAj
+6340,13,t,1,+1 Lap,0,t,22,,,53,6340,814,sessionentry_mSEx4HBy
+6341,14,t,1,+1 Lap,0,t,13,,,53,6341,814,sessionentry_A1EFQpPZ
+6342,15,t,1,+1 Lap,0,t,14,,,53,6342,814,sessionentry_MrO02w5Z
+6343,16,t,1,+1 Lap,0,t,23,,,53,6343,814,sessionentry_uzxsjHOs
+6344,17,t,1,+1 Lap,0,t,25,,,53,6344,814,sessionentry_GvvcxNse
+6345,18,t,1,+1 Lap,0,t,26,,,53,6345,814,sessionentry_o0uRQDHD
+6346,19,t,11,Fuel system,0,t,6,,,51,6346,814,sessionentry_wGUL80tJ
+6347,20,f,11,Suspension,0,t,18,,,44,6347,814,sessionentry_Hj96BvB7
+6348,21,f,11,Oil pressure,0,t,11,,,28,6348,814,sessionentry_ivmzDmeY
+6349,22,f,11,Oil pressure,0,t,21,,,21,6349,814,sessionentry_xDugpqJc
+6350,23,f,11,Suspension,0,t,24,,,19,6350,814,sessionentry_gp4Ig9PH
+6351,24,f,11,Engine,0,t,4,,,17,6351,814,sessionentry_iCjrvN88
+6352,25,f,11,Engine,0,t,2,,,8,6352,814,sessionentry_AqIsNleN
+6353,26,f,11,Gearbox,0,t,12,,,8,6353,814,sessionentry_OxwMU4sM
+6354,27,f,11,Differential,0,t,29,,,4,6354,814,sessionentry_tSiDzUrp
+6358,1,t,0,Finished,9,t,1,01:44:19.66,,76,6358,817,sessionentry_NITFxsLD
+6359,2,t,0,Finished,6,t,8,01:44:35.84,,76,6359,817,sessionentry_hoye8bYc
+6360,3,t,1,+1 Lap,4,t,11,,,75,6360,817,sessionentry_AuOnVKSN
+6361,4,t,1,+1 Lap,3,t,20,,,75,6361,817,sessionentry_ueQEyuXR
+6362,5,t,1,+1 Lap,2,t,19,,,75,6362,817,sessionentry_kysSjX6r
+6363,6,t,1,+2 Laps,1,t,21,,,74,6363,817,sessionentry_n4KxNJmq
+6364,7,t,1,+3 Laps,0,t,23,,,73,6364,817,sessionentry_RLfZBBrY
+6365,8,t,1,+3 Laps,0,t,16,,,73,6365,817,sessionentry_7SBCBkP1
+6366,9,t,1,+6 Laps,0,t,24,,,70,6366,817,sessionentry_FmjE6OoC
+6367,10,f,20,Disqualified,0,t,2,,,76,6367,817,sessionentry_yFzsIAI8
+6368,11,f,11,Engine,0,t,14,,,67,6368,817,sessionentry_ISJBbnck
+6369,12,f,11,Fuel system,0,t,7,,,60,6369,817,sessionentry_bYbXuCtE
+6370,13,f,11,Gearbox,0,t,18,,,55,6370,817,sessionentry_Smct1CmC
+6371,14,f,11,Engine,0,t,5,,,47,6371,817,sessionentry_9XxIK5vs
+6372,15,f,11,Oil pressure,0,t,15,,,46,6372,817,sessionentry_C8gc4BkY
+6373,16,f,11,Engine,0,t,9,,,39,6373,817,sessionentry_UExHCP9k
+6374,17,f,11,Oil pressure,0,t,4,,,36,6374,817,sessionentry_Jf3b9yRq
+6375,18,f,11,Suspension,0,t,13,,,31,6375,817,sessionentry_1fmnd3JQ
+6376,19,f,11,Gearbox,0,t,22,,,24,6376,817,sessionentry_W209p2Sq
+6377,20,f,10,Accident,0,t,10,,,22,6377,817,sessionentry_1IfynhxF
+6378,21,f,11,Fuel system,0,t,26,,,16,6378,817,sessionentry_4foRwBrh
+6379,22,f,11,Water leak,0,t,6,,,8,6379,817,sessionentry_1orF7DLd
+6380,23,f,11,Ignition,0,t,3,,,4,6380,817,sessionentry_9OmeWp33
+6381,24,f,11,Clutch,0,t,12,,,1,6381,817,sessionentry_2YRrr9ZU
+6382,25,f,10,Accident,0,t,17,,,0,6382,817,sessionentry_OwtkSuBQ
+6383,26,f,10,Accident,0,t,25,,,0,6383,817,sessionentry_1iED8Zzn
+6388,1,t,0,Finished,9,t,1,01:41:42.7,,14,6388,820,sessionentry_0fusq07X
+6389,2,t,0,Finished,6,t,8,01:42:10.4,,14,6389,820,sessionentry_4i3RIF90
+6390,3,t,0,Finished,4,t,9,01:42:35.1,,14,6390,820,sessionentry_ynuUvy8c
+6391,4,t,0,Finished,3,t,7,01:42:36.9,,14,6391,820,sessionentry_C6vmIPyC
+6392,5,t,0,Finished,2,t,16,01:43:40,,14,6392,820,sessionentry_k79vLMYu
+6393,6,t,0,Finished,1,t,15,01:44:13,,14,6393,820,sessionentry_yyNs7wwW
+6394,7,t,0,Finished,0,t,19,01:44:16.6,,14,6394,820,sessionentry_cbp1ToBZ
+6395,8,t,0,Finished,0,t,18,01:44:30.9,,14,6395,820,sessionentry_NXFAkKX0
+6396,9,t,0,Finished,0,t,5,01:45:28.7,,14,6396,820,sessionentry_hlwuabVO
+6397,10,t,0,Finished,0,t,14,01:45:30,,14,6397,820,sessionentry_frfqYMfm
+6398,11,t,0,Finished,0,t,23,01:46:34.4,,14,6398,820,sessionentry_RdytL4QH
+6399,12,t,0,Finished,0,t,12,01:46:40.8,,14,6399,820,sessionentry_O6kshX9t
+6400,13,t,0,Finished,0,t,20,01:47:07.9,,14,6400,820,sessionentry_STODes3w
+6401,14,t,1,+1 Lap,0,t,26,,,13,6401,820,sessionentry_Hho8S4xb
+6402,15,t,1,+1 Lap,0,t,25,,,13,6402,820,sessionentry_MpX3N2Pm
+6403,16,f,11,Brakes,0,t,21,,,3,6403,820,sessionentry_XDEdolue
+6404,17,f,10,Accident,0,t,13,,,1,6404,820,sessionentry_iFRoCtNR
+6405,18,f,10,Accident,0,t,3,,,0,6405,820,sessionentry_DcoRdhgn
+6406,19,f,11,Fuel system,0,t,10,,,0,6406,820,sessionentry_Px7cqMln
+6407,20,f,10,Accident,0,t,11,,,0,6407,820,sessionentry_VFT6OFCI
+6408,21,f,11,Clutch,0,t,4,,,0,6408,820,sessionentry_WCGobUQ4
+6409,22,f,11,Gearbox,0,t,6,,,0,6409,820,sessionentry_kpjKHcOr
+6410,23,f,11,Retired,0,t,17,,,0,6410,820,sessionentry_SUF5TRkj
+6411,24,f,10,Accident,0,t,2,,,0,6411,820,sessionentry_IV5LLYOV
+6412,25,f,10,Accident,0,t,24,,,0,6412,820,sessionentry_eAjtG6Yi
+6413,26,f,10,Accident,0,t,22,,,0,6413,820,sessionentry_Z6hoi5dY
+6416,1,t,0,Finished,9,t,2,01:30:07.86,,54,6416,823,sessionentry_yzII3BBM
+6417,2,t,0,Finished,6,t,5,01:30:18.65,,54,6417,823,sessionentry_2RxPB9QR
+6418,3,t,0,Finished,4,t,4,01:30:19.84,,54,6418,823,sessionentry_4W6ogRp3
+6419,4,t,0,Finished,3,t,1,01:30:20.3,,54,6419,823,sessionentry_YjsDqshM
+6420,5,t,0,Finished,2,t,9,01:30:29.35,,54,6420,823,sessionentry_3ckJitoj
+6421,6,t,0,Finished,1,t,3,01:30:42.2,,54,6421,823,sessionentry_unSqkVuV
+6422,7,t,0,Finished,0,t,12,01:31:07.31,,54,6422,823,sessionentry_oqTQ2W9Q
+6423,8,t,1,+1 Lap,0,t,20,,,53,6423,823,sessionentry_xZNS3U6j
+6424,9,t,1,+2 Laps,0,t,22,,,52,6424,823,sessionentry_tli9xIuQ
+6425,10,t,10,Accident,0,t,16,,,51,6425,823,sessionentry_fBPTMG3M
+6426,11,t,1,+3 Laps,0,t,23,,,51,6426,823,sessionentry_hmmDyXyn
+6427,12,t,1,+4 Laps,0,t,24,,,50,6427,823,sessionentry_CNNunVHy
+6428,13,f,11,Throttle,0,t,19,,,47,6428,823,sessionentry_Ef6PBHt7
+6429,14,f,1,Not classified,0,t,25,,,44,6429,823,sessionentry_fgqiVmMO
+6430,15,f,10,Accident,0,t,7,,,43,6430,823,sessionentry_CovUVAc6
+6431,16,f,10,Accident,0,t,17,,,43,6431,823,sessionentry_N5TbXULk
+6432,17,f,10,Accident,0,t,18,,,40,6432,823,sessionentry_yKtYPL5o
+6433,18,f,11,Fuel pump,0,t,8,,,40,6433,823,sessionentry_pie9wOk9
+6434,19,f,10,Accident,0,t,15,,,30,6434,823,sessionentry_ICEaYuqZ
+6435,20,f,11,Fuel system,0,t,11,,,26,6435,823,sessionentry_LH60HILJ
+6436,21,f,11,Suspension,0,t,13,,,24,6436,823,sessionentry_8WOyMzLJ
+6437,22,f,10,Accident,0,t,21,,,17,6437,823,sessionentry_MYWMHyuK
+6438,23,f,11,Brakes,0,t,6,,,14,6438,823,sessionentry_gJYB4qWS
+6439,24,f,11,Suspension,0,t,10,,,14,6439,823,sessionentry_P2FDreoz
+6440,25,f,11,Clutch,0,t,14,,,0,6440,823,sessionentry_zEgbgr3f
+6441,1,t,0,Finished,9,t,2,01:44:52.09,,75,6441,826,sessionentry_0yqcsSbt
+6442,2,t,0,Finished,6,t,5,01:44:53.01,,75,6442,826,sessionentry_mv9NOCu0
+6443,3,t,0,Finished,4,t,6,01:44:54.18,,75,6443,826,sessionentry_AJYoh5Gj
+6444,4,t,0,Finished,3,t,3,01:44:59.03,,75,6444,826,sessionentry_MyPSs6R8
+6445,5,t,0,Finished,2,t,8,01:45:14.55,,75,6445,826,sessionentry_irwTr2YG
+6446,6,t,0,Finished,1,t,7,01:45:37.12,,75,6446,826,sessionentry_ERVXBGgU
+6447,7,t,0,Finished,0,t,14,01:45:48.37,,75,6447,826,sessionentry_6cPUizNA
+6448,8,t,1,+1 Lap,0,t,16,,,74,6448,826,sessionentry_YOyxg7k0
+6449,9,t,1,+1 Lap,0,t,15,,,74,6449,826,sessionentry_aWO6G2pP
+6450,10,t,1,+1 Lap,0,t,20,,,74,6450,826,sessionentry_EU2EfgJT
+6451,11,t,1,+1 Lap,0,t,22,,,74,6451,826,sessionentry_kzYoCl5o
+6452,12,t,1,+3 Laps,0,t,25,,,72,6452,826,sessionentry_nNMAbeoN
+6453,13,f,11,Electrical,0,t,11,,,66,6453,826,sessionentry_6DQn57Iv
+6454,14,f,11,Halfshaft,0,t,21,,,63,6454,826,sessionentry_MBB7fdiZ
+6455,15,f,11,Oil leak,0,t,9,,,53,6455,826,sessionentry_ocRavXpc
+6456,16,f,11,Oil leak,0,t,10,,,53,6456,826,sessionentry_j0gODFxX
+6457,17,f,11,Oil pressure,0,t,1,,,52,6457,826,sessionentry_fc7gI6hA
+6458,18,f,10,Spun off,0,t,24,,,49,6458,826,sessionentry_6aqAkWw3
+6459,19,f,11,Gearbox,0,t,4,,,47,6459,826,sessionentry_iwTtZ4od
+6460,20,f,10,Accident,0,t,19,,,44,6460,826,sessionentry_cj9llrrg
+6461,21,f,11,Electrical,0,t,17,,,40,6461,826,sessionentry_7tL6UaM8
+6462,22,f,11,Clutch,0,t,12,,,11,6462,826,sessionentry_c3j98R34
+6463,23,f,10,Accident,0,t,13,,,10,6463,826,sessionentry_upj1OGIe
+6464,24,f,11,Engine,0,t,26,,,9,6464,826,sessionentry_eIbvyL4h
+6465,25,f,11,Engine,0,t,18,,,9,6465,826,sessionentry_uR6sGHFj
+6466,26,f,10,Accident,0,t,23,,,5,6466,826,sessionentry_x2NZGygI
+6468,1,t,0,Finished,9,t,8,01:30:35.6,,52,6468,829,sessionentry_aI30s99l
+6469,2,t,0,Finished,6,t,9,01:30:37.9,,52,6469,829,sessionentry_ST5ppVGV
+6470,3,t,0,Finished,4,t,1,01:30:38.6,,52,6470,829,sessionentry_KUMImdPG
+6471,4,t,0,Finished,3,t,5,01:30:55,,52,6471,829,sessionentry_bnKsZcVS
+6472,5,t,0,Finished,2,t,2,01:30:55.1,,52,6472,829,sessionentry_qIzZQM1K
+6473,6,t,0,Finished,1,t,4,01:31:11.3,,52,6473,829,sessionentry_k9FBcHaD
+6474,7,t,0,Finished,0,t,16,01:31:19.5,,52,6474,829,sessionentry_NVdwhcpD
+6475,8,t,0,Finished,0,t,15,01:31:28.5,,52,6475,829,sessionentry_aGPKZCa5
+6476,9,t,0,Finished,0,t,7,01:31:33.1,,52,6476,829,sessionentry_CDje969F
+6477,10,t,0,Finished,0,t,10,01:31:48,,52,6477,829,sessionentry_lJJ3aLno
+6478,11,t,0,Finished,0,t,26,01:32:17.8,,52,6478,829,sessionentry_QK5E8J2M
+6479,12,t,1,+1 Lap,0,t,18,,,51,6479,829,sessionentry_7jLmWEQA
+6480,13,t,1,+1 Lap,0,t,12,,,51,6480,829,sessionentry_ncdLM5KF
+6481,14,t,1,+2 Laps,0,t,24,,,50,6481,829,sessionentry_bSO0ZAn4
+6482,15,t,1,+2 Laps,0,t,20,,,50,6482,829,sessionentry_haf3NBgW
+6483,16,t,11,Halfshaft,0,t,19,,,49,6483,829,sessionentry_omM1mrle
+6484,17,t,1,+3 Laps,0,t,22,,,49,6484,829,sessionentry_idh1UbiU
+6485,18,t,1,+3 Laps,0,t,21,,,49,6485,829,sessionentry_GGruEQGs
+6486,19,t,1,+5 Laps,0,t,17,,,47,6486,829,sessionentry_b133rgZQ
+6487,20,f,11,Fuel system,0,t,11,,,41,6487,829,sessionentry_JX1AnN4q
+6488,21,f,10,Accident,0,t,6,,,23,6488,829,sessionentry_70Zv5nhs
+6489,22,f,10,Accident,0,t,14,,,23,6489,829,sessionentry_3pzFaXpe
+6490,23,f,10,Spun off,0,t,24,,,11,6490,829,sessionentry_yT1JsU4j
+6491,24,f,11,Engine,0,t,13,,,8,6491,829,sessionentry_XP4n4Nuj
+6492,25,f,11,Engine,0,t,3,,,4,6492,829,sessionentry_YZWDm8Up
+6493,26,f,11,Ignition,0,t,25,,,2,6493,829,sessionentry_irwPEpKu
+6494,27,f,30,Withdrew,0,t,0,,,0,6494,829,sessionentry_rEedlm1s
+6495,28,f,30,Withdrew,0,t,0,,,0,6495,829,sessionentry_IEKv1WbX
+6496,29,f,30,Withdrew,0,t,0,,,0,6496,829,sessionentry_r4PdAYfN
+6497,1,t,0,Finished,9,t,1,01:40:09.626,,80,6497,832,sessionentry_1O6Rmti9
+6498,2,t,0,Finished,6,t,4,01:40:15.957,,80,6498,832,sessionentry_l5w4ou40
+6499,3,t,0,Finished,4,t,5,01:40:19.992,,80,6499,832,sessionentry_nsqJSOFJ
+6500,4,t,0,Finished,3,t,7,01:40:29.371,,80,6500,832,sessionentry_owylarg2
+6501,5,t,0,Finished,2,t,11,01:40:51.437,,80,6501,832,sessionentry_BCgQrnlt
+6502,6,t,0,Finished,1,t,12,01:40:55.882,,80,6502,832,sessionentry_qDbQnr6X
+6503,7,t,0,Finished,0,t,10,01:40:56.098,,80,6503,832,sessionentry_RxZ30ePM
+6504,8,t,0,Finished,0,t,6,01:41:22.583,,80,6504,832,sessionentry_f78EwjKy
+6505,9,t,1,+1 Lap,0,t,2,,,79,6505,832,sessionentry_WrPOXhUT
+6506,10,t,1,+1 Lap,0,t,14,,,79,6506,832,sessionentry_mPmayqD0
+6507,11,t,1,+1 Lap,0,t,13,,,79,6507,832,sessionentry_AP2hRmdy
+6508,12,t,1,+1 Lap,0,t,15,,,79,6508,832,sessionentry_vzsIvPQs
+6509,13,t,1,+1 Lap,0,t,16,,,79,6509,832,sessionentry_lw0BjKHC
+6510,14,t,1,+1 Lap,0,t,3,,,79,6510,832,sessionentry_EukKWqm8
+6511,15,t,1,+2 Laps,0,t,22,,,78,6511,832,sessionentry_8TlNlDTJ
+6512,16,t,1,+2 Laps,0,t,20,,,78,6512,832,sessionentry_kvSQ0QQi
+6513,17,t,1,+2 Laps,0,t,19,,,78,6513,832,sessionentry_29fDrlYu
+6514,18,t,1,+3 Laps,0,t,18,,,77,6514,832,sessionentry_kQQKP97G
+6515,19,t,1,+3 Laps,0,t,21,,,77,6515,832,sessionentry_nTFBFdp5
+6516,20,t,1,+5 Laps,0,t,23,,,75,6516,832,sessionentry_HtI9VXsk
+6517,21,f,11,Oil pressure,0,t,9,,,43,6517,832,sessionentry_7USoMNrk
+6518,22,f,11,Exhaust,0,t,17,,,41,6518,832,sessionentry_EXZvSe8U
+6519,23,f,11,Handling,0,t,8,,,36,6519,832,sessionentry_dQfAg9vX
+6520,24,f,10,Accident,0,t,24,,,11,6520,832,sessionentry_eGk0PPnY
+6521,25,f,30,Accident,0,t,0,,,0,6521,832,sessionentry_xhxgOLjU
+6522,26,f,30,Accident,0,t,0,,,0,6522,832,sessionentry_kNvEtKsJ
+6524,1,t,0,Finished,9,t,1,01:42:40.742,,59,6524,835,sessionentry_CGJGGtLQ
+6525,2,t,0,Finished,6,t,2,01:42:48.772,,59,6525,835,sessionentry_XZWBrotw
+6526,3,t,0,Finished,4,t,5,01:43:43.066,,59,6526,835,sessionentry_WT8wIB5c
+6527,4,t,0,Finished,3,t,17,01:43:43.2,,59,6527,835,sessionentry_4rmVSBHe
+6528,5,t,0,Finished,2,t,6,01:43:48.72,,59,6528,835,sessionentry_CUqM7n5y
+6529,6,t,0,Finished,1,t,8,01:43:48.932,,59,6529,835,sessionentry_Iw7GAcm0
+6530,7,t,1,+1 Lap,0,t,14,,,58,6530,835,sessionentry_Ut6Tvfu2
+6531,8,t,1,+1 Lap,0,t,18,,,58,6531,835,sessionentry_x9XaTzCL
+6532,9,t,1,+2 Laps,0,t,15,,,57,6532,835,sessionentry_f8LLibvU
+6533,10,t,1,+2 Laps,0,t,16,,,57,6533,835,sessionentry_y3pHahGV
+6534,11,t,1,+2 Laps,0,t,24,,,57,6534,835,sessionentry_Z7M8zg2p
+6535,12,t,1,+2 Laps,0,t,22,,,57,6535,835,sessionentry_BNMwMPxs
+6536,13,t,1,+5 Laps,0,t,21,,,54,6536,835,sessionentry_El2MJGMv
+6537,14,t,1,+5 Laps,0,t,23,,,54,6537,835,sessionentry_quo2S6Bb
+6538,15,f,1,Not classified,0,t,26,,,48,6538,835,sessionentry_n3f1WOLq
+6539,16,f,11,Engine,0,t,9,,,45,6539,835,sessionentry_oUDnOtQa
+6540,17,f,11,Tyre,0,t,12,,,34,6540,835,sessionentry_uNAzf4Lo
+6541,18,f,11,Tyre,0,t,4,,,34,6541,835,sessionentry_6qZWRlN4
+6542,19,f,10,Collision,0,t,10,,,31,6542,835,sessionentry_aRgpKeUU
+6543,20,f,11,Suspension,0,t,13,,,30,6543,835,sessionentry_XPOoNFpk
+6544,21,f,11,Suspension,0,t,11,,,23,6544,835,sessionentry_Y7vc0uML
+6545,22,f,10,Accident,0,t,19,,,14,6545,835,sessionentry_WYj8AYgN
+6546,23,f,11,Engine,0,t,20,,,13,6546,835,sessionentry_FdGlHUvh
+6547,24,f,11,Suspension,0,t,3,,,12,6547,835,sessionentry_3snSKBvf
+6548,25,f,10,Accident,0,t,25,,,9,6548,835,sessionentry_0gEQClza
+6549,26,f,11,Fuel pipe,0,t,7,,,7,6549,835,sessionentry_HfFwECew
+6551,1,t,0,Finished,9,t,1,01:43:58.86,,73,6551,838,sessionentry_Im3XnSkj
+6552,2,t,1,+1 Lap,6,t,13,,,72,6552,838,sessionentry_J4dQPIst
+6553,3,t,1,+1 Lap,4,t,2,,,72,6553,838,sessionentry_oHzKD1NW
+6554,4,t,1,+1 Lap,3,t,20,,,72,6554,838,sessionentry_5lkusoiG
+6555,5,t,1,+1 Lap,2,t,7,,,72,6555,838,sessionentry_kT9tLsof
+6556,6,t,1,+1 Lap,1,t,16,,,72,6556,838,sessionentry_IKsomem4
+6557,7,t,1,+1 Lap,0,t,11,,,72,6557,838,sessionentry_60dbzH6R
+6558,8,t,1,+1 Lap,0,t,22,,,72,6558,838,sessionentry_9M740i3O
+6559,9,t,1,+3 Laps,0,t,24,,,70,6559,838,sessionentry_M8QKSow5
+6560,10,t,1,+4 Laps,0,t,15,,,69,6560,838,sessionentry_HQoC9meO
+6561,11,t,1,+7 Laps,0,t,10,,,66,6561,838,sessionentry_UMKvSuVo
+6562,12,f,11,Overheating,0,t,5,,,58,6562,838,sessionentry_XBbP7iA2
+6563,13,f,11,Wheel,0,t,25,,,49,6563,838,sessionentry_1qsP3b7g
+6564,14,f,11,Physical,0,t,14,,,46,6564,838,sessionentry_ZVLiorci
+6565,15,f,11,Electrical,0,t,8,,,38,6565,838,sessionentry_kQ0kfEmw
+6566,16,f,11,Electrical,0,t,18,,,37,6566,838,sessionentry_vmKzg5qe
+6567,17,f,10,Accident,0,t,12,,,35,6567,838,sessionentry_9sDm4zoG
+6568,18,f,11,Engine,0,t,4,,,33,6568,838,sessionentry_CV65OgnU
+6569,19,f,11,Tyre,0,t,21,,,27,6569,838,sessionentry_KbDwWyMe
+6570,20,f,11,Gearbox,0,t,19,,,23,6570,838,sessionentry_azPiGP9W
+6571,21,f,30,Withdrew,0,t,23,,,9,6571,838,sessionentry_LtuDxDb2
+6572,22,f,30,Withdrew,0,t,6,,,7,6572,838,sessionentry_WMyUO41b
+6573,23,f,30,Withdrew,0,t,3,,,2,6573,838,sessionentry_kwWaOHdV
+6574,24,f,30,Withdrew,0,t,17,,,1,6574,838,sessionentry_jEe3NwVL
+6575,25,f,11,Engine,0,t,9,,,0,6575,838,sessionentry_BycY9O0E
 7525,1,t,0,Finished,9,t,1,01:36:03.21,,53,7525,940,sessionentry_ZtjjKdYs
 7526,2,t,0,Finished,6,t,3,01:36:18.15,,53,7526,940,sessionentry_UuE1YcGX
 7527,3,t,0,Finished,4,t,6,01:37:32.02,,53,7527,940,sessionentry_7esOKwqB
