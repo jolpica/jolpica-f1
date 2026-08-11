@@ -310,8 +310,7 @@ def test_from_season_whole_year(monkeypatch):
 
 
 @pytest.mark.parametrize(
-    ["year", "expected_total_rounds"],
-    [(1958, 11), (1976, 16), (1979, 15), (1980, 14), (2020, 17), (2023, 22)]
+    ["year", "expected_total_rounds"], [(1958, 11), (1976, 16), (1979, 15), (1980, 14), (2020, 17), (2023, 22)]
 )  # 2020 has COVID cancellations, and 2023 has Imola flood cancellation
 @pytest.mark.django_db
 def test_from_season_total_rounds(year, expected_total_rounds):

@@ -480,19 +480,19 @@ class SeasonData:
     def from_season(cls, season: Season) -> SeasonData:
         # Get all rounds, skipping cancelled ones
         rounds = list(
-            season.rounds.all()                                    # Every round in the season
-            .annotate(round_entries_count=Count("round_entries"))  # Get #. of entries for each round, so round w/o any entries (e.g. cancelled) can be skipped
+            season.rounds.all()  # Every round in the season
+            .annotate(round_entries_count=Count("round_entries"))  # No. of entries, so empty rounds are skipped
             .prefetch_related(
                 Prefetch(
                     "sessions",
-                    to_attr="prefetched_sessions",                 # All sessions in each round
+                    to_attr="prefetched_sessions",  # All sessions in each round
                     queryset=Session.objects.all()
                     .annotate(session_entires_count=Count("session_entries"))
-                    .filter(session_entires_count__gt=0)           # Keep only sessions with entries, so we skip cancelled sessions
-                    .select_related("point_system")                # Get point system for each session
+                    .filter(session_entires_count__gt=0)  # Only sessions with entries, skip cancelled
+                    .select_related("point_system")  # Get point system for each session
                     .prefetch_related(
                         Prefetch(
-                            "session_entries",                      # Get all entries' info. for each session
+                            "session_entries",  # Get all entries' info. for each session
                             queryset=SessionEntry.objects.all().select_related(
                                 "session", "round_entry", "round_entry__round", "round_entry__team_driver"
                             ),
