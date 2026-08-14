@@ -308,7 +308,7 @@ class Stats:
             other == Stats()
         ):
             championship_system = self.championship_system
-            total_rounds = self.total_rounds
+            total_rounds = self.total_rounds if self.total_rounds is not None else other.total_rounds
             group_type = self.group_type
         elif self == Stats():
             championship_system = other.championship_system
@@ -482,11 +482,9 @@ class SeasonData:
 
     @classmethod
     def from_season(cls, season: Season) -> SeasonData:
-        # Get all rounds, skipping cancelled ones
+        # Get all non-cancelled rounds in the season
         rounds = list(
-            season.rounds.all()  # Every round in the season
-            .annotate(round_entries_count=Count("round_entries"))  # No. of entries, so empty rounds are skipped
-            .prefetch_related(
+            season.rounds.filter(is_cancelled=False, number__isnull=False).prefetch_related(
                 Prefetch(
                     "sessions",
                     to_attr="prefetched_sessions",  # All sessions in each round
@@ -510,17 +508,17 @@ class SeasonData:
         # to decide where to split the season and how many results to count in each split. This is
         # the length of the whole season rather than the rounds held so far, as the split must not
         # move as the season progresses
-        total_rounds = sum(1 for round in rounds if not round.is_cancelled)
 
         session_datas = []
         for round in rounds:
-            if round.number is None or round.round_entries_count == 0:  # type: ignore[attr-defined]  # Created by Prefetch
-                continue
+            if round.number is None:
+                # Should never happen, as we filtered for rounds with non-null numbers
+                raise ValueError("Round must have non-null number")
             for session in round.prefetched_sessions:  # type: ignore[attr-defined]  # Created by Prefetch
                 if session.number is None:
                     continue
                 session_data = SessionData.from_session(
-                    session, round.number, SessionType(session.type), season.championship_system, total_rounds
+                    session, round.number, SessionType(session.type), season.championship_system, len(rounds)
                 )
                 if not cls._should_filter_session(session_data):
                     session_datas.append(session_data)
@@ -539,7 +537,7 @@ class SeasonData:
             season_year=season.year,
             session_datas=session_datas,
             season_id=season.id,
-            total_rounds=total_rounds,
+            total_rounds=len(rounds),
             championship_system=season.championship_system,
             adjustments=adjustments,
             aggregate_by_grouping={
