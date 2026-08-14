@@ -245,6 +245,19 @@ def test_position_count_add(args1, args2, expected):
     assert dict(added.unclassified_counts) == expected[1]
 
 
+def test_add_stats_of_different_season_lengths():
+    with pytest.raises(ValueError):
+        Stats({1: 9}, total_rounds=16) + Stats({1: 9}, total_rounds=17)
+
+
+def test_add_stats_to_empty_stats_keeps_total_rounds():
+    # An empty Stats is used as the starting value when summing, so it must stay addable
+    stats = Stats({1: 9}, total_rounds=16, group_type=Group.DRIVER)
+
+    assert (stats + Stats()).total_rounds == 16
+    assert (Stats() + stats).total_rounds == 16
+
+
 @pytest.fixture(scope="module")
 def driver_standings_2023(django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
@@ -307,6 +320,25 @@ def test_from_season_whole_year(monkeypatch):
     assert len(season_data.session_datas) == 28, (
         season_data.session_datas
     )  # 22 races, 6 sprints sessions in 2023 season
+
+
+@pytest.mark.parametrize(
+    ["year", "expected_total_rounds"], [(1958, 11), (1976, 16), (1979, 15), (1980, 14), (2020, 17), (2023, 22)]
+)  # 2020 has COVID cancellations, and 2023 has Imola flood cancellation
+@pytest.mark.django_db
+def test_from_season_total_rounds(year, expected_total_rounds):
+    season_data = SeasonData.from_season(f1.Season.objects.get(year=year))
+    assert season_data.total_rounds == expected_total_rounds
+
+
+@pytest.mark.django_db
+def test_from_season_total_rounds_ignores_cancelled_rounds():
+    season = f1.Season.objects.get(year=2023)
+    f1.Round.objects.filter(season=season, number=22).update(is_cancelled=True)
+
+    season_data = SeasonData.from_season(season)
+
+    assert season_data.total_rounds == 21
 
 
 @pytest.mark.django_db

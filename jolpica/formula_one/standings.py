@@ -124,6 +124,7 @@ class Stats:
 
     group_type: Group
     championship_system: ChampionshipSystem | None
+    total_rounds: int | None
 
     def __init__(
         self,
@@ -133,6 +134,7 @@ class Stats:
         unclassified_positions: dict | list | None = None,
         best_quali_by_round: dict[int, BestQualiRound] | None = None,
         championship_system: ChampionshipSystem | None = None,
+        total_rounds: int | None = None,
         group_type: Group = Group.OTHER,
         point_adjustment: float = 0,
     ) -> None:
@@ -149,6 +151,7 @@ class Stats:
         self.unclassified_counts = Counter(unclassified_positions if unclassified_positions is not None else {})
         self.best_quali_by_round = best_quali_by_round or {}
         self.championship_system = championship_system
+        self.total_rounds = total_rounds
         self.group_type = group_type
         self.point_adjustment = point_adjustment
 
@@ -156,6 +159,8 @@ class Stats:
     def points(self) -> float:
         if self.championship_system is None:
             return self.points_by_round.total()
+        if self.total_rounds is None:
+            raise ValueError("total_rounds is required to calculate championship points")
 
         if self.group_type == Group.DRIVER:
             season_split = self.championship_system.driver_season_split
@@ -170,7 +175,7 @@ class Stats:
             self.points_by_round,
             season_split,
             best_results,
-            14,
+            self.total_rounds,
         )
         if points is None:
             points = 0
@@ -193,6 +198,7 @@ class Stats:
         session_number: int,
         round_number: int,
         championship_system: ChampionshipSystem | None = None,
+        total_rounds: int | None = None,
         should_remove_fastest_lap_points: bool = False,
     ):
         finishes, unclassifies = [], []
@@ -219,6 +225,7 @@ class Stats:
             unclassifies,
             best_quali_by_round,
             championship_system,
+            total_rounds,
             group_type,
         )
 
@@ -293,13 +300,19 @@ class Stats:
         if not isinstance(other, Stats):
             raise NotImplementedError()
 
+        # All Stats should have the same number of rounds
+        if None not in (self.total_rounds, other.total_rounds) and self.total_rounds != other.total_rounds:
+            raise ValueError("Can only add stats of seasons with the same number of rounds")
+
         if (self.championship_system == other.championship_system and self.group_type == other.group_type) or (
             other == Stats()
         ):
             championship_system = self.championship_system
+            total_rounds = self.total_rounds if self.total_rounds is not None else other.total_rounds
             group_type = self.group_type
         elif self == Stats():
             championship_system = other.championship_system
+            total_rounds = other.total_rounds
             group_type = other.group_type
         else:
             raise ValueError("Can only add stats of same group type and point system")
@@ -320,7 +333,15 @@ class Stats:
             elif self_best and (other_best is None or self_best.at_session_number > other_best.at_session_number):
                 best_quali_by_round[round_num] = self_best
 
-        return Stats(points_by_round, finishes, unclassifieds, best_quali_by_round, championship_system, group_type)
+        return Stats(
+            points_by_round,
+            finishes,
+            unclassifieds,
+            best_quali_by_round,
+            championship_system,
+            total_rounds,
+            group_type,
+        )
 
 
 @dataclass(order=True)
@@ -334,6 +355,7 @@ class SessionData:
     round_id: int
     point_system: PointSystem
     championship_system: ChampionshipSystem | None = None
+    total_rounds: int | None = None
 
     @classmethod
     def from_session(
@@ -342,6 +364,7 @@ class SessionData:
         round_number: int,
         session_type: SessionType,
         championship_system: ChampionshipSystem | None,
+        total_rounds: int,
     ) -> SessionData:
         entry_datas = [EntryData.from_session_entry(entry) for entry in session.session_entries.all()]
         if session.number is None:
@@ -356,6 +379,7 @@ class SessionData:
             round_id=session.round_id,
             point_system=session.point_system,
             championship_system=championship_system,
+            total_rounds=total_rounds,
         )
 
     def group_data_by(self, grouping_type: Group) -> dict[int, list[EntryData]]:
@@ -431,6 +455,7 @@ class SessionData:
                     self.session_number,
                     self.round_number,
                     self.championship_system,
+                    self.total_rounds,
                     should_remove_fastest_lap_points,
                 ),
                 entries,
@@ -450,27 +475,26 @@ class SeasonData:
     season_year: int
     session_datas: list[SessionData]
     season_id: int
+    total_rounds: int
     championship_system: ChampionshipSystem
     adjustments: dict[tuple[Group, int], ChampionshipAdjustment]
     aggregate_by_grouping: dict[Group, Literal["SUM", "BEST"]]
 
     @classmethod
     def from_season(cls, season: Season) -> SeasonData:
-        session_datas = []
-        for round in (
-            season.rounds.all()
-            .annotate(round_entries_count=Count("round_entries"))
-            .prefetch_related(
+        # Get all non-cancelled rounds in the season
+        rounds = list(
+            season.rounds.filter(is_cancelled=False, number__isnull=False).prefetch_related(
                 Prefetch(
                     "sessions",
-                    to_attr="prefetched_sessions",
+                    to_attr="prefetched_sessions",  # All sessions in each round
                     queryset=Session.objects.all()
                     .annotate(session_entires_count=Count("session_entries"))
-                    .filter(session_entires_count__gt=0)
-                    .select_related("point_system")
+                    .filter(session_entires_count__gt=0)  # Only sessions with entries, skip cancelled
+                    .select_related("point_system")  # Get point system for each session
                     .prefetch_related(
                         Prefetch(
-                            "session_entries",
+                            "session_entries",  # Get all entries' info. for each session
                             queryset=SessionEntry.objects.all().select_related(
                                 "session", "round_entry", "round_entry__round", "round_entry__team_driver"
                             ),
@@ -478,14 +502,23 @@ class SeasonData:
                     ),
                 )
             )
-        ):
-            if round.number is None or round.round_entries_count == 0:  # type: ignore[attr-defined]  # Created by Prefetch
-                continue
+        )
+
+        # The number of rounds in the season, which some championship systems (e.g. year 1976) use
+        # to decide where to split the season and how many results to count in each split. This is
+        # the length of the whole season rather than the rounds held so far, as the split must not
+        # move as the season progresses
+
+        session_datas = []
+        for round in rounds:
+            if round.number is None:
+                # Should never happen, as we filtered for rounds with non-null numbers
+                raise ValueError("Round must have non-null number")
             for session in round.prefetched_sessions:  # type: ignore[attr-defined]  # Created by Prefetch
                 if session.number is None:
                     continue
                 session_data = SessionData.from_session(
-                    session, round.number, SessionType(session.type), season.championship_system
+                    session, round.number, SessionType(session.type), season.championship_system, len(rounds)
                 )
                 if not cls._should_filter_session(session_data):
                     session_datas.append(session_data)
@@ -504,6 +537,7 @@ class SeasonData:
             season_year=season.year,
             session_datas=session_datas,
             season_id=season.id,
+            total_rounds=len(rounds),
             championship_system=season.championship_system,
             adjustments=adjustments,
             aggregate_by_grouping={
