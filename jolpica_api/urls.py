@@ -24,6 +24,7 @@ urlpatterns = [
     path("f1/", include("jolpica_api.f1_api.urls")),
     path("docs/", include(open_api_docs_urlpatterns)),
     path("", views.healthcheck),
+    path("status/", views.service_status, name="service-status"),
     path("test/", views.test),
 ]
 
