@@ -332,6 +332,16 @@ def test_from_season_total_rounds(year, expected_total_rounds):
 
 
 @pytest.mark.django_db
+def test_from_season_total_rounds_ignores_cancelled_rounds():
+    season = f1.Season.objects.get(year=2023)
+    f1.Round.objects.filter(season=season, number=22).update(is_cancelled=True)
+
+    season_data = SeasonData.from_season(season)
+
+    assert season_data.total_rounds == 21
+
+
+@pytest.mark.django_db
 def test_from_season_last_round_has_quali_but_no_race(monkeypatch):
     season = f1.Season.objects.get(year=2023)
     # Removing session entries from a race session should result in no entries in the season data

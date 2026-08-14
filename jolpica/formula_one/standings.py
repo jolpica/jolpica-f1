@@ -507,12 +507,10 @@ class SeasonData:
         )
 
         # The number of rounds in the season, which some championship systems (e.g. year 1976) use
-        # to decide where to split the season and how many results to count in each split
-        total_rounds = sum(
-            1
-            for round in rounds
-            if (round.number is not None) and (round.round_entries_count > 0)  # type: ignore[attr-defined]  # Created by Prefetch
-        )
+        # to decide where to split the season and how many results to count in each split. This is
+        # the length of the whole season rather than the rounds held so far, as the split must not
+        # move as the season progresses
+        total_rounds = sum(1 for round in rounds if not round.is_cancelled)
 
         session_datas = []
         for round in rounds:
