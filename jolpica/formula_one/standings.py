@@ -300,6 +300,10 @@ class Stats:
         if not isinstance(other, Stats):
             raise NotImplementedError()
 
+        # All Stats should have the same number of rounds
+        if None not in (self.total_rounds, other.total_rounds) and self.total_rounds != other.total_rounds:
+            raise ValueError("Can only add stats of seasons with the same number of rounds")
+
         if (self.championship_system == other.championship_system and self.group_type == other.group_type) or (
             other == Stats()
         ):
