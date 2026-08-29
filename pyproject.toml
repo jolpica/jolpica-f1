@@ -26,6 +26,7 @@
         "opentelemetry-sdk~=1.26",
         "opentelemetry-exporter-otlp~=1.26",
         "tzdata>=2025.2,<2027.0",
+        "countryinfo>=1.0.1",
 ]
 
 [dependency-groups]
