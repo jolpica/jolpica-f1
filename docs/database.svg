@@ -485,7 +485,7 @@
 <!-- formula_one.BaseTeam -->
 <g id="formula_one.BaseTeam" class="node">
 <title>formula_one.BaseTeam</title>
-<g id="a_formula_one.BaseTeam"><a xlink:title="formula_one.BaseTeam&#10;&#10;Underlying Team ignoring rebrands&#10;&#10;*DB table: formula_one_baseteam*">
+<g id="a_formula_one.BaseTeam"><a xlink:title="formula_one.BaseTeam&#10;&#10;Underlying Team ignoring rebrands&#10;&#10;*table: public.formula_one_baseteam*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="10305.71" cy="-1054.96" rx="347.38" ry="172.57"/>
 <polygon fill="#1d71b8" stroke="transparent" points="10062.71,-1114.96 10062.71,-1174.96 10549.71,-1174.96 10549.71,-1114.96 10062.71,-1114.96"/>
 <polygon fill="none" stroke="#29235c" points="10062.71,-1114.96 10062.71,-1174.96 10549.71,-1174.96 10549.71,-1114.96 10062.71,-1114.96"/>
@@ -514,7 +514,7 @@
 <!-- formula_one.ChampionshipAdjustment -->
 <g id="formula_one.ChampionshipAdjustment" class="node">
 <title>formula_one.ChampionshipAdjustment</title>
-<g id="a_formula_one.ChampionshipAdjustment"><a xlink:title="formula_one.ChampionshipAdjustment&#10;&#10;Adjustments such as Disqualifications and Exclusions from Driver/Team Championships&#10;&#10;*DB table: formula_one_championshipadjustment*">
+<g id="a_formula_one.ChampionshipAdjustment"><a xlink:title="formula_one.ChampionshipAdjustment&#10;&#10;Adjustments such as Disqualifications and Exclusions from Driver/Team Championships&#10;&#10;*table: public.formula_one_championshipadjustment*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="6347.45" cy="-1599.96" rx="923.46" ry="342.48"/>
 <polygon fill="#1d71b8" stroke="transparent" points="5696.45,-1779.96 5696.45,-1839.96 6998.45,-1839.96 6998.45,-1779.96 5696.45,-1779.96"/>
 <polygon fill="none" stroke="#29235c" points="5696.45,-1779.96 5696.45,-1839.96 6998.45,-1839.96 6998.45,-1779.96 5696.45,-1779.96"/>
@@ -528,24 +528,24 @@
 <text text-anchor="start" x="6957.25" y="-1741.16" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="32.00" fill="#29235c">(!)</text>
 <polygon fill="#e7e2dd" stroke="transparent" points="5696.45,-1659.96 5696.45,-1719.96 6998.45,-1719.96 6998.45,-1659.96 5696.45,-1659.96"/>
 <polygon fill="none" stroke="#29235c" points="5696.45,-1659.96 5696.45,-1719.96 6998.45,-1719.96 6998.45,-1659.96 5696.45,-1659.96"/>
-<text text-anchor="start" x="5707.45" y="-1680.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">season_id &#160;&#160;&#160;</text>
-<text text-anchor="start" x="6782.98" y="-1681.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">foreign_key</text>
+<text text-anchor="start" x="5707.45" y="-1680.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">api_id &#160;&#160;&#160;</text>
+<text text-anchor="start" x="6886.13" y="-1681.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">char</text>
 <text text-anchor="start" x="6948.36" y="-1681.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c"> </text>
 <text text-anchor="start" x="6957.25" y="-1681.16" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="32.00" fill="#29235c">(!)</text>
 <polygon fill="#e7e2dd" stroke="transparent" points="5696.45,-1599.96 5696.45,-1659.96 6998.45,-1659.96 6998.45,-1599.96 5696.45,-1599.96"/>
 <polygon fill="none" stroke="#29235c" points="5696.45,-1599.96 5696.45,-1659.96 6998.45,-1659.96 6998.45,-1599.96 5696.45,-1599.96"/>
-<text text-anchor="start" x="5707.45" y="-1620.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">driver_id &#160;&#160;&#160;</text>
-<text text-anchor="start" x="6822.07" y="-1621.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">foreign_key</text>
+<text text-anchor="start" x="5707.45" y="-1620.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">season_id &#160;&#160;&#160;</text>
+<text text-anchor="start" x="6782.98" y="-1621.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">foreign_key</text>
+<text text-anchor="start" x="6948.36" y="-1621.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c"> </text>
+<text text-anchor="start" x="6957.25" y="-1621.16" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="32.00" fill="#29235c">(!)</text>
 <polygon fill="#e7e2dd" stroke="transparent" points="5696.45,-1539.96 5696.45,-1599.96 6998.45,-1599.96 6998.45,-1539.96 5696.45,-1539.96"/>
 <polygon fill="none" stroke="#29235c" points="5696.45,-1539.96 5696.45,-1599.96 6998.45,-1599.96 6998.45,-1539.96 5696.45,-1539.96"/>
-<text text-anchor="start" x="5707.45" y="-1560.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">team_id &#160;&#160;&#160;</text>
+<text text-anchor="start" x="5707.45" y="-1560.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">driver_id &#160;&#160;&#160;</text>
 <text text-anchor="start" x="6822.07" y="-1561.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">foreign_key</text>
 <polygon fill="#e7e2dd" stroke="transparent" points="5696.45,-1479.96 5696.45,-1539.96 6998.45,-1539.96 6998.45,-1479.96 5696.45,-1479.96"/>
 <polygon fill="none" stroke="#29235c" points="5696.45,-1479.96 5696.45,-1539.96 6998.45,-1539.96 6998.45,-1479.96 5696.45,-1479.96"/>
-<text text-anchor="start" x="5707.45" y="-1500.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">api_id &#160;&#160;&#160;</text>
-<text text-anchor="start" x="6886.13" y="-1501.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">char</text>
-<text text-anchor="start" x="6948.36" y="-1501.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c"> </text>
-<text text-anchor="start" x="6957.25" y="-1501.16" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="32.00" fill="#29235c">(!)</text>
+<text text-anchor="start" x="5707.45" y="-1500.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">team_id &#160;&#160;&#160;</text>
+<text text-anchor="start" x="6822.07" y="-1501.16" font-family="Helvetica,sans-Serif" font-style="italic" font-size="32.00" fill="#29235c">foreign_key</text>
 <polygon fill="#e7e2dd" stroke="transparent" points="5696.45,-1419.96 5696.45,-1479.96 6998.45,-1479.96 6998.45,-1419.96 5696.45,-1419.96"/>
 <polygon fill="none" stroke="#29235c" points="5696.45,-1419.96 5696.45,-1479.96 6998.45,-1479.96 6998.45,-1419.96 5696.45,-1419.96"/>
 <text text-anchor="start" x="5707.42" y="-1440.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">adjustment &#160;&#160;&#160;</text>
@@ -568,7 +568,7 @@
 <!-- formula_one.Driver -->
 <g id="formula_one.Driver" class="node">
 <title>formula_one.Driver</title>
-<g id="a_formula_one.Driver"><a xlink:title="formula_one.Driver&#10;&#10;Session Participant / Racing Driver Information&#10;&#10;May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions.&#10;&#10;*DB table: formula_one_driver*">
+<g id="a_formula_one.Driver"><a xlink:title="formula_one.Driver&#10;&#10;Session Participant / Racing Driver Information&#10;&#10;May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions.&#10;&#10;*table: public.formula_one_driver*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="8243.14" cy="-2194.96" rx="507.91" ry="511.89"/>
 <polygon fill="#1d71b8" stroke="transparent" points="7886.14,-2494.96 7886.14,-2554.96 8600.14,-2554.96 8600.14,-2494.96 7886.14,-2494.96"/>
 <polygon fill="none" stroke="#29235c" points="7886.14,-2494.96 7886.14,-2554.96 8600.14,-2554.96 8600.14,-2494.96 7886.14,-2494.96"/>
@@ -634,15 +634,15 @@
 <!-- formula_one.ChampionshipAdjustment&#45;&gt;formula_one.Driver -->
 <g id="edge4" class="edge">
 <title>formula_one.ChampionshipAdjustment:e&#45;&gt;formula_one.Driver:w</title>
-<path fill="none" stroke="#29235c" stroke-width="3" d="M6999.45,-1629.96C7537.01,-1629.96 7346.61,-2454.39 7874.93,-2464.86"/>
+<path fill="none" stroke="#29235c" stroke-width="3" d="M6999.45,-1569.96C7555.66,-1569.96 7328.34,-2454.07 7874.98,-2464.86"/>
 <polygon fill="#29235c" stroke="#29235c" stroke-width="3" points="7875.1,-2468.36 7885.14,-2464.96 7875.17,-2461.36 7875.1,-2468.36"/>
 <text text-anchor="middle" x="7876.24" y="-2436.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">1</text>
-<text text-anchor="middle" x="6993.23" y="-1601.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">*</text>
+<text text-anchor="middle" x="6993.23" y="-1541.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">*</text>
 </g>
 <!-- formula_one.Season -->
 <g id="formula_one.Season" class="node">
 <title>formula_one.Season</title>
-<g id="a_formula_one.Season"><a xlink:title="formula_one.Season&#10;&#10;Formula 1 Championship season&#10;&#10;*DB table: formula_one_season*">
+<g id="a_formula_one.Season"><a xlink:title="formula_one.Season&#10;&#10;Formula 1 Championship season&#10;&#10;*table: public.formula_one_season*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="8243.14" cy="-2981.96" rx="413.81" ry="257.27"/>
 <polygon fill="#1d71b8" stroke="transparent" points="7953.14,-3101.96 7953.14,-3161.96 8534.14,-3161.96 8534.14,-3101.96 7953.14,-3101.96"/>
 <polygon fill="none" stroke="#29235c" points="7953.14,-3101.96 7953.14,-3161.96 8534.14,-3161.96 8534.14,-3101.96 7953.14,-3101.96"/>
@@ -682,15 +682,15 @@
 <!-- formula_one.ChampionshipAdjustment&#45;&gt;formula_one.Season -->
 <g id="edge2" class="edge">
 <title>formula_one.ChampionshipAdjustment:e&#45;&gt;formula_one.Season:w</title>
-<path fill="none" stroke="#29235c" stroke-width="3" d="M6999.45,-1689.96C7197.03,-1689.96 7265.43,-1777.11 7359.32,-1950.96 7440.19,-2100.71 7310.09,-2568.65 7395.32,-2715.96 7540.69,-2967.23 7655.68,-3069.55 7941.88,-3071.92"/>
+<path fill="none" stroke="#29235c" stroke-width="3" d="M6999.45,-1629.96C7213.77,-1629.96 7267.11,-1757.48 7359.32,-1950.96 7432.53,-2104.59 7310.09,-2568.65 7395.32,-2715.96 7540.69,-2967.23 7655.68,-3069.55 7941.88,-3071.92"/>
 <polygon fill="#29235c" stroke="#29235c" stroke-width="3" points="7942.12,-3075.42 7952.14,-3071.96 7942.15,-3068.42 7942.12,-3075.42"/>
 <text text-anchor="middle" x="7943.24" y="-3081.56" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">1</text>
-<text text-anchor="middle" x="6993.23" y="-1661.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">*</text>
+<text text-anchor="middle" x="6993.23" y="-1601.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">*</text>
 </g>
 <!-- formula_one.Team -->
 <g id="formula_one.Team" class="node">
 <title>formula_one.Team</title>
-<g id="a_formula_one.Team"><a xlink:title="formula_one.Team&#10;&#10;Information about a Constructor / Team&#10;&#10;*DB table: formula_one_team*">
+<g id="a_formula_one.Team"><a xlink:title="formula_one.Team&#10;&#10;Information about a Constructor / Team&#10;&#10;*table: public.formula_one_team*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="8243.14" cy="-874.96" rx="301.87" ry="427.19"/>
 <polygon fill="#1d71b8" stroke="transparent" points="8032.14,-1114.96 8032.14,-1174.96 8455.14,-1174.96 8455.14,-1114.96 8032.14,-1114.96"/>
 <polygon fill="none" stroke="#29235c" points="8032.14,-1114.96 8032.14,-1174.96 8455.14,-1174.96 8455.14,-1114.96 8032.14,-1114.96"/>
@@ -746,15 +746,15 @@
 <!-- formula_one.ChampionshipAdjustment&#45;&gt;formula_one.Team -->
 <g id="edge6" class="edge">
 <title>formula_one.ChampionshipAdjustment:e&#45;&gt;formula_one.Team:w</title>
-<path fill="none" stroke="#29235c" stroke-width="3" d="M6999.45,-1569.96C7209.7,-1569.96 7206.96,-1404.38 7395.32,-1310.96 7660.97,-1179.2 7729.7,-1087.05 8021.12,-1085"/>
-<polygon fill="#29235c" stroke="#29235c" stroke-width="3" points="8021.15,-1088.5 8031.14,-1084.96 8021.13,-1081.5 8021.15,-1088.5"/>
+<path fill="none" stroke="#29235c" stroke-width="3" d="M6999.45,-1509.96C7196.37,-1509.96 7214.22,-1388.31 7395.32,-1310.96 7668.02,-1194.48 7729.85,-1087.39 8021.12,-1085"/>
+<polygon fill="#29235c" stroke="#29235c" stroke-width="3" points="8021.15,-1088.5 8031.14,-1084.96 8021.12,-1081.5 8021.15,-1088.5"/>
 <text text-anchor="middle" x="8022.24" y="-1056.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">1</text>
-<text text-anchor="middle" x="6993.23" y="-1541.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">*</text>
+<text text-anchor="middle" x="6993.23" y="-1481.16" font-family="Helvetica,sans-Serif" font-size="32.00" fill="#29235c">*</text>
 </g>
 <!-- formula_one.ChampionshipSystem -->
 <g id="formula_one.ChampionshipSystem" class="node">
 <title>formula_one.ChampionshipSystem</title>
-<g id="a_formula_one.ChampionshipSystem"><a xlink:title="formula_one.ChampionshipSystem&#10;&#10;Drivers and Team Championship score calculation rules&#10;&#10;*DB table: formula_one_championshipsystem*">
+<g id="a_formula_one.ChampionshipSystem"><a xlink:title="formula_one.ChampionshipSystem&#10;&#10;Drivers and Team Championship score calculation rules&#10;&#10;*table: public.formula_one_championshipsystem*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="10305.71" cy="-2831.96" rx="1178.99" ry="469.54"/>
 <polygon fill="#1d71b8" stroke="transparent" points="9474.71,-3101.96 9474.71,-3161.96 11137.71,-3161.96 11137.71,-3101.96 9474.71,-3101.96"/>
 <polygon fill="none" stroke="#29235c" points="9474.71,-3101.96 9474.71,-3161.96 11137.71,-3161.96 11137.71,-3101.96 9474.71,-3101.96"/>
@@ -853,7 +853,7 @@
 <!-- formula_one.Circuit -->
 <g id="formula_one.Circuit" class="node">
 <title>formula_one.Circuit</title>
-<g id="a_formula_one.Circuit"><a xlink:title="formula_one.Circuit&#10;&#10;Round venue information&#10;&#10;*DB table: formula_one_circuit*">
+<g id="a_formula_one.Circuit"><a xlink:title="formula_one.Circuit&#10;&#10;Round venue information&#10;&#10;*table: public.formula_one_circuit*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="8243.14" cy="-3768.96" rx="301.87" ry="511.89"/>
 <polygon fill="#1d71b8" stroke="transparent" points="8032.14,-4068.96 8032.14,-4128.96 8455.14,-4128.96 8455.14,-4068.96 8032.14,-4068.96"/>
 <polygon fill="none" stroke="#29235c" points="8032.14,-4068.96 8032.14,-4128.96 8455.14,-4128.96 8455.14,-4068.96 8032.14,-4068.96"/>
@@ -916,7 +916,7 @@
 <!-- formula_one.DriverChampionship -->
 <g id="formula_one.DriverChampionship" class="node">
 <title>formula_one.DriverChampionship</title>
-<g id="a_formula_one.DriverChampionship"><a xlink:title="formula_one.DriverChampionship&#10;&#10;DriverChampionship(id, session, driver, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)&#10;&#10;*DB table: formula_one_driverchampionship*">
+<g id="a_formula_one.DriverChampionship"><a xlink:title="formula_one.DriverChampionship&#10;&#10;DriverChampionship(id, session, driver, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)&#10;&#10;*table: public.formula_one_driverchampionship*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="2585.76" cy="-4658.96" rx="979.19" ry="639.45"/>
 <polygon fill="#1d71b8" stroke="transparent" points="1895.76,-5048.96 1895.76,-5108.96 3276.76,-5108.96 3276.76,-5048.96 1895.76,-5048.96"/>
 <polygon fill="none" stroke="#29235c" points="1895.76,-5048.96 1895.76,-5108.96 3276.76,-5108.96 3276.76,-5048.96 1895.76,-5048.96"/>
@@ -1019,7 +1019,7 @@
 <!-- formula_one.Round -->
 <g id="formula_one.Round" class="node">
 <title>formula_one.Round</title>
-<g id="a_formula_one.Round"><a xlink:title="formula_one.Round&#10;&#10;Race event information relevent to all sessions&#10;&#10;*DB table: formula_one_round*">
+<g id="a_formula_one.Round"><a xlink:title="formula_one.Round&#10;&#10;Race event information relevent to all sessions&#10;&#10;*table: public.formula_one_round*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="6347.45" cy="-3123.96" rx="400.44" ry="469.54"/>
 <polygon fill="#1d71b8" stroke="transparent" points="6066.45,-3393.96 6066.45,-3453.96 6628.45,-3453.96 6628.45,-3393.96 6066.45,-3393.96"/>
 <polygon fill="none" stroke="#29235c" points="6066.45,-3393.96 6066.45,-3453.96 6628.45,-3453.96 6628.45,-3393.96 6066.45,-3393.96"/>
@@ -1100,7 +1100,7 @@
 <!-- formula_one.Session -->
 <g id="formula_one.Session" class="node">
 <title>formula_one.Session</title>
-<g id="a_formula_one.Session"><a xlink:title="formula_one.Session&#10;&#10;Information about a scheduled session where cars are on track&#10;&#10;*DB table: formula_one_session*">
+<g id="a_formula_one.Session"><a xlink:title="formula_one.Session&#10;&#10;Information about a scheduled session where cars are on track&#10;&#10;*table: public.formula_one_session*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="4450.34" cy="-3976.96" rx="564.96" ry="511.89"/>
 <polygon fill="#1d71b8" stroke="transparent" points="4053.34,-4276.96 4053.34,-4336.96 4848.34,-4336.96 4848.34,-4276.96 4053.34,-4276.96"/>
 <polygon fill="none" stroke="#29235c" points="4053.34,-4276.96 4053.34,-4336.96 4848.34,-4336.96 4848.34,-4276.96 4053.34,-4276.96"/>
@@ -1180,7 +1180,7 @@
 <!-- formula_one.Lap -->
 <g id="formula_one.Lap" class="node">
 <title>formula_one.Lap</title>
-<g id="a_formula_one.Lap"><a xlink:title="formula_one.Lap&#10;&#10;Information on a driven Lap of Race, Qualifying, or any other session for a driver&#10;&#10;*DB table: formula_one_lap*">
+<g id="a_formula_one.Lap"><a xlink:title="formula_one.Lap&#10;&#10;Information on a driven Lap of Race, Qualifying, or any other session for a driver&#10;&#10;*table: public.formula_one_lap*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="1160.3" cy="-4011.96" rx="357.18" ry="427.19"/>
 <polygon fill="#1d71b8" stroke="transparent" points="910.3,-4251.96 910.3,-4311.96 1411.3,-4311.96 1411.3,-4251.96 910.3,-4251.96"/>
 <polygon fill="none" stroke="#29235c" points="910.3,-4251.96 910.3,-4311.96 1411.3,-4311.96 1411.3,-4251.96 910.3,-4251.96"/>
@@ -1239,7 +1239,7 @@
 <!-- formula_one.SessionEntry -->
 <g id="formula_one.SessionEntry" class="node">
 <title>formula_one.SessionEntry</title>
-<g id="a_formula_one.SessionEntry"><a xlink:title="formula_one.SessionEntry&#10;&#10;All information for a round entry for the session&#10;&#10;*DB table: formula_one_sessionentry*">
+<g id="a_formula_one.SessionEntry"><a xlink:title="formula_one.SessionEntry&#10;&#10;All information for a round entry for the session&#10;&#10;*table: public.formula_one_sessionentry*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="2585.76" cy="-3001.96" rx="671.09" ry="639.45"/>
 <polygon fill="#1d71b8" stroke="transparent" points="2113.76,-3391.96 2113.76,-3451.96 3058.76,-3451.96 3058.76,-3391.96 2113.76,-3391.96"/>
 <polygon fill="none" stroke="#29235c" points="2113.76,-3391.96 2113.76,-3451.96 3058.76,-3451.96 3058.76,-3391.96 2113.76,-3391.96"/>
@@ -1327,7 +1327,7 @@
 <!-- formula_one.Penalty -->
 <g id="formula_one.Penalty" class="node">
 <title>formula_one.Penalty</title>
-<g id="a_formula_one.Penalty"><a xlink:title="formula_one.Penalty&#10;&#10;Penalty given/served in an entry&#39;s session&#10;&#10;*DB table: formula_one_penalty*">
+<g id="a_formula_one.Penalty"><a xlink:title="formula_one.Penalty&#10;&#10;Penalty given/served in an entry&#39;s session&#10;&#10;*table: public.formula_one_penalty*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="1160.3" cy="-3181.96" rx="410.24" ry="384.83"/>
 <polygon fill="#1d71b8" stroke="transparent" points="872.3,-3391.96 872.3,-3451.96 1448.3,-3451.96 1448.3,-3391.96 872.3,-3391.96"/>
 <polygon fill="none" stroke="#29235c" points="872.3,-3391.96 872.3,-3451.96 1448.3,-3451.96 1448.3,-3391.96 872.3,-3391.96"/>
@@ -1394,7 +1394,7 @@
 <!-- formula_one.PitStop -->
 <g id="formula_one.PitStop" class="node">
 <title>formula_one.PitStop</title>
-<g id="a_formula_one.PitStop"><a xlink:title="formula_one.PitStop&#10;&#10;Pit Stop information for a session&#10;&#10;*DB table: formula_one_pitstop*">
+<g id="a_formula_one.PitStop"><a xlink:title="formula_one.PitStop&#10;&#10;Pit Stop information for a session&#10;&#10;*table: public.formula_one_pitstop*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="357.09" cy="-4131.96" rx="357.18" ry="342.48"/>
 <polygon fill="#1d71b8" stroke="transparent" points="107.09,-4311.96 107.09,-4371.96 608.09,-4371.96 608.09,-4311.96 107.09,-4311.96"/>
 <polygon fill="none" stroke="#29235c" points="107.09,-4311.96 107.09,-4371.96 608.09,-4371.96 608.09,-4311.96 107.09,-4311.96"/>
@@ -1459,7 +1459,7 @@
 <!-- formula_one.PointSystem -->
 <g id="formula_one.PointSystem" class="node">
 <title>formula_one.PointSystem</title>
-<g id="a_formula_one.PointSystem"><a xlink:title="formula_one.PointSystem&#10;&#10;Session point calculation rules&#10;&#10;*DB table: formula_one_pointsystem*">
+<g id="a_formula_one.PointSystem"><a xlink:title="formula_one.PointSystem&#10;&#10;Session point calculation rules&#10;&#10;*table: public.formula_one_pointsystem*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="6347.45" cy="-5656.96" rx="1011.74" ry="511.89"/>
 <polygon fill="#1d71b8" stroke="transparent" points="5634.45,-5956.96 5634.45,-6016.96 7061.45,-6016.96 7061.45,-5956.96 5634.45,-5956.96"/>
 <polygon fill="none" stroke="#29235c" points="5634.45,-5956.96 5634.45,-6016.96 7061.45,-6016.96 7061.45,-5956.96 5634.45,-5956.96"/>
@@ -1582,7 +1582,7 @@
 <!-- formula_one.RoundEntry -->
 <g id="formula_one.RoundEntry" class="node">
 <title>formula_one.RoundEntry</title>
-<g id="a_formula_one.RoundEntry"><a xlink:title="formula_one.RoundEntry&#10;&#10;All data relating to a driver racing for a specific team for a race&#10;&#10;*DB table: formula_one_roundentry*">
+<g id="a_formula_one.RoundEntry"><a xlink:title="formula_one.RoundEntry&#10;&#10;All data relating to a driver racing for a specific team for a race&#10;&#10;*table: public.formula_one_roundentry*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="4450.34" cy="-3151.96" rx="387.49" ry="257.27"/>
 <polygon fill="#1d71b8" stroke="transparent" points="4178.34,-3271.96 4178.34,-3331.96 4722.34,-3331.96 4722.34,-3271.96 4178.34,-3271.96"/>
 <polygon fill="none" stroke="#29235c" points="4178.34,-3271.96 4178.34,-3331.96 4722.34,-3331.96 4722.34,-3271.96 4178.34,-3271.96"/>
@@ -1632,7 +1632,7 @@
 <!-- formula_one.TeamDriver -->
 <g id="formula_one.TeamDriver" class="node">
 <title>formula_one.TeamDriver</title>
-<g id="a_formula_one.TeamDriver"><a xlink:title="formula_one.TeamDriver&#10;&#10;Membership of a Driver to a Team for a given season&#10;&#10;*DB table: formula_one_teamdriver*">
+<g id="a_formula_one.TeamDriver"><a xlink:title="formula_one.TeamDriver&#10;&#10;Membership of a Driver to a Team for a given season&#10;&#10;*table: public.formula_one_teamdriver*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="6347.45" cy="-2259.96" rx="605.98" ry="299.63"/>
 <polygon fill="#1d71b8" stroke="transparent" points="5921.45,-2409.96 5921.45,-2469.96 6774.45,-2469.96 6774.45,-2409.96 5921.45,-2409.96"/>
 <polygon fill="none" stroke="#29235c" points="5921.45,-2409.96 5921.45,-2469.96 6774.45,-2469.96 6774.45,-2409.96 5921.45,-2409.96"/>
@@ -1752,7 +1752,7 @@
 <!-- formula_one.TeamChampionship -->
 <g id="formula_one.TeamChampionship" class="node">
 <title>formula_one.TeamChampionship</title>
-<g id="a_formula_one.TeamChampionship"><a xlink:title="formula_one.TeamChampionship&#10;&#10;TeamChampionship(id, session, team, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)&#10;&#10;*DB table: formula_one_teamchampionship*">
+<g id="a_formula_one.TeamChampionship"><a xlink:title="formula_one.TeamChampionship&#10;&#10;TeamChampionship(id, session, team, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)&#10;&#10;*table: public.formula_one_teamchampionship*">
 <ellipse fill="none" stroke="black" stroke-width="0" cx="2585.76" cy="-1620.96" rx="973.87" ry="639.45"/>
 <polygon fill="#1d71b8" stroke="transparent" points="1899.76,-2010.96 1899.76,-2070.96 3272.76,-2070.96 3272.76,-2010.96 1899.76,-2010.96"/>
 <polygon fill="none" stroke="#29235c" points="1899.76,-2010.96 1899.76,-2070.96 3272.76,-2070.96 3272.76,-2010.96 1899.76,-2010.96"/>

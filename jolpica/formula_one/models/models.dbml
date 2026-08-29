@@ -766,11 +766,11 @@ Table formula_one.BaseTeam {
   Note: '''
 Underlying Team ignoring rebrands
 
-*DB table: formula_one_baseteam*'''
+*table: public.formula_one_baseteam*'''
 
-  id big_auto [pk, unique, not null]
-  api_id char [unique, not null]
-  name char [unique, null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  name char [note: '''*name*''', unique, null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_baseteam_api_id_key', type: btree]
@@ -784,15 +784,17 @@ Table formula_one.ChampionshipAdjustment {
   Note: '''
 Adjustments such as Disqualifications and Exclusions from Driver/Team Championships
 
-*DB table: formula_one_championshipadjustment*'''
+*table: public.formula_one_championshipadjustment*'''
 
-  id big_auto [pk, unique, not null]
-  season_id foreign_key [not null]
-  driver_id foreign_key [null]
-  team_id foreign_key [null]
-  api_id char [unique, not null]
-  adjustment formula_one.positive_small_integer_championshipadjustment_adjustment [not null]
-  points float [note: '''Points to deduct if POINT_DEDUCTION adjustment, otherwise null''', null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  season_id foreign_key [note: '''*season*''', not null]
+  driver_id foreign_key [note: '''*driver*''', null]
+  team_id foreign_key [note: '''*team*''', null]
+  adjustment formula_one.positive_small_integer_championshipadjustment_adjustment [note: '''*adjustment*''', not null]
+  points float [note: '''
+*points*
+Points to deduct if POINT_DEDUCTION adjustment, otherwise null''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_championshipadjustment_api_id_key', type: btree]
@@ -811,18 +813,18 @@ Table formula_one.ChampionshipSystem {
   Note: '''
 Drivers and Team Championship score calculation rules
 
-*DB table: formula_one_championshipsystem*'''
+*table: public.formula_one_championshipsystem*'''
 
-  id big_auto [pk, unique, not null]
-  api_id char [unique, not null]
-  reference char [unique, null]
-  name char [null]
-  eligibility formula_one.positive_small_integer_championshipsystem_eligibility [not null]
-  driver_season_split formula_one.positive_small_integer_championshipsystem_driver_season_split [not null]
-  driver_best_results formula_one.small_integer_championshipsystem_driver_best_results [not null]
-  team_season_split formula_one.positive_small_integer_championshipsystem_team_season_split [not null]
-  team_best_results formula_one.small_integer_championshipsystem_team_best_results [not null]
-  team_points_per_session formula_one.positive_small_integer_championshipsystem_team_points_per_session [not null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  reference char [note: '''*reference*''', unique, null]
+  name char [note: '''*name*''', null]
+  eligibility formula_one.positive_small_integer_championshipsystem_eligibility [note: '''*eligibility*''', not null]
+  driver_season_split formula_one.positive_small_integer_championshipsystem_driver_season_split [note: '''*driver season split*''', not null]
+  driver_best_results formula_one.small_integer_championshipsystem_driver_best_results [note: '''*driver best results*''', not null]
+  team_season_split formula_one.positive_small_integer_championshipsystem_team_season_split [note: '''*team season split*''', not null]
+  team_best_results formula_one.small_integer_championshipsystem_team_best_results [note: '''*team best results*''', not null]
+  team_points_per_session formula_one.positive_small_integer_championshipsystem_team_points_per_session [note: '''*team points per session*''', not null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_championshipsystem_api_id_key', type: btree]
@@ -836,19 +838,19 @@ Table formula_one.Circuit {
   Note: '''
 Round venue information
 
-*DB table: formula_one_circuit*'''
+*table: public.formula_one_circuit*'''
 
-  id big_auto [pk, unique, not null]
-  api_id char [unique, not null]
-  reference char [unique, null]
-  name char [not null]
-  locality char [null]
-  country char [null]
-  country_code char [null]
-  latitude float [null]
-  longitude float [null]
-  altitude float [null]
-  wikipedia url [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  reference char [note: '''*reference*''', unique, null]
+  name char [note: '''*name*''', not null]
+  locality char [note: '''*locality*''', null]
+  country char [note: '''*country*''', null]
+  country_code char [note: '''*3 Letter country code (ISO 3166-1 alpha-3)*''', null]
+  latitude float [note: '''*latitude*''', null]
+  longitude float [note: '''*longitude*''', null]
+  altitude float [note: '''*altitude*''', null]
+  wikipedia url [note: '''*wikipedia*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_circuit_api_id_key', type: btree]
@@ -864,19 +866,19 @@ Session Participant / Racing Driver Information
 
 May track reserve drivers with no sessions, or junior drivers only taking part in practice sessions.
 
-*DB table: formula_one_driver*'''
+*table: public.formula_one_driver*'''
 
-  id big_auto [pk, unique, not null]
-  api_id char [unique, not null]
-  reference char [unique, null]
-  forename char [not null]
-  surname char [not null]
-  abbreviation char [null]
-  nationality char [null]
-  country_code char [null]
-  permanent_car_number positive_small_integer [null]
-  date_of_birth date [null]
-  wikipedia url [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  reference char [note: '''*reference*''', unique, null]
+  forename char [note: '''*forename*''', not null]
+  surname char [note: '''*surname*''', not null]
+  abbreviation char [note: '''*abbreviation*''', null]
+  nationality char [note: '''*nationality*''', null]
+  country_code char [note: '''*3 Letter country code (ISO 3166-1 alpha-3)*''', null]
+  permanent_car_number positive_small_integer [note: '''*permanent car number*''', null]
+  date_of_birth date [note: '''*date of birth*''', null]
+  wikipedia url [note: '''*wikipedia*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_driver_api_id_key', type: btree]
@@ -890,22 +892,22 @@ Table formula_one.DriverChampionship {
   Note: '''
 DriverChampionship(id, session, driver, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)
 
-*DB table: formula_one_driverchampionship*'''
+*table: public.formula_one_driverchampionship*'''
 
-  id big_auto [pk, unique, not null]
-  session_id foreign_key [not null]
-  driver_id foreign_key [not null]
-  year small_integer [not null]
-  round_number positive_small_integer [not null]
-  session_number positive_small_integer [not null]
-  position small_integer [null]
-  points float [not null]
-  win_count small_integer [not null]
-  highest_finish small_integer [null]
-  is_eligible boolean [default:`False`, not null]
-  adjustment_type formula_one.positive_small_integer_driverchampionship_adjustment_type [default:`0`, not null]
-  season_id foreign_key [null]
-  round_id foreign_key [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  session_id foreign_key [note: '''*session*''', not null]
+  driver_id foreign_key [note: '''*driver*''', not null]
+  year small_integer [note: '''*year*''', not null]
+  round_number positive_small_integer [note: '''*round number*''', not null]
+  session_number positive_small_integer [note: '''*session number*''', not null]
+  position small_integer [note: '''*position*''', null]
+  points float [note: '''*points*''', not null]
+  win_count small_integer [note: '''*win count*''', not null]
+  highest_finish small_integer [note: '''*highest finish*''', null]
+  is_eligible boolean [note: '''*is eligible*''', default:`False`, not null]
+  adjustment_type formula_one.positive_small_integer_driverchampionship_adjustment_type [note: '''*adjustment type*''', default:`0`, not null]
+  season_id foreign_key [note: '''*season*''', null]
+  round_id foreign_key [note: '''*round*''', null]
 
   indexes {
     (driver_id) [name: 'formula_one_driverchampionship_driver_id_cdc02d56', type: btree]
@@ -925,17 +927,17 @@ Table formula_one.Lap {
   Note: '''
 Information on a driven Lap of Race, Qualifying, or any other session for a driver
 
-*DB table: formula_one_lap*'''
+*table: public.formula_one_lap*'''
 
-  id big_auto [pk, unique, not null]
-  session_entry_id foreign_key [not null]
-  api_id char [unique, not null]
-  number positive_small_integer [null]
-  position positive_small_integer [null]
-  time duration [null]
-  average_speed float [null]
-  is_entry_fastest_lap boolean [default:`False`, not null]
-  is_deleted boolean [default:`False`, not null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  session_entry_id foreign_key [note: '''*session entry*''', not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  number positive_small_integer [note: '''*number*''', null]
+  position positive_small_integer [note: '''*position*''', null]
+  time duration [note: '''*time*''', null]
+  average_speed float [note: '''*average speed*''', null]
+  is_entry_fastest_lap boolean [note: '''*is entry fastest lap*''', default:`False`, not null]
+  is_deleted boolean [note: '''*is deleted*''', default:`False`, not null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_lap_api_id_key', type: btree]
@@ -950,16 +952,16 @@ Table formula_one.Penalty {
   Note: '''
 Penalty given/served in an entry's session
 
-*DB table: formula_one_penalty*'''
+*table: public.formula_one_penalty*'''
 
-  id big_auto [pk, unique, not null]
-  earned_id foreign_key [null]
-  served_id foreign_key [null]
-  api_id char [unique, not null]
-  license_points positive_small_integer [null]
-  position positive_small_integer [null]
-  time duration [null]
-  is_time_served_in_pit boolean [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  earned_id foreign_key [note: '''*earned*''', null]
+  served_id foreign_key [note: '''*served*''', null]
+  api_id char [note: '''*api id*''', unique, not null]
+  license_points positive_small_integer [note: '''*license points*''', null]
+  position positive_small_integer [note: '''*position*''', null]
+  time duration [note: '''*time*''', null]
+  is_time_served_in_pit boolean [note: '''*is time served in pit*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_penalty_api_id_key', type: btree]
@@ -976,15 +978,15 @@ Table formula_one.PitStop {
   Note: '''
 Pit Stop information for a session
 
-*DB table: formula_one_pitstop*'''
+*table: public.formula_one_pitstop*'''
 
-  id big_auto [pk, unique, not null]
-  session_entry_id foreign_key [not null]
-  lap_id one_to_one [unique, null]
-  api_id char [unique, not null]
-  number positive_small_integer [null]
-  duration duration [null]
-  local_timestamp char [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  session_entry_id foreign_key [note: '''*session entry*''', not null]
+  lap_id one_to_one [note: '''*lap*''', unique, null]
+  api_id char [note: '''*api id*''', unique, not null]
+  number positive_small_integer [note: '''*number*''', null]
+  duration duration [note: '''*duration*''', null]
+  local_timestamp char [note: '''*local timestamp*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_pitstop_api_id_key', type: btree]
@@ -1001,19 +1003,19 @@ Table formula_one.PointSystem {
   Note: '''
 Session point calculation rules
 
-*DB table: formula_one_pointsystem*'''
+*table: public.formula_one_pointsystem*'''
 
-  id big_auto [pk, unique, not null]
-  api_id char [unique, not null]
-  reference char [unique, null]
-  name char [null]
-  driver_position_points formula_one.positive_small_integer_pointsystem_driver_position_points [not null]
-  driver_fastest_lap formula_one.positive_small_integer_pointsystem_driver_fastest_lap [default:`0`, not null]
-  team_position_points formula_one.positive_small_integer_pointsystem_team_position_points [not null]
-  team_fastest_lap formula_one.positive_small_integer_pointsystem_team_fastest_lap [default:`0`, not null]
-  partial formula_one.positive_small_integer_pointsystem_partial [default:`0`, not null]
-  shared_drive formula_one.positive_small_integer_pointsystem_shared_drive [default:`0`, not null]
-  is_double_points boolean [default:`False`, not null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  reference char [note: '''*reference*''', unique, null]
+  name char [note: '''*name*''', null]
+  driver_position_points formula_one.positive_small_integer_pointsystem_driver_position_points [note: '''*driver position points*''', not null]
+  driver_fastest_lap formula_one.positive_small_integer_pointsystem_driver_fastest_lap [note: '''*driver fastest lap*''', default:`0`, not null]
+  team_position_points formula_one.positive_small_integer_pointsystem_team_position_points [note: '''*team position points*''', not null]
+  team_fastest_lap formula_one.positive_small_integer_pointsystem_team_fastest_lap [note: '''*team fastest lap*''', default:`0`, not null]
+  partial formula_one.positive_small_integer_pointsystem_partial [note: '''*partial*''', default:`0`, not null]
+  shared_drive formula_one.positive_small_integer_pointsystem_shared_drive [note: '''*shared drive*''', default:`0`, not null]
+  is_double_points boolean [note: '''*is double points*''', default:`False`, not null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_pointsystem_api_id_key', type: btree]
@@ -1027,18 +1029,18 @@ Table formula_one.Round {
   Note: '''
 Race event information relevent to all sessions
 
-*DB table: formula_one_round*'''
+*table: public.formula_one_round*'''
 
-  id big_auto [pk, unique, not null]
-  season_id foreign_key [not null]
-  circuit_id foreign_key [not null]
-  api_id char [unique, not null]
-  number positive_small_integer [null]
-  name char [null]
-  date date [null]
-  race_number positive_small_integer [null]
-  wikipedia url [null]
-  is_cancelled boolean [default:`False`, not null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  season_id foreign_key [note: '''*season*''', not null]
+  circuit_id foreign_key [note: '''*circuit*''', not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  number positive_small_integer [note: '''*number*''', null]
+  name char [note: '''*name*''', null]
+  date date [note: '''*date*''', null]
+  race_number positive_small_integer [note: '''*race number*''', null]
+  wikipedia url [note: '''*wikipedia*''', null]
+  is_cancelled boolean [note: '''*is cancelled*''', default:`False`, not null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_round_api_id_key', type: btree]
@@ -1055,13 +1057,13 @@ Table formula_one.RoundEntry {
   Note: '''
 All data relating to a driver racing for a specific team for a race
 
-*DB table: formula_one_roundentry*'''
+*table: public.formula_one_roundentry*'''
 
-  id big_auto [pk, unique, not null]
-  round_id foreign_key [not null]
-  team_driver_id foreign_key [not null]
-  api_id char [unique, not null]
-  car_number positive_small_integer [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  round_id foreign_key [note: '''*round*''', not null]
+  team_driver_id foreign_key [note: '''*team driver*''', not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  car_number positive_small_integer [note: '''*car number*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_roundentry_api_id_key', type: btree]
@@ -1078,13 +1080,13 @@ Table formula_one.Season {
   Note: '''
 Formula 1 Championship season
 
-*DB table: formula_one_season*'''
+*table: public.formula_one_season*'''
 
-  id big_auto [pk, unique, not null]
-  championship_system_id foreign_key [null]
-  api_id char [unique, not null]
-  year small_integer [unique, not null]
-  wikipedia url [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  championship_system_id foreign_key [note: '''*championship system*''', null]
+  api_id char [note: '''*api id*''', unique, not null]
+  year small_integer [note: '''*year*''', unique, not null]
+  wikipedia url [note: '''*wikipedia*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_season_api_id_key', type: btree]
@@ -1100,19 +1102,25 @@ Table formula_one.Session {
   Note: '''
 Information about a scheduled session where cars are on track
 
-*DB table: formula_one_session*'''
+*table: public.formula_one_session*'''
 
-  id big_auto [pk, unique, not null]
-  round_id foreign_key [not null]
-  number positive_small_integer [null]
-  point_system_id foreign_key [default:`1`, not null]
-  api_id char [unique, not null]
-  type formula_one.char_session_type [not null]
-  timestamp date_time [note: '''UTC datetime of the session start. If time is unknown, uses midnight (00:00:00 UTC).''', null]
-  has_time_data boolean [note: '''Indicates whether the timestamp includes actual time data or just date with default midnight time.''', default:`False`, not null]
-  timezone formula_one.time_zone_session_timezone [note: '''IANA timezone identifier for the session location (e.g., "Europe/Monaco", "Asia/Singapore").''', null]
-  scheduled_laps positive_small_integer [null]
-  is_cancelled boolean [default:`False`, not null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  round_id foreign_key [note: '''*round*''', not null]
+  number positive_small_integer [note: '''*number*''', null]
+  point_system_id foreign_key [note: '''*point system*''', default:`1`, not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  type formula_one.char_session_type [note: '''*type*''', not null]
+  timestamp date_time [note: '''
+*timestamp*
+UTC datetime of the session start. If time is unknown, uses midnight (00:00:00 UTC).''', null]
+  has_time_data boolean [note: '''
+*has time data*
+Indicates whether the timestamp includes actual time data or just date with default midnight time.''', default:`False`, not null]
+  timezone formula_one.time_zone_session_timezone [note: '''
+*timezone*
+IANA timezone identifier for the session location (e.g., "Europe/Monaco", "Asia/Singapore").''', null]
+  scheduled_laps positive_small_integer [note: '''*scheduled laps*''', null]
+  is_cancelled boolean [note: '''*is cancelled*''', default:`False`, not null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_session_api_id_key', type: btree]
@@ -1129,22 +1137,22 @@ Table formula_one.SessionEntry {
   Note: '''
 All information for a round entry for the session
 
-*DB table: formula_one_sessionentry*'''
+*table: public.formula_one_sessionentry*'''
 
-  id big_auto [pk, unique, not null]
-  session_id foreign_key [not null]
-  round_entry_id foreign_key [not null]
-  api_id char [unique, not null]
-  position positive_small_integer [null]
-  is_classified boolean [null]
-  status formula_one.positive_small_integer_sessionentry_status [null]
-  detail char [null]
-  points float [null]
-  is_eligible_for_points boolean [default:`True`, not null]
-  grid positive_small_integer [null]
-  time duration [null]
-  fastest_lap_rank positive_small_integer [null]
-  laps_completed positive_small_integer [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  session_id foreign_key [note: '''*session*''', not null]
+  round_entry_id foreign_key [note: '''*round entry*''', not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  position positive_small_integer [note: '''*position*''', null]
+  is_classified boolean [note: '''*is classified*''', null]
+  status formula_one.positive_small_integer_sessionentry_status [note: '''*status*''', null]
+  detail char [note: '''*detail*''', null]
+  points float [note: '''*points*''', null]
+  is_eligible_for_points boolean [note: '''*is eligible for points*''', default:`True`, not null]
+  grid positive_small_integer [note: '''*grid*''', null]
+  time duration [note: '''*time*''', null]
+  fastest_lap_rank positive_small_integer [note: '''*fastest lap rank*''', null]
+  laps_completed positive_small_integer [note: '''*laps completed*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_sessionentry_api_id_key', type: btree]
@@ -1161,17 +1169,17 @@ Table formula_one.Team {
   Note: '''
 Information about a Constructor / Team
 
-*DB table: formula_one_team*'''
+*table: public.formula_one_team*'''
 
-  id big_auto [pk, unique, not null]
-  base_team_id foreign_key [null]
-  api_id char [unique, not null]
-  reference char [unique, null]
-  name char [not null]
-  nationality char [null]
-  country_code char [null]
-  wikipedia url [null]
-  primary_color char [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  base_team_id foreign_key [note: '''*base team*''', null]
+  api_id char [note: '''*api id*''', unique, not null]
+  reference char [note: '''*reference*''', unique, null]
+  name char [note: '''*name*''', not null]
+  nationality char [note: '''*nationality*''', null]
+  country_code char [note: '''*3 Letter country code (ISO 3166-1 alpha-3)*''', null]
+  wikipedia url [note: '''*wikipedia*''', null]
+  primary_color char [note: '''*Hex color code*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_team_api_id_key', type: btree]
@@ -1187,22 +1195,22 @@ Table formula_one.TeamChampionship {
   Note: '''
 TeamChampionship(id, session, team, year, round_number, session_number, position, points, win_count, highest_finish, is_eligible, adjustment_type, season, round)
 
-*DB table: formula_one_teamchampionship*'''
+*table: public.formula_one_teamchampionship*'''
 
-  id big_auto [pk, unique, not null]
-  session_id foreign_key [not null]
-  team_id foreign_key [not null]
-  year small_integer [not null]
-  round_number positive_small_integer [not null]
-  session_number positive_small_integer [not null]
-  position small_integer [null]
-  points float [not null]
-  win_count small_integer [not null]
-  highest_finish small_integer [null]
-  is_eligible boolean [default:`False`, not null]
-  adjustment_type formula_one.positive_small_integer_teamchampionship_adjustment_type [default:`0`, not null]
-  season_id foreign_key [null]
-  round_id foreign_key [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  session_id foreign_key [note: '''*session*''', not null]
+  team_id foreign_key [note: '''*team*''', not null]
+  year small_integer [note: '''*year*''', not null]
+  round_number positive_small_integer [note: '''*round number*''', not null]
+  session_number positive_small_integer [note: '''*session number*''', not null]
+  position small_integer [note: '''*position*''', null]
+  points float [note: '''*points*''', not null]
+  win_count small_integer [note: '''*win count*''', not null]
+  highest_finish small_integer [note: '''*highest finish*''', null]
+  is_eligible boolean [note: '''*is eligible*''', default:`False`, not null]
+  adjustment_type formula_one.positive_small_integer_teamchampionship_adjustment_type [note: '''*adjustment type*''', default:`0`, not null]
+  season_id foreign_key [note: '''*season*''', null]
+  round_id foreign_key [note: '''*round*''', null]
 
   indexes {
     (id) [pk, unique, name: 'formula_one_teamchampionship_pkey', type: btree]
@@ -1222,14 +1230,14 @@ Table formula_one.TeamDriver {
   Note: '''
 Membership of a Driver to a Team for a given season
 
-*DB table: formula_one_teamdriver*'''
+*table: public.formula_one_teamdriver*'''
 
-  id big_auto [pk, unique, not null]
-  team_id foreign_key [not null]
-  driver_id foreign_key [not null]
-  season_id foreign_key [not null]
-  api_id char [unique, not null]
-  role formula_one.positive_small_integer_teamdriver_role [null]
+  id big_auto [note: '''*id*''', pk, unique, not null]
+  team_id foreign_key [note: '''*team*''', not null]
+  driver_id foreign_key [note: '''*driver*''', not null]
+  season_id foreign_key [note: '''*season*''', not null]
+  api_id char [note: '''*api id*''', unique, not null]
+  role formula_one.positive_small_integer_teamdriver_role [note: '''*role*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_teamdriver_api_id_key', type: btree]
