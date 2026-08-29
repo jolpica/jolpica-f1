@@ -9,6 +9,7 @@ from pydantic import HttpUrl
 from rest_framework import request
 
 from jolpica.formula_one import models as f1
+from jolpica_api.f1_api.utils import safe_get_country_flag
 from jolpica_schemas.f1_api.alpha import shared
 
 
@@ -139,6 +140,7 @@ class ResultDataLoader:
                 name=round.circuit.name,
                 locality=round.circuit.locality,
                 country_code=round.circuit.country_code,
+                country_flag=safe_get_country_flag(round.circuit.country_code),
                 latitude=round.circuit.latitude,
                 longitude=round.circuit.longitude,
                 altitude=round.circuit.altitude,

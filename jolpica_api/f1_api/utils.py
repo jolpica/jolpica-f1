@@ -2,11 +2,37 @@ from __future__ import annotations
 
 from typing import Any, Literal, get_args, get_origin
 
+import countryinfo
 import pydantic
 from drf_spectacular.types import OpenApiTypes
 from drf_spectacular.utils import OpenApiExample, OpenApiParameter
 from pydantic.fields import FieldInfo
 from rest_framework.exceptions import ValidationError
+
+
+def safe_get_countryinfo(alpha_3: str | None) -> countryinfo.CountryInfo | None:
+    if not alpha_3:
+        return None
+    try:
+        return countryinfo.CountryInfo(alpha_3)
+    except countryinfo.CountryNotFoundError:
+        return None
+
+
+def safe_get_country_flag(alpha_3: str | None) -> str | None:
+    country = safe_get_countryinfo(alpha_3)
+    if not country:
+        return None
+    # countryinfo always has blank flag as of v1.0.1, so create our own manually
+
+    # The magical offset number to get to Regional Indicator Symbols
+    OFFSET = 127397
+
+    # Convert each letter and join them together
+    flag = "".join(chr(ord(char) + OFFSET) for char in country.iso().get("alpha2", ""))
+    if not flag:
+        return None
+    return flag
 
 
 def pydantic_to_open_api_parameters(

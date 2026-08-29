@@ -9,6 +9,7 @@ from rest_framework import request
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.utils import format_timedelta, normalize_pit_stop_timestamp
+from jolpica_api.f1_api.utils import safe_get_country_flag
 from jolpica_schemas.f1_api.alpha import shared
 
 
@@ -87,6 +88,7 @@ class LapDataLoader:
                     family_name=driver.surname,
                     nationality=driver.nationality,
                     country_code=driver.country_code,
+                    country_flag=safe_get_country_flag(driver.country_code),
                     permanent_car_number=driver.permanent_car_number,
                     date_of_birth=driver.date_of_birth,
                     wikipedia=HttpUrl(driver.wikipedia) if driver.wikipedia else None,
@@ -100,6 +102,7 @@ class LapDataLoader:
                     primary_color=team.primary_color,
                     nationality=team.nationality,
                     country_code=team.country_code,
+                    country_flag=safe_get_country_flag(team.country_code),
                     wikipedia=HttpUrl(team.wikipedia) if team.wikipedia else None,
                 )
 
@@ -166,6 +169,7 @@ class LapDataLoader:
                 name=round.circuit.name,
                 locality=round.circuit.locality,
                 country_code=round.circuit.country_code,
+                country_flag=safe_get_country_flag(round.circuit.country_code),
                 latitude=round.circuit.latitude,
                 longitude=round.circuit.longitude,
                 altitude=round.circuit.altitude,

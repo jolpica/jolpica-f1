@@ -3,6 +3,7 @@ from __future__ import annotations
 from rest_framework import serializers
 
 from jolpica.formula_one import models as f1
+from jolpica_api.f1_api.utils import safe_get_country_flag
 from jolpica_schemas.f1_api.alpha.core.driver import DriverSummary
 
 from .base_serializer import BaseAPISerializer
@@ -20,7 +21,10 @@ class DriverSerializer(BaseAPISerializer):
     view_name = "core-drivers-detail"
     given_name = serializers.CharField(read_only=True, source="forename")
     family_name = serializers.CharField(read_only=True, source="surname")
-    nationality = serializers.CharField(read_only=True)  # TODO: Generate from country_code
+    country_flag = serializers.SerializerMethodField()
 
     class Meta:
         model = f1.Driver
+
+    def get_country_flag(self, obj: f1.Driver) -> str | None:
+        return safe_get_country_flag(obj.country_code)
