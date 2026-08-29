@@ -10,6 +10,7 @@ from pydantic import HttpUrl
 from rest_framework import request
 
 from jolpica.formula_one import models as f1
+from jolpica_api.f1_api.utils import safe_get_country_flag
 from jolpica_schemas.f1_api.alpha import shared
 from jolpica_schemas.f1_api.alpha.schedule import ScheduleSummary
 
@@ -119,6 +120,7 @@ class ScheduleDataLoader:
                         name=circuit.name,
                         locality=circuit.locality,
                         country_code=circuit.country_code,
+                        country_flag=safe_get_country_flag(circuit.country_code),
                         country=circuit.country,
                         latitude=circuit.latitude,
                         longitude=circuit.longitude,

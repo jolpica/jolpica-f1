@@ -14,6 +14,7 @@ class BasicCircuit(BaseModel):
 
 class Circuit(BasicCircuit):
     country: str | None = None
+    country_flag: str | None = None
     latitude: float | None = None
     longitude: float | None = None
     altitude: float | None = None
@@ -147,6 +148,7 @@ class BasicDriver(BaseModel):
 class Driver(BasicDriver):
     nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
+    country_flag: str | None = None
     permanent_car_number: int | None = None
     date_of_birth: datetime.date | None = None
     wikipedia: HttpUrl | None = None
@@ -162,4 +164,5 @@ class BasicTeam(BaseModel):
 class Team(BasicTeam):
     nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
+    country_flag: str | None = None
     wikipedia: HttpUrl | None = None
