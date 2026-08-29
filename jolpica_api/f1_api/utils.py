@@ -26,10 +26,10 @@ def safe_get_country_flag(alpha_3: str | None) -> str | None:
     # countryinfo always has blank flag as of v1.0.1, so create our own manually
 
     # The magical offset number to get to Regional Indicator Symbols
-    OFFSET = 127397
+    offset = 127397
 
     # Convert each letter and join them together
-    flag = "".join(chr(ord(char) + OFFSET) for char in country.iso().get("alpha2", ""))
+    flag = "".join(chr(ord(char) + offset) for char in country.iso().get("alpha2", ""))
     if not flag:
         return None
     return flag

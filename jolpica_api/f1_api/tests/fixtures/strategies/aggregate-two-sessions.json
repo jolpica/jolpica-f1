@@ -4,13 +4,23 @@
     "url": "http://api.example.com/drivers/raikkonen",
     "abbreviation": "RAI",
     "given_name": "Kimi",
-    "family_name": "Raikkonen"
+    "family_name": "Raikkonen",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "permanent_car_number": null,
+    "date_of_birth": null,
+    "wikipedia": null
   },
   "team": {
     "id": "alfa_romeo",
     "url": "http://api.example.com/teams/alfa_romeo",
     "name": "Alfa Romeo",
-    "primary_color": "#900000"
+    "primary_color": "#900000",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "wikipedia": null
   },
   "position": 1,
   "position_text": "1",

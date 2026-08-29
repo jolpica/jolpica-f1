@@ -196,14 +196,14 @@ def race_winner_data() -> ResultRowData:
             )
         ],
         car_number=1,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="verstappen",
             given_name="Max",
             family_name="Verstappen",
             url=HttpUrl("http://api.example.com/drivers/verstappen"),
             abbreviation="VER",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="red_bull",
             name="Red Bull Racing",
             url=HttpUrl("http://api.example.com/teams/red_bull"),
@@ -235,14 +235,14 @@ def race_retired_data() -> ResultRowData:
             )
         ],
         car_number=14,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="alonso",
             given_name="Fernando",
             family_name="Alonso",
             url=HttpUrl("http://api.example.com/drivers/alonso"),
             abbreviation="ALO",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="aston_martin",
             name="Aston Martin",
             url=HttpUrl("http://api.example.com/teams/aston_martin"),
@@ -274,14 +274,14 @@ def sprint_winner_data() -> ResultRowData:
             )
         ],
         car_number=16,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="leclerc",
             given_name="Charles",
             family_name="Leclerc",
             url=HttpUrl("http://api.example.com/drivers/leclerc"),
             abbreviation="LEC",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="ferrari",
             name="Ferrari",
             url=HttpUrl("http://api.example.com/teams/ferrari"),
@@ -313,14 +313,14 @@ def knockout_q1_exit_data() -> ResultRowData:
             )
         ],
         car_number=2,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="sargeant",
             given_name="Logan",
             family_name="Sargeant",
             url=HttpUrl("http://api.example.com/drivers/sargeant"),
             abbreviation="SAR",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="williams",
             name="Williams",
             url=HttpUrl("http://api.example.com/teams/williams"),
@@ -367,14 +367,14 @@ def knockout_q2_exit_data() -> ResultRowData:
             ),
         ],
         car_number=77,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="bottas",
             given_name="Valtteri",
             family_name="Bottas",
             url=HttpUrl("http://api.example.com/drivers/bottas"),
             abbreviation="BOT",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="sauber",
             name="Stake F1 Team Kick Sauber",
             url=HttpUrl("http://api.example.com/teams/sauber"),
@@ -436,14 +436,14 @@ def knockout_pole_position_data() -> ResultRowData:
             ),
         ],
         car_number=4,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="norris",
             given_name="Lando",
             family_name="Norris",
             url=HttpUrl("http://api.example.com/drivers/norris"),
             abbreviation="NOR",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="mclaren",
             name="McLaren",
             url=HttpUrl("http://api.example.com/teams/mclaren"),
@@ -490,14 +490,14 @@ def aggregate_quali_data() -> ResultRowData:
             ),
         ],
         car_number=2,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="raikkonen",
             given_name="Kimi",
             family_name="Raikkonen",
             url=HttpUrl("http://api.example.com/drivers/raikkonen"),
             abbreviation="RAI",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="alfa_romeo",
             name="Alfa Romeo",
             url=HttpUrl("http://api.example.com/teams/alfa_romeo"),
@@ -529,14 +529,14 @@ def best_lap_pole_data() -> ResultRowData:
             )
         ],
         car_number=12,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="senna",
             given_name="Ayrton",
             family_name="Senna",
             url=HttpUrl("http://api.example.com/drivers/senna"),
             abbreviation="SEN",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="mclaren",
             name="McLaren",
             url=HttpUrl("http://api.example.com/teams/mclaren"),
@@ -568,14 +568,14 @@ def best_lap_p10_data() -> ResultRowData:
             )
         ],
         car_number=22,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="decesaris",
             given_name="Andrea",
             family_name="de Cesaris",
             url=HttpUrl("http://api.example.com/drivers/decesaris"),
             abbreviation="CES",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="rial",
             name="Rial",
             url=HttpUrl("http://api.example.com/teams/rial"),
@@ -607,14 +607,14 @@ def practice_single_session_data() -> ResultRowData:
             )
         ],
         car_number=44,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="hamilton",
             given_name="Lewis",
             family_name="Hamilton",
             url=HttpUrl("http://api.example.com/drivers/hamilton"),
             abbreviation="HAM",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="mercedes",
             name="Mercedes",
             url=HttpUrl("http://api.example.com/teams/mercedes"),
@@ -661,14 +661,14 @@ def practice_multiple_sessions_data() -> ResultRowData:
             ),
         ],
         car_number=81,
-        driver=shared.BasicDriver(
+        driver=shared.Driver(
             id="piastri",
             given_name="Oscar",
             family_name="Piastri",
             url=HttpUrl("http://api.example.com/drivers/piastri"),
             abbreviation="PIA",
         ),
-        team=shared.BasicTeam(
+        team=shared.Team(
             id="mclaren",
             name="McLaren",
             url=HttpUrl("http://api.example.com/teams/mclaren"),
