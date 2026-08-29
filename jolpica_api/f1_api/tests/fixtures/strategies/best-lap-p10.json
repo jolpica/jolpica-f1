@@ -4,13 +4,23 @@
     "url": "http://api.example.com/drivers/decesaris",
     "abbreviation": "CES",
     "given_name": "Andrea",
-    "family_name": "de Cesaris"
+    "family_name": "de Cesaris",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "permanent_car_number": null,
+    "date_of_birth": null,
+    "wikipedia": null
   },
   "team": {
     "id": "rial",
     "url": "http://api.example.com/teams/rial",
     "name": "Rial",
-    "primary_color": "#000080"
+    "primary_color": "#000080",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "wikipedia": null
   },
   "position": 10,
   "position_text": "10",

@@ -4,13 +4,23 @@
     "url": "http://api.example.com/drivers/hamilton",
     "abbreviation": "HAM",
     "given_name": "Lewis",
-    "family_name": "Hamilton"
+    "family_name": "Hamilton",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "permanent_car_number": null,
+    "date_of_birth": null,
+    "wikipedia": null
   },
   "team": {
     "id": "mercedes",
     "url": "http://api.example.com/teams/mercedes",
     "name": "Mercedes",
-    "primary_color": "#27F4D2"
+    "primary_color": "#27F4D2",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "wikipedia": null
   },
   "position": 3,
   "position_text": "3",

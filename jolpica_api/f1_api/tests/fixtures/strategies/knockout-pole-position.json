@@ -4,13 +4,23 @@
     "url": "http://api.example.com/drivers/norris",
     "abbreviation": "NOR",
     "given_name": "Lando",
-    "family_name": "Norris"
+    "family_name": "Norris",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "permanent_car_number": null,
+    "date_of_birth": null,
+    "wikipedia": null
   },
   "team": {
     "id": "mclaren",
     "url": "http://api.example.com/teams/mclaren",
     "name": "McLaren",
-    "primary_color": "#FF8000"
+    "primary_color": "#FF8000",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "wikipedia": null
   },
   "position": 1,
   "position_text": "1",

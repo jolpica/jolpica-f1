@@ -4,13 +4,23 @@
     "url": "http://api.example.com/drivers/alonso",
     "abbreviation": "ALO",
     "given_name": "Fernando",
-    "family_name": "Alonso"
+    "family_name": "Alonso",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "permanent_car_number": null,
+    "date_of_birth": null,
+    "wikipedia": null
   },
   "team": {
     "id": "aston_martin",
     "url": "http://api.example.com/teams/aston_martin",
     "name": "Aston Martin",
-    "primary_color": "#358C75"
+    "primary_color": "#358C75",
+    "nationality": null,
+    "country_code": null,
+    "country_flag": null,
+    "wikipedia": null
   },
   "position": null,
   "position_text": "NC",
