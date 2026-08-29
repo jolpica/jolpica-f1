@@ -39,8 +39,8 @@ class ResultRowData:
     row_key: tuple
     session_entries: list[ResultRowSessionEntryData]
     car_number: int | None
-    driver: shared.BasicDriver
-    team: shared.BasicTeam
+    driver: shared.Driver
+    team: shared.Team
 
 
 @dataclass
@@ -101,18 +101,28 @@ class ResultDataLoader:
                         row_key=key,
                         session_entries=session_entry_list,
                         car_number=rentry.car_number,
-                        driver=shared.BasicDriver(
+                        driver=shared.Driver(
                             id=driver.api_id,
                             given_name=driver.forename,
                             family_name=driver.surname,
                             url=HttpUrl(req.build_absolute_uri(reverse("core-drivers-detail", args=[driver.api_id]))),
                             abbreviation=driver.abbreviation,
+                            nationality=driver.nationality,
+                            country_code=driver.country_code,
+                            country_flag=safe_get_country_flag(driver.country_code),
+                            permanent_car_number=driver.permanent_car_number,
+                            date_of_birth=driver.date_of_birth,
+                            wikipedia=HttpUrl(driver.wikipedia) if driver.wikipedia else None,
                         ),
-                        team=shared.BasicTeam(
+                        team=shared.Team(
                             id=team.api_id,
                             name=team.name,
                             url=HttpUrl(req.build_absolute_uri(reverse("core-teams-detail", args=[team.api_id]))),
                             primary_color=team.primary_color,
+                            nationality=team.nationality,
+                            country_code=team.country_code,
+                            country_flag=safe_get_country_flag(team.country_code),
+                            wikipedia=HttpUrl(team.wikipedia) if team.wikipedia else None,
                         ),
                     )
                 )
