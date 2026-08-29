@@ -14,8 +14,8 @@ class ResultComponent(BaseModel):
 
 
 class ResultItem(BaseModel):
-    driver: shared.BasicDriver
-    team: shared.BasicTeam
+    driver: shared.Driver
+    team: shared.Team
     position: int | None
     position_text: str | None
     time: str | None
