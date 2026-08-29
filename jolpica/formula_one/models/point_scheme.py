@@ -188,6 +188,7 @@ class ChampionshipAdjustment(ApiIDMixin, models.Model):
 
     id = models.BigAutoField(primary_key=True)
 
+    api_id = models.CharField(max_length=64, unique=True, db_index=True)
     season_id: int
     season = models.ForeignKey("formula_one.Season", on_delete=models.CASCADE, related_name="championship_adjustments")
     driver_id: int | None
@@ -198,7 +199,6 @@ class ChampionshipAdjustment(ApiIDMixin, models.Model):
     team = models.ForeignKey(
         "formula_one.Team", on_delete=models.CASCADE, related_name="championship_adjustments", null=True, blank=True
     )
-    api_id = models.CharField(max_length=64, unique=True, db_index=True)
     adjustment = models.PositiveSmallIntegerField(choices=ChampionshipAdjustmentType.choices)
     points = models.FloatField(
         null=True, blank=True, help_text="Points to deduct if POINT_DEDUCTION adjustment, otherwise null"
