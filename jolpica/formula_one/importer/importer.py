@@ -5,7 +5,7 @@ from collections import defaultdict
 from typing import Any, ClassVar
 
 from django.db import IntegrityError
-from django.db.models import Model
+from django.db.models import Max, Model, Q
 
 from jolpica.formula_one import models as f1
 from jolpica.formula_one.models.mixins import ApiIDMixin
@@ -131,15 +131,41 @@ class JSONModelImporter:
 
                 for ins in special:
                     cls._save_instance_individually(model_import, ins, import_stats, model_name)
+
             else:
                 for ins in instances:
                     cls._save_instance_individually(model_import, ins, import_stats, model_name)
+
+            if model_class is f1.SessionEntry:
+                cls._update_session_scheduled_laps(instances)
 
         import_stats["total_count"] = import_stats["created_count"] + import_stats["updated_count"]
 
         cls.update_managed_views_and_save_to_db(result.data if isinstance(result.data, list) else [result.data])
 
         return import_stats
+
+    @staticmethod
+    def _update_session_scheduled_laps(instances: list[Model]) -> None:
+        session_ids = {
+            session_id for instance in instances if (session_id := getattr(instance, "session_id", None)) is not None
+        }
+        if not session_ids:
+            return
+
+        max_laps_by_session = dict(
+            f1.SessionEntry.objects.filter(
+                session_id__in=session_ids,
+                session__type__in=(f1.SessionType.RACE, f1.SessionType.SPRINT_RACE),
+                laps_completed__isnull=False,
+            )
+            .values_list("session_id")
+            .annotate(max_laps=Max("laps_completed"))
+        )
+        for session_id, max_laps in max_laps_by_session.items():
+            f1.Session.objects.filter(pk=session_id).filter(
+                Q(scheduled_laps__isnull=True) | Q(scheduled_laps__lt=max_laps)
+            ).update(scheduled_laps=max_laps)
 
     @classmethod
     def _bulk_save_instances(
