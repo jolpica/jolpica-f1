@@ -8,7 +8,7 @@ import pytest
 from django.db import IntegrityError, transaction
 
 from jolpica.formula_one import models as f1
-from jolpica.formula_one.importer.deserialisers import DeserialisationResult
+from jolpica.formula_one.importer.deserialisers import DeserialisationResult, ModelImport
 from jolpica.formula_one.importer.importer import JSONModelImporter
 
 
@@ -39,6 +39,25 @@ def fastest_lap_session_entry() -> f1.SessionEntry:
     )
 
 
+@pytest.fixture
+def scheduled_laps_session() -> tuple[f1.Session, f1.RoundEntry, f1.RoundEntry]:
+    season = f1.Season.objects.create(id=2127, year=2127, championship_system_id=1)
+    round_obj = f1.Round.objects.create(id=212701, season=season, number=1, circuit_id=1, name="Test Round")
+    session = f1.Session.objects.create(id=2127010, round=round_obj, number=1, type="R", api_id="session_test_laps")
+    driver = f1.Driver.objects.create(id=21270, reference="test_driver_laps", forename="Test", surname="Driver")
+    team = f1.Team.objects.create(id=21270, reference="test_team_laps", name="Test Team")
+    team_driver = f1.TeamDriver.objects.create(
+        id=21270, team=team, driver=driver, season=season, api_id="teamdriver_test_laps"
+    )
+    round_entry = f1.RoundEntry.objects.create(
+        id=21270, round=round_obj, team_driver=team_driver, car_number=88, api_id="roundentry_test_laps"
+    )
+    second_round_entry = f1.RoundEntry.objects.create(
+        id=21271, round=round_obj, team_driver=team_driver, car_number=99, api_id="roundentry_test_laps_second"
+    )
+    return session, round_entry, second_round_entry
+
+
 def test_deserialise_all_success(monkeypatch, importer):
     data = [
         {"object_type": "RoundEntry", "data": "round_entry_data"},
@@ -59,6 +78,97 @@ def test_deserialise_all_success(monkeypatch, importer):
     assert result.success
     assert len(result.instances) == 2
     assert result.errors == []
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    ("scheduled_laps", "expected_scheduled_laps"),
+    [(None, 70), (60, 70), (80, 80)],
+    ids=["unset", "lower", "higher"],
+)
+def test_import_session_entries_updates_scheduled_laps(
+    scheduled_laps_session: tuple[f1.Session, f1.RoundEntry, f1.RoundEntry],
+    scheduled_laps: int | None,
+    expected_scheduled_laps: int,
+) -> None:
+    session, round_entry, second_round_entry = scheduled_laps_session
+    session.scheduled_laps = scheduled_laps
+    session.save(update_fields=["scheduled_laps"])
+    entries = [
+        f1.SessionEntry(session=session, round_entry=round_entry, laps_completed=65),
+        f1.SessionEntry(session=session, round_entry=second_round_entry, laps_completed=70),
+    ]
+    result = DeserialisationResult(
+        success=True,
+        data=[],
+        instances={ModelImport(f1.SessionEntry, ("laps_completed",), ("session", "round_entry")): entries},
+    )
+
+    JSONModelImporter.save_deserialisation_result_to_db(result)
+
+    session.refresh_from_db()
+    assert session.scheduled_laps == expected_scheduled_laps
+
+
+@pytest.mark.django_db
+def test_import_session_entries_uses_existing_entries_and_ignores_null_laps(
+    scheduled_laps_session: tuple[f1.Session, f1.RoundEntry, f1.RoundEntry],
+) -> None:
+    session, round_entry, second_round_entry = scheduled_laps_session
+    f1.SessionEntry.objects.create(
+        session=session, round_entry=round_entry, laps_completed=75, api_id="sessionentry_existing_laps"
+    )
+    imported_entry = f1.SessionEntry(session=session, round_entry=second_round_entry, laps_completed=None)
+    result = DeserialisationResult(
+        success=True,
+        data=[],
+        instances={ModelImport(f1.SessionEntry, ("laps_completed",), ("session", "round_entry")): [imported_entry]},
+    )
+
+    JSONModelImporter.save_deserialisation_result_to_db(result)
+
+    session.refresh_from_db()
+    assert session.scheduled_laps == 75
+
+
+@pytest.mark.django_db
+def test_non_bulk_session_entry_import_saves_entry_before_updating_scheduled_laps(
+    scheduled_laps_session: tuple[f1.Session, f1.RoundEntry, f1.RoundEntry],
+) -> None:
+    session, round_entry, _ = scheduled_laps_session
+    imported_entry = f1.SessionEntry(session=session, round_entry=round_entry, laps_completed=70)
+    result = DeserialisationResult(
+        success=True,
+        data=[],
+        instances={ModelImport(f1.SessionEntry, ("laps_completed",), ("round_entry", "session")): [imported_entry]},
+    )
+
+    JSONModelImporter.save_deserialisation_result_to_db(result)
+
+    session.refresh_from_db()
+    assert session.scheduled_laps == 70
+    assert f1.SessionEntry.objects.filter(session=session, round_entry=round_entry, laps_completed=70).exists()
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("session_type", [f1.SessionType.QUALIFYING_ONE, f1.SessionType.PRACTICE_ONE])
+def test_import_session_entries_does_not_update_non_race_scheduled_laps(
+    scheduled_laps_session: tuple[f1.Session, f1.RoundEntry, f1.RoundEntry], session_type: str
+) -> None:
+    session, round_entry, _ = scheduled_laps_session
+    session.type = session_type
+    session.save(update_fields=["type"])
+    imported_entry = f1.SessionEntry(session=session, round_entry=round_entry, laps_completed=70)
+    result = DeserialisationResult(
+        success=True,
+        data=[],
+        instances={ModelImport(f1.SessionEntry, ("laps_completed",), ("session", "round_entry")): [imported_entry]},
+    )
+
+    JSONModelImporter.save_deserialisation_result_to_db(result)
+
+    session.refresh_from_db()
+    assert session.scheduled_laps is None
 
 
 def test_deserialise_all_with_errors(monkeypatch, importer):
