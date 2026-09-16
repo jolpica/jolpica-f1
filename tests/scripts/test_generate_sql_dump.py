@@ -16,6 +16,7 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
+from psycopg.conninfo import conninfo_to_dict
 
 MODULE_PATH = Path(__file__).resolve().parents[2] / "scripts" / "generate_sql_dump.py"
 _spec = importlib.util.spec_from_file_location("generate_sql_dump", MODULE_PATH)
@@ -33,13 +34,27 @@ def make_cursor(rows: list[tuple]) -> MagicMock:
     return cursor
 
 
-def test_get_formula_one_tables_returns_table_names():
+def test_get_formula_one_tables_returns_schema_qualified_table_names():
     conn = MagicMock()
     conn.cursor.return_value = make_cursor([("formula_one_circuit",), ("formula_one_driver",)])
 
     tables = generate_sql_dump.get_formula_one_tables(conn)
 
-    assert tables == ["formula_one_circuit", "formula_one_driver"]
+    assert tables == ["public.formula_one_circuit", "public.formula_one_driver"]
+
+
+def test_get_formula_one_tables_queries_by_schema_and_prefix_params():
+    conn = MagicMock()
+    cursor = make_cursor([])
+    conn.cursor.return_value = cursor
+
+    generate_sql_dump.get_formula_one_tables(conn, schema="public", prefix="formula_one_")
+
+    query, params = cursor.execute.call_args.args
+    assert params == {"schema": "public", "prefix": "formula_one_"}
+    assert "schemaname = %(schema)s" in query
+    assert "starts_with(tablename, %(prefix)s)" in query
+    assert "LIKE" not in query
 
 
 def test_get_formula_one_tables_empty():
@@ -54,10 +69,23 @@ def test_get_formula_one_tables_empty():
     [
         (None, "host=localhost dbname=jolpica user=postgres"),
         ("secret", "host=localhost dbname=jolpica user=postgres password=secret"),
+        ("pass with spaces", "host=localhost dbname=jolpica user=postgres password='pass with spaces'"),
+        ("back\\slash", "host=localhost dbname=jolpica user=postgres password=back\\\\slash"),
     ],
 )
 def test_build_connection_params(password, expected):
     assert generate_sql_dump.build_connection_params("localhost", "jolpica", "postgres", password) == expected
+
+
+def test_build_connection_params_roundtrips_via_make_conninfo():
+    conn_str = generate_sql_dump.build_connection_params("localhost", "jolpica", "postgres", "pass with spaces")
+
+    assert conninfo_to_dict(conn_str) == {
+        "host": "localhost",
+        "dbname": "jolpica",
+        "user": "postgres",
+        "password": "pass with spaces",
+    }
 
 
 def test_setup_output_paths_creates_sql_dir_and_cleans_old_files(tmp_path):
@@ -92,14 +120,20 @@ def test_build_pg_dump_command_includes_each_table_as_allow_list_flag(tmp_path):
     sql_path = tmp_path / "dump.sql"
 
     cmd = generate_sql_dump.build_pg_dump_command(
-        "/usr/bin/pg_dump", "dbhost", "dbuser", "dbname", ["formula_one_circuit", "formula_one_driver"], sql_path
+        "/usr/bin/pg_dump",
+        "dbhost",
+        "dbuser",
+        "dbname",
+        ["public.formula_one_circuit", "public.formula_one_driver"],
+        sql_path,
     )
 
     assert cmd[0] == "/usr/bin/pg_dump"
     assert "--no-owner" in cmd
     assert "--no-privileges" in cmd
+    assert "--strict-names" in cmd
     assert cmd.count("-t") == 2
-    for table in ["formula_one_circuit", "formula_one_driver"]:
+    for table in ["public.formula_one_circuit", "public.formula_one_driver"]:
         idx = cmd.index(table)
         assert cmd[idx - 1] == "-t"
     assert cmd[cmd.index("-f") + 1] == str(sql_path)
@@ -110,12 +144,33 @@ def test_build_pg_dump_command_raises_on_empty_table_list(tmp_path):
         generate_sql_dump.build_pg_dump_command("/usr/bin/pg_dump", "h", "u", "d", [], tmp_path / "dump.sql")
 
 
+def test_ensure_tables_found_raises_on_empty_list():
+    with pytest.raises(RuntimeError, match="No 'formula_one_\\*' tables found"):
+        generate_sql_dump.ensure_tables_found([])
+
+
+def test_ensure_tables_found_passes_for_non_empty_list():
+    generate_sql_dump.ensure_tables_found(["public.formula_one_circuit"])
+
+
 def test_run_pg_dump_invokes_subprocess_with_check_and_capture():
-    cmd = ["/usr/bin/pg_dump", "-t", "formula_one_circuit"]
-    with patch.object(generate_sql_dump.subprocess, "run") as mock_run:
+    cmd = ["/usr/bin/pg_dump", "-t", "public.formula_one_circuit"]
+    with patch.object(generate_sql_dump.subprocess, "run", return_value=MagicMock(stderr="")) as mock_run:
         generate_sql_dump.run_pg_dump(cmd)
 
     mock_run.assert_called_once_with(cmd, check=True, capture_output=True, text=True)
+
+
+def test_run_pg_dump_logs_stderr_even_on_success():
+    cmd = ["/usr/bin/pg_dump", "-t", "public.formula_one_circuit"]
+    with (
+        patch.object(generate_sql_dump.subprocess, "run", return_value=MagicMock(stderr="warning: table skipped")),
+        patch.object(generate_sql_dump.logger, "warning") as mock_warning,
+    ):
+        generate_sql_dump.run_pg_dump(cmd)
+
+    mock_warning.assert_called_once()
+    assert "warning: table skipped" in mock_warning.call_args.args[0]
 
 
 def test_run_pg_dump_propagates_called_process_error():
@@ -196,7 +251,7 @@ def test_create_zip_archive_is_reproducible(tmp_path):
     assert zip_path_a.read_bytes() == zip_path_b.read_bytes()
 
 
-def test_main_skips_pg_dump_when_no_tables_found(tmp_path):
+def test_main_exits_nonzero_when_no_tables_found(tmp_path):
     args = generate_sql_dump.ScriptArguments(
         host="localhost", username="postgres", database="jolpica", output=str(tmp_path), quiet=False, verbose=False
     )
@@ -210,9 +265,11 @@ def test_main_skips_pg_dump_when_no_tables_found(tmp_path):
         patch.object(generate_sql_dump, "find_pg_dump", return_value="/usr/bin/pg_dump"),
         patch.object(generate_sql_dump.psycopg, "connect", return_value=mock_conn),
         patch.object(generate_sql_dump, "run_pg_dump") as mock_run_pg_dump,
+        patch.object(generate_sql_dump.sys, "exit") as mock_exit,
     ):
         generate_sql_dump.main()
 
+    mock_exit.assert_called_once_with(1)
     mock_run_pg_dump.assert_not_called()
     assert not (tmp_path / "sql_dump.zip").exists()
 
@@ -227,8 +284,9 @@ def test_main_happy_path_writes_zip(tmp_path):
     mock_conn.cursor.return_value = make_cursor([("formula_one_circuit",)])
 
     def fake_run_pg_dump(cmd: list[str]) -> None:
+        assert "public.formula_one_circuit" in cmd
         sql_path = Path(cmd[cmd.index("-f") + 1])
-        sql_path.write_text("CREATE TABLE formula_one_circuit (\n    id bigint\n);\n")
+        sql_path.write_text("CREATE TABLE public.formula_one_circuit (\n    id bigint\n);\n")
 
     with (
         patch.object(generate_sql_dump, "parse_arguments", return_value=args),
@@ -255,7 +313,7 @@ def test_main_aborts_and_removes_dump_when_non_prefixed_table_found(tmp_path):
 
     def fake_run_pg_dump(cmd: list[str]) -> None:
         sql_path = Path(cmd[cmd.index("-f") + 1])
-        sql_path.write_text("CREATE TABLE formula_one_circuit (\n);\nCREATE TABLE knox_authtoken (\n);\n")
+        sql_path.write_text("CREATE TABLE public.formula_one_circuit (\n);\nCREATE TABLE knox_authtoken (\n);\n")
 
     with (
         patch.object(generate_sql_dump, "parse_arguments", return_value=args),

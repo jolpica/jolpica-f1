@@ -13,11 +13,12 @@ Table Selection:
     The database also holds tables unrelated to Formula One data (Django auth,
     Knox API tokens, dump metadata, etc.), some of which hold sensitive data.
     To make sure those are never included:
-      1. The live table list is queried from pg_catalog and filtered to the
-         'formula_one_' prefix.
+      1. The live table list is queried from pg_catalog, restricted to the
+         'public' schema, and filtered to the 'formula_one_' prefix.
       2. pg_dump is invoked with that list passed explicitly as repeated -t
-         flags, which makes pg_dump an allow-list: it will only ever emit
-         schema/data for exactly the tables named, nothing else.
+         flags of schema-qualified names, which makes pg_dump an allow-list:
+         it will only ever emit schema/data for exactly the tables named,
+         nothing else.
       3. After pg_dump runs, the resulting .sql file is scanned for CREATE
          TABLE statements as a defense-in-depth check - if anything without
          the 'formula_one_' prefix shows up, the file is deleted and the
@@ -71,6 +72,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 import psycopg
+from psycopg.conninfo import make_conninfo
 
 if TYPE_CHECKING:
     from psycopg import Connection
@@ -84,6 +86,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 TABLE_PREFIX = "formula_one_"
+SCHEMA_NAME = "public"
 
 CREATE_TABLE_RE = re.compile(r'^CREATE TABLE(?:\s+IF NOT EXISTS)?\s+(?:"?[\w$]+"?\.)?"?([\w$]+)"?', re.IGNORECASE)
 
@@ -104,25 +107,29 @@ class ScriptArguments:
     verbose: bool
 
 
-def get_formula_one_tables(conn: Connection[tuple]) -> list[str]:
-    """Retrieve all table names with 'formula_one_' prefix.
+def get_formula_one_tables(conn: Connection[tuple], schema: str = SCHEMA_NAME, prefix: str = TABLE_PREFIX) -> list[str]:
+    """Retrieve all table names with 'formula_one_' prefix, schema-qualified.
 
     Args:
         conn: PostgreSQL database connection.
+        schema: Schema to search (tables outside it are ignored).
+        prefix: Required table name prefix.
 
     Returns:
-        List of table names that start with 'formula_one_'.
+        List of schema-qualified table names (e.g. "public.formula_one_driver")
+        for tables in `schema` whose name starts with `prefix`.
     """
     with conn.cursor() as cur:
         cur.execute(
             """
             SELECT tablename
             FROM pg_tables
-            WHERE tablename LIKE 'formula_one_%'
+            WHERE schemaname = %(schema)s AND starts_with(tablename, %(prefix)s)
             ORDER BY tablename;
-        """
+            """,
+            {"schema": schema, "prefix": prefix},
         )
-        return [row[0] for row in cur.fetchall()]
+        return [f"{schema}.{row[0]}" for row in cur.fetchall()]
 
 
 def build_connection_params(host: str, database: str, username: str, password: str | None = None) -> str:
@@ -137,10 +144,10 @@ def build_connection_params(host: str, database: str, username: str, password: s
     Returns:
         PostgreSQL connection string.
     """
-    conn_str = f"host={host} dbname={database} user={username}"
+    params: dict[str, str] = {"host": host, "dbname": database, "user": username}
     if password:
-        conn_str += f" password={password}"
-    return conn_str
+        params["password"] = password
+    return make_conninfo(**params)
 
 
 def setup_output_paths(output_dir: str | Path) -> tuple[Path, Path]:
@@ -187,6 +194,20 @@ def find_pg_dump() -> str:
     return pg_dump_path
 
 
+def ensure_tables_found(tables: list[str], prefix: str = TABLE_PREFIX) -> None:
+    """Raise if no tables were found to dump.
+
+    Args:
+        tables: Table names found to dump.
+        prefix: Required table name prefix, used in the error message.
+
+    Raises:
+        RuntimeError: If `tables` is empty.
+    """
+    if not tables:
+        raise RuntimeError(f"No '{prefix}*' tables found in database - refusing to produce an empty dump")
+
+
 def build_pg_dump_command(
     pg_dump_path: str, host: str, username: str, database: str, tables: list[str], sql_path: Path
 ) -> list[str]:
@@ -224,6 +245,7 @@ def build_pg_dump_command(
         database,
         "--no-owner",
         "--no-privileges",
+        "--strict-names",
         "-f",
         str(sql_path),
     ]
@@ -242,7 +264,9 @@ def run_pg_dump(cmd: list[str]) -> None:
         subprocess.CalledProcessError: If pg_dump exits with a non-zero status.
     """
     logger.debug(f"Running: {' '.join(cmd)}")
-    subprocess.run(cmd, check=True, capture_output=True, text=True)  # noqa: S603
+    result = subprocess.run(cmd, check=True, capture_output=True, text=True)  # noqa: S603
+    if result.stderr:
+        logger.warning(f"pg_dump stderr: {result.stderr}")
 
 
 def find_non_prefixed_tables(sql_path: Path, prefix: str = TABLE_PREFIX) -> list[str]:
@@ -306,8 +330,8 @@ def create_zip_archive(sql_path: Path, zip_path: Path) -> None:
         zip_info.date_time = fixed_timestamp
         zip_info.compress_type = zipfile.ZIP_DEFLATED
 
-        with open(sql_path, "rb") as f:
-            zipf.writestr(zip_info, f.read())
+        with open(sql_path, "rb") as src, zipf.open(zip_info, "w") as dest:
+            shutil.copyfileobj(src, dest)
 
 
 def parse_arguments() -> ScriptArguments:
@@ -413,9 +437,7 @@ def main() -> None:
         with psycopg.connect(conn_string) as conn:
             tables = get_formula_one_tables(conn)
 
-        if not tables:
-            logger.warning(f"No '{TABLE_PREFIX}*' tables found in database")
-            return
+        ensure_tables_found(tables)
 
         logger.info(f"Found {len(tables)} table(s) to dump: {', '.join(tables)}")
 
