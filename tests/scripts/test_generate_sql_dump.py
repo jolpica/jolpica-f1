@@ -18,7 +18,16 @@ from unittest.mock import MagicMock, patch
 import pytest
 from psycopg.conninfo import conninfo_to_dict
 
-MODULE_PATH = Path(__file__).resolve().parents[2] / "scripts" / "generate_sql_dump.py"
+SCRIPTS_DIR = Path(__file__).resolve().parents[2] / "scripts"
+MODULE_PATH = SCRIPTS_DIR / "generate_sql_dump.py"
+
+# generate_sql_dump.py imports its sibling dump_utils.py as a plain module
+# (scripts/ has no __init__.py - each script is standalone). At actual
+# runtime Python puts the script's own directory on sys.path[0] for us;
+# loading it here via spec_from_file_location doesn't, so it must be added
+# explicitly for that import to resolve.
+sys.path.insert(0, str(SCRIPTS_DIR))
+
 _spec = importlib.util.spec_from_file_location("generate_sql_dump", MODULE_PATH)
 assert _spec is not None and _spec.loader is not None
 generate_sql_dump = importlib.util.module_from_spec(_spec)
@@ -144,15 +153,6 @@ def test_build_pg_dump_command_raises_on_empty_table_list(tmp_path):
         generate_sql_dump.build_pg_dump_command("/usr/bin/pg_dump", "h", "u", "d", [], tmp_path / "dump.sql")
 
 
-def test_ensure_tables_found_raises_on_empty_list():
-    with pytest.raises(RuntimeError, match="No 'formula_one_\\*' tables found"):
-        generate_sql_dump.ensure_tables_found([])
-
-
-def test_ensure_tables_found_passes_for_non_empty_list():
-    generate_sql_dump.ensure_tables_found(["public.formula_one_circuit"])
-
-
 def test_run_pg_dump_invokes_subprocess_with_check_and_capture():
     cmd = ["/usr/bin/pg_dump", "-t", "public.formula_one_circuit"]
     with patch.object(generate_sql_dump.subprocess, "run", return_value=MagicMock(stderr="")) as mock_run:
@@ -224,31 +224,6 @@ def test_verify_dump_contains_only_prefixed_tables_deletes_file_and_raises(tmp_p
         generate_sql_dump.verify_dump_contains_only_prefixed_tables(sql_path)
 
     assert not sql_path.exists()
-
-
-def test_create_zip_archive_contains_sql_file(tmp_path):
-    sql_path = tmp_path / "jolpica-f1-dump.sql"
-    sql_path.write_text("CREATE TABLE formula_one_circuit ();\n")
-    zip_path = tmp_path / "sql_dump.zip"
-
-    generate_sql_dump.create_zip_archive(sql_path, zip_path)
-
-    assert zip_path.exists()
-    with zipfile.ZipFile(zip_path) as zf:
-        assert zf.namelist() == ["jolpica-f1-dump.sql"]
-        assert zf.read("jolpica-f1-dump.sql") == sql_path.read_bytes()
-
-
-def test_create_zip_archive_is_reproducible(tmp_path):
-    sql_path = tmp_path / "jolpica-f1-dump.sql"
-    sql_path.write_text("CREATE TABLE formula_one_circuit ();\n")
-
-    zip_path_a = tmp_path / "a.zip"
-    zip_path_b = tmp_path / "b.zip"
-    generate_sql_dump.create_zip_archive(sql_path, zip_path_a)
-    generate_sql_dump.create_zip_archive(sql_path, zip_path_b)
-
-    assert zip_path_a.read_bytes() == zip_path_b.read_bytes()
 
 
 def test_main_exits_nonzero_when_no_tables_found(tmp_path):

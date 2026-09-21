@@ -66,11 +66,11 @@ import re
 import shutil
 import subprocess
 import sys
-import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TYPE_CHECKING
 
+import dump_utils
 import psycopg
 from psycopg.conninfo import make_conninfo
 
@@ -194,20 +194,6 @@ def find_pg_dump() -> str:
     return pg_dump_path
 
 
-def ensure_tables_found(tables: list[str], prefix: str = TABLE_PREFIX) -> None:
-    """Raise if no tables were found to dump.
-
-    Args:
-        tables: Table names found to dump.
-        prefix: Required table name prefix, used in the error message.
-
-    Raises:
-        RuntimeError: If `tables` is empty.
-    """
-    if not tables:
-        raise RuntimeError(f"No '{prefix}*' tables found in database - refusing to produce an empty dump")
-
-
 def build_pg_dump_command(
     pg_dump_path: str, host: str, username: str, database: str, tables: list[str], sql_path: Path
 ) -> list[str]:
@@ -308,30 +294,6 @@ def verify_dump_contains_only_prefixed_tables(sql_path: Path, prefix: str = TABL
         raise RuntimeError(
             f"Refusing to publish dump: found non-'{prefix}' tables in pg_dump output: {', '.join(offending)}"
         )
-
-
-def create_zip_archive(sql_path: Path, zip_path: Path) -> None:
-    """Create a reproducible zip file containing the SQL dump.
-
-    Uses a fixed timestamp so identical content produces an identical zip
-    file (same SHA256 hash) across different runs.
-
-    Args:
-        sql_path: Path to the SQL file to archive.
-        zip_path: Path where the zip file will be created.
-
-    Raises:
-        OSError: If there's an error creating the zip file.
-    """
-    fixed_timestamp = (1999, 1, 1, 0, 0, 0)
-
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-        zip_info = zipfile.ZipInfo(filename=sql_path.name)
-        zip_info.date_time = fixed_timestamp
-        zip_info.compress_type = zipfile.ZIP_DEFLATED
-
-        with open(sql_path, "rb") as src, zipf.open(zip_info, "w") as dest:
-            shutil.copyfileobj(src, dest)
 
 
 def parse_arguments() -> ScriptArguments:
@@ -437,7 +399,10 @@ def main() -> None:
         with psycopg.connect(conn_string) as conn:
             tables = get_formula_one_tables(conn)
 
-        ensure_tables_found(tables)
+        if not tables:
+            raise RuntimeError(  # noqa: TRY301 - inlined per review feedback rather than a one-line helper
+                f"No '{TABLE_PREFIX}*' tables found in database - refusing to produce an empty dump"
+            )
 
         logger.info(f"Found {len(tables)} table(s) to dump: {', '.join(tables)}")
 
@@ -447,7 +412,7 @@ def main() -> None:
 
         verify_dump_contains_only_prefixed_tables(sql_path)
 
-        create_zip_archive(sql_path, zip_path)
+        dump_utils.create_zip_archive([sql_path], zip_path)
         logger.info(f"Created zip archive: {zip_path}")
 
     except psycopg.Error:
