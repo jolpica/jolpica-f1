@@ -61,12 +61,12 @@ import logging
 import os
 import re
 import sys
-import zipfile
 from dataclasses import dataclass
 from datetime import datetime, time, timedelta
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
+import dump_utils
 import psycopg
 from psycopg import sql
 
@@ -305,32 +305,6 @@ def export_table_to_csv(
                         f.write(data)
 
 
-def create_zip_archive(csv_dir: Path, zip_path: Path) -> None:
-    """Create a reproducible zip file from CSV files with flat structure.
-
-    Uses fixed timestamps to ensure identical content produces identical
-    zip files with the same SHA256 hash across different runs.
-
-    Args:
-        csv_dir: Directory containing CSV files to archive.
-        zip_path: Path where the zip file will be created.
-
-    Raises:
-        OSError: If there's an error creating the zip file.
-    """
-    # Use a fixed timestamp for reproducible zips
-    fixed_timestamp = (1999, 1, 1, 0, 0, 0)
-
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-        for csv_file in sorted(csv_dir.glob("*.csv")):
-            zip_info = zipfile.ZipInfo(filename=csv_file.name)
-            zip_info.date_time = fixed_timestamp
-            zip_info.compress_type = zipfile.ZIP_DEFLATED
-
-            with open(csv_file, "rb") as f:
-                zipf.writestr(zip_info, f.read())
-
-
 def parse_arguments() -> ScriptArguments:
     """Parse command-line arguments with defaults.
 
@@ -536,7 +510,7 @@ def main() -> None:
 
         # Create zip archive in the base directory
         zip_path = base_dir / "csv_dump.zip"
-        create_zip_archive(csv_dir, zip_path)
+        dump_utils.create_zip_archive(sorted(csv_dir.glob("*.csv")), zip_path)
         logger.info(f"Created zip archive: {zip_path}")
 
     except psycopg.Error:
