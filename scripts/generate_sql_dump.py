@@ -30,6 +30,12 @@ Performance:
     over the wire (the table list) rather than iterating rows in Python -
     this keeps it fast even when the database is remote/high-latency.
 
+Reproducibility:
+    pg_dump picks a fresh random key for its `\\restrict`/`\\unrestrict` pair on
+    every run, so an unchanged database would otherwise produce a differently
+    hashed dump each time. That key is rewritten to a digest of the dump's own
+    contents, so identical data always yields an identical .sql (and zip).
+
 Output Structure:
     The script creates the following structure in the output directory:
     dump/
@@ -60,6 +66,7 @@ Environment:
 from __future__ import annotations
 
 import argparse
+import hashlib
 import logging
 import os
 import re
@@ -89,6 +96,9 @@ TABLE_PREFIX = "formula_one_"
 SCHEMA_NAME = "public"
 
 CREATE_TABLE_RE = re.compile(r'^CREATE TABLE(?:\s+IF NOT EXISTS)?\s+(?:"?[\w$]+"?\.)?"?([\w$]+)"?', re.IGNORECASE)
+
+RESTRICT_RE = re.compile(rb"(\\(?:un)?restrict)[ \t]+([A-Za-z0-9]+)([ \t]*\r?\n?)\Z")
+RESTRICT_PLACEHOLDER = b"PLACEHOLDER"
 
 
 @dataclass
@@ -296,6 +306,56 @@ def verify_dump_contains_only_prefixed_tables(sql_path: Path, prefix: str = TABL
         )
 
 
+def set_deterministic_restrict_key(sql_path: Path) -> str | None:
+    """Rewrite pg_dump's random restrict key to one derived from the dump contents.
+
+    pg_dump generates a fresh random key for its `\\restrict`/`\\unrestrict`
+    pair on every run, so two dumps of identical data differ byte-for-byte and
+    therefore hash differently. Those lines are normalised to a placeholder
+    while digesting the file, and the digest is then written back over the
+    original keys - so the same database contents always produce the same bytes.
+
+    Args:
+        sql_path: Path to the pg_dump SQL output file, rewritten in place.
+
+    Returns:
+        The derived key, or None if the dump contained no `\\restrict` lines
+        (older pg_dump versions), in which case the file is left unchanged.
+
+    Raises:
+        RuntimeError: If the restrict lines do not all carry the same key.
+    """
+    digest = hashlib.sha256()
+    matches: list[tuple[int, re.Match[bytes]]] = []
+    offset = 0
+
+    with open(sql_path, "rb") as f:
+        for line in f:
+            match = RESTRICT_RE.match(line)
+            if match:
+                matches.append((offset, match))
+                digest.update(b"%s %s%s" % (match.group(1), RESTRICT_PLACEHOLDER, match.group(3)))
+            else:
+                digest.update(line)
+            offset += len(line)
+
+    if not matches:
+        return None
+
+    keys = {match.group(2) for _, match in matches}
+    if len(keys) != 1:
+        raise RuntimeError(f"Expected a single pg_dump restrict key, found {len(keys)}")
+
+    # Truncated to the original key's length so each line keeps its size and can be patched in place.
+    key = digest.hexdigest()[: len(keys.pop())]
+    with open(sql_path, "r+b") as f:
+        for line_offset, match in matches:
+            f.seek(line_offset)
+            f.write(b"%s %s%s" % (match.group(1), key.encode(), match.group(3)))
+
+    return key
+
+
 def parse_arguments() -> ScriptArguments:
     """Parse command-line arguments with defaults.
 
@@ -411,6 +471,9 @@ def main() -> None:
         logger.info(f"pg_dump wrote {sql_path}")
 
         verify_dump_contains_only_prefixed_tables(sql_path)
+
+        restrict_key = set_deterministic_restrict_key(sql_path)
+        logger.debug(f"Restrict key set to {restrict_key}" if restrict_key else "No restrict lines found in dump")
 
         dump_utils.create_zip_archive([sql_path], zip_path)
         logger.info(f"Created zip archive: {zip_path}")

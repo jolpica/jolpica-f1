@@ -226,6 +226,83 @@ def test_verify_dump_contains_only_prefixed_tables_deletes_file_and_raises(tmp_p
     assert not sql_path.exists()
 
 
+DEFAULT_BODY = "CREATE TABLE public.formula_one_circuit (\n    id bigint\n);\n"
+TOKEN_LENGTH = 63
+
+
+def write_dump(sql_path: Path, token: str, body: str = DEFAULT_BODY) -> Path:
+    sql_path.write_text(f"--\n-- PostgreSQL database dump\n--\n\n\\restrict {token}\n\n{body}\n\\unrestrict {token}\n")
+    return sql_path
+
+
+def test_set_deterministic_restrict_key_replaces_both_lines_with_the_digest(tmp_path):
+    token = "H8fBnZLe2MaOXEQW8EpYO1eoblvZG3uf5kfDpayEDuQ1pUnLQEEfeYTFwrzly5j"
+    sql_path = write_dump(tmp_path / "dump.sql", token)
+    original_size = sql_path.stat().st_size
+
+    key = generate_sql_dump.set_deterministic_restrict_key(sql_path)
+
+    assert key is not None
+    assert len(key) == len(token)
+    assert key.isalnum()
+    lines = sql_path.read_text().splitlines()
+    assert f"\\restrict {key}" in lines
+    assert f"\\unrestrict {key}" in lines
+    assert sql_path.stat().st_size == original_size
+
+
+def test_set_deterministic_restrict_key_is_identical_for_identical_contents(tmp_path):
+    first = write_dump(tmp_path / "first.sql", "a" * TOKEN_LENGTH)
+    second = write_dump(tmp_path / "second.sql", "b" * TOKEN_LENGTH)
+
+    generate_sql_dump.set_deterministic_restrict_key(first)
+    generate_sql_dump.set_deterministic_restrict_key(second)
+
+    assert first.read_bytes() == second.read_bytes()
+
+
+def test_set_deterministic_restrict_key_differs_for_different_contents(tmp_path):
+    first = write_dump(tmp_path / "first.sql", "a" * TOKEN_LENGTH)
+    second = write_dump(tmp_path / "second.sql", "a" * TOKEN_LENGTH, body=DEFAULT_BODY.replace("id", "name"))
+
+    assert generate_sql_dump.set_deterministic_restrict_key(first) != generate_sql_dump.set_deterministic_restrict_key(
+        second
+    )
+
+
+def test_set_deterministic_restrict_key_leaves_dump_without_restrict_lines_untouched(tmp_path):
+    sql_path = tmp_path / "dump.sql"
+    sql_path.write_text(DEFAULT_BODY)
+
+    assert generate_sql_dump.set_deterministic_restrict_key(sql_path) is None
+    assert sql_path.read_text() == DEFAULT_BODY
+
+
+def test_set_deterministic_restrict_key_preserves_other_backslash_lines(tmp_path):
+    body = "COPY public.formula_one_circuit (id, name) FROM stdin;\n1\t\\N\n\\.\n"
+    sql_path = write_dump(tmp_path / "dump.sql", "a" * TOKEN_LENGTH, body=body)
+
+    generate_sql_dump.set_deterministic_restrict_key(sql_path)
+
+    assert body in sql_path.read_text()
+
+
+def test_set_deterministic_restrict_key_raises_when_keys_differ(tmp_path):
+    sql_path = tmp_path / "dump.sql"
+    sql_path.write_text(f"\\restrict {'a' * TOKEN_LENGTH}\n{DEFAULT_BODY}\\unrestrict {'b' * TOKEN_LENGTH}\n")
+
+    with pytest.raises(RuntimeError, match="single pg_dump restrict key"):
+        generate_sql_dump.set_deterministic_restrict_key(sql_path)
+
+
+def test_set_deterministic_restrict_key_does_not_create_temporary_files(tmp_path):
+    sql_path = write_dump(tmp_path / "dump.sql", "a" * TOKEN_LENGTH)
+
+    generate_sql_dump.set_deterministic_restrict_key(sql_path)
+
+    assert [path.name for path in tmp_path.iterdir()] == ["dump.sql"]
+
+
 def test_main_exits_nonzero_when_no_tables_found(tmp_path):
     args = generate_sql_dump.ScriptArguments(
         host="localhost", username="postgres", database="jolpica", output=str(tmp_path), quiet=False, verbose=False
