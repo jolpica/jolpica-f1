@@ -30,6 +30,8 @@ def _make_session(session_type: str, number: int = 1) -> shared.Session:
         local_timestamp=None,
         timezone=None,
         scheduled_laps=None,
+        completed_laps=None,
+        completed_distance=None,
         is_cancelled=False,
     )
 

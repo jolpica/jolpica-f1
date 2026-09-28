@@ -66,6 +66,22 @@ from jolpica.formula_one.importer.deserialisers import (
         ),
         pytest.param(
             {
+                "object_type": "SessionEntry",
+                "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
+                "objects": [{"driver_of_the_day_percentage": 32.5, "driver_of_the_day_winner": True}],
+            },
+            id="Session Entry driver of the day",
+        ),
+        pytest.param(
+            {
+                "object_type": "Session",
+                "foreign_keys": {"year": 2023, "round": 18},
+                "objects": [{"type": "R", "completed_laps": 56, "completed_distance": 305.354}],
+            },
+            id="Session completed laps and distance",
+        ),
+        pytest.param(
+            {
                 "object_type": "Lap",
                 "foreign_keys": {"year": 2023, "round": 18, "session": "R", "car_number": 1},
                 "objects": [

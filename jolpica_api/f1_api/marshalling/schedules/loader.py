@@ -99,6 +99,8 @@ class ScheduleDataLoader:
                         local_timestamp=str(local_ts) if local_ts else None,
                         timezone=str(session.timezone) if session.timezone else None,
                         scheduled_laps=session.scheduled_laps,
+                        completed_laps=session.completed_laps,
+                        completed_distance=session.completed_distance,
                         is_cancelled=session.is_cancelled,
                     )
                 )

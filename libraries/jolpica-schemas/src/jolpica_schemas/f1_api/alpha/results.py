@@ -24,6 +24,8 @@ class ResultItem(BaseModel):
     points: float | None
     laps: int | None
     car_number: int | None = None
+    driver_of_the_day_percentage: float | None = None
+    driver_of_the_day_winner: bool | None = None
     components: dict[str, ResultComponent]
 
 

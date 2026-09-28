@@ -238,6 +238,10 @@ class SessionObject(F1ObjectSchema):
     has_time_data: bool | None = None
     timezone: str | None = None
     scheduled_laps: PositiveInt | None = None
+    completed_laps: NonNegativeInt | None = None
+    completed_distance: NonNegativeFloat | None = Field(
+        None, description="Distance covered by finishing all completed laps, in km"
+    )
     is_cancelled: bool | None = None
 
 
@@ -262,6 +266,10 @@ class SessionEntryObject(F1ObjectSchema):
     time: Annotated[timedelta | None, BeforeValidator(mutate_timedelta_from_dict)] = None
     fastest_lap_rank: PositiveInt | None = None
     laps_completed: NonNegativeInt | None = None
+    driver_of_the_day_percentage: float | None = Field(
+        None, ge=0, le=100, description="Share of driver of the day votes received, 0-100"
+    )
+    driver_of_the_day_winner: bool | None = Field(None, description="True only for the winning entry, null otherwise")
 
 
 class SessionEntryImport(F1ImportSchema):

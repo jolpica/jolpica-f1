@@ -174,6 +174,8 @@ def fully_populated_session():
         has_time_data=True,
         timezone=zoneinfo.ZoneInfo("Europe/Monaco"),
         scheduled_laps=78,
+        completed_laps=78,
+        completed_distance=260.286,
         is_cancelled=False,
     )
 

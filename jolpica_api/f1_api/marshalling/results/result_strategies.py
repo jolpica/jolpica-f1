@@ -67,6 +67,8 @@ class ResultRenderingStrategy(ABC):
             laps=race_session_entry.laps_completed,
             components=components,
             car_number=result_data.car_number,
+            driver_of_the_day_percentage=race_session_entry.driver_of_the_day_percentage,
+            driver_of_the_day_winner=race_session_entry.driver_of_the_day_winner,
             driver=result_data.driver,
             team=result_data.team,
         )
