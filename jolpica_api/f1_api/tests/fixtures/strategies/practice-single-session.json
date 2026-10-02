@@ -30,5 +30,7 @@
   "points": null,
   "laps": 22,
   "car_number": 44,
+  "driver_of_the_day_percentage": null,
+  "driver_of_the_day_winner": null,
   "components": {}
 }

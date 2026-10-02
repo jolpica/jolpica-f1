@@ -151,6 +151,36 @@ def test_non_bulk_session_entry_import_saves_entry_before_updating_scheduled_lap
 
 
 @pytest.mark.django_db
+@pytest.mark.parametrize(
+    ("completed_laps", "expected_completed_laps"),
+    [(None, 70), (60, 70), (80, 80)],
+    ids=["unset", "lower", "higher"],
+)
+def test_import_session_entries_updates_completed_laps(
+    scheduled_laps_session: tuple[f1.Session, f1.RoundEntry, f1.RoundEntry],
+    completed_laps: int | None,
+    expected_completed_laps: int,
+) -> None:
+    session, round_entry, second_round_entry = scheduled_laps_session
+    session.completed_laps = completed_laps
+    session.save(update_fields=["completed_laps"])
+    entries = [
+        f1.SessionEntry(session=session, round_entry=round_entry, laps_completed=65),
+        f1.SessionEntry(session=session, round_entry=second_round_entry, laps_completed=70),
+    ]
+    result = DeserialisationResult(
+        success=True,
+        data=[],
+        instances={ModelImport(f1.SessionEntry, ("laps_completed",), ("session", "round_entry")): entries},
+    )
+
+    JSONModelImporter.save_deserialisation_result_to_db(result)
+
+    session.refresh_from_db()
+    assert session.completed_laps == expected_completed_laps
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize("session_type", [f1.SessionType.QUALIFYING_ONE, f1.SessionType.PRACTICE_ONE])
 def test_import_session_entries_does_not_update_non_race_scheduled_laps(
     scheduled_laps_session: tuple[f1.Session, f1.RoundEntry, f1.RoundEntry], session_type: str
@@ -169,6 +199,7 @@ def test_import_session_entries_does_not_update_non_race_scheduled_laps(
 
     session.refresh_from_db()
     assert session.scheduled_laps is None
+    assert session.completed_laps is None
 
 
 def test_deserialise_all_with_errors(monkeypatch, importer):

@@ -30,6 +30,8 @@
   "points": null,
   "laps": null,
   "car_number": 81,
+  "driver_of_the_day_percentage": null,
+  "driver_of_the_day_winner": null,
   "components": {
     "FP1": {
       "key": "FP1",

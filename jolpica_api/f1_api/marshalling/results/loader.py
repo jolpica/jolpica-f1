@@ -30,6 +30,8 @@ class ResultRowSessionEntryData:
     time: timedelta | None
     fastest_lap_time: timedelta | None
     fastest_lap_rank: int | None
+    driver_of_the_day_percentage: float | None = None
+    driver_of_the_day_winner: bool | None = None
 
 
 @dataclass
@@ -169,6 +171,8 @@ class ResultDataLoader:
                     local_timestamp=str(s.local_timestamp) if s.local_timestamp else None,
                     timezone=str(s.timezone) if s.timezone else None,
                     scheduled_laps=s.scheduled_laps,
+                    completed_laps=s.completed_laps,
+                    completed_distance=s.completed_distance,
                     is_cancelled=s.is_cancelled,
                 )
                 for s in sessions
@@ -201,6 +205,8 @@ class ResultDataLoader:
                     time=se.time,
                     fastest_lap_time=fastest_lap_time,
                     fastest_lap_rank=se.fastest_lap_rank,
+                    driver_of_the_day_percentage=se.driver_of_the_day_percentage,
+                    driver_of_the_day_winner=se.driver_of_the_day_winner,
                 )
             )
         return session_entry_list

@@ -187,6 +187,8 @@ class LapDataLoader:
                     local_timestamp=str(s.local_timestamp) if s.local_timestamp else None,
                     timezone=str(s.timezone) if s.timezone else None,
                     scheduled_laps=s.scheduled_laps,
+                    completed_laps=s.completed_laps,
+                    completed_distance=s.completed_distance,
                     is_cancelled=s.is_cancelled,
                 )
                 for s in sessions

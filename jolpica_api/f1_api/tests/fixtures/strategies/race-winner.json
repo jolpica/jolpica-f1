@@ -30,6 +30,8 @@
   "points": 25.0,
   "laps": 53,
   "car_number": 1,
+  "driver_of_the_day_percentage": null,
+  "driver_of_the_day_winner": null,
   "components": {
     "GRID": {
       "key": "GRID",

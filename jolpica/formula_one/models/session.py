@@ -67,6 +67,10 @@ class Session(ApiIDMixin, models.Model):
         help_text="IANA timezone identifier for the session location (e.g., 'Europe/Monaco', 'Asia/Singapore').",
     )
     scheduled_laps = models.PositiveSmallIntegerField(null=True, blank=True)
+    completed_laps = models.PositiveSmallIntegerField(null=True, blank=True)
+    completed_distance = models.FloatField(
+        null=True, blank=True, db_comment="Distance covered by finishing all completed laps, in kilometres."
+    )
     is_cancelled = models.BooleanField(default=False)
 
     class Meta:
@@ -128,10 +132,24 @@ class SessionEntry(ApiIDMixin, models.Model):
     time = models.DurationField(null=True, blank=True)
     fastest_lap_rank = models.PositiveSmallIntegerField(null=True, blank=True)
     laps_completed = models.PositiveSmallIntegerField(null=True, blank=True)
+    driver_of_the_day_percentage = models.FloatField(
+        null=True, blank=True, db_comment="Share of driver of the day votes received, 0-100."
+    )
+    driver_of_the_day_winner = models.BooleanField(
+        null=True,
+        blank=True,
+        db_comment="Only True is stored; non-winning entries and missing entries are NULL.",
+    )
 
     class Meta:
         constraints: ClassVar = [
             models.UniqueConstraint(fields=["session", "round_entry"], name="session_entry_unique_session_round_entry"),
+            models.UniqueConstraint(
+                fields=["session"],
+                condition=models.Q(driver_of_the_day_winner__isnull=False),
+                name="session_entry_unique_driver_of_the_day_winner",
+                violation_error_message="Only one session entry per session can set the driver of the day winner.",
+            ),
         ]
 
     def __str__(self) -> str:

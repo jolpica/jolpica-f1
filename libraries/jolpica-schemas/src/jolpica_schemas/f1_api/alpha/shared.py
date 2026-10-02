@@ -38,10 +38,14 @@ class BasicSession(BaseModel):
     type: str = Field(..., description="Session type code (e.g., R, Q1, FP1)")
     type_display: str = Field(..., description="Display name for the session type")
     is_cancelled: bool = False
-    scheduled_laps: int | None = None
 
 
 class Session(BasicSession):
+    scheduled_laps: int | None = None
+    completed_laps: int | None = None
+    completed_distance: float | None = Field(
+        None, description="Distance covered by finishing all completed laps, in km"
+    )
     timestamp: datetime.datetime | None = None
     missing_time_data: bool | None = Field(None, description="Does the timestamp field only have date information")
     local_timestamp: str | None = None
@@ -55,7 +59,6 @@ class Session(BasicSession):
             type=self.type,
             type_display=self.type_display,
             is_cancelled=self.is_cancelled,
-            scheduled_laps=self.scheduled_laps,
         )
 
 
@@ -97,6 +100,10 @@ class SessionEntry(BasicSessionEntry):
     time_display: str | None = Field(None, description="Human-readable finishing time (e.g., 1:32:15.123)")
     fastest_lap_rank: int | None = Field(None, description="Fastest lap ranking in session")
     laps_completed: int | None = Field(None, description="Number of laps completed")
+    driver_of_the_day_percentage: float | None = Field(
+        None, ge=0, le=100, description="Share of driver of the day votes received, 0-100"
+    )
+    driver_of_the_day_winner: bool | None = Field(None, description="True only for the winning entry, null otherwise")
 
 
 class PitStop(BaseModel):

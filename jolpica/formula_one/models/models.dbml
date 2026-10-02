@@ -1120,6 +1120,10 @@ Indicates whether the timestamp includes actual time data or just date with defa
 *timezone*
 IANA timezone identifier for the session location (e.g., "Europe/Monaco", "Asia/Singapore").''', null]
   scheduled_laps positive_small_integer [note: '''*scheduled laps*''', null]
+  completed_laps positive_small_integer [note: '''*completed laps*''', null]
+  completed_distance float [note: '''
+Distance covered by finishing all completed laps, in kilometres.
+*completed distance*''', null]
   is_cancelled boolean [note: '''*is cancelled*''', default:`False`, not null]
 
   indexes {
@@ -1153,6 +1157,12 @@ All information for a round entry for the session
   time duration [note: '''*time*''', null]
   fastest_lap_rank positive_small_integer [note: '''*fastest lap rank*''', null]
   laps_completed positive_small_integer [note: '''*laps completed*''', null]
+  driver_of_the_day_percentage float [note: '''
+Share of driver of the day votes received, 0-100.
+*driver of the day percentage*''', null]
+  driver_of_the_day_winner boolean [note: '''
+Only True is stored; non-winning entries and missing entries are NULL.
+*driver of the day winner*''', null]
 
   indexes {
     (api_id) [unique, name: 'formula_one_sessionentry_api_id_key', type: btree]

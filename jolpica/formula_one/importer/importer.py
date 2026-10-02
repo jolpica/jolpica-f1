@@ -137,7 +137,7 @@ class JSONModelImporter:
                     cls._save_instance_individually(model_import, ins, import_stats, model_name)
 
             if model_class is f1.SessionEntry:
-                cls._update_session_scheduled_laps(instances)
+                cls._update_session_lap_counts(instances)
 
         import_stats["total_count"] = import_stats["created_count"] + import_stats["updated_count"]
 
@@ -146,7 +146,7 @@ class JSONModelImporter:
         return import_stats
 
     @staticmethod
-    def _update_session_scheduled_laps(instances: list[Model]) -> None:
+    def _update_session_lap_counts(instances: list[Model]) -> None:
         session_ids = {
             session_id for instance in instances if (session_id := getattr(instance, "session_id", None)) is not None
         }
@@ -166,6 +166,9 @@ class JSONModelImporter:
             f1.Session.objects.filter(pk=session_id).filter(
                 Q(scheduled_laps__isnull=True) | Q(scheduled_laps__lt=max_laps)
             ).update(scheduled_laps=max_laps)
+            f1.Session.objects.filter(pk=session_id).filter(
+                Q(completed_laps__isnull=True) | Q(completed_laps__lt=max_laps)
+            ).update(completed_laps=max_laps)
 
     @classmethod
     def _bulk_save_instances(
