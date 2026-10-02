@@ -146,8 +146,9 @@ class SessionEntry(ApiIDMixin, models.Model):
             models.UniqueConstraint(fields=["session", "round_entry"], name="session_entry_unique_session_round_entry"),
             models.UniqueConstraint(
                 fields=["session"],
-                condition=models.Q(driver_of_the_day_winner=True),
+                condition=models.Q(driver_of_the_day_winner__isnull=False),
                 name="session_entry_unique_driver_of_the_day_winner",
+                violation_error_message="Only one session entry per session can set the driver of the day winner.",
             ),
         ]
 

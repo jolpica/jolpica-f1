@@ -45,9 +45,10 @@ class Migration(migrations.Migration):
         migrations.AddConstraint(
             model_name="sessionentry",
             constraint=models.UniqueConstraint(
-                condition=models.Q(("driver_of_the_day_winner", True)),
+                condition=models.Q(("driver_of_the_day_winner__isnull", False)),
                 fields=("session",),
                 name="session_entry_unique_driver_of_the_day_winner",
+                violation_error_message="Only one session entry per session can be the driver of the day winner.",
             ),
         ),
     ]
