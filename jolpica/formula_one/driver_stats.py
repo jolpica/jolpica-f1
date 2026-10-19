@@ -1,6 +1,6 @@
-from django.db.models import Count, OuterRef, Q, Subquery, Sum
+from django.db.models import Case, Count, IntegerField, OuterRef, Q, Subquery, Sum, When
 
-from .models import Driver, Round, SessionEntry, SessionStatus, SessionType
+from .models import Driver, Round, Session, SessionEntry, SessionStatus, SessionType
 from .models.managed_views import DriverChampionship
 
 
@@ -21,6 +21,22 @@ def get_driver_career_stats(driver: Driver) -> dict[str, int | float]:
             )
         )
     )
+    final_qualifying_session = (
+        Session.objects.filter(
+            round_id=OuterRef("session__round_id"),
+            type__startswith="Q",
+        )
+        .annotate(
+            format_priority=Case(
+                When(type="QA", then=3),
+                When(type="QB", then=2),
+                default=1,
+                output_field=IntegerField(),
+            )
+        )
+        .order_by("-format_priority", "-number")
+        .values("id")[:1]
+    )
 
     session_stats = session_entries.aggregate(
         race_starts=Count("id", filter=race_starts),
@@ -34,7 +50,7 @@ def get_driver_career_stats(driver: Driver) -> dict[str, int | float]:
         pole_positions=Count(
             "round_entry__round",
             distinct=True,
-            filter=Q(session__type__startswith="Q", position=1),
+            filter=Q(position=1, session_id=Subquery(final_qualifying_session)),
         ),
     )
 
