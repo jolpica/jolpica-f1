@@ -10,6 +10,7 @@ from rest_framework.test import APIRequestFactory
 
 from jolpica.formula_one import models as f1
 from jolpica_api.f1_api.serializers import CircuitSerializer, DriverSerializer, RoundSerializer, TeamSerializer
+from jolpica_api.f1_api.serializers.lap import LapSerializer
 from jolpica_schemas.f1_api.alpha.core.circuit import CircuitSummary, PaginatedCircuitSummary, RetrievedCircuitDetail
 from jolpica_schemas.f1_api.alpha.core.driver import DriverSummary, PaginatedDriverSummary, RetrievedDriverDetail
 from jolpica_schemas.f1_api.alpha.core.lap import PaginatedLapSummary, RetrievedLapDetail
@@ -283,6 +284,46 @@ def test_laps_detail_schema_conformance(api_client, sample_season_data):
         RetrievedLapDetail.model_validate(response_data)
     except ValidationError as e:
         pytest.fail(f"API laps detail response does not conform to RetrievedLapDetail:\n{e}")
+
+
+@pytest.mark.parametrize("many", [False, True], ids=["detail", "list"])
+@pytest.mark.parametrize(
+    ["has_pit_stop", "local_timestamp", "expected_timestamp"],
+    [
+        (True, "15:04:50", "2023-05-28T15:04:50+02:00"),
+        (True, "2023-05-28T15:04:50+02:00", "2023-05-28T15:04:50+02:00"),
+        (True, None, None),
+        (False, None, None),
+    ],
+    ids=["local-time", "full-timestamp", "missing-timestamp", "no-pit-stop"],
+)
+def test_lap_pit_stop_serialization(fully_populated_session, many, has_pit_stop, local_timestamp, expected_timestamp):
+    session_entry = f1.SessionEntry(id=1, api_id="sessionentry_test", session=fully_populated_session)
+    lap = f1.Lap(id=1, api_id="lap_test", session_entry=session_entry, number=1)
+    if has_pit_stop:
+        lap.pit_stop = f1.PitStop(
+            id=1,
+            api_id="pitstop_test",
+            session_entry=session_entry,
+            lap=lap,
+            number=1,
+            local_timestamp=local_timestamp,
+        )
+    else:
+        f1.Lap.pit_stop.related.set_cached_value(lap, None)
+
+    request = Request(APIRequestFactory().get("/"))
+    data = LapSerializer([lap] if many else lap, many=many, context={"request": request}).data
+    lap_data = data[0] if many else data
+
+    if not has_pit_stop:
+        assert "pit_stop" not in lap_data
+    else:
+        assert lap_data["pit_stop"]["id"] == "pitstop_test"
+        if expected_timestamp is None:
+            assert "timestamp" not in lap_data["pit_stop"]
+        else:
+            assert lap_data["pit_stop"]["timestamp"] == expected_timestamp
 
 
 @pytest.mark.django_db
