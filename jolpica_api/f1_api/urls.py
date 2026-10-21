@@ -23,7 +23,8 @@ router.register(r"core/drivers", core_views.DriverViewSet, basename="core-driver
 router.register(r"core/teams", core_views.TeamViewSet, basename="core-teams")
 router.register(r"core/sessions", core_views.SessionViewSet, basename="core-sessions")
 router.register(r"core/session-entries", core_views.SessionEntryViewSet, basename="core-session-entries")
-router.register(r"core/laps", core_views.LapViewSet, basename="core-laps")
+# Disabled until abuse stops
+# router.register(r"core/laps", core_views.LapViewSet, basename="core-laps")
 router.register(r"core/pit-stops", core_views.PitStopViewSet, basename="core-pit-stops")
 
 urlpatterns = [
