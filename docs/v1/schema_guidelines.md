@@ -23,14 +23,15 @@ Schemas live in `libraries/jolpica-schemas/src/jolpica_schemas/f1_api/alpha/` an
 Every database-backed entity follows a two-tier pattern:
 
 ```python
-class BasicDriver(BaseModel):   # Minimal: id + url + key identifiers
+class BasicDriver(BaseModel):  # Minimal: id + url + key identifiers
     id: str
     url: HttpUrl
     abbreviation: str | None = Field(None, max_length=10)
     given_name: str
     family_name: str
 
-class Driver(BasicDriver):      # Full: adds optional/extended fields
+
+class Driver(BasicDriver):  # Full: adds optional/extended fields
     nationality: str | None = None
     country_code: str | None = Field(None, max_length=3)
     permanent_car_number: int | None = None
@@ -65,7 +66,7 @@ Schemas that represent **logical groupings** rather than database rows should **
 When a field has both a machine-readable code and a human-readable label, use a paired naming convention:
 
 ```python
-type: str          # Machine-readable code
+type: str  # Machine-readable code
 type_display: str  # Human-readable label
 
 status: int
@@ -79,8 +80,8 @@ For `FullSession`, the pair is `code`/`title` instead, because it represents a c
 Temporal values that need multiple representations use a double pattern:
 
 ```python
-time: timedelta | None         # ISO 8601 duration (machine-readable)
-time_display: str | None       # Human-readable string
+time: timedelta | None  # ISO 8601 duration (machine-readable)
+time_display: str | None  # Human-readable string
 ```
 
 
@@ -95,7 +96,7 @@ When entity B is nested inside entity A, it creates a tight coupling:
 ```python
 # BAD: Circuit is nested inside Round
 class ScheduleRound(BasicRound):
-    circuit: ScheduleCircuit       # Nested
+    circuit: ScheduleCircuit  # Nested
     sessions: list[ScheduleSession]  # Nested
 ```
 
@@ -111,8 +112,8 @@ Sibling keys at the same level:
 ```python
 # GOOD: Round and Circuit are siblings
 class ScheduleEntry(BaseModel):
-    round: Round                         # Flat
-    circuit: Circuit                     # Flat
+    round: Round  # Flat
+    circuit: Circuit  # Flat
     date: datetime.date | None = None
     sessions: list[ScheduleFullSession]  # Flat
 ```
@@ -143,11 +144,14 @@ Each endpoint file typically contains:
 from .shared import Circuit
 from .metadata import DetailResponse, PaginatedResponse
 
+
 class CircuitSummary(Circuit):
     pass
 
+
 PaginatedCircuitSummary = PaginatedResponse[list[CircuitSummary]]
 RetrievedCircuitDetail = DetailResponse[CircuitSummary]
+
 
 class CircuitQueryParams(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -179,8 +183,8 @@ class ScheduleFullSession(FullSession):
 All API responses are wrapped in either:
 
 ```python
-DetailResponse[T]      # Single-item response with timestamp metadata
-PaginatedResponse[T]   # List response with pagination metadata
+DetailResponse[T]  # Single-item response with timestamp metadata
+PaginatedResponse[T]  # List response with pagination metadata
 ```
 
 Endpoint files define named type aliases for clarity:
@@ -213,9 +217,9 @@ A `Session` maps 1:1 to a database row. Each has a specific type like `Q1`, `Q2`
 
 ```python
 class Session(BasicSession):
-    id: str            # ← Has an ID, maps to a DB row
+    id: str  # ← Has an ID, maps to a DB row
     url: HttpUrl
-    type: str          # Specific: "Q1", "Q2", "Q3"
+    type: str  # Specific: "Q1", "Q2", "Q3"
     type_display: str  # "Qualifying 1", "Qualifying 2"
     timestamp: datetime.datetime | None
     ...
@@ -228,8 +232,8 @@ A `FullSession` represents a **logical session** that may be composed of multipl
 ```python
 class FullSession(BaseModel):
     # No id — this is a logical concept, not a DB row
-    code: str           # Consolidated: "Q", "SQ", "R", "FP1"
-    title: str          # "Qualifying", "Sprint Qualifying", "Race"
+    code: str  # Consolidated: "Q", "SQ", "R", "FP1"
+    title: str  # "Qualifying", "Sprint Qualifying", "Race"
     sessions: list[Session]  # The actual DB-backed sessions
 ```
 
@@ -302,6 +306,7 @@ Fields that are only meaningful in one context should live on the endpoint subcl
 class FullSession(BaseModel):
     results_url: HttpUrl | None = None  # Don't put this here
 
+
 # GOOD: Put it on the schedule-specific subclass
 class ScheduleFullSession(FullSession):
     results_url: HttpUrl | None = None
@@ -315,6 +320,7 @@ If you find yourself creating a one-off wrapper class just to nest an entity, th
 # BAD: Circuit nested inside Round for no strong reason
 class ScheduleRound(BasicRound):
     circuit: ScheduleCircuit  # Why is circuit inside round?
+
 
 # GOOD: Both are siblings
 class ScheduleEntry(BaseModel):

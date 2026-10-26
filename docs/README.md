@@ -70,8 +70,7 @@ requests.get(
 import fastf1.ergast.interface
 
 version = "1.0.0"
-fastf1.ergast.interface.HEADERS['User-Agent'] = f"YourAppName/{version}" + fastf1.ergast.interface.HEADERS['User-Agent']
-
+fastf1.ergast.interface.HEADERS["User-Agent"] = f"YourAppName/{version}" + fastf1.ergast.interface.HEADERS["User-Agent"]
 ```
 
 

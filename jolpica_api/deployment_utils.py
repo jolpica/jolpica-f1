@@ -24,7 +24,7 @@ def get_ec2_token() -> str:
     return response.text
 
 
-def get_linux_ec2_private_ip() -> None | str:
+def get_linux_ec2_private_ip() -> str | None:
     """Get the private IP Address of the machine if running on an EC2 linux server.
     See https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
     """
