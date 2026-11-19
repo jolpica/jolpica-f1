@@ -47,6 +47,7 @@
 [tool.uv]
     required-version = "<0.13"
     default-groups = ["dev", "local"]
+    exclude-newer = "72 hours"
 
     [tool.uv.sources]
         jolpica-schemas = { workspace = true, editable = true }
