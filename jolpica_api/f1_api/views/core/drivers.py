@@ -1,8 +1,21 @@
 from django.db.models import Min
+from django.urls import reverse
+from django.utils import timezone
 from drf_spectacular.utils import extend_schema, extend_schema_view
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 from jolpica.formula_one import models as f1
-from jolpica_schemas.f1_api.alpha.core.driver import DriverQueryParams, DriverSummary, RetrievedDriverDetail
+from jolpica.formula_one.driver_stats import get_driver_career_stats
+from jolpica_schemas.f1_api.alpha.core.driver import (
+    DriverQueryParams,
+    DriverStats,
+    DriverSummary,
+    RetrievedDriverDetail,
+    RetrievedDriverStats,
+)
+from jolpica_schemas.f1_api.alpha.metadata import DetailMetadata, DetailResponse
+from jolpica_schemas.f1_api.alpha.shared import BasicDriver
 
 from ...serializers import DriverSerializer
 from ...utils import pydantic_to_open_api_parameters
@@ -23,6 +36,11 @@ from .base_viewset import BaseFilterableViewSet
         + "including complete team history across all seasons.",
         responses={200: RetrievedDriverDetail},
     ),
+    stats=extend_schema(
+        summary="Get F1 Driver Career Stats",
+        description="Provides career statistics for a specific F1 driver.",
+        responses={200: RetrievedDriverStats},
+    ),
 )
 class DriverViewSet(BaseFilterableViewSet):
     """
@@ -33,6 +51,27 @@ class DriverViewSet(BaseFilterableViewSet):
     serializer_class = DriverSerializer
     query_params_class = DriverQueryParams
     response_schema_class = DriverSummary
+
+    @action(detail=True, methods=["get"], url_path="stats")
+    def stats(self, request, *args, **kwargs):
+        driver = self.get_object()
+        driver_stats = get_driver_career_stats(driver)
+        data = DriverStats(
+            driver=BasicDriver(
+                id=driver.api_id,
+                url=request.build_absolute_uri(reverse("core-drivers-detail", args=[driver.api_id])),
+                abbreviation=driver.abbreviation,
+                given_name=driver.forename,
+                family_name=driver.surname,
+            ),
+            **driver_stats,
+        )
+        return Response(
+            DetailResponse(
+                metadata=DetailMetadata(timestamp=timezone.now()),
+                data=data,
+            ).model_dump(mode="json", exclude_none=True)
+        )
 
     def get_queryset(self):
         """Optimize database queries with prefetch_related and filters."""

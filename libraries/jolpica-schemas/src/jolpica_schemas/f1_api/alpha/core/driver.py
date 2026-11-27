@@ -1,7 +1,7 @@
 from pydantic import BaseModel, ConfigDict, Field
 
 from ..metadata import DetailResponse, PaginatedResponse
-from ..shared import Driver
+from ..shared import BasicDriver, Driver
 
 
 class DriverSummary(Driver):
@@ -10,6 +10,19 @@ class DriverSummary(Driver):
 
 PaginatedDriverSummary = PaginatedResponse[list[DriverSummary]]
 RetrievedDriverDetail = DetailResponse[DriverSummary]
+
+
+class DriverStats(BaseModel):
+    driver: BasicDriver = Field(description="Basic information about the driver")
+    race_starts: int = Field(description="Number of races started")
+    race_wins: int = Field(description="Number of races won")
+    podiums: int = Field(description="Number of podium finishes")
+    pole_positions: int = Field(description="Number of pole positions")
+    total_points: float = Field(description="Total points scored")
+    championships: int = Field(description="Number of drivers' championships won")
+
+
+RetrievedDriverStats = DetailResponse[DriverStats]
 
 
 class DriverQueryParams(BaseModel):
